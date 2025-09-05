@@ -21,7 +21,7 @@ In case you already have a rosbag which contains a TF tree, using our system is 
 rko_lio /path/to/rosbag
 ```
 
-For further details, please refer to the [Python readme](python/README.md).
+For further details, please refer to the [Python readme](python#rko_lio---python-bindings).
 
 ## Setup
 
