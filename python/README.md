@@ -86,15 +86,13 @@ Requirements:
   - `T_imu_to_base`
   - `T_lidar_to_base`
 
-- imu file (`.csv` or `.txt`): exactly one file is expected.
-Columns must include: `timestamp, gyro_x, gyro_y, gyro_z, accel_x, accel_y, accel_z`.
-Additional columns may be present, but these are required.
-`timestamp` in particular is assumed to be in nanoseconds, rest are SI units.
+- imu file (`.csv` or `.txt`): exactly one file is expected. Columns must include: `timestamp, gyro_x, gyro_y, gyro_z, accel_x, accel_y, accel_z`. Additional columns may be present, but these are required. `timestamp` in particular is assumed to be in nanoseconds, rest are SI units.
 
 - lidar folder (`lidar/`): contains scans as `.ply` files.
   - Filename: must be a timestamp (ns) corresponding to the end of recording for that scan, i.e., close to time of last recorded point. This timestamp is used along with the IMU timestamp to sort both sensor data into a common index, which is then processed sequentially by the odometry system.
   - Each `.ply` must include a time field for points. Accepted field names are: `time`, `timestamp`, `timestamps`, or `t`. This time must be in seconds, representing the absolute time of point collection.
-(PRs welcome to improve this dataloader.)
+
+PRs welcome to improve this dataloader.
 </details>
 
 ---
@@ -102,7 +100,7 @@ Additional columns may be present, but these are required.
 <details>
 <summary>Rosbag dataloader</summary>
 
-If you're working with rosbags, either ros1 or ros2 bags, there's a few conditions by which you can simply run
+If you're working with rosbags, either ros1 or ros2 bags, there's a few reasonable conditions by which you can simply run
 
 ```bash
 rko_lio /path/to/bag
@@ -113,13 +111,13 @@ and the system will work. These are:
   - If multiple exist, you’ll be prompted to select one via the `--lidar` and/or `--imu` flags.
 - The bag contains a TF tree with a static transform between the lidar and imu frames.
   - Note that we support only static TFs, on either the python bindings or the ROS version. Dynamic TF handling is out of the scope of the python bindings. I haven't really had a requirement where I need to handle a dynamic TF between the IMU and LiDAR, though I did consider how to. Open an issue if you need this supported on the ROS side.
-- The frame names in the message header match the names in the TF tree. I.e., the lidar message header `frame_id` has to match a frame id in the TF tree. similary for the imu.
+- The frame names in the message header match the names in the TF tree. I.e., the lidar message header `frame_id` has to match a frame id in the TF tree. Similary for the imu.
   - Yes, there are cases where the frame ids don't match. And yes, because i ran into this problem myself, i provide a way to handle the case in which they don't match. Override the frame ids with the `--lidar_frame` or `--imu_frame` flags.
 
 If the rosbag has no TF tree:
 - First, please ask your data provider to include the TF tree.
 - You can manually specify the extrinsics via the config (see `config/leg_kilo.yaml` or `config/oxford_spires.yaml` as references).
-- Also: can dataset providers please include TF trees in bags by default? ~~makes no sense~~.
+- Also: can dataset providers please include TF trees in bags by default? ~~makes no sense~~
 </details>
 
 ---
