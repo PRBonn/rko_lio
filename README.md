@@ -34,7 +34,7 @@ We currently support ROS2 Jazzy, and plan to additionally support Humble, Kilted
 Clone the repository into your ROS workspace and then
 
 ```bash
-colcon build --packages-select rko_lio # --symlink-install --event-handlers console_direct+ 
+colcon build --packages-select rko_lio # --symlink-install --event-handlers console_direct+
 ```
 
 To launch the odometry node:
@@ -70,7 +70,7 @@ cd python && pip install .
 <summary>Optional dependencies</summary>
 
 There's a few optional dependencies depending on what part of the interface you use.
-E.g., inspecting rosbag data will require `rosbags`, and enabling visualization will require `rerun-sdk`; you will be prompted when a dependency is missing. 
+E.g., inspecting rosbag data will require `rosbags`, and enabling visualization will require `rerun-sdk`; you will be prompted when a dependency is missing.
 In case you don't mind pulling in a few additional dependencies and want everything available, instead run
 
 ```bash

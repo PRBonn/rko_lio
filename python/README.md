@@ -45,22 +45,23 @@ We have three dataloaders available currently: rosbag (both ROS1 and ROS2), raw,
 
 By default, the dataloader is detected from the provided path, but you can explicitly specify it using the `-d` flag.
 
-The system uses three key frames:  
-- **IMU sensor frame**  
-- **LiDAR sensor frame**  
-- **Robot base frame**  
+The system uses three key frames:
+- **IMU sensor frame**
+- **LiDAR sensor frame**
+- **Robot base frame**
 
-The extrinsic transformations  
-- `extrinsic_imu2base_quat_xyzw_xyz`  
-- `extrinsic_lidar2base_quat_xyzw_xyz`  
+The extrinsic transformations
+- `extrinsic_imu2base_quat_xyzw_xyz`
+- `extrinsic_lidar2base_quat_xyzw_xyz`
 
-are **required parameters**. You can provide them via a config file (`-c` option).  
-See the examples in the `config/` folder.   
+are **required parameters**. You can provide them (with those keys) via a config file (`-c` option).
+See the examples in the `config/` folder.
 
 You can also override any other config parameters via the config file.
 The default set is in `config/default.yaml`.
 
-If you don't pass the extrinsic parameters, we try to infer them from the dataset directly, and assume the lidar frame as the base frame where applicable. Please expand the dataset specific details below.
+If you don't pass the extrinsic parameters, we try to infer them from the dataset directly, and assume the lidar frame as the base frame where applicable.
+For more details, please expand the dataset specific sections below.
 
 ---
 
@@ -69,32 +70,30 @@ If you don't pass the extrinsic parameters, we try to infer them from the datase
 
 When working with raw data, the folder structure and file layout have to follow a specific convention, since we need both lidar and imu data.
 
-Folder layout example:  
+Folder layout example:
 ```
 dataset_root/
 ├── transforms.yaml                 # requires specific keys for extrinsics
 ├── imu.csv                         # or imu.txt, requires specific column names
-└── lidar/                          # folder needs to be named exactly
+└── lidar/                          # folder needs to be named the same
     ├── 1662622237000000000.ply     # filenames should be timestamps in nanoseconds
     ├── 1662622238000000000.ply
     └── ...
 ```
 
-Requirements:  
-- transforms.yaml: must define two keys:  
-  - `T_imu_to_base`  
-  - `T_lidar_to_base`  
-Each should be a 4×4 transformation matrix specifying extrinsics to the base frame.  
-(See [A Note on Transformations](../README.md#a-note-on-transformations) in the main README for frame-order convention.)
+Requirements:
+- transforms.yaml: must define two keys: Each should be a 4×4 transformation matrix specifying extrinsics to the base frame. (See [this](../README.md#a-note-on-transformations) for frame-order convention.)
+  - `T_imu_to_base`
+  - `T_lidar_to_base`
 
 - imu file (`.csv` or `.txt`): exactly one file is expected.
-Columns must include: `timestamp, gyro_x, gyro_y, gyro_z, accel_x, accel_y, accel_z`.  
-Additional columns may be present, but these are required.  
+Columns must include: `timestamp, gyro_x, gyro_y, gyro_z, accel_x, accel_y, accel_z`.
+Additional columns may be present, but these are required.
 `timestamp` in particular is assumed to be in nanoseconds, rest are SI units.
 
-- lidar folder (`lidar/`): contains scans as `.ply` files.  
+- lidar folder (`lidar/`): contains scans as `.ply` files.
   - Filename: must be a timestamp (ns) corresponding to the end of recording for that scan, i.e., close to time of last recorded point. This timestamp is used along with the IMU timestamp to sort both sensor data into a common index, which is then processed sequentially by the odometry system.
-  - Each `.ply` must include a time field for points. Accepted field names are: `time`, `timestamp`, `timestamps`, or `t`. This time must be in seconds, representing the absolute time of point collection.  
+  - Each `.ply` must include a time field for points. Accepted field names are: `time`, `timestamp`, `timestamps`, or `t`. This time must be in seconds, representing the absolute time of point collection.
 (PRs welcome to improve this dataloader.)
 </details>
 
@@ -110,16 +109,16 @@ rko_lio /path/to/bag
 ```
 
 and the system will work. These are:
-- The bag contains only a single lidar and a single imu topic.  
+- The bag contains only a single lidar and a single imu topic.
   - If multiple exist, you’ll be prompted to select one via the `--lidar` and/or `--imu` flags.
-- The bag contains a TF tree with a static transform between the lidar and imu frames.  
-  - Note that we support only static TFs, on either the python bindings or the ROS version. Dynamic TF handling is out of the scope of the python bindings. I haven't really had a requirement where I need to handle a dynamic TF between the IMU and LiDAR, though I did consider how to. Open an issue if you need this supported on the ROS side.  
+- The bag contains a TF tree with a static transform between the lidar and imu frames.
+  - Note that we support only static TFs, on either the python bindings or the ROS version. Dynamic TF handling is out of the scope of the python bindings. I haven't really had a requirement where I need to handle a dynamic TF between the IMU and LiDAR, though I did consider how to. Open an issue if you need this supported on the ROS side.
 - The frame names in the message header match the names in the TF tree. I.e., the lidar message header `frame_id` has to match a frame id in the TF tree. similary for the imu.
   - Yes, there are cases where the frame ids don't match. And yes, because i ran into this problem myself, i provide a way to handle the case in which they don't match. Override the frame ids with the `--lidar_frame` or `--imu_frame` flags.
 
 If the rosbag has no TF tree:
 - First, please ask your data provider to include the TF tree.
-- You can manually specify the extrinsics via the config (see `config/leg_kilo.yaml` or `config/oxford_spires.yaml` as references).  
+- You can manually specify the extrinsics via the config (see `config/leg_kilo.yaml` or `config/oxford_spires.yaml` as references).
 - Also: can dataset providers please include TF trees in bags by default? ~~makes no sense~~.
 </details>
 
@@ -134,5 +133,5 @@ This is deprecated and planned to be removed in a future release. I'm prioritisi
 ---
 
 ### Configuration
-All configurable parameters are defined in `config/default.yaml`.  
+All configurable parameters are defined in `config/default.yaml`.
 For descriptions of each parameter, see [CONFIG.md](../CONFIG.md).
