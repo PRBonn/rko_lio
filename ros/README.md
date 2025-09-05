@@ -55,6 +55,11 @@ As mentioned before regarding the offline node, you can use it to simultaneously
 
 You can enable rviz visualization by passing `rviz:=true` which launches an rviz window simultaneously using the default rviz config file in `config/default.rviz`.
 
+An example full invocation for running the offline node with rviz can look like this
+
+```bash
+ros2 launch rko_lio odometry.launch.py mode:=offline config_file:=/path/to/config/file bag_filename:=/path/to/rosbag/directory rviz:=true
+```
 
 ### Published topics
 
