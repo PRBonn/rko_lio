@@ -87,7 +87,7 @@ Afterwards, check
 rko_lio --help
 ```
 
-You'll find further usage instructions in [Python](python/README.md).
+You'll find further usage instructions in the [python readme](python/README.md).
 
 <details>
 <summary>Please prefer the ROS version over the python version if you can</summary>
@@ -112,10 +112,10 @@ By this, we mean a transformation that converts a vector expressed in the `<from
 Mathematically, this translates to:
 
 $$
-\mathbf{v}^{\text{to}} = {}^{\text{to}} \mathbf{T}_{\text{from}} \, \mathbf{v}^{\text{from}}
+\mathbf{v}^{\text{to}} = {}^{\text{to}} \mathbf{T}_{\text{from}}  \mathbf{v}^{\text{from}}
 $$
 
-The superscript on the vector indicates the frame in which the vector is expressed.
+The superscript on the vector indicates the frame in which the vector is expressed, and $${}^{\text{to}} \mathbf{T}_{\text{from}}$$ corresponds to `transform_<from-frame>_to_<to-frame>`.
 
 ## License
 
