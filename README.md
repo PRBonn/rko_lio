@@ -43,7 +43,7 @@ To launch the odometry node:
 ros2 launch rko_lio odometry.launch.py # config_file:=/path/to/a/config.yaml rviz:=true
 ```
 
-Please refer to the [ROS readme](ros/README.md) for further ROS-specific details.
+Please refer to the [ROS readme](ros) for further ROS-specific details.
 
 <details>
 <summary>Build information</summary>
@@ -95,7 +95,7 @@ You'll find further usage instructions in the [python readme](python#usage).
 **Please note:** the ROS version is the intended way to use our odometry system on a robot.
 The python version is slower than the ROS version, not on the odometry itself, but on how we read incoming data, i.e. data-loading.
 Without getting into details, if you can, you should prefer using the ROS version.
-We also provide a way to directly inspect and run our odometry on recorded rosbags (see [ROS usage](ros/README.md)) which still has the same performance benefit over the python version.
+We also provide a way to directly inspect and run our odometry on recorded rosbags (see [ROS usage](ros#usage)) which still has the same performance benefit over the python version.
 The python interface is merely meant to be a convenience.
 
 </details>

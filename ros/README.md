@@ -30,7 +30,7 @@ We provide an online node, an online node component (see [here](rko_lio/CMakeLis
 
 The offline node provides a way to directly read data from a rosbag, instead of the usual pattern of playing the bag with `ros2 bag play`.
 
-Both nodes can be launched via the `odometry.launch.py` launch file, with the different modes being specified by the `mode` argument (the default is `online`).
+Both nodes can be launched via the `odometry.launch.py` [launch file](launch/odometry.launch.py), with the different modes being specified by the `mode` argument (the default is `online`).
 
 Check all available configuration options for the launch file by running
 
@@ -50,6 +50,8 @@ But really, if you have a TF problem, just fix it instead.
 `config/default.yaml` specifies the default set of parameters explicitly, and also leaves some placeholders you can modify to pass the `lidar_topic` and similar.
 
 Please note that the parameter definitions in the file take priority over those defined from the CLI. This behaviour is planned to be fixed (PR welcome).
+
+As mentioned before regarding the offline node, you can use it to simultaneously play a bag and run the odometry on it at the same time. Pass the `bag_filename:=` parameter to the launch file (which should be a folder containing the .db3 or .mcap or other ROS supported formats). Check the `offline_only_parameters` in the launch file [here](launch/odometry.launch.py#L32).
 
 You can enable rviz visualization by passing `rviz:=true` which launches an rviz window simultaneously using the default rviz config file in `config/default.rviz`.
 
