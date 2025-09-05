@@ -87,7 +87,7 @@ Afterwards, check
 rko_lio --help
 ```
 
-You'll find further usage instructions in the [python readme](python/README.md).
+You'll find further usage instructions in the [python readme](python#usage).
 
 <details>
 <summary>Please prefer the ROS version over the python version if you can</summary>
