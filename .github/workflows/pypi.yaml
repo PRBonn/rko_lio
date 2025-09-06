@@ -1,0 +1,47 @@
+name: Publish to PyPI.org
+on:
+  release:
+    types: [published]
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+jobs:
+  cibuildwheel:
+    name: Build wheels on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest] # windows and macos will be added later
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build test wheels (only PRs)
+        if: github.event_name != 'release'
+        uses: pypa/cibuildwheel@v3.1.4
+        env: # build 1 build per platform just to make sure we can do it later when releasing
+          CIBW_BUILD: "cp312-*"
+        with:
+          package-dir: ${{github.workspace}}/python/
+      - name: Build all wheels (release)
+        if: github.event_name == 'release'
+        uses: pypa/cibuildwheel@v3.1.4
+        with:
+          package-dir: ${{github.workspace}}/python/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: artifact-${{ matrix.os }}
+          path: ./wheelhouse/*.whl
+  pypi:
+    if: github.event_name == 'release'
+    needs: [cibuildwheel]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v5
+        with:
+          pattern: artifact*
+          path: dist
+          merge-multiple: true
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
+          # TODO: switch to trusted publishing

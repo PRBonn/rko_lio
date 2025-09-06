@@ -2,9 +2,9 @@
 name: ROS Build
 on:
   push:
-    branches: ["workflows"]
+    branches: ["master"]
   pull_request:
-    branches: ["workflows"]
+    branches: ["master"]
 jobs:
   ros_build:
     runs-on: ubuntu-latest
