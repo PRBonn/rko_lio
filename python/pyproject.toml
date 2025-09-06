@@ -42,7 +42,8 @@ Homepage = "https://github.com/PRBonn/rko_lio"
 all = [
   "open3d",
   "rerun-sdk",
-  "rosbags"
+  "rosbags",
+  "pytest"
 ]
 
 [project.scripts]
@@ -73,3 +74,8 @@ manylinux-x86_64-image = "manylinux_2_28"
 
 [tool.cibuildwheel.macos]
 archs = ["x86_64", "arm64"]
+
+[tool.pytest.ini_options]
+testpaths = [
+  "tests"
+]
