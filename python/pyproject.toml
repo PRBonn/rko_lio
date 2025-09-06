@@ -23,6 +23,7 @@ classifiers = [
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
   "License :: OSI Approved :: MIT License",
   "Operating System :: Unix",
 ]
@@ -68,5 +69,7 @@ RKO_LIO_FETCH_CONTENT_DEPS = "ON"
 [tool.cibuildwheel]
 archs = ["auto64"]
 skip = ["*-musllinux*",  "pp*", "cp38-*"]
-
 manylinux-x86_64-image = "manylinux_2_28"
+
+[tool.cibuildwheel.macos]
+archs = ["x86_64", "arm64"]
