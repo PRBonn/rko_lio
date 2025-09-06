@@ -8,7 +8,7 @@ We currently support ROS2 Jazzy. But support for Humble, Kilted and Rolling is p
 
 Our system dependencies are:
 - CMake, ROS environment
-- Optionally: Ninja, Eigen, Sophus, nlohmann_json, TBB, Bonxai (please see [BUILD.md](../docs/BUILD.md) for more details)
+- Optionally: Ninja, Eigen, Sophus, nlohmann_json, TBB, Bonxai (please see [build.md](../docs/build.md) for more details)
 
 Clone the repository into a colcon workspace's `src`. From the workspace folder, you can then
 
@@ -16,7 +16,7 @@ Clone the repository into a colcon workspace's `src`. From the workspace folder,
 colcon build --packages-select rko_lio # --symlink-install --event-handlers console_direct+
 ```
 
-We provide a `colcon.pkg` [file](colcon.pkg) which defines default values for some CMake arguments. Details from [BUILD.md](../docs/BUILD.md) apply here, but most importantly note that we use `ninja` as a generator by default (you might need to install it, or change it to something else), and we have `RKO_LIO_FETCH_CONTENT_DEPS=ON` by default. This last option handles our optional dependencies automatically.
+We provide a `colcon.pkg` [file](colcon.pkg) which defines default values for some CMake arguments. Details from [build.md](../docs/build.md) apply here, but most importantly note that we use `ninja` as a generator by default (you might need to install it, or change it to something else), and we have `RKO_LIO_FETCH_CONTENT_DEPS=ON` by default. This last option handles our optional dependencies automatically.
 
 In case you'd like to use a different generator, or provide our optional dependencies yourself, either modify `colcon.pkg` or override those CMake flags when invoking colcon, for example, by
 
@@ -38,7 +38,7 @@ Check all available configuration options for the launch file by running
 ros2 launch rko_lio odometry.launch.py -s
 ```
 
-That will also provide additional documentation about the different parameters. For some additional details regarding the odometry parameters, please refer to [CONFIG.md](../docs/CONFIG.md). ROS-specific parameters are covered here.
+That will also provide additional documentation about the different parameters. For some additional details regarding the odometry parameters, please refer to [config.md](../docs/config.md). ROS-specific parameters are covered here.
 
 At minimum, you'll need to specify the `lidar_topic`, `imu_topic` and `base_frame` parameters.
 
