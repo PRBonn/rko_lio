@@ -3,23 +3,38 @@
 RKO_LIO is a LiDAR-inertial odometry system that is by design simple to deploy on different sensor configurations and robotic platforms with as minimal a change in configuration as necessary.
 
 We have no restriction on which LiDAR you can use, and you can do so without changing any config (we've tested Velodyne, Ouster, Hesai, Livox, Robosense, Aeva sensors).
-For using an IMU, we require only the accelerometer and gyroscope readings, the bare minimum. You don't need to look up manufacturer spec sheets to provide noise specifications, etc.
+For using an IMU, we require only the accelerometer and gyroscope readings, the bare minimum.
+You don't need to look up manufacturer spec sheets to provide noise specifications, etc.
 
 All you need to provide is the extrinsic transformation between the IMU and LiDAR and you can start using our system for your LiDAR-inertial odometry needs!
 
 <p align="center">
-  <img src="docs/example_multiple_platforms.png" alt="Visualization of odometry system running on data from four different platforms in four different environments" />
+  <img src="https://raw.githubusercontent.com/PRBonn/rko_lio/refs/heads/master/docs/example_multiple_platforms.png" alt="Visualization of odometry system running on data from four different platforms in four different environments" />
   <br />
   <em>Four different platforms, four different environments, one odometry system</em>
 </p>
 
-In case you already have a rosbag which contains a TF tree, using our system is as simple as calling
+## Quick Start
+
+In case you already have a rosbag which contains a TF tree, you can inspect the results of our odometry system with the following two steps
 
 ```bash
-rko_lio /path/to/rosbag
+pip install rko_lio rosbags rerun-sdk
 ```
 
-For further details, please refer to the [Python bindings readme](python#rko_lio---python-bindings).
+`rko_lio` is our odometry package, `rosbags` is required for using our rosbag dataloader, and `rerun-sdk` is what we use for our optional visualizer.
+After everything is installed, run
+
+```bash
+rko_lio -v /path/to/rosbag
+```
+
+and you should be good to go! For quick details on further options, check `rko_lio --help`.
+
+Note that for `pip install`-ing our package, as above, we currently only support Linux systems (python >= 3.9).
+Support for Windows and Mac-OS will be added soon!
+
+For detailed install and usage instructions, please refer to the [python bindings readme](python#rko_lio---python-bindings).
 
 ## Setup
 
@@ -54,14 +69,15 @@ If you encounter any issues, please check [build.md](docs/build.md) for further 
 
 ## Python
 
-> We are working on providing the python interface via the Python Package Index, so you will be able to install the system using pip (or some other frontend) instead of building from source.
-
 The python interface to our system can be convenient to investigate recorded data offline as you don't need to setup a ROS environment first.
 
-As before, clone the repository somewhere and then
+Our PyPI release currently supports only Linux (python >= 3.9) systems.
+We will add support for Windows and Mac-OS soon!
+
+You can install RKO_LIO by simply
 
 ```bash
-cd python && pip install .
+pip install rko_lio
 ```
 
 <details>
@@ -72,9 +88,7 @@ E.g., inspecting rosbag data will require `rosbags`, and enabling visualization 
 In case you don't mind pulling in a few additional dependencies and want everything available, instead run
 
 ```bash
-cd python && pip install ".[all]"
-# or from the repository root
-make python
+pip install "rko_lio[all]"
 ```
 
 </details>
@@ -85,7 +99,9 @@ Afterwards, check
 rko_lio --help
 ```
 
-You'll find further usage instructions in the [python readme](python#usage).
+You'll find further usage instructions [here](python#usage).
+
+For instructions on how to build from source, please check [here](/python/README.md#build-from-source).
 
 <details>
 <summary>Please prefer the ROS version over the python version if you can</summary>

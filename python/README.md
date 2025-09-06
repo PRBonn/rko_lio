@@ -4,6 +4,21 @@ The python interface/wrapper is a convenience tool to run the odometry offline o
 
 ## Setup
 
+### Install from PyPI
+
+Simply
+
+```bash
+pip install rko_lio
+```
+
+To be able to use `rko_lio` with any of the dataloaders or to enable visualization, you'll need to install additional dependencies.
+If you want to install everything at once, do
+
+```bash
+pip install "rko_lio[all]"
+```
+
 ### Build from Source
 
 Clone the repository, `cd python`, and then
@@ -11,8 +26,6 @@ Clone the repository, `cd python`, and then
 ```bash
 pip install .
 ```
-
-To be able to use `rko_lio` with any of the dataloaders or to enable visualization, you'll need to install additional dependencies.
 
 To have all dependencies installed, run
 
@@ -24,7 +37,7 @@ Or use the convenience recipes provided in the Makefile
 
 ```bash
 make install # installs all optional deps
-make editable # installs an editable version
+make editable # installs an editable version with all deps
 ```
 
 For more advanced details about the build system and core dependencies, please see [build.md](../docs/build.md).
@@ -131,5 +144,6 @@ This is deprecated and planned to be removed in a future release. I'm prioritisi
 ---
 
 ### Configuration
+
 All configurable parameters are defined in `config/default.yaml`.
 For descriptions of each parameter, see [config.md](../docs/config.md).
