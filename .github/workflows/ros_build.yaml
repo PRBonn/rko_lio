@@ -1,21 +1,27 @@
-# TODO: need to use a matrix to check all the different ros versions we'll support later
-name: ROS Jazzy Build
+# We dont do a rolling build for now, because i'm sure thats gonna break often
+name: ROS Build
 on:
   push:
     branches: ["workflows"]
   pull_request:
     branches: ["workflows"]
 jobs:
-  ros_jazzy_build:
+  ros_build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ros_distro: [jazzy, kilted]
+        # ros_distro: [humble, jazzy, kilted]
+    container:
+      image: osrf/ros:${{ matrix.ros_distro }}-desktop
     steps:
-      - name: Check out repository
+      - name: Check out the repository
         uses: actions/checkout@v3
-      - name: Set up Docker
-        uses: docker/setup-buildx-action@v2
-      - name: Run colcon build in ROS Jazzy Docker container
+      - name: Install build tools
         run: |
-          docker run --rm -v "${{ github.workspace }}:/workspace" -w /workspace osrf/ros:jazzy-desktop bash -c "
-            apt-get update && apt-get install -y ninja-build build-essential cmake &&
-            source /opt/ros/jazzy/setup.bash &&
-            colcon build --event-handlers console_direct+"
+          apt-get update
+          apt-get install -y ninja-build build-essential cmake
+      - name: Source ROS environment and build
+        run: |
+          . /opt/ros/${{ matrix.ros_distro }}/setup.sh
+          colcon build --event-handlers console_direct+
