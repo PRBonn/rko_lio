@@ -68,40 +68,52 @@ SensorType parse_sensor_type_and_variant(const std::string& sensor, const std::s
   throw std::runtime_error("Unknown sensor: " + sensor);
 }
 
-// #pragma pack can make this more portable apparently
-// as the following is gcc/clang only
-struct HeLiPR_velodyne {
+// thanks to https://stackoverflow.com/a/79177816
+// basically i dont want any padding on the structs due to alignment
+// that much i get, but what do the msvc macros mean? i dont know man
+// but really this is incredibly ugly, and i dont want to maintain it, helipr goes away in the first major release
+#ifdef __GNUC__
+#define PACK__
+#define __PACK __attribute__((__packed__))
+#endif
+
+#ifdef _MSC_VER
+#define PACK__ __pragma(pack(push, 1))
+#define __PACK __pragma(pack(pop))
+#endif
+
+PACK__ struct HeLiPR_velodyne {
   float x, y, z, intensity;
   uint16_t ring;
   float time;
-} __attribute__((packed));
+} __PACK;
 
-struct HeLiPR_ouster {
+PACK__ struct HeLiPR_ouster {
   float x, y, z, intensity;
   uint32_t t;
   uint16_t reflectivity;
   uint16_t ring;
   uint16_t ambient;
-} __attribute__((packed));
+} __PACK;
 
-struct HeLiPR_avia {
+PACK__ struct HeLiPR_avia {
   float x, y, z;
   uint8_t reflectivity, tag, line;
   uint32_t offset_time;
-} __attribute__((packed));
+} __PACK;
 
-struct HeLiPR_aeva {
+PACK__ struct HeLiPR_aeva {
   float x, y, z, reflectivity, velocity;
   int32_t time_offset_ns;
   uint8_t line_index;
-} __attribute__((packed));
+} __PACK;
 
-struct HeLiPR_aeva_new {
+PACK__ struct HeLiPR_aeva_new {
   float x, y, z, reflectivity, velocity;
   int32_t time_offset_ns;
   uint8_t line_index;
   float intensity;
-} __attribute__((packed));
+} __PACK;
 
 // makes a few things easier through templating
 template <SensorType sensor_type>
