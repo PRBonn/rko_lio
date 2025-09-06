@@ -3,7 +3,7 @@
 RKO_LIO is a LiDAR-inertial odometry system that is by design simple to deploy on different sensor configurations and robotic platforms with as minimal a change in configuration as necessary.
 
 We have no restriction on which LiDAR you can use, and you can do so without changing any config (we've tested Velodyne, Ouster, Hesai, Livox, Robosense, Aeries).
-For using an IMU, we require only the accelerometer and gyroscope readings, the bare minimum. You don't need to look up manufacturer spec sheets to provide noise specifications.
+For using an IMU, we require only the accelerometer and gyroscope readings, the bare minimum. You don't need to look up manufacturer spec sheets to provide noise specifications, etc.
 
 All you need to provide is the extrinsic transformation between the IMU and LiDAR and you can start using our system for your LiDAR-inertial odometry needs!
 
@@ -27,7 +27,7 @@ For further details, please refer to the [Python bindings readme](python#rko_lio
 
 > We are working on getting the odometry package into the ROS index, so you can install it using system package managers instead of building from source.
 
-We currently support ROS2 Jazzy, and plan to additionally support Humble, Kilted and Rolling.
+We currently support ROS2 Jazzy and Kilted, with plans to additionally support Humble and Rolling.
 
 Clone the repository into your ROS workspace and then
 
