@@ -8,7 +8,7 @@ version = "0.0.1"
 description = "A Robust Approach for LiDAR-Inertial Odometry Without Sensor-Specific Modelling"
 dependencies = ["numpy", "typer", "pyyaml", "scipy", "tqdm"]
 authors = [{ name = "Meher Malladi", email = "rm.meher97@gmail.com" }]
-readme = "../README.md"
+readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
 classifiers = [
@@ -67,12 +67,6 @@ RKO_LIO_FETCH_CONTENT_DEPS = "ON"
 
 [tool.cibuildwheel]
 archs = ["auto64"]
-build = [
-  "cp39-manylinux_x86_64",
-  "cp310-manylinux_x86_64",
-  "cp311-manylinux_x86_64",
-  "cp312-manylinux_x86_64",
-  "cp313-manylinux_x86_64",
-  "cp314-manylinux_x86_64",
-]
+skip = ["*-musllinux*",  "pp*", "cp38-*"]
+
 manylinux-x86_64-image = "manylinux_2_28"
