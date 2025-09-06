@@ -31,7 +31,7 @@ Our dependency management is opt-in and you can pass `-DRKO_LIO_FETCH_CONTENT_DE
 
 ## The python bindings
 
-The python build uses `scikit-build-core` and all you need to provide is a python version >=3.9 and `pip` (or other build frontend).
+The python build uses `scikit-build-core` and all you need to provide is a python version >=3.10 and `pip` (or other build frontend).
 
 Then you can do `cd python && pip install .` and you don't even need to provide CMake or ninja or anything else.
 By default we fetch the core library dependencies, which you can change [here](python/pyproject.toml#L66).

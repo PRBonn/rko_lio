@@ -31,9 +31,6 @@ rko_lio -v /path/to/rosbag
 
 and you should be good to go! For quick details on further options, check `rko_lio --help`.
 
-Note that for `pip install`-ing our package, as above, we currently only support Linux systems (python >= 3.9).
-Support for Windows and Mac-OS will be added soon!
-
 For detailed install and usage instructions, please refer to the [python bindings readme](python#rko_lio---python-bindings).
 
 ## Setup
@@ -71,14 +68,13 @@ If you encounter any issues, please check [build.md](docs/build.md) for further 
 
 The python interface to our system can be convenient to investigate recorded data offline as you don't need to setup a ROS environment first.
 
-Our PyPI release currently supports only Linux (python >= 3.9) systems.
-We will add support for Windows and Mac-OS soon!
-
 You can install RKO_LIO by simply
 
 ```bash
 pip install rko_lio
 ```
+
+We provide wheels for Linux, Mac OS, and Windows.
 
 <details>
 <summary>Optional dependencies</summary>
