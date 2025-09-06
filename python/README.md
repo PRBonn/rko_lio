@@ -46,9 +46,9 @@ We have three dataloaders available currently: rosbag (both ROS1 and ROS2), raw,
 By default, the dataloader is detected from the provided path, but you can explicitly specify it using the `-d` flag.
 
 The system uses three key frames:
-- **IMU sensor frame**
-- **LiDAR sensor frame**
-- **Robot base frame**
+- IMU sensor frame
+- LiDAR sensor frame
+- Robot base frame
 
 The extrinsic transformations
 - `extrinsic_imu2base_quat_xyzw_xyz`
