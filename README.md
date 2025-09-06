@@ -1,11 +1,9 @@
 # RKO_LIO - LiDAR-Inertial Odometry Without Sensor-Specific Modelling
 
-RKO_LIO is a LiDAR-inertial odometry system that is simple to deploy on different sensor configurations and robotic platforms with as minimal a change in configuration as necessary.
+RKO_LIO is a LiDAR-inertial odometry system that is by design simple to deploy on different sensor configurations and robotic platforms with as minimal a change in configuration as necessary.
 
-We have tested our system on LiDAR data from Velodyne, Ouster, Hesai, Livox, and Robosense sensors, all without any change in how we process the incoming LiDAR data, i.e., you don't specify which LiDAR you're using.
-For the IMU, we only require the accelerometer and gyroscope readings, the bare minimum.
-
-You don't need to look up manufacturer spec sheets when you want to use our approach on your data.
+We have no restriction on which LiDAR you can use, and you can do so without changing any config (we've tested Velodyne, Ouster, Hesai, Livox, Robosense, Aeries).
+For using an IMU, we require only the accelerometer and gyroscope readings, the bare minimum. You don't need to look up manufacturer spec sheets to provide noise specifications.
 
 All you need to provide is the extrinsic transformation between the IMU and LiDAR and you can start using our system for your LiDAR-inertial odometry needs!
 
@@ -21,7 +19,7 @@ In case you already have a rosbag which contains a TF tree, using our system is 
 rko_lio /path/to/rosbag
 ```
 
-For further details, please refer to the [Python readme](python#rko_lio---python-bindings).
+For further details, please refer to the [Python bindings readme](python#rko_lio---python-bindings).
 
 ## Setup
 
@@ -93,9 +91,9 @@ You'll find further usage instructions in the [python readme](python#usage).
 <summary>Please prefer the ROS version over the python version if you can</summary>
 
 **Please note:** the ROS version is the intended way to use our odometry system on a robot.
-The python version is slower than the ROS version, not on the odometry itself, but on how we read incoming data, i.e. data-loading.
+The python version is slower than the ROS version, not on the odometry itself, but on how we read incoming data, i.e. dataloading.
 Without getting into details, if you can, you should prefer using the ROS version.
-We also provide a way to directly inspect and run our odometry on recorded rosbags (see [ROS usage](ros#usage)) which still has the same performance benefit over the python version.
+We also provide a way to directly inspect and run our odometry on recorded rosbags (see offline mode in [ROS usage](ros#usage)) which has a performance benefit over the python version.
 The python interface is merely meant to be a convenience.
 
 </details>
