@@ -1,7 +1,7 @@
-**/build*
-**/.cache
-**/__pycache__
-**/results
+**/build/
+**/.cache/
+**/__pycache__/
+**/results/
 compile_commands.json
 docker_zsh_history.txt
 **/__cmake_systeminformation/
