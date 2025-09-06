@@ -27,7 +27,7 @@ make install # installs all optional deps
 make editable # installs an editable version
 ```
 
-For more advanced details about the build system and core dependencies, please see [BUILD.md](../BUILD.md).
+For more advanced details about the build system and core dependencies, please see [BUILD.md](../docs/BUILD.md).
 
 ## Usage
 
@@ -132,4 +132,4 @@ This is deprecated and planned to be removed in a future release. I'm prioritisi
 
 ### Configuration
 All configurable parameters are defined in `config/default.yaml`.
-For descriptions of each parameter, see [CONFIG.md](../CONFIG.md).
+For descriptions of each parameter, see [CONFIG.md](../docs/CONFIG.md).

@@ -2,7 +2,7 @@
 
 The package is split into three parts, a core C++ library in `cpp`, which implements all the LiDAR-inertial odometry logic, and the python bindings in `python` and the ROS interface in `ros`, which essentially handle reading data.
 
-The most important build requirement is CMake>=3.28, due to how we handle core dependencies.
+The main build requirement probably is `CMake>=3.28`, due to how we handle core library dependencies.
 This is the default CMake version on Ubuntu 24.04 (also the ROS Jazzy target Ubuntu platform).
 If you are on older systems, your options to satisfy the version are either `pip install cmake` or to build CMake from source.
 
@@ -10,7 +10,7 @@ Additionally, in the different build options we provide ([cpp](Makefile#L7), [py
 You can switch this out if required.
 
 In summary, `CMake>=3.28` and `ninja` (optional) are the two build requirements.
-The python build also handles the CMake and ninja requirements.
+The python build additionally handles the CMake and ninja requirements as well.
 
 ## The core library
 
@@ -22,11 +22,12 @@ The core library dependencies are:
 - Eigen
 
 There's two ways to build the core library.
-Either you provide **all** our dependencies yourself as system packages ([the default](cpp/CMakeLists.txt#L28)), or we can vendor them using CMake's `FetchContent`.
-We don't support partial fetches, i.e., all or nothing.
-Except, we **currently always fetch Bonxai** (see [here](cmake/dependencies.cmake#L30)) as the upstream itself doesn't provide a way to install Bonxai as a system package.
+Either you provide **_all_** our dependencies yourself as system packages ([the default](cpp/CMakeLists.txt#L28)), or we can vendor them using CMake's `FetchContent`.
+We don't support partial fetches, i.e., it's all or nothing.
+Except Bonxai.
+We **currently always fetch Bonxai** (see [here](cmake/dependencies.cmake#L30)) as the upstream itself doesn't provide a way to install it as a system package.
 
-Our dependency management is opt-in and you can pass `-DDRKO_LIO_FETCH_CONTENT_DEPS=ON` to the CMake configure step to enable it.
+Our dependency management is opt-in and you can pass `-DRKO_LIO_FETCH_CONTENT_DEPS=ON` to the CMake configure step to enable it.
 
 ## The python bindings
 

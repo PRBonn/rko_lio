@@ -48,7 +48,7 @@ Please refer to the [ROS readme](ros) for further ROS-specific details.
 
 Note that we have some [default build configuration options](ros/colcon.pkg) which should automatically get picked up by colcon.
 We have a few dependencies, but as long as these defaults apply, the package should build without any further consideration.
-If you encounter any issues, please check [BUILD.md](BUILD.md) for further details or open an issue afterwards.
+If you encounter any issues, please check [BUILD.md](docs/BUILD.md) for further details or open an issue afterwards.
 
 </details>
 
