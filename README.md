@@ -74,7 +74,7 @@ You can install RKO_LIO by simply
 pip install rko_lio
 ```
 
-We provide wheels for Linux, Mac OS, and Windows.
+We provide wheels for Linux, macOS, and Windows.
 
 <details>
 <summary>Optional dependencies</summary>

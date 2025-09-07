@@ -1,6 +1,7 @@
 # RKO_LIO - Python Bindings
 
 The python interface/wrapper is a convenience tool to run the odometry offline on recorded data.
+We provide PyPI wheels for Linux, macOS, and Windows.
 
 ## Setup
 

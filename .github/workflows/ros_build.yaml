@@ -1,4 +1,3 @@
-# We dont do a rolling build for now, because i'm sure thats gonna break often
 name: ROS Build
 on:
   push:
@@ -13,6 +12,7 @@ jobs:
       matrix:
         ros_distro: [jazzy, kilted]
         # ros_distro: [humble, jazzy, kilted]
+        # no rolling build for now, because i'm sure thats gonna break often
     container:
       image: osrf/ros:${{ matrix.ros_distro }}-desktop
     steps:

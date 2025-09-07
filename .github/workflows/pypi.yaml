@@ -3,12 +3,12 @@ on:
   release:
     types: [published]
   push:
-    branches: ["workflows_part2"]
+    branches: ["master"]
   pull_request:
     branches: ["master"]
 jobs:
   cibuildwheel:
-    name: Build wheels on ${{ matrix.os }}
+    name: Build py wheels on ${{ matrix.os }}
     env:
       GIT_LFS_SKIP_SMUDGE: 1
     runs-on: ${{ matrix.os }}

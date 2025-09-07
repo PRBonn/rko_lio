@@ -1,12 +1,12 @@
 name: Python Bindings
 on:
   push:
-    branches: ["workflows_part2"]
+    branches: ["master"]
   pull_request:
-    branches: ["workflows_part2"]
+    branches: ["master"]
 jobs:
   python_bindings:
-    name: Build python bindings on different platforms
+    name: Build python and run pytest on ${{ matrix.os }}
     env:
       GIT_LFS_SKIP_SMUDGE: 1
     runs-on: ${{ matrix.os }}
