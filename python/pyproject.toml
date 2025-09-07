@@ -72,6 +72,7 @@ skip = ["*-musllinux*", "pp*", "cp38-*", "cp39-*"]
 manylinux-x86_64-image = "manylinux_2_28"
 
 [tool.cibuildwheel.macos]
+environment = "MACOSX_DEPLOYMENT_TARGET=11.0"
 archs = ["x86_64", "arm64"]
 
 [tool.pytest.ini_options]
