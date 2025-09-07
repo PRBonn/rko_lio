@@ -1,4 +1,6 @@
-# RKO_LIO - LiDAR-Inertial Odometry Without Sensor-Specific Modelling
+<div align="center">
+  <h1>RKO_LIO - LiDAR-Inertial Odometry<br />Without Sensor-Specific Modelling</h1>
+</div>
 
 <p align="center">
 ROS Distros:
