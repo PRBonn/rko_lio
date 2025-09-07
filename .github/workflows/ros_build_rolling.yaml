@@ -1,11 +1,11 @@
-name: Humble
+name: Rolling
 on:
   push:
     branches: [master]
   pull_request:
     branches: [master]
 jobs:
-  build_ros_humble:
+  build_ros_rolling:
     uses: ./.github/workflows/ros_build_reusable.yaml
     with:
-      ros_distro: humble
+      ros_distro: rolling

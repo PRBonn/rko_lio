@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [master]
 jobs:
-  build_jazzy:
+  build_ros_jazzy:
     uses: ./.github/workflows/ros_build_reusable.yaml
     with:
       ros_distro: jazzy
