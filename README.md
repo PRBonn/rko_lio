@@ -3,13 +3,13 @@
 <p align="center">
 ROS Distros:
 <br />
-<a href="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_humble.yaml">
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_humble.yaml" style="text-decoration:none;">
     <img src="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_humble.yaml/badge.svg?branch=master" alt="Humble" />
   </a>
-  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_jazzy.yaml">
+  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_jazzy.yaml" style="text-decoration:none;">
     <img src="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_jazzy.yaml/badge.svg?branch=master" alt="Jazzy" />
   </a>
-  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_kilted.yaml">
+  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_kilted.yaml" style="text-decoration:none;">
     <img src="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_kilted.yaml/badge.svg?branch=master" alt="Kilted" />
   </a>
 </p>
@@ -17,28 +17,27 @@ ROS Distros:
 <p align="center">
 Python Bindings:
 <br />
-<a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2204.yaml">
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2204.yaml" style="text-decoration:none;">
     <img src="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2204.yaml/badge.svg?branch=master" alt="Ubuntu 22.04" />
   </a>
-  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2204_arm.yaml">
+  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2204_arm.yaml" style="text-decoration:none;">
     <img src="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2204_arm.yaml/badge.svg?branch=master" alt="Ubuntu 22.04 ARM" />
   </a>
-<br />
-  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2404.yaml">
+  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2404.yaml" style="text-decoration:none;">
     <img src="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2404.yaml/badge.svg?branch=master" alt="Ubuntu 24.04" />
   </a>
-  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2404_arm.yaml">
+  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2404_arm.yaml" style="text-decoration:none;">
     <img src="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2404_arm.yaml/badge.svg?branch=master" alt="Ubuntu 24.04 ARM" />
   </a>
 <br />
-  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_14.yaml">
+  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_14.yaml" style="text-decoration:none;">
     <img src="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_14.yaml/badge.svg?branch=master" alt="macOS 14" />
   </a>
-  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_15.yaml">
+  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_15.yaml" style="text-decoration:none;">
     <img src="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_15.yaml/badge.svg?branch=master" alt="macOS 15" />
   </a>
 <br />
-  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_windows_2022.yaml">
+  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_windows_2022.yaml" style="text-decoration:none;">
     <img src="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_windows_2022.yaml/badge.svg?branch=master" alt="Windows 2022" />
   </a>
 </p>
