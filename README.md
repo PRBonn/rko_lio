@@ -3,13 +3,41 @@
 <p align="center">
 ROS Distros:
 
-[![Humble](https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_humble.yaml/badge.svg?branch=master)](https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_humble.yaml)  [![Jazzy](https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_jazzy.yaml/badge.svg?branch=master)](https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_jazzy.yaml)  [![Kilted](https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_kilted.yaml/badge.svg?branch=master)](https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_kilted.yaml)
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_humble.yaml">
+    <img src="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_humble.yaml/badge.svg?branch=master" alt="Humble" />
+  </a>
+  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_jazzy.yaml">
+    <img src="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_jazzy.yaml/badge.svg?branch=master" alt="Jazzy" />
+  </a>
+  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_kilted.yaml">
+    <img src="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_kilted.yaml/badge.svg?branch=master" alt="Kilted" />
+  </a>
 </p>
 
 <p align="center">
 Python Bindings:
 
-[![Ubuntu 22.04](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2204.yaml/badge.svg?branch=master)](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2204.yaml)  [![Ubuntu 22.04 ARM](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2204_arm.yaml/badge.svg?branch=master)](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2204_arm.yaml)  [![Ubuntu 24.04](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2404.yaml/badge.svg?branch=master)](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2404.yaml)  [![Ubuntu 24.04 ARM](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2404_arm.yaml/badge.svg?branch=master)](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2404_arm.yaml)  [![macOS 14](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_14.yaml/badge.svg?branch=master)](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_14.yaml)  [![macOS 15](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_15.yaml/badge.svg?branch=master)](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_15.yaml)  [![Windows 2022](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_windows_2022.yaml/badge.svg?branch=master)](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_windows_2022.yaml)
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2204.yaml">
+    <img src="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2204.yaml/badge.svg?branch=master" alt="Ubuntu 22.04" />
+  </a>
+  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2204_arm.yaml">
+    <img src="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2204_arm.yaml/badge.svg?branch=master" alt="Ubuntu 22.04 ARM" />
+  </a>
+  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2404.yaml">
+    <img src="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2404.yaml/badge.svg?branch=master" alt="Ubuntu 24.04" />
+  </a>
+  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2404_arm.yaml">
+    <img src="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2404_arm.yaml/badge.svg?branch=master" alt="Ubuntu 24.04 ARM" />
+  </a>
+  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_14.yaml">
+    <img src="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_14.yaml/badge.svg?branch=master" alt="macOS 14" />
+  </a>
+  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_15.yaml">
+    <img src="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_15.yaml/badge.svg?branch=master" alt="macOS 15" />
+  </a>
+  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_windows_2022.yaml">
+    <img src="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_windows_2022.yaml/badge.svg?branch=master" alt="Windows 2022" />
+  </a>
 </p>
 
 <p align="center">
