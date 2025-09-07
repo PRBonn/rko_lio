@@ -1,0 +1,11 @@
+name: ROS Build Jazzy
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+jobs:
+  build_jazzy:
+    uses: ./.github/workflows/ros_build_reusable.yml
+    with:
+      ros_distro: jazzy

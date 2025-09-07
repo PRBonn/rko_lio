@@ -1,16 +1,6 @@
 # RKO_LIO - LiDAR-Inertial Odometry Without Sensor-Specific Modelling
 
-![Ubuntu 22.04 x86_64](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings.yml/badge.svg?query=ubuntu-22.04)
-![Ubuntu 22.04 aarch64](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings.yml/badge.svg?query=ubuntu-22.04-arm)
-![Ubuntu 24.04 x86_64](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings.yml/badge.svg?query=ubuntu-24.04)
-![Ubuntu 24.04 aarch64](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings.yml/badge.svg?query=ubuntu-24.04-arm)
-![macOS 14](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings.yml/badge.svg?query=macos-14)
-![macOS 15](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings.yml/badge.svg?query=macos-15)
-![Windows 2022 amd64](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings.yml/badge.svg?query=windows-2022)
-
-![ROS Humble x86_64](https://github.com/PRBonn/rko_lio/actions/workflows/ros_build.yml/badge.svg?query=humble)
-![ROS Jazzy x86_64](https://github.com/PRBonn/rko_lio/actions/workflows/ros_build.yml/badge.svg?query=jazzy)
-![ROS Kilted x86_64](https://github.com/PRBonn/rko_lio/actions/workflows/ros_build.yml/badge.svg?query=kilted)
+[![Python Bindings](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings.yaml/badge.svg?branch=master)](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings.yaml)
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/PRBonn/rko_lio/refs/heads/master/docs/example_multiple_platforms.png" alt="Visualization of odometry system running on data from four different platforms in four different environments" />

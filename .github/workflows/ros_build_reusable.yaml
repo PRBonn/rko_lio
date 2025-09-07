@@ -1,0 +1,22 @@
+name: ROS Build Reusable
+on:
+  workflow_call:
+    inputs:
+      ros_distro:
+        type: string
+        required: true
+jobs:
+  ros_build:
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ inputs.ros_distro == 'humble' && 'alexsilener/ros_humble_desktop_cmake_328_ninja' || (inputs.ros_distro == 'jazzy' && 'osrf/ros:jazzy-desktop') || (inputs.ros_distro == 'kilted' && 'osrf/ros:kilted-desktop') }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install build tools
+        run: |
+          apt-get update
+          apt-get install -y ninja-build build-essential cmake
+      - name: Source ROS environment and build
+        run: |
+          . /opt/ros/${{ inputs.ros_distro }}/setup.sh
+          colcon build --event-handlers console_direct+
