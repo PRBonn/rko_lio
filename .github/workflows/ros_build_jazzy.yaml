@@ -6,6 +6,6 @@ on:
     branches: [master]
 jobs:
   build_jazzy:
-    uses: ./.github/workflows/ros_build_reusable.yml
+    uses: ./.github/workflows/ros_build_reusable.yaml
     with:
       ros_distro: jazzy

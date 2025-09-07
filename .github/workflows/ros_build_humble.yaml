@@ -6,6 +6,6 @@ on:
     branches: [master]
 jobs:
   build_humble:
-    uses: ./.github/workflows/ros_build_reusable.yml
+    uses: ./.github/workflows/ros_build_reusable.yaml
     with:
       ros_distro: humble
