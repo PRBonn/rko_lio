@@ -25,10 +25,21 @@
 #include "rosbag_utils.hpp"
 // ROS
 #include <rclcpp/serialized_message.hpp>
+#include <rclcpp/version.h>
 #include <rosbag2_storage/bag_metadata.hpp>
 #include <tf2_msgs/msg/tf_message.hpp>
 // stl
 #include <algorithm>
+
+namespace {
+inline auto GetTimestampsFromRosbagSerializedMsg(const rosbag2_storage::SerializedBagMessage& msg) {
+#if RCLCPP_VERSION_GTE(22, 0, 0)
+  return std::chrono::nanoseconds(msg.recv_timestamp);
+#else
+  return std::chrono::nanoseconds(msg.time_stamp);
+#endif
+}
+} // namespace
 
 namespace rko_lio::ros_utils {
 // TFBridge----------------------------------------------------------------------------------------
@@ -107,8 +118,8 @@ void BufferableBag::BufferMessages() {
     if (buffer_.empty()) {
       return false;
     }
-    const auto first_stamp = std::chrono::nanoseconds(buffer_.front().recv_timestamp);
-    const auto last_stamp = std::chrono::nanoseconds(buffer_.back().recv_timestamp);
+    const auto first_stamp = GetTimestampsFromRosbagSerializedMsg(buffer_.front());
+    const auto last_stamp = GetTimestampsFromRosbagSerializedMsg(buffer_.back());
     return (last_stamp - first_stamp) > buffer_size_;
   };
 
