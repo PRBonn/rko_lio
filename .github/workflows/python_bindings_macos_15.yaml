@@ -1,0 +1,11 @@
+name: Python Bindings macOS 15
+on:
+  push:
+    branches: [add_humble_support]
+  pull_request:
+    branches: [master]
+jobs:
+  python_bindings_macos_15:
+    uses: ./.github/workflows/python_bindings_reusable.yaml
+    with:
+      run_os: macos-15

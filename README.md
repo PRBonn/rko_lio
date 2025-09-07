@@ -2,6 +2,8 @@
 
 [![Python Bindings](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings.yaml/badge.svg?branch=master)](https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings.yaml)
 
+ROS Distros: [![Humble](https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_humble.yaml/badge.svg?branch=master)](https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_humble.yaml) [![Jazzy](https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_jazzy.yaml/badge.svg?branch=master)](https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_jazzy.yaml) [![Kilted](https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_kilted.yaml/badge.svg?branch=master)](https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_kilted.yaml)
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/PRBonn/rko_lio/refs/heads/master/docs/example_multiple_platforms.png" alt="Visualization of odometry system running on data from four different platforms in four different environments" />
   <br />
