@@ -14,6 +14,7 @@ pip install rko_lio
 ```
 
 To be able to use `rko_lio` with any of the dataloaders or to enable visualization, you'll need to install additional dependencies.
+You'll be prompted for specific packages as they become required during runtime.
 If you want to install everything at once, do
 
 ```bash
