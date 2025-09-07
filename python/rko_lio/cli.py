@@ -144,6 +144,7 @@ def cli(
 
             rr.init("rko_lio")
             rr.spawn(memory_limit="2GB")
+            rr.log_file_from_path(Path(__file__).parent / "rko_lio.rbl")
 
         except ImportError:
             raise ImportError(
