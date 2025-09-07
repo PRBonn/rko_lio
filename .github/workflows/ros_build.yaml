@@ -13,7 +13,8 @@ jobs:
         ros_distro: [humble, jazzy, kilted]
         # no rolling build for now, because i'm sure thats gonna break often
     container:
-      image: ${{ matrix.ros_distro == 'humble' && 'alexsilener/ros_humble_desktop_cmake_328_ninja' || format('osrf/ros:{}-desktop', matrix.ros_distro) }}
+      image: ${{ (matrix.ros_distro == 'humble' && 'alexsilener/ros_humble_desktop_cmake_328_ninja') || (matrix.ros_distro == 'jazzy' && 'osrf/ros:jazzy-desktop') || (matrix.ros_distro == 'kilted' && 'osrf/ros:kilted-desktop') }}
+      # image: osrf/ros:${{ matrix.ros_distro }}-desktop
     steps:
       - name: Check out the repository
         uses: actions/checkout@v3
