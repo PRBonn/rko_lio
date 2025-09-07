@@ -1,7 +1,7 @@
-name: Python Bindings macOS 14
+name: macOS 14
 on:
   push:
-    branches: [add_humble_support]
+    branches: [master]
   pull_request:
     branches: [master]
 jobs:

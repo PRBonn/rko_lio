@@ -1,7 +1,7 @@
-name: Python Bindings Ubuntu 22.04 ARM
+name: Ubuntu 22.04 ARM
 on:
   push:
-    branches: [add_humble_support]
+    branches: [master]
   pull_request:
     branches: [master]
 jobs:
