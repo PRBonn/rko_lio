@@ -4,9 +4,15 @@ The package is split into three parts, a core C++ library in `cpp`, which implem
 
 The main build requirement probably is `CMake>=3.28`, due to how we handle core library dependencies.
 This is the default CMake version on Ubuntu 24.04 (also the ROS Jazzy/Kilted target Ubuntu platform).
-If you are on older systems, your options to satisfy the version are either `pip install cmake` or to build CMake from source.
+If you are on older systems, your options to satisfy the version are either `pip install cmake` or to build CMake from source (see [this section](#upgrading-cmake-to-version-328)).
 
 Additionally, in the different build options we provide ([cpp](Makefile#L7), [python](python/pyproject.toml#L50), [ros](ros/colcon.pkg#L2)), we default to using `ninja` as a generator.
+On ubuntu, you can install it with
+
+```bash
+sudo apt install ninja-build
+```
+
 You can switch this out if required.
 
 In summary, `CMake>=3.28` and `ninja` (optional) are the two build requirements.
@@ -47,3 +53,23 @@ If you have a full ROS environment already set up, nothing much is different fro
 There are no special ROS dependencies, the core library dependencies still apply, but you can check [here](https://github.com/mehermvr/rko_lio/blob/d626d0a6b8fa3883ef0fad0d604562d0062ef3f2/ros/package.xml#L11) and use `rosdep` if required for some reason.
 
 I provide some default CMake arguments for the colcon build [here](ros/colcon.pkg#L3), which you can override by passing command line flags to colcon.
+
+## Upgrading CMake to version 3.28
+
+In case you're on older systems, and your default system package manager doesn't provide CMake v3.28, you can use the following commands to build CMake from source and install it.
+If you are doing this anyways, I'd recommend also bumping the CMake version to latest.
+
+```bash
+export CMAKE_VERSION="3.28.6"
+cd /tmp
+wget https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}.tar.gz
+tar -zxf cmake-${CMAKE_VERSION}.tar.gz
+rm cmake-${CMAKE_VERSION}.tar.gz
+cd cmake-${CMAKE_VERSION}
+./bootstrap --system-curl --prefix=/usr/local
+make -j$(nproc)
+sudo make install
+cd /tmp
+rm -rf cmake-${CMAKE_VERSION}
+cmake --version
+```

@@ -1,6 +1,7 @@
 # RKO_LIO - LiDAR-Inertial Odometry
 
-We currently support ROS2 Jazzy and Kilted. Support for Humble and Rolling is planned.
+We currently support ROS2 Humble, Jazzy and Kilted.
+Support for rolling is planned.
 
 ## Setup
 
