@@ -12,8 +12,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        # targetting the older versions here, and the newer versions for the pypi workflow
-        os: [ubuntu-22.04, ubuntu-22.04-arm, macos-14, windows-2022]
+        os: [ubuntu-22.04, ubuntu-22.04-arm, ubuntu-24.04, ubuntu-24.04-arm, macos-14, macos-15, windows-2022]
     steps:
       - uses: actions/checkout@v5
       - name: Set up Python3
