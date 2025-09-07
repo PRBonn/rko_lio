@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?><package format="3">
   <name>rko_lio</name>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
   <description>A Robust Approach for LiDAR-Inertial Odometry Without Sensor-Specific Modelling</description>
   <maintainer email="rm.meher97@gmail.com">Meher Malladi</maintainer>
   <license>MIT</license>
