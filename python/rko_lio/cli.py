@@ -30,6 +30,15 @@ import numpy as np
 import typer
 
 
+def version_callback(value: bool):
+    if value:
+        from importlib.metadata import version
+
+        rko_lio_version = version("rko_lio")
+        print(f"RKO_LIO Version: {rko_lio_version}")
+        raise typer.Exit(0)
+
+
 def dataloader_name_callback(value: str):
     from .dataloaders import available_dataloaders
 
@@ -132,6 +141,13 @@ def cli(
         None,
         "--lidar_frame",
         help="Extra dataloader argument: lidar frame overload (for rosbag only)",
+    ),
+    version: bool | None = typer.Option(
+        None,
+        "--version",
+        help="Show the current version of RKO_LIO",
+        callback=version_callback,
+        is_eager=True,
     ),
 ):
     """

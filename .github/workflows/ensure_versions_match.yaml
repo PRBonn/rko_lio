@@ -1,0 +1,22 @@
+name: Check Python and ROS versions match
+on:
+  pull_request:
+    branches: ["master"]
+    paths:
+      - 'python/pyproject.toml'
+      - 'ros/package.xml'
+jobs:
+  check-version-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Check Python and ROS version match
+        run: |
+          py_version=$(sed -n 's/^version\s*=\s*"\(.*\)"/\1/p' python/pyproject.toml | head -n 1)
+          ros_version=$(sed -n 's:.*<version>\(.*\)</version>.*:\1:p' ros/package.xml | head -n 1)
+          if [ "$py_version" != "$ros_version" ]; then
+            echo "Version mismatch! pyproject.toml=$py_version vs package.xml=$ros_version"
+            exit 1
+          else
+            echo "Versions match: $py_version"
+          fi
