@@ -66,8 +66,9 @@ CMAKE_POSITION_INDEPENDENT_CODE = "ON"
 RKO_LIO_FETCH_CONTENT_DEPS = "ON"
 
 [tool.cibuildwheel]
+environment = { GIT_LFS_SKIP_SMUDGE = "1" }
 archs = ["auto64"]
-skip = ["*-musllinux*",  "pp*", "cp38-*", "cp39-*"]
+skip = ["*-musllinux*", "pp*", "cp38-*", "cp39-*"]
 manylinux-x86_64-image = "manylinux_2_28"
 
 [tool.cibuildwheel.macos]
