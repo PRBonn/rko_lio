@@ -34,6 +34,7 @@ jobs:
           name: artifact-${{ matrix.os }}
           path: ./wheelhouse/*.whl
   pypi:
+    name: Publish wheels to PyPI
     if: github.event_name == 'release'
     needs: [cibuildwheel]
     runs-on: ubuntu-latest

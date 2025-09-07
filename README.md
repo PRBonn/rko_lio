@@ -128,9 +128,9 @@ You'll find further usage instructions [here](python#usage).
 For instructions on how to build from source, please check [here](/python/README.md#build-from-source).
 
 <details>
-<summary>Please prefer the ROS version over the python version if you can</summary>
+<summary><b>Please prefer the ROS version over the python version if you can</b></summary>
 
-**Please note:** the ROS version is the intended way to use our odometry system on a robot.
+The ROS version is the intended way to use our odometry system on a robot.
 The python version is slower than the ROS version, not on the odometry itself, but on how we read incoming data, i.e. dataloading.
 Without getting into details, if you can, you should prefer using the ROS version.
 We also provide a way to directly inspect and run our odometry on recorded rosbags (see offline mode in [ROS usage](ros#usage)) which has a performance benefit over the python version.
