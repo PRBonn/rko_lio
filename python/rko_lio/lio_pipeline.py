@@ -244,25 +244,44 @@ class LIOPipeline:
         self.lio.dump_results_to_disk(results_dir, run_name)
 
 
+viridis_ctrl = np.array(
+    [
+        [68, 1, 84],
+        [71, 44, 122],
+        [59, 81, 139],
+        [44, 113, 142],
+        [33, 144, 140],
+        [39, 173, 129],
+        [92, 200, 99],
+        [170, 220, 50],
+        [253, 231, 37],
+    ],
+    dtype=np.uint8,
+)
+
+
 def height_colors_from_points(points: np.ndarray) -> np.ndarray:
     """
     Given Nx3 array of points, return Nx3 array of RGB colors (dtype uint8)
     mapped from the z values using the viridis colormap.
     Colors are uint8 in range [0, 255].
     """
-    import matplotlib.pyplot as plt
-    from matplotlib import cm
-
     z = points[:, 2]
     z_min, z_max = np.percentile(z, 1), np.percentile(z, 99)  # accounts for any noise
     z_clipped = np.clip(z, z_min, z_max)
+
     if z_max == z_min:
         norm_z = np.zeros_like(z)
     else:
         norm_z = (z_clipped - z_min) / (z_max - z_min)
 
-    viridis = cm.get_cmap("viridis")
-    colors_float = viridis(norm_z)[:, :3]  # Nx3 floats in [0,1]
+    idx = norm_z * (len(viridis_ctrl) - 1)
+    idx_low = np.floor(idx).astype(int)
+    idx_high = np.clip(idx_low + 1, 0, len(viridis_ctrl) - 1)
+    alpha = idx - idx_low
+    colors = (
+        (1 - alpha)[:, None] * viridis_ctrl[idx_low]
+        + alpha[:, None] * viridis_ctrl[idx_high]
+    ).astype(np.uint8)
 
-    colors_uint8 = (colors_float * 255).astype(np.uint8)
-    return colors_uint8
+    return colors
