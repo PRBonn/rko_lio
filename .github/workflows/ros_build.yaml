@@ -1,7 +1,7 @@
 name: ROS Build
 on:
   push:
-    branches: ["master"]
+    branches: ["add_humble_support"]
   pull_request:
     branches: ["master"]
 jobs:
@@ -10,11 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ros_distro: [jazzy, kilted]
-        # ros_distro: [humble, jazzy, kilted]
+        ros_distro: [humble, jazzy, kilted]
         # no rolling build for now, because i'm sure thats gonna break often
     container:
-      image: osrf/ros:${{ matrix.ros_distro }}-desktop
+      image: ${{ matrix.ros_distro == 'humble' && 'alexsilener/ros_humble_desktop_cmake_328_ninja' || format('osrf/ros:{}-desktop', matrix.ros_distro) }}
     steps:
       - name: Check out the repository
         uses: actions/checkout@v3
