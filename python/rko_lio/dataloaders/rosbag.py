@@ -73,6 +73,9 @@ class RosbagDataLoader:
             bagfiles = [data_path]
         self.first_bag_path = bagfiles[0]  # for logging
         self.bag = AnyReader(bagfiles)
+        if len(bagfiles) > 1:
+            print("Reading multiple .bag files in directory:")
+            print("\n".join(sorted([path.name for path in bagfiles])))
         self.bag.open()
 
         self.lidar_topic = self.check_topic(
