@@ -104,24 +104,24 @@ std::tuple<Vector3dVector, Vector3dVector, Vector3dVector> preprocess_scan(const
                    });
     return deskewed_frame;
   });
-  std::vector<Eigen::Vector3d> preprocessed_frame;
-  preprocessed_frame.reserve(deskewed_frame.size());
+  std::vector<Eigen::Vector3d> clipped_frame;
+  clipped_frame.reserve(deskewed_frame.size());
   std::for_each(deskewed_frame.cbegin(), deskewed_frame.cend(), [&](const auto& point) {
     const double point_range = point.norm();
     if (point_range > config.min_range && point_range < config.max_range) {
-      preprocessed_frame.emplace_back(point);
+      clipped_frame.emplace_back(point);
     }
   });
-  preprocessed_frame.shrink_to_fit();
+  clipped_frame.shrink_to_fit();
 
   if (config.double_downsample) {
-    const Vector3dVector downsampled_frame = voxel_down_sample(preprocessed_frame, config.voxel_size * 0.5);
+    const Vector3dVector downsampled_frame = voxel_down_sample(clipped_frame, config.voxel_size * 0.5);
     const Vector3dVector keypoints = voxel_down_sample(downsampled_frame, config.voxel_size * 1.5);
-    return {preprocessed_frame, downsampled_frame, keypoints};
+    return {clipped_frame, downsampled_frame, keypoints};
   } else {
-    const Vector3dVector downsampled_frame = voxel_down_sample(preprocessed_frame, config.voxel_size);
+    const Vector3dVector downsampled_frame = voxel_down_sample(clipped_frame, config.voxel_size);
     // TODO: there's a downsampled_frame copy here as we return a pair. see if we can reduce the copy
-    return {preprocessed_frame, downsampled_frame, downsampled_frame};
+    return {clipped_frame, downsampled_frame, downsampled_frame};
   }
 }
 
@@ -442,8 +442,8 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
   // body acceleration filter
   const auto& accel_filter_info = get_accel_info(initial_guess.so3(), current_lidar_time);
 
-  // deskew, clip, and (double) down sample
-  const auto& [preprocessed_frame, downsampled_frame, keypoints] =
+  // deskew + clip, and (double) down sample
+  const auto& [deskewed_frame, downsampled_frame, keypoints] =
       preprocess_scan(scan, timestamps, current_lidar_time, relative_pose_at_time, config);
 
   if (!map.Empty()) {
@@ -474,7 +474,7 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
 
   _poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
 
-  return preprocessed_frame;
+  return deskewed_frame;
 }
 
 Vector3dVector LIO::register_scan(const Sophus::SE3d& extrinsic_lidar2base,
