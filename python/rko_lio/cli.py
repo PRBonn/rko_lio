@@ -118,7 +118,9 @@ def parse_extrinsics_from_config(config_data: dict):
 app = typer.Typer()
 
 
-@app.command()
+@app.command(
+    epilog="Feel free to open an issue on https://github.com/PRBonn/rko_lio if how to use some option is unclear or you need some help!"
+)
 def cli(
     data_path: Path = typer.Argument(..., exists=True, help="Path to data folder"),
     config_fp: Path | None = typer.Option(
@@ -178,9 +180,10 @@ def cli(
     version: bool | None = typer.Option(
         None,
         "--version",
-        help="Show the current version of RKO_LIO",
+        help="Show the current version of RKO_LIO and exit",
         callback=version_callback,
         is_eager=True,
+        rich_help_panel="Auxilary commands",
     ),
     dump_config: bool | None = typer.Option(
         None,
@@ -188,10 +191,11 @@ def cli(
         help="Dump the default config to config.yaml and exit",
         callback=dump_config_callback,
         is_eager=True,
+        rich_help_panel="Auxilary commands",
     ),
 ):
     """
-    Run LIO pipeline with the selected dataloader and parameters.
+    Run RKO_LIO with the selected dataloader and parameters.
     """
 
     if viz:
