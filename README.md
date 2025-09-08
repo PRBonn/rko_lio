@@ -33,7 +33,7 @@ Python Bindings:
 
 ## Quick Start
 
-In case you already have a rosbag which contains a TF tree, you can inspect the results of our odometry system with the following two steps
+In case you already have a rosbag (ROS1 or ROS2) which contains a TF tree, you can inspect the results of our odometry system with the following two steps
 
 ```bash
 pip install rko_lio rosbags rerun-sdk
@@ -43,12 +43,42 @@ pip install rko_lio rosbags rerun-sdk
 After everything is installed, run
 
 ```bash
-rko_lio -v /path/to/rosbag
+rko_lio -v /path/to/rosbag_folder # <- has to be a directory! with either *.bag files or metadata.yaml from ROS2
 ```
 
-and you should be good to go! For quick details on further options, check `rko_lio --help`.
+and you should be good to go! For some quick details, click below.
 
-For detailed install and usage instructions, please refer to the [python bindings readme](python#rko_lio---python-bindings).
+<details>
+<summary>Click here for some more details on how to use RKO_LIO and how the above works!</summary>
+
+For all possible CLI flags, please check `rko_lio --help`.
+
+The `-v` flag enables visualization.
+
+Our rosbag dataloader works with either ROS1 or ROS2 bags.
+By default, we assume there is just one IMU topic and one LiDAR topic in the bag, in which case we automatically pick up the topic names and proceed further.
+If there are multiple topics per sensor, you will be prompted to select one via the `--imu` or `--lidar` flags which you can pass to `rko_lio`.
+
+Next, we assume there is a (static) TF tree in the bag. If so, we take the frame ids from the message topics we just picked up, build a static TF tree, and then query it for the extrinsic from IMU to LiDAR.
+By default, we assume the LiDAR frame to be the base frame for odometry. If you would like to use a different frame, you can pass the frame id with `--base_frame` (note the other options available with `--help`).
+The TF tree will be queried for the appropriate transformations (if they exist in the bag!).
+
+In case there is no TF tree in the bag, then you will have to manually specify the extrinsics for IMU to base and LiDAR to base, as these two are **required** parameters.
+Leave one of the extrinsics as identity if you want the other one to be the frame of estimation (you will still have to specify both parameters).
+You can specify the extrinsics via a config YAML file with the keys `extrinsic_imu2base_quat_xyzw_xyz` and `extrinsic_lidar2base_quat_xyzw_xyz`.
+Pass this file to `rko_lio` using the `-c` flag.
+Check `python/config/default.yaml` for all possible configuration options.
+
+An example invocation would then be
+
+```bash
+# the config file has the sensor extrinsics
+rko_lio -v -c config.yaml --imu imu_topic --lidar lidar_topic /path/to/rosbag_folder
+```
+
+For more install and usage instructions, please refer to the [python bindings readme](python#rko_lio---python-bindings).
+</details>
+
 
 ## About
 
