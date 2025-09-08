@@ -423,7 +423,8 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
 
   const Sophus::SE3d initial_guess = lidar_state.pose * relative_pose_at_time(current_lidar_time);
 
-  // body acceleration filter
+  // body acceleration filter. NOTE: we modify the LIO state here, only the accel filter parts.
+  // ugly i know, but it'll have to do. register_scan already does too many things otherwise
   const auto& accel_filter_info = get_accel_info(*this, initial_guess.so3(), current_lidar_time);
 
   // deskew and down sample
