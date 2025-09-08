@@ -99,9 +99,12 @@ class RosbagDataLoader:
             print("Building TF tree.")
             static_tf_tree = create_static_tf_tree(self.bag)
             if not static_tf_tree:
-                raise ValueError(
-                    "The rosbag doesn't contain a static tf tree, cannot query it for extrinsics. Please specify the extrinsics manually in a config."
+                print(
+                    "[ERROR] The rosbag doesn't contain a static tf tree, cannot query it for extrinsics. Please specify the extrinsics manually in a config. You can use 'rko_lio --dump_config' to dump a default config."
                 )
+                import sys
+
+                sys.exit(1)
 
             print("Querying TF tree for imu to base extrinsic.")
             self.T_imu_to_base = query_static_tf(
