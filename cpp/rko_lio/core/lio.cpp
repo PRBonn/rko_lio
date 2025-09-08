@@ -131,10 +131,7 @@ inline Eigen::Vector3d compute_acceleration_cost_residual(const Eigen::Vector3d&
 }
 
 using LinearSystem = std::tuple<Eigen::Matrix6d, Eigen::Vector6d, double>;
-LinearSystem build_linear_system(const Sophus::SE3d& current_pose,
-                                 const Correspondences& correspondences,
-                                 const Eigen::Vector3d& local_gravity_estimate,
-                                 const double beta) {
+LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose, const Correspondences& correspondences) {
   auto linear_system_reduce = [](LinearSystem lhs, const LinearSystem& rhs) {
     auto& [lhs_H, lhs_b, lhs_chi] = lhs;
     const auto& [rhs_H, rhs_b, rhs_chi] = rhs;
@@ -165,11 +162,11 @@ LinearSystem build_linear_system(const Sophus::SE3d& current_pose,
                                                   residual.squaredNorm());  // chi
                             });
 
-  if (beta < 0) {
-    // orientation cost disabled, early return
-    return {H_icp / correspondences.size(), b_icp / correspondences.size(), 0.5 * chi_icp};
-  }
+  return {H_icp / correspondences.size(), b_icp / correspondences.size(), 0.5 * chi_icp};
+}
 
+LinearSystem build_orientation_linear_system(const Sophus::SE3d& current_pose,
+                                             const Eigen::Vector3d& local_gravity_estimate) {
   auto calculate_acceleration_jacobian = [](const Sophus::SO3d& current_rotation) {
     Eigen::Matrix3_6d J_ori = Eigen::Matrix3_6d::Zero();
     J_ori.block<3, 3>(0, 3) = current_rotation.inverse().matrix() * Sophus::SO3d::hat(-1 * gravity()).matrix();
@@ -182,27 +179,48 @@ LinearSystem build_linear_system(const Sophus::SE3d& current_pose,
     return LinearSystem{J_ori.transpose() * J_ori, J_ori.transpose() * residual, residual.squaredNorm()};
   });
 
-  return {H_icp / correspondences.size() + H_ori / beta, b_icp / correspondences.size() + b_ori / beta,
-          0.5 * (chi_icp + chi_ori)};
+  return {H_ori, b_ori, 0.5 * chi_ori};
 }
+
+// naming a struct makes passing around the values needed for orientation reg. easier
+struct AccelInfo {
+  double accel_mag_variance;
+  Eigen::Vector3d local_gravity_estimate;
+};
 
 Sophus::SE3d icp(const Vector3dVector& frame,
                  const SparseVoxelGrid& voxel_map,
                  const Sophus::SE3d& initial_guess,
-                 const Eigen::Vector3d& local_gravity_estimate,
-                 const double accel_mag_variance,
-                 const LIO::Config& config) {
+                 const LIO::Config& config,
+                 const std::optional<AccelInfo>& optional_accel_info) {
+  // in case config disables it, or we don't have valid IMU information for this icp loop, beta is -1
+  const double beta = (config.min_beta > 0 && optional_accel_info.has_value())
+                          ? (config.min_beta * (1 + optional_accel_info->accel_mag_variance))
+                          : -1;
+
   Sophus::SE3d current_pose = initial_guess;
-  const double beta = config.min_beta > 0 ? (config.min_beta * (1 + accel_mag_variance)) : config.min_beta;
 
   for (size_t i = 0; i < config.max_iterations; ++i) {
+
     const Correspondences& correspondences = data_association(current_pose, frame, voxel_map, config);
     if (correspondences.empty()) {
       throw std::runtime_error("Number of correspondences are 0.");
     }
-    const auto& [H, b, chi] = build_linear_system(current_pose, correspondences, local_gravity_estimate, beta);
+
+    const auto& [H, b, chi] = std::invoke([&]() -> LinearSystem {
+      if (beta >= 0) {
+        const auto& [H_icp, b_icp, chi_icp] = build_icp_linear_system(current_pose, correspondences);
+        const auto& [H_ori, b_ori, chi_ori] =
+            build_orientation_linear_system(current_pose, optional_accel_info->local_gravity_estimate);
+        return {H_icp + H_ori / beta, b_icp + b_ori / beta, chi_icp + chi_ori / beta};
+      } else {
+        return build_icp_linear_system(current_pose, correspondences);
+      }
+    });
+
     const Eigen::Vector6d dx = H.ldlt().solve(-b);
     current_pose = Sophus::SE3d::exp(dx) * current_pose;
+
     if (dx.norm() < config.convergence_criterion || i == (config.max_iterations - 1)) {
       // TODO: proper debug logging
       // std::cout << "iter " << i << ", beta: " << beta << ", chi: " << chi << ", num_assoc: " <<
@@ -219,6 +237,40 @@ inline Sophus::SO3d align_accel_to_z_world(const Eigen::Vector3d& accel) {
   const Eigen::Quaterniond quat_accel = Eigen::Quaterniond::FromTwoVectors(accel, z_world);
   return Sophus::SO3d(quat_accel);
 }
+
+// uses the acceleration kalman filter to compute the two values we need for ori. reg.
+std::optional<AccelInfo> get_accel_info(LIO& lio, const Sophus::SO3d& rotation_estimate, const Secondsd& time) {
+  const auto& interval = lio.interval_stats;
+
+  if (interval.imu_count == 0) {
+    // avoid nans
+    return std::nullopt;
+  }
+
+  const Eigen::Vector3d avg_imu_accel = interval.imu_acceleration_sum / interval.imu_count;
+  const double accel_mag_variance = interval.welford_sum_of_squares / (interval.imu_count - 1);
+  const double dt = (time - lio.lidar_state.time).count();
+  const Eigen::Vector3d& body_accel_measurement = avg_imu_accel + rotation_estimate.inverse() * gravity();
+
+  const double max_acceleration_change = lio.config.max_expected_jerk * dt;
+  // assume [j, -j] range for uniform dist. on jerk. variance is (2j)^2 / 12 = j^2/3. multiply by dt^2 for accel
+  const Eigen::Matrix3d process_noise = square(max_acceleration_change) / 3 * Eigen::Matrix3d::Identity();
+  lio.body_acceleration_covariance += process_noise;
+
+  // isotropic accel mag variance
+  const Eigen::Matrix3d measurement_noise = accel_mag_variance / 3 * Eigen::Matrix3d::Identity();
+  const Eigen::Matrix3d S = lio.body_acceleration_covariance + measurement_noise;
+  const Eigen::Matrix3d kalman_gain = lio.body_acceleration_covariance * S.inverse();
+
+  const Eigen::Vector3d innovation = kalman_gain * (body_accel_measurement - lio.mean_body_acceleration);
+  lio.mean_body_acceleration += innovation;
+  lio.body_acceleration_covariance -= kalman_gain * lio.body_acceleration_covariance;
+
+  const Eigen::Vector3d local_gravity_estimate = avg_imu_accel - lio.mean_body_acceleration; // points upwards
+
+  return AccelInfo{.accel_mag_variance = accel_mag_variance, .local_gravity_estimate = local_gravity_estimate};
+}
+
 } // namespace
 
 // ==========================
@@ -248,23 +300,16 @@ void LIO::add_imu_measurement(const ImuControl& base_imu) {
     // skip this imu reading?
   }
 
-  ++_interval_imu_count;
-
   const Eigen::Vector3d unbiased_ang_vel = base_imu.angular_velocity - imu_bias.gyroscope;
   const Eigen::Vector3d unbiased_accel = base_imu.acceleration - imu_bias.accelerometer;
-  _interval_angular_velocity_sum += unbiased_ang_vel;
-  _interval_imu_acceleration_sum += unbiased_accel;
-
-  const double previous_imu_accel_mag_mean = _interval_imu_accel_mag_mean;
-  _interval_imu_accel_mag_mean += (unbiased_accel.norm() - previous_imu_accel_mag_mean) / _interval_imu_count;
-  _interval_welford_sum_of_squares +=
-      (unbiased_accel.norm() - previous_imu_accel_mag_mean) * (unbiased_accel.norm() - _interval_imu_accel_mag_mean);
 
   _imu_local_rotation = _imu_local_rotation * Sophus::SO3d::exp(unbiased_ang_vel * dt);
   _imu_local_rotation_time = base_imu.time;
 
   const Eigen::Vector3d local_gravity = _imu_local_rotation.inverse() * gravity();
-  _interval_body_acceleration_sum += (unbiased_accel + local_gravity);
+  const Eigen::Vector3d compensated_accel = unbiased_accel + local_gravity;
+
+  interval_stats.update(unbiased_ang_vel, unbiased_accel, compensated_accel);
 
   _last_real_imu_time = base_imu.time;
   _last_real_base_imu_ang_vel = base_imu.angular_velocity;
@@ -313,14 +358,14 @@ void LIO::add_imu_measurement(const Sophus::SE3d& extrinsic_imu2base, const ImuC
 void LIO::initialize(const Secondsd lidar_time) {
   std::cout << "Initializing LIO.\n";
 
-  if (_interval_imu_count == 0) {
-    std::cout << "WARNING: Cannot initialize. No imu measurements received.\n";
+  if (interval_stats.imu_count == 0) {
+    std::cerr << "WARNING: Cannot initialize. No imu measurements received.\n";
     _initialized = true;
     return;
   }
 
-  const Eigen::Vector3d avg_accel = _interval_imu_acceleration_sum / _interval_imu_count;
-  const Eigen::Vector3d avg_gyro = _interval_angular_velocity_sum / _interval_imu_count;
+  const Eigen::Vector3d avg_accel = interval_stats.imu_acceleration_sum / interval_stats.imu_count;
+  const Eigen::Vector3d avg_gyro = interval_stats.angular_velocity_sum / interval_stats.imu_count;
 
   _imu_local_rotation = align_accel_to_z_world(avg_accel);
   _imu_local_rotation_time = lidar_time;
@@ -332,34 +377,10 @@ void LIO::initialize(const Secondsd lidar_time) {
   imu_bias.gyroscope = avg_gyro;
 
   _initialized = true;
-  std::cout << "LIO initialized using " << _interval_imu_count << " IMU measurements. Estimated starting rotation is "
-            << _imu_local_rotation.log().transpose() << ". Estimated accel bias: " << imu_bias.accelerometer.transpose()
+  std::cout << "LIO initialized using " << interval_stats.imu_count
+            << " IMU measurements. Estimated starting rotation is " << _imu_local_rotation.log().transpose()
+            << ". Estimated accel bias: " << imu_bias.accelerometer.transpose()
             << ", gyro bias: " << imu_bias.gyroscope.transpose() << "\n";
-}
-
-std::pair<double, Eigen::Vector3d> LIO::get_accel_mag_variance_and_local_gravity(const Sophus::SO3d& rotation_estimate,
-                                                                                 const Secondsd& time) {
-  const Eigen::Vector3d avg_imu_accel = _interval_imu_acceleration_sum / _interval_imu_count;
-  const double accel_mag_variance = _interval_welford_sum_of_squares / (_interval_imu_count - 1);
-  const double dt = (time - lidar_state.time).count();
-  const Eigen::Vector3d& body_accel_measurement = avg_imu_accel + rotation_estimate.inverse() * gravity();
-
-  const double max_acceleration_change = config.max_expected_jerk * dt;
-  // assume [j, -j] range for uniform dist. on jerk. variance is (2j)^2 / 12 = j^2/3. multiply by dt^2 for accel
-  const Eigen::Matrix3d process_noise = square(max_acceleration_change) / 3 * Eigen::Matrix3d::Identity();
-  body_acceleration_covariance += process_noise;
-
-  // isotropic accel mag variance
-  const Eigen::Matrix3d measurement_noise = accel_mag_variance / 3 * Eigen::Matrix3d::Identity();
-  const Eigen::Matrix3d S = body_acceleration_covariance + measurement_noise;
-  const Eigen::Matrix3d kalman_gain = body_acceleration_covariance * S.inverse();
-
-  const Eigen::Vector3d innovation = kalman_gain * (body_accel_measurement - mean_body_acceleration);
-  mean_body_acceleration += innovation;
-  body_acceleration_covariance -= kalman_gain * body_acceleration_covariance;
-
-  const Eigen::Vector3d local_gravity_estimate = avg_imu_accel - mean_body_acceleration; // points upwards
-  return {accel_mag_variance, local_gravity_estimate};
 }
 
 Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVector& timestamps) {
@@ -368,7 +389,7 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
 
   if (lidar_state.time < EPSILON_TIME) {
     lidar_state.time = current_lidar_time;
-    std::cout << "First LiDAR received, using as global frame.";
+    std::cout << "First LiDAR received, using as global frame.\n";
     return {};
   }
 
@@ -378,12 +399,12 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
       initialize(current_lidar_time);
       return {Eigen::Vector3d::Zero(), Eigen::Vector3d::Zero()};
     }
-    if (_interval_imu_count == 0) {
+    if (interval_stats.imu_count == 0) {
       std::cerr << "WARNING: No Imu measurements in interval to average. Assuming constant velocity motion.\n";
       return {Eigen::Vector3d::Zero(), lidar_state.angular_velocity};
     }
-    const Eigen::Vector3d avg_body_accel = _interval_body_acceleration_sum / _interval_imu_count;
-    const Eigen::Vector3d avg_ang_vel = _interval_angular_velocity_sum / _interval_imu_count;
+    const Eigen::Vector3d avg_body_accel = interval_stats.body_acceleration_sum / interval_stats.imu_count;
+    const Eigen::Vector3d avg_ang_vel = interval_stats.angular_velocity_sum / interval_stats.imu_count;
     if (avg_body_accel.norm() > 50.0) {
       std::cerr << "WARNING: Erratic body acceleration computed, norm > 50 m/s2. Either IMU data is corrupted, or you "
                    "should report an issue.";
@@ -402,9 +423,8 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
 
   const Sophus::SE3d initial_guess = lidar_state.pose * relative_pose_at_time(current_lidar_time);
 
-  // acceleration filter
-  const auto& [accel_mag_variance, local_gravity_estimate] =
-      get_accel_mag_variance_and_local_gravity(initial_guess.so3(), current_lidar_time);
+  // body acceleration filter
+  const auto& accel_filter_info = get_accel_info(*this, initial_guess.so3(), current_lidar_time);
 
   // deskew and down sample
   const Vector3dVector preprocessed_scan =
@@ -422,8 +442,7 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
 
   if (!map.Empty()) {
     SCOPED_PROFILER("ICP");
-    const Sophus::SE3d optimized_pose =
-        icp(keypoints, map, initial_guess, local_gravity_estimate, accel_mag_variance, config);
+    const Sophus::SE3d optimized_pose = icp(keypoints, map, initial_guess, config, accel_filter_info);
 
     // estimate velocities and accelerations from the new pose
     const double dt = (current_lidar_time - lidar_state.time).count();
@@ -442,14 +461,8 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
     _imu_local_rotation = optimized_pose.so3(); // correct the drift in imu integration
     _imu_local_rotation_time = current_lidar_time;
   }
-
   // reset imu averages
-  _interval_imu_count = 0;
-  _interval_angular_velocity_sum.setZero();
-  _interval_imu_acceleration_sum.setZero();
-  _interval_body_acceleration_sum.setZero();
-  _interval_imu_accel_mag_mean = 0;
-  _interval_welford_sum_of_squares = 0;
+  interval_stats.reset();
 
   map.Update(frame_downsample, lidar_state.pose);
 
