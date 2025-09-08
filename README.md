@@ -56,6 +56,9 @@ For all possible CLI flags, please check `rko_lio --help`.
 The `-v` flag enables visualization.
 
 Our rosbag dataloader works with either ROS1 or ROS2 bags.
+Note that we don't fully support running `rko_lio` in partial or incomplete bags.
+ROS2 especially will need a `metadata.yaml` file.
+
 By default, we assume there is just one IMU topic and one LiDAR topic in the bag, in which case we automatically pick up the topic names and proceed further.
 If there are multiple topics per sensor, you will be prompted to select one via the `--imu` or `--lidar` flags which you can pass to `rko_lio`.
 
