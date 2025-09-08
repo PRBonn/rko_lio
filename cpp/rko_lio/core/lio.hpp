@@ -28,52 +28,46 @@
 #include <filesystem>
 
 namespace rko_lio::core {
+// return type struct in place of a tuple
+struct AccelInfo {
+  double accel_mag_variance;
+  Eigen::Vector3d local_gravity_estimate;
+};
+
+struct IntervalStats {
+  int imu_count = 0;
+  Eigen::Vector3d angular_velocity_sum = Eigen::Vector3d::Zero();
+  Eigen::Vector3d body_acceleration_sum = Eigen::Vector3d::Zero();
+  Eigen::Vector3d imu_acceleration_sum = Eigen::Vector3d::Zero();
+  double imu_accel_mag_mean = 0;
+  double welford_sum_of_squares = 0;
+
+  void update(const Eigen::Vector3d& unbiased_ang_vel,
+              const Eigen::Vector3d& uncompensated_unbiased_accel,
+              const Eigen::Vector3d& compensated_accel) {
+    ++imu_count;
+    angular_velocity_sum += unbiased_ang_vel;
+    imu_acceleration_sum += uncompensated_unbiased_accel;
+
+    const double previous_mean = imu_accel_mag_mean;
+    const double accel_norm = uncompensated_unbiased_accel.norm();
+
+    imu_accel_mag_mean += (accel_norm - previous_mean) / imu_count;
+    welford_sum_of_squares += (accel_norm - previous_mean) * (accel_norm - imu_accel_mag_mean);
+
+    body_acceleration_sum += compensated_accel;
+  }
+  void reset() {
+    imu_count = 0;
+    angular_velocity_sum.setZero();
+    body_acceleration_sum.setZero();
+    imu_acceleration_sum.setZero();
+    imu_accel_mag_mean = 0;
+    welford_sum_of_squares = 0;
+  }
+};
 
 class LIO {
-private:
-  struct IntervalStats {
-    int imu_count = 0;
-    Eigen::Vector3d angular_velocity_sum = Eigen::Vector3d::Zero();
-    Eigen::Vector3d body_acceleration_sum = Eigen::Vector3d::Zero();
-    Eigen::Vector3d imu_acceleration_sum = Eigen::Vector3d::Zero();
-    double imu_accel_mag_mean = 0;
-    double welford_sum_of_squares = 0;
-
-    void update(const Eigen::Vector3d& unbiased_ang_vel,
-                const Eigen::Vector3d& uncompensated_unbiased_accel,
-                const Eigen::Vector3d& compensated_accel) {
-      ++imu_count;
-      angular_velocity_sum += unbiased_ang_vel;
-      imu_acceleration_sum += uncompensated_unbiased_accel;
-
-      const double previous_mean = imu_accel_mag_mean;
-      const double accel_norm = uncompensated_unbiased_accel.norm();
-
-      imu_accel_mag_mean += (accel_norm - previous_mean) / imu_count;
-      welford_sum_of_squares += (accel_norm - previous_mean) * (accel_norm - imu_accel_mag_mean);
-
-      body_acceleration_sum += compensated_accel;
-    }
-    void reset() {
-      imu_count = 0;
-      angular_velocity_sum.setZero();
-      body_acceleration_sum.setZero();
-      imu_acceleration_sum.setZero();
-      imu_accel_mag_mean = 0;
-      welford_sum_of_squares = 0;
-    }
-  };
-
-  void initialize(const Secondsd lidar_time);
-  std::vector<std::pair<Secondsd, Sophus::SE3d>> _poses_with_timestamps;
-
-  bool _initialized = false;
-  // rotation used for gravity compensating incoming accel
-  Sophus::SO3d _imu_local_rotation;
-  Secondsd _imu_local_rotation_time = Secondsd{0.0}; // updated with lidar time on correction
-  Secondsd _last_real_imu_time = Secondsd{0.0};
-  Eigen::Vector3d _last_real_base_imu_ang_vel = Eigen::Vector3d::Zero();
-
 public:
   struct Config {
     bool deskew = true;
@@ -115,5 +109,19 @@ public:
                                const TimestampVector& timestamps);
 
   void dump_results_to_disk(const std::filesystem::path& results_dir, const std::string& run_name) const;
+
+private:
+  void initialize(const Secondsd lidar_time);
+
+  std::optional<AccelInfo> get_accel_info(const Sophus::SO3d& rotation_estimate, const Secondsd& time);
+
+  bool _initialized = false;
+  // rotation used for gravity compensating incoming accel
+  Sophus::SO3d _imu_local_rotation;
+  Secondsd _imu_local_rotation_time = Secondsd{0.0}; // updated with lidar time on correction
+  Secondsd _last_real_imu_time = Secondsd{0.0};
+  Eigen::Vector3d _last_real_base_imu_ang_vel = Eigen::Vector3d::Zero();
+
+  std::vector<std::pair<Secondsd, Sophus::SE3d>> _poses_with_timestamps;
 };
 } // namespace rko_lio::core
