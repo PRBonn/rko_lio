@@ -132,13 +132,13 @@ def read_points(
     return points
 
 
-def read_point_cloud(msg: PointCloud2) -> Tuple[np.ndarray, np.ndarray]:
+def read_point_cloud(msg: PointCloud2) -> Tuple[np.ndarray, np.ndarray | None]:
     """
     Extract poitns and timestamps from a PointCloud2 message.
 
     :return: Tuple of [points, timestamps]
         points: array of x, y z points, shape: (N, 3)
-        timestamps: array of per-pixel timestamps, shape: (N,)
+        timestamps: array of per-pixel timestamps, shape: (N,). returns None if no timestamps
     """
     field_names = ["x", "y", "z"]
     t_field = None
@@ -159,6 +159,6 @@ def read_point_cloud(msg: PointCloud2) -> Tuple[np.ndarray, np.ndarray]:
 
     if t_field:
         timestamps = points_structured[t_field].astype(np.float64)
+        return points.astype(np.float64), timestamps
     else:
-        timestamps = np.array([])
-    return points.astype(np.float64), timestamps
+        return points.astype(np.float64), None
