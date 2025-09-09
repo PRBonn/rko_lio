@@ -42,7 +42,7 @@ pip install rko_lio rosbags rerun-sdk
 ```
 
 `rko_lio` is our odometry package, `rosbags` is required for using our rosbag dataloader, and `rerun-sdk` is what we use for our optional visualizer.
-After everything is installed, run
+Next, run
 
 ```bash
 rko_lio -v /path/to/rosbag_folder # <- has to be a directory! with either *.bag files or metadata.yaml from ROS2
@@ -54,9 +54,9 @@ and you should be good to go!
 <summary><b>Click here for some more details on how the above works and how to use RKO_LIO!</b></summary>
 <br />
 
-For all possible CLI flags, please check `rko_lio --help`.
-
 The `-v` flag enables visualization.
+
+You can specify a dataloader to use with `-d`, but if you don't, we try to guess the format based on the layout of the data.
 
 Our rosbag dataloader works with either ROS1 or ROS2 bags.
 Place split ROS1 bags in a single folder and pass the folder as the data path.
@@ -86,6 +86,8 @@ An example invocation would then be
 # the config should have the sensor extrinsics if the rosbag doesn't
 rko_lio -v -c config.yaml --imu imu_topic --lidar lidar_topic /path/to/rosbag_folder
 ```
+
+For all possible CLI flags, please check `rko_lio --help`.
 
 </details>
 

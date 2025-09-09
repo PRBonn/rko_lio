@@ -1,7 +1,6 @@
 # RKO_LIO - Python Bindings
 
 The python interface/wrapper is a convenience tool to run the odometry offline on recorded data.
-We provide PyPI wheels for Linux, macOS, and Windows.
 
 ## Setup
 
@@ -13,8 +12,17 @@ Simply
 pip install rko_lio
 ```
 
+We provide PyPI wheels for Linux, macOS, and Windows ([PyPI page](https://pypi.org/project/rko-lio)).
+
 To be able to use `rko_lio` with any of the dataloaders or to enable visualization, you'll need to install additional dependencies.
 You'll be prompted for specific packages as they become required during runtime.
+
+For example, to use our rosbag dataloader and visualize the results, you'll need
+
+```bash
+pip install rko_lio rosbags rerun-sdk
+```
+
 If you want to install everything at once, do
 
 ```bash
@@ -35,7 +43,7 @@ To have all dependencies installed, run
 pip install ".[all]"
 ```
 
-Or use the convenience recipes provided in the Makefile
+Or use the convenience recipes provided in the [Makefile](Makefile)
 
 ```bash
 make install # installs all optional deps
@@ -73,7 +81,7 @@ are **required parameters**. You can provide them (with those keys) via a config
 See the examples in the `config/` folder.
 
 You can also override any other config parameters via the config file.
-The default set is in `config/default.yaml`.
+You can dump a default config using `rko_lio --dump_config`.
 
 If you don't pass the extrinsic parameters, we try to infer them from the dataset directly, and assume the lidar frame as the base frame where applicable.
 For more details, please expand the dataset specific sections below.
@@ -107,7 +115,8 @@ Requirements:
   - Filename: must be a timestamp (ns) corresponding to the end of recording for that scan, i.e., close to time of last recorded point. This timestamp is used along with the IMU timestamp to sort both sensor data into a common index, which is then processed sequentially by the odometry system.
   - Each `.ply` must include a time field for points. Accepted field names are: `time`, `timestamp`, `timestamps`, or `t`. This time must be in seconds, representing the absolute time of point collection.
 
-PRs welcome to improve this dataloader.
+PRs are welcome to improve this dataloader.
+
 </details>
 
 ---
@@ -126,13 +135,14 @@ and the system will work. These are:
   - If multiple exist, you’ll be prompted to select one via the `--lidar` and/or `--imu` flags.
 - The bag contains a TF tree with a static transform between the lidar and imu frames.
   - Note that we support only static TFs, on either the python bindings or the ROS version. Dynamic TF handling is out of the scope of the python bindings. I haven't really had a requirement where I need to handle a dynamic TF between the IMU and LiDAR, though I did consider how to. Open an issue if you need this supported on the ROS side.
-- The frame names in the message header match the names in the TF tree. I.e., the lidar message header `frame_id` has to match a frame id in the TF tree. Similary for the imu.
-  - Yes, there are cases where the frame ids don't match. And yes, because i ran into this problem myself, i provide a way to handle the case in which they don't match. Override the frame ids with the `--lidar_frame` or `--imu_frame` flags.
+- The frame names in the message header match the names in the TF tree, i.e., the lidar message header `frame_id` has to match a frame id in the TF tree. Similary for the imu.
+  - Yes, there are cases where the frame ids don't match. And yes, because I ran into this problem myself, I provide a way to handle this case. Override the frame ids with the `--lidar_frame` or `--imu_frame` flags.
 
 If the rosbag has no TF tree:
 - First, please ask your data provider to include the TF tree.
-- You can manually specify the extrinsics via the config (see `config/leg_kilo.yaml` or `config/oxford_spires.yaml` as references).
+- You can manually specify the extrinsics via the config (see [`config/leg_kilo.yaml`](/config/leg_kilo.yaml) or [`config/oxford_spires.yaml`](/config/oxford_spires.yaml) as references).
 - Also: can dataset providers please include TF trees in bags by default? ~~makes no sense~~
+
 </details>
 
 ---
@@ -141,11 +151,12 @@ If the rosbag has no TF tree:
 <summary>HeLiPR dataloader</summary>
 
 This is deprecated and planned to be removed in a future release. I'm prioritising documentation for other parts and other tasks. If you need it, open an issue.
+
 </details>
 
 ---
 
 ### Configuration
 
-All configurable parameters are defined in `config/default.yaml`.
+All configurable parameters are defined in [`config/default.yaml`](/config/default.yaml).
 For descriptions of each parameter, see [config.md](../docs/config.md).
