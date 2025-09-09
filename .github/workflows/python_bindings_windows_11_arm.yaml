@@ -5,7 +5,19 @@ on:
   pull_request:
     branches: [master]
 jobs:
-  python_bindings_windows_2022:
-    uses: ./.github/workflows/python_bindings_reusable.yaml
-    with:
-      run_os: windows-11-arm
+  python_bindings_windows_11_arm:
+    runs-on: windows-11-arm
+    env:
+      GIT_LFS_SKIP_SMUDGE: 1
+    steps:
+      - uses: actions/checkout@v5
+      - name: Set up Python3
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.10"
+      - name: Install pip
+        run: python -m pip install --upgrade pip
+      - name: Build with pip
+        run: python -m pip install --verbose ./python/ pytest
+      - name: Run pytest
+        run: pytest python/
