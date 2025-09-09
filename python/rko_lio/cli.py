@@ -203,7 +203,7 @@ def cli(
             import rerun as rr
 
             rr.init("rko_lio")
-            rr.spawn(memory_limit="20GB")
+            rr.spawn(memory_limit="2GB")
             rr.log_file_from_path(Path(__file__).parent / "rko_lio.rbl")
 
         except ImportError:
