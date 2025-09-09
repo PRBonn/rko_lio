@@ -149,7 +149,7 @@ You don't need to look up manufacturer spec sheets to provide noise specificatio
 
 All you need to provide is the extrinsic transformation between the IMU and LiDAR and you can start using our system for your LiDAR-inertial odometry needs!
 
-For a brief demo showcasing the capabilities of our odometry on data from different platforms, click the video below:
+For a brief demo of our odometry on data from different platforms, click below for a (YouTube) video:
 
 [![Thumbnail](https://img.youtube.com/vi/QrVHip5opIc/maxresdefault.jpg)](https://www.youtube.com/watch?v=QrVHip5opIc)
 
