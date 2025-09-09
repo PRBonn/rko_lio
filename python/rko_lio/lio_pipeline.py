@@ -184,6 +184,13 @@ class LIOPipeline:
                         frame["timestamps"],
                     )
 
+            save_deskewed_scan_as_ply(
+                deskewed_scan,
+                self.lio.pose(),
+                frame["end_time"],
+                output_dir="ply_dump",
+            )
+
             if self.viz:
                 with ScopedProfiler("Pipeline - Visualization") as viz_timer:
                     if self.lio.config.initialization_phase:
@@ -229,12 +236,6 @@ class LIOPipeline:
                                 colors=height_colors_from_points(local_map_points),
                             ),
                         )
-            save_deskewed_scan_as_ply(
-                deskewed_scan,
-                self.lio.pose(),
-                frame["end_time"],
-                output_dir="ply_dump",
-            )
 
     def dump_results_to_disk(self, results_dir: Path, run_name: str):
         """
