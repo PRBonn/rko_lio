@@ -1,0 +1,11 @@
+name: Windows 11 ARM
+on:
+  push:
+    branches: [windows_arm]
+  pull_request:
+    branches: [master]
+jobs:
+  python_bindings_windows_2022:
+    uses: ./.github/workflows/python_bindings_reusable.yaml
+    with:
+      run_os: windows-11-arm
