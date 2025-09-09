@@ -63,7 +63,6 @@ class HeliprDataLoader:
 
     def _load_extrinsics(self):
         """Load IMU->base and LIDAR->base transforms for HeLiPR."""
-        from scipy.spatial.transform import Rotation as R
 
         calib_dir = self.data_path / "Calibration"
 

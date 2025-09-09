@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 import numpy as np
-from scipy.spatial.transform import Rotation as R
+from pyquaternion import Quaternion
 from tqdm import tqdm
 
 
@@ -53,7 +53,7 @@ def create_static_tf_tree(bag):
             t = transform_stamped.transform.translation
             q = transform_stamped.transform.rotation
             T = np.eye(4)
-            T[:3, :3] = R.from_quat([q.x, q.y, q.z, q.w]).as_matrix()
+            T[:3, :3] = Quaternion(x=q.x, y=q.y, z=q.z, w=q.w).rotation_matrix
             T[:3, 3] = [t.x, t.y, t.z]
 
             tf_tree[child] = (parent, T)

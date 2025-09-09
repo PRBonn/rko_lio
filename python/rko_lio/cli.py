@@ -80,11 +80,11 @@ def dataloader_name_callback(value: str):
 
 def parse_extrinsics_from_config(config_data: dict):
     def convert_quat_xyzw_xyz_to_matrix(quat_xyzw_xyz: np.ndarray) -> np.ndarray:
-        from scipy.spatial.transform import Rotation
+        from pyquaternion import Quaternion
 
-        quat = quat_xyzw_xyz[:4]
+        qx, qy, qz, qw = quat_xyzw_xyz[:4]
         xyz = quat_xyzw_xyz[4:]
-        rot = Rotation.from_quat([quat[0], quat[1], quat[2], quat[3]])
+        rot = Quaternion(x=qx, y=qy, z=qz, w=qw).rotation_matrix
         transform = np.eye(4, dtype=np.float64)
         transform[:3, :3] = rot.as_matrix()
         transform[:3, 3] = xyz
@@ -203,7 +203,7 @@ def cli(
             import rerun as rr
 
             rr.init("rko_lio")
-            rr.spawn(memory_limit="2GB")
+            rr.spawn(memory_limit="20GB")
             rr.log_file_from_path(Path(__file__).parent / "rko_lio.rbl")
 
         except ImportError:
