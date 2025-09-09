@@ -140,7 +140,7 @@ and the system will work. These are:
 
 If the rosbag has no TF tree:
 - First, please ask your data provider to include the TF tree.
-- You can manually specify the extrinsics via the config (see [`config/leg_kilo.yaml`](/config/leg_kilo.yaml) or [`config/oxford_spires.yaml`](/config/oxford_spires.yaml) as references).
+- You can manually specify the extrinsics via the config (see [`config/leg_kilo.yaml`](config/leg_kilo.yaml) or [`config/oxford_spires.yaml`](config/oxford_spires.yaml) as references).
 - Also: can dataset providers please include TF trees in bags by default? ~~makes no sense~~
 
 </details>
@@ -158,5 +158,5 @@ This is deprecated and planned to be removed in a future release. I'm prioritisi
 
 ### Configuration
 
-All configurable parameters are defined in [`config/default.yaml`](/config/default.yaml).
+All configurable parameters are defined in [`config/default.yaml`](config/default.yaml).
 For descriptions of each parameter, see [config.md](../docs/config.md).
