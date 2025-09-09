@@ -51,7 +51,7 @@ rko_lio -v /path/to/rosbag_folder # <- has to be a directory! with either *.bag 
 and you should be good to go!
 
 <details>
-<summary><b><u>Click here for some more details on how the above works and how to use RKO_LIO!</u></b></summary>
+<summary><b>Click here for some more details on how the above works and how to use RKO_LIO!</b></summary>
 <br />
 
 For all possible CLI flags, please check `rko_lio --help`.
@@ -94,7 +94,7 @@ For more install and usage instructions of our python interface, please refer to
 The python interface to our system can be convenient to investigate recorded data offline as you don't need to setup a ROS environment first.
 
 <details>
-<summary><b><u>But please prefer the ROS version over the python version if you can!</u></b></summary>
+<summary><b>But please prefer the ROS version over the python version if you can!</b></summary>
 <br />
 
 The ROS version is the intended way to use our odometry system on a robot.
@@ -110,7 +110,7 @@ The python interface is merely meant to be a convenience.
 > We are working on getting the odometry package into the ROS index, so you can install it using system package managers instead of building from source.
 
 <details>
-<summary><b><u>Here's a ROS2 quick start!</u></b></summary>
+<summary><b>Here's a ROS2 quick start!</b></summary>
 <br />
 
 Clone the repository into your ROS workspace and then
