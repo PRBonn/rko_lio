@@ -84,9 +84,9 @@ def parse_extrinsics_from_config(config_data: dict):
 
         qx, qy, qz, qw = quat_xyzw_xyz[:4]
         xyz = quat_xyzw_xyz[4:]
-        rot = Quaternion(x=qx, y=qy, z=qz, w=qw).rotation_matrix
+
         transform = np.eye(4, dtype=np.float64)
-        transform[:3, :3] = rot.as_matrix()
+        transform[:3, :3] = Quaternion(x=qx, y=qy, z=qz, w=qw).rotation_matrix
         transform[:3, 3] = xyz
         return transform
 
