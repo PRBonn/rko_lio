@@ -23,6 +23,7 @@ Python Bindings:
 <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_15.yaml"><img src="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_15.yaml/badge.svg?branch=master" alt="macOS 15" /></a>
 <br />
 <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_windows_2022.yaml"><img src="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_windows_2022.yaml/badge.svg?branch=master" alt="Windows 2022" /></a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_windows_11_arm.yaml"><img src="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_windows_11_arm.yaml/badge.svg?branch=master" alt="Windows 11 ARM" /></a>
 </p>
 
 <p align="center">
