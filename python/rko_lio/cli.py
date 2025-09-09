@@ -137,7 +137,7 @@ def cli(
     ),
     viz: bool = typer.Option(False, "--viz", "-v", help="Enable Rerun visualization"),
     log_results: bool = typer.Option(
-        False,
+        True,
         "--log",
         "-l",
         help="Log trajectory results to disk at 'results_dir' on completion",
