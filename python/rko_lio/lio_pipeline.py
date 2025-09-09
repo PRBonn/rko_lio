@@ -173,13 +173,13 @@ class LIOPipeline:
                 # Register the lidar scan
                 if self.extrinsic_lidar2base is not None:
                     # TODO: rerun the deskewed scan as well, but there is some flickering in the viz for some reason
-                    self.lio.register_scan_with_extrinsic(
+                    deskewed_scan = self.lio.register_scan_with_extrinsic(
                         self.extrinsic_lidar2base,
                         frame["scan"],
                         frame["timestamps"],
                     )
                 else:
-                    self.lio.register_scan(
+                    deskewed_scan = self.lio.register_scan(
                         frame["scan"],
                         frame["timestamps"],
                     )
@@ -229,6 +229,12 @@ class LIOPipeline:
                                 colors=height_colors_from_points(local_map_points),
                             ),
                         )
+            save_deskewed_scan_as_ply(
+                deskewed_scan,
+                self.lio.pose(),
+                frame["end_time"],
+                output_dir="ply_dump",
+            )
 
     def dump_results_to_disk(self, results_dir: Path, run_name: str):
         """
@@ -285,3 +291,31 @@ def height_colors_from_points(points: np.ndarray) -> np.ndarray:
     ).astype(np.uint8)
 
     return colors
+
+
+def save_deskewed_scan_as_ply(
+    deskewed_scan: np.ndarray,
+    pose: np.ndarray,
+    end_time_seconds: float,
+    output_dir: str = "ply_dump",
+):
+    """
+    Transforms the deskewed_scan by pose and dumps as PLY.
+    The filename is <int_nanoseconds>.ply based on end_time_seconds.
+    """
+    import open3d as o3d
+
+    if deskewed_scan is None or len(deskewed_scan) == 0:
+        return
+
+    Path(output_dir).mkdir(exist_ok=True, parents=True)
+
+    fname = Path(output_dir) / f"{int(end_time_seconds * 1e9)}.ply"
+
+    ones = np.ones((deskewed_scan.shape[0], 1), dtype=deskewed_scan.dtype)
+    pts_hom = np.hstack([deskewed_scan, ones])  # (N, 4)
+    pts_tr = (pose @ pts_hom.T).T[:, :3]  # (N, 3)
+
+    pc_o3d = o3d.geometry.PointCloud()
+    pc_o3d.points = o3d.utility.Vector3dVector(pts_tr)
+    o3d.io.write_point_cloud(fname.as_posix(), pc_o3d)
