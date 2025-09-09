@@ -27,7 +27,9 @@ Python Bindings:
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/PRBonn/rko_lio/refs/heads/master/docs/example_multiple_platforms.png" alt="Visualization of odometry system running on data from four different platforms in four different environments" />
+  <a href="https://www.youtube.com/watch?v=QrVHip5opIc">
+    <img src="https://raw.githubusercontent.com/PRBonn/rko_lio/refs/heads/master/docs/example_multiple_platforms.png" alt="Visualization of odometry system running on data from four different platforms in four different environments" />
+  </a>
   <br />
   <em>Four different platforms, four different environments, one odometry system</em>
 </p>
@@ -146,6 +148,10 @@ For using an IMU, we require only the accelerometer and gyroscope readings, the 
 You don't need to look up manufacturer spec sheets to provide noise specifications, etc.
 
 All you need to provide is the extrinsic transformation between the IMU and LiDAR and you can start using our system for your LiDAR-inertial odometry needs!
+
+For a brief demo showcasing the capabilities of our odometry on data from different platforms, click the video below:
+
+[![Thumbnail](https://img.youtube.com/vi/QrVHip5opIc/maxresdefault.jpg)](https://www.youtube.com/watch?v=QrVHip5opIc)
 
 ## A note on transformations
 
