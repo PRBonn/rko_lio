@@ -64,16 +64,18 @@ def create_static_tf_tree(bag):
 def query_static_tf(tf_tree, from_frame, to_frame):
     """
     Compute transform matrix from 'from_frame' to 'to_frame' using a static TF tree.
-
-    Raises ValueError if frames are disconnected.
     """
     available_frames = set(tf_tree.keys()) | {parent for parent, _ in tf_tree.values()}
     missing = [f for f in (from_frame, to_frame) if f not in available_frames]
     if missing:
-        raise ValueError(
-            f"Frame(s) {missing} not found in static TF tree. "
-            f"Available frames: {sorted(available_frames)}. You can specify frames with CLI options."
+        print(
+            f"[ERROR] Frame(s) {missing} not found in static TF tree. "
+            f"Available frames: {sorted(available_frames)}. You can specify frame overrides with CLI options."
         )
+        import sys
+
+        sys.exit(1)
+
     # Walk up from "from_frame" to root, collecting transforms
     from_chain = []
     cur = from_frame
