@@ -102,7 +102,7 @@ public:
   void lidar_callback(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& lidar_msg);
   void registration_loop();
   void publish_odometry(const core::State& state, const core::Secondsd& stamp) const;
-  void publish_lidar_acceleration(const Eigen::Vector3d& acceleration, const core::Secondsd& stamp) const;
+  void publish_lidar_accel(const Eigen::Vector3d& acceleration, const core::Secondsd& stamp) const;
   void publish_map_loop();
 
   ~Node();

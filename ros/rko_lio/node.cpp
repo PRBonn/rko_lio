@@ -285,7 +285,7 @@ void Node::registration_loop() {
       }
       publish_odometry(lio->lidar_state, end_stamp);
       if (publish_lidar_acceleration) {
-        publish_lidar_acceleration(lio->lidar_state.linear_acceleration, end_stamp);
+        publish_lidar_accel(lio->lidar_state.linear_acceleration, end_stamp);
       }
     }
   }
@@ -320,7 +320,7 @@ void Node::publish_odometry(const core::State& state, const core::Secondsd& stam
   odom_publisher->publish(odom_msg);
 }
 
-void Node::publish_lidar_acceleration(const Eigen::Vector3d& acceleration, const core::Secondsd& stamp) const {
+void Node::publish_lidar_accel(const Eigen::Vector3d& acceleration, const core::Secondsd& stamp) const {
   auto accel_msg = geometry_msgs::msg::AccelStamped();
   accel_msg.header.stamp = rclcpp::Time(std::chrono::duration_cast<std::chrono::nanoseconds>(stamp).count());
   accel_msg.header.frame_id = base_frame;
