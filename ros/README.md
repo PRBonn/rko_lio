@@ -52,7 +52,7 @@ But really, if you have a TF problem, just fix it instead.
 
 Please note that the parameter definitions in a config file take priority over those defined from the CLI. This behaviour is planned to be fixed (PR welcome).
 
-As mentioned before regarding the offline node, you can use it to read a bag directly and run the odometry on it at the same time. Pass the `bag_filename:=` parameter to the launch file (which should be a folder containing the .db3 or .mcap or other ROS supported formats).
+As mentioned before regarding the offline node, you can use it to read a bag directly and run the odometry on it at the same time. Pass the `bag_path:=` parameter to the launch file (which should be a folder containing the .db3 or .mcap or other ROS supported formats).
 
 You can enable rviz visualization by passing `rviz:=true` which launches an rviz window simultaneously using the default rviz config file in `config/default.rviz`.
 
@@ -62,7 +62,7 @@ An example full invocation for running the offline node with rviz can look like 
 ros2 launch rko_lio odometry.launch.py \
     mode:=offline \
     config_file:=/path/to/config/file \
-    bag_filename:=/path/to/rosbag/directory \
+    bag_path:=/path/to/rosbag/directory \
     rviz:=true
 ```
 

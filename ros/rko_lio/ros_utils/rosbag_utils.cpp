@@ -64,7 +64,7 @@ void BufferableBag::TFBridge::ProcessTFMessage(const std::shared_ptr<rosbag2_sto
 }
 
 // BufferableBag-----------------------------------------------------------------------------------
-BufferableBag::BufferableBag(const std::string& bag_filename,
+BufferableBag::BufferableBag(const std::string& bag_path,
                              const std::shared_ptr<TFBridge> tf_bridge,
                              const std::vector<std::string>& topics,
                              const tf2::Duration seek,
@@ -73,8 +73,8 @@ BufferableBag::BufferableBag(const std::string& bag_filename,
       bag_reader_(std::make_unique<rosbag2_cpp::Reader>()),
       buffer_size_(buffer_size),
       topics_(topics) {
-  publish_tf_static(bag_filename);
-  bag_reader_->open(bag_filename);
+  publish_tf_static(bag_path);
+  bag_reader_->open(bag_path);
   bag_reader_->seek(seek.count());
   bag_reader_->set_filter(rosbag2_storage::StorageFilter{topics_});
   message_count_ = [&]() {
@@ -95,10 +95,10 @@ BufferableBag::BufferableBag(const std::string& bag_filename,
   BufferMessages();
 }
 
-void BufferableBag::publish_tf_static(const std::string& bag_filename) {
+void BufferableBag::publish_tf_static(const std::string& bag_path) {
   std::cout << "Opening the bag first to publish all the tf_static messages\n";
   rosbag2_cpp::Reader tf_reader;
-  tf_reader.open(bag_filename);
+  tf_reader.open(bag_path);
   tf_reader.set_filter(rosbag2_storage::StorageFilter{{"/tf_static"}});
   while (tf_reader.has_next()) {
     const auto msg = tf_reader.read_next();

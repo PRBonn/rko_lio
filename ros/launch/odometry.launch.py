@@ -31,7 +31,7 @@ from launch.substitutions import LaunchConfiguration
 
 offline_only_parameters = [
     {
-        "name": "bag_filename",
+        "name": "bag_path",
         "default": "",
         "description": "ROS bag path to process",
     },
@@ -213,7 +213,7 @@ def launch_setup(context, *args, **kwargs):
     params = set_configurable_parameters(configurable_parameters)
     # Remove offline-only parameters if in online mode
     if mode == "online":
-        for p in ["bag_filename", "skip_to_time"]:
+        for p in ["bag_path", "skip_to_time"]:
             if p in params or p in params_from_file:
                 print(
                     "WARNING: Running the online node, bag filename and skip_to_time are being ignored."

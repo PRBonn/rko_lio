@@ -53,7 +53,7 @@ public:
     max_lidar_buffer_size = 100;
     // bag reading
     const tf2::Duration skip_to_time = tf2::durationFromSec(node->declare_parameter<double>("skip_to_time", 0.0));
-    bag = std::make_unique<ros_utils::BufferableBag>(node->declare_parameter<std::string>("bag_filename"),
+    bag = std::make_unique<ros_utils::BufferableBag>(node->declare_parameter<std::string>("bag_path"),
                                                      std::make_shared<ros_utils::BufferableBag::TFBridge>(node),
                                                      std::vector<std::string>{imu_topic, lidar_topic}, skip_to_time);
     total_bag_msgs = bag->message_count();
