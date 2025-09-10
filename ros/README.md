@@ -44,7 +44,7 @@ That will also provide additional documentation about the different parameters. 
 At minimum, you'll need to specify the `lidar_topic`, `imu_topic` and `base_frame` parameters.
 
 If your TF tree is well defined, i.e., it exists and the message frame ids match the frame ids in the TF tree (i've seen both conditions fail), then the frame ids are picked up from the topics and the extrinsics via TF lookup.
-Otherwise you'll need to either specify just the frame ids (if there's a mismatch), or specify the extrinsics via `extrinsic_lidar2base` written as quaternion (xyzw) and translation (xyz) in a list.
+Otherwise you'll need to either specify just the frame ids (if there's a mismatch), or specify the extrinsics via `extrinsic_lidar2base_quat_xyzw_xyz` written as quaternion (xyzw) and translation (xyz) in a list.
 Similarly for the IMU to base.
 But really, if you have a TF problem, just fix it instead.
 

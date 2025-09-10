@@ -115,14 +115,14 @@ Node::Node(const std::string& node_name, const rclcpp::NodeOptions& options) {
 // quaternion first (scalar last), then xyz
 void Node::parse_cli_extrinsics() {
   auto parse_extrinsic = [this](const std::string& name, Sophus::SE3d& extrinsic) {
-    const std::string param_name = "extrinsic_" + name + "2base";
+    const std::string param_name = "extrinsic_" + name + "2base_quat_xyzw_xyz";
     const std::vector<double> vec = node->declare_parameter<std::vector<double>>(param_name, std::vector<double>{});
 
     if (vec.size() != 7) {
       if (!vec.empty()) {
         RCLCPP_WARN_STREAM(node->get_logger(),
                            "Parameter 'extrinsic_"
-                               << name << "2base' is set but has wrong size: " << vec.size()
+                               << name << "2base_quat_xyzw_xyz' is set but has wrong size: " << vec.size()
                                << ". Expected 7 (qx, qy, qz, qw, x, y, z). check the value: "
                                << Eigen::Map<const Eigen::VectorXd>(vec.data(), vec.size()).transpose());
       }

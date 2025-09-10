@@ -3,8 +3,8 @@
 # imu_frame: <leave empty if tf is well defined>
 # lidar_topic: /lidar
 # lidar_frame: <leave empty if tf is well defined>
-# extrinsic_lidar2base: [qxyzw_xyz as a list, unnecessary if tf is well defined]
-# extrinsic_imu2base: [qxyzw_xyz as a list, unnecessary if tf is well defined]
+# extrinsic_lidar2base_quat_xyzw_xyz: [qxyzw_xyz as a list, unnecessary if tf is well defined]
+# extrinsic_imu2base_quat_xyzw_xyz: [qxyzw_xyz as a list, unnecessary if tf is well defined]
 odom_topic: /rko_lio/odometry
 odom_frame: odom
 invert_odom_tf: false
