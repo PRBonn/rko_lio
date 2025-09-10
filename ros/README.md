@@ -69,7 +69,7 @@ ros2 launch rko_lio odometry.launch.py \
 ### Published topics
 
 - `/rko_lio/odom`: Odometry topic, the name can be modified using the `odom_topic` parameter. This also includes the twist of the `base_frame` expressed in `base_frame` coordinates. This twist is estimated from the lidar scan registration. A TF is also simultaneously published from the `base_frame` to the `odom_frame`. Please note the parameter `invert_odom_tf` in case your TF configuration requires this (you're running multiple odometries or some other complicated setup).
-- `/rko_lio/frame`: The input lidar scan deskewed using the IMU data. Only published if `publish_deskewed_cloud:=true`.
+- `/rko_lio/frame`: The input lidar scan deskewed using the IMU data. Only published if `publish_deskewed_scan:=true`.
 - `/rko_lio/local_map`: The local map the odometry maintains is published at a set frequency given by `publish_map_after` (seconds), and only if `publish_local_map:=true`.
 - `/rko_lio/acceleration`: Linear acceleration of the `base_frame` expressed in `base_frame` coordinates. Note that this acceleration can be quite noisy, as it is essentially a double time derivative of the pose update from the lidar scan registration (similar to the twist/velocity).
 

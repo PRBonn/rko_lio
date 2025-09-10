@@ -50,19 +50,20 @@ public:
   rclcpp::Node::SharedPtr node;
   std::unique_ptr<core::LIO> lio;
 
-  std::string results_dir = "results";
-  std::string run_name = "lio_run";
-  std::string odom_frame;
-  std::string odom_topic;
-  std::string base_frame;
-  std::string imu_frame;
   std::string imu_topic;
-  std::string lidar_frame;
+  std::string imu_frame = ""; // default: get from the first imu message
   std::string lidar_topic;
-  std::string map_topic;
-  bool invert_odom_tf;
-  bool debug = true;
-  bool publish_deskewed_cloud = false;
+  std::string lidar_frame = ""; // default: get from the first lidar message
+  std::string base_frame = "base";
+  std::string odom_frame = "odom";
+  std::string odom_topic = "/rko_lio/odom";
+  std::string map_topic = "/rko_lio/local_map";
+  std::string results_dir = "results";
+  std::string run_name = "rko_lio_run";
+
+  bool invert_odom_tf = false;
+  bool publish_lidar_acceleration = false;
+  bool publish_deskewed_scan = false;
   bool publish_local_map = false;
 
   Sophus::SE3d extrinsic_imu2base;
@@ -73,15 +74,16 @@ public:
   std::shared_ptr<tf2_ros::Buffer> tf_buffer;
   std::unique_ptr<tf2_ros::TransformBroadcaster> tf_broadcaster;
 
-  rclcpp::Publisher<geometry_msgs::msg::AccelStamped>::SharedPtr accel_publisher;
   rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odom_publisher;
   rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr frame_publisher;
   rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr map_publisher;
+  rclcpp::Publisher<geometry_msgs::msg::AccelStamped>::SharedPtr lidar_accel_publisher;
 
   // multithreading
   std::jthread map_publish_thead;
   core::Secondsd publish_map_after = std::chrono::seconds(1);
-  std::mutex lio_mutex;
+  std::mutex local_map_mutex;
+
   std::jthread registration_thread;
   std::mutex buffer_mutex;
   std::condition_variable sync_condition_variable;
@@ -93,15 +95,16 @@ public:
 
   Node() = delete;
   Node(const std::string& node_name, const rclcpp::NodeOptions& options);
-  // quaternion first (scalar last), then xyz
+
   void parse_cli_extrinsics();
   bool check_and_set_extrinsics();
   void imu_callback(const sensor_msgs::msg::Imu::ConstSharedPtr& imu_msg);
   void lidar_callback(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& lidar_msg);
   void registration_loop();
   void publish_odometry(const core::State& state, const core::Secondsd& stamp) const;
-  void publish_acceleration(const Eigen::Vector3d& acceleration, const core::Secondsd& stamp) const;
+  void publish_lidar_acceleration(const Eigen::Vector3d& acceleration, const core::Secondsd& stamp) const;
   void publish_map_loop();
+
   ~Node();
   Node(const Node&) = delete;
   Node(Node&&) = delete;

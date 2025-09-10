@@ -39,8 +39,8 @@ public:
 
   explicit OnlineNode(const rclcpp::NodeOptions& options)
       : Node("rko_lio_online_node", options), timer("RKO LIO Online Node") {
-    auto qos_imu = rclcpp::SensorDataQoS().keep_last(100);
-    auto qos_lidar = rclcpp::SensorDataQoS().keep_last(10);
+    const auto qos_imu = rclcpp::SensorDataQoS().keep_last(100);
+    const auto qos_lidar = rclcpp::SensorDataQoS().keep_last(10);
 
     imu_sub = node->create_subscription<sensor_msgs::msg::Imu>(
         imu_topic, qos_imu, [this](const sensor_msgs::msg::Imu::ConstSharedPtr& imu_msg) { imu_callback(imu_msg); });

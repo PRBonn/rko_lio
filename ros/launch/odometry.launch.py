@@ -25,6 +25,7 @@ from pathlib import Path
 import launch_ros.actions
 import yaml
 from ament_index_python.packages import get_package_share_directory
+
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, OpaqueFunction
 from launch.substitutions import LaunchConfiguration
@@ -160,9 +161,8 @@ configurable_parameters = [
         "default": "0",
         "description": "Number of threads for data association in ICP",
     },
-    # Debugging
     {
-        "name": "publish_deskewed_cloud",
+        "name": "publish_deskewed_scan",
         "default": "false",
         "description": "Publish the deskewed cloud, usually for visualizing",
     },
@@ -227,7 +227,7 @@ def launch_setup(context, *args, **kwargs):
         params_from_file,
     ]
     if rviz_enabled:
-        parameters_list.append({"publish_deskewed_cloud": True})
+        parameters_list.append({"publish_deskewed_scan": True})
 
     node_executable = "online_node" if mode == "online" else "offline_node"
 
