@@ -27,7 +27,7 @@ Python Bindings:
 </p>
 
 <p align="center">
-  <a href="https://www.youtube.com/watch?v=QrVHip5opIc">
+  <a href="https://www.youtube.com/watch?v=NNpzXdf9XmU">
     <img src="https://raw.githubusercontent.com/PRBonn/rko_lio/refs/heads/master/docs/example_multiple_platforms.png" alt="Visualization of odometry system running on data from four different platforms in four different environments" />
   </a>
   <br />
@@ -151,7 +151,7 @@ All you need to provide is the extrinsic transformation between the IMU and LiDA
 
 For a brief demo of our odometry on data from different platforms, click below for a (YouTube) video:
 
-[![Thumbnail](https://img.youtube.com/vi/QrVHip5opIc/maxresdefault.jpg)](https://www.youtube.com/watch?v=QrVHip5opIc)
+[![Thumbnail](https://img.youtube.com/vi/NNpzXdf9XmU/maxresdefault.jpg)](https://www.youtube.com/watch?v=NNpzXdf9XmU)
 
 ## A note on transformations
 
