@@ -48,11 +48,11 @@ Node::Node(const std::string& node_name, const rclcpp::NodeOptions& options) {
   node = rclcpp::Node::make_shared(node_name, options);
   imu_topic = node->declare_parameter<std::string>("imu_topic");     // required
   lidar_topic = node->declare_parameter<std::string>("lidar_topic"); // required
+  base_frame = node->declare_parameter<std::string>("base_frame");   // required
   imu_frame = node->declare_parameter<std::string>("imu_frame", imu_frame);
   lidar_frame = node->declare_parameter<std::string>("lidar_frame", lidar_frame);
   odom_frame = node->declare_parameter<std::string>("odom_frame", odom_frame);
   odom_topic = node->declare_parameter<std::string>("odom_topic", odom_topic);
-  base_frame = node->declare_parameter<std::string>("base_frame", base_frame);
   results_dir = node->declare_parameter<std::string>("results_dir", results_dir);
   run_name = node->declare_parameter<std::string>("run_name", run_name);
 

@@ -54,9 +54,9 @@ public:
   std::string imu_frame = ""; // default: get from the first imu message
   std::string lidar_topic;
   std::string lidar_frame = ""; // default: get from the first lidar message
-  std::string base_frame = "base";
+  std::string base_frame;
   std::string odom_frame = "odom";
-  std::string odom_topic = "/rko_lio/odom";
+  std::string odom_topic = "/rko_lio/odometry";
   std::string map_topic = "/rko_lio/local_map";
   std::string results_dir = "results";
   std::string run_name = "rko_lio_run";
