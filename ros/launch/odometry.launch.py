@@ -29,149 +29,215 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, OpaqueFunction
 from launch.substitutions import LaunchConfiguration
 
+# import logging
+# logging.root.setLevel(logging.DEBUG)
+
+
 offline_only_parameters = [
     {
-        "name": "bag_filename",
+        "name": "bag_path",
         "default": "",
-        "description": "ROS bag path to process",
+        "description": "[Offline node only] ROS bag path to process (required)",
+        "required": True,
     },
     {
         "name": "skip_to_time",
         "default": "0.0",
-        "description": "Skip till this timestamp in the bag",
+        "type": "float",
+        "description": "[Offline node only] Skip to timestamp in the bag (seconds)",
     },
 ]
 
 configurable_parameters = [
     {
-        "name": "log_level",
-        "default": "info",
-        "description": "debug log level [DEBUG|INFO|WARN|ERROR|FATAL]",
-    },
-    {
-        "name": "mode",
-        "default": "online",
-        "description": "Which node to launch: 'offline' or 'online'",
-    },
-    {
-        "name": "config_file",
-        "default": "",
-        "description": "yaml config file",
-    },
-    {
-        "name": "run_name",
-        "default": "rko_lio_odometry_run",
-        "description": "Name for this run",
-    },
-    # topics and frames
-    {
         "name": "imu_topic",
         "default": "",
-        "description": "IMU input topic",
+        "description": "IMU input topic (required)",
+        "required": True,
     },
     {
         "name": "lidar_topic",
         "default": "",
-        "description": "LiDAR pointcloud topic",
+        "description": "LiDAR pointcloud topic (required)",
+        "required": True,
     },
     {
         "name": "imu_frame",
         "default": "",
-        "description": "IMU frame",
+        "description": "IMU frame, can be left empty if message frame id is to be used",
     },
     {
         "name": "lidar_frame",
         "default": "",
-        "description": "LiDAR frame",
+        "description": "LiDAR frame, can be left empty if message frame id is to be used",
     },
     {
         "name": "base_frame",
         "default": "",
-        "description": "Estimation base frame name. Not necessarily the actual robot base frame",
+        "description": "Robot base frame, or the frame of estimation for odometry (required)",
+        "required": True,
     },
     {
         "name": "odom_frame",
-        "default": "",
-        "description": "World-fixed frame name",
+        "default": "odom",
+        "description": "Odom frame id, used for publishing the tf from base frame to odom frame",
     },
     {
         "name": "odom_topic",
-        "default": "",
-        "description": "name of the topic on which the Odom message gets published",
+        "default": "/rko_lio/odometry",
+        "description": "Odometry topic name",
     },
     {
         "name": "invert_odom_tf",
-        "default": "true",
-        "description": "Whether to invert odometry transform",
+        "default": "False",
+        "type": "bool",
+        "description": "Invert odometry transform if required so that the base frame is the parent and odom frame is the child in the TF tree",
     },
     {
         "name": "publish_local_map",
-        "default": "false",
-        "description": "Publish the local map that the odometry maintains",
+        "default": "False",
+        "type": "bool",
+        "description": "Publish local map",
     },
     {
         "name": "map_topic",
-        "default": "",
-        "description": "name of the topic on which the local map will be published if enabled",
+        "default": "/rko_lio/local_map",
+        "description": "Local map topic. Published if publish_local_map is true",
     },
     {
         "name": "publish_map_after",
         "default": "1.0",
-        "description": "seconds between each local map publish",
+        "type": "float",
+        "description": "Seconds between each local map publishing",
     },
-    # Processing parameters
+    {
+        "name": "publish_lidar_acceleration",
+        "default": "False",
+        "type": "bool",
+        "description": "Publish the linear acceleration of the `base_frame` expressed in `base_frame` coordinates. Note that this acceleration can be quite noisy, as it is essentially a double time derivative of the pose update from the lidar scan registration (similar to the twist/velocity in the odometry topic). The topic name is /rko_lio/lidar_acceleration.",
+    },
+    # lio parameters
     {
         "name": "deskew",
-        "default": "true",
-        "description": "Deskew the point cloud before registration",
+        "default": "True",
+        "type": "bool",
+        "description": "Deskew the point cloud before registration, requires timestamps in the Lidar messages",
     },
     {
         "name": "voxel_size",
         "default": "1.0",
-        "description": "Voxel grid filter size (meters)",
+        "type": "float",
+        "description": "Voxel size for the local map (meters) used for odometry",
     },
     {
         "name": "max_points_per_voxel",
         "default": "20",
+        "type": "int",
         "description": "Max points per voxel",
     },
     {
         "name": "max_range",
         "default": "100.0",
-        "description": "Maximum valid LiDAR range (meters)",
+        "type": "float",
+        "description": "Max valid LiDAR range (meters)",
     },
     {
         "name": "min_range",
         "default": "1.0",
-        "description": "Minimum valid LiDAR range (meters)",
+        "type": "float",
+        "description": "Min valid LiDAR range (meters)",
     },
     {
         "name": "max_correspondance_distance",
         "default": "0.5",
-        "description": "ICP correspondence threshold (meters)",
+        "type": "float",
+        "description": "ICP correspondence distance threshold (meters)",
     },
     {
         "name": "convergence_criterion",
         "default": "0.00001",
-        "description": "Optimization stopping condition",
+        "type": "float",
+        "description": "Optimization stopping condition for ICP",
     },
     {
         "name": "max_num_threads",
         "default": "0",
-        "description": "Number of threads for data association in ICP",
+        "type": "int",
+        "description": "Number of threads used for data association in ICP",
     },
-    # Debugging
     {
-        "name": "publish_deskewed_cloud",
+        "name": "publish_deskewed_scan",
         "default": "false",
-        "description": "Publish the deskewed cloud, usually for visualizing",
+        "type": "bool",
+        "description": "Publish deskewed scan for visualization",
+    },
+    {
+        "name": "initialization_phase",
+        "default": "true",
+        "type": "bool",
+        "description": "Use the IMU data between the first two frames to initialize IMU bias and system orientation. Assumes the system is at rest between these two frames. WARNING: If this is enabled, but the odometry starts while the system is in motion, the odometry will likely not work as expected.",
+    },
+    {
+        "name": "max_iterations",
+        "default": "100",
+        "type": "int",
+        "description": "Max ICP iterations",
+    },
+    {
+        "name": "max_expected_jerk",
+        "default": "3.0",
+        "type": "float",
+        "description": "Max expected jerk (m/s^3)",
+    },
+    {
+        "name": "double_downsample",
+        "default": "true",
+        "type": "bool",
+        "description": "Double downsample the input cloud before registration. Useful for dense Lidars. Can be disabled for sparse lidars.",
+    },
+    {
+        "name": "min_beta",
+        "default": "200",
+        "type": "float",
+        "description": "Scale parameter that decides the minimum amount of orientation regularisation applied during ICP registration.",
+    },
+    # ros params
+    {
+        "name": "mode",
+        "default": "online",
+        "description": "Launch mode: 'offline' or 'online'",
+    },
+    {
+        "name": "config_file",
+        "default": "",
+        "description": "YAML config file to load parameters from",
+    },
+    {
+        "name": "run_name",
+        "default": "rko_lio_odometry_run",
+        "description": "Run name, used when saving results to results_dir",
+    },
+    {
+        "name": "results_dir",
+        "default": "results",
+        "description": "When the odometry node exists, it dumps a trajectory file to this directory under a 'run_name' subfolder along with the LIO configuration parameters used for that run.",
     },
     {
         "name": "rviz",
         "default": "false",
-        "description": "Launch rviz simultaneously",
+        "type": "bool",
+        "description": "Launch RViz simultaneously",
     },
-    {"name": "rviz_config_file", "default": "", "description": "rviz config file"},
+    {
+        "name": "rviz_config_file",
+        "default": "config/default.rviz",
+        "description": "RViz config file path. If it's not the default value, note that it will be passed to rviz as is.",
+    },
+    {
+        "name": "log_level",
+        "default": "info",
+        "description": "ROS Log level [DEBUG|INFO|WARN|ERROR|FATAL]",
+    },
 ] + offline_only_parameters
 
 
@@ -186,9 +252,38 @@ def declare_configurable_parameters(parameters):
     ]
 
 
-def set_configurable_parameters(parameters):
-    return dict(
-        [(param["name"], LaunchConfiguration(param["name"])) for param in parameters]
+def auto_cast_params(params, param_defs):
+    """
+    Because for some reason, I cannot use a raw bool in configurable parameters dict
+    because of how DeclareLaunchArgument seems to work, so i have to write it as a string.
+    But then my node expects a bool so I need to explicitly cast it the string to bool again...
+    There must be a simpler way to do all this...
+    """
+    out = {}
+    for p in param_defs:
+        name = p["name"]
+        v = params.get(name)
+        tp = p.get("type", None)
+        if tp == "bool":
+            out[name] = str(v).lower() == "true"
+        elif tp == "int":
+            out[name] = int(v)
+        elif tp == "float":
+            out[name] = float(v)
+        else:
+            out[name] = v
+    return out
+
+
+def get_configurable_parameters(configurable_parameters, context):
+    return auto_cast_params(
+        dict(
+            [
+                (param["name"], LaunchConfiguration(param["name"]).perform(context))
+                for param in configurable_parameters
+            ]
+        ),
+        configurable_parameters,
     )
 
 
@@ -197,37 +292,119 @@ def yaml_to_dict(path_to_yaml):
         return yaml.safe_load(f)
 
 
+def merge_and_validate_parameters(
+    cli_params: dict,
+    file_params: dict,
+    mode: str,
+) -> dict:
+    """
+    Merge CLI and file parameters:
+      - CLI overrides file values only if non-empty
+      - Validate required params are provided (depending on mode)
+    """
+    merged = {}
+
+    merged.update(file_params)
+
+    # override with CLI only if non-empty
+    for k, v in cli_params.items():
+        if v not in ("", None):
+            merged[k] = v
+
+    # Validating required params
+    missing = []
+    for param in configurable_parameters:
+        name = param["name"]
+
+        # Skip offline-only params in online mode
+        if mode == "online" and param in offline_only_parameters:
+            continue
+
+        if param.get("required", False):
+            if name not in merged or not merged.get(name):
+                missing.append(name)
+
+    if missing:
+        print("\n\n" + "=" * 40)
+        print("[ERROR] Missing required parameter(s):")
+        print(", ".join(missing))
+        print("Please provide them via CLI (param:=value) or a config file.")
+        print("=" * 40 + "\n\n")
+        import sys
+
+        sys.exit(1)
+
+    return merged
+
+
+def prepare_rviz_config(rviz_config_file: Path, parameters: dict) -> Path:
+    """
+    Decide which RViz config to use.
+    If rviz_config_file is not the default, just return it.
+    Otherwise, patch the default config with base_frame.
+    """
+    default_config = Path("config/default.rviz")
+
+    # If user provided a custom config, just return it unchanged
+    if rviz_config_file != default_config:
+        return rviz_config_file
+
+    rviz_config_file = Path(get_package_share_directory("rko_lio")) / rviz_config_file
+
+    base_frame = parameters.get("base_frame", "")
+    if not base_frame:
+        return rviz_config_file  # no override needed
+
+    # Load default config
+    with open(rviz_config_file, "r") as f:
+        rviz_cfg = yaml.safe_load(f)
+
+    try:
+        rviz_cfg["Visualization Manager"]["Views"]["Current"][
+            "Target Frame"
+        ] = base_frame
+    except Exception as e:
+        raise RuntimeError(
+            f"Could not patch RViz config with base_frame ({base_frame}): {e}"
+        )
+
+    # Write to a temp file
+    import tempfile
+
+    tmp = tempfile.NamedTemporaryFile(mode="w", suffix=".rviz", delete=False)
+    yaml.safe_dump(rviz_cfg, tmp)
+    tmp.flush()
+    # since its the default config file, we also want to viz the deskewed scan and local map
+    parameters["publish_deskewed_scan"] = True
+    parameters["publish_local_map"] = True
+
+    return Path(tmp.name)
+
+
 def launch_setup(context, *args, **kwargs):
     mode = LaunchConfiguration("mode").perform(context).lower()
-    config_file = LaunchConfiguration("config_file").perform(context)
-    params_from_file = {} if config_file == "" else yaml_to_dict(config_file)
-    pkg_share_dir = get_package_share_directory("rko_lio")
-
-    rviz_config_file = Path(LaunchConfiguration("rviz_config_file").perform(context))
-    if rviz_config_file == Path(""):
-        rviz_config_file = Path(pkg_share_dir) / "config" / "default.rviz"
-
-    rviz_enabled = LaunchConfiguration("rviz").perform(context).lower() == "true"
 
     # Prepare parameters
-    params = set_configurable_parameters(configurable_parameters)
-    # Remove offline-only parameters if in online mode
-    if mode == "online":
-        for p in ["bag_filename", "skip_to_time"]:
-            if p in params or p in params_from_file:
-                print(
-                    "WARNING: Running the online node, bag filename and skip_to_time are being ignored."
-                )
-            params.pop(p, None)
-            params_from_file.pop(p, None)
+    config_file = LaunchConfiguration("config_file").perform(context)
+    params_from_file = {} if config_file == "" else yaml_to_dict(config_file)
+    cli_params = get_configurable_parameters(configurable_parameters, context=context)
+    final_params = merge_and_validate_parameters(
+        cli_params=cli_params,
+        file_params=params_from_file,
+        mode=mode,
+    )
 
-    # final params with preference to params in the file, TODO: improve this
-    parameters_list = [
-        params,
-        params_from_file,
-    ]
+    print("\n" + "=" * 40 + "\n")
+    print("Using Launch configuration:\n")
+    print(yaml.dump(final_params, sort_keys=False, default_flow_style=False, indent=4))
+    print("=" * 40 + "\n")
+
+    rviz_enabled = LaunchConfiguration("rviz").perform(context).lower() == "true"
     if rviz_enabled:
-        parameters_list.append({"publish_deskewed_cloud": True})
+        rviz_config_file = prepare_rviz_config(
+            Path(LaunchConfiguration("rviz_config_file").perform(context)),
+            final_params,
+        )
 
     node_executable = "online_node" if mode == "online" else "offline_node"
 
@@ -235,7 +412,7 @@ def launch_setup(context, *args, **kwargs):
         launch_ros.actions.Node(
             package="rko_lio",
             executable=node_executable,
-            parameters=parameters_list,
+            parameters=[final_params],
             output="screen",
             arguments=[
                 "--ros-args",

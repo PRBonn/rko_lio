@@ -94,7 +94,7 @@ For all possible CLI flags, please check `rko_lio --help`.
 
 </details>
 
-For more install and usage instructions of our python interface, please refer to the [python readme](python#rko_lio---python-bindings) and the [config doc](/docs/config.md).
+For more install and usage instructions of our python interface, please refer to the [python readme](/python/README.md#rko_lio---python-bindings) and the [config doc](/docs/config.md).
 
 The python interface to our system can be convenient to investigate recorded data offline as you don't need to setup a ROS environment first.
 
@@ -105,7 +105,7 @@ The python interface to our system can be convenient to investigate recorded dat
 The ROS version is the intended way to use our odometry system on a robot.
 The ROS version also has better performance mainly due to how we read incoming data.
 Without getting into details, if you can, you should prefer using the ROS version.
-For offline use, we provide a way to directly inspect and run our odometry on recorded rosbags (see offline mode in [ROS usage](ros#usage)), which should be preferred over the python dataloader.
+For offline use, we provide a way to directly inspect and run our odometry on recorded rosbags (see offline mode in [ROS usage](/ros/README.md#usage)), which should be preferred over the python dataloader.
 The python interface is merely meant to be a convenience.
 
 </details>
@@ -137,7 +137,7 @@ If you encounter any issues, please check [docs/build.md](docs/build.md) for fur
 
 </details>
 
-Please refer to the [ROS readme](ros) for further ROS-specific details.
+Please refer to the [ROS readme](/ros/README.md) for further ROS-specific details.
 
 ## About
 

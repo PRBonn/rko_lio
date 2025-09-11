@@ -53,13 +53,13 @@ public:
     rclcpp::Serialization<tf2_msgs::msg::TFMessage> serializer;
   };
 
-  BufferableBag(const std::string& bag_filename,
+  BufferableBag(const std::string& bag_path,
                 const std::shared_ptr<TFBridge> tf_bridge,
                 const std::vector<std::string>& topics,
                 const tf2::Duration seek = tf2::durationFromSec(0.0),
                 const std::chrono::seconds buffer_size = std::chrono::seconds(1));
 
-  void publish_tf_static(const std::string& bag_filename);
+  void publish_tf_static(const std::string& bag_path);
   size_t message_count() const;
   void BufferMessages();
   rosbag2_storage::SerializedBagMessage PopNextMessage();

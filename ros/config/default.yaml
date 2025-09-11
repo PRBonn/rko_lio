@@ -3,14 +3,14 @@
 # imu_frame: <leave empty if tf is well defined>
 # lidar_topic: /lidar
 # lidar_frame: <leave empty if tf is well defined>
-# extrinsic_lidar2base: [qxyzw_xyz as a list, unnecessary if tf is well defined]
-# extrinsic_imu2base: [qxyzw_xyz as a list, unnecessary if tf is well defined]
+# extrinsic_lidar2base_quat_xyzw_xyz: [qxyzw_xyz as a list, unnecessary if tf is well defined]
+# extrinsic_imu2base_quat_xyzw_xyz: [qxyzw_xyz as a list, unnecessary if tf is well defined]
 odom_topic: /rko_lio/odometry
 odom_frame: odom
 invert_odom_tf: false
 publish_local_map: true
 map_topic: /rko_lio/local_map
-published_deskewed_cloud: false
+published_deskewed_cloud: true
 # lio config
 deskew: true
 voxel_size: 1.0
@@ -23,4 +23,4 @@ max_num_threads: 0
 initialization_phase: true
 double_downsample: true
 max_expected_jerk: 3.0
-min_beta: 200
+min_beta: 200.0
