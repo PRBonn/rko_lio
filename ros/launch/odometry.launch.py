@@ -25,7 +25,6 @@ from pathlib import Path
 import launch_ros.actions
 import yaml
 from ament_index_python.packages import get_package_share_directory
-
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, OpaqueFunction
 from launch.substitutions import LaunchConfiguration
@@ -115,7 +114,7 @@ configurable_parameters = [
         "name": "publish_lidar_acceleration",
         "default": "False",
         "type": "bool",
-        "description": "Publish lidar acceleration",
+        "description": "Publish the linear acceleration of the `base_frame` expressed in `base_frame` coordinates. Note that this acceleration can be quite noisy, as it is essentially a double time derivative of the pose update from the lidar scan registration (similar to the twist/velocity in the odometry topic). The topic name is /rko_lio/lidar_acceleration.",
     },
     # lio parameters
     {
