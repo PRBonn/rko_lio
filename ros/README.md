@@ -8,7 +8,7 @@ Supported ROS Distros: Humble, Jazzy, Kilted and Rolling.
 
 Our system dependencies are:
 - CMake, ROS environment
-- Optionally: Ninja, Eigen, Sophus, nlohmann_json, TBB, Bonxai (please see [build.md](../docs/build.md) for more details)
+- Optionally: Eigen, Sophus, nlohmann_json, TBB, Bonxai (please see [build.md](../docs/build.md) for more details)
 
 Clone the repository into a colcon workspace's `src`. From the workspace folder, you can then
 
@@ -16,13 +16,15 @@ Clone the repository into a colcon workspace's `src`. From the workspace folder,
 colcon build --packages-select rko_lio # --symlink-install --event-handlers console_direct+
 ```
 
-We provide a `colcon.pkg` [file](colcon.pkg) which defines default values for some CMake arguments. Details from [build.md](../docs/build.md) apply here, but most importantly note that we use `ninja` as a generator by default (you might need to install it, or change it to something else), and we have `RKO_LIO_FETCH_CONTENT_DEPS=ON` by default. This last option handles our optional dependencies automatically.
+We provide a `colcon.pkg` [file](colcon.pkg) which defines default values for some CMake arguments. Details from [build.md](../docs/build.md) apply here, but most importantly we have `RKO_LIO_FETCH_CONTENT_DEPS=ON` by default. This option handles our optional dependencies automatically.
 
-In case you'd like to use a different generator, or provide our optional dependencies yourself, either modify `colcon.pkg` or override those CMake flags when invoking colcon, for example, by
+In case you'd like to provide our optional dependencies yourself, either modify `colcon.pkg` or override those CMake flags when invoking colcon, for example, by
 
 ```bash
 colcon build --packages-select rko_lio --cmake-args -DRKO_LIO_FETCH_CONTENT_DEPS=OFF # --event-handlers console_direct+
 ```
+
+Also consider using `Ninja` as a generator to speed up builds instead of `Make`. If you do use Make, make sure (pun intended) to parallelize the build.
 
 ## Usage
 
