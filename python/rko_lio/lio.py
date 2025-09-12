@@ -55,7 +55,7 @@ class LIOConfig(_Config):
         Max distance for associating points (meters).
     max_num_threads : int, default 0
         Max thread count (0 = autodetect).
-    initialization_phase : bool, default True
+    initialization_phase : bool, default False
         Whether to initialize on the first two lidar message.
     max_expected_jerk : float, default 3.0
         Max expected IMU jerk (m/s^3).
@@ -76,7 +76,7 @@ class LIOConfig(_Config):
         convergence_criterion: float = 1e-5,
         max_correspondance_distance: float = 0.5,
         max_num_threads: int = 0,
-        initialization_phase: bool = True,
+        initialization_phase: bool = False,
         max_expected_jerk: float = 3.0,
         double_downsample: bool = True,
         min_beta: float = 200.0,

@@ -58,11 +58,12 @@ The physical units are always SI units.
     `0` means autodetect based on hardware.
     In case, compute resources are a constraint, limit this to a few threads and, in order, `max_points_per_voxel`, `voxel_size`, `max_range`, `max_iterations` are the parameters you probably care about.
 
-- **initialization_phase** (`bool`, default `True`)
+- **initialization_phase** (`bool`, default `False`)
     Initializes the system orientation (roll and pitch) plus IMU biases using the IMU measurements between the first two LiDAR scans the odometry receives.
     If enabled, the second frame is assumed to be coincident with the first. I.e., the assumption is that the system is at rest for that duration and the system is oriented to align with gravity.
     This helps if you start from an inclined surface for example.
     Usually you can leave this enabled. Unless for some reason you need to start the odometry while the system is in motion, then disable this.
+    I highly recommend enabling this. But you have to ensure that the system starts from rest. Otherwise, the system will estimate incorrect biases and the odometry might not work as expected. Hence, why this is set to `False` by default and is opt-in.
 
 - **max_expected_jerk** (`float`, default `3.0`)
     This value is used in a Kalman filter to estimate the true body acceleration. It should reflect the motion you expect from the platform you will deploy the odometry on. A good range is [1-3] m/s^3, but it should be fine to leave it at 3 m/s^3 as that is a good setting for most platforms.

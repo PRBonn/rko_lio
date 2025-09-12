@@ -20,7 +20,7 @@ min_range: 1.0
 max_correspondance_distance: 0.5
 convergence_criterion: 0.00001
 max_num_threads: 0
-initialization_phase: true
+initialization_phase: false
 double_downsample: true
 max_expected_jerk: 3.0
 min_beta: 200.0

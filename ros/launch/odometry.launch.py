@@ -173,9 +173,9 @@ configurable_parameters = [
     },
     {
         "name": "initialization_phase",
-        "default": "true",
+        "default": "false",
         "type": "bool",
-        "description": "Use the IMU data between the first two frames to initialize IMU bias and system orientation. Assumes the system is at rest between these two frames. WARNING: If this is enabled, but the odometry starts while the system is in motion, the odometry will likely not work as expected.",
+        "description": "Use the IMU data between the first two frames to initialize IMU bias and system orientation. Assumes the system is at rest between these two frames. WARNING: If this is enabled, but the odometry starts while the system is in motion, the odometry will likely not work as expected. But I highly recommended enabling this while ensuring the system starts from rest.",
     },
     {
         "name": "max_iterations",
