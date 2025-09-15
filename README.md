@@ -94,7 +94,7 @@ For all possible CLI flags, please check `rko_lio --help`.
 
 </details>
 
-For more install and usage instructions of our python interface, please refer to the [python readme](/python/README.md#rko_lio---python-bindings), [config](/docs/config.md), and [data](/docs/data.md).
+For more install and usage instructions of our python interface, please refer to the [python readme](/python/README.md#rko_lio---python-bindings), [config.md](/docs/config.md), and [data.md](/docs/data.md).
 
 The python interface to our system can be convenient to investigate recorded data offline as you don't need to setup a ROS environment first.
 
