@@ -115,6 +115,19 @@ def parse_extrinsics_from_config(config_data: dict):
     return extrinsic_imu2base, extrinsic_lidar2base
 
 
+def transform_to_quatxyzw_xyz(transform: np.ndarray):
+    import pyquaternion
+
+    return [
+        float(x)
+        for x in (
+            *pyquaternion.Quaternion(matrix=transform[:3, :3]).vector,
+            pyquaternion.Quaternion(matrix=transform[:3, :3]).scalar,
+            *transform[:3, 3],
+        )
+    ]
+
+
 app = typer.Typer()
 
 
@@ -207,9 +220,12 @@ def cli(
             rr.log_file_from_path(Path(__file__).parent / "rko_lio.rbl")
 
         except ImportError:
-            raise ImportError(
-                "Please install rerun with `pip install rerun-sdk` to enable visualization."
+            print(
+                "[ERROR] Please install rerun with `pip install rerun-sdk` to enable visualization."
             )
+            import sys
+
+            sys.exit(1)
 
     config_data = {}
     if config_fp:
@@ -227,7 +243,7 @@ def cli(
     )
     if need_to_query_extrinsics:
         print(
-            "Warning: One or both extrinsics are not specified in the config. Will try to obtain it from the data(loader) itself."
+            "[WARNING] One or both extrinsics are not specified in the config. Will try to obtain it from the data(loader) itself."
         )
 
     from .dataloaders import get_dataloader
@@ -243,15 +259,23 @@ def cli(
         base_frame_id=base_frame,
         query_extrinsics=need_to_query_extrinsics,
     )
-    data_count = len(dataloader)
     print("Loaded dataloader:", dataloader)
     if need_to_query_extrinsics:
         extrinsic_imu2base, extrinsic_lidar2base = dataloader.extrinsics
         print("Extrinsics obtained from dataloader.")
-        print("Imu to Base:")
-        print(extrinsic_imu2base)
-        print("Lidar to base:")
-        print(extrinsic_lidar2base)
+        print("Imu to Base:\n\tTransform:")
+        for row in extrinsic_imu2base:
+            print("\t\t" + str(row))
+        print(
+            "\tAs a quat_xyzw_xyz:\n\t\t", transform_to_quatxyzw_xyz(extrinsic_imu2base)
+        )
+        print("Lidar to base:\n\tTransform:")
+        for row in extrinsic_lidar2base:
+            print("\t\t" + str(row))
+        print(
+            "\tAs a quat_xyzw_xyz:\n\t\t",
+            transform_to_quatxyzw_xyz(extrinsic_lidar2base),
+        )
 
     from .lio import LIOConfig
 
@@ -270,6 +294,7 @@ def cli(
 
     from .scoped_profiler import ScopedProfiler
 
+    data_count = len(dataloader)
     for idx in tqdm(range(data_count), total=data_count, desc="Data"):
         with ScopedProfiler("Pipeline - Data Loader") as pipeline_timer:
             kind, data_tuple = dataloader[idx]
