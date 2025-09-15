@@ -1,4 +1,4 @@
-# RKO_LIO - Python Bindings
+# RKO LIO - Python Bindings
 
 The python interface/wrapper is a convenience tool to run the odometry offline on recorded data.
 
@@ -160,3 +160,4 @@ This is deprecated and planned to be removed in a future release. I'm prioritisi
 
 All configurable parameters are defined in [`config/default.yaml`](config/default.yaml).
 For descriptions of each parameter, see [config.md](../docs/config.md).
+Some further requirements on the data are given in [data.md](../docs/data.md).

@@ -1,4 +1,4 @@
-# RKO_LIO - LiDAR-Inertial Odometry
+# RKO LIO - LiDAR-Inertial Odometry
 
 Supported ROS Distros: Humble, Jazzy, Kilted and Rolling.
 
@@ -41,7 +41,8 @@ ros2 launch rko_lio odometry.launch.py -s
 ```
 
 That will also provide additional documentation about the different parameters.
-For some additional details regarding the odometry parameters, please refer to [config.md](../docs/config.md). ROS-specific parameters are covered here.
+For some additional details regarding the odometry parameters and data itself, please refer to [config.md](../docs/config.md) and [data.md](../docs/data.md).
+ROS-specific parameters are covered here.
 
 At minimum, you'll need to specify the `lidar_topic`, `imu_topic` and `base_frame` parameters.
 

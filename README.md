@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>RKO_LIO - LiDAR-Inertial Odometry<br />Without Sensor-Specific Modelling</h1>
+  <h1>RKO LIO - LiDAR-Inertial Odometry<br />Without Sensor-Specific Modelling</h1>
 </div>
 
 <p align="center">
@@ -54,7 +54,7 @@ rko_lio -v /path/to/rosbag_folder # <- has to be a directory! with either *.bag 
 and you should be good to go!
 
 <details>
-<summary><b>Click here for some more details on how the above works and how to use RKO_LIO!</b></summary>
+<summary><b>Click here for some more details on how the above works and how to use RKO LIO!</b></summary>
 <br />
 
 The `-v` flag enables visualization.
@@ -63,7 +63,7 @@ You can specify a dataloader to use with `-d`, but if you don't, we try to guess
 
 Our rosbag dataloader works with either ROS1 or ROS2 bags.
 Place split ROS1 bags in a single folder and pass the folder as the data path.
-Note that we don't support running `rko_lio` on partial or incomplete bags, though you can try (and maybe raise an issue if you think we should support this).
+Note that we don't support running RKO LIO on partial or incomplete bags, though you can try (and maybe raise an issue if you think we should support this).
 ROS2 especially will need a `metadata.yaml` file.
 
 By default, we assume there is just one IMU topic and one LiDAR topic in the bag, in which case we automatically pick up the topic names and proceed further.
@@ -94,7 +94,7 @@ For all possible CLI flags, please check `rko_lio --help`.
 
 </details>
 
-For more install and usage instructions of our python interface, please refer to the [python readme](/python/README.md#rko_lio---python-bindings) and the [config doc](/docs/config.md).
+For more install and usage instructions of our python interface, please refer to the [python readme](/python/README.md#rko_lio---python-bindings), [config](/docs/config.md), and [data](/docs/data.md).
 
 The python interface to our system can be convenient to investigate recorded data offline as you don't need to setup a ROS environment first.
 
@@ -141,7 +141,7 @@ Please refer to the [ROS readme](/ros/README.md) for further ROS-specific detail
 
 ## About
 
-RKO_LIO is a LiDAR-inertial odometry system that is by design simple to deploy on different sensor configurations and robotic platforms with as minimal a change in configuration as necessary.
+RKO LIO is a LiDAR-inertial odometry system that is by design simple to deploy on different sensor configurations and robotic platforms with as minimal a change in configuration as necessary.
 
 We have no restriction on which LiDAR you can use, and you can do so without changing any config (we've tested Velodyne, Ouster, Hesai, Livox, Robosense, Aeva sensors).
 For using an IMU, we require only the accelerometer and gyroscope readings, the bare minimum.
@@ -172,6 +172,21 @@ The superscript on the vector indicates the frame in which the vector is express
 ## License
 
 This project is free software made available under the MIT license. For details, see the [LICENSE](LICENSE) file.
+
+## Citation
+
+If you found this work useful, please consider citing our [paper](https://arxiv.org/abs/2509.06593):
+
+```bib
+@article{malladi2025arxiv,
+  author      = {M.V.R. Malladi and T. Guadagnino and L. Lobefaro and C. Stachniss},
+  title       = {A Robust Approach for LiDAR-Inertial Odometry Without Sensor-Specific Modeling},
+  journal     = {arXiv preprint},
+  year        = {2025},
+  volume      = {arXiv:2509.06593},
+  url         = {https://arxiv.org/pdf/2509.06593},
+}
+```
 
 ## RA-L Submission
 
