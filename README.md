@@ -188,6 +188,19 @@ If you found this work useful, please consider citing our [paper](https://arxiv.
 }
 ```
 
+## Platforms and Sensors Tested
+
+RKO LIO has been tested on a variety of platforms with different sensor setups:
+
+- Car: Ouster OS1-128; OS2-128, Livox Avia, Aeva Aeries II (HeLiPR dataset)
+- Backpack: Hesai XT32, QT32, QT64 (DigiForests dataset); QT128
+- Forestry Harvester: Hesai XT32
+- Quadruped: Velodyne VLP-16 (Leg-KILO dataset)
+- Bicycle: Livox Avia (thanks to @rlabs-oss, [YouTube video](https://www.youtube.com/watch?v=dKDGIAu628w))
+
+If you've tested RKO LIO on any other platform or sensor configuration, I'd be glad to list it here.
+Please reach out by [email](mailto:rm.meher97@gmail.com) or open an issue!
+
 ## RA-L Submission
 
 You can check out the branch `ral_submission` for the version of the code used for submission to RA-L.
