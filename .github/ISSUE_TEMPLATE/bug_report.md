@@ -21,9 +21,11 @@ assignees: ''
 ```yaml
 contents of your config file here
 ```
-- If you're using ROS, please include the Launch configuration that gets printed to console when you use the launch file (no need to include the launch file contents itself).
+- If you're using ROS, please include the Launch configuration that gets printed to console (between `====`) when you use the launch file (no need to include the launch file contents itself).
 ```text
-launch configuration console log here
+====
+launch configuration console log
+====
 ```
 
 **Data**
