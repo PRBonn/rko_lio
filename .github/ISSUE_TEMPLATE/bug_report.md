@@ -10,13 +10,13 @@ assignees: ''
 **Environment**
 - Which OS are you using?
 - What version of Python (eg., 3.10) or ROS (e.g., Jazzy) are you using?
-- Any data or sensor specific information that is important to know?
+
 
 **RKO LIO**
 - Are you using the latest commit from master? Otherwise which version/commit?
 - Are you using the Python or ROS version?
 - How did you install/build RKO LIO?
-- Please include the command you're using to run RKO LIO (either python's `rko_lio` or the ROS nodes). 
+- Please include the command you're using to run RKO LIO (either python's `rko_lio` or the ROS nodes).
 - If you're passing a config (yaml) file, please include the contents like this
 ```yaml
 contents of your config file here
@@ -25,6 +25,11 @@ contents of your config file here
 ```text
 launch configuration console log here
 ```
+
+**Data**
+- If you're using ROS, is there a TF tree RKO LIO can query for extrinsics?
+- Are you specifying the LiDAR-IMU extrinsic manually?
+- Any other data or sensor specific information that is important to know?
 
 **Steps to reproduce**
 Please detail any steps you think are necessary to reproduce the error.
