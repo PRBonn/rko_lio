@@ -279,9 +279,7 @@ def auto_cast_params(params, param_defs):
 def get_configured_cli_parameters(configurable_parameters, context):
     "Return only CLI parameters that were explicitly set by the user"
     explicit_params = {
-        arg.split(":=")[0]
-        for arg in getattr(context, "argv", [])
-        if ":=" in arg
+        arg.split(":=")[0] for arg in getattr(context, "argv", []) if ":=" in arg
     }
     cli_params = {}
     for param in configurable_parameters:
@@ -336,6 +334,30 @@ def merge_and_validate_parameters(
         print("[ERROR] missing required parameter(s):")
         print(", ".join(missing))
         print("Please provide them via cli (param:=value) or a config file.")
+        print("=" * 40 + "\n\n")
+        import sys
+
+        sys.exit(1)
+
+    # Check extrinsics
+    extrinsic_params = [
+        "extrinsic_lidar2base_quat_xyzw_xyz",
+        "extrinsic_imu2base_quat_xyzw_xyz",
+    ]
+    extrinsic_set = [
+        p in merged and merged[p] not in ("", None) for p in extrinsic_params
+    ]
+    if any(extrinsic_set) and not all(extrinsic_set):
+        print("\n\n" + "=" * 40)
+        print("[ERROR] extrinsic parameters incomplete:")
+        print(
+            "If one of {} is specified, both must be provided.".format(
+                ", ".join(extrinsic_params)
+            )
+        )
+        print(
+            "Please provide them via a config file. If you only need one, then explicitly set the other to identity."
+        )
         print("=" * 40 + "\n\n")
         import sys
 
