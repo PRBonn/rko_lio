@@ -262,33 +262,40 @@ def auto_cast_params(params, param_defs):
     out = {}
     for p in param_defs:
         name = p["name"]
-        v = params.get(name)
-        tp = p.get("type", None)
-        if tp == "bool":
-            out[name] = str(v).lower() == "true"
-        elif tp == "int":
-            out[name] = int(v)
-        elif tp == "float":
-            out[name] = float(v)
-        else:
-            out[name] = v
+        if name in params:
+            v = params.get(name)
+            tp = p.get("type", None)
+            if tp == "bool":
+                out[name] = str(v).lower() == "true"
+            elif tp == "int":
+                out[name] = int(v)
+            elif tp == "float":
+                out[name] = float(v)
+            else:
+                out[name] = v
     return out
 
 
-def get_configurable_parameters(configurable_parameters, context):
-    return auto_cast_params(
-        dict(
-            [
-                (param["name"], LaunchConfiguration(param["name"]).perform(context))
-                for param in configurable_parameters
-            ]
-        ),
-        configurable_parameters,
-    )
+def get_configured_cli_parameters(configurable_parameters, context):
+    "Return only CLI parameters that were explicitly set by the user"
+    explicit_params = {
+        arg.split(":=")[0]
+        for arg in getattr(context, "argv", [])
+        if ":=" in arg
+    }
+    cli_params = {}
+    for param in configurable_parameters:
+        name = param["name"]
+        if name in explicit_params:
+            cli_params[name] = LaunchConfiguration(name).perform(context)
+    return auto_cast_params(cli_params, configurable_parameters)
 
 
-def yaml_to_dict(path_to_yaml):
-    with open(path_to_yaml, "r") as f:
+def get_config_file_parameters(context):
+    config_file = LaunchConfiguration("config_file").perform(context)
+    if config_file == "":
+        return {}
+    with open(config_file, "r") as f:
         return yaml.safe_load(f)
 
 
@@ -306,17 +313,17 @@ def merge_and_validate_parameters(
 
     merged.update(file_params)
 
-    # override with CLI only if non-empty
+    # override with cli only if non-empty
     for k, v in cli_params.items():
         if v not in ("", None):
             merged[k] = v
 
-    # Validating required params
+    # validating required params
     missing = []
     for param in configurable_parameters:
         name = param["name"]
 
-        # Skip offline-only params in online mode
+        # skip offline-only params in online mode
         if mode == "online" and param in offline_only_parameters:
             continue
 
@@ -326,9 +333,9 @@ def merge_and_validate_parameters(
 
     if missing:
         print("\n\n" + "=" * 40)
-        print("[ERROR] Missing required parameter(s):")
+        print("[ERROR] missing required parameter(s):")
         print(", ".join(missing))
-        print("Please provide them via CLI (param:=value) or a config file.")
+        print("Please provide them via cli (param:=value) or a config file.")
         print("=" * 40 + "\n\n")
         import sys
 
@@ -374,7 +381,7 @@ def prepare_rviz_config(rviz_config_file: Path, parameters: dict) -> Path:
     tmp = tempfile.NamedTemporaryFile(mode="w", suffix=".rviz", delete=False)
     yaml.safe_dump(rviz_cfg, tmp)
     tmp.flush()
-    # since its the default config file, we also want to viz the deskewed scan and local map
+    # since its the default rviz config file, we also want to viz the deskewed scan and local map
     parameters["publish_deskewed_scan"] = True
     parameters["publish_local_map"] = True
 
@@ -385,9 +392,8 @@ def launch_setup(context, *args, **kwargs):
     mode = LaunchConfiguration("mode").perform(context).lower()
 
     # Prepare parameters
-    config_file = LaunchConfiguration("config_file").perform(context)
-    params_from_file = {} if config_file == "" else yaml_to_dict(config_file)
-    cli_params = get_configurable_parameters(configurable_parameters, context=context)
+    cli_params = get_configured_cli_parameters(configurable_parameters, context=context)
+    params_from_file = get_config_file_parameters(context)
     final_params = merge_and_validate_parameters(
         cli_params=cli_params,
         file_params=params_from_file,
