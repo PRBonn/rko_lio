@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report in case rko lio is not working as expected
+about: Please use this if rko lio has an error, otherwise use the blank template
 title: "[BUG]"
 labels: bug
 assignees: ''
