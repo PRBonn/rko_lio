@@ -84,7 +84,7 @@ public:
   }
 
   void run() {
-    while (rclcpp::ok() && (!bag->finished() || !lidar_buffer.empty())) {
+    while (rclcpp::ok() && !bag->finished()) {
       {
         if (lidar_buffer.size() >= 0.9 * max_lidar_buffer_size) {
           RCLCPP_WARN_STREAM_ONCE(node->get_logger(),
@@ -111,6 +111,16 @@ public:
 
       processed_bag_msgs++;
       publish_bag_progress(bag_progress_publisher, processed_bag_msgs, total_bag_msgs);
+    }
+    while (rclcpp::ok()) {
+      {
+        // even if the bag finishes, we need to wait on the registration buffers to empty
+        std::lock_guard<std::mutex> lock(buffer_mutex);
+        if (imu_buffer.empty() && lidar_buffer.empty()) {
+          break;
+        }
+      }
+      std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
   }
 };
