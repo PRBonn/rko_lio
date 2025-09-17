@@ -16,15 +16,16 @@ Clone the repository into a colcon workspace's `src`. From the workspace folder,
 colcon build --packages-select rko_lio # --symlink-install --event-handlers console_direct+
 ```
 
-We provide a `colcon.pkg` [file](colcon.pkg) which defines default values for some CMake arguments. Details from [build.md](../docs/build.md) apply here, but most importantly we have `RKO_LIO_FETCH_CONTENT_DEPS=ON` by default. This option handles our optional dependencies automatically.
+We provide a `colcon.pkg` [file](colcon.pkg) which defines a default CMake configuration.
+Details from [build.md](../docs/build.md) apply here, but most importantly we have `CMAKE_BUILD_TYPE=Release` and `RKO_LIO_FETCH_CONTENT_DEPS=ON` by default.
+The last option handles our optional dependencies automatically.
 
-In case you'd like to provide our optional dependencies yourself, either modify `colcon.pkg` or override those CMake flags when invoking colcon, for example, by
+In case you'd like to change the build type or provide our optional dependencies yourself, please modify `colcon.pkg` manually. 
 
-```bash
-colcon build --packages-select rko_lio --cmake-args -DRKO_LIO_FETCH_CONTENT_DEPS=OFF # --event-handlers console_direct+
-```
+> I'd earlier assumed one could override colcon.pkg arguments via --cmake-args when invoking colcon, but this doesn't seem to be the case. If anyone knows a fix, please open an issue or PR!
 
-Also consider using `Ninja` as a generator to speed up builds instead of `Make`. If you do use Make, make sure (pun intended) to parallelize the build.
+Also consider using `Ninja` as a generator to speed up builds instead of `Make`.
+If you do use Make, make sure (pun intended) to parallelize the build.
 
 ## Usage
 

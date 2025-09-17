@@ -180,6 +180,7 @@ void Node::imu_callback(const sensor_msgs::msg::Imu::ConstSharedPtr& imu_msg) {
                                "Either specify the frame id or the extrinsic manually.");
     }
     imu_frame = imu_msg->header.frame_id;
+    RCLCPP_INFO_STREAM(node->get_logger(), "Parsed the imu frame id as: " << imu_frame);
   }
   if (!check_and_set_extrinsics()) {
     // we assume that extrinsics are static. if they change, its better to query the tf directly in the registration
@@ -203,6 +204,7 @@ void Node::lidar_callback(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& l
                                "Either specify the frame id or the extrinsic manually.");
     }
     lidar_frame = lidar_msg->header.frame_id;
+    RCLCPP_INFO_STREAM(node->get_logger(), "Parsed the lidar frame id as: " << lidar_frame);
   }
   if (!check_and_set_extrinsics()) {
     return;
