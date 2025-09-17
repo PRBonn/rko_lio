@@ -89,7 +89,6 @@ def guess_dataloader(
     base_frame_id: str | None = None,
     query_extrinsics: bool = True,
 ):
-    print("Guessing the dataloader...")
     # Check for rosbag files
     rosbag_exts = [".bag", ".db3", ".mcap"]
     found_rosbag_file = False
@@ -99,7 +98,7 @@ def guess_dataloader(
             found_rosbag_file = True
             break
     if found_rosbag_file:
-        print("Guessed rosbag!")
+        print("Guessed dataloader as rosbag!")
         return get_dataloader(
             "rosbag",
             data_path,
@@ -117,7 +116,7 @@ def guess_dataloader(
     txt_files = list(data_path.glob("*.txt"))
     csv_files = list(data_path.glob("*.csv"))
     if lidar_folder.is_dir() and (txt_files or csv_files):
-        print("Guessed raw!")
+        print("Guessed dataloader as raw!")
         return get_dataloader("raw", data_path, query_extrinsics=query_extrinsics)
 
     # Check for helipr data
@@ -132,12 +131,12 @@ def guess_dataloader(
         if not seq_folder.is_dir():
             raise ValueError(f"Helipr sequence folder does not exist: {seq_folder}")
 
-        print("Guessed Helipr!")
+        print("Guessed dataloader as Helipr!")
         return get_dataloader(
             "helipr", data_path, sequence=sequence, query_extrinsics=query_extrinsics
         )
 
     # No matching dataloader found
     raise ValueError(
-        f"Could not guess dataloader for path: {data_path}, please pass the loader with -d"
+        f"Could not guess dataloader for path: {data_path}, please pass the loader with --dataloader or -d"
     )

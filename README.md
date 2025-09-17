@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>RKO_LIO - LiDAR-Inertial Odometry<br />Without Sensor-Specific Modelling</h1>
+  <h1>RKO LIO - LiDAR-Inertial Odometry<br />Without Sensor-Specific Modelling</h1>
 </div>
 
 <p align="center">
@@ -23,10 +23,13 @@ Python Bindings:
 <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_15.yaml"><img src="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_15.yaml/badge.svg?branch=master" alt="macOS 15" /></a>
 <br />
 <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_windows_2022.yaml"><img src="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_windows_2022.yaml/badge.svg?branch=master" alt="Windows 2022" /></a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_windows_11_arm.yaml"><img src="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_windows_11_arm.yaml/badge.svg?branch=master" alt="Windows 11 ARM" /></a>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/PRBonn/rko_lio/refs/heads/master/docs/example_multiple_platforms.png" alt="Visualization of odometry system running on data from four different platforms in four different environments" />
+  <a href="https://www.youtube.com/watch?v=NNpzXdf9XmU">
+    <img src="https://raw.githubusercontent.com/PRBonn/rko_lio/refs/heads/master/docs/example_multiple_platforms.png" alt="Visualization of odometry system running on data from four different platforms in four different environments" />
+  </a>
   <br />
   <em>Four different platforms, four different environments, one odometry system</em>
 </p>
@@ -51,7 +54,7 @@ rko_lio -v /path/to/rosbag_folder # <- has to be a directory! with either *.bag 
 and you should be good to go!
 
 <details>
-<summary><b>Click here for some more details on how the above works and how to use RKO_LIO!</b></summary>
+<summary><b>Click here for some more details on how the above works and how to use RKO LIO!</b></summary>
 <br />
 
 The `-v` flag enables visualization.
@@ -60,7 +63,7 @@ You can specify a dataloader to use with `-d`, but if you don't, we try to guess
 
 Our rosbag dataloader works with either ROS1 or ROS2 bags.
 Place split ROS1 bags in a single folder and pass the folder as the data path.
-Note that we don't support running `rko_lio` on partial or incomplete bags, though you can try (and maybe raise an issue if you think we should support this).
+Note that we don't support running RKO LIO on partial or incomplete bags, though you can try (and maybe raise an issue if you think we should support this).
 ROS2 especially will need a `metadata.yaml` file.
 
 By default, we assume there is just one IMU topic and one LiDAR topic in the bag, in which case we automatically pick up the topic names and proceed further.
@@ -91,7 +94,7 @@ For all possible CLI flags, please check `rko_lio --help`.
 
 </details>
 
-For more install and usage instructions of our python interface, please refer to the [python readme](python#rko_lio---python-bindings) and the [config doc](/docs/config.md).
+For more install and usage instructions of our python interface, please refer to the [python readme](/python/README.md#rko_lio---python-bindings), [config.md](/docs/config.md), and [data.md](/docs/data.md).
 
 The python interface to our system can be convenient to investigate recorded data offline as you don't need to setup a ROS environment first.
 
@@ -102,7 +105,7 @@ The python interface to our system can be convenient to investigate recorded dat
 The ROS version is the intended way to use our odometry system on a robot.
 The ROS version also has better performance mainly due to how we read incoming data.
 Without getting into details, if you can, you should prefer using the ROS version.
-For offline use, we provide a way to directly inspect and run our odometry on recorded rosbags (see offline mode in [ROS usage](ros#usage)), which should be preferred over the python dataloader.
+For offline use, we provide a way to directly inspect and run our odometry on recorded rosbags (see offline mode in [ROS usage](/ros/README.md#usage)), which should be preferred over the python dataloader.
 The python interface is merely meant to be a convenience.
 
 </details>
@@ -134,17 +137,21 @@ If you encounter any issues, please check [docs/build.md](docs/build.md) for fur
 
 </details>
 
-Please refer to the [ROS readme](ros) for further ROS-specific details.
+Please refer to the [ROS readme](/ros/README.md) for further ROS-specific details.
 
 ## About
 
-RKO_LIO is a LiDAR-inertial odometry system that is by design simple to deploy on different sensor configurations and robotic platforms with as minimal a change in configuration as necessary.
+RKO LIO is a LiDAR-inertial odometry system that is by design simple to deploy on different sensor configurations and robotic platforms with as minimal a change in configuration as necessary.
 
 We have no restriction on which LiDAR you can use, and you can do so without changing any config (we've tested Velodyne, Ouster, Hesai, Livox, Robosense, Aeva sensors).
 For using an IMU, we require only the accelerometer and gyroscope readings, the bare minimum.
 You don't need to look up manufacturer spec sheets to provide noise specifications, etc.
 
 All you need to provide is the extrinsic transformation between the IMU and LiDAR and you can start using our system for your LiDAR-inertial odometry needs!
+
+For a brief demo of our odometry on data from different platforms, click below for a (YouTube) video:
+
+[![Thumbnail](https://img.youtube.com/vi/NNpzXdf9XmU/maxresdefault.jpg)](https://www.youtube.com/watch?v=NNpzXdf9XmU)
 
 ## A note on transformations
 
@@ -165,6 +172,34 @@ The superscript on the vector indicates the frame in which the vector is express
 ## License
 
 This project is free software made available under the MIT license. For details, see the [LICENSE](LICENSE) file.
+
+## Citation
+
+If you found this work useful, please consider citing our [paper](https://arxiv.org/abs/2509.06593):
+
+```bib
+@article{malladi2025arxiv,
+  author      = {M.V.R. Malladi and T. Guadagnino and L. Lobefaro and C. Stachniss},
+  title       = {A Robust Approach for LiDAR-Inertial Odometry Without Sensor-Specific Modeling},
+  journal     = {arXiv preprint},
+  year        = {2025},
+  volume      = {arXiv:2509.06593},
+  url         = {https://arxiv.org/pdf/2509.06593},
+}
+```
+
+## Platforms and Sensors Tested
+
+RKO LIO has been tested on a variety of platforms with different sensor setups:
+
+- Car: Ouster OS1-128; OS2-128, Livox Avia, Aeva Aeries II (HeLiPR dataset)
+- Backpack: Hesai XT32, QT32, QT64 (DigiForests dataset); QT128
+- Forestry Harvester: Hesai XT32
+- Quadruped: Velodyne VLP-16 (Leg-KILO dataset)
+- Bicycle: Livox Avia (thanks to @rlabs-oss, [YouTube video](https://www.youtube.com/watch?v=dKDGIAu628w))
+
+If you've tested RKO LIO on any other platform or sensor configuration, I'd be glad to list it here.
+Please reach out by [email](mailto:rm.meher97@gmail.com) or open an issue!
 
 ## RA-L Submission
 

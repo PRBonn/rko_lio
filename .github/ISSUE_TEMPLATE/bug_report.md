@@ -1,0 +1,47 @@
+---
+name: Bug report
+about: Please use this if rko lio has an error, otherwise use the blank template
+title: "[BUG]"
+labels: bug
+assignees: ''
+
+---
+
+<!--
+If you think your issue doesn't require all the following details, use the blank issue template instead.
+Please do note however, if you do fill in all the following details, you make life easier for me to debug the error.
+Otherwise, I might have to ask you some of these details again anyways.
+-->
+
+**Environment**
+- Which OS are you using?
+- What version of Python (eg., 3.10) or ROS (e.g., Jazzy) are you using?
+
+
+**RKO LIO**
+- Are you using the latest commit from master? Otherwise which version/commit?
+- Are you using the Python or ROS version?
+- How did you install/build RKO LIO?
+- Please include the command you're using to run RKO LIO (either python's `rko_lio` or the ROS nodes).
+- If you're passing a config (yaml) file, please include the contents like this
+```yaml
+contents of your config file here
+```
+- If you're using ROS, please include the Launch configuration that gets printed to console (between `====`) when you use the launch file (no need to include the launch file contents itself).
+```text
+====
+launch configuration console log
+====
+```
+
+**Data**
+- If you're using ROS, is there a TF tree RKO LIO can query for extrinsics?
+- Are you specifying the LiDAR-IMU extrinsic manually?
+- Any other data or sensor specific information that is important to know?
+
+**Steps to reproduce**
+Please detail any steps you think are necessary to reproduce the error.
+Especially, if you can provide example data, that will make it easiest to debug the error. If you prefer email, you can send me an email at rm.meher97@gmail.com. In the case of an email, no details of the data will be shared in the issue or otherwise.
+
+**Any other information**
+Please include any other information you want to from hereon.

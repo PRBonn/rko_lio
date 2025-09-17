@@ -1,4 +1,4 @@
-# RKO_LIO - Python Bindings
+# RKO LIO - Python Bindings
 
 The python interface/wrapper is a convenience tool to run the odometry offline on recorded data.
 
@@ -158,5 +158,8 @@ This is deprecated and planned to be removed in a future release. I'm prioritisi
 
 ### Configuration
 
-All configurable parameters are defined in [`config/default.yaml`](config/default.yaml).
+You can dump the default set of parameters using `rko_lio --dump_config`.
 For descriptions of each parameter, see [config.md](../docs/config.md).
+Apart from these, you can specify `extrinsic_imu2base_quat_xyzw_xyz`, `extrinsic_lidar2base_quat_xyzw_xyz` in a config file (only) if you require.
+
+Some further requirements on the data are given in [data.md](../docs/data.md).

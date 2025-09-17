@@ -254,10 +254,8 @@ namespace rko_lio::core {
 // ==========================
 
 void LIO::initialize(const Secondsd lidar_time) {
-  std::cout << "Initializing LIO.\n";
-
   if (interval_stats.imu_count == 0) {
-    std::cerr << "WARNING: Cannot initialize. No imu measurements received.\n";
+    std::cerr << "[WARNING] Cannot initialize. No imu measurements received.\n";
     _initialized = true;
     return;
   }
@@ -283,14 +281,18 @@ void LIO::initialize(const Secondsd lidar_time) {
 
 // use the acceleration kalman filter to compute the two values we need for ori. reg.
 std::optional<AccelInfo> LIO::get_accel_info(const Sophus::SO3d& rotation_estimate, const Secondsd& time) {
-  if (interval_stats.imu_count == 0) {
-    // avoid nans, divide by 0
+  if (interval_stats.imu_count <= 1) {
+    std::cerr << "[WARNING] " << interval_stats.imu_count
+              << " IMU message(s) in interval between two lidar scans. Cannot compute "
+                 "acceleration statistics for orientation regularisation. Please check your data and its "
+                 "timestamping as likely there should not be so few IMU measurements between two LiDAR scans.\n";
     return std::nullopt;
   }
 
   const Eigen::Vector3d avg_imu_accel = interval_stats.imu_acceleration_sum / interval_stats.imu_count;
   const double accel_mag_variance = interval_stats.welford_sum_of_squares / (interval_stats.imu_count - 1);
   const double dt = (time - lidar_state.time).count();
+
   const Eigen::Vector3d& body_accel_measurement = avg_imu_accel + rotation_estimate.inverse() * gravity();
 
   const double max_acceleration_change = config.max_expected_jerk * dt;
@@ -320,7 +322,11 @@ std::optional<AccelInfo> LIO::get_accel_info(const Sophus::SO3d& rotation_estima
 
 void LIO::add_imu_measurement(const ImuControl& base_imu) {
   if (lidar_state.time < EPSILON_TIME) {
-    std::cout << "Skipping IMU, waiting for first LiDAR message.\n";
+    static bool warning_skip_till_first_lidar = false;
+    if (!warning_skip_till_first_lidar) {
+      std::cerr << "[WARNING - ONCE] Skipping IMU, waiting for first LiDAR message.\n";
+      warning_skip_till_first_lidar = true;
+    }
     _last_real_imu_time = base_imu.time;
     _last_real_base_imu_ang_vel = base_imu.angular_velocity;
     return;
@@ -334,7 +340,7 @@ void LIO::add_imu_measurement(const ImuControl& base_imu) {
 
   if (dt < 0.0) {
     // messages are out of sync. thats a problem, since we integrate gyro from last lidar time onwards
-    std::cerr << "WARNING: Received IMU message from the past. Can result in errors.\n";
+    std::cerr << "[WARNING] Received IMU message from the past. Can result in errors.\n";
     // skip this imu reading?
   }
 
@@ -379,7 +385,7 @@ void LIO::add_imu_measurement(const Sophus::SE3d& extrinsic_imu2base, const ImuC
       // causes numerical issues otherwise
       static bool warning_imu_too_close = false;
       if (!warning_imu_too_close) {
-        std::cerr << "WARNING - ONCE: Received IMU message with a very short delta to previous IMU message. Ignoring "
+        std::cerr << "[WARNING - ONCE] Received IMU message with a very short delta to previous IMU message. Ignoring "
                      "all such messages.\n";
         warning_imu_too_close = true;
       }
@@ -416,13 +422,13 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
       return {Eigen::Vector3d::Zero(), Eigen::Vector3d::Zero()};
     }
     if (interval_stats.imu_count == 0) {
-      std::cerr << "WARNING: No Imu measurements in interval to average. Assuming constant velocity motion.\n";
+      std::cerr << "[WARNING] No Imu measurements in interval to average. Assuming constant velocity motion.\n";
       return {Eigen::Vector3d::Zero(), lidar_state.angular_velocity};
     }
     const Eigen::Vector3d avg_body_accel = interval_stats.body_acceleration_sum / interval_stats.imu_count;
     const Eigen::Vector3d avg_ang_vel = interval_stats.angular_velocity_sum / interval_stats.imu_count;
     if (avg_body_accel.norm() > 50.0) {
-      std::cerr << "WARNING: Erratic body acceleration computed, norm > 50 m/s2. Either IMU data is corrupted, or you "
+      std::cerr << "[WARNING] Erratic body acceleration computed, norm > 50 m/s2. Either IMU data is corrupted, or you "
                    "should report an issue.";
     }
     return {avg_body_accel, avg_ang_vel};
@@ -538,7 +544,7 @@ void LIO::dump_results_to_disk(const std::filesystem::path& results_dir, const s
       std::cout << "Configuration written to " << config_file << "\n";
     }
   } catch (const std::filesystem::filesystem_error& ex) {
-    std::cerr << "WARNING: Cannot write files to disk, encountered filesystem error: " << ex.what() << "\n";
+    std::cerr << "[WARNING] Cannot write files to disk, encountered filesystem error: " << ex.what() << "\n";
   }
 }
 } // namespace rko_lio::core

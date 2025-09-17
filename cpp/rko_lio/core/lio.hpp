@@ -79,7 +79,7 @@ public:
     double convergence_criterion = 1e-5;
     double max_correspondance_distance = 0.5; // m
     int max_num_threads = 0;
-    bool initialization_phase = true;
+    bool initialization_phase = false;
     double max_expected_jerk = 3; // m/s3
     bool double_downsample = true;
     double min_beta = 200;

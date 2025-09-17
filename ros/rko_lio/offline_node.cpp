@@ -35,7 +35,30 @@ std::shared_ptr<T> deserialize_next_msg(const rclcpp::SerializedMessage& seriali
   const rclcpp::Serialization<T> serializer;
   serializer.deserialize_message(&serialized_msg, msg.get());
   return msg;
-};
+}
+
+using BagProgressPublisher = rclcpp::Publisher<std_msgs::msg::Float32MultiArray>;
+void publish_bag_progress(const BagProgressPublisher::SharedPtr& publisher,
+                          const size_t processed_bag_msgs,
+                          const size_t total_bag_msgs) {
+  if (total_bag_msgs == 0) {
+    return;
+  }
+  static const auto start_time = std::chrono::steady_clock::now();
+  const auto now = std::chrono::steady_clock::now();
+  const float elapsed_seconds = std::chrono::duration<float>(now - start_time).count();
+
+  const float percent_complete = 100.0F * processed_bag_msgs / total_bag_msgs;
+  const float avg_time_per_msg = (processed_bag_msgs > 0) ? elapsed_seconds / processed_bag_msgs : 0.0F;
+  const float seconds_remaining = avg_time_per_msg * (total_bag_msgs - processed_bag_msgs);
+
+  std_msgs::msg::Float32MultiArray progress_msg;
+  progress_msg.data.resize(2);
+  progress_msg.data[0] = percent_complete;
+  progress_msg.data[1] = seconds_remaining;
+
+  publisher->publish(progress_msg);
+}
 } // namespace
 
 namespace rko_lio::ros {
@@ -43,31 +66,21 @@ class OfflineNode : public Node {
 public:
   std::unique_ptr<ros_utils::BufferableBag> bag;
 
-  rclcpp::Publisher<sensor_msgs::msg::Imu>::SharedPtr raw_imu_publisher;
-  rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr raw_lidar_publisher;
-  rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr bag_progress_publisher;
+  BagProgressPublisher::SharedPtr bag_progress_publisher;
+
   float total_bag_msgs = 0;
   float processed_bag_msgs = 0;
 
   explicit OfflineNode(const rclcpp::NodeOptions& options) : Node("rko_lio_offline_node", options) {
+    // increase the lidar buffer limit because we're offline
     max_lidar_buffer_size = 100;
     // bag reading
     const tf2::Duration skip_to_time = tf2::durationFromSec(node->declare_parameter<double>("skip_to_time", 0.0));
-    bag = std::make_unique<ros_utils::BufferableBag>(node->declare_parameter<std::string>("bag_filename"),
+    bag = std::make_unique<ros_utils::BufferableBag>(node->declare_parameter<std::string>("bag_path"),
                                                      std::make_shared<ros_utils::BufferableBag::TFBridge>(node),
                                                      std::vector<std::string>{imu_topic, lidar_topic}, skip_to_time);
     total_bag_msgs = bag->message_count();
     bag_progress_publisher = node->create_publisher<std_msgs::msg::Float32MultiArray>("/rko_lio/bag_progress", 10);
-    if (debug) {
-      const rclcpp::QoS publisher_qos((rclcpp::SystemDefaultsQoS().keep_last(1).durability_volatile()));
-      raw_imu_publisher = node->create_publisher<sensor_msgs::msg::Imu>("/rko_lio/raw_imu", publisher_qos);
-      raw_lidar_publisher = node->create_publisher<sensor_msgs::msg::PointCloud2>("/rko_lio/raw_lidar", publisher_qos);
-    }
-    RCLCPP_INFO_STREAM(node->get_logger(),
-                       (debug ? " Debug: Publishing compensated IMU acceleration to /rko_lio/body_accel. Debug: "
-                                "Re-publishing IMU data to " +
-                                    imu_topic + " and lidar data to " + lidar_topic + "."
-                              : ""));
   }
 
   void run() {
@@ -75,9 +88,10 @@ public:
       {
         if (lidar_buffer.size() >= 0.9 * max_lidar_buffer_size) {
           RCLCPP_WARN_STREAM_ONCE(node->get_logger(),
-                                  "lidar buffer size: " << lidar_buffer.size()
+                                  "Lidar buffer size: " << lidar_buffer.size()
                                                         << ", max_lidar_buffer_size: " << max_lidar_buffer_size
-                                                        << ", throttling the bag reading thread\n");
+                                                        << ", throttling the bag reading thread as it's too fast.\n");
+          // this is a hack. can be improved
           std::this_thread::sleep_for(std::chrono::milliseconds(50));
           continue;
         }
@@ -85,44 +99,28 @@ public:
       const rosbag2_storage::SerializedBagMessage serialized_bag_msg = bag->PopNextMessage();
       const auto& topic_name = serialized_bag_msg.topic_name;
       const rclcpp::SerializedMessage serialized_msg(*serialized_bag_msg.serialized_data);
-      // publish the bag progress now, because we have a continue inside the if elses
-      processed_bag_msgs++;
-      if (total_bag_msgs > 0) {
-        const float percent_complete = 100.0F * processed_bag_msgs / total_bag_msgs;
-        static const auto start_time = std::chrono::steady_clock::now();
-        const auto now = std::chrono::steady_clock::now();
-        const float elapsed_seconds = std::chrono::duration<float>(now - start_time).count();
-        const float avg_time_per_msg = (processed_bag_msgs > 0) ? elapsed_seconds / processed_bag_msgs : 0.0F;
-        const float seconds_remaining = avg_time_per_msg * (total_bag_msgs - processed_bag_msgs);
-        std_msgs::msg::Float32MultiArray progress_msg;
-        progress_msg.data.resize(2);
-        progress_msg.data[0] = percent_complete;
-        progress_msg.data[1] = seconds_remaining;
-        bag_progress_publisher->publish(progress_msg);
-      }
+
       // check the topic and call the appropriate callback
       if (topic_name == imu_topic) {
         const auto& imu_msg = deserialize_next_msg<sensor_msgs::msg::Imu>(serialized_msg);
         imu_callback(imu_msg);
-        if (!debug) {
-          continue;
-        }
-        raw_imu_publisher->publish(*imu_msg);
       } else if (topic_name == lidar_topic) {
         const auto& lidar_msg = deserialize_next_msg<sensor_msgs::msg::PointCloud2>(serialized_msg);
         lidar_callback(lidar_msg);
-        if (!debug) {
-          continue;
-        }
-        raw_lidar_publisher->publish(*lidar_msg);
       }
+
+      processed_bag_msgs++;
+      publish_bag_progress(bag_progress_publisher, processed_bag_msgs, total_bag_msgs);
     }
-    while (true) {
-      // even if the bag finishes, we need to wait on the registration thread (buffers) to finish (empty)
-      std::lock_guard lock(buffer_mutex);
-      if (imu_buffer.empty() || lidar_buffer.empty()) {
-        break;
+    while (rclcpp::ok()) {
+      {
+        // even if the bag finishes, we need to wait on the registration buffers to empty
+        std::lock_guard<std::mutex> lock(buffer_mutex);
+        if (imu_buffer.empty() && lidar_buffer.empty()) {
+          break;
+        }
       }
+      std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
   }
 };

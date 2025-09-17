@@ -11,7 +11,7 @@ jobs:
     container:
       image: ${{ inputs.ros_distro == 'humble' && 'alexsilener/ros_humble_desktop_cmake_328_ninja' || (inputs.ros_distro == 'jazzy' && 'osrf/ros:jazzy-desktop') || (inputs.ros_distro == 'kilted' && 'osrf/ros:kilted-desktop') || (inputs.ros_distro == 'rolling' && 'osrf/ros:rolling-desktop') }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - name: Install build tools
         run: |
           apt-get update
