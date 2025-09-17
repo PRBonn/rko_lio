@@ -281,14 +281,18 @@ void LIO::initialize(const Secondsd lidar_time) {
 
 // use the acceleration kalman filter to compute the two values we need for ori. reg.
 std::optional<AccelInfo> LIO::get_accel_info(const Sophus::SO3d& rotation_estimate, const Secondsd& time) {
-  if (interval_stats.imu_count == 0) {
-    // avoid nans, divide by 0
+  if (interval_stats.imu_count <= 1) {
+    std::cerr << "[WARNING] " << interval_stats.imu_count
+              << " IMU message(s) in interval between two lidar scans. Cannot compute "
+                 "acceleration statistics for orientation regularisation. Please check your data and its "
+                 "timestamping as likely there should not be so few IMU measurements between two LiDAR scans.\n";
     return std::nullopt;
   }
 
   const Eigen::Vector3d avg_imu_accel = interval_stats.imu_acceleration_sum / interval_stats.imu_count;
   const double accel_mag_variance = interval_stats.welford_sum_of_squares / (interval_stats.imu_count - 1);
   const double dt = (time - lidar_state.time).count();
+
   const Eigen::Vector3d& body_accel_measurement = avg_imu_accel + rotation_estimate.inverse() * gravity();
 
   const double max_acceleration_change = config.max_expected_jerk * dt;
