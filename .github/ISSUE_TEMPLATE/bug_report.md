@@ -7,6 +7,12 @@ assignees: ''
 
 ---
 
+<!--
+If you think your issue doesn't require all the following details, use the blank issue template instead.
+Please do note however, if you do fill in all the following details, you make life easier for me to debug the error.
+Otherwise, I might have to ask you some of these details again anyways.
+-->
+
 **Environment**
 - Which OS are you using?
 - What version of Python (eg., 3.10) or ROS (e.g., Jazzy) are you using?
