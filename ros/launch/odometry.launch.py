@@ -381,7 +381,8 @@ def prepare_rviz_config(rviz_config_file: Path, parameters: dict) -> Path:
     rviz_config_file = Path(get_package_share_directory("rko_lio")) / rviz_config_file
 
     base_frame = parameters.get("base_frame", "")
-    if not base_frame:
+    odom_frame = parameters.get("odom_frame", "")
+    if not base_frame and not odom_frame:
         return rviz_config_file  # no override needed
 
     # Load default config
@@ -389,12 +390,14 @@ def prepare_rviz_config(rviz_config_file: Path, parameters: dict) -> Path:
         rviz_cfg = yaml.safe_load(f)
 
     try:
-        rviz_cfg["Visualization Manager"]["Views"]["Current"][
-            "Target Frame"
-        ] = base_frame
+        # Patch whichever frame is specified
+        if base_frame:
+            rviz_cfg["Visualization Manager"]["Views"]["Current"]["Target Frame"] = base_frame
+        if odom_frame:
+            rviz_cfg["Visualization Manager"]["Global Options"]["Fixed Frame"] = odom_frame
     except Exception as e:
         raise RuntimeError(
-            f"Could not patch RViz config with base_frame ({base_frame}): {e}"
+            f"Could not patch RViz config with frames (base_frame={base_frame}, odom_frame={odom_frame}): {e}"
         )
 
     # Write to a temp file
