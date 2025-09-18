@@ -292,13 +292,7 @@ def cli(
 
     from tqdm import tqdm
 
-    from .scoped_profiler import ScopedProfiler
-
-    data_count = len(dataloader)
-    for idx in tqdm(range(data_count), total=data_count, desc="Data"):
-        with ScopedProfiler("Pipeline - Data Loader") as pipeline_timer:
-            kind, data_tuple = dataloader[idx]
-
+    for kind, data_tuple in tqdm(dataloader, total=len(dataloader), desc="Data"):
         if kind == "imu":
             pipeline.add_imu(*data_tuple)
         elif kind == "lidar":

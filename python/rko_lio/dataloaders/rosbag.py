@@ -1,8 +1,3 @@
-"""
-this file is an extension kiss_icp/datasets/rosbag.py.
-the rosbag dataloader has been simplified and then extended for handling both imu and lidar.
-"""
-
 # MIT License
 #
 # Copyright (c) 2022 Ignacio Vizzo, Tiziano Guadagnino, Benedikt Mersch, Cyrill
@@ -30,6 +25,19 @@ from pathlib import Path
 
 import numpy as np
 
+try:
+    from rosbags.highlevel import AnyReader
+except ModuleNotFoundError:
+    print(
+        'rosbags library not installed for using rosbag dataloader, please install with "pip install -U rosbags"'
+    )
+    sys.exit(1)
+
+from .. import rko_lio_pybind
+from ..scoped_profiler import ScopedProfiler
+from .utils.ros_read_point_cloud import read_point_cloud as ros_read_point_cloud
+from .utils.static_tf_tree import create_static_tf_tree, query_static_tf
+
 
 class RosbagDataLoader:
     def __init__(
@@ -44,21 +52,9 @@ class RosbagDataLoader:
     ):
         """query_tf_tree: try to query a tf tree if it exists"""
 
-        try:
-            from rosbags.highlevel import AnyReader
-        except ModuleNotFoundError:
-            print(
-                'rosbags library not installed for using rosbag dataloader, please install with "pip install -U rosbags"'
-            )
-            sys.exit(1)
-
         assert (
             data_path.is_dir()
         ), "Pass a directory to data_path with ros1 or ros2 bag files"
-
-        from .. import rko_lio_pybind
-        from .utils.ros_read_point_cloud import read_point_cloud as ros_read_point_cloud
-        from .utils.static_tf_tree import create_static_tf_tree, query_static_tf
 
         self.rko_lio_pybind = rko_lio_pybind
         self.ros_read_point_cloud = ros_read_point_cloud
@@ -102,8 +98,6 @@ class RosbagDataLoader:
                 print(
                     "[ERROR] The rosbag doesn't contain a static tf tree, cannot query it for extrinsics. Please specify the extrinsics manually in a config. You can use 'rko_lio --dump_config' to dump a default config."
                 )
-                import sys
-
                 sys.exit(1)
 
             print("Querying TF tree for imu to base extrinsic.")
@@ -139,21 +133,25 @@ class RosbagDataLoader:
     def extrinsics(self):
         return self.T_imu_to_base, self.T_lidar_to_base
 
-    def __getitem__(self, idx):
-        connection, bag_timestamp, rawdata = next(self.msgs)
-        deserialized_data = self.bag.deserialize(rawdata, connection.msgtype)
-        if connection.topic == self.imu_topic:
-            return "imu", self.read_imu(deserialized_data)
-        elif connection.topic == self.lidar_topic:
-            try:
-                return "lidar", self.read_point_cloud(deserialized_data)
-            except RuntimeError as e:  # the cpp side can throw on _process_timestamps
-                print(
-                    "WARNING: Could not process lidar frame, there was an error. You should probably report an issue."
-                )
-                # return the next data point instead
-                return self.__getitem__(idx)
-        else:
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        while True:
+            with ScopedProfiler("Rosbag Dataloader") as data_timer:
+                connection, bag_timestamp, rawdata = next(self.msgs)
+                deserialized_data = self.bag.deserialize(rawdata, connection.msgtype)
+                if connection.topic == self.imu_topic:
+                    return "imu", self.read_imu(deserialized_data)
+                elif connection.topic == self.lidar_topic:
+                    try:
+                        return "lidar", self.read_point_cloud(deserialized_data)
+                    except RuntimeError as e:
+                        # the cpp side can throw on _process_timestamps
+                        print(
+                            "WARNING: Error processing lidar frame. You should probably report an issue."
+                        )
+                        continue
             raise NotImplementedError("Shouldn't happen.")
 
     def read_imu(self, data):
@@ -232,4 +230,4 @@ class RosbagDataLoader:
             f"{self.bag.topics[self.imu_topic].msgcount if self.imu_topic in self.bag.topics else 0} IMU msgs, "
             f"{self.bag.topics[self.lidar_topic].msgcount if self.lidar_topic in self.bag.topics else 0} LiDAR msgs"
         )
-        return f"<RosbagDataLoader({bag_type}, {path_info}, {imu_info}, {lidar_info}, {msg_counts})>"
+        return f"RosbagDataLoader({bag_type}, {path_info}, {imu_info}, {lidar_info}, {msg_counts})"
