@@ -24,6 +24,18 @@ import csv
 from pathlib import Path
 
 import numpy as np
+import yaml
+
+from ..scoped_profiler import ScopedProfiler
+
+try:
+    import open3d as o3d
+
+except ImportError:
+    raise ImportError(
+        "Please install open3d with `pip install open3d` to use the raw dataloader."
+    )
+
 
 __TIMESTAMP_ATTRIBUTE_NAMES__ = ["time", "timestamps", "timestamp", "t"]
 
@@ -32,12 +44,10 @@ class RawDataLoader:
     def __init__(self, data_path: Path, query_extrinsics: bool = True):
         self.data_path = Path(data_path)
 
-        # load extrinsics from file
-        import yaml
-
         self.T_imu_to_base = None
         self.T_lidar_to_base = None
         if query_extrinsics:
+            # load extrinsics from file
             tf_file = self.data_path / "transforms.yaml"
             if not tf_file.is_file():
                 raise RuntimeError(f"Missing transforms.yaml in {self.data_path}")
@@ -51,14 +61,14 @@ class RawDataLoader:
                     )
             self.T_imu_to_base = np.array(tf_data["T_imu_to_base"], dtype=float)
             self.T_lidar_to_base = np.array(tf_data["T_lidar_to_base"], dtype=float)
-            if self.T_imu_to_base.shape != (4, 4) or self.T_lidar_to_base.shape != (
-                4,
-                4,
-            ):
-                raise RuntimeError(
-                    f"Transforms must be 4x4 matrices. Got shapes: "
-                    f"{self.T_imu_to_base.shape}, {self.T_lidar_to_base.shape}"
-                )
+            assert self.T_imu_to_base.shape == (4, 4), (
+                "Improper T_imu_to_base shape "
+                f"{self.T_imu_to_base.shape}, expected 4x4"
+            )
+            assert self.T_lidar_to_base.shape == (4, 4), (
+                "Improper T_lidar_to_base shape"
+                f"{self.T_lidar_to_base.shape}, expected 4x4"
+            )
 
         # Load IMU file (must be exactly one CSV or TXT)
         imu_files = list(self.data_path.glob("*.csv")) + list(
@@ -69,16 +79,6 @@ class RawDataLoader:
                 f"Expected exactly one IMU CSV/TXT in {self.data_path}, found: {imu_files}"
             )
         imu_file = imu_files[0]
-
-        # Try to import open3d
-        try:
-            import open3d as o3d
-
-            self.o3d = o3d
-        except ImportError:
-            raise ImportError(
-                "Please install open3d with `pip install open3d` to use the raw dataloader."
-            )
 
         self.imu_data = []
         with open(imu_file, "r") as f:
@@ -129,34 +129,34 @@ class RawDataLoader:
     def extrinsics(self):
         return self.T_imu_to_base, self.T_lidar_to_base
 
-    def __getitem__(self, idx):
-        kind, _, data = self.entries[idx]
-        if kind == "imu":
-            timestamp = data["timestamp"] / 1e9
-            gyro = data["gyro"]
-            accel = data["accel"]
-            return "imu", (timestamp, accel, gyro)
-        elif kind == "lidar":
-            ply = self.o3d.t.io.read_point_cloud(str(data["filename"]))
-            # Find a field for per-point timestamp
-            for attr_name in __TIMESTAMP_ATTRIBUTE_NAMES__:
-                if attr_name in ply.point:
-                    timestamps = ply.point[attr_name].numpy().flatten()
-                    break
-            else:
-                raise RuntimeError(
-                    f"No per-point timestamp attribute found in {data['filename']}. Please check the attributes."
-                )
-            points = ply.point["positions"].numpy()
-            return "lidar", (points, timestamps)
-        else:
-            raise RuntimeError(
-                "Unknown entry type in RawDataLoader (should not happen)"
-            )
+    def __iter__(self):
+        self._iter = iter(entries)
+        return self
+
+    def __next__(self):
+        with ScopedProfiler("Raw Dataloader") as data_timer:
+            kind, _, data = next(self._iter)
+
+            if kind == "imu":
+                return "imu", (data["timestamp"] / 1e9, data["accel"], data["gyro"])
+            elif kind == "lidar":
+                ply = o3d.t.io.read_point_cloud(str(data["filename"]))
+                # Find a field for per-point timestamp
+                for attr_name in __TIMESTAMP_ATTRIBUTE_NAMES__:
+                    if attr_name in ply.point:
+                        timestamps = ply.point[attr_name].numpy().flatten()
+                        break
+                else:
+                    # TODO: should not throw if deskew: false
+                    raise RuntimeError(
+                        f"No per-point timestamp attribute found in {data['filename']}. Please check the attributes."
+                    )
+                points = ply.point["positions"].numpy()
+                return "lidar", (points, timestamps)
 
     def __repr__(self):
         imu_info = f"{len(self.imu_data)} IMU readings"
         lidar_info = f"{len(self.lidar_data)} lidar frames"
         path_info = f"path={self.data_path}"
         entry_info = f"{len(self.entries)} total entries"
-        return f"<RawDataLoader({path_info}, {imu_info}, {lidar_info}, {entry_info})>"
+        return f"RawDataLoader({path_info}, {imu_info}, {lidar_info}, {entry_info})"
