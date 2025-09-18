@@ -61,7 +61,7 @@ def dump_config_callback(value: bool):
         typer.echo(
             "Default config dumped to config.yaml. Note that the extrinsics are left as an empty list. If you don't need them, delete the two respective keys. If you need them, you need to specify them as [qx, qy, qz, qw, x, y, z]."
         )
-        raise typer.Exit()
+        raise typer.Exit(0)
 
 
 def dataloader_name_callback(value: str):
@@ -98,17 +98,19 @@ def parse_extrinsics_from_config(config_data: dict):
 
     if imu_config_val is not None:
         if not len(imu_config_val) == 7:
-            raise ValueError(
-                f"extrinsic_imu2base_quat_xyzw_xyz cannot be of length {len(imu_config_val)} but should be 7"
+            print(
+                f"[ERROR] extrinsic_imu2base_quat_xyzw_xyz cannot be of length {len(imu_config_val)} but should be 7"
             )
+            typer.Abort()
         extrinsic_imu2base = convert_quat_xyzw_xyz_to_matrix(
             np.asarray(imu_config_val, dtype=np.float64)
         )
     if lidar_config_val is not None:
         if not len(lidar_config_val) == 7:
-            raise ValueError(
+            print(
                 f"[ERROR] extrinsic_lidar2base_quat_xyzw_xyz cannot be of length {len(imu_config_val)} but should be 7"
             )
+            typer.Abort()
         extrinsic_lidar2base = convert_quat_xyzw_xyz_to_matrix(
             np.asarray(lidar_config_val, dtype=np.float64)
         )
@@ -223,9 +225,7 @@ def cli(
             print(
                 "[ERROR] Please install rerun with `pip install rerun-sdk` to enable visualization."
             )
-            import sys
-
-            sys.exit(1)
+            typer.Abort()
 
     config_data = {}
     if config_fp:
@@ -303,8 +303,6 @@ def cli(
             pipeline.add_imu(*data_tuple)
         elif kind == "lidar":
             pipeline.add_lidar(*data_tuple)
-        else:
-            raise ValueError(f"data type {kind} is invalid from the dataloader")
 
     if log_results and results_dir:
         results_dir.mkdir(parents=True, exist_ok=True)

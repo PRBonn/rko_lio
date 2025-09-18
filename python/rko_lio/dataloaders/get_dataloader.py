@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import sys
 from pathlib import Path
 
 
@@ -72,7 +73,8 @@ def get_dataloader(
         from .helipr import HeliprDataLoader
 
         if sequence is None:
-            raise ValueError("HeliprDataLoader requires --sequence parameter")
+            print("[ERROR] HeliprDataLoader requires --sequence parameter")
+            sys.exit(1)
         return HeliprDataLoader(data_path, sequence)
 
     else:
@@ -125,11 +127,13 @@ def guess_dataloader(
 
     if xsens_imu_path.is_file() and lidar_folder.is_dir():
         if sequence is None:
-            raise ValueError("HeLiPR dataLoader requires --sequence parameter")
+            print("[ERROR] HeLiPR dataLoader requires --sequence parameter")
+            sys.exit(1)
 
         seq_folder = lidar_folder / sequence
         if not seq_folder.is_dir():
-            raise ValueError(f"Helipr sequence folder does not exist: {seq_folder}")
+            print(f"[ERROR] Helipr sequence folder does not exist: {seq_folder}")
+            sys.exit(1)
 
         print("Guessed dataloader as Helipr!")
         return get_dataloader(
@@ -137,6 +141,7 @@ def guess_dataloader(
         )
 
     # No matching dataloader found
-    raise ValueError(
-        f"Could not guess dataloader for path: {data_path}, please pass the loader with --dataloader or -d"
+    print(
+        f"[ERROR] Could not guess dataloader for path: {data_path}, please pass the loader with --dataloader or -d"
     )
+    sys.exit(1)
