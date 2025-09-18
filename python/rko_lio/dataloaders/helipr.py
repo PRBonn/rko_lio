@@ -21,9 +21,14 @@
 # SOFTWARE.
 
 import csv
+import re
 from pathlib import Path
 
 import numpy as np
+
+from .. import rko_lio_pybind
+from ..scoped_profiler import ScopedProfiler
+from .helipr_file_reader_pybind import read_lidar_bin
 
 
 class HeliprDataLoader:
@@ -41,12 +46,6 @@ class HeliprDataLoader:
             DeprecationWarning,
             stacklevel=2,
         )
-
-        from .. import rko_lio_pybind
-
-        self.rko_lio_pybind = rko_lio_pybind
-
-        from .helipr_file_reader_pybind import read_lidar_bin
 
         self.read_lidar_bin = read_lidar_bin
 
@@ -127,33 +126,37 @@ class HeliprDataLoader:
     def __len__(self):
         return len(self.entries)
 
-    def __getitem__(self, idx):
-        kind, _, data = self.entries[idx]
-        if kind == "imu":
-            return (
-                "imu",
-                (
-                    data["timestamp"] / 1e9,
-                    data["accel"],
-                    data["gyro"],
-                ),
-            )
-        elif kind == "lidar":
-            header_stamp_sec = data["timestamp"] / 1e9
-            points, raw_timestamps = self.read_lidar_bin(
-                str(data["filename"]), self.sensor
-            )
-            points_arr = np.asarray(points).reshape(-1, 3)
-            _, _, abs_timestamps = self.rko_lio_pybind._process_timestamps(
-                self.rko_lio_pybind._VectorDouble(np.asarray(raw_timestamps)),
-                header_stamp_sec,
-            )
-            return ("lidar", (points_arr, np.asarray(abs_timestamps)))
-        else:
-            raise IndexError("Unknown entry type.")
+    def __iter__(self):
+        self._iter = iter(self.entries)
+        return self
+
+    def __next__(self):
+        with ScopedProfiler("HeLiPR Dataloader") as data_timer:
+            kind, _, data = next(self._iter)
+
+            if kind == "imu":
+                return (
+                    "imu",
+                    (
+                        data["timestamp"] / 1e9,
+                        data["accel"],
+                        data["gyro"],
+                    ),
+                )
+            elif kind == "lidar":
+                header_stamp_sec = data["timestamp"] / 1e9
+                points, raw_timestamps = self.read_lidar_bin(
+                    str(data["filename"]), self.sensor
+                )
+                points_arr = np.asarray(points).reshape(-1, 3)
+                _, _, abs_timestamps = rko_lio_pybind._process_timestamps(
+                    rko_lio_pybind._VectorDouble(np.asarray(raw_timestamps)),
+                    header_stamp_sec,
+                )
+                return ("lidar", (points_arr, np.asarray(abs_timestamps)))
 
     def __repr__(self):
-        return f"<HeliprDataLoader {self.data_path.name}, Sensor={self.sensor}, {len(self.entries)} entries>"
+        return f"HeliprDataLoader({self.data_path.name}, Sensor={self.sensor}, {len(self.entries)} entries)"
 
 
 def parse_extrinsic_txt(path: Path) -> np.ndarray:
@@ -163,8 +166,6 @@ def parse_extrinsic_txt(path: Path) -> np.ndarray:
       - Inside the [ ] brackets, numbers are always space-separated.
       - Rotation block has exactly 9 floats, Translation has exactly 3 floats.
     """
-    import re
-
     text = path.read_text()
 
     # Case-insensitive, allow newlines within brackets
@@ -181,7 +182,7 @@ def parse_extrinsic_txt(path: Path) -> np.ndarray:
         raise ValueError(f"No translation block found in {path}")
 
     rot_vals = [float(x) for x in rot_match.group(1).split()]
-    trans_vals = [float(x) for x in trans_match.group(1).split()]
+    trans_vals = [float(x) for x in trans_match.group(1).split(",")]
 
     if len(rot_vals) != 9:
         raise ValueError(f"Expected 9 rotation values in {path}, got {len(rot_vals)}")
@@ -208,16 +209,14 @@ def parse_lidar_extrinsic(path: Path, target_sensor: str) -> np.ndarray:
     Assumes inside Rotation and Translation brackets, numbers are space-separated.
     Matches are case-insensitive and multiline.
     """
-    import re
-
     text = path.read_text()
 
     # Regex pattern to find each block starting with [Ouster - <sensor> Extrinsic Calibration]
     # Capture rotation and translation blocks inside that section
     pattern = re.compile(
-        rf"\[Ouster\s*-\s*{re.escape(target_sensor)}\s*Extrinsic\s*Calibration\]\s*"  # header
-        r"(.*?)"  # non-greedy capture of block content
-        r"(?=\[\w|$)",  # lookahead for next block or end of file
+        rf"\[ouster\s*-\s*{re.escape(target_sensor)}\s*extrinsic\s*calibration\]\s*"
+        r"(.*?)"
+        r"(?=\[ouster|\Z)",  # lookahead for next block starting with [ouster or end of file
         re.IGNORECASE | re.DOTALL,
     )
 
