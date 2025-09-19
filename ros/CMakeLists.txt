@@ -44,5 +44,22 @@ find_package(rclcpp_components REQUIRED)
 
 add_subdirectory(rko_lio)
 
+# ament macros cannot be in a CMake subdirectory, even the component stuff. such
+# a pain to debug
+rclcpp_components_register_node(
+  online_node_component
+  PLUGIN
+  "rko_lio::ros::OnlineNode"
+  EXECUTABLE
+  online_node)
+
+install(
+  TARGETS online_node_component offline_node
+  EXPORT rko_lioTargets
+  RUNTIME DESTINATION lib/${PROJECT_NAME})
+
 install(DIRECTORY config launch DESTINATION share/rko_lio)
+
+ament_export_targets(rko_lioTargets)
+
 ament_package()

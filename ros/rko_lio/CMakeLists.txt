@@ -54,15 +54,3 @@ target_link_libraries(offline_node PRIVATE rko_lio::ros)
 add_library(online_node_component SHARED online_node.cpp)
 ament_target_dependencies(online_node_component PUBLIC rclcpp_components)
 target_link_libraries(online_node_component PRIVATE rko_lio::ros)
-# the following registers the component and then creates an executable
-# "online_node", by default using a single threaded executor. install should be
-# handled by the macro
-rclcpp_components_register_node(
-  online_node_component
-  PLUGIN
-  "rko_lio::ros::OnlineNode"
-  EXECUTABLE
-  online_node)
-
-install(TARGETS online_node_component offline_node
-        RUNTIME DESTINATION lib/${PROJECT_NAME})
