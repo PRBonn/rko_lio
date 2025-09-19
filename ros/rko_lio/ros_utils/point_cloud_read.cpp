@@ -68,7 +68,7 @@ point_cloud2_to_eigen_with_timestamps(const PointCloud2::ConstSharedPtr& msg) {
         }
       }
     }
-    throw std::logic_error("Point cloud needs timestamps for deskewing");
+    throw std::invalid_argument("Point cloud needs timestamps for deskewing");
   });
 
   // templated lambda (auto) ftw

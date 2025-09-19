@@ -416,9 +416,10 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
   }
 
   if (std::chrono::abs(current_lidar_time - lidar_state.time).count() > 1.0) {
-    double diff_seconds = (current_lidar_time - lidar_state.time).count();
-    throw std::runtime_error("Received LiDAR scan with " + std::to_string(diff_seconds) +
-                             " seconds delta to previous scan.");
+    const double diff_seconds = (current_lidar_time - lidar_state.time).count();
+    // std::expected would be better, but thats c++23. unless we add another dep...
+    throw std::invalid_argument("Received LiDAR scan with " + std::to_string(diff_seconds) +
+                                " seconds delta to previous scan.");
   }
 
   const auto& [avg_body_accel, avg_ang_vel] = std::invoke([&]() -> std::pair<Eigen::Vector3d, Eigen::Vector3d> {

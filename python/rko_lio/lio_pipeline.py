@@ -171,18 +171,25 @@ class LIOPipeline:
                     imu for imu in self.imu_buffer if imu["time"] >= frame["end_time"]
                 ]
                 # Register the lidar scan
-                if self.extrinsic_lidar2base is not None:
-                    # TODO: rerun the deskewed scan as well, but there is some flickering in the viz for some reason
-                    self.lio.register_scan_with_extrinsic(
-                        self.extrinsic_lidar2base,
-                        frame["scan"],
-                        frame["timestamps"],
+                try:
+                    if self.extrinsic_lidar2base is not None:
+                        # TODO: rerun the deskewed scan as well, but there is some flickering in the viz for some reason
+                        self.lio.register_scan_with_extrinsic(
+                            self.extrinsic_lidar2base,
+                            frame["scan"],
+                            frame["timestamps"],
+                        )
+                    else:
+                        self.lio.register_scan(
+                            frame["scan"],
+                            frame["timestamps"],
+                        )
+                except ValueError as e:
+                    print(
+                        "ERROR: Dropping LiDAR frame as there was an error. Odometry might suffer. Error:",
+                        e,
                     )
-                else:
-                    self.lio.register_scan(
-                        frame["scan"],
-                        frame["timestamps"],
-                    )
+                    continue
 
             if self.viz:
                 with ScopedProfiler("Pipeline - Visualization") as viz_timer:

@@ -28,6 +28,7 @@
 #include "rko_lio/ros_utils/ros_utils.hpp"
 // other
 #include <rclcpp/serialization.hpp>
+#include <stdexcept>
 
 namespace {
 using namespace std::literals;
@@ -242,8 +243,8 @@ void Node::lidar_callback(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& l
     if (atomic_can_process) {
       sync_condition_variable.notify_one();
     }
-  } catch (const std::logic_error& ex) {
-    RCLCPP_ERROR_STREAM(node->get_logger(), "Encountered error, dropping frame: Error: " << ex.what());
+  } catch (const std::invalid_argument& ex) {
+    RCLCPP_ERROR_STREAM(node->get_logger(), "Encountered error, dropping frame: Error. " << ex.what());
   }
 }
 
@@ -268,27 +269,31 @@ void Node::registration_loop() {
         !imu_buffer.empty() && !lidar_buffer.empty() && imu_buffer.back().time > lidar_buffer.front().end;
     buffer_lock.unlock(); // we dont touch the buffers anymore
 
-    const core::Vector3dVector deskewed_frame = std::invoke([&]() {
-      if (publish_local_map) {
-        std::lock_guard lock(local_map_mutex); // publish_map thread might access simultaneously
-        return lio->register_scan(extrinsic_lidar2base, scan, timestamps);
-      } else {
-        return lio->register_scan(extrinsic_lidar2base, scan, timestamps);
-      }
-    });
+    try {
+      const core::Vector3dVector deskewed_frame = std::invoke([&]() {
+        if (publish_local_map) {
+          std::lock_guard lock(local_map_mutex); // publish_map thread might access simultaneously
+          return lio->register_scan(extrinsic_lidar2base, scan, timestamps);
+        } else {
+          return lio->register_scan(extrinsic_lidar2base, scan, timestamps);
+        }
+      });
 
-    if (!deskewed_frame.empty()) {
-      // TODO: first frame is skipped and an empty frame is returned. improve how we handle this
-      if (publish_deskewed_scan) {
-        std_msgs::msg::Header header;
-        header.frame_id = lidar_frame;
-        header.stamp = rclcpp::Time(std::chrono::duration_cast<std::chrono::nanoseconds>(end_stamp).count());
-        frame_publisher->publish(ros_utils::eigen_to_point_cloud2(deskewed_frame, header));
+      if (!deskewed_frame.empty()) {
+        // TODO: first frame is skipped and an empty frame is returned. improve how we handle this
+        if (publish_deskewed_scan) {
+          std_msgs::msg::Header header;
+          header.frame_id = lidar_frame;
+          header.stamp = rclcpp::Time(std::chrono::duration_cast<std::chrono::nanoseconds>(end_stamp).count());
+          frame_publisher->publish(ros_utils::eigen_to_point_cloud2(deskewed_frame, header));
+        }
+        publish_odometry(lio->lidar_state, end_stamp);
+        if (publish_lidar_acceleration) {
+          publish_lidar_accel(lio->lidar_state.linear_acceleration, end_stamp);
+        }
       }
-      publish_odometry(lio->lidar_state, end_stamp);
-      if (publish_lidar_acceleration) {
-        publish_lidar_accel(lio->lidar_state.linear_acceleration, end_stamp);
-      }
+    } catch (const std::invalid_argument& ex) {
+      RCLCPP_ERROR_STREAM(node->get_logger(), "Encountered error, dropping frame. Error: " << ex.what());
     }
   }
   atomic_node_running = false;
