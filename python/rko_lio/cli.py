@@ -152,7 +152,7 @@ def cli(
         None,
         "--dataloader",
         "-d",
-        help="Specify a dataloader: [rosbag, raw, helipr]. Leave empty to guess one.",
+        help="Specify a dataloader: [rosbag, raw, helipr]. Leave empty to guess one",
         show_choices=True,
         callback=dataloader_name_callback,
         case_sensitive=False,
@@ -167,11 +167,11 @@ def cli(
     results_dir: Path | None = typer.Option(
         "results", "--results_dir", "-r", help="Where to dump LIO results if logging"
     ),
-    run_name: str = typer.Option(
-        "rko_lio_experiment",
+    run_name: str | None = typer.Option(
+        None,
         "--run_name",
         "-n",
-        help="Name prefix for output files if logging",
+        help="Name prefix for output files if logging. Default takes the name from the data_path argument",
     ),
     sequence: str | None = typer.Option(
         None,
@@ -202,7 +202,7 @@ def cli(
     version: bool | None = typer.Option(
         None,
         "--version",
-        help="Show the current version of RKO_LIO and exit",
+        help="Print the current version of RKO_LIO and exit",
         callback=version_callback,
         is_eager=True,
         rich_help_panel="Auxilary commands",
@@ -307,7 +307,7 @@ def cli(
 
     if log_results and results_dir:
         results_dir.mkdir(parents=True, exist_ok=True)
-        pipeline.dump_results_to_disk(results_dir, run_name)
+        pipeline.dump_results_to_disk(results_dir, run_name or data_path.name)
 
 
 if __name__ == "__main__":
