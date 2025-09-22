@@ -35,6 +35,7 @@ except ModuleNotFoundError:
 
 from .. import rko_lio_pybind
 from ..scoped_profiler import ScopedProfiler
+from ..util import error, warning
 from .utils.ros_read_point_cloud import read_point_cloud as ros_read_point_cloud
 from .utils.static_tf_tree import create_static_tf_tree, query_static_tf
 
@@ -95,8 +96,8 @@ class RosbagDataLoader:
             print("Building TF tree.")
             static_tf_tree = create_static_tf_tree(self.bag)
             if not static_tf_tree:
-                print(
-                    "[ERROR] The rosbag doesn't contain a static tf tree, cannot query it for extrinsics. Please specify the extrinsics manually in a config. You can use 'rko_lio --dump_config' to dump a default config."
+                error(
+                    "The rosbag doesn't contain a static tf tree, cannot query it for extrinsics. Please specify the extrinsics manually in a config. You can use 'rko_lio --dump_config' to dump a default config."
                 )
                 sys.exit(1)
 
@@ -182,10 +183,8 @@ class RosbagDataLoader:
             raw_timestamps = np.ones(points.shape[0]) * header_stamp_sec
             if not hasattr(self, "_printed_timestamp_warning"):
                 self._printed_timestamp_warning = True
-                RED_TEXT_ON_WHITE_BG = "\033[1;31;47m"
-                RESET = "\033[0m"
-                print(
-                    f"\n\n{RED_TEXT_ON_WHITE_BG}[WARNING] Could not detect timestamps in the point cloud. Odometry performance will suffer. Also please disable deskewing (enabled by default) otherwise the odometry may not work properly.{RESET}\n\n"
+                warning(
+                    "Could not detect timestamps in the point cloud. Odometry performance will suffer. Also please disable deskewing (enabled by default) otherwise the odometry may not work properly."
                 )
             return points, raw_timestamps
 
@@ -206,18 +205,22 @@ class RosbagDataLoader:
         if topic and topic in topics_of_type:
             return topic
         if topic and topic not in topics_of_type:
-            print(
-                f'[ERROR] Rosbag does not contain any msg with the topic name "{topic}". '
-                f"Please select one of these for {expected_msgtype}:"
+            error(
+                "Rosbag does not contain any msg with the topic name",
+                topic,
+                ". Please select one of these for",
+                expected_msgtype,
             )
             print_available_topics_and_exit()
         if len(topics_of_type) > 1:
-            print(
-                f"Multiple {expected_msgtype} topics available. Please select one with the appropriate flag."
+            error(
+                "Multiple",
+                expected_msgtype,
+                "topics available. Please select one with the appropriate flag.",
             )
             print_available_topics_and_exit()
         if len(topics_of_type) == 0:
-            print(f"[ERROR] Your rosbag does not contain any {expected_msgtype} topic")
+            error("Your rosbag does not contain any", expected_msgtype, "topic.")
             sys.exit(1)
         return topics_of_type[0]
 

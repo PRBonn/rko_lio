@@ -20,9 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import sys
+
 import numpy as np
 from pyquaternion import Quaternion
 from tqdm import tqdm
+
+from ...util import error
 
 
 def create_static_tf_tree(bag):
@@ -68,12 +72,17 @@ def query_static_tf(tf_tree, from_frame, to_frame):
     available_frames = set(tf_tree.keys()) | {parent for parent, _ in tf_tree.values()}
     missing = [f for f in (from_frame, to_frame) if f not in available_frames]
     if missing:
-        print(
-            f"[ERROR] Frame(s) {missing} not found in static TF tree. "
-            f"Available frames: {sorted(available_frames)}. You can specify frame overrides with CLI options."
+        error(
+            "Frame(s)",
+            missing,
+            "not found in static TF tree for query from",
+            from_frame,
+            "to",
+            to_frame,
+            "\nAvailable frames:\n",
+            sorted(available_frames),
+            ".\nYou can specify frame overrides with CLI options.",
         )
-        import sys
-
         sys.exit(1)
 
     # Walk up from "from_frame" to root, collecting transforms
@@ -100,7 +109,8 @@ def query_static_tf(tf_tree, from_frame, to_frame):
 
     # If roots differ, the tree is disconnected because we missed some dynamic tfs in between
     if root_from != root_to:
-        raise ValueError(f"No static TF path between '{from_frame}' and '{to_frame}'.")
+        error(f"No static TF path between '{from_frame}' and '{to_frame}'.")
+        sys.exit(1)
 
     # Map child -> index for from_chain for quick ancestor lookup
     from_index = {f: i for i, (f, _, _) in enumerate(from_chain)}

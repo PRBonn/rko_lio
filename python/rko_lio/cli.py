@@ -24,10 +24,13 @@
 Entrypoint typer application for the python wrapper.
 """
 
+import sys
 from pathlib import Path
 
 import numpy as np
 import typer
+
+from .util import error, info, warning
 
 
 def version_callback(value: bool):
@@ -35,7 +38,7 @@ def version_callback(value: bool):
         from importlib.metadata import version
 
         rko_lio_version = version("rko_lio")
-        print(f"RKO_LIO Version: {rko_lio_version}")
+        info("RKO_LIO Version:", rko_lio_version)
         raise typer.Exit(0)
 
 
@@ -58,8 +61,8 @@ def dump_config_callback(value: bool):
 
         with open("config.yaml", "w") as f:
             yaml.dump(config, f, default_flow_style=False)
-        typer.echo(
-            "Default config dumped to config.yaml. Note that the extrinsics are left as an empty list. If you don't need them, delete the two respective keys. If you need them, you need to specify them as [qx, qy, qz, qw, x, y, z]."
+        info(
+            "Default config dumped to config.yaml. Note that the extrinsics are left as an empty list. If you don't need them, delete the two respective keys. If you need them, you need to specify them as \[qx, qy, qz, qw, x, y, z]."
         )
         raise typer.Exit(0)
 
@@ -98,19 +101,23 @@ def parse_extrinsics_from_config(config_data: dict):
 
     if imu_config_val is not None:
         if not len(imu_config_val) == 7:
-            print(
-                f"[ERROR] extrinsic_imu2base_quat_xyzw_xyz cannot be of length {len(imu_config_val)} but should be 7"
+            error(
+                "extrinsic_imu2base_quat_xyzw_xyz cannot be of length",
+                len(imu_config_val),
+                "but should be 7. Please modify the config.",
             )
-            typer.Abort()
+            sys.exit(1)
         extrinsic_imu2base = convert_quat_xyzw_xyz_to_matrix(
             np.asarray(imu_config_val, dtype=np.float64)
         )
     if lidar_config_val is not None:
         if not len(lidar_config_val) == 7:
-            print(
-                f"[ERROR] extrinsic_lidar2base_quat_xyzw_xyz cannot be of length {len(imu_config_val)} but should be 7"
+            error(
+                "extrinsic_lidar2base_quat_xyzw_xyz cannot be of length",
+                len(lidar_config_val),
+                "but should be 7. Please modify the config.",
             )
-            typer.Abort()
+            sys.exit(1)
         extrinsic_lidar2base = convert_quat_xyzw_xyz_to_matrix(
             np.asarray(lidar_config_val, dtype=np.float64)
         )
@@ -134,7 +141,7 @@ app = typer.Typer()
 
 
 @app.command(
-    epilog="Feel free to open an issue on https://github.com/PRBonn/rko_lio if how to use some option is unclear or you need some help!"
+    epilog="Please open an issue on https://github.com/PRBonn/rko_lio if the usage of any option is unclear or you need some help!"
 )
 def cli(
     data_path: Path = typer.Argument(..., exists=True, help="Path to data folder"),
@@ -222,10 +229,10 @@ def cli(
             rr.log_file_from_path(Path(__file__).parent / "rko_lio.rbl")
 
         except ImportError:
-            print(
-                "[ERROR] Please install rerun with `pip install rerun-sdk` to enable visualization."
+            error(
+                "Please install rerun with `pip install rerun-sdk` to enable visualization."
             )
-            typer.Abort()
+            sys.exit(1)
 
     config_data = {}
     if config_fp:
@@ -242,8 +249,8 @@ def cli(
         and len(extrinsic_lidar2base)
     )
     if need_to_query_extrinsics:
-        print(
-            "[WARNING] One or both extrinsics are not specified in the config. Will try to obtain it from the data(loader) itself."
+        warning(
+            "One or both extrinsics are not specified in the config. Will try to obtain it from the data(loader) itself."
         )
 
     from .dataloaders import get_dataloader

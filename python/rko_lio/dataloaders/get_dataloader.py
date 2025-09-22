@@ -70,10 +70,11 @@ def get_dataloader(
         return RawDataLoader(data_path)
 
     elif name == "helipr":
+        from ..util import error
         from .helipr import HeliprDataLoader
 
         if sequence is None:
-            print("[ERROR] HeliprDataLoader requires --sequence parameter")
+            error("HeliprDataLoader requires --sequence parameter")
             sys.exit(1)
         return HeliprDataLoader(data_path, sequence)
 
@@ -91,6 +92,8 @@ def guess_dataloader(
     base_frame_id: str | None = None,
     query_extrinsics: bool = True,
 ):
+    from ..util import error, info
+
     # Check for rosbag files
     rosbag_exts = [".bag", ".db3", ".mcap"]
     found_rosbag_file = False
@@ -100,7 +103,7 @@ def guess_dataloader(
             found_rosbag_file = True
             break
     if found_rosbag_file:
-        print("Guessed dataloader as rosbag!")
+        info("Guessed dataloader as rosbag!")
         return get_dataloader(
             "rosbag",
             data_path,
@@ -118,7 +121,7 @@ def guess_dataloader(
     txt_files = list(data_path.glob("*.txt"))
     csv_files = list(data_path.glob("*.csv"))
     if lidar_folder.is_dir() and (txt_files or csv_files):
-        print("Guessed dataloader as raw!")
+        info("Guessed dataloader as raw!")
         return get_dataloader("raw", data_path, query_extrinsics=query_extrinsics)
 
     # Check for helipr data
@@ -127,21 +130,21 @@ def guess_dataloader(
 
     if xsens_imu_path.is_file() and lidar_folder.is_dir():
         if sequence is None:
-            print("[ERROR] HeLiPR dataLoader requires --sequence parameter")
+            error("HeLiPR dataLoader requires --sequence parameter")
             sys.exit(1)
 
         seq_folder = lidar_folder / sequence
         if not seq_folder.is_dir():
-            print(f"[ERROR] Helipr sequence folder does not exist: {seq_folder}")
+            error(f"Helipr sequence folder does not exist: {seq_folder}")
             sys.exit(1)
 
-        print("Guessed dataloader as Helipr!")
+        info("Guessed dataloader as Helipr!")
         return get_dataloader(
             "helipr", data_path, sequence=sequence, query_extrinsics=query_extrinsics
         )
 
     # No matching dataloader found
-    print(
-        f"[ERROR] Could not guess dataloader for path: {data_path}, please pass the loader with --dataloader or -d"
+    error(
+        f"Could not guess dataloader for path: {data_path}, please pass the loader with --dataloader or -d"
     )
     sys.exit(1)
