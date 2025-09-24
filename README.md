@@ -33,7 +33,7 @@
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=NNpzXdf9XmU" target="_blank">
-    <img src="https://raw.githubusercontent.com/PRBonn/rko_lio/refs/heads/master/docs/example_multiple_platforms.png" alt="Visualization of odometry system running on data from four different platforms in four different environments" style="max-width: 100%; height: auto;" width="800"/>
+    <img src="/docs/example_multiple_platforms.png" alt="Visualization of odometry system running on data from four different platforms in four different environments" style="max-width: 100%; height: auto;" width="800"/>
   </a>
   <br />
   <em>Four different platforms, four different environments, one odometry system</em>
