@@ -5,53 +5,53 @@
 
 <div align="center">
 
-[![arXiv](https://img.shields.io/badge/arXiv-2509.06593-b31b1b.svg)](https://arxiv.org/abs/2509.06593) ![GitHub License](https://img.shields.io/github/license/PRBonn/rko_lio) ![GitHub last commit](https://img.shields.io/github/last-commit/PRBonn/rko_lio) [![PyPI - Version](https://img.shields.io/pypi/v/rko_lio?color=blue)](https://pypi.org/project/rko-lio/)
+[![arXiv](https://img.shields.io/badge/arXiv-2509.06593-b31b1b.svg)](https://arxiv.org/abs/2509.06593) [![GitHub License](https://img.shields.io/github/license/PRBonn/rko_lio)](/LICENSE) [![GitHub last commit](https://img.shields.io/github/last-commit/PRBonn/rko_lio)](/) [![PyPI - Version](https://img.shields.io/pypi/v/rko_lio?color=blue)](https://pypi.org/project/rko-lio/)
 
 
 <p align="center">
   ROS Distros:<br />
-  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_humble.yaml">
-    <img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/ros_build_humble.yaml?branch=master&label=Humble" alt="Humble" />
-  </a>
-  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_jazzy.yaml">
-    <img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/ros_build_jazzy.yaml?branch=master&label=Jazzy" alt="Jazzy" />
-  </a>
-  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_kilted.yaml">
-    <img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/ros_build_kilted.yaml?branch=master&label=Kilted" alt="Kilted" />
-  </a>
-  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_rolling.yaml">
-    <img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/ros_build_rolling.yaml?branch=master&label=Rolling" alt="Rolling" />
-  </a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_humble.yaml">
+<img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/ros_build_humble.yaml?branch=master&label=Humble" alt="Humble" />
+</a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_jazzy.yaml">
+<img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/ros_build_jazzy.yaml?branch=master&label=Jazzy" alt="Jazzy" />
+</a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_kilted.yaml">
+<img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/ros_build_kilted.yaml?branch=master&label=Kilted" alt="Kilted" />
+</a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_rolling.yaml">
+<img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/ros_build_rolling.yaml?branch=master&label=Rolling" alt="Rolling" />
+</a>
 </p>
 
 </div>
 
 <p align="center">
   Python Bindings:<br />
-  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2204.yaml">
-    <img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_ubuntu_2204.yaml?branch=master&label=Ubuntu%2022.04" alt="Ubuntu 22.04" />
-  </a>
-  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2204_arm.yaml">
-    <img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_ubuntu_2204_arm.yaml?branch=master&label=Ubuntu%2022.04%20ARM" alt="Ubuntu 22.04 ARM" />
-  </a>
-  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2404.yaml">
-    <img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_ubuntu_2404.yaml?branch=master&label=Ubuntu%2024.04" alt="Ubuntu 24.04" />
-  </a>
-  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2404_arm.yaml">
-    <img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_ubuntu_2404_arm.yaml?branch=master&label=Ubuntu%2024.04%20ARM" alt="Ubuntu 24.04 ARM" />
-  </a>
-  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_14.yaml">
-    <img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_macos_14.yaml?branch=master&label=macOS%2014" alt="macOS 14" />
-  </a>
-  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_15.yaml">
-    <img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_macos_15.yaml?branch=master&label=macOS%2015" alt="macOS 15" />
-  </a>
-  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_windows_2022.yaml">
-    <img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_windows_2022.yaml?branch=master&label=Windows%202022" alt="Windows 2022" />
-  </a>
-  <a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_windows_11_arm.yaml">
-    <img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_windows_11_arm.yaml?branch=master&label=Windows%2011%20ARM" alt="Windows 11 ARM" />
-  </a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2204.yaml">
+<img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_ubuntu_2204.yaml?branch=master&label=Ubuntu%2022.04" alt="Ubuntu 22.04" />
+</a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2204_arm.yaml">
+<img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_ubuntu_2204_arm.yaml?branch=master&label=Ubuntu%2022.04%20ARM" alt="Ubuntu 22.04 ARM" />
+</a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2404.yaml">
+<img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_ubuntu_2404.yaml?branch=master&label=Ubuntu%2024.04" alt="Ubuntu 24.04" />
+</a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2404_arm.yaml">
+<img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_ubuntu_2404_arm.yaml?branch=master&label=Ubuntu%2024.04%20ARM" alt="Ubuntu 24.04 ARM" />
+</a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_14.yaml">
+<img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_macos_14.yaml?branch=master&label=macOS%2014" alt="macOS 14" />
+</a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_15.yaml">
+<img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_macos_15.yaml?branch=master&label=macOS%2015" alt="macOS 15" />
+</a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_windows_2022.yaml">
+<img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_windows_2022.yaml?branch=master&label=Windows%202022" alt="Windows 2022" />
+</a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_windows_11_arm.yaml">
+<img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_windows_11_arm.yaml?branch=master&label=Windows%2011%20ARM" alt="Windows 11 ARM" />
+</a>
 </p>
 
 
@@ -82,7 +82,7 @@ Next, run
 
 ```bash
 # data path should be a directory with *.bag files (ROS1) or a metadata.yaml (ROS2)
-rko_lio -v /path/to/data 
+rko_lio -v /path/to/data
 ```
 
 and you should be good to go!
