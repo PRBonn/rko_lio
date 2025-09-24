@@ -4,6 +4,8 @@ Supported ROS Distros: Humble, Jazzy, Kilted and Rolling.
 
 ## Setup
 
+> We are working on getting the odometry package into the ROS index, so you can install it using system package managers instead of building from source.
+
 ### Build from source
 
 Our system dependencies are:
