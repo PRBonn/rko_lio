@@ -2,8 +2,8 @@
 Changelog for package rko_lio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.2 (2025-09-26)
+------------------
 * Drop irregular lidar frames (`#35 <https://github.com/PRBonn/rko_lio/issues/35>`_)
   * if incoming lidar scan has a stamp with too big of a delta to the previous, we treat it as an error
 * fix component registration so online node component shows up in ros2 component types (`#34 <https://github.com/PRBonn/rko_lio/issues/34>`_)
