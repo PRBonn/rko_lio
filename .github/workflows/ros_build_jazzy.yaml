@@ -1,7 +1,7 @@
 name: Jazzy
 on:
   push:
-    branches: [master]
+    branches: [change_layout_for_ros]
   pull_request:
     branches: [master]
 jobs:
@@ -9,3 +9,4 @@ jobs:
     uses: ./.github/workflows/ros_build_reusable.yaml
     with:
       ros_distro: jazzy
+      container_image: osrf/ros:jazzy-desktop
