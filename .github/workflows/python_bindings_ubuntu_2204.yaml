@@ -1,7 +1,7 @@
 name: Ubuntu 22.04
 on:
   push:
-    branches: [change_layout_for_ros]
+    branches: [master]
   pull_request:
     branches: [master]
 jobs:
