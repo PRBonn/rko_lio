@@ -66,7 +66,7 @@ if(RKO_LIO_BUILD_ROS AND ament_cmake_FOUND)
     EXPORT rko_lioTargets
     RUNTIME DESTINATION lib/${PROJECT_NAME})
 
-  install(DIRECTORY config launch DESTINATION share/rko_lio)
+  install(DIRECTORY ros/config ros/launch DESTINATION share/rko_lio)
 
   ament_export_targets(rko_lioTargets)
 
