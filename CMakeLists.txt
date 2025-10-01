@@ -33,7 +33,6 @@ find_package(nlohmann_json REQUIRED CONFIG)
 
 add_subdirectory(cpp/rko_lio/core)
 
-# TODO: see if there's a better way to check if colcon was invoked or pure cmake
 option(RKO_LIO_BUILD_ROS "Build the ROS wrapper for RKO LIO" ON)
 find_package(ament_cmake QUIET)
 
