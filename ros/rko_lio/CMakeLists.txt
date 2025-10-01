@@ -22,8 +22,6 @@
 
 add_subdirectory(ros_utils)
 
-add_subdirectory(../../cpp ${CMAKE_CURRENT_BINARY_DIR}/rko_lio_cpp)
-
 add_library(rko_lio.ros STATIC)
 add_library(rko_lio::ros ALIAS rko_lio.ros)
 target_sources(
