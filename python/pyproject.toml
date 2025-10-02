@@ -4,7 +4,7 @@ build-backend = "scikit_build_core.build"
 
 [project]
 name = "rko_lio"
-version = "0.1.2"
+version = "0.1.3"
 description = "A Robust Approach for LiDAR-Inertial Odometry Without Sensor-Specific Modelling"
 authors = [{ name = "Meher Malladi", email = "rm.meher97@gmail.com" }]
 readme = "README.md"
