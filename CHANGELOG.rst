@@ -2,6 +2,32 @@
 Changelog for package rko_lio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* temp fix: ros builds when FETCHCONTENT_FULLY_DISABLED is ON, aka the ros build farm (`#45 <https://github.com/PRBonn/rko_lio/issues/45>`_)
+  * clean up ament target dependencies deprecation
+  * update bonxai version
+  * add bonxai core source to dependencies/bonxai with a check to include only on specific conditions
+* Change package layout to make ros package release easier (`#44 <https://github.com/PRBonn/rko_lio/issues/44>`_)
+  * move ros/cmake and package xml out. merge core cmake into root cmake
+  * build ros by default, but disable it for the python build
+  * makefile recipe disables ros build by default for cpp only build
+  * clean up ros workflows a bit
+* Bump pypa/cibuildwheel from 3.1.4 to 3.2.0 (`#42 <https://github.com/PRBonn/rko_lio/issues/42>`_)
+  Bumps [pypa/cibuildwheel](https://github.com/pypa/cibuildwheel) from 3.1.4 to 3.2.0.
+  - [Release notes](https://github.com/pypa/cibuildwheel/releases)
+  - [Changelog](https://github.com/pypa/cibuildwheel/blob/main/docs/changelog.md)
+  - [Commits](https://github.com/pypa/cibuildwheel/compare/v3.1.4...v3.2.0)
+  ---
+  updated-dependencies:
+  - dependency-name: pypa/cibuildwheel
+  dependency-version: 3.2.0
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+  ...
+  Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+* Contributors: Meher Malladi, dependabot[bot]
+
 0.1.2 (2025-09-26)
 ------------------
 * Drop irregular lidar frames (`#35 <https://github.com/PRBonn/rko_lio/issues/35>`_)
