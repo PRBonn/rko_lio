@@ -33,22 +33,30 @@ target_sources(
          ../rko_lio/node.hpp
          BASE_DIRS
          ..)
-ament_target_dependencies(
+target_link_libraries(
   rko_lio.ros
-  PUBLIC
-  rclcpp
-  std_msgs
-  tf2
-  tf2_ros
-  sensor_msgs
-  nav_msgs
-  geometry_msgs)
-target_link_libraries(rko_lio.ros PUBLIC rko_lio::ros_utils rko_lio::core
-                                         Sophus::Sophus Eigen3::Eigen)
+  PUBLIC rko_lio::ros_utils
+         # ros deps
+         ${geometry_msgs_TARGETS}
+         ${nav_msgs_TARGETS}
+         ${sensor_msgs_TARGETS}
+         ${std_msgs_TARGETS}
+         rclcpp::rclcpp
+         sensor_msgs::sensor_msgs_library
+         tf2::tf2
+         tf2_ros::static_transform_broadcaster_node
+         tf2_ros::tf2_ros
+         # ros deps end
+         rko_lio::core
+         Sophus::Sophus
+         Eigen3::Eigen)
 
 add_executable(offline_node offline_node.cpp)
 target_link_libraries(offline_node PRIVATE rko_lio::ros)
 
 add_library(online_node_component SHARED online_node.cpp)
-ament_target_dependencies(online_node_component PUBLIC rclcpp_components)
-target_link_libraries(online_node_component PRIVATE rko_lio::ros)
+target_link_libraries(
+  online_node_component
+  PRIVATE rko_lio::ros
+          # ros deps
+          rclcpp_components::component rclcpp_components::component_manager)

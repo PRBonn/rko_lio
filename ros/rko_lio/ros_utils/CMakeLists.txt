@@ -37,14 +37,18 @@ target_sources(
          ../../rko_lio/ros_utils/transforms.hpp
          BASE_DIRS
          ../..)
-ament_target_dependencies(
+target_link_libraries(
   rko_lio.ros_utils
-  PUBLIC
-  rclcpp
-  tf2
-  tf2_ros
-  sensor_msgs
-  rosbag2_cpp
-  rosbag2_storage)
-target_link_libraries(rko_lio.ros_utils PRIVATE Sophus::Sophus Eigen3::Eigen)
+  PUBLIC # ros deps
+         ${sensor_msgs_TARGETS}
+         rclcpp::rclcpp
+         rosbag2_cpp::rosbag2_cpp
+         rosbag2_storage::rosbag2_storage
+         sensor_msgs::sensor_msgs_library
+         tf2::tf2
+         tf2_ros::static_transform_broadcaster_node
+         tf2_ros::tf2_ros
+         # ros deps end
+         Sophus::Sophus
+         Eigen3::Eigen)
 # TODO: add the ros_utils as a library export target to enable reuse
