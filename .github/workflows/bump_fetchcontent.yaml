@@ -7,6 +7,6 @@ jobs:
   bump-fetchcontent:
     runs-on: ubuntu-latest
     steps:
-      - uses: mehermvr/bump_fetchcontent@0.0.1
+      - uses: mehermvr/bump_fetchcontent@v0.0.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
