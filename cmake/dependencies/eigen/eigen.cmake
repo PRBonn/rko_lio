@@ -19,6 +19,6 @@ set(EIGEN_BUILD_LAPACK
 
 FetchContent_Declare(
   Eigen3
-  URL https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
+  URL https://gitlab.com/libeigen/eigen/-/archive/5.0.0/eigen-5.0.0.tar.gz
       SYSTEM EXCLUDE_FROM_ALL OVERRIDE_FIND_PACKAGE)
 FetchContent_MakeAvailable(Eigen3)
