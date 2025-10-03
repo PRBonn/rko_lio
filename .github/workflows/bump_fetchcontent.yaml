@@ -9,4 +9,4 @@ jobs:
     steps:
       - uses: mehermvr/bump_fetchcontent@v0.0.1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.BUMP_FETCHCONTENT_TOKEN }}
