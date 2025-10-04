@@ -24,8 +24,13 @@
 # for CMake < 3.23. Adds private sources normally, adds include directories
 # fallback using BASE_DIRS
 macro(compat_target_sources target)
-  list(REMOVE_AT ARGV 0)
-  set(args ${ARGV})
+  if(NOT ARGC GREATER 0)
+    message(FATAL_ERROR "compat_target_sources requires at least 1 argument")
+  endif()
+  set(all_args ${ARGV})
+  list(REMOVE_AT all_args 0)
+  set(target ${ARGV0})
+  set(args ${all_args})
 
   if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.23")
     target_sources(${target} ${args})
