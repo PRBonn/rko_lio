@@ -38,6 +38,9 @@ jobs:
     if: github.event_name == 'release'
     needs: [cibuildwheel]
     runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
     steps:
       - uses: actions/download-artifact@v5
         with:
@@ -45,6 +48,3 @@ jobs:
           path: dist
           merge-multiple: true
       - uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
-          # TODO: switch to trusted publishing
