@@ -2,8 +2,8 @@
 Changelog for package rko_lio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.5 (2025-10-04)
+------------------
 * Drop cmake min version to 3.22.1 to support ros humble builds with default toolchains  (`#52 <https://github.com/PRBonn/rko_lio/issues/52>`_)
   * mock a find package file if cmake below version 3.24
   * different sophus version compat for older cmake
