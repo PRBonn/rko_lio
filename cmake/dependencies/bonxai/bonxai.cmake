@@ -18,39 +18,39 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-FetchContent_Declare(
-  Bonxai
-  GIT_REPOSITORY https://github.com/facontidavide/Bonxai.git
-  GIT_TAG 02d401b1ce38bce870c6704bcd4e35a56a641411 # sep 14 2025 master
-  SOURCE_SUBDIR bonxai_core ${RKO_LIO_FETCHCONTENT_COMMON_FLAGS})
-FetchContent_MakeAvailable(Bonxai)
-
-if(FETCHCONTENT_FULLY_DISCONNECTED)
-  # the ros build farm uses this option to perform an isolated build. but as per
-  # the author of FetchContent himself, this is an abuse of the flag. See
-  # https://github.com/Homebrew/brew/pull/17075 and
-  # https://gitlab.kitware.com/cmake/cmake/-/issues/25946. Nevertheless this is
-  # a problem for us since Bonxai is not part of rosdistro yet. See here for
-  # progress: https://github.com/facontidavide/Bonxai/issues/55. Since a user
-  # can use this flag as valid behavior, the following is my best attempt at
-  # catching the specific situation in the build farm. Hopefully soon enough, i
-  # can remove this hack and stop vendoring bonxai code in my own repository.
-
-  file(
-    GLOB_RECURSE bonxai_source_files
-    LIST_DIRECTORIES false
-    "${bonxai_SOURCE_DIR}/*")
-
-  list(LENGTH bonxai_source_files bonxai_source_count)
-
-  if(bonxai_source_count EQUAL 0)
+if(CMAKE_EXPORT_NO_PACKAGE_REGISTRY STREQUAL "ON"
+   AND CMAKE_FIND_USE_PACKAGE_REGISTRY STREQUAL "OFF"
+   AND CMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY STREQUAL "ON")
+  # looks like the humble isolated build won't be using
+  # FETCHCONTENT_FULLY_DISCONNECTED and I can think of no other way to detect
+  # this case, except match all the other variables they set
+  message(
+    WARNING
+      "You're probably doing a network-isolated build. But Bonxai is a required dependency which should be fetched. It's being manually vendored in the repo for now for this purpose."
+  )
+  if(NOT FETCHCONTENT_FULLY_DISCONNECTED)
+    # noble isolated builds have this as ON. the purpose of this if is to just
+    # emit a warning in case a user unintentionally ends up in this branch. as
+    # per the author of FetchContent himself, the build farm use is an abuse of
+    # the flag. See https://github.com/Homebrew/brew/pull/17075 and
+    # https://gitlab.kitware.com/cmake/cmake/-/issues/25946. Nevertheless this
+    # is a problem for us since Bonxai is not part of rosdistro yet. See here
+    # for progress: https://github.com/facontidavide/Bonxai/issues/55. Hopefully
+    # soon enough, i can remove this hack and stop vendoring bonxai code in my
+    # own repository.
     message(
       WARNING
-        "Bonxai source directory (${bonxai_SOURCE_DIR}) is empty and FETCHCONTENT_FULLY_DISCONNECTED is ON. This is likely unintended. Bonxai will be manually included for now as it is a required dependency."
+        "It looks like an isolated build is happening, but FETCHCONTENT_FULLY_DISCONNECTED is not ON."
     )
-    add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/bonxai_core)
   endif()
-
+  add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/bonxai_core)
+else()
+  FetchContent_Declare(
+    Bonxai
+    GIT_REPOSITORY https://github.com/facontidavide/Bonxai.git
+    GIT_TAG 02d401b1ce38bce870c6704bcd4e35a56a641411 # sep 14 2025 master
+    SOURCE_SUBDIR bonxai_core ${RKO_LIO_FETCHCONTENT_COMMON_FLAGS})
+  FetchContent_MakeAvailable(Bonxai)
 endif()
 
 mock_find_package_for_older_cmake(Bonxai)
