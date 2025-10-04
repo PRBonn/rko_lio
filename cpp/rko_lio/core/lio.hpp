@@ -26,6 +26,7 @@
 #include "sparse_voxel_grid.hpp"
 #include "util.hpp"
 #include <filesystem>
+#include <optional>
 
 namespace rko_lio::core {
 // return type struct in place of a tuple
