@@ -36,7 +36,7 @@ if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.28")
   list(APPEND RKO_LIO_FETCHCONTENT_COMMON_FLAGS EXCLUDE_FROM_ALL)
 endif()
 
-include("${CMAKE_CURRENT_LIST_DIR}/mock_find_package.cmake")
+include(${CMAKE_CURRENT_LIST_DIR}/mock_find_package.cmake)
 
 # Bonxai (always fetched, as upstream releases no system version)
 include(${CMAKE_CURRENT_LIST_DIR}/dependencies/bonxai/bonxai.cmake)

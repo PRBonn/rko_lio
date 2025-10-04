@@ -18,12 +18,20 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-if(CMAKE_EXPORT_NO_PACKAGE_REGISTRY STREQUAL "ON"
-   AND CMAKE_FIND_USE_PACKAGE_REGISTRY STREQUAL "OFF"
-   AND CMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY STREQUAL "ON")
-  # looks like the humble isolated build won't be using
-  # FETCHCONTENT_FULLY_DISCONNECTED and I can think of no other way to detect
-  # this case, except match all the other variables they set
+FetchContent_Declare(
+  Bonxai
+  GIT_REPOSITORY https://github.com/facontidavide/Bonxai.git
+  GIT_TAG 02d401b1ce38bce870c6704bcd4e35a56a641411 # sep 14 2025 master
+  SOURCE_SUBDIR bonxai_core ${RKO_LIO_FETCHCONTENT_COMMON_FLAGS})
+
+if(NOT
+   (CMAKE_EXPORT_NO_PACKAGE_REGISTRY STREQUAL "ON"
+    AND CMAKE_FIND_USE_PACKAGE_REGISTRY STREQUAL "OFF"
+    AND CMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY STREQUAL "ON"))
+  # This branch is usual behaviour. The else branch is relevant for network
+  # isolated builds
+  FetchContent_MakeAvailable(Bonxai)
+else()
   message(
     WARNING
       "You're probably doing a network-isolated build. But Bonxai is a required dependency which should be fetched. It's being manually vendored in the repo for now for this purpose."
@@ -44,13 +52,6 @@ if(CMAKE_EXPORT_NO_PACKAGE_REGISTRY STREQUAL "ON"
     )
   endif()
   add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/bonxai_core)
-else()
-  FetchContent_Declare(
-    Bonxai
-    GIT_REPOSITORY https://github.com/facontidavide/Bonxai.git
-    GIT_TAG 02d401b1ce38bce870c6704bcd4e35a56a641411 # sep 14 2025 master
-    SOURCE_SUBDIR bonxai_core ${RKO_LIO_FETCHCONTENT_COMMON_FLAGS})
-  FetchContent_MakeAvailable(Bonxai)
 endif()
 
 mock_find_package_for_older_cmake(Bonxai)

@@ -21,6 +21,7 @@
 macro(mock_find_package_for_older_cmake PACKAGE_NAME)
   # Only if CMake < 3.24 (no OVERRIDE_FIND_PACKAGE)
   if(NOT CMAKE_VERSION VERSION_GREATER_EQUAL "3.24")
+    message(STATUS "Mocking find_package for ${PACKAGE_NAME}")
     set(MOCK_CONFIG_DIR "${CMAKE_BINARY_DIR}/cmake-mock-configs")
     if(NOT EXISTS "${MOCK_CONFIG_DIR}")
       file(MAKE_DIRECTORY "${MOCK_CONFIG_DIR}")
