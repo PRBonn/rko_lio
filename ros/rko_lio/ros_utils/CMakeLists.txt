@@ -24,23 +24,18 @@ add_library(rko_lio.ros_utils STATIC)
 add_library(rko_lio::ros_utils ALIAS rko_lio.ros_utils)
 compat_target_sources(
   rko_lio.ros_utils
-  PRIVATE
-  point_cloud_read.cpp
-  point_cloud_write.cpp
-  rosbag_utils.cpp
+  PRIVATE point_cloud_read.cpp point_cloud_write.cpp rosbag_utils.cpp
   PUBLIC
   FILE_SET
   HEADERS
-  FILES
-  ../../rko_lio/ros_utils/point_cloud_read.hpp
-  ../../rko_lio/ros_utils/point_cloud_write.hpp
-  ../../rko_lio/ros_utils/ros_utils.hpp
-  ../../rko_lio/ros_utils/ros_vectors.hpp
-  ../../rko_lio/ros_utils/rosbag_utils.hpp
-  ../../rko_lio/ros_utils/time.hpp
-  ../../rko_lio/ros_utils/transforms.hpp
-  BASE_DIRS
-  ../..)
+  FILES ../../rko_lio/ros_utils/point_cloud_read.hpp
+        ../../rko_lio/ros_utils/point_cloud_write.hpp
+        ../../rko_lio/ros_utils/ros_utils.hpp
+        ../../rko_lio/ros_utils/ros_vectors.hpp
+        ../../rko_lio/ros_utils/rosbag_utils.hpp
+        ../../rko_lio/ros_utils/time.hpp
+        ../../rko_lio/ros_utils/transforms.hpp
+  BASE_DIRS ../..)
 target_link_libraries(
   rko_lio.ros_utils
   PUBLIC # ros deps
