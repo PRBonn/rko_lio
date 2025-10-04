@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-cmake_minimum_required(VERSION 3.28)
+cmake_minimum_required(VERSION 3.26.5)
 project(rko_lio LANGUAGES CXX)
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/dependencies.cmake)

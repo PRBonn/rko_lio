@@ -7,5 +7,5 @@ option(TBB_TEST OFF)
 FetchContent_Declare(
   TBB
   URL https://github.com/uxlfoundation/oneTBB/archive/refs/tags/v2022.2.0.tar.gz
-      SYSTEM EXCLUDE_FROM_ALL OVERRIDE_FIND_PACKAGE)
+      ${RKO_LIO_FETCHCONTENT_COMMON_FLAGS})
 FetchContent_MakeAvailable(TBB)

@@ -13,5 +13,5 @@ set(BUILD_PYTHON_BINDINGS
 
 FetchContent_Declare(
   Sophus URL https://github.com/strasdat/Sophus/archive/refs/tags/1.24.6.tar.gz
-             SYSTEM EXCLUDE_FROM_ALL OVERRIDE_FIND_PACKAGE)
+             ${RKO_LIO_FETCHCONTENT_COMMON_FLAGS})
 FetchContent_MakeAvailable(Sophus)
