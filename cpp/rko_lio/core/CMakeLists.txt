@@ -22,21 +22,25 @@
 
 add_library(rko_lio.core STATIC)
 add_library(rko_lio::core ALIAS rko_lio.core)
-target_sources(
+compat_target_sources(
   rko_lio.core
-  PRIVATE lio.cpp sparse_voxel_grid.cpp voxel_down_sample.cpp
-          process_timestamps.cpp
-  PUBLIC FILE_SET
-         HEADERS
-         FILES
-         ../../rko_lio/core/lio.hpp
-         ../../rko_lio/core/process_timestamps.hpp
-         ../../rko_lio/core/profiler.hpp
-         ../../rko_lio/core/sparse_voxel_grid.hpp
-         ../../rko_lio/core/util.hpp
-         ../../rko_lio/core/voxel_down_sample.hpp
-         BASE_DIRS
-         ../..)
+  PRIVATE
+  lio.cpp
+  sparse_voxel_grid.cpp
+  voxel_down_sample.cpp
+  process_timestamps.cpp
+  PUBLIC
+  FILE_SET
+  HEADERS
+  FILES
+  ../../rko_lio/core/lio.hpp
+  ../../rko_lio/core/process_timestamps.hpp
+  ../../rko_lio/core/profiler.hpp
+  ../../rko_lio/core/sparse_voxel_grid.hpp
+  ../../rko_lio/core/util.hpp
+  ../../rko_lio/core/voxel_down_sample.hpp
+  BASE_DIRS
+  ../..)
 target_link_libraries(
   rko_lio.core
   PRIVATE nlohmann_json::nlohmann_json TBB::tbb

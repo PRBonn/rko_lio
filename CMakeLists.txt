@@ -23,7 +23,8 @@
 cmake_minimum_required(VERSION 3.22.1)
 project(rko_lio LANGUAGES CXX)
 
-include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/dependencies.cmake)
+include(cmake/dependencies.cmake)
+include(cmake/compat_target_sources.cmake)
 
 find_package(Eigen3 3.4 REQUIRED CONFIG)
 find_package(Sophus REQUIRED CONFIG)

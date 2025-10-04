@@ -24,15 +24,17 @@ add_subdirectory(ros_utils)
 
 add_library(rko_lio.ros STATIC)
 add_library(rko_lio::ros ALIAS rko_lio.ros)
-target_sources(
+compat_target_sources(
   rko_lio.ros
-  PRIVATE node.cpp
-  PUBLIC FILE_SET
-         HEADERS
-         FILES
-         ../rko_lio/node.hpp
-         BASE_DIRS
-         ..)
+  PRIVATE
+  node.cpp
+  PUBLIC
+  FILE_SET
+  HEADERS
+  FILES
+  ../rko_lio/node.hpp
+  BASE_DIRS
+  ..)
 target_link_libraries(
   rko_lio.ros
   PUBLIC rko_lio::ros_utils
