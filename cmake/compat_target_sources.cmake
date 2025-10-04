@@ -24,47 +24,26 @@
 # for CMake < 3.23. Adds private sources normally, adds include directories
 # fallback using BASE_DIRS
 macro(compat_target_sources target)
-  if(NOT ARGC GREATER 0)
-    message(FATAL_ERROR "compat_target_sources requires at least 1 argument")
-  endif()
-  set(all_args ${ARGV})
-  list(REMOVE_AT all_args 0)
-  set(target ${ARGV0})
-  set(args ${all_args})
+  set(options)
+  set(oneValueArgs BASE_DIRS)
+  set(multiValueArgs
+      PRIVATE
+      PUBLIC
+      FILE_SET
+      HEADERS
+      FILES)
+
+  cmake_parse_arguments(
+    CTS
+    "${options}"
+    "${oneValueArgs}"
+    "${multiValueArgs}"
+    ${ARGN})
 
   if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.23")
-    target_sources(${target} ${args})
+    target_sources(${target} ${ARGN})
   else()
-    set(private_sources)
-    set(base_dir "")
-    set(in_private OFF)
-    set(in_public OFF)
-    foreach(arg IN LISTS args)
-      if(arg STREQUAL "PRIVATE")
-        set(in_private ON)
-        set(in_public OFF)
-        continue()
-      elseif(arg STREQUAL "PUBLIC")
-        set(in_private OFF)
-        set(in_public ON)
-        continue()
-      elseif(arg STREQUAL "BASE_DIRS")
-        set(in_private OFF)
-        set(in_public OFF)
-        continue()
-      endif()
-
-      if(in_private)
-        list(APPEND private_sources ${arg})
-      elseif(
-        NOT in_private
-        AND NOT in_public
-        AND NOT base_dir)
-        set(base_dir ${arg})
-      endif()
-    endforeach()
-
-    target_sources(${target} PRIVATE ${private_sources})
-    target_include_directories(${target} PUBLIC "${base_dir}")
+    target_sources(${target} PRIVATE ${CTS_PRIVATE})
+    target_include_directories(${target} PUBLIC "${CTS_BASE_DIRS}")
   endif()
 endmacro()
