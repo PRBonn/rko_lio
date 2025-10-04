@@ -9,3 +9,5 @@ FetchContent_Declare(
   URL https://github.com/uxlfoundation/oneTBB/archive/refs/tags/v2022.2.0.tar.gz
       ${RKO_LIO_FETCHCONTENT_COMMON_FLAGS})
 FetchContent_MakeAvailable(TBB)
+
+mock_find_package_for_older_cmake(TBB)

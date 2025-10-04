@@ -22,3 +22,5 @@ FetchContent_Declare(
   URL https://gitlab.com/libeigen/eigen/-/archive/5.0.0/eigen-5.0.0.tar.gz
       ${RKO_LIO_FETCHCONTENT_COMMON_FLAGS})
 FetchContent_MakeAvailable(Eigen3)
+
+mock_find_package_for_older_cmake(Eigen3)

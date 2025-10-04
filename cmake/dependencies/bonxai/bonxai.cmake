@@ -32,3 +32,5 @@ if(FETCHCONTENT_FULLY_DISCONNECTED)
   endif()
 
 endif()
+
+mock_find_package_for_older_cmake(Bonxai)

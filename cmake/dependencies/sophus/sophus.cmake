@@ -15,3 +15,5 @@ FetchContent_Declare(
   Sophus URL https://github.com/strasdat/Sophus/archive/refs/tags/1.24.6.tar.gz
              ${RKO_LIO_FETCHCONTENT_COMMON_FLAGS})
 FetchContent_MakeAvailable(Sophus)
+
+mock_find_package_for_older_cmake(Sophus)
