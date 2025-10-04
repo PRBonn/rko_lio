@@ -2,6 +2,17 @@
 Changelog for package rko_lio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Drop ros cmake min version to 3.26.5.  (`#50 <https://github.com/PRBonn/rko_lio/issues/50>`_)
+  * Conditional fetchcontent flags to include exclude_from_all only if version > 3.28. Should fix rhel 9 builds for ros
+* Bump FetchContent dependencies (`#49 <https://github.com/PRBonn/rko_lio/issues/49>`_)
+  * bump Eigen FetchContent to 5.0
+  ---------
+  Co-authored-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+  Co-authored-by: Meher Malladi <rm.meher97@gmail.com>
+* Contributors: Meher Malladi, github-actions[bot]
+
 0.1.3 (2025-10-02)
 ------------------
 * temp fix: ros builds when FETCHCONTENT_FULLY_DISABLED is ON, aka the ros build farm (`#45 <https://github.com/PRBonn/rko_lio/issues/45>`_)
