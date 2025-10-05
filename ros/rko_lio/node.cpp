@@ -83,7 +83,7 @@ Node::Node(const std::string& node_name, const rclcpp::NodeOptions& options) {
     map_topic = node->declare_parameter<std::string>("map_topic", "/rko_lio/local_map");
     publish_map_after = core::Secondsd(node->declare_parameter<double>("publish_map_after", publish_map_after.count()));
     map_publisher = node->create_publisher<sensor_msgs::msg::PointCloud2>(map_topic, publisher_qos);
-    map_publish_thead = std::jthread([this]() { publish_map_loop(); });
+    map_publish_thead = jthread([this]() { publish_map_loop(); });
   }
 
   // lio params
@@ -123,7 +123,7 @@ Node::Node(const std::string& node_name, const rclcpp::NodeOptions& options) {
                          << (lio->config.deskew ? "enabled" : "disabled") << "."
                          << (publish_deskewed_scan ? " Publishing deskewed_cloud to /rko_lio/frame." : ""));
 
-  registration_thread = std::jthread([this]() { registration_loop(); });
+  registration_thread = jthread([this]() { registration_loop(); });
 
   RCLCPP_INFO(node->get_logger(), "RKO LIO Node is up!");
 }

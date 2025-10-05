@@ -46,9 +46,9 @@
 
 #if defined(__GNUC__) && (__GNUC__ < 10)
 #include "compat_jthread.hpp"
-namespace std {
 using jthread = rko_lio::compat::jthread;
-}
+#else
+using jthread = std::jthread;
 #endif
 
 namespace rko_lio::ros {
@@ -87,11 +87,11 @@ public:
   rclcpp::Publisher<geometry_msgs::msg::AccelStamped>::SharedPtr lidar_accel_publisher;
 
   // multithreading
-  std::jthread map_publish_thead;
+  jthread map_publish_thead;
   core::Secondsd publish_map_after = std::chrono::seconds(1);
   std::mutex local_map_mutex;
 
-  std::jthread registration_thread;
+  jthread registration_thread;
   std::mutex buffer_mutex;
   std::condition_variable sync_condition_variable;
   std::atomic<bool> atomic_node_running = true;
