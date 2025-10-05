@@ -237,7 +237,11 @@ void Node::lidar_callback(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& l
 
     {
       std::lock_guard lock(buffer_mutex);
+#if defined(__GNUC__) && (__GNUC__ < 10)
+      lidar_buffer.emplace(core::LidarFrame{start_stamp, end_stamp, timestamps, scan});
+#else
       lidar_buffer.emplace(start_stamp, end_stamp, timestamps, scan);
+#endif
       atomic_can_process = !imu_buffer.empty() && imu_buffer.back().time > lidar_buffer.front().end;
     }
     if (atomic_can_process) {

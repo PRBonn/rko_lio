@@ -47,7 +47,8 @@ std::vector<Eigen::Vector3d> voxel_down_sample(const std::vector<Eigen::Vector3d
   grid.reserve(frame.size());
   std::for_each(frame.cbegin(), frame.cend(), [&](const auto& point) {
     const auto voxel = PointToVoxel(point, voxel_size);
-    if (!grid.contains(voxel)) {
+    if (grid.find(voxel) == grid.end()) {
+      // gcc 8.5 means no grid.contains
       grid.insert({voxel, point});
     }
   });

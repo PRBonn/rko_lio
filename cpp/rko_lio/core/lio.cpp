@@ -82,9 +82,11 @@ inline void transform_points(const Sophus::SE3d& T, Vector3dVector& points) {
 }
 
 template <typename Functor>
+#if defined(__GNUC__) && (__GNUC__ >= 10)
   requires requires(Functor f, Secondsd stamp) {
     { f(stamp) } -> std::same_as<Sophus::SE3d>;
   }
+#endif
 std::tuple<Vector3dVector, Vector3dVector, Vector3dVector> preprocess_scan(const Vector3dVector& frame,
                                                                            const TimestampVector& timestamps,
                                                                            const Secondsd end_time,
@@ -140,6 +142,17 @@ inline Eigen::Vector3d compute_acceleration_cost_residual(const Eigen::Vector3d&
   return error;
 }
 
+#if defined(__GNUC__) && __GNUC__ < 9
+// from the excellent https://stackoverflow.com/a/76584668
+// because transform_reduce is not available
+template <class R, class M>
+auto map_reduce(R&& reduce, M&& map) {
+  return [r = std::forward<R>(reduce), m = std::forward<M>(map)](auto& acc, auto&& val) mutable {
+    return r(acc, m(std::forward<decltype(val)>(val)));
+  };
+}
+#endif
+
 using LinearSystem = std::tuple<Eigen::Matrix6d, Eigen::Vector6d, double>;
 LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose, const Correspondences& correspondences) {
   auto linear_system_reduce = [](LinearSystem lhs, const LinearSystem& rhs) {
@@ -159,6 +172,17 @@ LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose, const Cor
     return J_icp_l;
   };
 
+#if defined(__GNUC__) && (__GNUC__ < 9)
+  // both reduce and transform_reduce are not available with gcc 8.5 (rhel 8)
+  const auto& [H_icp, b_icp, chi_icp] =
+      std::accumulate(correspondences.cbegin(), correspondences.cend(),
+                      LinearSystem(Eigen::Matrix6d::Zero(), Eigen::Vector6d::Zero(), 0.0),
+                      map_reduce(linear_system_reduce, [&](const auto& correspondence) {
+                        const Eigen::Vector3d residual = compute_point_to_point_residual(current_pose, correspondence);
+                        const auto J = calculate_icp_jacobian(current_pose, correspondence);
+                        return LinearSystem(J.transpose() * J, J.transpose() * residual, residual.squaredNorm());
+                      }));
+#else
   const auto& [H_icp, b_icp, chi_icp] =
       std::transform_reduce(correspondences.cbegin(), correspondences.cend(),
                             LinearSystem(Eigen::Matrix6d::Zero(), Eigen::Vector6d::Zero(), 0.0), linear_system_reduce,
@@ -171,6 +195,7 @@ LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose, const Cor
                                                   J.transpose() * residual, // JT * R.inv() * r
                                                   residual.squaredNorm());  // chi
                             });
+#endif
 
   return {H_icp / correspondences.size(), b_icp / correspondences.size(), 0.5 * chi_icp};
 }

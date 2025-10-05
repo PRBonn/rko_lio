@@ -28,11 +28,13 @@
 
 namespace rko_lio::ros_utils {
 void eigen_vector3d_to_ros_xyz(const Eigen::Vector3d& vector, auto& ros_vector)
+#if defined(__GNUC__) && (__GNUC__ >= 10)
   requires requires(decltype(ros_vector) v) {
     { v.x } -> std::convertible_to<double>;
     { v.y } -> std::convertible_to<double>;
     { v.z } -> std::convertible_to<double>;
   }
+#endif
 {
   ros_vector.x = vector[0];
   ros_vector.y = vector[1];

@@ -44,6 +44,13 @@
 #include <tf2_ros/transform_broadcaster.h>
 #include <tf2_ros/transform_listener.h>
 
+#if defined(__GNUC__) && (__GNUC__ < 10)
+#include "compat_jthread.hpp"
+namespace std {
+using jthread = rko_lio::compat::jthread;
+}
+#endif
+
 namespace rko_lio::ros {
 class Node {
 public:

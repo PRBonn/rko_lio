@@ -50,4 +50,9 @@ target_link_libraries(
          # ros deps end
          Sophus::Sophus
          Eigen3::Eigen)
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+  if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS "9.0")
+    target_compile_options(rko_lio.ros_utils PUBLIC "-fconcepts")
+  endif()
+endif()
 # TODO: add the ros_utils as a library export target to enable reuse
