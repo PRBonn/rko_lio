@@ -2,21 +2,19 @@
 
 The package is split into three parts, a core C++ library in `cpp`, which implements all the LiDAR-inertial odometry logic, and the python bindings in `python` and the ROS interface in `ros`, which essentially handle reading data.
 
-The main build requirement probably is `CMake>=3.28`, due to how we handle core library dependencies.
+I highly recommend you use `cmake>=3.28`, due to how I handle core library dependencies.
 This is the default CMake version on Ubuntu 24.04 (also the ROS Jazzy/Kilted target Ubuntu platform).
-If you are on older systems, your options to satisfy the version are either `pip install cmake` or to build CMake from source (see [this section](#upgrading-cmake-to-version-328)).
+We still support building with `3.22`, which is the default version on Ubuntu 22.04 (if you're using humble), but this is less tested.
+In case you encounter some build problems, please report it, and I'll look into it.
 
-Additionally, in the different build options we provide ([cpp](Makefile#L7), [python](python/pyproject.toml#L50), [ros](ros/colcon.pkg#L2)), we default to using `ninja` as a generator.
+I also recommend using `ninja` as a generator.
 On ubuntu, you can install it with
 
 ```bash
 sudo apt install ninja-build
 ```
 
-You can switch this out if required.
-
-In summary, `CMake>=3.28` and `ninja` (optional) are the two build requirements.
-The python build additionally handles the CMake and ninja requirements as well.
+The python build will automatically use both `cmake>=3.28` and `ninja`.
 
 ## The core library
 

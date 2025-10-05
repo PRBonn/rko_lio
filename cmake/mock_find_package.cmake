@@ -1,5 +1,3 @@
-# MIT License
-#
 # Copyright (c) 2025 Meher V.R. Malladi.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,15 +18,25 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-cmake_minimum_required(VERSION 3.28)
-project(rko_lio_core LANGUAGES CXX)
+macro(mock_find_package_for_older_cmake PACKAGE_NAME)
+  # Only if CMake < 3.24 (no OVERRIDE_FIND_PACKAGE)
+  if(NOT CMAKE_VERSION VERSION_GREATER_EQUAL "3.24")
+    message(STATUS "Mocking find_package for ${PACKAGE_NAME}")
+    set(MOCK_CONFIG_DIR "${CMAKE_BINARY_DIR}/cmake-mock-configs")
+    if(NOT EXISTS "${MOCK_CONFIG_DIR}")
+      file(MAKE_DIRECTORY "${MOCK_CONFIG_DIR}")
+    endif()
 
-include(${CMAKE_CURRENT_SOURCE_DIR}/../cmake/dependencies.cmake)
+    list(APPEND CMAKE_PREFIX_PATH "${MOCK_CONFIG_DIR}")
+    list(REMOVE_DUPLICATES CMAKE_PREFIX_PATH)
+    set(CMAKE_PREFIX_PATH
+        "${CMAKE_PREFIX_PATH}"
+        CACHE STRING "Mock config path" FORCE)
 
-find_package(Eigen3 3.4 REQUIRED CONFIG)
-find_package(Sophus REQUIRED CONFIG)
-find_package(TBB REQUIRED CONFIG)
-find_package(Bonxai REQUIRED CONFIG)
-find_package(nlohmann_json REQUIRED CONFIG)
+    set(MOCK_CONFIG_FILE "${MOCK_CONFIG_DIR}/${PACKAGE_NAME}Config.cmake")
 
-add_subdirectory(rko_lio/core)
+    if(NOT EXISTS "${MOCK_CONFIG_FILE}")
+      file(WRITE "${MOCK_CONFIG_FILE}" "set(${PACKAGE_NAME}_FOUND TRUE)\n")
+    endif()
+  endif()
+endmacro()

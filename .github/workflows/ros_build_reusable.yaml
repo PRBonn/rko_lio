@@ -5,11 +5,14 @@ on:
       ros_distro:
         type: string
         required: true
+      container_image:
+        type: string
+        required: true
 jobs:
   ros_build:
     runs-on: ubuntu-latest
     container:
-      image: ${{ inputs.ros_distro == 'humble' && 'alexsilener/ros_humble_desktop_cmake_328_ninja' || (inputs.ros_distro == 'jazzy' && 'osrf/ros:jazzy-desktop') || (inputs.ros_distro == 'kilted' && 'osrf/ros:kilted-desktop') || (inputs.ros_distro == 'rolling' && 'osrf/ros:rolling-desktop') }}
+      image: ${{ inputs.container_image }}
     steps:
       - uses: actions/checkout@v5
       - name: Install build tools

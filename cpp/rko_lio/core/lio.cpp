@@ -412,6 +412,7 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
   if (lidar_state.time < EPSILON_TIME) {
     lidar_state.time = current_lidar_time;
     std::cout << "First LiDAR received, using as global frame.\n";
+    _poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
     return {};
   }
 
@@ -471,15 +472,17 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
         (local_velocity.head<3>() - motion.so3().inverse() * lidar_state.velocity) / dt;
 
     // update
-    lidar_state.time = current_lidar_time;
     lidar_state.pose = optimized_pose;
     lidar_state.velocity = local_velocity.head<3>();
     lidar_state.angular_velocity = local_velocity.tail<3>();
     lidar_state.linear_acceleration = local_linear_acceleration;
 
     _imu_local_rotation = optimized_pose.so3(); // correct the drift in imu integration
-    _imu_local_rotation_time = current_lidar_time;
   }
+  // even if map is empty, time should still update
+  lidar_state.time = current_lidar_time;
+  _imu_local_rotation_time = current_lidar_time;
+
   // reset imu averages
   interval_stats.reset();
 

@@ -20,11 +20,23 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
 include(FetchContent)
 
 option(RKO_LIO_FETCH_CONTENT_DEPS
        "Fetch dependencies via FetchContent instead of using find_package" OFF)
+
+set(RKO_LIO_FETCHCONTENT_COMMON_FLAGS)
+if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.24")
+  list(APPEND RKO_LIO_FETCHCONTENT_COMMON_FLAGS OVERRIDE_FIND_PACKAGE)
+endif()
+if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.25")
+  list(APPEND RKO_LIO_FETCHCONTENT_COMMON_FLAGS SYSTEM)
+endif()
+if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.28")
+  list(APPEND RKO_LIO_FETCHCONTENT_COMMON_FLAGS EXCLUDE_FROM_ALL)
+endif()
+
+include(${CMAKE_CURRENT_LIST_DIR}/mock_find_package.cmake)
 
 # Bonxai (always fetched, as upstream releases no system version)
 include(${CMAKE_CURRENT_LIST_DIR}/dependencies/bonxai/bonxai.cmake)

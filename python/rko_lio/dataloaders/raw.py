@@ -130,7 +130,7 @@ class RawDataLoader:
         return self.T_imu_to_base, self.T_lidar_to_base
 
     def __iter__(self):
-        self._iter = iter(entries)
+        self._iter = iter(self.entries)
         return self
 
     def __next__(self):

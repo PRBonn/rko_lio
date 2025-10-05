@@ -30,3 +30,19 @@ with section("format"):
     # If a cmdline positional group consumes more than this many lines without
     # nesting, then invalidate the layout (and nest)
     max_rows_cmdline = 2
+
+with section("parse"):
+    additional_commands = {
+        "compat_target_sources": {
+            "pargs": 1,
+            "flags": [],
+            "kwargs": {
+                "PRIVATE": "*",
+                "PUBLIC": "*",
+                "FILE_SET": "*",
+                "HEADERS": "*",
+                "FILES": "*",
+                "BASE_DIRS": 1,
+            },
+        }
+    }

@@ -20,34 +20,30 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-add_library(rko_lio.ros_utils STATIC)
-add_library(rko_lio::ros_utils ALIAS rko_lio.ros_utils)
-compat_target_sources(
-  rko_lio.ros_utils
-  PRIVATE point_cloud_read.cpp point_cloud_write.cpp rosbag_utils.cpp
-  PUBLIC
-  FILE_SET
-  HEADERS
-  FILES ../../rko_lio/ros_utils/point_cloud_read.hpp
-        ../../rko_lio/ros_utils/point_cloud_write.hpp
-        ../../rko_lio/ros_utils/ros_utils.hpp
-        ../../rko_lio/ros_utils/ros_vectors.hpp
-        ../../rko_lio/ros_utils/rosbag_utils.hpp
-        ../../rko_lio/ros_utils/time.hpp
-        ../../rko_lio/ros_utils/transforms.hpp
-  BASE_DIRS ../..)
-target_link_libraries(
-  rko_lio.ros_utils
-  PUBLIC # ros deps
-         ${sensor_msgs_TARGETS}
-         rclcpp::rclcpp
-         rosbag2_cpp::rosbag2_cpp
-         rosbag2_storage::rosbag2_storage
-         sensor_msgs::sensor_msgs_library
-         tf2::tf2
-         tf2_ros::static_transform_broadcaster_node
-         tf2_ros::tf2_ros
-         # ros deps end
-         Sophus::Sophus
-         Eigen3::Eigen)
-# TODO: add the ros_utils as a library export target to enable reuse
+# compat_target_sources macro: backward-compatible target_sources with FILE_SET
+# for CMake < 3.23. Adds private sources normally, adds include directories
+# fallback using BASE_DIRS
+macro(compat_target_sources target)
+  set(options)
+  set(oneValueArgs BASE_DIRS)
+  set(multiValueArgs
+      PRIVATE
+      PUBLIC
+      FILE_SET
+      HEADERS
+      FILES)
+
+  cmake_parse_arguments(
+    CTS
+    "${options}"
+    "${oneValueArgs}"
+    "${multiValueArgs}"
+    ${ARGN})
+
+  if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.23")
+    target_sources(${target} ${ARGN})
+  else()
+    target_sources(${target} PRIVATE ${CTS_PRIVATE})
+    target_include_directories(${target} PUBLIC "${CTS_BASE_DIRS}")
+  endif()
+endmacro()
