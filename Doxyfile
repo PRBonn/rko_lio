@@ -1,0 +1,27 @@
+# Doxyfile for cpp/rko_lio/core documentation generation
+
+# Project name
+PROJECT_NAME           = "rko_lio"
+
+# Output directory for documentation
+OUTPUT_DIRECTORY       = docs/doxygen
+
+# Folder(s) to scan for source code
+INPUT                  = cpp/rko_lio/core ros/rko_lio
+
+# File patterns to include in documentation generation
+FILE_PATTERNS          = *.cpp *.hpp
+
+# Scan input directories recursively
+RECURSIVE              = YES
+
+# Generate XML output for Sphinx Breathe integration
+GENERATE_XML           = YES
+XML_OUTPUT             = xml
+
+# Extract all entities (even without explicit Doxygen comments)
+EXTRACT_ALL            = YES
+
+# Other useful settings
+GENERATE_HTML          = NO
+GENERATE_LATEX         = NO
