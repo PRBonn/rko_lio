@@ -41,7 +41,8 @@ target_link_libraries(
   PRIVATE nlohmann_json::nlohmann_json TBB::tbb
   PUBLIC bonxai_core Sophus::Sophus Eigen3::Eigen)
 target_compile_features(rko_lio.core PUBLIC cxx_std_20)
-if(CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 9)
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION
+                                            VERSION_LESS 9)
   target_link_libraries(rko_lio.core PRIVATE stdc++fs)
 endif()
 

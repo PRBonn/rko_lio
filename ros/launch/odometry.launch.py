@@ -427,7 +427,7 @@ def launch_setup(context, *args, **kwargs):
 
     print("\n" + "=" * 40 + "\n")
     print("Using Launch configuration:\n")
-    print(yaml.dump(final_params, sort_keys=False, default_flow_style=False, indent=4))
+    print(yaml.dump(final_params, default_flow_style=False, indent=4))
     print("=" * 40 + "\n")
 
     rviz_enabled = LaunchConfiguration("rviz").perform(context).lower() == "true"

@@ -12,12 +12,6 @@ public:
   explicit jthread(Callable&& func, Args&&... args)
       : thread(std::forward<Callable>(func), std::forward<Args>(args)...) {}
 
-  ~jthread() {
-    if (thread.joinable()) {
-      thread.join();
-    }
-  }
-
   jthread(jthread const&) = delete;
   jthread& operator=(jthread const&) = delete;
 
@@ -36,7 +30,11 @@ public:
     }
   }
 
-  std::thread::id get_id() const noexcept { return thread.get_id(); }
+  ~jthread() {
+    if (thread.joinable()) {
+      thread.join();
+    }
+  }
 };
 } // namespace rko_lio::compat
 #endif // GCC < 10
