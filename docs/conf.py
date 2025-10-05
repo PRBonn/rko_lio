@@ -47,7 +47,7 @@ exhale_args = {
     # TIP: if using the sphinx-bootstrap-theme, you need
     # "treeViewIsBootstrap": True,
     "exhaleExecutesDoxygen": True,
-    "exhaleDoxygenStdin": "INPUT = ../cpp",
+    "exhaleDoxygenStdin": "INPUT = ../cpp ../ros/rko_lio/",
 }
 
 # Tell sphinx what the primary language being documented is.
