@@ -6,10 +6,6 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "rko_lio"
-copyright = "2025, Meher Malladi"
-author = "Meher Malladi"
-
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
@@ -21,7 +17,6 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "alabaster"
-html_static_path = ["_static"]
 
 # The `extensions` list should already be in here from `sphinx-quickstart`
 extensions = [
@@ -31,8 +26,8 @@ extensions = [
 ]
 
 # Setup the breathe extension
-breathe_projects = {"My Project": "./_doxygen/xml"}
-breathe_default_project = "My Project"
+# breathe_projects = {"rko_lio C++": "./generated/doxygen/xml"}
+# breathe_default_project = "rko_lio"
 
 # Setup the exhale extension
 exhale_args = {
@@ -46,8 +41,6 @@ exhale_args = {
     "createTreeView": True,
     # TIP: if using the sphinx-bootstrap-theme, you need
     # "treeViewIsBootstrap": True,
-    "exhaleExecutesDoxygen": True,
-    "exhaleDoxygenStdin": "INPUT = ../cpp ../ros/rko_lio/",
 }
 
 # Tell sphinx what the primary language being documented is.
