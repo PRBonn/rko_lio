@@ -31,7 +31,7 @@ builders:
   ##  * 'output_dir' - determines output subdirectory for builder instance
   ##                   relative to --output-directory
   ##  * 'name' - used when referencing the built docs from the index.
-  - doxygen: {name: 'rko_lio C++ API', output_dir: 'generated/doxygen', doxyfile: "doc/Doxyfile"}
+  - doxygen: {name: 'rko_lio C++ API', output_dir: 'generated/doxygen', doxyfile: "docs/Doxyfile"}
   - sphinx: {name: 'rko_lio',
       ## This path is relative to output staging.
-      doxygen_xml_directory: 'generated/doxygen/xml', output_dir: '', sphinx_sourcedir: "doc"}
+      doxygen_xml_directory: 'generated/doxygen/xml', output_dir: '', sphinx_sourcedir: "docs"}
