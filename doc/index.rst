@@ -20,4 +20,6 @@ Welcome to the documentation for ``rko_lio``.
    build
    config
    data
-   modules
+   generated/index
+   python/modules
+

@@ -28,7 +28,8 @@ autodoc_mock_imports = [
     "pyyaml",
     "tqdm",
     "rko_lio_pybind",
-    ".rko_lio_pybind",
+    "rko_lio.rko_lio_pybind",
+    "rko_lio.dataloaders.helipr_file_reader_pybind",
 ]
 pkgs_to_mock = [
     "numpy",
@@ -38,17 +39,34 @@ pkgs_to_mock = [
     "tqdm",
     "rko_lio_pybind",
     ".rko_lio_pybind",
+    "rko_lio.rko_lio_pybind",
+    "rko_lio.dataloaders.helipr_file_reader_pybind",
 ]
 
-extensions = []
-extensions.append("sphinx.ext.autodoc")
-
 import os
+import subprocess
 import sys
 
-sys.path.insert(
-    0,
-    os.path.abspath(
-        os.path.join("/home/meher/ros_ws/testing_ws/src/rko_lio/python/rko_lio", "..")
-    ),
-)
+
+def run_apidoc(app):
+    module_dir = sys.path[0]
+    output_dir = os.path.join(app.srcdir, "python")
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    # Run sphinx-apidoc command line tool
+    subprocess.run(
+        [
+            "sphinx-apidoc",
+            "-o",
+            output_dir,
+            module_dir,
+            "--force",
+            "--separate",
+        ],
+        check=True,
+    )
+
+
+def setup(app):
+    app.connect("builder-inited", run_apidoc)
