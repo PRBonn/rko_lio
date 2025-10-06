@@ -1,25 +1,34 @@
-# Configuration file for the Sphinx documentation builder.
-#
-# For the full list of built-in configuration values, see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
-
-# -- Project information -----------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
-
-# -- General configuration ---------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
-
-# extensions = []
-
-# templates_path = ['_templates']
-# exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
-
-
-# -- Options for HTML output -------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
+project = "RKO-LIO"
+html_title = "Lidar-inertial odometry without sensor-specific modeling"
+html_short_title = "Lidar-inertial odometry"
 
 html_theme = "alabaster"
 rosdoc2_settings = {"override_theme": False}
+html_static_path = ["_static"]
+html_css_files = [
+    "custom.css",
+]
+
+html_sidebars = {
+    "**": [
+        "about.html",
+        "searchfield.html",
+        "navigation.html",
+    ]
+}
+
+html_theme_options = {
+    "description": "Lidar-inertial odometry",
+    "github_user": "PRBonn",
+    "github_repo": "rko_lio",
+    "github_button": "true",
+    "github_type": "star",
+    "show_relbar_bottom": "true",
+    "extra_nav_links": {
+        "ROS Index": "https://index.ros.org/p/rko_lio/",
+        "PyPI": "https://pypi.org/project/rko-lio/",
+    },
+}
 
 autodoc_mock_imports = [
     "numpy",
@@ -42,6 +51,8 @@ pkgs_to_mock = [
     "rko_lio.rko_lio_pybind",
     "rko_lio.dataloaders.helipr_file_reader_pybind",
 ]
+
+extensions = ["sphinx.ext.napoleon"]
 
 import os
 import subprocess
