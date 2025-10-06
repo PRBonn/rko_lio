@@ -9,42 +9,46 @@
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-templates_path = ["_templates"]
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+# extensions = []
+
+# templates_path = ['_templates']
+# exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "alabaster"
+rosdoc2_settings = {"override_theme": False}
 
-# The `extensions` list should already be in here from `sphinx-quickstart`
-extensions = [
-    # there may be others here already, e.g. 'sphinx.ext.mathjax'
-    "breathe",
-    "exhale",
+autodoc_mock_imports = [
+    "numpy",
+    "pyquaternion",
+    "typer",
+    "pyyaml",
+    "tqdm",
+    "rko_lio_pybind",
+    ".rko_lio_pybind",
+]
+pkgs_to_mock = [
+    "numpy",
+    "pyquaternion",
+    "typer",
+    "pyyaml",
+    "tqdm",
+    "rko_lio_pybind",
+    ".rko_lio_pybind",
 ]
 
-# Setup the breathe extension
-# breathe_projects = {"rko_lio C++": "./generated/doxygen/xml"}
-# breathe_default_project = "rko_lio"
+extensions = []
+extensions.append("sphinx.ext.autodoc")
 
-# Setup the exhale extension
-exhale_args = {
-    # These arguments are required
-    "containmentFolder": "./api",
-    "rootFileName": "library_root.rst",
-    "doxygenStripFromPath": "..",
-    # Heavily encouraged optional argument (see docs)
-    "rootFileTitle": "Library API",
-    # Suggested optional arguments
-    "createTreeView": True,
-    # TIP: if using the sphinx-bootstrap-theme, you need
-    # "treeViewIsBootstrap": True,
-}
+import os
+import sys
 
-# Tell sphinx what the primary language being documented is.
-primary_domain = "cpp"
-
-# Tell sphinx what the pygments highlight language should be.
-highlight_language = "cpp"
+sys.path.insert(
+    0,
+    os.path.abspath(
+        os.path.join("/home/meher/ros_ws/testing_ws/src/rko_lio/python/rko_lio", "..")
+    ),
+)

@@ -7,8 +7,7 @@ settings:
   ## be assumed for 'sphinx-apidoc' invocation. The user can provide the path
   ## (relative to the 'package.xml' file) where the Python modules defined by this
   ## package are located.
-  # python_source: 'rko_lio'
-
+  python_source: 'python/rko_lio'
   ## This setting, if true, attempts to run `doxygen` and the `breathe`/`exhale`
   ## extensions to `sphinx` regardless of build type. This is most useful if the
   ## user would like to generate C/C++ API documentation for a package that is not
@@ -32,7 +31,8 @@ builders:
   ##  * 'output_dir' - determines output subdirectory for builder instance
   ##                   relative to --output-directory
   ##  * 'name' - used when referencing the built docs from the index.
-  - doxygen: {name: 'rko_lio C++ API', output_dir: 'generated/doxygen', doxyfile: "doc/Doxyfile"}
-# - sphinx: {name: 'rko_lio',
-## This path is relative to output staging.
-# doxygen_xml_directory: 'generated/doxygen/xml', output_dir: ''}
+  # - doxygen: {name: 'rko_lio C++ API', output_dir: 'generated/doxygen', doxyfile: "doc/Doxyfile"}
+  - sphinx: {name: 'rko_lio',
+      ## This path is relative to output staging.
+      # doxygen_xml_directory: 'generated/doxygen/xml', 
+      output_dir: ''}
