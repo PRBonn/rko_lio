@@ -19,15 +19,17 @@ html_sidebars = {
 
 html_theme_options = {
     "description": "Lidar-inertial odometry",
+    "fixed_sidebar": "true",
+    "github_banner": "true",
+    "github_button": "true",
     "github_user": "PRBonn",
     "github_repo": "rko_lio",
-    "github_button": "true",
     "github_type": "star",
-    "show_relbar_bottom": "true",
     "extra_nav_links": {
         "ROS Index": "https://index.ros.org/p/rko_lio/",
         "PyPI": "https://pypi.org/project/rko-lio/",
     },
+    "show_relbar_bottom": "true",
 }
 
 autodoc_mock_imports = [
