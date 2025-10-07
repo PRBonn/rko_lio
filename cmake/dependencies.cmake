@@ -38,7 +38,7 @@ endif()
 
 include(${CMAKE_CURRENT_LIST_DIR}/mock_find_package.cmake)
 
-# Bonxai (always fetched, as upstream releases no system version)
+# Bonxai is a special case as upstream releases no system version
 include(${CMAKE_CURRENT_LIST_DIR}/dependencies/bonxai/bonxai.cmake)
 
 if(RKO_LIO_FETCH_CONTENT_DEPS)

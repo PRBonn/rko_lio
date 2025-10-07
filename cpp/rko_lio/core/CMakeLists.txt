@@ -41,6 +41,7 @@ target_link_libraries(
   PRIVATE nlohmann_json::nlohmann_json TBB::tbb
   PUBLIC bonxai_core Sophus::Sophus Eigen3::Eigen)
 target_compile_features(rko_lio.core PUBLIC cxx_std_20)
+set_target_properties(rko_lio.core PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
 # install is a problem because at least Bonxai is always fetch-contented, and
 # that becomes a problem for the export target set. we'd have to manually export

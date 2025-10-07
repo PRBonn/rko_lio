@@ -49,9 +49,11 @@ target_link_libraries(
          rko_lio::core
          Sophus::Sophus
          Eigen3::Eigen)
+set_target_properties(rko_lio.ros PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
 add_executable(offline_node offline_node.cpp)
 target_link_libraries(offline_node PRIVATE rko_lio::ros)
+set_target_properties(offline_node PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
 add_library(online_node_component SHARED online_node.cpp)
 target_link_libraries(

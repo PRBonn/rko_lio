@@ -9,7 +9,7 @@ on:
         type: string
         required: true
 jobs:
-  ros_build:
+  ros_build_with_rosdep:
     runs-on: ubuntu-latest
     container:
       image: ${{ inputs.container_image }}
@@ -18,8 +18,25 @@ jobs:
       - name: Install build tools
         run: |
           apt-get update
-          apt-get install -y ninja-build build-essential cmake
-      - name: Source ROS environment and build
+          apt-get install -y build-essential cmake
+      - name: Source ROS environment, install dependencies, and build
         run: |
           . /opt/ros/${{ inputs.ros_distro }}/setup.sh
+          rosdep init 2>/dev/null || true
+          rosdep update
+          rosdep install --from-paths . --ignore-src -r -y
           colcon build --event-handlers console_direct+
+  ros_build_no_rosdep:
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ inputs.container_image }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install build tools
+        run: |
+          apt-get update
+          apt-get install -y build-essential cmake
+      - name: Source ROS environment and build with extra CMake args
+        run: |
+          . /opt/ros/${{ inputs.ros_distro }}/setup.sh
+          colcon build --event-handlers console_direct+ --cmake-args -DRKO_LIO_FETCH_CONTENT_DEPS=ON

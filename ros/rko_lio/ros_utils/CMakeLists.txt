@@ -50,4 +50,5 @@ target_link_libraries(
          # ros deps end
          Sophus::Sophus
          Eigen3::Eigen)
+set_target_properties(rko_lio.ros_utils PROPERTIES POSITION_INDEPENDENT_CODE ON)
 # TODO: add the ros_utils as a library export target to enable reuse
