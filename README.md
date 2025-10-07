@@ -41,7 +41,7 @@
 
 ## Quick Start
 
-[demo video here]
+<!-- [demo video here] -->
 
 Assuming you have a rosbag (ros1/ros2) which contains a TF tree, you can inspect the results of our odometry system with the following two steps
 
