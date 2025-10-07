@@ -63,7 +63,90 @@ rko_lio -v /path/to/data
 
 and you should be good to go!
 
-In case you're interested in running the odometry on a robot, please use the [ROS version](/ros/README.md).
+<details>
+<summary><b>Click here for some more details on how the above works and how to use RKO LIO!</b></summary>
+<br />
+
+The `-v` flag enables visualization.
+
+You can specify a dataloader to use with `-d`, but if you don't, we try to guess the format based on the layout of the data.
+
+Our rosbag dataloader works with either ROS1 or ROS2 bags.
+Place split ROS1 bags in a single folder and pass the folder as the data path.
+Note that we don't support running RKO LIO on partial or incomplete bags, though you can try (and maybe raise an issue if you think we should support this).
+ROS2 especially will need a `metadata.yaml` file.
+
+By default, we assume there is just one IMU topic and one LiDAR topic in the bag, in which case we automatically pick up the topic names and proceed further.
+If there are multiple topics per sensor, you will be prompted to select one via the `--imu` or `--lidar` flags, which you can pass to `rko_lio`.
+
+Next, we assume there is a (static) TF tree in the bag.
+If so, we take the frame ids from the message topics we just picked up, build a static TF tree, and then query it for the extrinsic from IMU to LiDAR.
+Our odometry estimates the robot pose with respect to a base frame, and by default, we assume the LiDAR frame to be the base frame.
+If you would like to use a different frame, you can pass the frame id with `--base_frame` (note the other options available with `--help`).
+The TF tree will be queried for the appropriate transformations (if they exist in the bag!).
+
+In case there is no TF tree in the bag, then you will have to manually specify the extrinsics for IMU to base frame and LiDAR to base frame, as these two are **required** parameters.
+Set one of the extrinsics to identity if you want that one to be the base frame (you will still have to specify both parameters).
+You can specify the extrinsics via a config YAML file with the keys `extrinsic_imu2base_quat_xyzw_xyz` and `extrinsic_lidar2base_quat_xyzw_xyz`.
+
+You can dump a config with all the options set to default values by running `rko_lio --dump_config`.
+Modify as you require, and pass this file to `rko_lio` using the `-c` flag.
+Please check `python/config` in the GitHub repository for example configurations.
+
+An example invocation would then be
+
+```bash
+# the config should have the sensor extrinsics if the rosbag doesn't
+rko_lio -v -c config.yaml --imu imu_topic --lidar lidar_topic /path/to/rosbag_folder
+```
+
+For all possible CLI flags, please check `rko_lio --help`.
+
+</details>
+
+For more install and usage instructions of our python interface, please refer to the [python readme](/python/README.md#rko_lio---python-bindings), [config.md](/docs/config.md), and [data.md](/docs/data.md).
+
+The python interface to our system can be convenient to investigate recorded data offline as you don't need to setup a ROS environment first.
+
+<details>
+<summary><b>But please prefer the ROS version over the python version if you can!</b></summary>
+<br />
+
+The ROS version is the intended way to use our odometry system on a robot.
+The ROS version also has better performance mainly due to how we read incoming data.
+Without getting into details, if you can, you should prefer using the ROS version.
+For offline use, we provide a way to directly inspect and run our odometry on recorded rosbags (see offline mode in [ROS usage](/ros/README.md#usage)), which should be preferred over the python dataloader.
+The python interface is merely meant to be a convenience.
+
+</details>
+
+### ROS2
+
+> We are working on getting the odometry package into the ROS index, so you can install it using system package managers instead of building from source.
+<details>
+<summary><b>Here's a ROS2 quick start!</b></summary>
+<br />
+
+Clone the repository into your ROS workspace and then
+
+```bash
+# we use ninja to build by default
+colcon build --packages-select rko_lio # --symlink-install --event-handlers console_direct+
+```
+
+To launch the odometry node:
+
+```bash
+ros2 launch rko_lio odometry.launch.py # config_file:=/path/to/a/config.yaml rviz:=true
+```
+
+Note that we have some [default build configuration options](ros/colcon.pkg) which should automatically get picked up by colcon.
+We have a few dependencies, but as long as these defaults apply, the package should build without any further consideration.
+If you encounter any issues, please check [docs/build.md](docs/build.md) for further details or open an issue afterwards.
+
+</details>
+
+Please refer to the [ROS readme](/ros/README.md) for further ROS-specific details.
 
 ## License
 
