@@ -22,7 +22,7 @@ jobs:
       - name: Source ROS environment, install dependencies, and build
         run: |
           . /opt/ros/${{ inputs.ros_distro }}/setup.sh
-          rosdep init
+          rosdep init 2>/dev/null || true
           rosdep update
           rosdep install --from-paths . --ignore-src -r -y
           colcon build --event-handlers console_direct+
