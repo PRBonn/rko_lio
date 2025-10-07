@@ -18,17 +18,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-FetchContent_Declare(
-  Bonxai
-  GIT_REPOSITORY https://github.com/facontidavide/Bonxai.git
-  GIT_TAG 02d401b1ce38bce870c6704bcd4e35a56a641411 # sep 14 2025 master
-  SOURCE_SUBDIR bonxai_core ${RKO_LIO_FETCHCONTENT_COMMON_FLAGS})
-
 option(RKO_LIO_FORCE_INCLUDE_BONXAI
        "Force add_subdirectory of Bonxai vendored code if not fetching it" ON)
 
 if(RKO_LIO_FETCHCONTENT_DEPS)
+  FetchContent_Declare(
+    Bonxai
+    GIT_REPOSITORY https://github.com/facontidavide/Bonxai.git
+    GIT_TAG 02d401b1ce38bce870c6704bcd4e35a56a641411 # sep 14 2025 master
+    SOURCE_SUBDIR bonxai_core ${RKO_LIO_FETCHCONTENT_COMMON_FLAGS})
   FetchContent_MakeAvailable(Bonxai)
+  mock_find_package_for_older_cmake(Bonxai)
 elseif(RKO_LIO_FORCE_INCLUDE_BONXAI)
   # ROS build farms are either network isolated (ubuntu builds) or do not have
   # git available to clone packages during cmake configure (rhel builds). This
@@ -43,6 +43,5 @@ elseif(RKO_LIO_FORCE_INCLUDE_BONXAI)
       "Including Bonxai source code vendored in rko_lio. But Bonxai is a required dependency which should be fetched. This is a temporary solution until upstream is available via system vendors."
   )
   add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/bonxai_core)
+  mock_find_package(Bonxai)
 endif()
-
-mock_find_package_for_older_cmake(Bonxai)
