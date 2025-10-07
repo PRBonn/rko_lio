@@ -1,7 +1,7 @@
 name: Humble
 on:
   push:
-    branches: [master]
+    branches: [fix_rhel_builds]
   pull_request:
     branches: [master]
 jobs:
