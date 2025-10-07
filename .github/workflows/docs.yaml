@@ -19,6 +19,8 @@ jobs:
       - name: Install rosdoc2 and myst
         run: |
           python3 -m pip install --upgrade 'git+https://github.com/ros-infrastructure/rosdoc2@main' myst
+      - name: Install Doxygen
+        run: sudo apt-get update && sudo apt-get install -y doxygen
       - name: Build documentation with rosdoc2
         run: |
           rosdoc2 build --package-path $GITHUB_WORKSPACE
