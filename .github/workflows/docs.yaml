@@ -1,0 +1,29 @@
+name: Deploy Docs
+on:
+  push:
+    branches:
+      - docs_overhaul
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo on docs_overhaul branch
+        uses: actions/checkout@v4
+        with:
+          ref: docs_overhaul
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Install rosdoc2 and myst
+        run: |
+          python3 -m pip install --upgrade 'git+https://github.com/ros-infrastructure/rosdoc2@main' myst
+      - name: Build documentation with rosdoc2
+        run: |
+          rosdoc2 build --package-path $GITHUB_WORKSPACE
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs_output/rko_lio
+          publish_branch: gh-pages
