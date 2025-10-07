@@ -2,6 +2,14 @@
 Changelog for package rko_lio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* make fPIC a property target ON instead of a global build flag
+* drop cmake min version to 3.22.0
+* clean up bonxai finding and mocking a bit
+* force include bonxai code when not fetching
+* Contributors: Meher Malladi
+
 0.1.5 (2025-10-04)
 ------------------
 * Drop cmake min version to 3.22.1 to support ros humble builds with default toolchains  (`#52 <https://github.com/PRBonn/rko_lio/issues/52>`_)
