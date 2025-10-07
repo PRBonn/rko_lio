@@ -1,5 +1,5 @@
-Configuration
-=============
+Configuring the odometry
+========================
 
 TODO:
 
@@ -7,9 +7,6 @@ Cover the specific config settings for
 
 - Python cli ``rko_lio`` usage
 - ROS ``odometry.launch.py`` usage
-
-Odometry
---------
 
 The odometry has a set of runtime parameters that are common across both the Python bindings and the ROS interface.
 

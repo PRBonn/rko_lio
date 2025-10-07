@@ -18,10 +18,10 @@ All you need to provide is the extrinsic transformation between the IMU and LiDA
    :maxdepth: 2
    :caption: Contents:
 
-   Installation <source/install>
-   Usage <source/usage>
-   Build from source <source/build>
-   Configuring rko_lio <source/config>
-   C++ API <generated/index>
-   Python API <python/modules>
+   Installation <pages/install>
+   Usage <pages/usage>
+   Build from source <pages/build>
+   Configuring rko_lio <pages/config>
+   pages/ros
+   pages/python
 
