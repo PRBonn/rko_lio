@@ -1,15 +1,18 @@
-Usage
-=====
+Guideline
+=========
 
-Python - TL;DR
---------------------------
+You can use RKO-LIO in two primary ways:
 
-TODO
+1. **Offline** using the Python application ``rko_lio`` for analyzing pre-recorded data.
+2. **Online** on a robot via our ROS packages.
 
-ROS - TL;DR
---------------------------
+The ROS-based system is the recommended approach for using RKO-LIO.
+Online or even offline, as we provide additional nodes to process ROS bags directly as well (see *offline mode* in :doc:`ROS Usage <ros>`).
+It offers **better performance** due to more efficient handling of incoming data streams.
+If possible, prefer using the ROS version.
+The Python version is intended mainly for convenience.
 
-TODO
+For odometry-specific parameter configuration, refer to :doc:`Configuring rko_lio <config>`.
 
 The sensor data
 ---------------
@@ -22,7 +25,7 @@ Some delay in the arrival of the data itself is fine.
 Extrinsics & convention
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Most importantly, we need the extrinsic calibration between the IMU and LiDAR. 
+Most importantly, we need the extrinsic calibration between the IMU and LiDAR.
 
 Throughout this package, we refer to transformations using ``transform_<from-frame>_to_<to-frame>`` or ``transform_<from-frame>2<to-frame>``. By this, we mean a transformation that converts a vector expressed in the ``<from-frame>`` coordinate system to the ``<to-frame>`` coordinate system.
 
@@ -32,7 +35,7 @@ Mathematically, this translates to:
 
    \mathbf{v}^{\text{to}} = {}^{\text{to}} \mathbf{T}_{\text{from}}  \mathbf{v}^{\text{from}}
 
-The superscript on the vector indicates the frame in which the vector is expressed, and 
+The superscript on the vector indicates the frame in which the vector is expressed, and
 :math:`{}^{\text{to}} \mathbf{T}_{\text{from}}` corresponds to ``transform_<from-frame>_to_<to-frame>``.
 
 IMU
@@ -56,5 +59,3 @@ Further specifics depend on the specific format of data or the dataloader, but f
 
 I attempt to automatically handle the different ways timestamps may be encoded, so most sensor drivers should work out of the box.
 Check `here <../cpp/rko_lio/core/process_timestamps.cpp>`__ if you're curious, or if you'd like to contribute a solution for a sensor I don't handle.
-
-

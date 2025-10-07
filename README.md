@@ -33,7 +33,7 @@
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=NNpzXdf9XmU" target="_blank">
-    <img src="/docs/example_multiple_platforms_shadow.png" alt="Visualization of odometry system running on data from four different platforms in four different environments" style="max-width: 100%; height: auto;" width="800"/>
+    <img src="/docs/_static/example_multiple_platforms_shadow.png" alt="Visualization of odometry system running on data from four different platforms in four different environments" style="max-width: 100%; height: auto;" width="800"/>
   </a>
   <br />
   <em>Four different platforms, four different environments, one odometry system</em>
@@ -64,83 +64,6 @@ rko_lio -v /path/to/data
 and you should be good to go!
 
 In case you're interested in running the odometry on a robot, please use the [ROS version](/ros/README.md).
-
-<details>
-<summary><b>Click here for some more details on how the above works and how to use RKO LIO!</b></summary>
-<br />
-
-You can specify a dataloader to use with `-d`, but if you don't, we try to guess the format based on the layout of the data.
-
-Our rosbag dataloader works with either ros1 or ros2 bags. Place split ros1 bags in a single folder and pass the folder as the data path. ros2 bags will need a `metadata.yaml` file in the folder. Note that we don't support running RKO LIO on partial or incomplete bags.
-
-By default, we assume there is just one IMU topic and one LiDAR topic in the bag, in which case we automatically pick up the topic names and proceed further. If there are multiple topics per sensor, you will be prompted to select one via the `--imu` or `--lidar` flags, which you can pass to `rko_lio`.
-
-Next, we assume there is a (static) TF tree in the bag. If so, we take the frame ids from the message topics we just picked up, build a static TF tree, and then query it for the extrinsic from IMU to LiDAR. Our odometry estimates the robot pose with respect to a base frame, and by default, we assume the LiDAR frame to be the base frame. If you would like to use a different frame, you can pass the frame id with `--base_frame` (note the other options available with `--help`). The TF tree will be queried for the appropriate transformations (if they exist in the bag!).
-
-In case there is no TF tree in the bag, then you will have to manually specify the extrinsics for IMU to base frame and LiDAR to base frame, as these two are **required** parameters. Set one of the extrinsics to identity if you want that one to be the base frame (you will still have to specify both parameters). You can specify the extrinsics via a config YAML file with the keys `extrinsic_imu2base_quat_xyzw_xyz` and `extrinsic_lidar2base_quat_xyzw_xyz`.
-
-You can dump a config with all the options set to default values by running `rko_lio --dump_config`. Modify as you require, and pass this file to `rko_lio` using the `-c` flag. Please check `python/config` in the GitHub repository for example configurations.
-
-An example invocation would then be
-
-```bash
-# the config should have the sensor extrinsics if the rosbag doesn't
-rko_lio -v -c config.yaml --imu imu_topic --lidar lidar_topic /path/to/rosbag_folder
-```
-
-For all possible CLI flags, please check `rko_lio --help`.
-
-</details>
-
-<details>
-<summary><b>Please prefer the ROS version over the python version if you can!</b></summary>
-<br />
-
-The [ROS version](/ros/README.md) is the intended way to use our odometry system on a robot. The ROS version also has better performance mainly due to how we read incoming data. Without getting into details, if you can, you should prefer using the ROS version. For offline use, we provide a way to directly inspect and run our odometry on recorded rosbags (see offline mode in [ROS usage](/ros/README.md#usage)), which should be preferred over the python dataloader. The python interface is merely meant to be a convenience.
-
-</details>
-
-## About
-
-RKO LIO is a LiDAR-inertial odometry system that is by design simple to deploy on different sensor configurations and robotic platforms with as minimal a change in configuration as necessary.
-
-We have no restriction on which LiDAR you can use, and you can do so without changing any config (we've tested Velodyne, Ouster, Hesai, Livox, Robosense, Aeva sensors).
-For using an IMU, we require only the accelerometer and gyroscope readings, the bare minimum.
-You don't need to look up manufacturer spec sheets to provide noise specifications, etc.
-
-All you need to provide is the extrinsic transformation between the IMU and LiDAR and you can start using our system for your LiDAR-inertial odometry needs!
-
-For a brief demo of our odometry on data from different platforms, click below for a (YouTube) video:
-
-<a href="https://www.youtube.com/watch?v=NNpzXdf9XmU" target="_blank">
-  <img src="/docs/odometry_video_thumbnail.png" alt="Odometry video thumbnail" />
-</a>
-
-
-## A note on transformations
-
-It bears mentioning here our convention for specifying sensor extrinsics, the one parameter we do require you to provide. Throughout this package, we refer to transformations using `transform_<from-frame>_to_<to-frame>` or `transform_<from-frame>2<to-frame>`. By this, we mean a transformation that converts a vector expressed in the `<from-frame>` coordinate system to the `<to-frame>` coordinate system.
-
-Mathematically, this translates to:
-
-$$
-\mathbf{v}^{\text{to}} = {}^{\text{to}} \mathbf{T}_{\text{from}}  \mathbf{v}^{\text{from}}
-$$
-
-The superscript on the vector indicates the frame in which the vector is expressed, and $${}^{\text{to}} \mathbf{T}_{\text{from}}$$ corresponds to `transform_<from-frame>_to_<to-frame>`.
-
-## Platforms and Sensors Tested
-
-RKO LIO has been tested on a variety of platforms with different sensor setups:
-
-- Car: Ouster OS1-128; OS2-128, Livox Avia, Aeva Aeries II (HeLiPR dataset)
-- Backpack: Hesai XT32, QT32, QT64 (DigiForests dataset); QT128
-- Forestry Harvester: Hesai XT32
-- Quadruped: Velodyne VLP-16 (Leg-KILO dataset)
-- Bicycle: Livox Avia (thanks to @rlabs-oss, [YouTube video](https://www.youtube.com/watch?v=dKDGIAu628w))
-
-If you've tested RKO LIO on any other platform or sensor configuration, I'd be glad to list it here.
-Please reach out by [email](mailto:rm.meher97@gmail.com) or open a PR!
 
 ## License
 
