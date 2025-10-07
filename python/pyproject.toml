@@ -62,7 +62,6 @@ build-type = "Release"
 
 [tool.scikit-build.cmake.define]
 CMAKE_EXPORT_COMPILE_COMMANDS = "ON"
-CMAKE_POSITION_INDEPENDENT_CODE = "ON"
 RKO_LIO_FETCH_CONTENT_DEPS = "ON"
 RKO_LIO_BUILD_ROS = "OFF"
 
