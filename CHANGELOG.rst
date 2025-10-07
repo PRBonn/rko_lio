@@ -2,8 +2,8 @@
 Changelog for package rko_lio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.6 (2025-10-07)
+------------------
 * make fPIC a property target ON instead of a global build flag
 * drop cmake min version to 3.22.0
 * clean up bonxai finding and mocking a bit
