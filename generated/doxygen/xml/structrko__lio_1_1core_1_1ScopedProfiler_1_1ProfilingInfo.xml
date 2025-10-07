@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo" kind="struct" language="C++" prot="private">
+    <compoundname>rko_lio::core::ScopedProfiler::ProfilingInfo</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a75ffb52ae11c7b81ed01727a76cb8c0a" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t rko_lio::core::ScopedProfiler::ProfilingInfo::count</definition>
+        <argsstring></argsstring>
+        <name>count</name>
+        <qualifiedname>rko_lio::core::ScopedProfiler::ProfilingInfo::count</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="68" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="68" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a2281daa4450210ce1f16a5a0eb689cff" prot="public" static="no" mutable="no">
+        <type>MilliSeconds</type>
+        <definition>MilliSeconds rko_lio::core::ScopedProfiler::ProfilingInfo::total</definition>
+        <argsstring></argsstring>
+        <name>total</name>
+        <qualifiedname>rko_lio::core::ScopedProfiler::ProfilingInfo::total</qualifiedname>
+        <initializer>{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="69" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="69" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a77b8ab32f6b501dc73446aeabe1e2683" prot="public" static="no" mutable="no">
+        <type>MilliSeconds</type>
+        <definition>MilliSeconds rko_lio::core::ScopedProfiler::ProfilingInfo::max_time</definition>
+        <argsstring></argsstring>
+        <name>max_time</name>
+        <qualifiedname>rko_lio::core::ScopedProfiler::ProfilingInfo::max_time</qualifiedname>
+        <initializer>{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="70" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="70" bodyend="70"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="67" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="67" bodyend="71"/>
+    <listofallmembers>
+      <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a75ffb52ae11c7b81ed01727a76cb8c0a" prot="public" virt="non-virtual"><scope>rko_lio::core::ScopedProfiler::ProfilingInfo</scope><name>count</name></member>
+      <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a77b8ab32f6b501dc73446aeabe1e2683" prot="public" virt="non-virtual"><scope>rko_lio::core::ScopedProfiler::ProfilingInfo</scope><name>max_time</name></member>
+      <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a2281daa4450210ce1f16a5a0eb689cff" prot="public" virt="non-virtual"><scope>rko_lio::core::ScopedProfiler::ProfilingInfo</scope><name>total</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

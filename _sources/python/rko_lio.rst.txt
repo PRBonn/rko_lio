@@ -1,0 +1,30 @@
+rko\_lio package
+================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   rko_lio.dataloaders
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   rko_lio.cli
+   rko_lio.lio
+   rko_lio.lio_pipeline
+   rko_lio.scoped_profiler
+   rko_lio.util
+
+Module contents
+---------------
+
+.. automodule:: rko_lio
+   :members:
+   :show-inheritance:
+   :undoc-members:

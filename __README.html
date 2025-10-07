@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>README &#8212; RKO-LIO: Lidar-inertial odometry without sensor-specific modeling</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=f6a572b4" />
+    <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=56c4699f" />
+    <script src="_static/documentation_options.js?v=6e0256f3"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">RKO-LIO</a></h1>
+
+
+
+<p class="blurb">Lidar-inertial odometry</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=PRBonn&repo=rko_lio&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/general/general.html">General details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/ros.html">ROS (C++)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="__LICENSE.html">License</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://index.ros.org/p/rko_lio/">ROS Index</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/rko-lio/">PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://github.com/PRBonn/rko_lio">GitHub</a></li>
+    
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="readme">
+<h1>README<a class="headerlink" href="#readme" title="Link to this heading">¶</a></h1>
+<h1 align="center">
+  RKO LIO
+</h1>
+<h3 align="center">Robust LiDAR-Inertial Odometry Without Sensor-Specific Modelling</h3>
+<div align="center">
+<p><a class="reference external" href="https://arxiv.org/abs/2509.06593"><img alt="arXiv" src="https://img.shields.io/badge/arXiv-2509.06593-b31b1b.svg" /></a> <a class="reference download internal" download="" href="_downloads/9879d6db96fd29134fc802214163b95a/LICENSE"><span class="xref download myst"><img alt="GitHub License" src="https://img.shields.io/github/license/PRBonn/rko_lio" /></span></a> <a class="reference internal" href="#/"><span class="xref myst"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/PRBonn/rko_lio" /></span></a> <a class="reference external" href="https://pypi.org/project/rko-lio/"><img alt="PyPI - Version" src="https://img.shields.io/pypi/v/rko_lio?color=blue" /></a></p>
+<p align="center">
+  ROS Distros:<br />
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_humble.yaml"><img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/ros_build_humble.yaml?branch=master&label=Humble" alt="Humble" /></a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_jazzy.yaml"><img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/ros_build_jazzy.yaml?branch=master&label=Jazzy" alt="Jazzy" /></a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_kilted.yaml"><img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/ros_build_kilted.yaml?branch=master&label=Kilted" alt="Kilted" /></a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_rolling.yaml"><img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/ros_build_rolling.yaml?branch=master&label=Rolling" alt="Rolling" /></a>
+</p>
+</div>
+<p align="center">
+  Python Bindings:<br />
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2204.yaml"><img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_ubuntu_2204.yaml?branch=master&label=Ubuntu%2022.04" alt="Ubuntu 22.04" /></a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2204_arm.yaml"><img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_ubuntu_2204_arm.yaml?branch=master&label=Ubuntu%2022.04%20ARM" alt="Ubuntu 22.04 ARM" /></a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2404.yaml"><img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_ubuntu_2404.yaml?branch=master&label=Ubuntu%2024.04" alt="Ubuntu 24.04" /></a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_ubuntu_2404_arm.yaml"><img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_ubuntu_2404_arm.yaml?branch=master&label=Ubuntu%2024.04%20ARM" alt="Ubuntu 24.04 ARM" /></a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_14.yaml"><img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_macos_14.yaml?branch=master&label=macOS%2014" alt="macOS 14" /></a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_macos_15.yaml"><img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_macos_15.yaml?branch=master&label=macOS%2015" alt="macOS 15" /></a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_windows_2022.yaml"><img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_windows_2022.yaml?branch=master&label=Windows%202022" alt="Windows 2022" /></a>
+<a href="https://github.com/PRBonn/rko_lio/actions/workflows/python_bindings_windows_11_arm.yaml"><img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/python_bindings_windows_11_arm.yaml?branch=master&label=Windows%2011%20ARM" alt="Windows 11 ARM" /></a>
+</p>
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=NNpzXdf9XmU" target="_blank">
+    <img src="/docs/_static/example_multiple_platforms_shadow.png" alt="Visualization of odometry system running on data from four different platforms in four different environments" style="max-width: 100%; height: auto;" width="800"/>
+  </a>
+  <br />
+  <em>Four different platforms, four different environments, one odometry system</em>
+</p>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">¶</a></h2>
+<!-- [demo video here] -->
+<p>Assuming you have a rosbag (ros1/ros2) which contains a TF tree, you can inspect the results of our odometry system with the following two steps</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>rko_lio<span class="w"> </span>rosbags<span class="w"> </span>rerun-sdk
+</pre></div>
+</div>
+<p>Why these three packages?</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rko_lio</span></code> -&gt; our odometry package</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rosbags</span></code> -&gt; required for our rosbag dataloader. Both ros1 and ros2 bags are supported!</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rerun-sdk</span></code> -&gt; required for our optional visualizer (<code class="docutils literal notranslate"><span class="pre">-v</span></code> flag)</p></li>
+</ul>
+<p>Next, run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># data path should be a directory with *.bag files (ROS1) or a metadata.yaml (ROS2)</span>
+rko_lio<span class="w"> </span>-v<span class="w"> </span>/path/to/data
+</pre></div>
+</div>
+<p>and you should be good to go!</p>
+<details>
+<summary><b>Click here for some more details on how the above works and how to use RKO LIO!</b></summary>
+<br />
+<p>The <code class="docutils literal notranslate"><span class="pre">-v</span></code> flag enables visualization.</p>
+<p>You can specify a dataloader to use with <code class="docutils literal notranslate"><span class="pre">-d</span></code>, but if you don’t, we try to guess the format based on the layout of the data.</p>
+<p>Our rosbag dataloader works with either ROS1 or ROS2 bags.
+Place split ROS1 bags in a single folder and pass the folder as the data path.
+Note that we don’t support running RKO LIO on partial or incomplete bags, though you can try (and maybe raise an issue if you think we should support this).
+ROS2 especially will need a <code class="docutils literal notranslate"><span class="pre">metadata.yaml</span></code> file.</p>
+<p>By default, we assume there is just one IMU topic and one LiDAR topic in the bag, in which case we automatically pick up the topic names and proceed further.
+If there are multiple topics per sensor, you will be prompted to select one via the <code class="docutils literal notranslate"><span class="pre">--imu</span></code> or <code class="docutils literal notranslate"><span class="pre">--lidar</span></code> flags, which you can pass to <code class="docutils literal notranslate"><span class="pre">rko_lio</span></code>.</p>
+<p>Next, we assume there is a (static) TF tree in the bag.
+If so, we take the frame ids from the message topics we just picked up, build a static TF tree, and then query it for the extrinsic from IMU to LiDAR.
+Our odometry estimates the robot pose with respect to a base frame, and by default, we assume the LiDAR frame to be the base frame.
+If you would like to use a different frame, you can pass the frame id with <code class="docutils literal notranslate"><span class="pre">--base_frame</span></code> (note the other options available with <code class="docutils literal notranslate"><span class="pre">--help</span></code>).
+The TF tree will be queried for the appropriate transformations (if they exist in the bag!).</p>
+<p>In case there is no TF tree in the bag, then you will have to manually specify the extrinsics for IMU to base frame and LiDAR to base frame, as these two are <strong>required</strong> parameters.
+Set one of the extrinsics to identity if you want that one to be the base frame (you will still have to specify both parameters).
+You can specify the extrinsics via a config YAML file with the keys <code class="docutils literal notranslate"><span class="pre">extrinsic_imu2base_quat_xyzw_xyz</span></code> and <code class="docutils literal notranslate"><span class="pre">extrinsic_lidar2base_quat_xyzw_xyz</span></code>.</p>
+<p>You can dump a config with all the options set to default values by running <code class="docutils literal notranslate"><span class="pre">rko_lio</span> <span class="pre">--dump_config</span></code>.
+Modify as you require, and pass this file to <code class="docutils literal notranslate"><span class="pre">rko_lio</span></code> using the <code class="docutils literal notranslate"><span class="pre">-c</span></code> flag.
+Please check <code class="docutils literal notranslate"><span class="pre">python/config</span></code> in the GitHub repository for example configurations.</p>
+<p>An example invocation would then be</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># the config should have the sensor extrinsics if the rosbag doesn&#39;t</span>
+rko_lio<span class="w"> </span>-v<span class="w"> </span>-c<span class="w"> </span>config.yaml<span class="w"> </span>--imu<span class="w"> </span>imu_topic<span class="w"> </span>--lidar<span class="w"> </span>lidar_topic<span class="w"> </span>/path/to/rosbag_folder
+</pre></div>
+</div>
+<p>For all possible CLI flags, please check <code class="docutils literal notranslate"><span class="pre">rko_lio</span> <span class="pre">--help</span></code>.</p>
+</details>
+<p>For more install and usage instructions of our python interface, please refer to the <a class="reference internal" href="#/python/README.md#rko_lio---python-bindings"><span class="xref myst">python readme</span></a>, <a class="reference internal" href="#/docs/config.md"><span class="xref myst">config.md</span></a>, and <a class="reference internal" href="#/docs/data.md"><span class="xref myst">data.md</span></a>.</p>
+<p>The python interface to our system can be convenient to investigate recorded data offline as you don’t need to setup a ROS environment first.</p>
+<details>
+<summary><b>But please prefer the ROS version over the python version if you can!</b></summary>
+<br />
+<p>The ROS version is the intended way to use our odometry system on a robot.
+The ROS version also has better performance mainly due to how we read incoming data.
+Without getting into details, if you can, you should prefer using the ROS version.
+For offline use, we provide a way to directly inspect and run our odometry on recorded rosbags (see offline mode in <a class="reference internal" href="#/ros/README.md#usage"><span class="xref myst">ROS usage</span></a>), which should be preferred over the python dataloader.
+The python interface is merely meant to be a convenience.</p>
+</details>
+<section id="ros2">
+<h3>ROS2<a class="headerlink" href="#ros2" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>We are working on getting the odometry package into the ROS index, so you can install it using system package managers instead of building from source.</p>
+</div></blockquote>
+<details>
+<summary><b>Here's a ROS2 quick start!</b></summary>
+<br />
+<p>Clone the repository into your ROS workspace and then</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># we use ninja to build by default</span>
+colcon<span class="w"> </span>build<span class="w"> </span>--packages-select<span class="w"> </span>rko_lio<span class="w"> </span><span class="c1"># --symlink-install --event-handlers console_direct+</span>
+</pre></div>
+</div>
+<p>To launch the odometry node:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>rko_lio<span class="w"> </span>odometry.launch.py<span class="w"> </span><span class="c1"># config_file:=/path/to/a/config.yaml rviz:=true</span>
+</pre></div>
+</div>
+<p>Note that we have some <a class="reference internal" href="#ros/colcon.pkg"><span class="xref myst">default build configuration options</span></a> which should automatically get picked up by colcon.
+We have a few dependencies, but as long as these defaults apply, the package should build without any further consideration.
+If you encounter any issues, please check <a class="reference internal" href="#docs/build.md"><span class="xref myst">docs/build.md</span></a> for further details or open an issue afterwards.</p>
+</details>
+<p>Please refer to the <a class="reference internal" href="#/ros/README.md"><span class="xref myst">ROS readme</span></a> for further ROS-specific details.</p>
+</section>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Link to this heading">¶</a></h2>
+<p>This project is free software made available under the MIT license. For details, see the <a class="reference download internal" download="" href="_downloads/9879d6db96fd29134fc802214163b95a/LICENSE"><span class="xref download myst">LICENSE</span></a> file.</p>
+</section>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Link to this heading">¶</a></h2>
+<p>If you found this work useful, please consider leaving a star on this repository and citing our <a class="reference external" href="https://arxiv.org/abs/2509.06593">paper</a>:</p>
+<div class="highlight-bib notranslate"><div class="highlight"><pre><span></span><span class="nc">@article</span><span class="p">{</span><span class="nl">malladi2025arxiv</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="w">      </span><span class="p">=</span><span class="w"> </span><span class="s">{M.V.R. Malladi and T. Guadagnino and L. Lobefaro and C. Stachniss}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="w">       </span><span class="p">=</span><span class="w"> </span><span class="s">{A Robust Approach for LiDAR-Inertial Odometry Without Sensor-Specific Modeling}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">journal</span><span class="w">     </span><span class="p">=</span><span class="w"> </span><span class="s">{arXiv preprint}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="w">        </span><span class="p">=</span><span class="w"> </span><span class="s">{2025}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">volume</span><span class="w">      </span><span class="p">=</span><span class="w"> </span><span class="s">{arXiv:2509.06593}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">url</span><span class="w">         </span><span class="p">=</span><span class="w"> </span><span class="s">{https://arxiv.org/pdf/2509.06593}</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="ra-l-submission">
+<h3>RA-L Submission<a class="headerlink" href="#ra-l-submission" title="Link to this heading">¶</a></h3>
+<p>You can check out the branch <code class="docutils literal notranslate"><span class="pre">ral_submission</span></code> for the version of the code used for submission to RA-L. Please note that that branch is meant to be an as-is reproduction of the code used during submission and is not supported. The <code class="docutils literal notranslate"><span class="pre">master</span></code> and release versions are vastly improved, supported, and are the recommended way to use this system.</p>
+</section>
+</section>
+<section id="acknowledgements">
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading">¶</a></h2>
+<details>
+<summary>KISS-ICP, Kinematic-ICP, Bonxai, PlotJuggler, Rerun</summary>
+<p>This package is inspired by and would not be possible without the work of <a class="reference external" href="https://github.com/PRBonn/kiss-icp">KISS-ICP</a> and <a class="reference external" href="https://github.com/PRBonn/kinematic-icp">Kinematic-ICP</a>.
+Additionally, we use and rely heavily on, either in the package itself or during development, <a class="reference external" href="https://github.com/facontidavide/Bonxai">Bonxai</a>, <a class="reference external" href="https://github.com/facontidavide/PlotJuggler">PlotJuggler</a>, <a class="reference external" href="https://github.com/rerun-io/rerun">Rerun</a>, and of course ROS itself.</p>
+<p>A special mention goes out to <a class="reference external" href="https://rerun.io/">Rerun</a> for providing an extremely easy-to-use but highly performative visualization system. Without this, I probably would not have made a python interface at all.</p>
+</details></section>
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &#169;2025 Meher Malladi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/__README.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

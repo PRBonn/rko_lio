@@ -1,0 +1,263 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structrko__lio_1_1core_1_1SparseVoxelGrid" kind="struct" language="C++" prot="public">
+    <compoundname>rko_lio::core::SparseVoxelGrid</compoundname>
+    <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="structrko__lio_1_1core_1_1SparseVoxelGrid_1ad92dd2c12a4de10d5951f29a35b269d0" prot="private" static="no">
+        <type>typename Bonxai::VoxelGrid&lt; VoxelBlock &gt;::Accessor</type>
+        <definition>using rko_lio::core::SparseVoxelGrid::AccessorType =  typename Bonxai::VoxelGrid&lt;VoxelBlock&gt;::Accessor</definition>
+        <argsstring></argsstring>
+        <name>AccessorType</name>
+        <qualifiedname>rko_lio::core::SparseVoxelGrid::AccessorType</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" line="52" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1SparseVoxelGrid_1a2f45d8c84e590fc012487f8e27a2ad61" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double rko_lio::core::SparseVoxelGrid::voxel_size_</definition>
+        <argsstring></argsstring>
+        <name>voxel_size_</name>
+        <qualifiedname>rko_lio::core::SparseVoxelGrid::voxel_size_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" line="46" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1SparseVoxelGrid_1aeada711c20efc674d5844c5704d956cf" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double rko_lio::core::SparseVoxelGrid::clipping_distance_</definition>
+        <argsstring></argsstring>
+        <name>clipping_distance_</name>
+        <qualifiedname>rko_lio::core::SparseVoxelGrid::clipping_distance_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" line="47" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1SparseVoxelGrid_1a49e563768a72c334786923ddb5536fe1" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int rko_lio::core::SparseVoxelGrid::max_points_per_voxel_</definition>
+        <argsstring></argsstring>
+        <name>max_points_per_voxel_</name>
+        <qualifiedname>rko_lio::core::SparseVoxelGrid::max_points_per_voxel_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" line="48" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1SparseVoxelGrid_1a034765fdb974c0cc780ceb8e15a21c33" prot="public" static="no" mutable="no">
+        <type>Bonxai::VoxelGrid&lt; VoxelBlock &gt;</type>
+        <definition>Bonxai::VoxelGrid&lt;VoxelBlock&gt; rko_lio::core::SparseVoxelGrid::map_</definition>
+        <argsstring></argsstring>
+        <name>map_</name>
+        <qualifiedname>rko_lio::core::SparseVoxelGrid::map_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" line="49" column="21" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1SparseVoxelGrid_1afae6f69b9befa264e58e6a61008b5846" prot="private" static="no" mutable="no">
+        <type>AccessorType</type>
+        <definition>AccessorType rko_lio::core::SparseVoxelGrid::accessor_</definition>
+        <argsstring></argsstring>
+        <name>accessor_</name>
+        <qualifiedname>rko_lio::core::SparseVoxelGrid::accessor_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" line="53" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1SparseVoxelGrid_1a7cac5cf01c078da1af9834d11e0350f0" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::core::SparseVoxelGrid::SparseVoxelGrid</definition>
+        <argsstring>(const double voxel_size, const double clipping_distance, const unsigned int max_points_per_voxel)</argsstring>
+        <name>SparseVoxelGrid</name>
+        <qualifiedname>rko_lio::core::SparseVoxelGrid::SparseVoxelGrid</qualifiedname>
+        <param>
+          <type>const double</type>
+          <declname>voxel_size</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>clipping_distance</declname>
+        </param>
+        <param>
+          <type>const unsigned int</type>
+          <declname>max_points_per_voxel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" line="34" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.cpp" bodystart="56" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1SparseVoxelGrid_1a488cfa2b6e500aa5912b3902e6428137" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::core::SparseVoxelGrid::Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <qualifiedname>rko_lio::core::SparseVoxelGrid::Clear</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" line="38" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1SparseVoxelGrid_1a1f96671d1824cc8928ffc695000989b2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool rko_lio::core::SparseVoxelGrid::Empty</definition>
+        <argsstring>() const</argsstring>
+        <name>Empty</name>
+        <qualifiedname>rko_lio::core::SparseVoxelGrid::Empty</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" line="39" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" bodystart="39" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1SparseVoxelGrid_1af71d072d1d350b23787077886ca3b600" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::core::SparseVoxelGrid::Update</definition>
+        <argsstring>(const std::vector&lt; Eigen::Vector3d &gt; &amp;points, const Sophus::SE3d &amp;pose)</argsstring>
+        <name>Update</name>
+        <qualifiedname>rko_lio::core::SparseVoxelGrid::Update</qualifiedname>
+        <param>
+          <type>const std::vector&lt; Eigen::Vector3d &gt; &amp;</type>
+          <declname>points</declname>
+        </param>
+        <param>
+          <type>const Sophus::SE3d &amp;</type>
+          <declname>pose</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" line="40" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.cpp" bodystart="127" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1SparseVoxelGrid_1a90fad55f4c88156dee7108decf6fa142" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::core::SparseVoxelGrid::AddPoints</definition>
+        <argsstring>(const std::vector&lt; Eigen::Vector3d &gt; &amp;points)</argsstring>
+        <name>AddPoints</name>
+        <qualifiedname>rko_lio::core::SparseVoxelGrid::AddPoints</qualifiedname>
+        <param>
+          <type>const std::vector&lt; Eigen::Vector3d &gt; &amp;</type>
+          <declname>points</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" line="41" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.cpp" bodystart="88" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1SparseVoxelGrid_1a7854bc6aba4b2b8a15be9f5b57d8ec3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::core::SparseVoxelGrid::RemovePointsFarFromLocation</definition>
+        <argsstring>(const Eigen::Vector3d &amp;origin)</argsstring>
+        <name>RemovePointsFarFromLocation</name>
+        <qualifiedname>rko_lio::core::SparseVoxelGrid::RemovePointsFarFromLocation</qualifiedname>
+        <param>
+          <type>const Eigen::Vector3d &amp;</type>
+          <declname>origin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" line="42" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.cpp" bodystart="103" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1SparseVoxelGrid_1a31c4e178995f30db9bda4f0762d1ac7d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; Eigen::Vector3d &gt;</type>
+        <definition>std::vector&lt; Eigen::Vector3d &gt; rko_lio::core::SparseVoxelGrid::Pointcloud</definition>
+        <argsstring>() const</argsstring>
+        <name>Pointcloud</name>
+        <qualifiedname>rko_lio::core::SparseVoxelGrid::Pointcloud</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" line="43" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.cpp" bodystart="136" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1SparseVoxelGrid_1af3d7b42ceabc1dd608375d3c3e79f058" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::tuple&lt; Eigen::Vector3d, double &gt;</type>
+        <definition>std::tuple&lt; Eigen::Vector3d, double &gt; rko_lio::core::SparseVoxelGrid::GetClosestNeighbor</definition>
+        <argsstring>(const Eigen::Vector3d &amp;query) const</argsstring>
+        <name>GetClosestNeighbor</name>
+        <qualifiedname>rko_lio::core::SparseVoxelGrid::GetClosestNeighbor</qualifiedname>
+        <param>
+          <type>const Eigen::Vector3d &amp;</type>
+          <declname>query</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" line="44" column="14" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.cpp" bodystart="65" bodyend="86"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" line="33" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.hpp" bodystart="33" bodyend="54"/>
+    <listofallmembers>
+      <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1afae6f69b9befa264e58e6a61008b5846" prot="private" virt="non-virtual"><scope>rko_lio::core::SparseVoxelGrid</scope><name>accessor_</name></member>
+      <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1ad92dd2c12a4de10d5951f29a35b269d0" prot="private" virt="non-virtual"><scope>rko_lio::core::SparseVoxelGrid</scope><name>AccessorType</name></member>
+      <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1a90fad55f4c88156dee7108decf6fa142" prot="public" virt="non-virtual"><scope>rko_lio::core::SparseVoxelGrid</scope><name>AddPoints</name></member>
+      <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1a488cfa2b6e500aa5912b3902e6428137" prot="public" virt="non-virtual"><scope>rko_lio::core::SparseVoxelGrid</scope><name>Clear</name></member>
+      <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1aeada711c20efc674d5844c5704d956cf" prot="public" virt="non-virtual"><scope>rko_lio::core::SparseVoxelGrid</scope><name>clipping_distance_</name></member>
+      <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1a1f96671d1824cc8928ffc695000989b2" prot="public" virt="non-virtual"><scope>rko_lio::core::SparseVoxelGrid</scope><name>Empty</name></member>
+      <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1af3d7b42ceabc1dd608375d3c3e79f058" prot="public" virt="non-virtual"><scope>rko_lio::core::SparseVoxelGrid</scope><name>GetClosestNeighbor</name></member>
+      <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1a034765fdb974c0cc780ceb8e15a21c33" prot="public" virt="non-virtual"><scope>rko_lio::core::SparseVoxelGrid</scope><name>map_</name></member>
+      <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1a49e563768a72c334786923ddb5536fe1" prot="public" virt="non-virtual"><scope>rko_lio::core::SparseVoxelGrid</scope><name>max_points_per_voxel_</name></member>
+      <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1a31c4e178995f30db9bda4f0762d1ac7d" prot="public" virt="non-virtual"><scope>rko_lio::core::SparseVoxelGrid</scope><name>Pointcloud</name></member>
+      <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1a7854bc6aba4b2b8a15be9f5b57d8ec3b" prot="public" virt="non-virtual"><scope>rko_lio::core::SparseVoxelGrid</scope><name>RemovePointsFarFromLocation</name></member>
+      <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1a7cac5cf01c078da1af9834d11e0350f0" prot="public" virt="non-virtual"><scope>rko_lio::core::SparseVoxelGrid</scope><name>SparseVoxelGrid</name></member>
+      <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1af71d072d1d350b23787077886ca3b600" prot="public" virt="non-virtual"><scope>rko_lio::core::SparseVoxelGrid</scope><name>Update</name></member>
+      <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1a2f45d8c84e590fc012487f8e27a2ad61" prot="public" virt="non-virtual"><scope>rko_lio::core::SparseVoxelGrid</scope><name>voxel_size_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

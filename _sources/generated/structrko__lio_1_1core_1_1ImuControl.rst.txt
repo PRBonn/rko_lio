@@ -1,0 +1,17 @@
+.. _exhale_struct_structrko__lio_1_1core_1_1ImuControl:
+
+Struct ImuControl
+=================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_util.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: rko_lio::core::ImuControl
+   :project: rko_lio Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,13 @@
+
+.. _namespace_@0:
+
+Namespace @0
+============
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+

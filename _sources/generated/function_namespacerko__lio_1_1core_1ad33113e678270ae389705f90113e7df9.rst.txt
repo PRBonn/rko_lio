@@ -1,0 +1,14 @@
+.. _exhale_function_namespacerko__lio_1_1core_1ad33113e678270ae389705f90113e7df9:
+
+Function rko_lio::core::voxel_down_sample
+=========================================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_voxel_down_sample.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: rko_lio::core::voxel_down_sample(const std::vector<Eigen::Vector3d>&, const double)
+   :project: rko_lio Doxygen Project

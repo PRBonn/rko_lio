@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classrko__lio_1_1ros_1_1OfflineNode" kind="class" language="C++" prot="public">
+    <compoundname>rko_lio::ros::OfflineNode</compoundname>
+    <basecompoundref refid="classrko__lio_1_1ros_1_1Node" prot="public" virt="non-virtual">rko_lio::ros::Node</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1OfflineNode_1afbae00f391ffba827f2a75374e33bda6" prot="public" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="classrko__lio_1_1ros__utils_1_1BufferableBag" kindref="compound">ros_utils::BufferableBag</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;ros_utils::BufferableBag&gt; rko_lio::ros::OfflineNode::bag</definition>
+        <argsstring></argsstring>
+        <name>bag</name>
+        <qualifiedname>rko_lio::ros::OfflineNode::bag</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" line="67" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1OfflineNode_1ad3f8b534140952b2ca4e1d3ba742147d" prot="public" static="no" mutable="no">
+        <type>BagProgressPublisher::SharedPtr</type>
+        <definition>BagProgressPublisher::SharedPtr rko_lio::ros::OfflineNode::bag_progress_publisher</definition>
+        <argsstring></argsstring>
+        <name>bag_progress_publisher</name>
+        <qualifiedname>rko_lio::ros::OfflineNode::bag_progress_publisher</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" line="69" column="35" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1OfflineNode_1a7a831770cf30cf103bb2a2274c1b1b70" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float rko_lio::ros::OfflineNode::total_bag_msgs</definition>
+        <argsstring></argsstring>
+        <name>total_bag_msgs</name>
+        <qualifiedname>rko_lio::ros::OfflineNode::total_bag_msgs</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" line="71" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1OfflineNode_1a281e32f4e836a057a2a390e83e5ace1b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float rko_lio::ros::OfflineNode::processed_bag_msgs</definition>
+        <argsstring></argsstring>
+        <name>processed_bag_msgs</name>
+        <qualifiedname>rko_lio::ros::OfflineNode::processed_bag_msgs</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" line="72" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" bodystart="72" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1OfflineNode_1aba5ec197aa5c51eafb595756c4095a3f" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::ros::OfflineNode::OfflineNode</definition>
+        <argsstring>(const rclcpp::NodeOptions &amp;options)</argsstring>
+        <name>OfflineNode</name>
+        <qualifiedname>rko_lio::ros::OfflineNode::OfflineNode</qualifiedname>
+        <param>
+          <type>const rclcpp::NodeOptions &amp;</type>
+          <declname>options</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" line="74" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" bodystart="74" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1OfflineNode_1a82769092823a22fb97af2d54609e0f55" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::ros::OfflineNode::run</definition>
+        <argsstring>()</argsstring>
+        <name>run</name>
+        <qualifiedname>rko_lio::ros::OfflineNode::run</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" line="86" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" bodystart="86" bodyend="125"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>rko_lio::ros::Node</label>
+        <link refid="classrko__lio_1_1ros_1_1Node"/>
+      </node>
+      <node id="1">
+        <label>rko_lio::ros::OfflineNode</label>
+        <link refid="classrko__lio_1_1ros_1_1OfflineNode"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>rko_lio::ros::Node</label>
+        <link refid="classrko__lio_1_1ros_1_1Node"/>
+      </node>
+      <node id="1">
+        <label>rko_lio::ros::OfflineNode</label>
+        <link refid="classrko__lio_1_1ros_1_1OfflineNode"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" line="65" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" bodystart="65" bodyend="126"/>
+    <listofallmembers>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a6cc5f592565fb6e05e5d7d354ee8a592" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>atomic_can_process</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1aa80856c9108ba7be5fa3cfc873516d7c" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>atomic_node_running</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OfflineNode_1afbae00f391ffba827f2a75374e33bda6" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>bag</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OfflineNode_1ad3f8b534140952b2ca4e1d3ba742147d" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>bag_progress_publisher</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1ac0daf74fae41e922c6d8264de3fc68ad" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>base_frame</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a39acaf291c8df92ddb7d3a8077a341a3" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>buffer_mutex</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a3badf83d95c7e1212a7e0ca5a60fb4bc" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>check_and_set_extrinsics</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a7083d5096e74dde6386af89e1a4ac3b1" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>extrinsic_imu2base</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a8c344ff0bc07808258e36769fe5fca4c" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>extrinsic_lidar2base</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a77c1be00d5ad517466cb5a26e2674938" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>extrinsics_set</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a247f3deb2d7407df57991dcb8c2b5de7" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>frame_publisher</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a407e2eb2accf1953cf1537bdeee1c9bf" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>imu_buffer</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1ab1f4f72efe73ffc6654563506ee613c5" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>imu_callback</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a7f7be404c390d0a5ab57c68b05f4f729" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>imu_frame</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a48450009c62072955a41aca0e0f58ec4" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>imu_topic</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a6056387e44ee44c7b6497ba28adeed1c" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>invert_odom_tf</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a4cb42094dd4e25ddc151e2f0b4ca3ca0" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>lidar_accel_publisher</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a5872ea32a8e8ff2d5ec3de7a248a43d0" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>lidar_buffer</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a8c9e7b34b2f56e37901103d03228aa44" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>lidar_callback</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a4c665c7e6238b0fc1a01ad43ce1a2c66" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>lidar_frame</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a09a24cf69a51d7b319f221a0af5927cc" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>lidar_topic</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a29fac57b5b0a3daed568d4e5ce02deb9" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>lio</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1ac9be75a47e47f7a0d7d7b250fff04c65" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>local_map_mutex</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a50b672b0fc702c79079e9b188ff03ad3" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>map_publish_thead</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1ac9f148d0733f2a867876e69cd92b91a0" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>map_publisher</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1af6a1630f6d2d17ba44b225e6be11b72d" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>map_topic</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1adb045ddac0f726cfaa1f31df0739549f" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>max_lidar_buffer_size</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1ad8b9ef3f14e5ae9b2fb18e008adc0fa7" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>Node</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1ae033875ce3dad98ed51d63a97697c3fa" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>Node</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1ac1a5bb0dbdc9dec856f87422c8b71dc9" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>Node</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a247aee9248b976c072c38d353a005717" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>Node</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a65ac7ad7d5b24f1efebe12e3ab287b40" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>node</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1aac4f67a35fae666c0d2dcd77a22f6b03" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>odom_frame</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1aca5b014339825d4e15aef73299290566" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>odom_publisher</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1acce2f87faae8959c5b59f484b81be878" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>odom_topic</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OfflineNode_1aba5ec197aa5c51eafb595756c4095a3f" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>OfflineNode</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1ab71d005a8e8412145d1ba905e830ed08" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>operator=</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a5e3e6f7bcc4e2100c92cc701a1ceea31" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>operator=</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a260f6e2c0aadced101814877f5e612ae" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>parse_cli_extrinsics</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a281e32f4e836a057a2a390e83e5ace1b" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>processed_bag_msgs</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a40758221298fb7f987771e1a9fbd8271" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>publish_deskewed_scan</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a384bcb9f442c8dd7a87cc8053b761864" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>publish_lidar_accel</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1adebb87a2ef805c213eef8e921e46d2ee" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>publish_lidar_acceleration</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a83572fe5a9ffcb4d7625a792a3a2d278" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>publish_local_map</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a35495a9f36b41ade26552a305ac4056a" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>publish_map_after</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1aa7714cd8fe127dfa88b7db0ac3c75287" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>publish_map_loop</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a3da69a5529c94c5f593016ce01768eae" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>publish_odometry</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1ab754588195285ef9ae4347488cb80f0d" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>registration_loop</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a402ee18f0b6edd2273d89f4b3cd8932e" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>registration_thread</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a145e14aaf7041beb7bed45fcf7041ba4" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>results_dir</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a82769092823a22fb97af2d54609e0f55" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>run</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1adbc985d64440f596a5cea959dd13ad7e" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>run_name</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a302b7fde490363b8b76af9ccadc5d539" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>sync_condition_variable</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1ad80ccf3eea0e6024234e3927f5295651" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>tf_broadcaster</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1aba93bc27b6ae3f1ddf61155993551731" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>tf_buffer</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1af6b3aea7512c33b69d5e7b0a6fad3fa4" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>tf_listener</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a7a831770cf30cf103bb2a2274c1b1b70" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>total_bag_msgs</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a6bce1b391d69d3db9cc9d7157020ff4d" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>~Node</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

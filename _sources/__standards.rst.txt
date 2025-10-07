@@ -1,0 +1,11 @@
+Standard Documents
+==================
+
+.. toctree::
+   :maxdepth: 1
+
+   __LICENSE
+   __README
+   __PACKAGE
+   __CHANGELOG
+

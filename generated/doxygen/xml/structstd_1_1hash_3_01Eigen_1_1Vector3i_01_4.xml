@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structstd_1_1hash_3_01Eigen_1_1Vector3i_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>std::hash&lt; Eigen::Vector3i &gt;</compoundname>
+    <templateparamlist>
+    </templateparamlist>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structstd_1_1hash_3_01Eigen_1_1Vector3i_01_4_1a629a0f01830e2842b20a57587f917742" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t std::hash&lt; Eigen::Vector3i &gt;::operator()</definition>
+        <argsstring>(const Eigen::Vector3i &amp;voxel) const</argsstring>
+        <name>operator()</name>
+        <qualifiedname>std::hash&lt; Eigen::Vector3i &gt;::operator()</qualifiedname>
+        <param>
+          <type>const Eigen::Vector3i &amp;</type>
+          <declname>voxel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/voxel_down_sample.hpp" line="35" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/voxel_down_sample.hpp" bodystart="35" bodyend="38"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/voxel_down_sample.hpp" line="34" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/voxel_down_sample.hpp" bodystart="34" bodyend="39"/>
+    <listofallmembers>
+      <member refid="structstd_1_1hash_3_01Eigen_1_1Vector3i_01_4_1a629a0f01830e2842b20a57587f917742" prot="public" virt="non-virtual"><scope>std::hash&lt; Eigen::Vector3i &gt;</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

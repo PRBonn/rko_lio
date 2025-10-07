@@ -1,0 +1,7 @@
+rko\_lio.dataloaders.utils.static\_tf\_tree module
+==================================================
+
+.. automodule:: rko_lio.dataloaders.utils.static_tf_tree
+   :members:
+   :show-inheritance:
+   :undoc-members:

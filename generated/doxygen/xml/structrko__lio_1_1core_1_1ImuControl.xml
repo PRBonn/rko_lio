@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structrko__lio_1_1core_1_1ImuControl" kind="struct" language="C++" prot="public">
+    <compoundname>rko_lio::core::ImuControl</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1ImuControl_1a60bc49fe22b615d01fd11b324771c071" prot="public" static="no" mutable="no">
+        <type>Secondsd</type>
+        <definition>Secondsd rko_lio::core::ImuControl::time</definition>
+        <argsstring></argsstring>
+        <name>time</name>
+        <qualifiedname>rko_lio::core::ImuControl::time</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" line="63" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" bodystart="63" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1ImuControl_1aa3982b01ac23e8fd2f8719b3e0f60dc7" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d rko_lio::core::ImuControl::acceleration</definition>
+        <argsstring></argsstring>
+        <name>acceleration</name>
+        <qualifiedname>rko_lio::core::ImuControl::acceleration</qualifiedname>
+        <initializer>= Eigen::Vector3d::Zero()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" line="64" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1ImuControl_1a7d3579d3b3d5fb3b82262a9429c453a9" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d rko_lio::core::ImuControl::angular_velocity</definition>
+        <argsstring></argsstring>
+        <name>angular_velocity</name>
+        <qualifiedname>rko_lio::core::ImuControl::angular_velocity</qualifiedname>
+        <initializer>= Eigen::Vector3d::Zero()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" line="65" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" bodystart="65" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" line="62" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" bodystart="62" bodyend="66"/>
+    <listofallmembers>
+      <member refid="structrko__lio_1_1core_1_1ImuControl_1aa3982b01ac23e8fd2f8719b3e0f60dc7" prot="public" virt="non-virtual"><scope>rko_lio::core::ImuControl</scope><name>acceleration</name></member>
+      <member refid="structrko__lio_1_1core_1_1ImuControl_1a7d3579d3b3d5fb3b82262a9429c453a9" prot="public" virt="non-virtual"><scope>rko_lio::core::ImuControl</scope><name>angular_velocity</name></member>
+      <member refid="structrko__lio_1_1core_1_1ImuControl_1a60bc49fe22b615d01fd11b324771c071" prot="public" virt="non-virtual"><scope>rko_lio::core::ImuControl</scope><name>time</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Class LIO &#8212; RKO-LIO: Lidar-inertial odometry without sensor-specific modeling</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=f6a572b4" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=56c4699f" />
+    <script src="../_static/documentation_options.js?v=6e0256f3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class ScopedProfiler" href="classrko__lio_1_1core_1_1ScopedProfiler.html" />
+    <link rel="prev" title="Template Struct hash&lt; Eigen::Vector3i &gt;" href="structstd_1_1hash_3_01Eigen_1_1Vector3i_01_4.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">RKO-LIO</a></h1>
+
+
+
+<p class="blurb">Lidar-inertial odometry</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=PRBonn&repo=rko_lio&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/general/general.html">General details</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pages/ros.html">ROS (C++)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../__PACKAGE.html">ROS package.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/changelog_literal.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://index.ros.org/p/rko_lio/">ROS Index</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/rko-lio/">PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://github.com/PRBonn/rko_lio">GitHub</a></li>
+    
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="class-lio">
+<span id="exhale-class-classrko-lio-1-1core-1-1lio"></span><h1>Class LIO<a class="headerlink" href="#class-lio" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_lio.hpp.html#file-home-runner-work-rko-lio-rko-lio-cpp-rko-lio-core-lio-hpp"><span class="std std-ref">File lio.hpp</span></a></p></li>
+</ul>
+<section id="nested-relationships">
+<h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Link to this heading">¶</a></h2>
+<section id="nested-types">
+<h3>Nested Types<a class="headerlink" href="#nested-types" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="structrko__lio_1_1core_1_1LIO_1_1Config.html#exhale-struct-structrko-lio-1-1core-1-1lio-1-1config"><span class="std std-ref">Struct LIO::Config</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading">¶</a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIOE">
+<span id="_CPPv3N7rko_lio4core3LIOE"></span><span id="_CPPv2N7rko_lio4core3LIOE"></span><span id="rko_lio::core::LIO"></span><span class="target" id="classrko__lio_1_1core_1_1LIO"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LIO</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIOE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>RKO-LIO’s core LiDAR-inertial odometry algorithm class. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO3LIOERK6Config">
+<span id="_CPPv3N7rko_lio4core3LIO3LIOERK6Config"></span><span id="_CPPv2N7rko_lio4core3LIO3LIOERK6Config"></span><span id="rko_lio::core::LIO::LIO__ConfigCR"></span><span class="target" id="classrko__lio_1_1core_1_1LIO_1a27bdff7e57866bd6429e81d8f7d74ed8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LIO</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7rko_lio4core3LIO6ConfigE" title="rko_lio::core::LIO::Config"><span class="n"><span class="pre">Config</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">config_</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO3LIOERK6Config" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO19add_imu_measurementERK10ImuControl">
+<span id="_CPPv3N7rko_lio4core3LIO19add_imu_measurementERK10ImuControl"></span><span id="_CPPv2N7rko_lio4core3LIO19add_imu_measurementERK10ImuControl"></span><span id="rko_lio::core::LIO::add_imu_measurement__ImuControlCR"></span><span class="target" id="classrko__lio_1_1core_1_1LIO_1a34139c65d35e7929125788bdafd0470c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">add_imu_measurement</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structrko__lio_1_1core_1_1ImuControl.html#_CPPv4N7rko_lio4core10ImuControlE" title="rko_lio::core::ImuControl"><span class="n"><span class="pre">ImuControl</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">base_imu</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO19add_imu_measurementERK10ImuControl" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Add an IMU measurement in base frame. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>base_imu</strong> – IMU measurement in base frame </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO19add_imu_measurementERKN6Sophus4SE3dERK10ImuControl">
+<span id="_CPPv3N7rko_lio4core3LIO19add_imu_measurementERKN6Sophus4SE3dERK10ImuControl"></span><span id="_CPPv2N7rko_lio4core3LIO19add_imu_measurementERKN6Sophus4SE3dERK10ImuControl"></span><span id="rko_lio::core::LIO::add_imu_measurement__Sophus::SE3dCR.ImuControlCR"></span><span class="target" id="classrko__lio_1_1core_1_1LIO_1a91736c1595c37bc5d70840538735b12a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">add_imu_measurement</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Sophus</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SE3d</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">extrinsic_imu2base</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structrko__lio_1_1core_1_1ImuControl.html#_CPPv4N7rko_lio4core10ImuControlE" title="rko_lio::core::ImuControl"><span class="n"><span class="pre">ImuControl</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">raw_imu</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO19add_imu_measurementERKN6Sophus4SE3dERK10ImuControl" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Add an IMU measurement in IMU frame and transform it by the extrinsic calibration. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>extrinsic_imu2base</strong> – Extrinsic transform from IMU to base frame </p></li>
+<li><p><strong>raw_imu</strong> – Raw IMU measurement </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO13register_scanERK14Vector3dVectorRK15TimestampVector">
+<span id="_CPPv3N7rko_lio4core3LIO13register_scanERK14Vector3dVectorRK15TimestampVector"></span><span id="_CPPv2N7rko_lio4core3LIO13register_scanERK14Vector3dVectorRK15TimestampVector"></span><span id="rko_lio::core::LIO::register_scan__Vector3dVectorCR.TimestampVectorCR"></span><span class="target" id="classrko__lio_1_1core_1_1LIO_1a0e2818a3d7d3b07f77a91235b116b607"></span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1a5cc9dbe312768171d6734783de18f64c.html#_CPPv4N7rko_lio4core14Vector3dVectorE" title="rko_lio::core::Vector3dVector"><span class="n"><span class="pre">Vector3dVector</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">register_scan</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1a5cc9dbe312768171d6734783de18f64c.html#_CPPv4N7rko_lio4core14Vector3dVectorE" title="rko_lio::core::Vector3dVector"><span class="n"><span class="pre">Vector3dVector</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">scan</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1a50d343fe8fc3d44fdf883bc4a77b1ccf.html#_CPPv4N7rko_lio4core15TimestampVectorE" title="rko_lio::core::TimestampVector"><span class="n"><span class="pre">TimestampVector</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">timestamps</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO13register_scanERK14Vector3dVectorRK15TimestampVector" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Register a scan. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scan</strong> – raw point cloud </p></li>
+<li><p><strong>timestamps</strong> – Corresponding absolute timestamps for each scan point </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Deskewed and clipped scan </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO13register_scanERKN6Sophus4SE3dERK14Vector3dVectorRK15TimestampVector">
+<span id="_CPPv3N7rko_lio4core3LIO13register_scanERKN6Sophus4SE3dERK14Vector3dVectorRK15TimestampVector"></span><span id="_CPPv2N7rko_lio4core3LIO13register_scanERKN6Sophus4SE3dERK14Vector3dVectorRK15TimestampVector"></span><span id="rko_lio::core::LIO::register_scan__Sophus::SE3dCR.Vector3dVectorCR.TimestampVectorCR"></span><span class="target" id="classrko__lio_1_1core_1_1LIO_1a3963bf670eced93306c73ead313d867f"></span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1a5cc9dbe312768171d6734783de18f64c.html#_CPPv4N7rko_lio4core14Vector3dVectorE" title="rko_lio::core::Vector3dVector"><span class="n"><span class="pre">Vector3dVector</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">register_scan</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Sophus</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SE3d</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">extrinsic_lidar2base</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1a5cc9dbe312768171d6734783de18f64c.html#_CPPv4N7rko_lio4core14Vector3dVectorE" title="rko_lio::core::Vector3dVector"><span class="n"><span class="pre">Vector3dVector</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">scan</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1a50d343fe8fc3d44fdf883bc4a77b1ccf.html#_CPPv4N7rko_lio4core15TimestampVectorE" title="rko_lio::core::TimestampVector"><span class="n"><span class="pre">TimestampVector</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">timestamps</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO13register_scanERKN6Sophus4SE3dERK14Vector3dVectorRK15TimestampVector" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Register a scan with extrinsic pre-applied. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>extrinsic_lidar2base</strong> – Extrinsic from lidar to base frame </p></li>
+<li><p><strong>scan</strong> – raw point cloud </p></li>
+<li><p><strong>timestamps</strong> – Corresponding absolute timestamps for each scan point </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Deskewed and clipped scan in the original lidar frame </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7rko_lio4core3LIO20dump_results_to_diskERKNSt10filesystem4pathERKNSt6stringE">
+<span id="_CPPv3NK7rko_lio4core3LIO20dump_results_to_diskERKNSt10filesystem4pathERKNSt6stringE"></span><span id="_CPPv2NK7rko_lio4core3LIO20dump_results_to_diskERKNSt10filesystem4pathERKNSt6stringE"></span><span id="rko_lio::core::LIO::dump_results_to_disk__std::filesystem::pathCR.ssCRC"></span><span class="target" id="classrko__lio_1_1core_1_1LIO_1a2dcb387551e7415a98ca90d6dd7bf53f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dump_results_to_disk</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">filesystem</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">path</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">results_dir</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">run_name</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7rko_lio4core3LIO20dump_results_to_diskERKNSt10filesystem4pathERKNSt6stringE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Dump trajectory results to disk. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>results_dir</strong> – Directory where results are saved </p></li>
+<li><p><strong>run_name</strong> – Identifier for run/folder name </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO6configE">
+<span id="_CPPv3N7rko_lio4core3LIO6configE"></span><span id="_CPPv2N7rko_lio4core3LIO6configE"></span><span id="rko_lio::core::LIO::config__Config"></span><span class="target" id="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66"></span><a class="reference internal" href="#_CPPv4N7rko_lio4core3LIO6ConfigE" title="rko_lio::core::LIO::Config"><span class="n"><span class="pre">Config</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">config</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO6configE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO3mapE">
+<span id="_CPPv3N7rko_lio4core3LIO3mapE"></span><span id="_CPPv2N7rko_lio4core3LIO3mapE"></span><span id="rko_lio::core::LIO::map__SparseVoxelGrid"></span><span class="target" id="classrko__lio_1_1core_1_1LIO_1a004fb22ebae1428e23606e495eeea01a"></span><a class="reference internal" href="structrko__lio_1_1core_1_1SparseVoxelGrid.html#_CPPv4N7rko_lio4core15SparseVoxelGridE" title="rko_lio::core::SparseVoxelGrid"><span class="n"><span class="pre">SparseVoxelGrid</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">map</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO3mapE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO11lidar_stateE">
+<span id="_CPPv3N7rko_lio4core3LIO11lidar_stateE"></span><span id="_CPPv2N7rko_lio4core3LIO11lidar_stateE"></span><span id="rko_lio::core::LIO::lidar_state__State"></span><span class="target" id="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467"></span><a class="reference internal" href="structrko__lio_1_1core_1_1State.html#_CPPv4N7rko_lio4core5StateE" title="rko_lio::core::State"><span class="n"><span class="pre">State</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lidar_state</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO11lidar_stateE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Current lidar pose/state estimate. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO8imu_biasE">
+<span id="_CPPv3N7rko_lio4core3LIO8imu_biasE"></span><span id="_CPPv2N7rko_lio4core3LIO8imu_biasE"></span><span id="rko_lio::core::LIO::imu_bias__ImuBias"></span><span class="target" id="classrko__lio_1_1core_1_1LIO_1aedab30ea81941b951314113cd9d3166a"></span><a class="reference internal" href="structrko__lio_1_1core_1_1ImuBias.html#_CPPv4N7rko_lio4core7ImuBiasE" title="rko_lio::core::ImuBias"><span class="n"><span class="pre">ImuBias</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">imu_bias</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO8imu_biasE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>IMU bias estimates if initialization was enabled. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO22mean_body_accelerationE">
+<span id="_CPPv3N7rko_lio4core3LIO22mean_body_accelerationE"></span><span id="_CPPv2N7rko_lio4core3LIO22mean_body_accelerationE"></span><span id="rko_lio::core::LIO::mean_body_acceleration__Eigen::Vector3d"></span><span class="target" id="classrko__lio_1_1core_1_1LIO_1aaec8a94ec4355ab7269bb02bee19d950"></span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector3d</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mean_body_acceleration</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector3d</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Zero</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO22mean_body_accelerationE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Estimated body acceleration. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO28body_acceleration_covarianceE">
+<span id="_CPPv3N7rko_lio4core3LIO28body_acceleration_covarianceE"></span><span id="_CPPv2N7rko_lio4core3LIO28body_acceleration_covarianceE"></span><span id="rko_lio::core::LIO::body_acceleration_covariance__Eigen::Matrix3d"></span><span class="target" id="classrko__lio_1_1core_1_1LIO_1a87238efc2008594d5fa9db8344084ec2"></span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Matrix3d</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">body_acceleration_covariance</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Matrix3d</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Identity</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO28body_acceleration_covarianceE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Covariance of body acceleration estimate. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO14interval_statsE">
+<span id="_CPPv3N7rko_lio4core3LIO14interval_statsE"></span><span id="_CPPv2N7rko_lio4core3LIO14interval_statsE"></span><span id="rko_lio::core::LIO::interval_stats__IntervalStats"></span><span class="target" id="classrko__lio_1_1core_1_1LIO_1a9b89efdfdcc0ab01ef3fd6caaadb69d2"></span><a class="reference internal" href="structrko__lio_1_1core_1_1IntervalStats.html#_CPPv4N7rko_lio4core13IntervalStatsE" title="rko_lio::core::IntervalStats"><span class="n"><span class="pre">IntervalStats</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">interval_stats</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO14interval_statsE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO6ConfigE">
+<span id="_CPPv3N7rko_lio4core3LIO6ConfigE"></span><span id="_CPPv2N7rko_lio4core3LIO6ConfigE"></span><span id="rko_lio::core::LIO::Config"></span><span class="target" id="structrko__lio_1_1core_1_1LIO_1_1Config"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Config</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO6ConfigE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Configuration parameters for odometry. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO6Config6deskewE">
+<span id="_CPPv3N7rko_lio4core3LIO6Config6deskewE"></span><span id="_CPPv2N7rko_lio4core3LIO6Config6deskewE"></span><span id="rko_lio::core::LIO::Config::deskew__b"></span><span class="target" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a047439a48b3c8afebe95407926efbada"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">deskew</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO6Config6deskewE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Enable scan deskewing. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO6Config14max_iterationsE">
+<span id="_CPPv3N7rko_lio4core3LIO6Config14max_iterationsE"></span><span id="_CPPv2N7rko_lio4core3LIO6Config14max_iterationsE"></span><span id="rko_lio::core::LIO::Config::max_iterations__s"></span><span class="target" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a9cc9bd40427d206f8349bc330c40aa1f"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">max_iterations</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">100</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO6Config14max_iterationsE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Maximum number of ICP iterations. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO6Config10voxel_sizeE">
+<span id="_CPPv3N7rko_lio4core3LIO6Config10voxel_sizeE"></span><span id="_CPPv2N7rko_lio4core3LIO6Config10voxel_sizeE"></span><span id="rko_lio::core::LIO::Config::voxel_size__double"></span><span class="target" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a0cf92444005352d71aca931390a9ead0"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">voxel_size</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.0</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO6Config10voxel_sizeE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Size of voxel grid (meters) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO6Config20max_points_per_voxelE">
+<span id="_CPPv3N7rko_lio4core3LIO6Config20max_points_per_voxelE"></span><span id="_CPPv2N7rko_lio4core3LIO6Config20max_points_per_voxelE"></span><span id="rko_lio::core::LIO::Config::max_points_per_voxel__i"></span><span class="target" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a670b666aa92cf07b19b8537bf3e9446a"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">max_points_per_voxel</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">20</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO6Config20max_points_per_voxelE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Max points per voxel. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO6Config9max_rangeE">
+<span id="_CPPv3N7rko_lio4core3LIO6Config9max_rangeE"></span><span id="_CPPv2N7rko_lio4core3LIO6Config9max_rangeE"></span><span id="rko_lio::core::LIO::Config::max_range__double"></span><span class="target" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a333f16a3ff952ee91e48e0d62dc23533"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">max_range</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">100.0</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO6Config9max_rangeE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Max lidar range (meters) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO6Config9min_rangeE">
+<span id="_CPPv3N7rko_lio4core3LIO6Config9min_rangeE"></span><span id="_CPPv2N7rko_lio4core3LIO6Config9min_rangeE"></span><span id="rko_lio::core::LIO::Config::min_range__double"></span><span class="target" id="structrko__lio_1_1core_1_1LIO_1_1Config_1af3ef0dac6d1484eac8aa0e91c5578f10"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">min_range</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.0</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO6Config9min_rangeE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Min lidar range (meters) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO6Config21convergence_criterionE">
+<span id="_CPPv3N7rko_lio4core3LIO6Config21convergence_criterionE"></span><span id="_CPPv2N7rko_lio4core3LIO6Config21convergence_criterionE"></span><span id="rko_lio::core::LIO::Config::convergence_criterion__double"></span><span class="target" id="structrko__lio_1_1core_1_1LIO_1_1Config_1ae2991e0e372427f93255231b3249b246"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">convergence_criterion</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1e-5</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO6Config21convergence_criterionE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>ICP convergence threshold. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO6Config27max_correspondance_distanceE">
+<span id="_CPPv3N7rko_lio4core3LIO6Config27max_correspondance_distanceE"></span><span id="_CPPv2N7rko_lio4core3LIO6Config27max_correspondance_distanceE"></span><span id="rko_lio::core::LIO::Config::max_correspondance_distance__double"></span><span class="target" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a9c90e5e455dc7946e69df5229d3ddce0"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">max_correspondance_distance</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.5</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO6Config27max_correspondance_distanceE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Max distance for point correspondences (meters) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO6Config15max_num_threadsE">
+<span id="_CPPv3N7rko_lio4core3LIO6Config15max_num_threadsE"></span><span id="_CPPv2N7rko_lio4core3LIO6Config15max_num_threadsE"></span><span id="rko_lio::core::LIO::Config::max_num_threads__i"></span><span class="target" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a5089f617d86e9ae45f524c23d322617a"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">max_num_threads</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO6Config15max_num_threadsE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Thread count used for data associations, zero for automatic. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO6Config20initialization_phaseE">
+<span id="_CPPv3N7rko_lio4core3LIO6Config20initialization_phaseE"></span><span id="_CPPv2N7rko_lio4core3LIO6Config20initialization_phaseE"></span><span id="rko_lio::core::LIO::Config::initialization_phase__b"></span><span class="target" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a2d65fe516d188013b626c20f1bc583e2"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">initialization_phase</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO6Config20initialization_phaseE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>True to enable initialization phase. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO6Config17max_expected_jerkE">
+<span id="_CPPv3N7rko_lio4core3LIO6Config17max_expected_jerkE"></span><span id="_CPPv2N7rko_lio4core3LIO6Config17max_expected_jerkE"></span><span id="rko_lio::core::LIO::Config::max_expected_jerk__double"></span><span class="target" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a5f5b46b1671012993d30d61657d99714"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">max_expected_jerk</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">3</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO6Config17max_expected_jerkE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Maximum expected jerk for platform (m/s³) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO6Config17double_downsampleE">
+<span id="_CPPv3N7rko_lio4core3LIO6Config17double_downsampleE"></span><span id="_CPPv2N7rko_lio4core3LIO6Config17double_downsampleE"></span><span id="rko_lio::core::LIO::Config::double_downsample__b"></span><span class="target" id="structrko__lio_1_1core_1_1LIO_1_1Config_1ae87229b29b2760d18c47d3b3c67c40ba"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">double_downsample</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO6Config17double_downsampleE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Use double downsampling. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core3LIO6Config8min_betaE">
+<span id="_CPPv3N7rko_lio4core3LIO6Config8min_betaE"></span><span id="_CPPv2N7rko_lio4core3LIO6Config8min_betaE"></span><span id="rko_lio::core::LIO::Config::min_beta__double"></span><span class="target" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a6121d24b6a6e7f262bb6185a407f434d"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">min_beta</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">200</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core3LIO6Config8min_betaE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Minimum weight for orientation regularisation. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="structstd_1_1hash_3_01Eigen_1_1Vector3i_01_4.html" title="Previous document">Template Struct hash&lt; Eigen::Vector3i &gt;</a>
+        </li>
+        <li>
+          <a href="classrko__lio_1_1core_1_1ScopedProfiler.html" title="Next document">Class ScopedProfiler</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &#169;2025 Meher Malladi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/generated/classrko__lio_1_1core_1_1LIO.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

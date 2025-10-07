@@ -1,0 +1,111 @@
+
+.. _file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_util.hpp:
+
+File util.hpp
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core>` (``/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp``)
+----------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_util.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Eigen/Core``
+
+- ``chrono``
+
+- ``sophus/se3.hpp``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_lio.cpp`
+
+- :ref:`file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_lio.hpp`
+
+- :ref:`file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_process_timestamps.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Eigen`
+
+- :ref:`namespace_rko_lio`
+
+- :ref:`namespace_rko_lio__core`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structrko__lio_1_1core_1_1ImuBias`
+
+- :ref:`exhale_struct_structrko__lio_1_1core_1_1ImuControl`
+
+- :ref:`exhale_struct_structrko__lio_1_1core_1_1LidarFrame`
+
+- :ref:`exhale_struct_structrko__lio_1_1core_1_1State`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_namespacerko__lio_1_1core_1ae12b01bb20a1a7280bc26af2de2f15dd`
+
+- :ref:`exhale_function_namespacerko__lio_1_1core_1aebf1f823c7fd220695665a8b3e12281e`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_util_8hpp_1aac76b29ea1d91860971afa149e3be689`
+
+- :ref:`exhale_typedef_util_8hpp_1aeed2d0773ca5f2d8af17c424c1d38656`
+
+- :ref:`exhale_typedef_util_8hpp_1ac472a7c3ac8e9babc4efd3f3286e4b16`
+
+- :ref:`exhale_typedef_util_8hpp_1a256bc41e53605f5abb08663701978077`
+
+- :ref:`exhale_typedef_namespacerko__lio_1_1core_1aeb6128bc63af6919453e303e7eb5613d`
+
+- :ref:`exhale_typedef_namespacerko__lio_1_1core_1a50d343fe8fc3d44fdf883bc4a77b1ccf`
+
+- :ref:`exhale_typedef_namespacerko__lio_1_1core_1a5cc9dbe312768171d6734783de18f64c`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_namespacerko__lio_1_1core_1a1beb022f953c50f94a2a815a4d3716b5`
+

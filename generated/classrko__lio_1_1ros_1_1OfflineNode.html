@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Class OfflineNode &#8212; RKO-LIO: Lidar-inertial odometry without sensor-specific modeling</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=f6a572b4" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=56c4699f" />
+    <script src="../_static/documentation_options.js?v=6e0256f3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class OnlineNode" href="classrko__lio_1_1ros_1_1OnlineNode.html" />
+    <link rel="prev" title="Class Node" href="classrko__lio_1_1ros_1_1Node.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">RKO-LIO</a></h1>
+
+
+
+<p class="blurb">Lidar-inertial odometry</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=PRBonn&repo=rko_lio&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/general/general.html">General details</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pages/ros.html">ROS (C++)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../__PACKAGE.html">ROS package.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/changelog_literal.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://index.ros.org/p/rko_lio/">ROS Index</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/rko-lio/">PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://github.com/PRBonn/rko_lio">GitHub</a></li>
+    
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="class-offlinenode">
+<span id="exhale-class-classrko-lio-1-1ros-1-1offlinenode"></span><h1>Class OfflineNode<a class="headerlink" href="#class-offlinenode" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_offline_node.cpp.html#file-home-runner-work-rko-lio-rko-lio-ros-rko-lio-offline-node-cpp"><span class="std std-ref">File offline_node.cpp</span></a></p></li>
+</ul>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Link to this heading">¶</a></h2>
+<section id="base-type">
+<h3>Base Type<a class="headerlink" href="#base-type" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">rko_lio::ros::Node</span></code> (<a class="reference internal" href="classrko__lio_1_1ros_1_1Node.html#exhale-class-classrko-lio-1-1ros-1-1node"><span class="std std-ref">Class Node</span></a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading">¶</a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros11OfflineNodeE">
+<span id="_CPPv3N7rko_lio3ros11OfflineNodeE"></span><span id="_CPPv2N7rko_lio3ros11OfflineNodeE"></span><span id="rko_lio::ros::OfflineNode"></span><span class="target" id="classrko__lio_1_1ros_1_1OfflineNode"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OfflineNode</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">rko_lio</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ros</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classrko__lio_1_1ros_1_1Node.html#_CPPv4N7rko_lio3ros4NodeE" title="rko_lio::ros::Node"><span class="n"><span class="pre">Node</span></span></a><a class="headerlink" href="#_CPPv4N7rko_lio3ros11OfflineNodeE" title="Link to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros11OfflineNode11OfflineNodeERKN6rclcpp11NodeOptionsE">
+<span id="_CPPv3N7rko_lio3ros11OfflineNode11OfflineNodeERKN6rclcpp11NodeOptionsE"></span><span id="_CPPv2N7rko_lio3ros11OfflineNode11OfflineNodeERKN6rclcpp11NodeOptionsE"></span><span id="rko_lio::ros::OfflineNode::OfflineNode__rclcpp::NodeOptionsCR"></span><span class="target" id="classrko__lio_1_1ros_1_1OfflineNode_1aba5ec197aa5c51eafb595756c4095a3f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OfflineNode</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeOptions</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">options</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio3ros11OfflineNode11OfflineNodeERKN6rclcpp11NodeOptionsE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros11OfflineNode3runEv">
+<span id="_CPPv3N7rko_lio3ros11OfflineNode3runEv"></span><span id="_CPPv2N7rko_lio3ros11OfflineNode3runEv"></span><span id="rko_lio::ros::OfflineNode::run"></span><span class="target" id="classrko__lio_1_1ros_1_1OfflineNode_1a82769092823a22fb97af2d54609e0f55"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">run</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio3ros11OfflineNode3runEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros11OfflineNode3bagE">
+<span id="_CPPv3N7rko_lio3ros11OfflineNode3bagE"></span><span id="_CPPv2N7rko_lio3ros11OfflineNode3bagE"></span><span id="rko_lio::ros::OfflineNode::bag__std::unique_ptr:ros_utils::BufferableBag:"></span><span class="target" id="classrko__lio_1_1ros_1_1OfflineNode_1afbae00f391ffba827f2a75374e33bda6"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unique_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">ros_utils</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classrko__lio_1_1ros__utils_1_1BufferableBag.html#_CPPv4N7rko_lio9ros_utils13BufferableBagE" title="rko_lio::ros_utils::BufferableBag"><span class="n"><span class="pre">BufferableBag</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bag</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros11OfflineNode3bagE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros11OfflineNode22bag_progress_publisherE">
+<span id="_CPPv3N7rko_lio3ros11OfflineNode22bag_progress_publisherE"></span><span id="_CPPv2N7rko_lio3ros11OfflineNode22bag_progress_publisherE"></span><span id="rko_lio::ros::OfflineNode::bag_progress_publisher__BagProgressPublisher::SharedPtr"></span><span class="target" id="classrko__lio_1_1ros_1_1OfflineNode_1ad3f8b534140952b2ca4e1d3ba742147d"></span><span class="n"><span class="pre">BagProgressPublisher</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bag_progress_publisher</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros11OfflineNode22bag_progress_publisherE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros11OfflineNode14total_bag_msgsE">
+<span id="_CPPv3N7rko_lio3ros11OfflineNode14total_bag_msgsE"></span><span id="_CPPv2N7rko_lio3ros11OfflineNode14total_bag_msgsE"></span><span id="rko_lio::ros::OfflineNode::total_bag_msgs__float"></span><span class="target" id="classrko__lio_1_1ros_1_1OfflineNode_1a7a831770cf30cf103bb2a2274c1b1b70"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">total_bag_msgs</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros11OfflineNode14total_bag_msgsE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros11OfflineNode18processed_bag_msgsE">
+<span id="_CPPv3N7rko_lio3ros11OfflineNode18processed_bag_msgsE"></span><span id="_CPPv2N7rko_lio3ros11OfflineNode18processed_bag_msgsE"></span><span id="rko_lio::ros::OfflineNode::processed_bag_msgs__float"></span><span class="target" id="classrko__lio_1_1ros_1_1OfflineNode_1a281e32f4e836a057a2a390e83e5ace1b"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">processed_bag_msgs</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros11OfflineNode18processed_bag_msgsE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="classrko__lio_1_1ros_1_1Node.html" title="Previous document">Class Node</a>
+        </li>
+        <li>
+          <a href="classrko__lio_1_1ros_1_1OnlineNode.html" title="Next document">Class OnlineNode</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &#169;2025 Meher Malladi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/generated/classrko__lio_1_1ros_1_1OfflineNode.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

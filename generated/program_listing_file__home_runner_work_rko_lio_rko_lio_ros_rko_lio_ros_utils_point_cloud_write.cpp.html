@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Program Listing for File point_cloud_write.cpp &#8212; RKO-LIO: Lidar-inertial odometry without sensor-specific modeling</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=f6a572b4" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=56c4699f" />
+    <script src="../_static/documentation_options.js?v=6e0256f3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="File point_cloud_write.hpp" href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_point_cloud_write.hpp.html" />
+    <link rel="prev" title="File point_cloud_write.cpp" href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_point_cloud_write.cpp.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">RKO-LIO</a></h1>
+
+
+
+<p class="blurb">Lidar-inertial odometry</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=PRBonn&repo=rko_lio&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/general/general.html">General details</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pages/ros.html">ROS (C++)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../__PACKAGE.html">ROS package.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/changelog_literal.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://index.ros.org/p/rko_lio/">ROS Index</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/rko-lio/">PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://github.com/PRBonn/rko_lio">GitHub</a></li>
+    
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="program-listing-for-file-point-cloud-write-cpp">
+<span id="program-listing-file-home-runner-work-rko-lio-rko-lio-ros-rko-lio-ros-utils-point-cloud-write-cpp"></span><h1>Program Listing for File point_cloud_write.cpp<a class="headerlink" href="#program-listing-for-file-point-cloud-write-cpp" title="Link to this heading">¶</a></h1>
+<p>↰ <a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_point_cloud_write.cpp.html#file-home-runner-work-rko-lio-rko-lio-ros-rko-lio-ros-utils-point-cloud-write-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_write.cpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// MIT License</span>
+<span class="c1">//</span>
+<span class="c1">// Copyright (c) 2022 Ignacio Vizzo, Tiziano Guadagnino, Benedikt Mersch, Cyrill</span>
+<span class="c1">// Stachniss.</span>
+<span class="c1">//</span>
+<span class="c1">// Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="c1">// of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="c1">// in the Software without restriction, including without limitation the rights</span>
+<span class="c1">// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="c1">// copies of the Software, and to permit persons to whom the Software is</span>
+<span class="c1">// furnished to do so, subject to the following conditions:</span>
+<span class="c1">//</span>
+<span class="c1">// The above copyright notice and this permission notice shall be included in all</span>
+<span class="c1">// copies or substantial portions of the Software.</span>
+<span class="c1">//</span>
+<span class="c1">// THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="c1">// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="c1">// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="c1">// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="c1">// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="c1">// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="c1">// SOFTWARE.</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;point_cloud_write.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;regex&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sensor_msgs/msg/point_field.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sensor_msgs/point_cloud2_iterator.hpp&gt;</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="p">{</span>
+<span class="k">using</span><span class="w"> </span><span class="n">PointCloud2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PointCloud2</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="n">PointField</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PointField</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="n">Header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Header</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="n">StampType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">builtin_interfaces</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Time</span><span class="p">;</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">FixFrameId</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">frame_id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">regex_replace</span><span class="p">(</span><span class="n">frame_id</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">regex</span><span class="p">(</span><span class="s">&quot;^/&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+
+<span class="n">PointCloud2</span><span class="o">::</span><span class="n">UniquePtr</span><span class="w"> </span><span class="nf">create_point_cloud2_msg</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">n_points</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Header</span><span class="o">&amp;</span><span class="w"> </span><span class="n">header</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">timestamp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">PointCloud2</span><span class="o">::</span><span class="n">UniquePtr</span><span class="w"> </span><span class="n">cloud_msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">PointCloud2</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">  </span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">PointCloud2Modifier</span><span class="w"> </span><span class="n">modifier</span><span class="p">(</span><span class="o">*</span><span class="n">cloud_msg</span><span class="p">);</span>
+<span class="w">  </span><span class="n">cloud_msg</span><span class="o">-&gt;</span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">header</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cloud_msg</span><span class="o">-&gt;</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FixFrameId</span><span class="p">(</span><span class="n">cloud_msg</span><span class="o">-&gt;</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span><span class="p">);</span>
+<span class="w">  </span><span class="n">cloud_msg</span><span class="o">-&gt;</span><span class="n">fields</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addPointField</span><span class="p">(</span><span class="o">*</span><span class="n">cloud_msg</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">PointField</span><span class="o">::</span><span class="n">FLOAT32</span><span class="p">,</span><span class="w"> </span><span class="n">offset</span><span class="p">);</span>
+<span class="w">  </span><span class="n">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addPointField</span><span class="p">(</span><span class="o">*</span><span class="n">cloud_msg</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;y&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">PointField</span><span class="o">::</span><span class="n">FLOAT32</span><span class="p">,</span><span class="w"> </span><span class="n">offset</span><span class="p">);</span>
+<span class="w">  </span><span class="n">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addPointField</span><span class="p">(</span><span class="o">*</span><span class="n">cloud_msg</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;z&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">PointField</span><span class="o">::</span><span class="n">FLOAT32</span><span class="p">,</span><span class="w"> </span><span class="n">offset</span><span class="p">);</span>
+<span class="w">  </span><span class="n">offset</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">sizeOfPointField</span><span class="p">(</span><span class="n">PointField</span><span class="o">::</span><span class="n">FLOAT32</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">timestamp</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// assuming timestamp on a velodyne fashion for now (between 0.0 and 1.0)</span>
+<span class="w">    </span><span class="n">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addPointField</span><span class="p">(</span><span class="o">*</span><span class="n">cloud_msg</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;time&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">PointField</span><span class="o">::</span><span class="n">FLOAT64</span><span class="p">,</span><span class="w"> </span><span class="n">offset</span><span class="p">);</span>
+<span class="w">    </span><span class="n">offset</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">sizeOfPointField</span><span class="p">(</span><span class="n">PointField</span><span class="o">::</span><span class="n">FLOAT64</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// Resize the point cloud accordingly</span>
+<span class="w">  </span><span class="n">cloud_msg</span><span class="o">-&gt;</span><span class="n">point_step</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">offset</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cloud_msg</span><span class="o">-&gt;</span><span class="n">row_step</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cloud_msg</span><span class="o">-&gt;</span><span class="n">width</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cloud_msg</span><span class="o">-&gt;</span><span class="n">point_step</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cloud_msg</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">cloud_msg</span><span class="o">-&gt;</span><span class="n">height</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cloud_msg</span><span class="o">-&gt;</span><span class="n">row_step</span><span class="p">);</span>
+<span class="w">  </span><span class="n">modifier</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n_points</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">cloud_msg</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">fill_point_cloud2_xyz</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">PointCloud2</span><span class="o">&amp;</span><span class="w"> </span><span class="n">msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">PointCloud2Iterator</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">msg_x</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;x&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">PointCloud2Iterator</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">msg_y</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;y&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">PointCloud2Iterator</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">msg_z</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;z&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">points</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">,</span><span class="w"> </span><span class="o">++</span><span class="n">msg_x</span><span class="p">,</span><span class="w"> </span><span class="o">++</span><span class="n">msg_y</span><span class="p">,</span><span class="w"> </span><span class="o">++</span><span class="n">msg_z</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">point</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">    </span><span class="o">*</span><span class="n">msg_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">point</span><span class="p">.</span><span class="n">x</span><span class="p">());</span>
+<span class="w">    </span><span class="o">*</span><span class="n">msg_y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">point</span><span class="p">.</span><span class="n">y</span><span class="p">());</span>
+<span class="w">    </span><span class="o">*</span><span class="n">msg_z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">point</span><span class="p">.</span><span class="n">z</span><span class="p">());</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">rko_lio</span><span class="o">::</span><span class="nn">ros_utils</span><span class="w"> </span><span class="p">{</span>
+
+<span class="n">PointCloud2</span><span class="o">::</span><span class="n">UniquePtr</span><span class="w"> </span><span class="nf">eigen_to_point_cloud2</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Header</span><span class="o">&amp;</span><span class="w"> </span><span class="n">header</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">PointCloud2</span><span class="o">::</span><span class="n">UniquePtr</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">create_point_cloud2_msg</span><span class="p">(</span><span class="n">points</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span><span class="w"> </span><span class="n">header</span><span class="p">);</span>
+<span class="w">  </span><span class="n">fill_point_cloud2_xyz</span><span class="p">(</span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">msg</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">msg</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace rko_lio::ros_utils</span>
+</pre></div>
+</div>
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_point_cloud_write.cpp.html" title="Previous document">File point_cloud_write.cpp</a>
+        </li>
+        <li>
+          <a href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_point_cloud_write.hpp.html" title="Next document">File point_cloud_write.hpp</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &#169;2025 Meher Malladi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/generated/program_listing_file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_point_cloud_write.cpp.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

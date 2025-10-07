@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>C++ API &#8212; RKO-LIO: Lidar-inertial odometry without sensor-specific modeling</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=f6a572b4" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=56c4699f" />
+    <script src="../_static/documentation_options.js?v=6e0256f3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Namespace @0" href="namespace_%400.html" />
+    <link rel="prev" title="ROS (C++)" href="../pages/ros.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">RKO-LIO</a></h1>
+
+
+
+<p class="blurb">Lidar-inertial odometry</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=PRBonn&repo=rko_lio&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/general/general.html">General details</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pages/ros.html">ROS (C++)</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../__PACKAGE.html">ROS package.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/changelog_literal.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://index.ros.org/p/rko_lio/">ROS Index</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/rko-lio/">PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://github.com/PRBonn/rko_lio">GitHub</a></li>
+    
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="c-api">
+<h1>C++ API<a class="headerlink" href="#c-api" title="Link to this heading">¶</a></h1>
+<section id="class-hierarchy">
+<h2>Class Hierarchy<a class="headerlink" href="#class-hierarchy" title="Link to this heading">¶</a></h2>
+<ul class="treeView" id="class-treeView">
+  <li>
+    <ul class="collapsibleList">
+      <li>Namespace <a href="namespace_rko_lio.html#namespace-rko-lio">rko_lio</a><ul><li>Namespace <a href="namespace_rko_lio__core.html#namespace-rko-lio-core">rko_lio::core</a><ul><li>Struct <a href="structrko__lio_1_1core_1_1AccelInfo.html#exhale-struct-structrko-lio-1-1core-1-1AccelInfo">AccelInfo</a></li><li>Struct <a href="structrko__lio_1_1core_1_1ImuBias.html#exhale-struct-structrko-lio-1-1core-1-1ImuBias">ImuBias</a></li><li>Struct <a href="structrko__lio_1_1core_1_1ImuControl.html#exhale-struct-structrko-lio-1-1core-1-1ImuControl">ImuControl</a></li><li>Struct <a href="structrko__lio_1_1core_1_1IntervalStats.html#exhale-struct-structrko-lio-1-1core-1-1IntervalStats">IntervalStats</a></li><li>Struct <a href="structrko__lio_1_1core_1_1LidarFrame.html#exhale-struct-structrko-lio-1-1core-1-1LidarFrame">LidarFrame</a></li><li>Struct <a href="structrko__lio_1_1core_1_1SparseVoxelGrid.html#exhale-struct-structrko-lio-1-1core-1-1SparseVoxelGrid">SparseVoxelGrid</a></li><li>Struct <a href="structrko__lio_1_1core_1_1State.html#exhale-struct-structrko-lio-1-1core-1-1State">State</a></li><li>Struct <a href="structrko__lio_1_1core_1_1Timer.html#exhale-struct-structrko-lio-1-1core-1-1Timer">Timer</a></li><li>Class <a href="classrko__lio_1_1core_1_1LIO.html#exhale-class-classrko-lio-1-1core-1-1LIO">LIO</a><ul><li class="lastChild">Struct <a href="structrko__lio_1_1core_1_1LIO_1_1Config.html#exhale-struct-structrko-lio-1-1core-1-1LIO-1-1Config">LIO::Config</a></li></ul></li><li class="lastChild">Class <a href="classrko__lio_1_1core_1_1ScopedProfiler.html#exhale-class-classrko-lio-1-1core-1-1ScopedProfiler">ScopedProfiler</a><ul><li>Struct <a href="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo.html#exhale-struct-structrko-lio-1-1core-1-1ScopedProfiler-1-1ProfilingInfo">ScopedProfiler::ProfilingInfo</a></li><li class="lastChild">Class <a href="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap.html#exhale-class-classrko-lio-1-1core-1-1ScopedProfiler-1-1ProfilingInfoMap">ScopedProfiler::ProfilingInfoMap</a></li></ul></li></ul></li><li>Namespace <a href="namespace_rko_lio__ros.html#namespace-rko-lio-ros">rko_lio::ros</a><ul><li>Class <a href="classrko__lio_1_1ros_1_1Node.html#exhale-class-classrko-lio-1-1ros-1-1Node">Node</a></li><li>Class <a href="classrko__lio_1_1ros_1_1OfflineNode.html#exhale-class-classrko-lio-1-1ros-1-1OfflineNode">OfflineNode</a></li><li class="lastChild">Class <a href="classrko__lio_1_1ros_1_1OnlineNode.html#exhale-class-classrko-lio-1-1ros-1-1OnlineNode">OnlineNode</a></li></ul></li><li class="lastChild">Namespace <a href="namespace_rko_lio__ros_utils.html#namespace-rko-lio-ros-utils">rko_lio::ros_utils</a><ul><li class="lastChild">Class <a href="classrko__lio_1_1ros__utils_1_1BufferableBag.html#exhale-class-classrko-lio-1-1ros-utils-1-1BufferableBag">BufferableBag</a><ul><li class="lastChild">Struct <a href="structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge.html#exhale-struct-structrko-lio-1-1ros-utils-1-1BufferableBag-1-1TFBridge">BufferableBag::TFBridge</a></li></ul></li></ul></li></ul></li><li class="lastChild">Namespace <a href="namespace_std.html#namespace-std">std</a><ul><li class="lastChild">Template <a href="structstd_1_1hash_3_01Eigen_1_1Vector3i_01_4.html#exhale-struct-structstd-1-1hash-3-01Eigen-1-1Vector3i-01-4">Struct hash&lt; Eigen::Vector3i &gt;</a></li></ul></li>
+    </ul>
+  </li><!-- only tree view element -->
+</ul><!-- /treeView class-treeView --></section>
+<section id="file-hierarchy">
+<h2>File Hierarchy<a class="headerlink" href="#file-hierarchy" title="Link to this heading">¶</a></h2>
+<ul class="treeView" id="file-treeView">
+  <li>
+    <ul class="collapsibleList">
+      <li>Directory <a href="dir__home_runner_work_rko_lio_rko_lio_cpp.html#dir-home-runner-work-rko-lio-rko-lio-cpp">cpp</a><ul><li class="lastChild">Directory <a href="dir__home_runner_work_rko_lio_rko_lio_cpp_rko_lio.html#dir-home-runner-work-rko-lio-rko-lio-cpp-rko-lio">rko_lio</a><ul><li class="lastChild">Directory <a href="dir__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core.html#dir-home-runner-work-rko-lio-rko-lio-cpp-rko-lio-core">core</a><ul><li>File <a href="file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_lio.cpp.html#file-home-runner-work-rko-lio-rko-lio-cpp-rko-lio-core-lio.cpp">lio.cpp</a></li><li>File <a href="file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_lio.hpp.html#file-home-runner-work-rko-lio-rko-lio-cpp-rko-lio-core-lio.hpp">lio.hpp</a></li><li>File <a href="file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_process_timestamps.cpp.html#file-home-runner-work-rko-lio-rko-lio-cpp-rko-lio-core-process-timestamps.cpp">process_timestamps.cpp</a></li><li>File <a href="file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_process_timestamps.hpp.html#file-home-runner-work-rko-lio-rko-lio-cpp-rko-lio-core-process-timestamps.hpp">process_timestamps.hpp</a></li><li>File <a href="file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_profiler.hpp.html#file-home-runner-work-rko-lio-rko-lio-cpp-rko-lio-core-profiler.hpp">profiler.hpp</a></li><li>File <a href="file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_sparse_voxel_grid.cpp.html#file-home-runner-work-rko-lio-rko-lio-cpp-rko-lio-core-sparse-voxel-grid.cpp">sparse_voxel_grid.cpp</a></li><li>File <a href="file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_sparse_voxel_grid.hpp.html#file-home-runner-work-rko-lio-rko-lio-cpp-rko-lio-core-sparse-voxel-grid.hpp">sparse_voxel_grid.hpp</a></li><li>File <a href="file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_util.hpp.html#file-home-runner-work-rko-lio-rko-lio-cpp-rko-lio-core-util.hpp">util.hpp</a></li><li>File <a href="file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_voxel_down_sample.cpp.html#file-home-runner-work-rko-lio-rko-lio-cpp-rko-lio-core-voxel-down-sample.cpp">voxel_down_sample.cpp</a></li><li class="lastChild">File <a href="file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_voxel_down_sample.hpp.html#file-home-runner-work-rko-lio-rko-lio-cpp-rko-lio-core-voxel-down-sample.hpp">voxel_down_sample.hpp</a></li></ul></li></ul></li></ul></li><li class="lastChild">Directory <a href="dir__home_runner_work_rko_lio_rko_lio_ros.html#dir-home-runner-work-rko-lio-rko-lio-ros">ros</a><ul><li class="lastChild">Directory <a href="dir__home_runner_work_rko_lio_rko_lio_ros_rko_lio.html#dir-home-runner-work-rko-lio-rko-lio-ros-rko-lio">rko_lio</a><ul><li>Directory <a href="dir__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils.html#dir-home-runner-work-rko-lio-rko-lio-ros-rko-lio-ros-utils">ros_utils</a><ul><li>File <a href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_point_cloud_read.cpp.html#file-home-runner-work-rko-lio-rko-lio-ros-rko-lio-ros-utils-point-cloud-read.cpp">point_cloud_read.cpp</a></li><li>File <a href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_point_cloud_read.hpp.html#file-home-runner-work-rko-lio-rko-lio-ros-rko-lio-ros-utils-point-cloud-read.hpp">point_cloud_read.hpp</a></li><li>File <a href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_point_cloud_write.cpp.html#file-home-runner-work-rko-lio-rko-lio-ros-rko-lio-ros-utils-point-cloud-write.cpp">point_cloud_write.cpp</a></li><li>File <a href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_point_cloud_write.hpp.html#file-home-runner-work-rko-lio-rko-lio-ros-rko-lio-ros-utils-point-cloud-write.hpp">point_cloud_write.hpp</a></li><li>File <a href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_ros_utils.hpp.html#file-home-runner-work-rko-lio-rko-lio-ros-rko-lio-ros-utils-ros-utils.hpp">ros_utils.hpp</a></li><li>File <a href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_ros_vectors.hpp.html#file-home-runner-work-rko-lio-rko-lio-ros-rko-lio-ros-utils-ros-vectors.hpp">ros_vectors.hpp</a></li><li>File <a href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_rosbag_utils.cpp.html#file-home-runner-work-rko-lio-rko-lio-ros-rko-lio-ros-utils-rosbag-utils.cpp">rosbag_utils.cpp</a></li><li>File <a href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_rosbag_utils.hpp.html#file-home-runner-work-rko-lio-rko-lio-ros-rko-lio-ros-utils-rosbag-utils.hpp">rosbag_utils.hpp</a></li><li>File <a href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_time.hpp.html#file-home-runner-work-rko-lio-rko-lio-ros-rko-lio-ros-utils-time.hpp">time.hpp</a></li><li class="lastChild">File <a href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_transforms.hpp.html#file-home-runner-work-rko-lio-rko-lio-ros-rko-lio-ros-utils-transforms.hpp">transforms.hpp</a></li></ul></li><li>File <a href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_node.cpp.html#file-home-runner-work-rko-lio-rko-lio-ros-rko-lio-node.cpp">node.cpp</a></li><li>File <a href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_node.hpp.html#file-home-runner-work-rko-lio-rko-lio-ros-rko-lio-node.hpp">node.hpp</a></li><li>File <a href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_offline_node.cpp.html#file-home-runner-work-rko-lio-rko-lio-ros-rko-lio-offline-node.cpp">offline_node.cpp</a></li><li class="lastChild">File <a href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_online_node.cpp.html#file-home-runner-work-rko-lio-rko-lio-ros-rko-lio-online-node.cpp">online_node.cpp</a></li></ul></li></ul></li>
+    </ul>
+  </li><!-- only tree view element -->
+</ul><!-- /treeView file-treeView --></section>
+<section id="full-c-api">
+<h2>Full C++ API<a class="headerlink" href="#full-c-api" title="Link to this heading">¶</a></h2>
+<section id="namespaces">
+<h3>Namespaces<a class="headerlink" href="#namespaces" title="Link to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_%400.html">Namespace &#64;0</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_%4010.html">Namespace &#64;10</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_%4012.html">Namespace &#64;12</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_%4016.html">Namespace &#64;16</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_%402.html">Namespace &#64;2</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_%4020.html">Namespace &#64;20</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_%405.html">Namespace &#64;5</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_%408.html">Namespace &#64;8</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_Eigen.html">Namespace Eigen</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_rko_lio.html">Namespace rko_lio</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_rko_lio__core.html">Namespace rko_lio::core</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_rko_lio__ros.html">Namespace rko_lio::ros</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_rko_lio__ros_utils.html">Namespace rko_lio::ros_utils</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_std.html">Namespace std</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_std__literals.html">Namespace std::literals</a></li>
+</ul>
+</div>
+</section>
+<section id="classes-and-structs">
+<h3>Classes and Structs<a class="headerlink" href="#classes-and-structs" title="Link to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structrko__lio_1_1core_1_1AccelInfo.html">Struct AccelInfo</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structrko__lio_1_1core_1_1ImuBias.html">Struct ImuBias</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structrko__lio_1_1core_1_1ImuControl.html">Struct ImuControl</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structrko__lio_1_1core_1_1IntervalStats.html">Struct IntervalStats</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structrko__lio_1_1core_1_1LidarFrame.html">Struct LidarFrame</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structrko__lio_1_1core_1_1LIO_1_1Config.html">Struct LIO::Config</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo.html">Struct ScopedProfiler::ProfilingInfo</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structrko__lio_1_1core_1_1SparseVoxelGrid.html">Struct SparseVoxelGrid</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structrko__lio_1_1core_1_1State.html">Struct State</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structrko__lio_1_1core_1_1Timer.html">Struct Timer</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge.html">Struct BufferableBag::TFBridge</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structstd_1_1hash_3_01Eigen_1_1Vector3i_01_4.html">Template Struct hash&lt; Eigen::Vector3i &gt;</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classrko__lio_1_1core_1_1LIO.html">Class LIO</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classrko__lio_1_1core_1_1ScopedProfiler.html">Class ScopedProfiler</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap.html">Class ScopedProfiler::ProfilingInfoMap</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classrko__lio_1_1ros_1_1Node.html">Class Node</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classrko__lio_1_1ros_1_1OfflineNode.html">Class OfflineNode</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classrko__lio_1_1ros_1_1OnlineNode.html">Class OnlineNode</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classrko__lio_1_1ros__utils_1_1BufferableBag.html">Class BufferableBag</a></li>
+</ul>
+</div>
+</section>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_offline__node_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627.html">Function main</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_namespacerko__lio_1_1core_1ae12b01bb20a1a7280bc26af2de2f15dd.html">Function rko_lio::core::gravity</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_namespacerko__lio_1_1core_1a6f84ab20273bc1bc121cd6e5ba83d3f6.html">Function rko_lio::core::process_timestamps</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_namespacerko__lio_1_1core_1aebf1f823c7fd220695665a8b3e12281e.html">Function rko_lio::core::square</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_namespacerko__lio_1_1core_1ad33113e678270ae389705f90113e7df9.html">Function rko_lio::core::voxel_down_sample</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_point__cloud__write_8cpp_1aa1127a7edfcc13ff2c4ac7861761bfd5.html">Function rko_lio::ros_utils::eigen_to_point_cloud2(const std::vector&lt;Eigen::Vector3d&gt;&amp;, const Header&amp;)</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_point__cloud__write_8hpp_1a10538ea744e5f5755b53206115dcb62d.html">Function rko_lio::ros_utils::eigen_to_point_cloud2(const std::vector&lt;Eigen::Vector3d&gt;&amp;, const std_msgs::msg::Header&amp;)</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_ros__vectors_8hpp_1adc80b1d89da8ab16fb400b64f8de6444.html">Function rko_lio::ros_utils::eigen_vector3d_to_ros_xyz</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_transforms_8hpp_1a372c4216c5e01ff6453368d96396068f.html">Template Function rko_lio::ros_utils::get_transform</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_point__cloud__read_8cpp_1aadaf97a8a3e4a9b43814c3e9390d6fe4.html">Function rko_lio::ros_utils::point_cloud2_to_eigen</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_point__cloud__read_8cpp_1a91531bdd51b54763f6b79ca1b76440e3.html">Function rko_lio::ros_utils::point_cloud2_to_eigen_with_timestamps(const PointCloud2::ConstSharedPtr&amp;)</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_point__cloud__read_8hpp_1a3ad9753d3bfe9abb48f53936563b5dca.html">Function rko_lio::ros_utils::point_cloud2_to_eigen_with_timestamps(const sensor_msgs::msg::PointCloud2::ConstSharedPtr&amp;)</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_time_8hpp_1a4d1f77578095092778c1a3299d79aa44.html">Function rko_lio::ros_utils::ros_time_to_seconds</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_ros__vectors_8hpp_1a361635a6dbad79b8734e6394aa42cd0d.html">Template Function rko_lio::ros_utils::ros_xyz_to_eigen_vector3d</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_transforms_8hpp_1a2fe9738bc742c3ea7bc942e00be5b6fc.html">Function rko_lio::ros_utils::sophus_to_pose</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_transforms_8hpp_1abb6e8fc75669251dab21b66c068dcbb9.html">Function rko_lio::ros_utils::sophus_to_transform</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_transforms_8hpp_1a2e0e7e335974020f9500bc3403eee8be.html">Template Function rko_lio::ros_utils::transform_to_sophus</a></li>
+</ul>
+</div>
+</section>
+<section id="variables">
+<h3>Variables<a class="headerlink" href="#variables" title="Link to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="variable_namespacerko__lio_1_1core_1a1beb022f953c50f94a2a815a4d3716b5.html">Variable rko_lio::core::GRAVITY_MAG</a></li>
+</ul>
+</div>
+</section>
+<section id="defines">
+<h3>Defines<a class="headerlink" href="#defines" title="Link to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_profiler_8hpp_1a2f18db18bca26cafa95e9719de4a41ef.html">Define CONCAT</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_profiler_8hpp_1a1a31e7e398f6a2fa20e41c0b5a02cdc4.html">Define CONCAT_IMPL</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_profiler_8hpp_1af9e43cc52cb0d854f3588064f9f97cd2.html">Define SCOPED_PROFILER</a></li>
+</ul>
+</div>
+</section>
+<section id="typedefs">
+<h3>Typedefs<a class="headerlink" href="#typedefs" title="Link to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_util_8hpp_1aac76b29ea1d91860971afa149e3be689.html">Typedef Eigen::Matrix12d</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_util_8hpp_1aeed2d0773ca5f2d8af17c424c1d38656.html">Typedef Eigen::Matrix3_6d</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_util_8hpp_1ac472a7c3ac8e9babc4efd3f3286e4b16.html">Typedef Eigen::Matrix6d</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_util_8hpp_1a256bc41e53605f5abb08663701978077.html">Typedef Eigen::Vector6d</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1aeb6128bc63af6919453e303e7eb5613d.html">Typedef rko_lio::core::Secondsd</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1a50d343fe8fc3d44fdf883bc4a77b1ccf.html">Typedef rko_lio::core::TimestampVector</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1a5cc9dbe312768171d6734783de18f64c.html">Typedef rko_lio::core::Vector3dVector</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1aef84c95de08dd51173a6fc0d2433c24a.html">Typedef rko_lio::core::VoxelBlock</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_point__cloud__read_8cpp_1ac5af74e2ce9903585e656484f3ae50aa.html">Typedef rko_lio::ros_utils::PointCloud2</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_point__cloud__read_8cpp_1a7c03cf24cfb52af4d4beed1321f48710.html">Typedef rko_lio::ros_utils::PointField</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_point__cloud__read_8cpp_1ab5c0fc527485b86fef66ef94947405e7.html">Typedef rko_lio::ros_utils::Vector3dVector</a></li>
+</ul>
+</div>
+</section>
+<section id="directories">
+<h3>Directories<a class="headerlink" href="#directories" title="Link to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dir__home_runner_work_rko_lio_rko_lio_cpp.html">Directory cpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dir__home_runner_work_rko_lio_rko_lio_cpp_rko_lio.html">Directory rko_lio</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dir__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core.html">Directory core</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dir__home_runner_work_rko_lio_rko_lio_ros.html">Directory ros</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dir__home_runner_work_rko_lio_rko_lio_ros_rko_lio.html">Directory rko_lio</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dir__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils.html">Directory ros_utils</a></li>
+</ul>
+</div>
+</section>
+<section id="files">
+<h3>Files<a class="headerlink" href="#files" title="Link to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_lio.cpp.html">File lio.cpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_lio.hpp.html">File lio.hpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_node.cpp.html">File node.cpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_node.hpp.html">File node.hpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_offline_node.cpp.html">File offline_node.cpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_online_node.cpp.html">File online_node.cpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_point_cloud_read.cpp.html">File point_cloud_read.cpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_point_cloud_read.hpp.html">File point_cloud_read.hpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_point_cloud_write.cpp.html">File point_cloud_write.cpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_point_cloud_write.hpp.html">File point_cloud_write.hpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_process_timestamps.cpp.html">File process_timestamps.cpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_process_timestamps.hpp.html">File process_timestamps.hpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_profiler.hpp.html">File profiler.hpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_ros_utils.hpp.html">File ros_utils.hpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_ros_vectors.hpp.html">File ros_vectors.hpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_rosbag_utils.cpp.html">File rosbag_utils.cpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_rosbag_utils.hpp.html">File rosbag_utils.hpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_sparse_voxel_grid.cpp.html">File sparse_voxel_grid.cpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_sparse_voxel_grid.hpp.html">File sparse_voxel_grid.hpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_time.hpp.html">File time.hpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_transforms.hpp.html">File transforms.hpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_util.hpp.html">File util.hpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_voxel_down_sample.cpp.html">File voxel_down_sample.cpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_voxel_down_sample.hpp.html">File voxel_down_sample.hpp</a></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="../pages/ros.html" title="Previous document">ROS (C++)</a>
+        </li>
+        <li>
+          <a href="namespace_%400.html" title="Next document">Namespace &#64;0</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &#169;2025 Meher Malladi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/generated/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>CHANGELOG &#8212; RKO-LIO: Lidar-inertial odometry without sensor-specific modeling</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=f6a572b4" />
+    <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=56c4699f" />
+    <script src="_static/documentation_options.js?v=6e0256f3"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">RKO-LIO</a></h1>
+
+
+
+<p class="blurb">Lidar-inertial odometry</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=PRBonn&repo=rko_lio&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/general/general.html">General details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/ros.html">ROS (C++)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="__LICENSE.html">License</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://index.ros.org/p/rko_lio/">ROS Index</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/rko-lio/">PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://github.com/PRBonn/rko_lio">GitHub</a></li>
+    
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="changelog">
+<h1>CHANGELOG<a class="headerlink" href="#changelog" title="Link to this heading">¶</a></h1>
+<section id="changelog-for-package-rko-lio">
+<h2>Changelog for package rko_lio<a class="headerlink" href="#changelog-for-package-rko-lio" title="Link to this heading">¶</a></h2>
+<section id="id1">
+<h3>0.1.6 (2025-10-07)<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>make fPIC a property target ON instead of a global build flag</p></li>
+<li><p>drop cmake min version to 3.22.0</p></li>
+<li><p>clean up bonxai finding and mocking a bit</p></li>
+<li><p>force include bonxai code when not fetching</p></li>
+<li><p>Contributors: Meher Malladi</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>0.1.5 (2025-10-04)<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Drop cmake min version to 3.22.1 to support ros humble builds with default toolchains  (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/52">#52</a>)
+* mock a find package file if cmake below version 3.24
+* different sophus version compat for older cmake
+* add compat target sources for cmake &lt; 3.23
+* missing include fix
+* cmake policy to suppress warning on the older cmake
+* fix the bonxai fetch problem for ubuntu 22.04 isolated builds</p></li>
+<li><p>Contributors: Meher Malladi</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>0.1.4 (2025-10-04)<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Drop ros cmake min version to 3.26.5.  (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/50">#50</a>)
+* Conditional fetchcontent flags to include exclude_from_all only if version &gt; 3.28. Should fix rhel 9 builds for ros</p></li>
+<li><p>Bump FetchContent dependencies (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/49">#49</a>)
+* bump Eigen FetchContent to 5.0
+———
+Co-authored-by: github-actions[bot] &lt;github-actions[bot]&#64;users.noreply.github.com&gt;
+Co-authored-by: Meher Malladi &lt;<a class="reference external" href="mailto:rm&#46;meher97&#37;&#52;&#48;gmail&#46;com">rm<span>&#46;</span>meher97<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p></li>
+<li><p>Contributors: Meher Malladi, github-actions[bot]</p></li>
+</ul>
+</section>
+<section id="id7">
+<h3>0.1.3 (2025-10-02)<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>temp fix: ros builds when FETCHCONTENT_FULLY_DISABLED is ON, aka the ros build farm (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/45">#45</a>)
+* clean up ament target dependencies deprecation
+* update bonxai version
+* add bonxai core source to dependencies/bonxai with a check to include only on specific conditions</p></li>
+<li><p>Change package layout to make ros package release easier (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/44">#44</a>)
+* move ros/cmake and package xml out. merge core cmake into root cmake
+* build ros by default, but disable it for the python build
+* makefile recipe disables ros build by default for cpp only build
+* clean up ros workflows a bit</p></li>
+<li><p>Bump pypa/cibuildwheel from 3.1.4 to 3.2.0 (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/42">#42</a>)
+Bumps [pypa/cibuildwheel](<a class="reference external" href="https://github.com/pypa/cibuildwheel">https://github.com/pypa/cibuildwheel</a>) from 3.1.4 to 3.2.0.
+- [Release notes](<a class="reference external" href="https://github.com/pypa/cibuildwheel/releases">https://github.com/pypa/cibuildwheel/releases</a>)
+- [Changelog](<a class="reference external" href="https://github.com/pypa/cibuildwheel/blob/main/docs/changelog.md">https://github.com/pypa/cibuildwheel/blob/main/docs/changelog.md</a>)
+- [Commits](<a class="reference external" href="https://github.com/pypa/cibuildwheel/compare/v3.1.4...v3.2.0">https://github.com/pypa/cibuildwheel/compare/v3.1.4…v3.2.0</a>)
+—
+updated-dependencies:
+- dependency-name: pypa/cibuildwheel
+dependency-version: 3.2.0
+dependency-type: direct:production
+update-type: version-update:semver-minor
+…
+Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]&#64;users.noreply.github.com&gt;</p></li>
+<li><p>Contributors: Meher Malladi, dependabot[bot]</p></li>
+</ul>
+</section>
+<section id="id11">
+<h3>0.1.2 (2025-09-26)<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Drop irregular lidar frames (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/35">#35</a>)
+* if incoming lidar scan has a stamp with too big of a delta to the previous, we treat it as an error</p></li>
+<li><p>fix component registration so online node component shows up in ros2 component types (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/34">#34</a>)</p></li>
+<li><p>Contributors: Meher Malladi</p></li>
+</ul>
+</section>
+<section id="id14">
+<h3>0.1.1 (2025-09-17)<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix logic error in offline node (ros) and interval imu stats compute (core) (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/29">#29</a>)
+* cleaner error messages and log parsed imu and lidar frames for ros
+* patch rviz config to change the global frame if a different odom frame is used
+* revert offline node bag and buffer completion handling logic
+* cannot compute accel mag variance if imu count is 1. modify the check preventing divide by 0 errors
+* remove python/config/default.yaml since –dump_config does the same job
+* bump version to v0.1.1 and update python readme slightly</p></li>
+<li><p>fix: ros launch - correctly overload config file params with cli params (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/28">#28</a>)
+* fix: ros launch - correctly overload config file params with cli params
+* clarify that the default.yaml config file is not automatically picked up by the ros launch file
+* add a check to make sure 0 or both extrinsics are specified</p></li>
+<li><p>Update docs to specify more details on data format (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/25">#25</a>)
+* print the extrinsics to console after guessing them, so that its easier for the user to respecify in a config if required
+* add a data.md that specifies the minimal requirements on data we have.
+* add a readme section for all the configurations rko lio has been tested on</p></li>
+<li><p>Update defaults to provide an easier entry into using the system (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/24">#24</a>)
+* set initialization_phase to false by default, as a false start can break odometry. the user can opt-in to initializing if they know their system starts from rest.
+* remove Ninja as the default generator for ROS builds, as it breaks ros build farm builds</p></li>
+<li><p>Contributors: Meher Malladi</p></li>
+</ul>
+</section>
+<section id="id19">
+<h3>0.1.0 (2025-09-11)<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Bump version 0.1.0 (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/22">#22</a>)
+* Update pyproject.toml to v0.1.0
+* Update package.xml to version 0.1.0</p></li>
+<li><p>Ros API improvements (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/20">#20</a>)
+* append quat_xyzw_xyz to extrinsic parameter names to make the order clearer
+* rename bag_filename to bag_path to be more intuitive on the offline node
+* ros refactoring: more parameter definitions, better parameter defaults, better variable names, offline node simplifications, and readme and launfile updates to reflect the new parameter names.
+* update the rviz config file
+* launchfile is improved. cli params override config files. final config is printed to console
+* update the documentation to reflect the changes</p></li>
+<li><p>Contributors: Meher Malladi</p></li>
+</ul>
+</section>
+<section id="id22">
+<h3>0.0.4 (2025-09-09)<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>C++ simplifications, py-rosbag reader improvements (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/14">#14</a>)
+* print the names of the bag files being added if there are multiple
+* add a –dump_config option to get a default config out
+* improve the –help messages a bit
+* print a more helpful message in case the bag doesnt contain a tf
+* simplifications on the cpp side to how we compute interval stats for imu
+* better handle the case when there are no timestamps in the point cloud
+for a rosbag
+* change the names of a few variables
+* add some more details to the main readme
+* bump version</p></li>
+<li><p>Contributors: Meher Malladi</p></li>
+</ul>
+</section>
+<section id="id24">
+<h3>0.0.3 (2025-09-07 16:17)<a class="headerlink" href="#id24" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix/improve rerun visualization, remove matplotlib as an undocumented dep, bump version (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/10">#10</a>)
+* remove unnecessary dependency on matplotlib. also prevents a break
+* use the rerun blueprint from the visualization we have now
+* move rerun config to the package folder, and then always log it on
+initialization
+so we get a well configured viz by default
+* improve docs a bit, and change the name for a workflow build
+* bump version because we fixed the visualization in this one</p></li>
+<li><p>Add humble support and improve workflows (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/9">#9</a>)
+* fix the problem with bag timestamp on humble
+* use my humble image for humble build
+* add details for humble in readmes. switch workflows branch back to
+master
+* split workflows into reusable workflows, so that i get badges on the
+readme
+* finish the quest for pretty status badges</p></li>
+<li><p>Contributors: Meher Malladi</p></li>
+</ul>
+</section>
+<section id="id27">
+<h3>0.0.2 (2025-09-07 03:17)<a class="headerlink" href="#id27" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add macOS and Windows support/builds/wheels (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/8">#8</a>)
+* builds on mac arm (14 and 15)
+* builds on windows 2022
+* fix the msvc build error on helipr
+* added in tests
+* use pytests in the python bindings workflow
+* drop support for py 3.9
+* we provide wheels for all major platforms now
+* except windows 11 arm
+* version bump to 0.0.2</p></li>
+<li><p>Contributors: Meher Malladi</p></li>
+</ul>
+</section>
+<section id="id29">
+<h3>0.0.1 (2025-09-06)<a class="headerlink" href="#id29" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Workflows (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/6">#6</a>)
+* test python bindings build workflow
+* add ros build workflow
+* update readmes to say we support kilted because it builds there as well
+* simplify cibuildwheel target platforms
+* add a pypi workflow. switch the branches out to master
+time to pray this works</p></li>
+<li><p>Add build and config docs (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/2">#2</a>)
+* add build.md
+* move config and build docs into docs
+* add config.md
+* fix the gitignore mistake for folders
+* add a few more details
+* some ros doc cleanup</p></li>
+<li><p>Add initial readme documentation for both the ros and python versions (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/1">#1</a>)
+* add some python readme docs
+* add a pre-commit config for fixing trailing whitespace
+* fix the math in the main readme
+* improve a link to python doc
+* add ros readme and add some placeholder details to the build and config
+* update the readmes a bit
+* add an example ros offline invocation</p></li>
+<li><p>add initial version</p></li>
+<li><p>Contributors: Meher Malladi</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &#169;2025 Meher Malladi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/__CHANGELOG.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

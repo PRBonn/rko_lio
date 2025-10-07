@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structrko__lio_1_1core_1_1Timer" kind="struct" language="C++" prot="public">
+    <compoundname>rko_lio::core::Timer</compoundname>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structrko__lio_1_1core_1_1Timer_1aa5952c4544711526513ecb9dd327b909" prot="public" static="no">
+        <type>std::chrono::high_resolution_clock</type>
+        <definition>using rko_lio::core::Timer::Clock =  std::chrono::high_resolution_clock</definition>
+        <argsstring></argsstring>
+        <name>Clock</name>
+        <qualifiedname>rko_lio::core::Timer::Clock</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="107" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structrko__lio_1_1core_1_1Timer_1a715164e0a268bf21fac0b439ca674440" prot="public" static="no">
+        <type>std::chrono::time_point&lt; Clock &gt;</type>
+        <definition>using rko_lio::core::Timer::TimePoint =  std::chrono::time_point&lt;Clock&gt;</definition>
+        <argsstring></argsstring>
+        <name>TimePoint</name>
+        <qualifiedname>rko_lio::core::Timer::TimePoint</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="108" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structrko__lio_1_1core_1_1Timer_1a2c4dde4f9651c79711e59c6c5b9c6883" prot="public" static="no">
+        <type>std::chrono::duration&lt; double &gt;</type>
+        <definition>using rko_lio::core::Timer::Duration =  std::chrono::duration&lt;double&gt;</definition>
+        <argsstring></argsstring>
+        <name>Duration</name>
+        <qualifiedname>rko_lio::core::Timer::Duration</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="109" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="109" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1Timer_1a240f42bfce261aa2b56a7ea6f9a5a080" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string rko_lio::core::Timer::label</definition>
+        <argsstring></argsstring>
+        <name>label</name>
+        <qualifiedname>rko_lio::core::Timer::label</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="122" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1Timer_1ac68dc9c9d4f3b702fd518978e5362e3f" prot="public" static="no" mutable="no">
+        <type>TimePoint</type>
+        <definition>TimePoint rko_lio::core::Timer::start_time</definition>
+        <argsstring></argsstring>
+        <name>start_time</name>
+        <qualifiedname>rko_lio::core::Timer::start_time</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="123" column="13" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="123" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1Timer_1a91777f2c06edd982cf1bf75ec2fcca1e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::core::Timer::Timer</definition>
+        <argsstring>()</argsstring>
+        <name>Timer</name>
+        <qualifiedname>rko_lio::core::Timer::Timer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="111" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="111" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1Timer_1a80e56a9f13072aec671ee74b7d5be406" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::core::Timer::Timer</definition>
+        <argsstring>(const std::string &amp;label)</argsstring>
+        <name>Timer</name>
+        <qualifiedname>rko_lio::core::Timer::Timer</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>label</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="112" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="112" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1Timer_1a1480b7483ffda1d5ba23f0f54063f6ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::core::Timer::Timer</definition>
+        <argsstring>(const Timer &amp;)=default</argsstring>
+        <name>Timer</name>
+        <qualifiedname>rko_lio::core::Timer::Timer</qualifiedname>
+        <param>
+          <type>const <ref refid="structrko__lio_1_1core_1_1Timer" kindref="compound">Timer</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="113" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1Timer_1a09b7895b9931887dad2a9b5e23f5eff3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::core::Timer::Timer</definition>
+        <argsstring>(Timer &amp;&amp;)=default</argsstring>
+        <name>Timer</name>
+        <qualifiedname>rko_lio::core::Timer::Timer</qualifiedname>
+        <param>
+          <type><ref refid="structrko__lio_1_1core_1_1Timer" kindref="compound">Timer</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="114" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1Timer_1af73241010569a47595e18b9a97315d79" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structrko__lio_1_1core_1_1Timer" kindref="compound">Timer</ref> &amp;</type>
+        <definition>Timer &amp; rko_lio::core::Timer::operator=</definition>
+        <argsstring>(const Timer &amp;)=default</argsstring>
+        <name>operator=</name>
+        <qualifiedname>rko_lio::core::Timer::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="structrko__lio_1_1core_1_1Timer" kindref="compound">Timer</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="115" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1Timer_1ac2f0c7dd196f11e1ff6211e008aa0ec7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structrko__lio_1_1core_1_1Timer" kindref="compound">Timer</ref> &amp;</type>
+        <definition>Timer &amp; rko_lio::core::Timer::operator=</definition>
+        <argsstring>(Timer &amp;&amp;)=default</argsstring>
+        <name>operator=</name>
+        <qualifiedname>rko_lio::core::Timer::operator=</qualifiedname>
+        <param>
+          <type><ref refid="structrko__lio_1_1core_1_1Timer" kindref="compound">Timer</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="116" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1Timer_1adaf6fe6d98f58d17620f3ccbade46b99" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::core::Timer::~Timer</definition>
+        <argsstring>()</argsstring>
+        <name>~Timer</name>
+        <qualifiedname>rko_lio::core::Timer::~Timer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="117" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="117" bodyend="121"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="106" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="106" bodyend="124"/>
+    <listofallmembers>
+      <member refid="structrko__lio_1_1core_1_1Timer_1aa5952c4544711526513ecb9dd327b909" prot="public" virt="non-virtual"><scope>rko_lio::core::Timer</scope><name>Clock</name></member>
+      <member refid="structrko__lio_1_1core_1_1Timer_1a2c4dde4f9651c79711e59c6c5b9c6883" prot="public" virt="non-virtual"><scope>rko_lio::core::Timer</scope><name>Duration</name></member>
+      <member refid="structrko__lio_1_1core_1_1Timer_1a240f42bfce261aa2b56a7ea6f9a5a080" prot="public" virt="non-virtual"><scope>rko_lio::core::Timer</scope><name>label</name></member>
+      <member refid="structrko__lio_1_1core_1_1Timer_1af73241010569a47595e18b9a97315d79" prot="public" virt="non-virtual"><scope>rko_lio::core::Timer</scope><name>operator=</name></member>
+      <member refid="structrko__lio_1_1core_1_1Timer_1ac2f0c7dd196f11e1ff6211e008aa0ec7" prot="public" virt="non-virtual"><scope>rko_lio::core::Timer</scope><name>operator=</name></member>
+      <member refid="structrko__lio_1_1core_1_1Timer_1ac68dc9c9d4f3b702fd518978e5362e3f" prot="public" virt="non-virtual"><scope>rko_lio::core::Timer</scope><name>start_time</name></member>
+      <member refid="structrko__lio_1_1core_1_1Timer_1a715164e0a268bf21fac0b439ca674440" prot="public" virt="non-virtual"><scope>rko_lio::core::Timer</scope><name>TimePoint</name></member>
+      <member refid="structrko__lio_1_1core_1_1Timer_1a91777f2c06edd982cf1bf75ec2fcca1e" prot="public" virt="non-virtual"><scope>rko_lio::core::Timer</scope><name>Timer</name></member>
+      <member refid="structrko__lio_1_1core_1_1Timer_1a80e56a9f13072aec671ee74b7d5be406" prot="public" virt="non-virtual"><scope>rko_lio::core::Timer</scope><name>Timer</name></member>
+      <member refid="structrko__lio_1_1core_1_1Timer_1a1480b7483ffda1d5ba23f0f54063f6ef" prot="public" virt="non-virtual"><scope>rko_lio::core::Timer</scope><name>Timer</name></member>
+      <member refid="structrko__lio_1_1core_1_1Timer_1a09b7895b9931887dad2a9b5e23f5eff3" prot="public" virt="non-virtual"><scope>rko_lio::core::Timer</scope><name>Timer</name></member>
+      <member refid="structrko__lio_1_1core_1_1Timer_1adaf6fe6d98f58d17620f3ccbade46b99" prot="public" virt="non-virtual"><scope>rko_lio::core::Timer</scope><name>~Timer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Core dependencies &#8212; RKO-LIO: Lidar-inertial odometry without sensor-specific modeling</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=f6a572b4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=56c4699f" />
+    <script src="../../_static/documentation_options.js?v=6e0256f3"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ROS (C++)" href="../ros.html" />
+    <link rel="prev" title="Configuring the odometry" href="config.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">RKO-LIO</a></h1>
+
+
+
+<p class="blurb">Lidar-inertial odometry</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=PRBonn&repo=rko_lio&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="general.html">General details</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="data.html">Sensor data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Configuring rko_lio</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Core dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ros.html">ROS (C++)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../__LICENSE.html">License</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://index.ros.org/p/rko_lio/">ROS Index</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/rko-lio/">PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://github.com/PRBonn/rko_lio">GitHub</a></li>
+    
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="core-dependencies">
+<h1>Core dependencies<a class="headerlink" href="#core-dependencies" title="Link to this heading">¶</a></h1>
+<p>RKO-LIO is split into three parts:</p>
+<ul class="simple">
+<li><p>a core C++ library in <code class="docutils literal notranslate"><span class="pre">cpp</span></code>, which implements all the LiDAR-inertial odometry logic,</p></li>
+<li><p>the Python bindings in <code class="docutils literal notranslate"><span class="pre">python</span></code>, and</p></li>
+<li><p>the ROS interface in <code class="docutils literal notranslate"><span class="pre">ros</span></code>.</p></li>
+</ul>
+<p>With how the package is structured, the python and ros interfaces essentially handle the data reading problem, and the core library handles the odometry part.</p>
+<p>I highly recommend using <code class="docutils literal notranslate"><span class="pre">cmake&gt;=3.28</span></code>, due to how I handle core library dependencies.
+This is the default CMake version on Ubuntu 24.04 (also the ROS Jazzy/Kilted target Ubuntu platform).</p>
+<p>Building with <code class="docutils literal notranslate"><span class="pre">cmake&gt;=3.22</span></code> is still supported, which is the default version on Ubuntu 22.04 (if you’re using Humble), but it is less tested.
+In case you encounter build problems, please open an issue and I’ll look into it.</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">ninja</span></code> as a generator is also recommended.
+On ubuntu, you can install it with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ninja-build
+</pre></div>
+</div>
+<p>The python build will automatically use both <code class="docutils literal notranslate"><span class="pre">cmake&gt;=3.28</span></code> and <code class="docutils literal notranslate"><span class="pre">ninja</span></code>.</p>
+<section id="the-core-library">
+<h2>The core library<a class="headerlink" href="#the-core-library" title="Link to this heading">¶</a></h2>
+<p>The core library dependencies are:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/facontidavide/Bonxai">Bonxai</a>: for the VDB map</p></li>
+<li><p><a class="reference external" href="https://github.com/uxlfoundation/oneTBB">Intel oneTBB</a>: optionally parallelizes data association in ICP</p></li>
+<li><p><a class="reference external" href="https://github.com/nlohmann/json">nlohmann_json</a>: for dumping some logs to disk</p></li>
+<li><p><a class="reference external" href="https://github.com/strasdat/Sophus">Sophus</a>: for Lie Group math</p></li>
+<li><p><a class="reference external" href="https://eigen.tuxfamily.org">Eigen</a>: Self-explanatory</p></li>
+</ul>
+<p>There are two ways to build the core library:</p>
+<ol class="arabic simple">
+<li><p>Provide <strong>all</strong> dependencies yourself as system packages (default, see <code class="docutils literal notranslate"><span class="pre">cpp/CMakeLists.txt</span></code> line 28, also see exception below).</p></li>
+<li><p>Vendor dependencies using CMake’s <code class="docutils literal notranslate"><span class="pre">FetchContent</span></code>.</p></li>
+</ol>
+<p>Using FetchContent for partial fetches is not supported: it’s all or nothing.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bonxai is <strong>always fetched</strong> (see <code class="docutils literal notranslate"><span class="pre">cmake/dependencies.cmake</span></code> line 30) because upstream does not provide a system package.</p>
+</div>
+<p>In general, I recommend using option 2, as I specify the versions for all dependencies and you’ll get a more consistent experience across systems.
+The python interface by default always fetches the deps.
+However, if you’re using the ros binaries from the ros’ repositories (<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">ros-${ROS_DISTRO}-rko-lio</span></code>), then you’ll be getting the versions of libraries that come packaged with your system.</p>
+<p>FetchContent dependency management is opt-in; pass <code class="docutils literal notranslate"><span class="pre">-DRKO_LIO_FETCH_CONTENT_DEPS=ON</span></code> to the CMake configure step to enable it.</p>
+<section id="upgrading-cmake-to-version-3-28">
+<h3>Upgrading CMake to version 3.28<a class="headerlink" href="#upgrading-cmake-to-version-3-28" title="Link to this heading">¶</a></h3>
+<p>In case:</p>
+<ul class="simple">
+<li><p>you’re on an older system</p></li>
+<li><p>your default system package manager doesn’t provide CMake v3.28</p></li>
+<li><p>and you’d like to upgrade</p></li>
+</ul>
+<p>Then you can use the following commands to build CMake from source and install it.
+If you are doing this anyways, I’d recommend also bumping the CMake version to its latest version as they are usually backwards compatible.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">CMAKE_VERSION</span><span class="o">=</span><span class="s2">&quot;3.28.6&quot;</span>
+<span class="nb">cd</span><span class="w"> </span>/tmp
+wget<span class="w"> </span>https://github.com/Kitware/CMake/releases/download/v<span class="si">${</span><span class="nv">CMAKE_VERSION</span><span class="si">}</span>/cmake-<span class="si">${</span><span class="nv">CMAKE_VERSION</span><span class="si">}</span>.tar.gz
+tar<span class="w"> </span>-zxf<span class="w"> </span>cmake-<span class="si">${</span><span class="nv">CMAKE_VERSION</span><span class="si">}</span>.tar.gz
+rm<span class="w"> </span>cmake-<span class="si">${</span><span class="nv">CMAKE_VERSION</span><span class="si">}</span>.tar.gz
+<span class="nb">cd</span><span class="w"> </span>cmake-<span class="si">${</span><span class="nv">CMAKE_VERSION</span><span class="si">}</span>
+./bootstrap<span class="w"> </span>--system-curl<span class="w"> </span>--prefix<span class="o">=</span>/usr/local
+make<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</span>
+sudo<span class="w"> </span>make<span class="w"> </span>install
+<span class="nb">cd</span><span class="w"> </span>/tmp
+rm<span class="w"> </span>-rf<span class="w"> </span>cmake-<span class="si">${</span><span class="nv">CMAKE_VERSION</span><span class="si">}</span>
+cmake<span class="w"> </span>--version
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="config.html" title="Previous document">Configuring the odometry</a>
+        </li>
+        <li>
+          <a href="../ros.html" title="Next document">ROS (C++)</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &#169;2025 Meher Malladi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/pages/general/core_dependencies.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

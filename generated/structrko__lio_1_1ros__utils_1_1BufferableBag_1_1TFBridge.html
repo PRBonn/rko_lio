@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Struct BufferableBag::TFBridge &#8212; RKO-LIO: Lidar-inertial odometry without sensor-specific modeling</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=f6a572b4" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=56c4699f" />
+    <script src="../_static/documentation_options.js?v=6e0256f3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Template Struct hash&lt; Eigen::Vector3i &gt;" href="structstd_1_1hash_3_01Eigen_1_1Vector3i_01_4.html" />
+    <link rel="prev" title="Struct Timer" href="structrko__lio_1_1core_1_1Timer.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">RKO-LIO</a></h1>
+
+
+
+<p class="blurb">Lidar-inertial odometry</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=PRBonn&repo=rko_lio&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/general/general.html">General details</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pages/ros.html">ROS (C++)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../__PACKAGE.html">ROS package.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/changelog_literal.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://index.ros.org/p/rko_lio/">ROS Index</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/rko-lio/">PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://github.com/PRBonn/rko_lio">GitHub</a></li>
+    
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="struct-bufferablebag-tfbridge">
+<span id="exhale-struct-structrko-lio-1-1ros-utils-1-1bufferablebag-1-1tfbridge"></span><h1>Struct BufferableBag::TFBridge<a class="headerlink" href="#struct-bufferablebag-tfbridge" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_ros_utils_rosbag_utils.hpp.html#file-home-runner-work-rko-lio-rko-lio-ros-rko-lio-ros-utils-rosbag-utils-hpp"><span class="std std-ref">File rosbag_utils.hpp</span></a></p></li>
+</ul>
+<section id="nested-relationships">
+<h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Link to this heading">¶</a></h2>
+<p>This struct is a nested type of <a class="reference internal" href="classrko__lio_1_1ros__utils_1_1BufferableBag.html#exhale-class-classrko-lio-1-1ros-utils-1-1bufferablebag"><span class="std std-ref">Class BufferableBag</span></a>.</p>
+</section>
+<section id="struct-documentation">
+<h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Link to this heading">¶</a></h2>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio9ros_utils13BufferableBag8TFBridgeE">
+<span id="_CPPv3N7rko_lio9ros_utils13BufferableBag8TFBridgeE"></span><span id="_CPPv2N7rko_lio9ros_utils13BufferableBag8TFBridgeE"></span><span id="rko_lio::ros_utils::BufferableBag::TFBridge"></span><span class="target" id="structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TFBridge</span></span></span><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio9ros_utils13BufferableBag8TFBridge8TFBridgeEN6rclcpp4Node9SharedPtrE">
+<span id="_CPPv3N7rko_lio9ros_utils13BufferableBag8TFBridge8TFBridgeEN6rclcpp4Node9SharedPtrE"></span><span id="_CPPv2N7rko_lio9ros_utils13BufferableBag8TFBridge8TFBridgeEN6rclcpp4Node9SharedPtrE"></span><span id="rko_lio::ros_utils::BufferableBag::TFBridge::TFBridge__rclcpp::Node::SharedPtr"></span><span class="target" id="structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge_1ac431433a8b63201631c564600f37a076"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TFBridge</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Node</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">node</span></span><span class="sig-paren">)</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7rko_lio9ros_utils13BufferableBag8TFBridge16ProcessTFMessageENSt10shared_ptrIN15rosbag2_storage20SerializedBagMessageEEE">
+<span id="_CPPv3NK7rko_lio9ros_utils13BufferableBag8TFBridge16ProcessTFMessageENSt10shared_ptrIN15rosbag2_storage20SerializedBagMessageEEE"></span><span id="_CPPv2NK7rko_lio9ros_utils13BufferableBag8TFBridge16ProcessTFMessageENSt10shared_ptrIN15rosbag2_storage20SerializedBagMessageEEE"></span><span id="rko_lio::ros_utils::BufferableBag::TFBridge::ProcessTFMessage__std::shared_ptr:rosbag2_storage::SerializedBagMessage:C"></span><span class="target" id="structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge_1a9c125449db10aedd47101773459e860a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ProcessTFMessage</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">rosbag2_storage</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SerializedBagMessage</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">msg</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio9ros_utils13BufferableBag8TFBridge14tf_broadcasterE">
+<span id="_CPPv3N7rko_lio9ros_utils13BufferableBag8TFBridge14tf_broadcasterE"></span><span id="_CPPv2N7rko_lio9ros_utils13BufferableBag8TFBridge14tf_broadcasterE"></span><span id="rko_lio::ros_utils::BufferableBag::TFBridge::tf_broadcaster__std::unique_ptr:tf2_ros::TransformBroadcaster:"></span><span class="target" id="structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge_1a4a431f14588e94b5b73c39831df4fe6e"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unique_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">tf2_ros</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">TransformBroadcaster</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">tf_broadcaster</span></span></span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio9ros_utils13BufferableBag8TFBridge21tf_static_broadcasterE">
+<span id="_CPPv3N7rko_lio9ros_utils13BufferableBag8TFBridge21tf_static_broadcasterE"></span><span id="_CPPv2N7rko_lio9ros_utils13BufferableBag8TFBridge21tf_static_broadcasterE"></span><span id="rko_lio::ros_utils::BufferableBag::TFBridge::tf_static_broadcaster__std::unique_ptr:tf2_ros::StaticTransformBroadcaster:"></span><span class="target" id="structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge_1a3ac0d3183342ba88de7a483499f36218"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unique_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">tf2_ros</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">StaticTransformBroadcaster</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">tf_static_broadcaster</span></span></span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio9ros_utils13BufferableBag8TFBridge10serializerE">
+<span id="_CPPv3N7rko_lio9ros_utils13BufferableBag8TFBridge10serializerE"></span><span id="_CPPv2N7rko_lio9ros_utils13BufferableBag8TFBridge10serializerE"></span><span id="rko_lio::ros_utils::BufferableBag::TFBridge::serializer__rclcpp::Serialization:tf2_msgs::msg::TFMessage:"></span><span class="target" id="structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge_1a7be4a6bf5c7685640d072db8bb9e038a"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Serialization</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">tf2_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">TFMessage</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">serializer</span></span></span><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="structrko__lio_1_1core_1_1Timer.html" title="Previous document">Struct Timer</a>
+        </li>
+        <li>
+          <a href="structstd_1_1hash_3_01Eigen_1_1Vector3i_01_4.html" title="Next document">Template Struct hash&lt; Eigen::Vector3i &gt;</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &#169;2025 Meher Malladi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/generated/structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

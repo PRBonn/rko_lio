@@ -1,0 +1,321 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespacerko__lio_1_1ros__utils" kind="namespace" language="C++">
+    <compoundname>rko_lio::ros_utils</compoundname>
+    <innerclass refid="classrko__lio_1_1ros__utils_1_1BufferableBag" prot="public">rko_lio::ros_utils::BufferableBag</innerclass>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="point__cloud__read_8cpp_1ab5c0fc527485b86fef66ef94947405e7" prot="public" static="no">
+        <type>std::vector&lt; Eigen::Vector3d &gt;</type>
+        <definition>using rko_lio::ros_utils::Vector3dVector = typedef std::vector&lt;Eigen::Vector3d&gt;</definition>
+        <argsstring></argsstring>
+        <name>Vector3dVector</name>
+        <qualifiedname>rko_lio::ros_utils::Vector3dVector</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_read.cpp" line="32" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_read.cpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="point__cloud__read_8cpp_1ac5af74e2ce9903585e656484f3ae50aa" prot="public" static="no">
+        <type>sensor_msgs::msg::PointCloud2</type>
+        <definition>using rko_lio::ros_utils::PointCloud2 = typedef sensor_msgs::msg::PointCloud2</definition>
+        <argsstring></argsstring>
+        <name>PointCloud2</name>
+        <qualifiedname>rko_lio::ros_utils::PointCloud2</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_read.cpp" line="33" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_read.cpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="point__cloud__read_8cpp_1a7c03cf24cfb52af4d4beed1321f48710" prot="public" static="no">
+        <type>sensor_msgs::msg::PointField</type>
+        <definition>using rko_lio::ros_utils::PointField = typedef sensor_msgs::msg::PointField</definition>
+        <argsstring></argsstring>
+        <name>PointField</name>
+        <qualifiedname>rko_lio::ros_utils::PointField</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_read.cpp" line="34" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_read.cpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="point__cloud__read_8cpp_1aadaf97a8a3e4a9b43814c3e9390d6fe4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Vector3dVector</type>
+        <definition>std::vector&lt; Eigen::Vector3d &gt; rko_lio::ros_utils::point_cloud2_to_eigen</definition>
+        <argsstring>(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &amp;msg)</argsstring>
+        <name>point_cloud2_to_eigen</name>
+        <qualifiedname>rko_lio::ros_utils::point_cloud2_to_eigen</qualifiedname>
+        <param>
+          <type>const sensor_msgs::msg::PointCloud2::ConstSharedPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_read.cpp" line="36" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_read.cpp" bodystart="36" bodyend="47" declfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_read.hpp" declline="33" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="point__cloud__read_8cpp_1a91531bdd51b54763f6b79ca1b76440e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::tuple&lt; Vector3dVector, std::vector&lt; double &gt; &gt;</type>
+        <definition>std::tuple&lt; Vector3dVector, std::vector&lt; double &gt; &gt; rko_lio::ros_utils::point_cloud2_to_eigen_with_timestamps</definition>
+        <argsstring>(const PointCloud2::ConstSharedPtr &amp;msg)</argsstring>
+        <name>point_cloud2_to_eigen_with_timestamps</name>
+        <qualifiedname>rko_lio::ros_utils::point_cloud2_to_eigen_with_timestamps</qualifiedname>
+        <param>
+          <type>const PointCloud2::ConstSharedPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_read.cpp" line="50" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_read.cpp" bodystart="50" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="point__cloud__read_8hpp_1a3ad9753d3bfe9abb48f53936563b5dca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::tuple&lt; std::vector&lt; Eigen::Vector3d &gt;, std::vector&lt; double &gt; &gt;</type>
+        <definition>std::tuple&lt; std::vector&lt; Eigen::Vector3d &gt;, std::vector&lt; double &gt; &gt; rko_lio::ros_utils::point_cloud2_to_eigen_with_timestamps</definition>
+        <argsstring>(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &amp;msg)</argsstring>
+        <name>point_cloud2_to_eigen_with_timestamps</name>
+        <qualifiedname>rko_lio::ros_utils::point_cloud2_to_eigen_with_timestamps</qualifiedname>
+        <param>
+          <type>const sensor_msgs::msg::PointCloud2::ConstSharedPtr &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_read.hpp" line="36" column="1" declfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_read.hpp" declline="36" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="point__cloud__write_8cpp_1aa1127a7edfcc13ff2c4ac7861761bfd5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PointCloud2::UniquePtr</type>
+        <definition>PointCloud2::UniquePtr rko_lio::ros_utils::eigen_to_point_cloud2</definition>
+        <argsstring>(const std::vector&lt; Eigen::Vector3d &gt; &amp;points, const Header &amp;header)</argsstring>
+        <name>eigen_to_point_cloud2</name>
+        <qualifiedname>rko_lio::ros_utils::eigen_to_point_cloud2</qualifiedname>
+        <param>
+          <type>const std::vector&lt; Eigen::Vector3d &gt; &amp;</type>
+          <declname>points</declname>
+        </param>
+        <param>
+          <type>const Header &amp;</type>
+          <declname>header</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_write.cpp" line="77" column="24" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_write.cpp" bodystart="77" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="point__cloud__write_8hpp_1a10538ea744e5f5755b53206115dcb62d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::unique_ptr&lt; sensor_msgs::msg::PointCloud2 &gt;</type>
+        <definition>std::unique_ptr&lt; sensor_msgs::msg::PointCloud2 &gt; rko_lio::ros_utils::eigen_to_point_cloud2</definition>
+        <argsstring>(const std::vector&lt; Eigen::Vector3d &gt; &amp;points, const std_msgs::msg::Header &amp;header)</argsstring>
+        <name>eigen_to_point_cloud2</name>
+        <qualifiedname>rko_lio::ros_utils::eigen_to_point_cloud2</qualifiedname>
+        <param>
+          <type>const std::vector&lt; Eigen::Vector3d &gt; &amp;</type>
+          <declname>points</declname>
+        </param>
+        <param>
+          <type>const std_msgs::msg::Header &amp;</type>
+          <declname>header</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_write.hpp" line="30" column="17" declfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_write.hpp" declline="30" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="ros__vectors_8hpp_1adc80b1d89da8ab16fb400b64f8de6444" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::ros_utils::eigen_vector3d_to_ros_xyz</definition>
+        <argsstring>(const Eigen::Vector3d &amp;vector, auto &amp;ros_vector)</argsstring>
+        <name>eigen_vector3d_to_ros_xyz</name>
+        <qualifiedname>rko_lio::ros_utils::eigen_vector3d_to_ros_xyz</qualifiedname>
+        <param>
+          <type>const Eigen::Vector3d &amp;</type>
+          <declname>vector</declname>
+        </param>
+        <param>
+          <type>auto &amp;</type>
+          <declname>ros_vector</declname>
+        </param>
+    <requiresclause>requires(decltype(ros_vector) v) { { v.x } -&gt; std::convertible_to&lt;double&gt;; { v.y } -&gt; std::convertible_to&lt;double&gt;; { v.z } -&gt; std::convertible_to&lt;double&gt;; }    </requiresclause>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/ros_vectors.hpp" line="30" column="6" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/ros_vectors.hpp" bodystart="30" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="ros__vectors_8hpp_1a361635a6dbad79b8734e6394aa42cd0d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d rko_lio::ros_utils::ros_xyz_to_eigen_vector3d</definition>
+        <argsstring>(const T &amp;ros_vector)</argsstring>
+        <name>ros_xyz_to_eigen_vector3d</name>
+        <qualifiedname>rko_lio::ros_utils::ros_xyz_to_eigen_vector3d</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>ros_vector</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/ros_vectors.hpp" line="43" column="17" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/ros_vectors.hpp" bodystart="43" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="time_8hpp_1a4d1f77578095092778c1a3299d79aa44" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::chrono::duration&lt; double &gt;</type>
+        <definition>std::chrono::duration&lt; double &gt; rko_lio::ros_utils::ros_time_to_seconds</definition>
+        <argsstring>(const builtin_interfaces::msg::Time &amp;stamp)</argsstring>
+        <name>ros_time_to_seconds</name>
+        <qualifiedname>rko_lio::ros_utils::ros_time_to_seconds</qualifiedname>
+        <param>
+          <type>const builtin_interfaces::msg::Time &amp;</type>
+          <declname>stamp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/time.hpp" line="30" column="30" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/time.hpp" bodystart="30" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="transforms_8hpp_1a2fe9738bc742c3ea7bc942e00be5b6fc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>geometry_msgs::msg::Pose</type>
+        <definition>geometry_msgs::msg::Pose rko_lio::ros_utils::sophus_to_pose</definition>
+        <argsstring>(const Sophus::SE3d &amp;T)</argsstring>
+        <name>sophus_to_pose</name>
+        <qualifiedname>rko_lio::ros_utils::sophus_to_pose</qualifiedname>
+        <param>
+          <type>const Sophus::SE3d &amp;</type>
+          <declname>T</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/transforms.hpp" line="39" column="33" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/transforms.hpp" bodystart="39" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="transforms_8hpp_1abb6e8fc75669251dab21b66c068dcbb9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>geometry_msgs::msg::Transform</type>
+        <definition>geometry_msgs::msg::Transform rko_lio::ros_utils::sophus_to_transform</definition>
+        <argsstring>(const Sophus::SE3d &amp;T)</argsstring>
+        <name>sophus_to_transform</name>
+        <qualifiedname>rko_lio::ros_utils::sophus_to_transform</qualifiedname>
+        <param>
+          <type>const Sophus::SE3d &amp;</type>
+          <declname>T</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/transforms.hpp" line="54" column="38" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/transforms.hpp" bodystart="54" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="transforms_8hpp_1a2e0e7e335974020f9500bc3403eee8be" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Scalar</type>
+            <defval>double</defval>
+          </param>
+        </templateparamlist>
+        <type>Sophus::SE3&lt; Scalar &gt;</type>
+        <definition>Sophus::SE3&lt; Scalar &gt; rko_lio::ros_utils::transform_to_sophus</definition>
+        <argsstring>(const geometry_msgs::msg::TransformStamped &amp;transform)</argsstring>
+        <name>transform_to_sophus</name>
+        <qualifiedname>rko_lio::ros_utils::transform_to_sophus</qualifiedname>
+        <param>
+          <type>const geometry_msgs::msg::TransformStamped &amp;</type>
+          <declname>transform</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/transforms.hpp" line="70" column="20" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/transforms.hpp" bodystart="70" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="transforms_8hpp_1a372c4216c5e01ff6453368d96396068f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Scalar</type>
+            <defval>double</defval>
+          </param>
+        </templateparamlist>
+        <type>std::optional&lt; Sophus::SE3&lt; Scalar &gt; &gt;</type>
+        <definition>std::optional&lt; Sophus::SE3&lt; Scalar &gt; &gt; rko_lio::ros_utils::get_transform</definition>
+        <argsstring>(const std::shared_ptr&lt; tf2_ros::Buffer &gt; &amp;tf_buffer, const std::string &amp;from_frame, const std::string &amp;to_frame, const std::chrono::duration&lt; double &gt; &amp;time, const std::chrono::duration&lt; double &gt; &amp;timeout=std::chrono::duration&lt; double &gt;(0))</argsstring>
+        <name>get_transform</name>
+        <qualifiedname>rko_lio::ros_utils::get_transform</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; tf2_ros::Buffer &gt; &amp;</type>
+          <declname>tf_buffer</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>from_frame</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>to_frame</declname>
+        </param>
+        <param>
+          <type>const std::chrono::duration&lt; double &gt; &amp;</type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type>const std::chrono::duration&lt; double &gt; &amp;</type>
+          <declname>timeout</declname>
+          <defval>std::chrono::duration&lt; double &gt;(0)</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/transforms.hpp" line="78" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/transforms.hpp" bodystart="78" bodyend="111"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_read.cpp" line="31" column="1"/>
+  </compounddef>
+</doxygen>

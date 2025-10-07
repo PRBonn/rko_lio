@@ -1,0 +1,14 @@
+.. _exhale_function_offline__node_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627:
+
+Function main
+=============
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_offline_node.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: main(int, char **)
+   :project: rko_lio Doxygen Project

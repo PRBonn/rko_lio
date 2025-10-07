@@ -1,0 +1,14 @@
+.. _exhale_typedef_namespacerko__lio_1_1core_1a50d343fe8fc3d44fdf883bc4a77b1ccf:
+
+Typedef rko_lio::core::TimestampVector
+======================================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_util.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: rko_lio::core::TimestampVector
+   :project: rko_lio Doxygen Project

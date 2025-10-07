@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>RKO-LIO &#8212; RKO-LIO: Lidar-inertial odometry without sensor-specific modeling</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=f6a572b4" />
+    <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=56c4699f" />
+    <script src="_static/documentation_options.js?v=6e0256f3"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The TL;DR" href="pages/quickstart.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">RKO-LIO</a></h1>
+
+
+
+<p class="blurb">Lidar-inertial odometry</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=PRBonn&repo=rko_lio&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/general/general.html">General details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/ros.html">ROS (C++)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="__LICENSE.html">License</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://index.ros.org/p/rko_lio/">ROS Index</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/rko-lio/">PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://github.com/PRBonn/rko_lio">GitHub</a></li>
+    
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="rko-lio">
+<h1>RKO-LIO<a class="headerlink" href="#rko-lio" title="Link to this heading">¶</a></h1>
+<div>
+  <p>
+    <a href="https://arxiv.org/abs/2509.06593"><img src="https://img.shields.io/badge/arXiv-2509.06593-b31b1b.svg" alt="arXiv badge" /></a>
+    <a href="/LICENSE"><img src="https://img.shields.io/github/license/PRBonn/rko_lio" alt="GitHub License" /></a>
+    <a href="/"><img src="https://img.shields.io/github/last-commit/PRBonn/rko_lio" alt="GitHub Last Commit" /></a>
+    <a href="https://pypi.org/project/rko-lio/"><img src="https://img.shields.io/pypi/v/rko_lio?color=blue" alt="PyPI version" /></a>
+  </p>
+</div><figure class="align-center" id="id1" style="width: 100%">
+<img alt="Visualization of odometry system running on data from four different platforms in four different environments" src="_images/example_multiple_platforms_shadow.png" />
+<figcaption>
+<p><span class="caption-text"><em>Four different platforms, four different environments, one odometry system</em></span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>RKO-LIO is a LiDAR-inertial odometry system that is by design simple to deploy on different sensor configurations and robotic platforms with as minimal a change in configuration as necessary.</p>
+<p>There is no restriction on which LiDAR you can use, and you can do so without changing any config (I’ve tested Velodyne, Ouster, Hesai, Livox, Robosense, Aeva sensors).
+For using an IMU, I require only the accelerometer and gyroscope readings, the bare minimum.
+You don’t need to look up manufacturer spec sheets to provide noise specifications, etc.</p>
+<p>All you need to provide is the extrinsic transformation between the IMU and LiDAR and you can start using the system for your LiDAR-inertial odometry needs!</p>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Link to this heading">¶</a></h2>
+<p>If you use this work, please leave a star on our <a class="reference external" href="https://github.com/PRBonn/rko_lio">GitHub repository</a> and consider citing:</p>
+<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@article</span><span class="p">{</span><span class="nl">malladi2025arxiv</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="w">      </span><span class="p">=</span><span class="w"> </span><span class="s">{M.V.R. Malladi and T. Guadagnino and L. Lobefaro and C. Stachniss}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="w">       </span><span class="p">=</span><span class="w"> </span><span class="s">{A Robust Approach for LiDAR-Inertial Odometry Without Sensor-Specific Modeling}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">journal</span><span class="w">     </span><span class="p">=</span><span class="w"> </span><span class="s">{arXiv preprint}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="w">        </span><span class="p">=</span><span class="w"> </span><span class="s">{2025}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">volume</span><span class="w">      </span><span class="p">=</span><span class="w"> </span><span class="s">{arXiv:2509.06593}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">url</span><span class="w">         </span><span class="p">=</span><span class="w"> </span><span class="s">{https://arxiv.org/pdf/2509.06593}</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This documentation is still under construction. If you see something you can improve, I’d greatly appreciate any help. Please make an issue or a PR on <a class="reference external" href="https://github.com/PRBonn/rko_lio">GitHub</a>!</p>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pages/quickstart.html#python">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/quickstart.html#ros">ROS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pages/general/general.html">General details</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pages/general/data.html">Sensor data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/general/config.html">Configuring rko_lio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/general/core_dependencies.html">Core dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pages/ros.html">ROS (C++)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/index.html">C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="__PACKAGE.html">ROS package.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pages/changelog_literal.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pages/python.html">Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="python/modules.html">Python API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="__LICENSE.html">License</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          <a href="pages/quickstart.html" title="Next document">The TL;DR</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &#169;2025 Meher Malladi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

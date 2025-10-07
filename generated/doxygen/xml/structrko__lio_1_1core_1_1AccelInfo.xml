@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structrko__lio_1_1core_1_1AccelInfo" kind="struct" language="C++" prot="public">
+    <compoundname>rko_lio::core::AccelInfo</compoundname>
+    <includes refid="lio_8hpp" local="no">lio.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1AccelInfo_1a5c998a8898cf8363ad918163fc3d4860" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double rko_lio::core::AccelInfo::accel_mag_variance</definition>
+        <argsstring></argsstring>
+        <name>accel_mag_variance</name>
+        <qualifiedname>rko_lio::core::AccelInfo::accel_mag_variance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="43" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1AccelInfo_1ab7be49ea3197b57a929303e74d7f8913" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d rko_lio::core::AccelInfo::local_gravity_estimate</definition>
+        <argsstring></argsstring>
+        <name>local_gravity_estimate</name>
+        <qualifiedname>rko_lio::core::AccelInfo::local_gravity_estimate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="44" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Return type struct for use in the acceleration Kalman Filter. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="42" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="42" bodyend="45"/>
+    <listofallmembers>
+      <member refid="structrko__lio_1_1core_1_1AccelInfo_1a5c998a8898cf8363ad918163fc3d4860" prot="public" virt="non-virtual"><scope>rko_lio::core::AccelInfo</scope><name>accel_mag_variance</name></member>
+      <member refid="structrko__lio_1_1core_1_1AccelInfo_1ab7be49ea3197b57a929303e74d7f8913" prot="public" virt="non-virtual"><scope>rko_lio::core::AccelInfo</scope><name>local_gravity_estimate</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

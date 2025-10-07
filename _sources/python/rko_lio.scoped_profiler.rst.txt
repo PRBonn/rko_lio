@@ -1,0 +1,7 @@
+rko\_lio.scoped\_profiler module
+================================
+
+.. automodule:: rko_lio.scoped_profiler
+   :members:
+   :show-inheritance:
+   :undoc-members:

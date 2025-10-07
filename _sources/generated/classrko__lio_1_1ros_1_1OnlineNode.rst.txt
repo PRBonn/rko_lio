@@ -1,0 +1,26 @@
+.. _exhale_class_classrko__lio_1_1ros_1_1OnlineNode:
+
+Class OnlineNode
+================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_online_node.cpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public rko_lio::ros::Node`` (:ref:`exhale_class_classrko__lio_1_1ros_1_1Node`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: rko_lio::ros::OnlineNode
+   :project: rko_lio Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

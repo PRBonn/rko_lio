@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap" kind="class" language="C++" prot="private">
+    <compoundname>rko_lio::core::ScopedProfiler::ProfilingInfoMap</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1a58c5f81a3a1cc777cb8c725c3a914387" prot="public" static="no" mutable="no">
+        <type>std::unordered_map&lt; std::string, ProfilingInfo &gt;</type>
+        <definition>std::unordered_map&lt;std::string, ProfilingInfo&gt; rko_lio::core::ScopedProfiler::ProfilingInfoMap::map</definition>
+        <argsstring></argsstring>
+        <name>map</name>
+        <qualifiedname>rko_lio::core::ScopedProfiler::ProfilingInfoMap::map</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="74" column="24" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="74" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1a4f6637a3f8b1b5e5fbeb18551e506176" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::core::ScopedProfiler::ProfilingInfoMap::ProfilingInfoMap</definition>
+        <argsstring>()=default</argsstring>
+        <name>ProfilingInfoMap</name>
+        <qualifiedname>rko_lio::core::ScopedProfiler::ProfilingInfoMap::ProfilingInfoMap</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="75" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1a0206ba11f1f2f1dce8abfd8c21be7462" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::core::ScopedProfiler::ProfilingInfoMap::ProfilingInfoMap</definition>
+        <argsstring>(const ProfilingInfoMap &amp;)=delete</argsstring>
+        <name>ProfilingInfoMap</name>
+        <qualifiedname>rko_lio::core::ScopedProfiler::ProfilingInfoMap::ProfilingInfoMap</qualifiedname>
+        <param>
+          <type>const ProfilingInfoMap &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="76" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1ab67156791c1d7a49cf075c247eb341e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::core::ScopedProfiler::ProfilingInfoMap::ProfilingInfoMap</definition>
+        <argsstring>(ProfilingInfoMap &amp;&amp;)=delete</argsstring>
+        <name>ProfilingInfoMap</name>
+        <qualifiedname>rko_lio::core::ScopedProfiler::ProfilingInfoMap::ProfilingInfoMap</qualifiedname>
+        <param>
+          <type>ProfilingInfoMap &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="77" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1ad93be6ac596cd3de466221ae51dd6163" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ProfilingInfoMap &amp;</type>
+        <definition>ProfilingInfoMap &amp; rko_lio::core::ScopedProfiler::ProfilingInfoMap::operator=</definition>
+        <argsstring>(const ProfilingInfoMap &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>rko_lio::core::ScopedProfiler::ProfilingInfoMap::operator=</qualifiedname>
+        <param>
+          <type>const ProfilingInfoMap &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="78" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1a823cd96430376085d903d78eb6867ca5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ProfilingInfoMap &amp;</type>
+        <definition>ProfilingInfoMap &amp; rko_lio::core::ScopedProfiler::ProfilingInfoMap::operator=</definition>
+        <argsstring>(ProfilingInfoMap &amp;&amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>rko_lio::core::ScopedProfiler::ProfilingInfoMap::operator=</qualifiedname>
+        <param>
+          <type>ProfilingInfoMap &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="79" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1a5d7778f92c462898248eb5bcb915f729" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::core::ScopedProfiler::ProfilingInfoMap::print_results</definition>
+        <argsstring>()</argsstring>
+        <name>print_results</name>
+        <qualifiedname>rko_lio::core::ScopedProfiler::ProfilingInfoMap::print_results</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="80" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="80" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1aeb72d40c701f4656dce41c15c93320d7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::core::ScopedProfiler::ProfilingInfoMap::~ProfilingInfoMap</definition>
+        <argsstring>()</argsstring>
+        <name>~ProfilingInfoMap</name>
+        <qualifiedname>rko_lio::core::ScopedProfiler::ProfilingInfoMap::~ProfilingInfoMap</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="97" column="5" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="97" bodyend="97"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="72" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="72" bodyend="98"/>
+    <listofallmembers>
+      <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1a58c5f81a3a1cc777cb8c725c3a914387" prot="public" virt="non-virtual"><scope>rko_lio::core::ScopedProfiler::ProfilingInfoMap</scope><name>map</name></member>
+      <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1ad93be6ac596cd3de466221ae51dd6163" prot="public" virt="non-virtual"><scope>rko_lio::core::ScopedProfiler::ProfilingInfoMap</scope><name>operator=</name></member>
+      <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1a823cd96430376085d903d78eb6867ca5" prot="public" virt="non-virtual"><scope>rko_lio::core::ScopedProfiler::ProfilingInfoMap</scope><name>operator=</name></member>
+      <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1a5d7778f92c462898248eb5bcb915f729" prot="public" virt="non-virtual"><scope>rko_lio::core::ScopedProfiler::ProfilingInfoMap</scope><name>print_results</name></member>
+      <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1a4f6637a3f8b1b5e5fbeb18551e506176" prot="public" virt="non-virtual"><scope>rko_lio::core::ScopedProfiler::ProfilingInfoMap</scope><name>ProfilingInfoMap</name></member>
+      <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1a0206ba11f1f2f1dce8abfd8c21be7462" prot="public" virt="non-virtual"><scope>rko_lio::core::ScopedProfiler::ProfilingInfoMap</scope><name>ProfilingInfoMap</name></member>
+      <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1ab67156791c1d7a49cf075c247eb341e5" prot="public" virt="non-virtual"><scope>rko_lio::core::ScopedProfiler::ProfilingInfoMap</scope><name>ProfilingInfoMap</name></member>
+      <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1aeb72d40c701f4656dce41c15c93320d7" prot="public" virt="non-virtual"><scope>rko_lio::core::ScopedProfiler::ProfilingInfoMap</scope><name>~ProfilingInfoMap</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

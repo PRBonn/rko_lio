@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceEigen" kind="namespace" language="C++">
+    <compoundname>Eigen</compoundname>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="util_8hpp_1aeed2d0773ca5f2d8af17c424c1d38656" prot="public" static="no">
+        <type>Matrix&lt; double, 3, 6 &gt;</type>
+        <definition>using Eigen::Matrix3_6d = typedef Matrix&lt;double, 3, 6&gt;</definition>
+        <argsstring></argsstring>
+        <name>Matrix3_6d</name>
+        <qualifiedname>Eigen::Matrix3_6d</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" line="31" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="util_8hpp_1a256bc41e53605f5abb08663701978077" prot="public" static="no">
+        <type>Matrix&lt; double, 6, 1 &gt;</type>
+        <definition>using Eigen::Vector6d = typedef Matrix&lt;double, 6, 1&gt;</definition>
+        <argsstring></argsstring>
+        <name>Vector6d</name>
+        <qualifiedname>Eigen::Vector6d</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" line="32" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="util_8hpp_1ac472a7c3ac8e9babc4efd3f3286e4b16" prot="public" static="no">
+        <type>Matrix&lt; double, 6, 6 &gt;</type>
+        <definition>using Eigen::Matrix6d = typedef Matrix&lt;double, 6, 6&gt;</definition>
+        <argsstring></argsstring>
+        <name>Matrix6d</name>
+        <qualifiedname>Eigen::Matrix6d</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" line="33" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="util_8hpp_1aac76b29ea1d91860971afa149e3be689" prot="public" static="no">
+        <type>Matrix&lt; double, 12, 12 &gt;</type>
+        <definition>using Eigen::Matrix12d = typedef Matrix&lt;double, 12, 12&gt;</definition>
+        <argsstring></argsstring>
+        <name>Matrix12d</name>
+        <qualifiedname>Eigen::Matrix12d</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" line="34" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" line="30" column="1"/>
+  </compounddef>
+</doxygen>

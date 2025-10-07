@@ -1,0 +1,14 @@
+.. _exhale_typedef_util_8hpp_1aac76b29ea1d91860971afa149e3be689:
+
+Typedef Eigen::Matrix12d
+========================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_util.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: Eigen::Matrix12d
+   :project: rko_lio Doxygen Project

@@ -1,0 +1,14 @@
+.. _exhale_typedef_namespacerko__lio_1_1core_1aeb6128bc63af6919453e303e7eb5613d:
+
+Typedef rko_lio::core::Secondsd
+===============================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_util.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: rko_lio::core::Secondsd
+   :project: rko_lio Doxygen Project

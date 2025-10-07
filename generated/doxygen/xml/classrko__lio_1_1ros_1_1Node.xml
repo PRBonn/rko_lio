@@ -1,0 +1,877 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classrko__lio_1_1ros_1_1Node" kind="class" language="C++" prot="public">
+    <compoundname>rko_lio::ros::Node</compoundname>
+    <derivedcompoundref refid="classrko__lio_1_1ros_1_1OfflineNode" prot="public" virt="non-virtual">rko_lio::ros::OfflineNode</derivedcompoundref>
+    <derivedcompoundref refid="classrko__lio_1_1ros_1_1OnlineNode" prot="public" virt="non-virtual">rko_lio::ros::OnlineNode</derivedcompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1a65ac7ad7d5b24f1efebe12e3ab287b40" prot="public" static="no" mutable="no">
+        <type>rclcpp::Node::SharedPtr</type>
+        <definition>rclcpp::Node::SharedPtr rko_lio::ros::Node::node</definition>
+        <argsstring></argsstring>
+        <name>node</name>
+        <qualifiedname>rko_lio::ros::Node::node</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="50" column="27" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1a29fac57b5b0a3daed568d4e5ce02deb9" prot="public" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="classrko__lio_1_1core_1_1LIO" kindref="compound">core::LIO</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;core::LIO&gt; rko_lio::ros::Node::lio</definition>
+        <argsstring></argsstring>
+        <name>lio</name>
+        <qualifiedname>rko_lio::ros::Node::lio</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="51" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1a48450009c62072955a41aca0e0f58ec4" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string rko_lio::ros::Node::imu_topic</definition>
+        <argsstring></argsstring>
+        <name>imu_topic</name>
+        <qualifiedname>rko_lio::ros::Node::imu_topic</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="53" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1a7f7be404c390d0a5ab57c68b05f4f729" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string rko_lio::ros::Node::imu_frame</definition>
+        <argsstring></argsstring>
+        <name>imu_frame</name>
+        <qualifiedname>rko_lio::ros::Node::imu_frame</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="54" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1a09a24cf69a51d7b319f221a0af5927cc" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string rko_lio::ros::Node::lidar_topic</definition>
+        <argsstring></argsstring>
+        <name>lidar_topic</name>
+        <qualifiedname>rko_lio::ros::Node::lidar_topic</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="55" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1a4c665c7e6238b0fc1a01ad43ce1a2c66" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string rko_lio::ros::Node::lidar_frame</definition>
+        <argsstring></argsstring>
+        <name>lidar_frame</name>
+        <qualifiedname>rko_lio::ros::Node::lidar_frame</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="56" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1ac0daf74fae41e922c6d8264de3fc68ad" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string rko_lio::ros::Node::base_frame</definition>
+        <argsstring></argsstring>
+        <name>base_frame</name>
+        <qualifiedname>rko_lio::ros::Node::base_frame</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="57" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1aac4f67a35fae666c0d2dcd77a22f6b03" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string rko_lio::ros::Node::odom_frame</definition>
+        <argsstring></argsstring>
+        <name>odom_frame</name>
+        <qualifiedname>rko_lio::ros::Node::odom_frame</qualifiedname>
+        <initializer>= &quot;odom&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="58" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1acce2f87faae8959c5b59f484b81be878" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string rko_lio::ros::Node::odom_topic</definition>
+        <argsstring></argsstring>
+        <name>odom_topic</name>
+        <qualifiedname>rko_lio::ros::Node::odom_topic</qualifiedname>
+        <initializer>= &quot;/rko_lio/odometry&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="59" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1af6a1630f6d2d17ba44b225e6be11b72d" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string rko_lio::ros::Node::map_topic</definition>
+        <argsstring></argsstring>
+        <name>map_topic</name>
+        <qualifiedname>rko_lio::ros::Node::map_topic</qualifiedname>
+        <initializer>= &quot;/rko_lio/local_map&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="60" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1a145e14aaf7041beb7bed45fcf7041ba4" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string rko_lio::ros::Node::results_dir</definition>
+        <argsstring></argsstring>
+        <name>results_dir</name>
+        <qualifiedname>rko_lio::ros::Node::results_dir</qualifiedname>
+        <initializer>= &quot;results&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="61" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1adbc985d64440f596a5cea959dd13ad7e" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string rko_lio::ros::Node::run_name</definition>
+        <argsstring></argsstring>
+        <name>run_name</name>
+        <qualifiedname>rko_lio::ros::Node::run_name</qualifiedname>
+        <initializer>= &quot;rko_lio_run&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="62" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1a6056387e44ee44c7b6497ba28adeed1c" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool rko_lio::ros::Node::invert_odom_tf</definition>
+        <argsstring></argsstring>
+        <name>invert_odom_tf</name>
+        <qualifiedname>rko_lio::ros::Node::invert_odom_tf</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="64" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1adebb87a2ef805c213eef8e921e46d2ee" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool rko_lio::ros::Node::publish_lidar_acceleration</definition>
+        <argsstring></argsstring>
+        <name>publish_lidar_acceleration</name>
+        <qualifiedname>rko_lio::ros::Node::publish_lidar_acceleration</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="65" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1a40758221298fb7f987771e1a9fbd8271" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool rko_lio::ros::Node::publish_deskewed_scan</definition>
+        <argsstring></argsstring>
+        <name>publish_deskewed_scan</name>
+        <qualifiedname>rko_lio::ros::Node::publish_deskewed_scan</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="66" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1a83572fe5a9ffcb4d7625a792a3a2d278" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool rko_lio::ros::Node::publish_local_map</definition>
+        <argsstring></argsstring>
+        <name>publish_local_map</name>
+        <qualifiedname>rko_lio::ros::Node::publish_local_map</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="67" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1a7083d5096e74dde6386af89e1a4ac3b1" prot="public" static="no" mutable="no">
+        <type>Sophus::SE3d</type>
+        <definition>Sophus::SE3d rko_lio::ros::Node::extrinsic_imu2base</definition>
+        <argsstring></argsstring>
+        <name>extrinsic_imu2base</name>
+        <qualifiedname>rko_lio::ros::Node::extrinsic_imu2base</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="69" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1a8c344ff0bc07808258e36769fe5fca4c" prot="public" static="no" mutable="no">
+        <type>Sophus::SE3d</type>
+        <definition>Sophus::SE3d rko_lio::ros::Node::extrinsic_lidar2base</definition>
+        <argsstring></argsstring>
+        <name>extrinsic_lidar2base</name>
+        <qualifiedname>rko_lio::ros::Node::extrinsic_lidar2base</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="70" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1a77c1be00d5ad517466cb5a26e2674938" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool rko_lio::ros::Node::extrinsics_set</definition>
+        <argsstring></argsstring>
+        <name>extrinsics_set</name>
+        <qualifiedname>rko_lio::ros::Node::extrinsics_set</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="71" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1af6b3aea7512c33b69d5e7b0a6fad3fa4" prot="public" static="no" mutable="no">
+        <type>std::shared_ptr&lt; tf2_ros::TransformListener &gt;</type>
+        <definition>std::shared_ptr&lt;tf2_ros::TransformListener&gt; rko_lio::ros::Node::tf_listener</definition>
+        <argsstring></argsstring>
+        <name>tf_listener</name>
+        <qualifiedname>rko_lio::ros::Node::tf_listener</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="73" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1aba93bc27b6ae3f1ddf61155993551731" prot="public" static="no" mutable="no">
+        <type>std::shared_ptr&lt; tf2_ros::Buffer &gt;</type>
+        <definition>std::shared_ptr&lt;tf2_ros::Buffer&gt; rko_lio::ros::Node::tf_buffer</definition>
+        <argsstring></argsstring>
+        <name>tf_buffer</name>
+        <qualifiedname>rko_lio::ros::Node::tf_buffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="74" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1ad80ccf3eea0e6024234e3927f5295651" prot="public" static="no" mutable="no">
+        <type>std::unique_ptr&lt; tf2_ros::TransformBroadcaster &gt;</type>
+        <definition>std::unique_ptr&lt;tf2_ros::TransformBroadcaster&gt; rko_lio::ros::Node::tf_broadcaster</definition>
+        <argsstring></argsstring>
+        <name>tf_broadcaster</name>
+        <qualifiedname>rko_lio::ros::Node::tf_broadcaster</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="75" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1aca5b014339825d4e15aef73299290566" prot="public" static="no" mutable="no">
+        <type>rclcpp::Publisher&lt; nav_msgs::msg::Odometry &gt;::SharedPtr</type>
+        <definition>rclcpp::Publisher&lt;nav_msgs::msg::Odometry&gt;::SharedPtr rko_lio::ros::Node::odom_publisher</definition>
+        <argsstring></argsstring>
+        <name>odom_publisher</name>
+        <qualifiedname>rko_lio::ros::Node::odom_publisher</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="77" column="33" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1a247f3deb2d7407df57991dcb8c2b5de7" prot="public" static="no" mutable="no">
+        <type>rclcpp::Publisher&lt; sensor_msgs::msg::PointCloud2 &gt;::SharedPtr</type>
+        <definition>rclcpp::Publisher&lt;sensor_msgs::msg::PointCloud2&gt;::SharedPtr rko_lio::ros::Node::frame_publisher</definition>
+        <argsstring></argsstring>
+        <name>frame_publisher</name>
+        <qualifiedname>rko_lio::ros::Node::frame_publisher</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="78" column="33" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1ac9f148d0733f2a867876e69cd92b91a0" prot="public" static="no" mutable="no">
+        <type>rclcpp::Publisher&lt; sensor_msgs::msg::PointCloud2 &gt;::SharedPtr</type>
+        <definition>rclcpp::Publisher&lt;sensor_msgs::msg::PointCloud2&gt;::SharedPtr rko_lio::ros::Node::map_publisher</definition>
+        <argsstring></argsstring>
+        <name>map_publisher</name>
+        <qualifiedname>rko_lio::ros::Node::map_publisher</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="79" column="33" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1a4cb42094dd4e25ddc151e2f0b4ca3ca0" prot="public" static="no" mutable="no">
+        <type>rclcpp::Publisher&lt; geometry_msgs::msg::AccelStamped &gt;::SharedPtr</type>
+        <definition>rclcpp::Publisher&lt;geometry_msgs::msg::AccelStamped&gt;::SharedPtr rko_lio::ros::Node::lidar_accel_publisher</definition>
+        <argsstring></argsstring>
+        <name>lidar_accel_publisher</name>
+        <qualifiedname>rko_lio::ros::Node::lidar_accel_publisher</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="80" column="33" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1a50b672b0fc702c79079e9b188ff03ad3" prot="public" static="no" mutable="no">
+        <type>std::jthread</type>
+        <definition>std::jthread rko_lio::ros::Node::map_publish_thead</definition>
+        <argsstring></argsstring>
+        <name>map_publish_thead</name>
+        <qualifiedname>rko_lio::ros::Node::map_publish_thead</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="83" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1a35495a9f36b41ade26552a305ac4056a" prot="public" static="no" mutable="no">
+        <type>core::Secondsd</type>
+        <definition>core::Secondsd rko_lio::ros::Node::publish_map_after</definition>
+        <argsstring></argsstring>
+        <name>publish_map_after</name>
+        <qualifiedname>rko_lio::ros::Node::publish_map_after</qualifiedname>
+        <initializer>= std::chrono::seconds(1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="84" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1ac9be75a47e47f7a0d7d7b250fff04c65" prot="public" static="no" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex rko_lio::ros::Node::local_map_mutex</definition>
+        <argsstring></argsstring>
+        <name>local_map_mutex</name>
+        <qualifiedname>rko_lio::ros::Node::local_map_mutex</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="85" column="14" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1a402ee18f0b6edd2273d89f4b3cd8932e" prot="public" static="no" mutable="no">
+        <type>std::jthread</type>
+        <definition>std::jthread rko_lio::ros::Node::registration_thread</definition>
+        <argsstring></argsstring>
+        <name>registration_thread</name>
+        <qualifiedname>rko_lio::ros::Node::registration_thread</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="87" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1a39acaf291c8df92ddb7d3a8077a341a3" prot="public" static="no" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex rko_lio::ros::Node::buffer_mutex</definition>
+        <argsstring></argsstring>
+        <name>buffer_mutex</name>
+        <qualifiedname>rko_lio::ros::Node::buffer_mutex</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="88" column="14" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1a302b7fde490363b8b76af9ccadc5d539" prot="public" static="no" mutable="no">
+        <type>std::condition_variable</type>
+        <definition>std::condition_variable rko_lio::ros::Node::sync_condition_variable</definition>
+        <argsstring></argsstring>
+        <name>sync_condition_variable</name>
+        <qualifiedname>rko_lio::ros::Node::sync_condition_variable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="89" column="27" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1aa80856c9108ba7be5fa3cfc873516d7c" prot="public" static="no" mutable="no">
+        <type>std::atomic&lt; bool &gt;</type>
+        <definition>std::atomic&lt;bool&gt; rko_lio::ros::Node::atomic_node_running</definition>
+        <argsstring></argsstring>
+        <name>atomic_node_running</name>
+        <qualifiedname>rko_lio::ros::Node::atomic_node_running</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="90" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1a6cc5f592565fb6e05e5d7d354ee8a592" prot="public" static="no" mutable="no">
+        <type>std::atomic&lt; bool &gt;</type>
+        <definition>std::atomic&lt;bool&gt; rko_lio::ros::Node::atomic_can_process</definition>
+        <argsstring></argsstring>
+        <name>atomic_can_process</name>
+        <qualifiedname>rko_lio::ros::Node::atomic_can_process</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="91" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1a407e2eb2accf1953cf1537bdeee1c9bf" prot="public" static="no" mutable="no">
+        <type>std::queue&lt; <ref refid="structrko__lio_1_1core_1_1ImuControl" kindref="compound">core::ImuControl</ref> &gt;</type>
+        <definition>std::queue&lt;core::ImuControl&gt; rko_lio::ros::Node::imu_buffer</definition>
+        <argsstring></argsstring>
+        <name>imu_buffer</name>
+        <qualifiedname>rko_lio::ros::Node::imu_buffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="92" column="14" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1a5872ea32a8e8ff2d5ec3de7a248a43d0" prot="public" static="no" mutable="no">
+        <type>std::queue&lt; <ref refid="structrko__lio_1_1core_1_1LidarFrame" kindref="compound">core::LidarFrame</ref> &gt;</type>
+        <definition>std::queue&lt;core::LidarFrame&gt; rko_lio::ros::Node::lidar_buffer</definition>
+        <argsstring></argsstring>
+        <name>lidar_buffer</name>
+        <qualifiedname>rko_lio::ros::Node::lidar_buffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="93" column="14" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1Node_1adb045ddac0f726cfaa1f31df0739549f" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t rko_lio::ros::Node::max_lidar_buffer_size</definition>
+        <argsstring></argsstring>
+        <name>max_lidar_buffer_size</name>
+        <qualifiedname>rko_lio::ros::Node::max_lidar_buffer_size</qualifiedname>
+        <initializer>= 50</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="94" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="94" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1Node_1ad8b9ef3f14e5ae9b2fb18e008adc0fa7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::ros::Node::Node</definition>
+        <argsstring>()=delete</argsstring>
+        <name>Node</name>
+        <qualifiedname>rko_lio::ros::Node::Node</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="96" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1Node_1ae033875ce3dad98ed51d63a97697c3fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::ros::Node::Node</definition>
+        <argsstring>(const std::string &amp;node_name, const rclcpp::NodeOptions &amp;options)</argsstring>
+        <name>Node</name>
+        <qualifiedname>rko_lio::ros::Node::Node</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>node_name</declname>
+        </param>
+        <param>
+          <type>const rclcpp::NodeOptions &amp;</type>
+          <declname>options</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="97" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.cpp" bodystart="48" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1Node_1a260f6e2c0aadced101814877f5e612ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::ros::Node::parse_cli_extrinsics</definition>
+        <argsstring>()</argsstring>
+        <name>parse_cli_extrinsics</name>
+        <qualifiedname>rko_lio::ros::Node::parse_cli_extrinsics</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="99" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.cpp" bodystart="131" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1Node_1a3badf83d95c7e1212a7e0ca5a60fb4bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool rko_lio::ros::Node::check_and_set_extrinsics</definition>
+        <argsstring>()</argsstring>
+        <name>check_and_set_extrinsics</name>
+        <qualifiedname>rko_lio::ros::Node::check_and_set_extrinsics</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="100" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.cpp" bodystart="159" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1Node_1ab1f4f72efe73ffc6654563506ee613c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::ros::Node::imu_callback</definition>
+        <argsstring>(const sensor_msgs::msg::Imu::ConstSharedPtr &amp;imu_msg)</argsstring>
+        <name>imu_callback</name>
+        <qualifiedname>rko_lio::ros::Node::imu_callback</qualifiedname>
+        <param>
+          <type>const sensor_msgs::msg::Imu::ConstSharedPtr &amp;</type>
+          <declname>imu_msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="101" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.cpp" bodystart="177" bodyend="199"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1Node_1a8c9e7b34b2f56e37901103d03228aa44" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::ros::Node::lidar_callback</definition>
+        <argsstring>(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &amp;lidar_msg)</argsstring>
+        <name>lidar_callback</name>
+        <qualifiedname>rko_lio::ros::Node::lidar_callback</qualifiedname>
+        <param>
+          <type>const sensor_msgs::msg::PointCloud2::ConstSharedPtr &amp;</type>
+          <declname>lidar_msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="102" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.cpp" bodystart="201" bodyend="249"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1Node_1ab754588195285ef9ae4347488cb80f0d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::ros::Node::registration_loop</definition>
+        <argsstring>()</argsstring>
+        <name>registration_loop</name>
+        <qualifiedname>rko_lio::ros::Node::registration_loop</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="103" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.cpp" bodystart="251" bodyend="300"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1Node_1a3da69a5529c94c5f593016ce01768eae" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::ros::Node::publish_odometry</definition>
+        <argsstring>(const core::State &amp;state, const core::Secondsd &amp;stamp) const</argsstring>
+        <name>publish_odometry</name>
+        <qualifiedname>rko_lio::ros::Node::publish_odometry</qualifiedname>
+        <param>
+          <type>const <ref refid="structrko__lio_1_1core_1_1State" kindref="compound">core::State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type>const core::Secondsd &amp;</type>
+          <declname>stamp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="104" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.cpp" bodystart="302" bodyend="328"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1Node_1a384bcb9f442c8dd7a87cc8053b761864" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::ros::Node::publish_lidar_accel</definition>
+        <argsstring>(const Eigen::Vector3d &amp;acceleration, const core::Secondsd &amp;stamp) const</argsstring>
+        <name>publish_lidar_accel</name>
+        <qualifiedname>rko_lio::ros::Node::publish_lidar_accel</qualifiedname>
+        <param>
+          <type>const Eigen::Vector3d &amp;</type>
+          <declname>acceleration</declname>
+        </param>
+        <param>
+          <type>const core::Secondsd &amp;</type>
+          <declname>stamp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="105" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.cpp" bodystart="330" bodyend="336"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1Node_1aa7714cd8fe127dfa88b7db0ac3c75287" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::ros::Node::publish_map_loop</definition>
+        <argsstring>()</argsstring>
+        <name>publish_map_loop</name>
+        <qualifiedname>rko_lio::ros::Node::publish_map_loop</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="106" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.cpp" bodystart="338" bodyend="353"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1Node_1a6bce1b391d69d3db9cc9d7157020ff4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::ros::Node::~Node</definition>
+        <argsstring>()</argsstring>
+        <name>~Node</name>
+        <qualifiedname>rko_lio::ros::Node::~Node</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="108" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.cpp" bodystart="355" bodyend="358"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1Node_1ac1a5bb0dbdc9dec856f87422c8b71dc9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::ros::Node::Node</definition>
+        <argsstring>(const Node &amp;)=delete</argsstring>
+        <name>Node</name>
+        <qualifiedname>rko_lio::ros::Node::Node</qualifiedname>
+        <param>
+          <type>const <ref refid="classrko__lio_1_1ros_1_1Node" kindref="compound">Node</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="109" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1Node_1a247aee9248b976c072c38d353a005717" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::ros::Node::Node</definition>
+        <argsstring>(Node &amp;&amp;)=delete</argsstring>
+        <name>Node</name>
+        <qualifiedname>rko_lio::ros::Node::Node</qualifiedname>
+        <param>
+          <type><ref refid="classrko__lio_1_1ros_1_1Node" kindref="compound">Node</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="110" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1Node_1ab71d005a8e8412145d1ba905e830ed08" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrko__lio_1_1ros_1_1Node" kindref="compound">Node</ref> &amp;</type>
+        <definition>Node &amp; rko_lio::ros::Node::operator=</definition>
+        <argsstring>(const Node &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>rko_lio::ros::Node::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classrko__lio_1_1ros_1_1Node" kindref="compound">Node</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="111" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1Node_1a5e3e6f7bcc4e2100c92cc701a1ceea31" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrko__lio_1_1ros_1_1Node" kindref="compound">Node</ref> &amp;</type>
+        <definition>Node &amp; rko_lio::ros::Node::operator=</definition>
+        <argsstring>(Node &amp;&amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>rko_lio::ros::Node::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classrko__lio_1_1ros_1_1Node" kindref="compound">Node</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="112" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>rko_lio::ros::Node</label>
+        <link refid="classrko__lio_1_1ros_1_1Node"/>
+      </node>
+      <node id="2">
+        <label>rko_lio::ros::OfflineNode</label>
+        <link refid="classrko__lio_1_1ros_1_1OfflineNode"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>rko_lio::ros::OnlineNode</label>
+        <link refid="classrko__lio_1_1ros_1_1OnlineNode"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" line="48" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp" bodystart="48" bodyend="113"/>
+    <listofallmembers>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a6cc5f592565fb6e05e5d7d354ee8a592" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>atomic_can_process</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1aa80856c9108ba7be5fa3cfc873516d7c" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>atomic_node_running</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1ac0daf74fae41e922c6d8264de3fc68ad" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>base_frame</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a39acaf291c8df92ddb7d3a8077a341a3" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>buffer_mutex</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a3badf83d95c7e1212a7e0ca5a60fb4bc" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>check_and_set_extrinsics</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a7083d5096e74dde6386af89e1a4ac3b1" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>extrinsic_imu2base</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a8c344ff0bc07808258e36769fe5fca4c" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>extrinsic_lidar2base</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a77c1be00d5ad517466cb5a26e2674938" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>extrinsics_set</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a247f3deb2d7407df57991dcb8c2b5de7" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>frame_publisher</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a407e2eb2accf1953cf1537bdeee1c9bf" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>imu_buffer</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1ab1f4f72efe73ffc6654563506ee613c5" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>imu_callback</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a7f7be404c390d0a5ab57c68b05f4f729" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>imu_frame</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a48450009c62072955a41aca0e0f58ec4" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>imu_topic</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a6056387e44ee44c7b6497ba28adeed1c" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>invert_odom_tf</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a4cb42094dd4e25ddc151e2f0b4ca3ca0" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>lidar_accel_publisher</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a5872ea32a8e8ff2d5ec3de7a248a43d0" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>lidar_buffer</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a8c9e7b34b2f56e37901103d03228aa44" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>lidar_callback</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a4c665c7e6238b0fc1a01ad43ce1a2c66" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>lidar_frame</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a09a24cf69a51d7b319f221a0af5927cc" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>lidar_topic</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a29fac57b5b0a3daed568d4e5ce02deb9" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>lio</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1ac9be75a47e47f7a0d7d7b250fff04c65" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>local_map_mutex</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a50b672b0fc702c79079e9b188ff03ad3" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>map_publish_thead</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1ac9f148d0733f2a867876e69cd92b91a0" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>map_publisher</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1af6a1630f6d2d17ba44b225e6be11b72d" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>map_topic</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1adb045ddac0f726cfaa1f31df0739549f" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>max_lidar_buffer_size</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a65ac7ad7d5b24f1efebe12e3ab287b40" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>node</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1ad8b9ef3f14e5ae9b2fb18e008adc0fa7" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>Node</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1ae033875ce3dad98ed51d63a97697c3fa" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>Node</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1ac1a5bb0dbdc9dec856f87422c8b71dc9" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>Node</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a247aee9248b976c072c38d353a005717" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>Node</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1aac4f67a35fae666c0d2dcd77a22f6b03" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>odom_frame</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1aca5b014339825d4e15aef73299290566" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>odom_publisher</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1acce2f87faae8959c5b59f484b81be878" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>odom_topic</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1ab71d005a8e8412145d1ba905e830ed08" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>operator=</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a5e3e6f7bcc4e2100c92cc701a1ceea31" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>operator=</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a260f6e2c0aadced101814877f5e612ae" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>parse_cli_extrinsics</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a40758221298fb7f987771e1a9fbd8271" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>publish_deskewed_scan</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a384bcb9f442c8dd7a87cc8053b761864" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>publish_lidar_accel</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1adebb87a2ef805c213eef8e921e46d2ee" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>publish_lidar_acceleration</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a83572fe5a9ffcb4d7625a792a3a2d278" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>publish_local_map</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a35495a9f36b41ade26552a305ac4056a" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>publish_map_after</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1aa7714cd8fe127dfa88b7db0ac3c75287" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>publish_map_loop</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a3da69a5529c94c5f593016ce01768eae" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>publish_odometry</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1ab754588195285ef9ae4347488cb80f0d" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>registration_loop</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a402ee18f0b6edd2273d89f4b3cd8932e" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>registration_thread</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a145e14aaf7041beb7bed45fcf7041ba4" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>results_dir</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1adbc985d64440f596a5cea959dd13ad7e" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>run_name</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a302b7fde490363b8b76af9ccadc5d539" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>sync_condition_variable</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1ad80ccf3eea0e6024234e3927f5295651" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>tf_broadcaster</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1aba93bc27b6ae3f1ddf61155993551731" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>tf_buffer</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1af6b3aea7512c33b69d5e7b0a6fad3fa4" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>tf_listener</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a6bce1b391d69d3db9cc9d7157020ff4d" prot="public" virt="non-virtual"><scope>rko_lio::ros::Node</scope><name>~Node</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

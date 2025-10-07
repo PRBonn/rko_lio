@@ -1,0 +1,28 @@
+.. _exhale_class_classrko__lio_1_1core_1_1ScopedProfiler:
+
+Class ScopedProfiler
+====================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_profiler.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_struct_structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo`
+- :ref:`exhale_class_classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: rko_lio::core::ScopedProfiler
+   :project: rko_lio Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

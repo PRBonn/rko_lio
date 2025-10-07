@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Struct LidarFrame &#8212; RKO-LIO: Lidar-inertial odometry without sensor-specific modeling</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=f6a572b4" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=56c4699f" />
+    <script src="../_static/documentation_options.js?v=6e0256f3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Struct LIO::Config" href="structrko__lio_1_1core_1_1LIO_1_1Config.html" />
+    <link rel="prev" title="Struct IntervalStats" href="structrko__lio_1_1core_1_1IntervalStats.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">RKO-LIO</a></h1>
+
+
+
+<p class="blurb">Lidar-inertial odometry</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=PRBonn&repo=rko_lio&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/general/general.html">General details</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pages/ros.html">ROS (C++)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../__PACKAGE.html">ROS package.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/changelog_literal.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://index.ros.org/p/rko_lio/">ROS Index</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/rko-lio/">PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://github.com/PRBonn/rko_lio">GitHub</a></li>
+    
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="struct-lidarframe">
+<span id="exhale-struct-structrko-lio-1-1core-1-1lidarframe"></span><h1>Struct LidarFrame<a class="headerlink" href="#struct-lidarframe" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_util.hpp.html#file-home-runner-work-rko-lio-rko-lio-cpp-rko-lio-core-util-hpp"><span class="std std-ref">File util.hpp</span></a></p></li>
+</ul>
+<section id="struct-documentation">
+<h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Link to this heading">¶</a></h2>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core10LidarFrameE">
+<span id="_CPPv3N7rko_lio4core10LidarFrameE"></span><span id="_CPPv2N7rko_lio4core10LidarFrameE"></span><span id="rko_lio::core::LidarFrame"></span><span class="target" id="structrko__lio_1_1core_1_1LidarFrame"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LidarFrame</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core10LidarFrameE" title="Link to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core10LidarFrame5startE">
+<span id="_CPPv3N7rko_lio4core10LidarFrame5startE"></span><span id="_CPPv2N7rko_lio4core10LidarFrame5startE"></span><span id="rko_lio::core::LidarFrame::start__Secondsd"></span><span class="target" id="structrko__lio_1_1core_1_1LidarFrame_1a28261ef3f282668ad8157e3ffa8f7a8d"></span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1aeb6128bc63af6919453e303e7eb5613d.html#_CPPv4N7rko_lio4core8SecondsdE" title="rko_lio::core::Secondsd"><span class="n"><span class="pre">Secondsd</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core10LidarFrame5startE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core10LidarFrame3endE">
+<span id="_CPPv3N7rko_lio4core10LidarFrame3endE"></span><span id="_CPPv2N7rko_lio4core10LidarFrame3endE"></span><span id="rko_lio::core::LidarFrame::end__Secondsd"></span><span class="target" id="structrko__lio_1_1core_1_1LidarFrame_1ab9eafbfeefb5d680d56d56fc5658af42"></span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1aeb6128bc63af6919453e303e7eb5613d.html#_CPPv4N7rko_lio4core8SecondsdE" title="rko_lio::core::Secondsd"><span class="n"><span class="pre">Secondsd</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">end</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core10LidarFrame3endE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core10LidarFrame10timestampsE">
+<span id="_CPPv3N7rko_lio4core10LidarFrame10timestampsE"></span><span id="_CPPv2N7rko_lio4core10LidarFrame10timestampsE"></span><span id="rko_lio::core::LidarFrame::timestamps__TimestampVector"></span><span class="target" id="structrko__lio_1_1core_1_1LidarFrame_1a9c3835ea0ffb4ecadebc90cb4c72e92d"></span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1a50d343fe8fc3d44fdf883bc4a77b1ccf.html#_CPPv4N7rko_lio4core15TimestampVectorE" title="rko_lio::core::TimestampVector"><span class="n"><span class="pre">TimestampVector</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timestamps</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core10LidarFrame10timestampsE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core10LidarFrame6pointsE">
+<span id="_CPPv3N7rko_lio4core10LidarFrame6pointsE"></span><span id="_CPPv2N7rko_lio4core10LidarFrame6pointsE"></span><span id="rko_lio::core::LidarFrame::points__Vector3dVector"></span><span class="target" id="structrko__lio_1_1core_1_1LidarFrame_1ac371b0837eaec4db447c228b65844fdc"></span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1a5cc9dbe312768171d6734783de18f64c.html#_CPPv4N7rko_lio4core14Vector3dVectorE" title="rko_lio::core::Vector3dVector"><span class="n"><span class="pre">Vector3dVector</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">points</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core10LidarFrame6pointsE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="structrko__lio_1_1core_1_1IntervalStats.html" title="Previous document">Struct IntervalStats</a>
+        </li>
+        <li>
+          <a href="structrko__lio_1_1core_1_1LIO_1_1Config.html" title="Next document">Struct LIO::Config</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &#169;2025 Meher Malladi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/generated/structrko__lio_1_1core_1_1LidarFrame.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

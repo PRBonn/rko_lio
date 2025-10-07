@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structrko__lio_1_1core_1_1LidarFrame" kind="struct" language="C++" prot="public">
+    <compoundname>rko_lio::core::LidarFrame</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1LidarFrame_1a28261ef3f282668ad8157e3ffa8f7a8d" prot="public" static="no" mutable="no">
+        <type>Secondsd</type>
+        <definition>Secondsd rko_lio::core::LidarFrame::start</definition>
+        <argsstring></argsstring>
+        <name>start</name>
+        <qualifiedname>rko_lio::core::LidarFrame::start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" line="69" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1LidarFrame_1ab9eafbfeefb5d680d56d56fc5658af42" prot="public" static="no" mutable="no">
+        <type>Secondsd</type>
+        <definition>Secondsd rko_lio::core::LidarFrame::end</definition>
+        <argsstring></argsstring>
+        <name>end</name>
+        <qualifiedname>rko_lio::core::LidarFrame::end</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" line="70" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1LidarFrame_1a9c3835ea0ffb4ecadebc90cb4c72e92d" prot="public" static="no" mutable="no">
+        <type>TimestampVector</type>
+        <definition>TimestampVector rko_lio::core::LidarFrame::timestamps</definition>
+        <argsstring></argsstring>
+        <name>timestamps</name>
+        <qualifiedname>rko_lio::core::LidarFrame::timestamps</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" line="71" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1LidarFrame_1ac371b0837eaec4db447c228b65844fdc" prot="public" static="no" mutable="no">
+        <type>Vector3dVector</type>
+        <definition>Vector3dVector rko_lio::core::LidarFrame::points</definition>
+        <argsstring></argsstring>
+        <name>points</name>
+        <qualifiedname>rko_lio::core::LidarFrame::points</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" line="72" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" bodystart="72" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" line="68" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" bodystart="68" bodyend="73"/>
+    <listofallmembers>
+      <member refid="structrko__lio_1_1core_1_1LidarFrame_1ab9eafbfeefb5d680d56d56fc5658af42" prot="public" virt="non-virtual"><scope>rko_lio::core::LidarFrame</scope><name>end</name></member>
+      <member refid="structrko__lio_1_1core_1_1LidarFrame_1ac371b0837eaec4db447c228b65844fdc" prot="public" virt="non-virtual"><scope>rko_lio::core::LidarFrame</scope><name>points</name></member>
+      <member refid="structrko__lio_1_1core_1_1LidarFrame_1a28261ef3f282668ad8157e3ffa8f7a8d" prot="public" virt="non-virtual"><scope>rko_lio::core::LidarFrame</scope><name>start</name></member>
+      <member refid="structrko__lio_1_1core_1_1LidarFrame_1a9c3835ea0ffb4ecadebc90cb4c72e92d" prot="public" virt="non-virtual"><scope>rko_lio::core::LidarFrame</scope><name>timestamps</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

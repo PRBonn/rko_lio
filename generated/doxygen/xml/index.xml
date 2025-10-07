@@ -1,0 +1,361 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.8" xml:lang="en-US">
+  <compound refid="structrko__lio_1_1core_1_1AccelInfo" kind="struct"><name>rko_lio::core::AccelInfo</name>
+    <member refid="structrko__lio_1_1core_1_1AccelInfo_1a5c998a8898cf8363ad918163fc3d4860" kind="variable"><name>accel_mag_variance</name></member>
+    <member refid="structrko__lio_1_1core_1_1AccelInfo_1ab7be49ea3197b57a929303e74d7f8913" kind="variable"><name>local_gravity_estimate</name></member>
+  </compound>
+  <compound refid="classrko__lio_1_1ros__utils_1_1BufferableBag" kind="class"><name>rko_lio::ros_utils::BufferableBag</name>
+    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1a79b817823bd8c20e06254bda83640abf" kind="variable"><name>tf_bridge_</name></member>
+    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1a7443def715adbb468e2c52325e69bf27" kind="variable"><name>bag_reader_</name></member>
+    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1a40a3f8cfa9b037b3302d11ae029a0c3d" kind="variable"><name>buffer_</name></member>
+    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1adfad445ab0171fc2f0d9d061fb0eef1d" kind="variable"><name>buffer_size_</name></member>
+    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1a6aa0761452512bee7c2ac6d07af38c30" kind="variable"><name>topics_</name></member>
+    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1a7018cd27fa577fedb92062e3f6acdcf9" kind="variable"><name>message_count_</name></member>
+    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1a525e3047865a43047735e4a9ae8d7a8e" kind="function"><name>BufferableBag</name></member>
+    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1a2c78ae0dcfa6340e2e3e8bcd17a53ffd" kind="function"><name>publish_tf_static</name></member>
+    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1ab323ef1c8dcfaf7e20f449edc7d34a84" kind="function"><name>message_count</name></member>
+    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1ad0f9a372d77630bca0e55225a208e50d" kind="function"><name>BufferMessages</name></member>
+    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1a473b9a840910b2b0ee4da50e9fe106ea" kind="function"><name>PopNextMessage</name></member>
+    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1ae927d099b70314a3c7955c4177e5fbf2" kind="function"><name>finished</name></member>
+    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1ac472d74339dded88bedad6cca297ac31" kind="function"><name>close</name></member>
+  </compound>
+  <compound refid="structrko__lio_1_1core_1_1LIO_1_1Config" kind="struct"><name>rko_lio::core::LIO::Config</name>
+    <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a047439a48b3c8afebe95407926efbada" kind="variable"><name>deskew</name></member>
+    <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a9cc9bd40427d206f8349bc330c40aa1f" kind="variable"><name>max_iterations</name></member>
+    <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a0cf92444005352d71aca931390a9ead0" kind="variable"><name>voxel_size</name></member>
+    <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a670b666aa92cf07b19b8537bf3e9446a" kind="variable"><name>max_points_per_voxel</name></member>
+    <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a333f16a3ff952ee91e48e0d62dc23533" kind="variable"><name>max_range</name></member>
+    <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1af3ef0dac6d1484eac8aa0e91c5578f10" kind="variable"><name>min_range</name></member>
+    <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1ae2991e0e372427f93255231b3249b246" kind="variable"><name>convergence_criterion</name></member>
+    <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a9c90e5e455dc7946e69df5229d3ddce0" kind="variable"><name>max_correspondance_distance</name></member>
+    <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a5089f617d86e9ae45f524c23d322617a" kind="variable"><name>max_num_threads</name></member>
+    <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a2d65fe516d188013b626c20f1bc583e2" kind="variable"><name>initialization_phase</name></member>
+    <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a5f5b46b1671012993d30d61657d99714" kind="variable"><name>max_expected_jerk</name></member>
+    <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1ae87229b29b2760d18c47d3b3c67c40ba" kind="variable"><name>double_downsample</name></member>
+    <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a6121d24b6a6e7f262bb6185a407f434d" kind="variable"><name>min_beta</name></member>
+  </compound>
+  <compound refid="structstd_1_1hash_3_01Eigen_1_1Vector3i_01_4" kind="struct"><name>std::hash&lt; Eigen::Vector3i &gt;</name>
+    <member refid="structstd_1_1hash_3_01Eigen_1_1Vector3i_01_4_1a629a0f01830e2842b20a57587f917742" kind="function"><name>operator()</name></member>
+  </compound>
+  <compound refid="structrko__lio_1_1core_1_1ImuBias" kind="struct"><name>rko_lio::core::ImuBias</name>
+    <member refid="structrko__lio_1_1core_1_1ImuBias_1aa66264417a4d07f8ee6a146ae710bddb" kind="variable"><name>accelerometer</name></member>
+    <member refid="structrko__lio_1_1core_1_1ImuBias_1adc5268afa5f8cb94a082949e2a085e29" kind="variable"><name>gyroscope</name></member>
+  </compound>
+  <compound refid="structrko__lio_1_1core_1_1ImuControl" kind="struct"><name>rko_lio::core::ImuControl</name>
+    <member refid="structrko__lio_1_1core_1_1ImuControl_1a60bc49fe22b615d01fd11b324771c071" kind="variable"><name>time</name></member>
+    <member refid="structrko__lio_1_1core_1_1ImuControl_1aa3982b01ac23e8fd2f8719b3e0f60dc7" kind="variable"><name>acceleration</name></member>
+    <member refid="structrko__lio_1_1core_1_1ImuControl_1a7d3579d3b3d5fb3b82262a9429c453a9" kind="variable"><name>angular_velocity</name></member>
+  </compound>
+  <compound refid="structrko__lio_1_1core_1_1IntervalStats" kind="struct"><name>rko_lio::core::IntervalStats</name>
+    <member refid="structrko__lio_1_1core_1_1IntervalStats_1ad03a2f9676e4eb163dc180dd707fd26c" kind="variable"><name>imu_count</name></member>
+    <member refid="structrko__lio_1_1core_1_1IntervalStats_1a682cba2042c0f98cd5b17004dd52d8ea" kind="variable"><name>angular_velocity_sum</name></member>
+    <member refid="structrko__lio_1_1core_1_1IntervalStats_1a23ee5f222348a6a395d4ace02cdf33d9" kind="variable"><name>body_acceleration_sum</name></member>
+    <member refid="structrko__lio_1_1core_1_1IntervalStats_1aec10e58e32b447b90cd6b8bc8c5a975f" kind="variable"><name>imu_acceleration_sum</name></member>
+    <member refid="structrko__lio_1_1core_1_1IntervalStats_1ab34ab6019a0695a87893f2c100071f32" kind="variable"><name>imu_accel_mag_mean</name></member>
+    <member refid="structrko__lio_1_1core_1_1IntervalStats_1a47b5be39a7d1a13c64fdd8e4054702b2" kind="variable"><name>welford_sum_of_squares</name></member>
+    <member refid="structrko__lio_1_1core_1_1IntervalStats_1a50a0e46cf910ee6928aec0fc93a1772b" kind="function"><name>update</name></member>
+    <member refid="structrko__lio_1_1core_1_1IntervalStats_1a93353da910829b6fc1525b55d99fd280" kind="function"><name>reset</name></member>
+  </compound>
+  <compound refid="structrko__lio_1_1core_1_1LidarFrame" kind="struct"><name>rko_lio::core::LidarFrame</name>
+    <member refid="structrko__lio_1_1core_1_1LidarFrame_1a28261ef3f282668ad8157e3ffa8f7a8d" kind="variable"><name>start</name></member>
+    <member refid="structrko__lio_1_1core_1_1LidarFrame_1ab9eafbfeefb5d680d56d56fc5658af42" kind="variable"><name>end</name></member>
+    <member refid="structrko__lio_1_1core_1_1LidarFrame_1a9c3835ea0ffb4ecadebc90cb4c72e92d" kind="variable"><name>timestamps</name></member>
+    <member refid="structrko__lio_1_1core_1_1LidarFrame_1ac371b0837eaec4db447c228b65844fdc" kind="variable"><name>points</name></member>
+  </compound>
+  <compound refid="classrko__lio_1_1core_1_1LIO" kind="class"><name>rko_lio::core::LIO</name>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" kind="variable"><name>config</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a004fb22ebae1428e23606e495eeea01a" kind="variable"><name>map</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kind="variable"><name>lidar_state</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1aedab30ea81941b951314113cd9d3166a" kind="variable"><name>imu_bias</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1aaec8a94ec4355ab7269bb02bee19d950" kind="variable"><name>mean_body_acceleration</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a87238efc2008594d5fa9db8344084ec2" kind="variable"><name>body_acceleration_covariance</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a9b89efdfdcc0ab01ef3fd6caaadb69d2" kind="variable"><name>interval_stats</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1aa0e98c41c711dff7bf50bb1706b2d603" kind="variable"><name>_initialized</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a838be30264dd19a556bd6cd134c88a31" kind="variable"><name>_imu_local_rotation</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1ab754b7e1c345c2db0917e6b7bc471973" kind="variable"><name>_imu_local_rotation_time</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a6cdf1482cca66e3eeeaf4f66e9cff018" kind="variable"><name>_last_real_imu_time</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a8982a3577c4d1c77eb6a9fa2911c6149" kind="variable"><name>_last_real_base_imu_ang_vel</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a5dacf79efe978ca0ef6ea8aa49318b48" kind="variable"><name>_poses_with_timestamps</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a27bdff7e57866bd6429e81d8f7d74ed8" kind="function"><name>LIO</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a34139c65d35e7929125788bdafd0470c" kind="function"><name>add_imu_measurement</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a91736c1595c37bc5d70840538735b12a" kind="function"><name>add_imu_measurement</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a0e2818a3d7d3b07f77a91235b116b607" kind="function"><name>register_scan</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a3963bf670eced93306c73ead313d867f" kind="function"><name>register_scan</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a2dcb387551e7415a98ca90d6dd7bf53f" kind="function"><name>dump_results_to_disk</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1ab8728d90e80d1664ce979c8db5cc2eb2" kind="function"><name>initialize</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a5255f5fcedee204613c41705c263dec4" kind="function"><name>get_accel_info</name></member>
+  </compound>
+  <compound refid="classrko__lio_1_1ros_1_1Node" kind="class"><name>rko_lio::ros::Node</name>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a65ac7ad7d5b24f1efebe12e3ab287b40" kind="variable"><name>node</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a29fac57b5b0a3daed568d4e5ce02deb9" kind="variable"><name>lio</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a48450009c62072955a41aca0e0f58ec4" kind="variable"><name>imu_topic</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a7f7be404c390d0a5ab57c68b05f4f729" kind="variable"><name>imu_frame</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a09a24cf69a51d7b319f221a0af5927cc" kind="variable"><name>lidar_topic</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a4c665c7e6238b0fc1a01ad43ce1a2c66" kind="variable"><name>lidar_frame</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1ac0daf74fae41e922c6d8264de3fc68ad" kind="variable"><name>base_frame</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1aac4f67a35fae666c0d2dcd77a22f6b03" kind="variable"><name>odom_frame</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1acce2f87faae8959c5b59f484b81be878" kind="variable"><name>odom_topic</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1af6a1630f6d2d17ba44b225e6be11b72d" kind="variable"><name>map_topic</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a145e14aaf7041beb7bed45fcf7041ba4" kind="variable"><name>results_dir</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1adbc985d64440f596a5cea959dd13ad7e" kind="variable"><name>run_name</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a6056387e44ee44c7b6497ba28adeed1c" kind="variable"><name>invert_odom_tf</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1adebb87a2ef805c213eef8e921e46d2ee" kind="variable"><name>publish_lidar_acceleration</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a40758221298fb7f987771e1a9fbd8271" kind="variable"><name>publish_deskewed_scan</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a83572fe5a9ffcb4d7625a792a3a2d278" kind="variable"><name>publish_local_map</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a7083d5096e74dde6386af89e1a4ac3b1" kind="variable"><name>extrinsic_imu2base</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a8c344ff0bc07808258e36769fe5fca4c" kind="variable"><name>extrinsic_lidar2base</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a77c1be00d5ad517466cb5a26e2674938" kind="variable"><name>extrinsics_set</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1af6b3aea7512c33b69d5e7b0a6fad3fa4" kind="variable"><name>tf_listener</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1aba93bc27b6ae3f1ddf61155993551731" kind="variable"><name>tf_buffer</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1ad80ccf3eea0e6024234e3927f5295651" kind="variable"><name>tf_broadcaster</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1aca5b014339825d4e15aef73299290566" kind="variable"><name>odom_publisher</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a247f3deb2d7407df57991dcb8c2b5de7" kind="variable"><name>frame_publisher</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1ac9f148d0733f2a867876e69cd92b91a0" kind="variable"><name>map_publisher</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a4cb42094dd4e25ddc151e2f0b4ca3ca0" kind="variable"><name>lidar_accel_publisher</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a50b672b0fc702c79079e9b188ff03ad3" kind="variable"><name>map_publish_thead</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a35495a9f36b41ade26552a305ac4056a" kind="variable"><name>publish_map_after</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1ac9be75a47e47f7a0d7d7b250fff04c65" kind="variable"><name>local_map_mutex</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a402ee18f0b6edd2273d89f4b3cd8932e" kind="variable"><name>registration_thread</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a39acaf291c8df92ddb7d3a8077a341a3" kind="variable"><name>buffer_mutex</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a302b7fde490363b8b76af9ccadc5d539" kind="variable"><name>sync_condition_variable</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1aa80856c9108ba7be5fa3cfc873516d7c" kind="variable"><name>atomic_node_running</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a6cc5f592565fb6e05e5d7d354ee8a592" kind="variable"><name>atomic_can_process</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a407e2eb2accf1953cf1537bdeee1c9bf" kind="variable"><name>imu_buffer</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a5872ea32a8e8ff2d5ec3de7a248a43d0" kind="variable"><name>lidar_buffer</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1adb045ddac0f726cfaa1f31df0739549f" kind="variable"><name>max_lidar_buffer_size</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1ad8b9ef3f14e5ae9b2fb18e008adc0fa7" kind="function"><name>Node</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1ae033875ce3dad98ed51d63a97697c3fa" kind="function"><name>Node</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a260f6e2c0aadced101814877f5e612ae" kind="function"><name>parse_cli_extrinsics</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a3badf83d95c7e1212a7e0ca5a60fb4bc" kind="function"><name>check_and_set_extrinsics</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1ab1f4f72efe73ffc6654563506ee613c5" kind="function"><name>imu_callback</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a8c9e7b34b2f56e37901103d03228aa44" kind="function"><name>lidar_callback</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1ab754588195285ef9ae4347488cb80f0d" kind="function"><name>registration_loop</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a3da69a5529c94c5f593016ce01768eae" kind="function"><name>publish_odometry</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a384bcb9f442c8dd7a87cc8053b761864" kind="function"><name>publish_lidar_accel</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1aa7714cd8fe127dfa88b7db0ac3c75287" kind="function"><name>publish_map_loop</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a6bce1b391d69d3db9cc9d7157020ff4d" kind="function"><name>~Node</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1ac1a5bb0dbdc9dec856f87422c8b71dc9" kind="function"><name>Node</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a247aee9248b976c072c38d353a005717" kind="function"><name>Node</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1ab71d005a8e8412145d1ba905e830ed08" kind="function"><name>operator=</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a5e3e6f7bcc4e2100c92cc701a1ceea31" kind="function"><name>operator=</name></member>
+  </compound>
+  <compound refid="classrko__lio_1_1ros_1_1OfflineNode" kind="class"><name>rko_lio::ros::OfflineNode</name>
+    <member refid="classrko__lio_1_1ros_1_1OfflineNode_1afbae00f391ffba827f2a75374e33bda6" kind="variable"><name>bag</name></member>
+    <member refid="classrko__lio_1_1ros_1_1OfflineNode_1ad3f8b534140952b2ca4e1d3ba742147d" kind="variable"><name>bag_progress_publisher</name></member>
+    <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a7a831770cf30cf103bb2a2274c1b1b70" kind="variable"><name>total_bag_msgs</name></member>
+    <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a281e32f4e836a057a2a390e83e5ace1b" kind="variable"><name>processed_bag_msgs</name></member>
+    <member refid="classrko__lio_1_1ros_1_1OfflineNode_1aba5ec197aa5c51eafb595756c4095a3f" kind="function"><name>OfflineNode</name></member>
+    <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a82769092823a22fb97af2d54609e0f55" kind="function"><name>run</name></member>
+  </compound>
+  <compound refid="classrko__lio_1_1ros_1_1OnlineNode" kind="class"><name>rko_lio::ros::OnlineNode</name>
+    <member refid="classrko__lio_1_1ros_1_1OnlineNode_1aa5c3fb878c2dd90ee90ab2d833d046aa" kind="variable"><name>imu_sub</name></member>
+    <member refid="classrko__lio_1_1ros_1_1OnlineNode_1aec3b1caa5e42c9526af48b351aa46a2f" kind="variable"><name>lidar_sub</name></member>
+    <member refid="classrko__lio_1_1ros_1_1OnlineNode_1ae05287f800b92923088537f0a317244b" kind="variable"><name>timer</name></member>
+    <member refid="classrko__lio_1_1ros_1_1OnlineNode_1a9e791c6ba45ae3f65a05cb7c31f07fed" kind="function"><name>OnlineNode</name></member>
+    <member refid="classrko__lio_1_1ros_1_1OnlineNode_1a2545fd04092466f59b5ba74e166b482c" kind="function"><name>OnlineNode</name></member>
+    <member refid="classrko__lio_1_1ros_1_1OnlineNode_1a8e9eedd3ffc5d00bccf1d9cd4ca1eca0" kind="function"><name>operator=</name></member>
+    <member refid="classrko__lio_1_1ros_1_1OnlineNode_1a0e8deb82a3fb444837bd8aff37b81d33" kind="function"><name>operator=</name></member>
+    <member refid="classrko__lio_1_1ros_1_1OnlineNode_1af007ddb722ed40ee77ec5c7b1d3c6710" kind="function"><name>OnlineNode</name></member>
+    <member refid="classrko__lio_1_1ros_1_1OnlineNode_1a59d58b605334eb6201da6c76fc40dbed" kind="function"><name>get_node_base_interface</name></member>
+    <member refid="classrko__lio_1_1ros_1_1OnlineNode_1ae348d25b0990b0ef210b8e8148b90911" kind="function"><name>~OnlineNode</name></member>
+  </compound>
+  <compound refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo" kind="struct"><name>rko_lio::core::ScopedProfiler::ProfilingInfo</name>
+    <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a75ffb52ae11c7b81ed01727a76cb8c0a" kind="variable"><name>count</name></member>
+    <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a2281daa4450210ce1f16a5a0eb689cff" kind="variable"><name>total</name></member>
+    <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a77b8ab32f6b501dc73446aeabe1e2683" kind="variable"><name>max_time</name></member>
+  </compound>
+  <compound refid="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap" kind="class"><name>rko_lio::core::ScopedProfiler::ProfilingInfoMap</name>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1a58c5f81a3a1cc777cb8c725c3a914387" kind="variable"><name>map</name></member>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1a4f6637a3f8b1b5e5fbeb18551e506176" kind="function"><name>ProfilingInfoMap</name></member>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1a0206ba11f1f2f1dce8abfd8c21be7462" kind="function"><name>ProfilingInfoMap</name></member>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1ab67156791c1d7a49cf075c247eb341e5" kind="function"><name>ProfilingInfoMap</name></member>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1ad93be6ac596cd3de466221ae51dd6163" kind="function"><name>operator=</name></member>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1a823cd96430376085d903d78eb6867ca5" kind="function"><name>operator=</name></member>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1a5d7778f92c462898248eb5bcb915f729" kind="function"><name>print_results</name></member>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1aeb72d40c701f4656dce41c15c93320d7" kind="function"><name>~ProfilingInfoMap</name></member>
+  </compound>
+  <compound refid="classrko__lio_1_1core_1_1ScopedProfiler" kind="class"><name>rko_lio::core::ScopedProfiler</name>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1a65e007b49e0b806ae940a86973be9c62" kind="typedef"><name>Clock</name></member>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1a344e4d74871cdbd8df3e2e3f2434dace" kind="typedef"><name>TimePoint</name></member>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1a95d95ce83ff33e547ea259f5e0f4d0c8" kind="typedef"><name>Seconds</name></member>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1a1b996df402a400510f39c10998f1fe30" kind="typedef"><name>MilliSeconds</name></member>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1a230fdfbf09bdf8fd99252cc243771139" kind="variable"><name>profile_data</name></member>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1a6bc7ea0f7a7c22c88364988a0edbb27a" kind="variable"><name>name</name></member>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1aa90548b5087a6fda9b36f44fd0c70502" kind="variable"><name>start</name></member>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1a227545f2967d6ace925bc11459e98609" kind="variable"><name>finished</name></member>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1a7fb9471e056a85bbe6795b05ab81a454" kind="function"><name>ScopedProfiler</name></member>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1aba8ddaa7373c535a8dd618a41f1046de" kind="function"><name>ScopedProfiler</name></member>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1a7e2b95d42a899a1b6d2f70ef4dfd58c7" kind="function"><name>ScopedProfiler</name></member>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1ab24e86336d717442d82591e7191621b8" kind="function"><name>operator=</name></member>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1accb18244c4f20994d4d0b6c0baa0ba3b" kind="function"><name>operator=</name></member>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1a8add0851636fba92c78f5fa2ca57b985" kind="function"><name>finish</name></member>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1a0926f45e2a38448e5044bddc59c05882" kind="function"><name>~ScopedProfiler</name></member>
+    <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1a37c572a7a20934eaa21902fe3809d44e" kind="function"><name>print_results</name></member>
+  </compound>
+  <compound refid="structrko__lio_1_1core_1_1SparseVoxelGrid" kind="struct"><name>rko_lio::core::SparseVoxelGrid</name>
+    <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1ad92dd2c12a4de10d5951f29a35b269d0" kind="typedef"><name>AccessorType</name></member>
+    <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1a2f45d8c84e590fc012487f8e27a2ad61" kind="variable"><name>voxel_size_</name></member>
+    <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1aeada711c20efc674d5844c5704d956cf" kind="variable"><name>clipping_distance_</name></member>
+    <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1a49e563768a72c334786923ddb5536fe1" kind="variable"><name>max_points_per_voxel_</name></member>
+    <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1a034765fdb974c0cc780ceb8e15a21c33" kind="variable"><name>map_</name></member>
+    <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1afae6f69b9befa264e58e6a61008b5846" kind="variable"><name>accessor_</name></member>
+    <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1a7cac5cf01c078da1af9834d11e0350f0" kind="function"><name>SparseVoxelGrid</name></member>
+    <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1a488cfa2b6e500aa5912b3902e6428137" kind="function"><name>Clear</name></member>
+    <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1a1f96671d1824cc8928ffc695000989b2" kind="function"><name>Empty</name></member>
+    <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1af71d072d1d350b23787077886ca3b600" kind="function"><name>Update</name></member>
+    <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1a90fad55f4c88156dee7108decf6fa142" kind="function"><name>AddPoints</name></member>
+    <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1a7854bc6aba4b2b8a15be9f5b57d8ec3b" kind="function"><name>RemovePointsFarFromLocation</name></member>
+    <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1a31c4e178995f30db9bda4f0762d1ac7d" kind="function"><name>Pointcloud</name></member>
+    <member refid="structrko__lio_1_1core_1_1SparseVoxelGrid_1af3d7b42ceabc1dd608375d3c3e79f058" kind="function"><name>GetClosestNeighbor</name></member>
+  </compound>
+  <compound refid="structrko__lio_1_1core_1_1State" kind="struct"><name>rko_lio::core::State</name>
+    <member refid="structrko__lio_1_1core_1_1State_1a7f8945ad8caf48d4fedada8b75ba5a29" kind="variable"><name>time</name></member>
+    <member refid="structrko__lio_1_1core_1_1State_1acf99bb3fd248ef34f6c8b78e9af98f20" kind="variable"><name>pose</name></member>
+    <member refid="structrko__lio_1_1core_1_1State_1a4ef9997c1ab318c8bacd9762881c4424" kind="variable"><name>velocity</name></member>
+    <member refid="structrko__lio_1_1core_1_1State_1a4e4b51eb997a097ab86dbc5199722e40" kind="variable"><name>angular_velocity</name></member>
+    <member refid="structrko__lio_1_1core_1_1State_1ad7e951af4dd757e904af192e1f2b7c90" kind="variable"><name>linear_acceleration</name></member>
+  </compound>
+  <compound refid="structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge" kind="struct"><name>rko_lio::ros_utils::BufferableBag::TFBridge</name>
+    <member refid="structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge_1a4a431f14588e94b5b73c39831df4fe6e" kind="variable"><name>tf_broadcaster</name></member>
+    <member refid="structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge_1a3ac0d3183342ba88de7a483499f36218" kind="variable"><name>tf_static_broadcaster</name></member>
+    <member refid="structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge_1a7be4a6bf5c7685640d072db8bb9e038a" kind="variable"><name>serializer</name></member>
+    <member refid="structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge_1ac431433a8b63201631c564600f37a076" kind="function"><name>TFBridge</name></member>
+    <member refid="structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge_1a9c125449db10aedd47101773459e860a" kind="function"><name>ProcessTFMessage</name></member>
+  </compound>
+  <compound refid="structrko__lio_1_1core_1_1Timer" kind="struct"><name>rko_lio::core::Timer</name>
+    <member refid="structrko__lio_1_1core_1_1Timer_1aa5952c4544711526513ecb9dd327b909" kind="typedef"><name>Clock</name></member>
+    <member refid="structrko__lio_1_1core_1_1Timer_1a715164e0a268bf21fac0b439ca674440" kind="typedef"><name>TimePoint</name></member>
+    <member refid="structrko__lio_1_1core_1_1Timer_1a2c4dde4f9651c79711e59c6c5b9c6883" kind="typedef"><name>Duration</name></member>
+    <member refid="structrko__lio_1_1core_1_1Timer_1a240f42bfce261aa2b56a7ea6f9a5a080" kind="variable"><name>label</name></member>
+    <member refid="structrko__lio_1_1core_1_1Timer_1ac68dc9c9d4f3b702fd518978e5362e3f" kind="variable"><name>start_time</name></member>
+    <member refid="structrko__lio_1_1core_1_1Timer_1a91777f2c06edd982cf1bf75ec2fcca1e" kind="function"><name>Timer</name></member>
+    <member refid="structrko__lio_1_1core_1_1Timer_1a80e56a9f13072aec671ee74b7d5be406" kind="function"><name>Timer</name></member>
+    <member refid="structrko__lio_1_1core_1_1Timer_1a1480b7483ffda1d5ba23f0f54063f6ef" kind="function"><name>Timer</name></member>
+    <member refid="structrko__lio_1_1core_1_1Timer_1a09b7895b9931887dad2a9b5e23f5eff3" kind="function"><name>Timer</name></member>
+    <member refid="structrko__lio_1_1core_1_1Timer_1af73241010569a47595e18b9a97315d79" kind="function"><name>operator=</name></member>
+    <member refid="structrko__lio_1_1core_1_1Timer_1ac2f0c7dd196f11e1ff6211e008aa0ec7" kind="function"><name>operator=</name></member>
+    <member refid="structrko__lio_1_1core_1_1Timer_1adaf6fe6d98f58d17620f3ccbade46b99" kind="function"><name>~Timer</name></member>
+  </compound>
+  <compound refid="namespace_0d0" kind="namespace"><name>@0</name>
+  </compound>
+  <compound refid="namespace_0d10" kind="namespace"><name>@10</name>
+  </compound>
+  <compound refid="namespace_0d12" kind="namespace"><name>@12</name>
+  </compound>
+  <compound refid="namespace_0d16" kind="namespace"><name>@16</name>
+  </compound>
+  <compound refid="namespace_0d2" kind="namespace"><name>@2</name>
+  </compound>
+  <compound refid="namespace_0d20" kind="namespace"><name>@20</name>
+  </compound>
+  <compound refid="namespace_0d5" kind="namespace"><name>@5</name>
+  </compound>
+  <compound refid="namespace_0d8" kind="namespace"><name>@8</name>
+  </compound>
+  <compound refid="namespaceEigen" kind="namespace"><name>Eigen</name>
+    <member refid="util_8hpp_1aeed2d0773ca5f2d8af17c424c1d38656" kind="typedef"><name>Matrix3_6d</name></member>
+    <member refid="util_8hpp_1a256bc41e53605f5abb08663701978077" kind="typedef"><name>Vector6d</name></member>
+    <member refid="util_8hpp_1ac472a7c3ac8e9babc4efd3f3286e4b16" kind="typedef"><name>Matrix6d</name></member>
+    <member refid="util_8hpp_1aac76b29ea1d91860971afa149e3be689" kind="typedef"><name>Matrix12d</name></member>
+  </compound>
+  <compound refid="namespacerko__lio" kind="namespace"><name>rko_lio</name>
+  </compound>
+  <compound refid="namespacerko__lio_1_1core" kind="namespace"><name>rko_lio::core</name>
+    <member refid="namespacerko__lio_1_1core_1aef84c95de08dd51173a6fc0d2433c24a" kind="typedef"><name>VoxelBlock</name></member>
+    <member refid="namespacerko__lio_1_1core_1a5cc9dbe312768171d6734783de18f64c" kind="typedef"><name>Vector3dVector</name></member>
+    <member refid="namespacerko__lio_1_1core_1aeb6128bc63af6919453e303e7eb5613d" kind="typedef"><name>Secondsd</name></member>
+    <member refid="namespacerko__lio_1_1core_1a50d343fe8fc3d44fdf883bc4a77b1ccf" kind="typedef"><name>TimestampVector</name></member>
+    <member refid="namespacerko__lio_1_1core_1a1beb022f953c50f94a2a815a4d3716b5" kind="variable"><name>GRAVITY_MAG</name></member>
+    <member refid="namespacerko__lio_1_1core_1a6f84ab20273bc1bc121cd6e5ba83d3f6" kind="function"><name>process_timestamps</name></member>
+    <member refid="namespacerko__lio_1_1core_1aebf1f823c7fd220695665a8b3e12281e" kind="function"><name>square</name></member>
+    <member refid="namespacerko__lio_1_1core_1ae12b01bb20a1a7280bc26af2de2f15dd" kind="function"><name>gravity</name></member>
+    <member refid="namespacerko__lio_1_1core_1ad33113e678270ae389705f90113e7df9" kind="function"><name>voxel_down_sample</name></member>
+  </compound>
+  <compound refid="namespacerko__lio_1_1ros" kind="namespace"><name>rko_lio::ros</name>
+  </compound>
+  <compound refid="namespacerko__lio_1_1ros__utils" kind="namespace"><name>rko_lio::ros_utils</name>
+    <member refid="point__cloud__read_8cpp_1ab5c0fc527485b86fef66ef94947405e7" kind="typedef"><name>Vector3dVector</name></member>
+    <member refid="point__cloud__read_8cpp_1ac5af74e2ce9903585e656484f3ae50aa" kind="typedef"><name>PointCloud2</name></member>
+    <member refid="point__cloud__read_8cpp_1a7c03cf24cfb52af4d4beed1321f48710" kind="typedef"><name>PointField</name></member>
+    <member refid="point__cloud__read_8cpp_1aadaf97a8a3e4a9b43814c3e9390d6fe4" kind="function"><name>point_cloud2_to_eigen</name></member>
+    <member refid="point__cloud__read_8cpp_1a91531bdd51b54763f6b79ca1b76440e3" kind="function"><name>point_cloud2_to_eigen_with_timestamps</name></member>
+    <member refid="point__cloud__read_8hpp_1a3ad9753d3bfe9abb48f53936563b5dca" kind="function"><name>point_cloud2_to_eigen_with_timestamps</name></member>
+    <member refid="point__cloud__write_8cpp_1aa1127a7edfcc13ff2c4ac7861761bfd5" kind="function"><name>eigen_to_point_cloud2</name></member>
+    <member refid="point__cloud__write_8hpp_1a10538ea744e5f5755b53206115dcb62d" kind="function"><name>eigen_to_point_cloud2</name></member>
+    <member refid="ros__vectors_8hpp_1adc80b1d89da8ab16fb400b64f8de6444" kind="function"><name>eigen_vector3d_to_ros_xyz</name></member>
+    <member refid="ros__vectors_8hpp_1a361635a6dbad79b8734e6394aa42cd0d" kind="function"><name>ros_xyz_to_eigen_vector3d</name></member>
+    <member refid="time_8hpp_1a4d1f77578095092778c1a3299d79aa44" kind="function"><name>ros_time_to_seconds</name></member>
+    <member refid="transforms_8hpp_1a2fe9738bc742c3ea7bc942e00be5b6fc" kind="function"><name>sophus_to_pose</name></member>
+    <member refid="transforms_8hpp_1abb6e8fc75669251dab21b66c068dcbb9" kind="function"><name>sophus_to_transform</name></member>
+    <member refid="transforms_8hpp_1a2e0e7e335974020f9500bc3403eee8be" kind="function"><name>transform_to_sophus</name></member>
+    <member refid="transforms_8hpp_1a372c4216c5e01ff6453368d96396068f" kind="function"><name>get_transform</name></member>
+  </compound>
+  <compound refid="namespacestd" kind="namespace"><name>std</name>
+  </compound>
+  <compound refid="namespacestd_1_1literals" kind="namespace"><name>std::literals</name>
+  </compound>
+  <compound refid="lio_8cpp" kind="file"><name>lio.cpp</name>
+  </compound>
+  <compound refid="lio_8hpp" kind="file"><name>lio.hpp</name>
+  </compound>
+  <compound refid="process__timestamps_8cpp" kind="file"><name>process_timestamps.cpp</name>
+  </compound>
+  <compound refid="process__timestamps_8hpp" kind="file"><name>process_timestamps.hpp</name>
+  </compound>
+  <compound refid="profiler_8hpp" kind="file"><name>profiler.hpp</name>
+    <member refid="profiler_8hpp_1a1a31e7e398f6a2fa20e41c0b5a02cdc4" kind="define"><name>CONCAT_IMPL</name></member>
+    <member refid="profiler_8hpp_1a2f18db18bca26cafa95e9719de4a41ef" kind="define"><name>CONCAT</name></member>
+    <member refid="profiler_8hpp_1af9e43cc52cb0d854f3588064f9f97cd2" kind="define"><name>SCOPED_PROFILER</name></member>
+  </compound>
+  <compound refid="sparse__voxel__grid_8cpp" kind="file"><name>sparse_voxel_grid.cpp</name>
+  </compound>
+  <compound refid="sparse__voxel__grid_8hpp" kind="file"><name>sparse_voxel_grid.hpp</name>
+  </compound>
+  <compound refid="util_8hpp" kind="file"><name>util.hpp</name>
+  </compound>
+  <compound refid="voxel__down__sample_8cpp" kind="file"><name>voxel_down_sample.cpp</name>
+  </compound>
+  <compound refid="voxel__down__sample_8hpp" kind="file"><name>voxel_down_sample.hpp</name>
+  </compound>
+  <compound refid="node_8cpp" kind="file"><name>node.cpp</name>
+  </compound>
+  <compound refid="node_8hpp" kind="file"><name>node.hpp</name>
+  </compound>
+  <compound refid="offline__node_8cpp" kind="file"><name>offline_node.cpp</name>
+    <member refid="offline__node_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="online__node_8cpp" kind="file"><name>online_node.cpp</name>
+  </compound>
+  <compound refid="point__cloud__read_8cpp" kind="file"><name>point_cloud_read.cpp</name>
+  </compound>
+  <compound refid="point__cloud__read_8hpp" kind="file"><name>point_cloud_read.hpp</name>
+  </compound>
+  <compound refid="point__cloud__write_8cpp" kind="file"><name>point_cloud_write.cpp</name>
+  </compound>
+  <compound refid="point__cloud__write_8hpp" kind="file"><name>point_cloud_write.hpp</name>
+  </compound>
+  <compound refid="ros__utils_8hpp" kind="file"><name>ros_utils.hpp</name>
+  </compound>
+  <compound refid="ros__vectors_8hpp" kind="file"><name>ros_vectors.hpp</name>
+  </compound>
+  <compound refid="rosbag__utils_8cpp" kind="file"><name>rosbag_utils.cpp</name>
+  </compound>
+  <compound refid="rosbag__utils_8hpp" kind="file"><name>rosbag_utils.hpp</name>
+  </compound>
+  <compound refid="time_8hpp" kind="file"><name>time.hpp</name>
+  </compound>
+  <compound refid="transforms_8hpp" kind="file"><name>transforms.hpp</name>
+  </compound>
+  <compound refid="dir_fd68a9f31ee82e3a9ed2bc8a2d2d7410" kind="dir"><name>/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core</name>
+  </compound>
+  <compound refid="dir_df511e5bd85cec96854b39d5e1c27aa8" kind="dir"><name>/home/runner/work/rko_lio/rko_lio/cpp</name>
+  </compound>
+  <compound refid="dir_5a8cfea0e5022a70ade6e69caafb6d6b" kind="dir"><name>/home/runner/work/rko_lio/rko_lio/cpp/rko_lio</name>
+  </compound>
+  <compound refid="dir_66a0e909c6382f61079b2ad8a98b081b" kind="dir"><name>/home/runner/work/rko_lio/rko_lio/ros/rko_lio</name>
+  </compound>
+  <compound refid="dir_b6bc2876df5f51b64790622082ac4e8d" kind="dir"><name>/home/runner/work/rko_lio/rko_lio/ros</name>
+  </compound>
+  <compound refid="dir_9d835358343a55b184c94c7ceed5196a" kind="dir"><name>/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils</name>
+  </compound>
+</doxygenindex>
