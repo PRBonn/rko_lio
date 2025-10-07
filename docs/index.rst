@@ -31,7 +31,7 @@ All you need to provide is the extrinsic transformation between the IMU and LiDA
 Citation
 ^^^^^^^^
 
-If you use this work, please consider citing:
+If you use this work, please leave a star on our `GitHub repository <https://github.com/PRBonn/rko_lio>`_ and consider citing:
 
 .. code-block:: bibtex
 
@@ -44,9 +44,7 @@ If you use this work, please consider citing:
     url         = {https://arxiv.org/pdf/2509.06593},
   }
 
-.. admonition:: Note
-   :class: note
-
+.. note::
    This documentation is still under construction. If you see something you can improve, I'd greatly appreciate any help. Please make an issue or a PR on `GitHub <https://github.com/PRBonn/rko_lio>`__!
 
 .. toctree::
@@ -54,9 +52,7 @@ If you use this work, please consider citing:
    :caption: Contents:
 
    Quickstart <pages/quickstart>
-   Guideline <pages/guideline>
+   General details <pages/general/general>
    pages/ros
    pages/python
-   Configuring rko_lio <pages/config>
-   Core dependencies <pages/core_dependencies>
    License <__LICENSE>

@@ -19,8 +19,9 @@ The physical units are always SI units.
 
   Unless you have very good reason, always keep this enabled.
 
-  This **_requires_** per-point timestamps in the LiDAR scan, i.e., the scan needs to have ``xyzt`` per-point where ``t`` is time.
-  If you cannot provide this, then deskewing has to be disabled.
+.. warning::
+  ``deskew=True`` **requires** per-point timestamps in the LiDAR scan, i.e., the scan needs to have ``xyzt`` per-point where ``t`` is time.
+  If you cannot provide this, then deskewing should be disabled.
 
 - **double_downsample** (`bool`, default ``True``)
 
@@ -94,7 +95,9 @@ The physical units are always SI units.
   Usually you can leave this enabled. Unless for some reason you need to start the odometry while the system is in motion, then disable this.
 
   I highly recommend enabling this.
-  But you have to ensure that the system starts from rest.
+
+.. warning::
+  ``initialization_phase=True`` requires you to ensure that the system starts from rest.
   Otherwise, the system will estimate incorrect biases and the odometry might not work as expected.
   Hence, why this is set to ``False`` by default and is opt-in.
 

@@ -42,9 +42,7 @@ There are two ways to build the core library:
 
 Using FetchContent for partial fetches is not supported: it's all or nothing.
 
-.. admonition:: Note
-   :class: note
-
+.. note::
    Bonxai is **always fetched** (see ``cmake/dependencies.cmake`` line 30) because upstream does not provide a system package.
 
 

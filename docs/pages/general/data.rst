@@ -1,21 +1,5 @@
-Guideline
-=========
-
-You can use RKO-LIO in two primary ways:
-
-1. **Offline** using the Python application ``rko_lio`` for analyzing pre-recorded data.
-2. **Online** on a robot via our ROS packages.
-
-The ROS-based system is the recommended approach for using RKO-LIO.
-Online or even offline, as we provide additional nodes to process ROS bags directly as well (see *offline mode* in :doc:`ROS Usage <ros>`).
-It offers **better performance** due to more efficient handling of incoming data streams.
-If possible, prefer using the ROS version.
-The Python version is intended mainly for convenience.
-
-For odometry-specific parameter configuration, refer to :doc:`Configuring rko_lio <config>`.
-
 The sensor data
----------------
+===============
 
 RKO LIO is a LiDAR-inertial odometry system.
 Unsurprisingly, we need both IMU and LiDAR data.
@@ -23,7 +7,7 @@ It is assumed that both sensors are time synchronized, i.e. the data timestamps 
 Some delay in the arrival of the data itself is fine.
 
 Extrinsics & convention
-^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------
 
 Most importantly, we need the extrinsic calibration between the IMU and LiDAR.
 
@@ -39,7 +23,7 @@ The superscript on the vector indicates the frame in which the vector is express
 :math:`{}^{\text{to}} \mathbf{T}_{\text{from}}` corresponds to ``transform_<from-frame>_to_<to-frame>``.
 
 IMU
-^^^
+---
 
 We only need the measurement time, the accelerometer reading, and the gyroscope reading (from a 6-axis IMU).
 
@@ -49,7 +33,7 @@ If your accelerometer outputs readings in g's, be sure to convert them to m/s² 
 Angular velocity values should be in rad/s; if your device uses other units, convert accordingly.
 
 LiDAR
-^^^^^
+-----
 
 If your platform experiences rapid or aggressive motions, I strongly recommend enabling deskewing (motion compensation) for good odometry.
 Deskewing the LiDAR scan will account for the motion of the platform during the scan acquisition time.

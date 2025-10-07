@@ -1,6 +1,6 @@
 project = "RKO-LIO"
-html_title = "Lidar-inertial odometry without sensor-specific modeling"
-html_short_title = "Lidar-inertial odometry"
+html_title = "RKO-LIO: Lidar-inertial odometry without sensor-specific modeling"
+html_short_title = "RKO-LIO"
 
 html_theme = "alabaster"
 rosdoc2_settings = {"override_theme": False}
@@ -20,7 +20,7 @@ html_sidebars = {
 html_theme_options = {
     "description": "Lidar-inertial odometry",
     "fixed_sidebar": "true",
-    "github_banner": "true",
+    # "github_banner": "true",
     "github_button": "true",
     "github_user": "PRBonn",
     "github_repo": "rko_lio",
@@ -28,9 +28,14 @@ html_theme_options = {
     "extra_nav_links": {
         "ROS Index": "https://index.ros.org/p/rko_lio/",
         "PyPI": "https://pypi.org/project/rko-lio/",
+        "GitHub": "https://github.com/PRBonn/rko_lio",
     },
     "show_relbar_bottom": "true",
 }
+
+from datetime import date
+
+copyright = f"{date.today().year} Meher Malladi"
 
 autodoc_mock_imports = [
     "numpy",
