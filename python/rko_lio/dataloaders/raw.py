@@ -27,7 +27,7 @@ import numpy as np
 import yaml
 
 from ..scoped_profiler import ScopedProfiler
-from ..util import error_and_exit, info
+from ..util import error_and_exit, info, warning
 
 try:
     import open3d as o3d
@@ -108,18 +108,24 @@ class RawDataLoader:
     def __len__(self):
         return len(self.entries)
 
-    def _get_from_settings(self, key: str, default_callable):
+    def _get_from_settings(self, key: str, default_callable, _warned_keys=set()):
+        """
+        warned_keys is a trick (hack) to have a global variable to prevent repeated warnings.
+        will work as long as it remains the default value.
+        """
         if not isinstance(self.rko_lio_settings, dict):
             return default_callable()
         query = key.split(":")
         ref = self.rko_lio_settings
         traversed = ""
         for sub_key in query:
-            traversed += f"[{sub_key}]"
+            traversed += f"{sub_key}:"
             if sub_key not in ref:
-                warning(
-                    f"'{traversed}' missing in rko_lio_settings.yaml, using default value for {key}."
-                )
+                if key not in _warned_keys:
+                    _warned_keys.add(key)
+                    warning(
+                        f"{traversed} missing in rko_lio_settings.yaml, using default value for {key}."
+                    )
                 return default_callable()
             ref = ref[sub_key]
         if isinstance(ref, dict):
