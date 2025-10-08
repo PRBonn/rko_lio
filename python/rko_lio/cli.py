@@ -241,6 +241,20 @@ def cli(
 
             config_data.update(yaml.safe_load(f))
 
+    from .dataloaders import dataloader_factory
+
+    dataloader = dataloader_factory(
+        name=dataloader_name,
+        data_path=data_path,
+        sequence=sequence,
+        imu_topic=imu_topic,
+        lidar_topic=lidar_topic,
+        imu_frame_id=imu_frame,
+        lidar_frame_id=lidar_frame,
+        base_frame_id=base_frame,
+    )
+    print("Loaded dataloader:", dataloader)
+
     extrinsic_imu2base, extrinsic_lidar2base = parse_extrinsics_from_config(config_data)
     need_to_query_extrinsics = not (
         extrinsic_imu2base is not None
@@ -250,24 +264,8 @@ def cli(
     )
     if need_to_query_extrinsics:
         warning(
-            "One or both extrinsics are not specified in the config. Will try to obtain it from the data(loader) itself."
+            "One or both extrinsics are not specified in the config. Will try to obtain it from the data itself."
         )
-
-    from .dataloaders import get_dataloader
-
-    dataloader = get_dataloader(
-        name=dataloader_name,
-        data_path=data_path,
-        sequence=sequence,
-        imu_topic=imu_topic,
-        lidar_topic=lidar_topic,
-        imu_frame_id=imu_frame,
-        lidar_frame_id=lidar_frame,
-        base_frame_id=base_frame,
-        query_extrinsics=need_to_query_extrinsics,
-    )
-    print("Loaded dataloader:", dataloader)
-    if need_to_query_extrinsics:
         extrinsic_imu2base, extrinsic_lidar2base = dataloader.extrinsics
         print("Extrinsics obtained from dataloader.")
         print("Imu to Base:\n\tTransform:")

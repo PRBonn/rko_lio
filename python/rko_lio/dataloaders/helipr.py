@@ -22,12 +22,14 @@
 
 import csv
 import re
+import warnings
 from pathlib import Path
 
 import numpy as np
 
 from .. import rko_lio_pybind
 from ..scoped_profiler import ScopedProfiler
+from ..util import error_and_exit, info
 from .helipr_file_reader_pybind import read_lidar_bin
 
 
@@ -38,8 +40,9 @@ class HeliprDataLoader:
     sequence: LiDAR sensor name: 'Aeva', 'Avia', 'Ouster', 'Velodyne'
     """
 
-    def __init__(self, data_path: Path, sequence: str, query_extrinsics: bool = True):
-        import warnings
+    def __init__(self, data_path: Path, sequence: str | None = None, *args, **kwargs):
+        if sequence is None:
+            error_and_exit("HeLiPR dataloader needs a --sequence argument.")
 
         warnings.warn(
             "HeliprDataLoader is deprecated and will be removed in a future (the next major) release.",
@@ -57,21 +60,27 @@ class HeliprDataLoader:
 
         self.T_imu_to_base = None
         self.T_lidar_to_base = None
-        if query_extrinsics:
+
+    @property
+    def extrinsics(self):
+        """Return (T_imu_to_base, T_lidar_to_base) for this sequence."""
+        if self.T_imu_to_base is None or self.T_lidar_to_base is None:
             self._load_extrinsics()
+        return self.T_imu_to_base, self.T_lidar_to_base
 
     def _load_extrinsics(self):
         """Load IMU->base and LIDAR->base transforms for HeLiPR."""
 
+        info("Trying to obtain extrinsics from the data.")
         calib_dir = self.data_path / "Calibration"
 
         imu_ouster_path = calib_dir / "IMU_Ouster_extrinsic.txt"
         lidar_extrinsic_path = calib_dir / "LiDAR_extrinsic.txt"
 
         if not imu_ouster_path.is_file():
-            raise RuntimeError(f"Missing {imu_ouster_path}")
+            error_and_exit(f"Missing {imu_ouster_path}")
         if not lidar_extrinsic_path.is_file():
-            raise RuntimeError(f"Missing {lidar_extrinsic_path}")
+            error_and_exit(f"Missing {lidar_extrinsic_path}")
 
         # Load transforms - assuming the dash in the file means "to"
         T_imu_to_ouster = parse_extrinsic_txt(imu_ouster_path)
@@ -80,11 +89,6 @@ class HeliprDataLoader:
         # Chain to get IMU to Lidar
         self.T_imu_to_base = T_ouster_to_seq @ T_imu_to_ouster
         self.T_lidar_to_base = np.eye(4)
-
-    @property
-    def extrinsics(self):
-        """Return (T_imu_to_base, T_lidar_to_base) for this sequence."""
-        return self.T_imu_to_base, self.T_lidar_to_base
 
     def _load_imu(self):
         imu_file = self.data_path / "Inertial_data" / "xsens_imu.csv"
@@ -107,7 +111,7 @@ class HeliprDataLoader:
         lidar_dir = self.data_path / "LiDAR" / self.sensor
         bin_files = sorted(lidar_dir.glob("*.bin"))
         if not bin_files:
-            raise FileNotFoundError(f"No .bin files found in {lidar_dir}")
+            error_and_exit(f"No .bin files found in {lidar_dir}")
         lidar_entries = []
         for binfile in bin_files:
             ts = int(binfile.stem)  # ns int timestamp
@@ -177,17 +181,17 @@ def parse_extrinsic_txt(path: Path) -> np.ndarray:
     )
 
     if not rot_match:
-        raise ValueError(f"No rotation block found in {path}")
+        error_and_exit(f"No rotation block found in {path}")
     if not trans_match:
-        raise ValueError(f"No translation block found in {path}")
+        error_and_exit(f"No translation block found in {path}")
 
     rot_vals = [float(x) for x in rot_match.group(1).split()]
     trans_vals = [float(x) for x in trans_match.group(1).split(",")]
 
     if len(rot_vals) != 9:
-        raise ValueError(f"Expected 9 rotation values in {path}, got {len(rot_vals)}")
+        error_and_exit(f"Expected 9 rotation values in {path}, got {len(rot_vals)}")
     if len(trans_vals) != 3:
-        raise ValueError(
+        error_and_exit(
             f"Expected 3 translation values in {path}, got {len(trans_vals)}"
         )
 
@@ -222,7 +226,7 @@ def parse_lidar_extrinsic(path: Path, target_sensor: str) -> np.ndarray:
 
     match = pattern.search(text)
     if not match:
-        raise RuntimeError(f"No block for Ouster - {target_sensor} in {path}")
+        error_and_exit(f"No block for Ouster - {target_sensor} in {path}")
 
     block_text = match.group(1)
 
@@ -235,11 +239,11 @@ def parse_lidar_extrinsic(path: Path, target_sensor: str) -> np.ndarray:
     )
 
     if not rot_match:
-        raise ValueError(
+        error_and_exit(
             f"No rotation block found for Ouster - {target_sensor} in {path}"
         )
     if not trans_match:
-        raise ValueError(
+        error_and_exit(
             f"No translation block found for Ouster - {target_sensor} in {path}"
         )
 
@@ -247,11 +251,11 @@ def parse_lidar_extrinsic(path: Path, target_sensor: str) -> np.ndarray:
     trans_vals = [float(x) for x in trans_match.group(1).split()]
 
     if len(rot_vals) != 9:
-        raise ValueError(
+        error_and_exit(
             f"Expected 9 rotation values for Ouster - {target_sensor} in {path}, got {len(rot_vals)}"
         )
     if len(trans_vals) != 3:
-        raise ValueError(
+        error_and_exit(
             f"Expected 3 translation values for Ouster - {target_sensor} in {path}, got {len(trans_vals)}"
         )
 

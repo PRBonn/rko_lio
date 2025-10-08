@@ -25,17 +25,17 @@ from pathlib import Path
 
 import numpy as np
 
+from ..util import error_and_exit, info, warning
+
 try:
     from rosbags.highlevel import AnyReader
 except ModuleNotFoundError:
-    print(
+    error_and_exit(
         'rosbags library not installed for using rosbag dataloader, please install with "pip install -U rosbags"'
     )
-    sys.exit(1)
 
 from .. import rko_lio_pybind
 from ..scoped_profiler import ScopedProfiler
-from ..util import error, warning
 from .utils.ros_read_point_cloud import read_point_cloud as ros_read_point_cloud
 from .utils.static_tf_tree import create_static_tf_tree, query_static_tf
 
@@ -49,7 +49,8 @@ class RosbagDataLoader:
         imu_frame_id: str | None,
         lidar_frame_id: str | None,
         base_frame_id: str | None,
-        query_extrinsics: bool = True,
+        *args,
+        **kwargs,
     ):
         """query_tf_tree: try to query a tf tree if it exists"""
 
@@ -86,29 +87,15 @@ class RosbagDataLoader:
             for x in self.bag.connections
             if (x.topic == self.imu_topic or x.topic == self.lidar_topic)
         ]
-        imu_frame_id = imu_frame_id or self._read_first_frame_id(self.imu_topic)
-        lidar_frame_id = lidar_frame_id or self._read_first_frame_id(self.lidar_topic)
-        base_frame_id = base_frame_id or lidar_frame_id
+        self.imu_frame_id = imu_frame_id or self._read_first_frame_id(self.imu_topic)
+        self.lidar_frame_id = lidar_frame_id or self._read_first_frame_id(
+            self.lidar_topic
+        )
+        self.base_frame_id = base_frame_id or lidar_frame_id
 
         self.T_imu_to_base = None
         self.T_lidar_to_base = None
-        if query_extrinsics:
-            print("Building TF tree.")
-            static_tf_tree = create_static_tf_tree(self.bag)
-            if not static_tf_tree:
-                error(
-                    "The rosbag doesn't contain a static tf tree, cannot query it for extrinsics. Please specify the extrinsics manually in a config. You can use 'rko_lio --dump_config' to dump a default config."
-                )
-                sys.exit(1)
 
-            print("Querying TF tree for imu to base extrinsic.")
-            self.T_imu_to_base = query_static_tf(
-                static_tf_tree, imu_frame_id, base_frame_id
-            )
-            print("Querying TF tree for lidar to base extrinsic.")
-            self.T_lidar_to_base = query_static_tf(
-                static_tf_tree, lidar_frame_id, base_frame_id
-            )
         self.msgs = self.bag.messages(connections=self.connections)
 
     def __del__(self):
@@ -132,6 +119,23 @@ class RosbagDataLoader:
 
     @property
     def extrinsics(self):
+        if self.T_imu_to_base is None or self.T_lidar_to_base is None:
+            info("Trying to obtain extrinsics from the data.")
+            print("Building TF tree.")
+            static_tf_tree = create_static_tf_tree(self.bag)
+            if not static_tf_tree:
+                error_and_exit(
+                    "The rosbag doesn't contain a static tf tree, cannot query it for extrinsics. Please specify the extrinsics manually in a config. You can use 'rko_lio --dump_config' to dump a default config."
+                )
+
+            print("Querying TF tree for imu to base extrinsic.")
+            self.T_imu_to_base = query_static_tf(
+                static_tf_tree, self.imu_frame_id, self.base_frame_id
+            )
+            print("Querying TF tree for lidar to base extrinsic.")
+            self.T_lidar_to_base = query_static_tf(
+                static_tf_tree, self.lidar_frame_id, self.base_frame_id
+            )
         return self.T_imu_to_base, self.T_lidar_to_base
 
     def __iter__(self):
@@ -149,11 +153,11 @@ class RosbagDataLoader:
                         return "lidar", self.read_point_cloud(deserialized_data)
                     except RuntimeError as e:
                         # the cpp side can throw on _process_timestamps
-                        print(
-                            "WARNING: Error processing lidar frame. You should probably report an issue."
+                        warning(
+                            "Error processing lidar frame. You should probably report an issue."
                         )
                         continue
-            raise NotImplementedError("Shouldn't happen.")
+                raise NotImplementedError("Shouldn't happen.")
 
     def read_imu(self, data):
         header_stamp = data.header.stamp
@@ -220,8 +224,9 @@ class RosbagDataLoader:
             )
             print_available_topics_and_exit()
         if len(topics_of_type) == 0:
-            error("Your rosbag does not contain any", expected_msgtype, "topic.")
-            sys.exit(1)
+            error_and_exit(
+                "Your rosbag does not contain any", expected_msgtype, "topic."
+            )
         return topics_of_type[0]
 
     def __repr__(self):

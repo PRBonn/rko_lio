@@ -1,3 +1,5 @@
+import sys
+
 from rich.console import Console
 from rich.panel import Panel
 
@@ -9,6 +11,14 @@ def error(*args):
     console.print(
         Panel(msg, title="Error", border_style="red", expand=False, title_align="left")
     )
+
+
+def error_and_exit(*args):
+    msg = " ".join(str(a) for a in args)
+    console.print(
+        Panel(msg, title="Error", border_style="red", expand=False, title_align="left")
+    )
+    sys.exit(1)
 
 
 def warning(*args):
