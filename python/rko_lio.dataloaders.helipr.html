@@ -92,45 +92,8 @@
 
           <div class="body" role="main">
             
-  <section id="module-rko_lio.dataloaders.helipr">
-<span id="rko-lio-dataloaders-helipr-module"></span><h1>rko_lio.dataloaders.helipr module<a class="headerlink" href="#module-rko_lio.dataloaders.helipr" title="Link to this heading">¶</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="rko_lio.dataloaders.helipr.HeliprDataLoader">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rko_lio.dataloaders.helipr.</span></span><span class="sig-name descname"><span class="pre">HeliprDataLoader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query_extrinsics</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.dataloaders.helipr.HeliprDataLoader" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Dataset loader for HeLiPR dataset.
-data_path: e.g. ‘helipr/Bridge01’
-sequence: LiDAR sensor name: ‘Aeva’, ‘Avia’, ‘Ouster’, ‘Velodyne’</p>
-<dl class="py property">
-<dt class="sig sig-object py" id="rko_lio.dataloaders.helipr.HeliprDataLoader.extrinsics">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extrinsics</span></span><a class="headerlink" href="#rko_lio.dataloaders.helipr.HeliprDataLoader.extrinsics" title="Link to this definition">¶</a></dt>
-<dd><p>Return (T_imu_to_base, T_lidar_to_base) for this sequence.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="rko_lio.dataloaders.helipr.parse_extrinsic_txt">
-<span class="sig-prename descclassname"><span class="pre">rko_lio.dataloaders.helipr.</span></span><span class="sig-name descname"><span class="pre">parse_extrinsic_txt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#rko_lio.dataloaders.helipr.parse_extrinsic_txt" title="Link to this definition">¶</a></dt>
-<dd><p>Parse an extrinsic calibration .txt file into a transform matrix.
-Assumes:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Inside the [ ] brackets, numbers are always space-separated.</p></li>
-<li><p>Rotation block has exactly 9 floats, Translation has exactly 3 floats.</p></li>
-</ul>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="rko_lio.dataloaders.helipr.parse_lidar_extrinsic">
-<span class="sig-prename descclassname"><span class="pre">rko_lio.dataloaders.helipr.</span></span><span class="sig-name descname"><span class="pre">parse_lidar_extrinsic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_sensor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#rko_lio.dataloaders.helipr.parse_lidar_extrinsic" title="Link to this definition">¶</a></dt>
-<dd><p>Parse LiDAR_extrinsic.txt for the block matching ‘Ouster - &lt;target_sensor&gt;’
-and return it as a matrix.</p>
-<p>Assumes inside Rotation and Translation brackets, numbers are space-separated.
-Matches are case-insensitive and multiline.</p>
-</dd></dl>
-
+  <section id="rko-lio-dataloaders-helipr-module">
+<h1>rko_lio.dataloaders.helipr module<a class="headerlink" href="#rko-lio-dataloaders-helipr-module" title="Link to this heading">¶</a></h1>
 </section>
 
 
