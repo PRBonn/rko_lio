@@ -25,7 +25,7 @@ from pathlib import Path
 
 import numpy as np
 
-from ..util import error_and_exit, info, warning
+from ..util import error, error_and_exit, info, warning
 
 try:
     from rosbags.highlevel import AnyReader
@@ -91,7 +91,12 @@ class RosbagDataLoader:
         self.lidar_frame_id = lidar_frame_id or self._read_first_frame_id(
             self.lidar_topic
         )
-        self.base_frame_id = base_frame_id or lidar_frame_id
+        self.base_frame_id = base_frame_id or self.lidar_frame_id
+
+        if self.base_frame_id is None:
+            error_and_exit(
+                f"Could not automatically determine a base frame id. Please pass it with --base_frame."
+            )
 
         self.T_imu_to_base = None
         self.T_lidar_to_base = None
