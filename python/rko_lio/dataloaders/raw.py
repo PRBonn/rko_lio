@@ -26,9 +26,8 @@ from pathlib import Path
 import numpy as np
 import yaml
 
-from rko_lio.util import error_and_exit
-
 from ..scoped_profiler import ScopedProfiler
+from ..util import error_and_exit, info
 
 try:
     import open3d as o3d
@@ -145,9 +144,9 @@ class RawDataLoader:
 
             required_keys = ["T_imu_to_base", "T_lidar_to_base"]
             for key in required_keys:
-                if key not in tf_data:
+                if not isinstance(tf_data, dict) or key not in tf_data:
                     error_and_exit(
-                        f"Querying extrinsics automatically from the raw dataloader requires a '{key}' matrix in transforms.yaml inside {self.data_path}"
+                        f"Querying extrinsics automatically from the raw dataloader requires a '{key}' matrix with that (key) name in transforms.yaml inside {self.data_path}"
                     )
 
             self.T_imu_to_base = np.array(tf_data["T_imu_to_base"], dtype=float)
