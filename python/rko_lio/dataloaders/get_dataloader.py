@@ -28,123 +28,61 @@ def available_dataloaders():
     return ["rosbag", "raw", "helipr"]
 
 
-def get_dataloader(
-    name: str | None,
-    data_path: Path,
-    sequence: str | None = None,
-    imu_topic: str | None = None,
-    lidar_topic: str | None = None,
-    imu_frame_id: str | None = None,
-    lidar_frame_id: str | None = None,
-    base_frame_id: str | None = None,
-    query_extrinsics: bool = True,
-):
+def dataloader_factory(name: str | None, data_path: Path, *args, **kwargs):
     if name is None:
-        return guess_dataloader(
-            data_path=data_path,
-            sequence=sequence,
-            imu_topic=imu_topic,
-            lidar_topic=lidar_topic,
-            imu_frame_id=imu_frame_id,
-            lidar_frame_id=lidar_frame_id,
-            base_frame_id=base_frame_id,
-            query_extrinsics=query_extrinsics,
-        )
+        return guess_dataloader(data_path=data_path, *args, **kwargs)
 
-    if name == "rosbag":
+    elif name == "rosbag":
         from .rosbag import RosbagDataLoader
 
-        return RosbagDataLoader(
-            data_path,
-            imu_topic=imu_topic,
-            lidar_topic=lidar_topic,
-            imu_frame_id=imu_frame_id,
-            lidar_frame_id=lidar_frame_id,
-            base_frame_id=base_frame_id,
-            query_extrinsics=query_extrinsics,
-        )
+        return RosbagDataLoader(data_path, *args, **kwargs)
 
     elif name == "raw":
         from .raw import RawDataLoader
 
-        return RawDataLoader(data_path)
+        return RawDataLoader(data_path, *args, **kwargs)
 
     elif name == "helipr":
-        from ..util import error
         from .helipr import HeliprDataLoader
 
-        if sequence is None:
-            error("HeliprDataLoader requires --sequence parameter")
-            sys.exit(1)
-        return HeliprDataLoader(data_path, sequence)
+        return HeliprDataLoader(data_path, *args, **kwargs)
 
-    else:
-        raise ValueError(f"Unknown dataloader: {name}")
+    raise ValueError(f"Unknown dataloader: {name}")
 
 
-def guess_dataloader(
-    data_path: Path,
-    sequence: str | None = None,
-    imu_topic: str | None = None,
-    lidar_topic: str | None = None,
-    imu_frame_id: str | None = None,
-    lidar_frame_id: str | None = None,
-    base_frame_id: str | None = None,
-    query_extrinsics: bool = True,
-):
-    from ..util import error, info
+def guess_dataloader(data_path: Path, *args, **kwargs):
+    from ..util import error_and_exit, info
 
-    # Check for rosbag files
+    # rosbag
     rosbag_exts = [".bag", ".db3", ".mcap"]
-    found_rosbag_file = False
     for ext in rosbag_exts:
         matched_files = list(data_path.glob(f"*{ext}"))
         if matched_files:
-            found_rosbag_file = True
-            break
-    if found_rosbag_file:
-        info("Guessed dataloader as rosbag!")
-        return get_dataloader(
-            "rosbag",
-            data_path,
-            imu_topic=imu_topic,
-            lidar_topic=lidar_topic,
-            imu_frame_id=imu_frame_id,
-            lidar_frame_id=lidar_frame_id,
-            base_frame_id=base_frame_id,
-            query_extrinsics=query_extrinsics,
-        )
+            info("Guessed dataloader as rosbag!")
+            return dataloader_factory("rosbag", data_path, *args, **kwargs)
 
-    # Check for raw data
-    # A folder named 'lidar' and a .txt or .csv file alongside (in data_path)
+    # raw data. Check if it contains
+    #   - folder named 'lidar' and any .txt or .csv file
+    #   - or a file named "rko_lio_settings.yaml" exists
     lidar_folder = data_path / "lidar"
     txt_files = list(data_path.glob("*.txt"))
     csv_files = list(data_path.glob("*.csv"))
-    if lidar_folder.is_dir() and (txt_files or csv_files):
+    rko_lio_settings_file = data_path / "rko_lio_settings.yaml"
+    if rko_lio_settings_file.exists() or (
+        lidar_folder.is_dir() and (txt_files or csv_files)
+    ):
         info("Guessed dataloader as raw!")
-        return get_dataloader("raw", data_path, query_extrinsics=query_extrinsics)
+        return dataloader_factory("raw", data_path, *args, **kwargs)
 
-    # Check for helipr data
+    # helipr has a dataset specified file layout
     xsens_imu_path = data_path / "Inertial_data" / "xsens_imu.csv"
     lidar_folder = data_path / "LiDAR"
 
     if xsens_imu_path.is_file() and lidar_folder.is_dir():
-        if sequence is None:
-            error("HeLiPR dataLoader requires --sequence parameter")
-            sys.exit(1)
-
-        seq_folder = lidar_folder / sequence
-        if not seq_folder.is_dir():
-            error(f"Helipr sequence folder does not exist: {seq_folder}")
-            sys.exit(1)
-
         info("Guessed dataloader as Helipr!")
-        return get_dataloader(
-            "helipr", data_path, sequence=sequence, query_extrinsics=query_extrinsics
-        )
+        return dataloader_factory("helipr", data_path, *args, **kwargs)
 
-    # No matching dataloader found
-    error(
+    # nothing guessed
+    error_and_exit(
         f"Could not guess dataloader for path: {data_path}, please pass the loader with --dataloader or -d"
     )
-    sys.exit(1)

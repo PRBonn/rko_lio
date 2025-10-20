@@ -1,1 +1,1 @@
-from .get_dataloader import available_dataloaders, get_dataloader
+from .get_dataloader import available_dataloaders, dataloader_factory
