@@ -77,6 +77,12 @@ class LIOPipeline:
             self.viz_counter = 0
             self.viz_every_n_frames = viz_every_n_frames
             self.last_xyz = np.zeros(3)
+            if self.lio.config.initialization_phase:
+                self.rerun.log(
+                    "world",
+                    self.rerun.ViewCoordinates.RIGHT_HAND_Z_UP,
+                    static=True,
+                )
 
     def add_imu(
         self,
@@ -166,10 +172,42 @@ class LIOPipeline:
                             imu["angular_velocity"],
                             imu["time"],
                         )
+                if self.viz:
+                    times = np.array(
+                        [imu["time"] for imu in imu_to_process], dtype=np.float64
+                    )
+                    accels = np.array(
+                        [imu["acceleration"] for imu in imu_to_process],
+                        dtype=np.float64,
+                    )
+                    ang_vels = np.array(
+                        [imu["angular_velocity"] for imu in imu_to_process],
+                        dtype=np.float64,
+                    )
+
+                    log_vector_columns(self.rerun, "imu/acceleration", times, accels)
+                    log_vector_columns(
+                        self.rerun, "imu/angular_velocity", times, ang_vels
+                    )
+                    # before the reset gets called in register scan
+                    stats = self.lio.interval_stats()
+                    self.rerun.set_time("data_time", timestamp=frame["end_time"])
+                    self.rerun.log(
+                        "imu/imu_count", self.rerun.Scalars(float(stats.imu_count))
+                    )
+                    log_vector(
+                        self.rerun, "imu/avg_acceleration", stats.avg_imu_accel()
+                    )
+                    log_vector(
+                        self.rerun, "imu/avg_body_acceleration", stats.avg_body_accel()
+                    )
+                    log_vector(self.rerun, "imu/avg_ang_velocity", stats.avg_ang_vel())
+
                 # Remove processed IMUs from buffer (those with time < lidar end_time)
                 self.imu_buffer = [
                     imu for imu in self.imu_buffer if imu["time"] >= frame["end_time"]
                 ]
+
                 # Register the lidar scan
                 try:
                     if self.extrinsic_lidar2base is not None:
@@ -193,13 +231,6 @@ class LIOPipeline:
 
             if self.viz:
                 with ScopedProfiler("Pipeline - Visualization") as viz_timer:
-                    if self.lio.config.initialization_phase:
-                        self.rerun.log(
-                            "world",
-                            self.rerun.ViewCoordinates.RIGHT_HAND_Z_UP,
-                            static=True,
-                        )
-                    self.rerun.set_time("data_time", timestamp=frame["end_time"])
                     pose = self.lio.pose()
                     self.rerun.log(
                         "world/lidar",
@@ -292,3 +323,42 @@ def height_colors_from_points(points: np.ndarray) -> np.ndarray:
     ).astype(np.uint8)
 
     return colors
+
+
+def log_vector(rerun, entity_path_prefix: str, vector):
+    """
+    Logs a vector as three scalar time-series in rerun.
+
+    Args:
+        rerun: The rerun module or rerun object.
+        entity_path_prefix: Base path for scalar logs (e.g. "imu/avg_acceleration")
+        vector: Iterable or np.ndarray with 3 elements (x, y, z)
+    """
+    rerun.log(f"{entity_path_prefix}/x", rerun.Scalars(vector[0]))
+    rerun.log(f"{entity_path_prefix}/y", rerun.Scalars(vector[1]))
+    rerun.log(f"{entity_path_prefix}/z", rerun.Scalars(vector[2]))
+
+
+def log_vector_columns(
+    rerun, entity_path_prefix: str, times: np.ndarray, vectors: np.ndarray
+):
+    """
+    Log a batch of 3D vectors over multiple timestamps in rerun,
+    sending one column batch per vector axis.
+
+    Args:
+        rerun: rerun module or rerun instance.
+        entity_path_prefix: base path e.g. 'imu/acceleration'.
+        times: 1D np.ndarray of timestamps (float64).
+        vectors: 2D np.ndarray, shape (N, 3) where columns are x,y,z.
+    """
+    # Common time column to link all components
+    time_col = rerun.TimeColumn("data_time", timestamp=times)
+
+    # For each component, prepare scalar column and send
+    for dim, axis_label in enumerate(["x", "y", "z"]):
+        rerun.send_columns(
+            f"{entity_path_prefix}/{axis_label}",
+            indexes=[time_col],
+            columns=rerun.Scalars.columns(scalars=vectors[:, dim]),
+        )

@@ -61,6 +61,16 @@ PYBIND11_MODULE(rko_lio_pybind, m) {
       .def_readwrite("double_downsample", &Config::double_downsample)
       .def_readwrite("min_beta", &Config::min_beta);
 
+  // for introspecting IMU data
+  py::class_<IntervalStats>(m, "_IntervalStats")
+      .def(py::init<>())
+      .def_readonly("imu_count", &IntervalStats::imu_count)
+      .def_readonly("angular_velocity_sum", &IntervalStats::angular_velocity_sum)
+      .def_readonly("body_acceleration_sum", &IntervalStats::body_acceleration_sum)
+      .def_readonly("imu_acceleration_sum", &IntervalStats::imu_acceleration_sum)
+      .def_readonly("imu_accel_mag_mean", &IntervalStats::imu_accel_mag_mean)
+      .def_readonly("welford_sum_of_squares", &IntervalStats::welford_sum_of_squares);
+
   py::class_<LIO>(m, "_LIO")
       .def(py::init<const Config&>(), "config"_a)
       .def(
@@ -78,10 +88,10 @@ PYBIND11_MODULE(rko_lio_pybind, m) {
           [](LIO& self, const Eigen::Matrix4d& extrinsic_imu2base, const Eigen::Vector3d& accel,
              const Eigen::Vector3d& gyro, const double time) {
             self.add_imu_measurement(Sophus::SE3d(extrinsic_imu2base), ImuControl{
-                                                                         .time = Secondsd(time),
-                                                                         .acceleration = accel,
-                                                                         .angular_velocity = gyro,
-                                                                     });
+                                                                           .time = Secondsd(time),
+                                                                           .acceleration = accel,
+                                                                           .angular_velocity = gyro,
+                                                                       });
           },
           "extrinsic_imu2base"_a, "acceleration"_a, "angular_velocity"_a, "time"_a)
       .def(
@@ -108,7 +118,10 @@ PYBIND11_MODULE(rko_lio_pybind, m) {
              self.dump_results_to_disk(std::filesystem::path(results_dir), run_name);
            })
       .def("map_point_cloud", [](LIO& self) { return self.map.Pointcloud(); })
-      .def("pose", [](LIO& self) { return self.lidar_state.pose.matrix(); });
+      .def("pose", [](LIO& self) { return self.lidar_state.pose.matrix(); })
+      // Expose the IntervalStats struct as a property by reference
+      .def_readonly("interval_stats", &LIO::interval_stats);
+  ;
 
   m.def(
       "_process_timestamps",
