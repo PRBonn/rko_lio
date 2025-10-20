@@ -103,9 +103,9 @@ private:
       for (const auto& [name, info] : map) {
         std::cout << "\t" << name << ":\n"
                   << "\t\tExecution count: " << info.count << "\n"
-                  << "\t\tAverage frequency: " << std::fixed << std::setprecision(2)
-                  << (1.0 / Seconds(info.mean).count()) << "Hz\n"
-                  << "\t\tStd. dev. frequency: " << (1.0 / Secondsd(info.stddev()).count()) << " Hz\n"
+                  << "\t\tAverage time: " << std::fixed << std::setprecision(2) << info.mean.count() << " ms\n"
+                  << "\t\tStd. dev. time: " << info.stddev().count() << " ms\n"
+                  << "\t\tAverage frequency: " << (1.0 / Seconds(info.mean).count()) << "Hz\n"
                   << "\t\tMax (worst-case) frequency: " << (1.0 / Seconds(info.max_time).count()) << "Hz\n";
       }
     }
