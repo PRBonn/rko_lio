@@ -33,7 +33,7 @@ keywords = [
 ]
 dependencies = [
   "numpy~=2.2",
-  "typer>=0.19,<0.20",
+  "typer>=0.19,<0.21",
   "pyyaml~=6.0",
   "pyquaternion>=0.9,<0.10",
   "tqdm~=4.67"
