@@ -1,7 +1,7 @@
 name: Ubuntu 22.04
 on:
   push:
-    branches: [master]
+    branches: [python/pin_version]
   pull_request:
     branches: [master]
 jobs:
