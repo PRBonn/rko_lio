@@ -31,14 +31,20 @@ keywords = [
   "Localization",
   "SLAM",
 ]
-dependencies = ["numpy", "typer", "pyyaml", "pyquaternion", "tqdm"]
+dependencies = [
+  "numpy<=2.3",
+  "typer<=0.19",
+  "pyyaml<=6.0",
+  "pyquaternion<=0.9",
+  "tqdm<=4.67"
+]
 
 [project.optional-dependencies]
 all = [
-  "open3d",
-  "rerun-sdk",
-  "rosbags",
-  "pytest"
+  "open3d<=0.19",
+  "rerun-sdk<=0.24",
+  "rosbags<=0.10",
+  "pytest<=8.4"
 ]
 
 [project.urls]
