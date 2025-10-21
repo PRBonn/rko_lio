@@ -1,7 +1,7 @@
 name: macOS 14
 on:
   push:
-    branches: [python/pin_version]
+    branches: [master]
   pull_request:
     branches: [master]
 jobs:
