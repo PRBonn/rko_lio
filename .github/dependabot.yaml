@@ -11,6 +11,7 @@ updates:
     directory: "/python"
     schedule:
       interval: "weekly"
+    versioning-strategy: increase-if-necessary
     labels:
       - "dependencies"
       - "python"
