@@ -2,8 +2,8 @@
 Changelog for package rko_lio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.7 (2025-10-21)
+------------------
 * python: Update rosbags requirement from to allow 0.11 (`#63 <https://github.com/PRBonn/rko_lio/issues/63>`_)
   * Update rosbags requirement from <0.11,>=0.10 to >=0.10,<0.12 in /python
   * Changes to rosbag reader to support older versions and 0.11
