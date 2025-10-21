@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=f6a572b4" />
     <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=56c4699f" />
-    <script src="_static/documentation_options.js?v=6e0256f3"></script>
+    <script src="_static/documentation_options.js?v=ca7ad2ea"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
@@ -92,7 +92,33 @@
 <section id="changelog-for-package-rko-lio">
 <h2>Changelog for package rko_lio<a class="headerlink" href="#changelog-for-package-rko-lio" title="Link to this heading">¶</a></h2>
 <section id="id1">
-<h3>0.1.6 (2025-10-07)<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<h3>0.1.7 (2025-10-21)<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>python: Update rosbags requirement from to allow 0.11 (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/63">#63</a>)
+* Update rosbags requirement from &lt;0.11,&gt;=0.10 to &gt;=0.10,&lt;0.12 in /python
+* Changes to rosbag reader to support older versions and 0.11
+Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]&#64;users.noreply.github.com&gt;
+Co-authored-by: Meher Malladi &lt;<a class="reference external" href="mailto:rm&#46;meher97&#37;&#52;&#48;gmail&#46;com">rm<span>&#46;</span>meher97<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p></li>
+<li><p>actions: Bump pypa/cibuildwheel from 3.2.0 to 3.2.1 (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/61">#61</a>)
+Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]&#64;users.noreply.github.com&gt;</p></li>
+<li><p>python: Update typer requirement from &lt;0.20,&gt;=0.19 to &gt;=0.19,&lt;0.21(<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/62">#62</a>)
+Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]&#64;users.noreply.github.com&gt;</p></li>
+<li><p>python: Update rerun-sdk version (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/64">#64</a>)
+Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]&#64;users.noreply.github.com&gt;</p></li>
+<li><p>python: pin versions for compatibility (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/60">#60</a>)
+* add python to dependabot checks
+* specify upper bounds for pip dependencies
+* add optional dataloader tests, and add a workflow to install and test
+* improve the testing a bit
+* remove the ament cmake find outside of a ros build, as that causes issues on cursed ros setups</p></li>
+<li><p>python: data loader improvements and raw loader overhaul (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/56">#56</a>)</p></li>
+<li><p>docs: overhaul and add a github pages workflow (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/55">#55</a>)
+essentially a massive overhaul to everything documentation related. we now use rosdocs2, sphinx, doxygen to build docs. and gh-pages-action to deploy to github-pages automatically</p></li>
+<li><p>Contributors: Meher Malladi, dependabot[bot]</p></li>
+</ul>
+</section>
+<section id="id9">
+<h3>0.1.6 (2025-10-07)<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>make fPIC a property target ON instead of a global build flag</p></li>
 <li><p>drop cmake min version to 3.22.0</p></li>
@@ -101,8 +127,8 @@
 <li><p>Contributors: Meher Malladi</p></li>
 </ul>
 </section>
-<section id="id2">
-<h3>0.1.5 (2025-10-04)<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<section id="id10">
+<h3>0.1.5 (2025-10-04)<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Drop cmake min version to 3.22.1 to support ros humble builds with default toolchains  (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/52">#52</a>)
 * mock a find package file if cmake below version 3.24
@@ -114,8 +140,8 @@
 <li><p>Contributors: Meher Malladi</p></li>
 </ul>
 </section>
-<section id="id4">
-<h3>0.1.4 (2025-10-04)<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<section id="id12">
+<h3>0.1.4 (2025-10-04)<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Drop ros cmake min version to 3.26.5.  (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/50">#50</a>)
 * Conditional fetchcontent flags to include exclude_from_all only if version &gt; 3.28. Should fix rhel 9 builds for ros</p></li>
@@ -127,8 +153,8 @@ Co-authored-by: Meher Malladi &lt;<a class="reference external" href="mailto:rm&
 <li><p>Contributors: Meher Malladi, github-actions[bot]</p></li>
 </ul>
 </section>
-<section id="id7">
-<h3>0.1.3 (2025-10-02)<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<section id="id15">
+<h3>0.1.3 (2025-10-02)<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>temp fix: ros builds when FETCHCONTENT_FULLY_DISABLED is ON, aka the ros build farm (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/45">#45</a>)
 * clean up ament target dependencies deprecation
@@ -155,8 +181,8 @@ Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]&#64;users.noreply.g
 <li><p>Contributors: Meher Malladi, dependabot[bot]</p></li>
 </ul>
 </section>
-<section id="id11">
-<h3>0.1.2 (2025-09-26)<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
+<section id="id19">
+<h3>0.1.2 (2025-09-26)<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Drop irregular lidar frames (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/35">#35</a>)
 * if incoming lidar scan has a stamp with too big of a delta to the previous, we treat it as an error</p></li>
@@ -164,8 +190,8 @@ Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]&#64;users.noreply.g
 <li><p>Contributors: Meher Malladi</p></li>
 </ul>
 </section>
-<section id="id14">
-<h3>0.1.1 (2025-09-17)<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h3>
+<section id="id22">
+<h3>0.1.1 (2025-09-17)<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Fix logic error in offline node (ros) and interval imu stats compute (core) (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/29">#29</a>)
 * cleaner error messages and log parsed imu and lidar frames for ros
@@ -188,8 +214,8 @@ Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]&#64;users.noreply.g
 <li><p>Contributors: Meher Malladi</p></li>
 </ul>
 </section>
-<section id="id19">
-<h3>0.1.0 (2025-09-11)<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h3>
+<section id="id27">
+<h3>0.1.0 (2025-09-11)<a class="headerlink" href="#id27" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Bump version 0.1.0 (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/22">#22</a>)
 * Update pyproject.toml to v0.1.0
@@ -204,8 +230,8 @@ Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]&#64;users.noreply.g
 <li><p>Contributors: Meher Malladi</p></li>
 </ul>
 </section>
-<section id="id22">
-<h3>0.0.4 (2025-09-09)<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h3>
+<section id="id30">
+<h3>0.0.4 (2025-09-09)<a class="headerlink" href="#id30" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>C++ simplifications, py-rosbag reader improvements (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/14">#14</a>)
 * print the names of the bag files being added if there are multiple
@@ -221,8 +247,8 @@ for a rosbag
 <li><p>Contributors: Meher Malladi</p></li>
 </ul>
 </section>
-<section id="id24">
-<h3>0.0.3 (2025-09-07 16:17)<a class="headerlink" href="#id24" title="Link to this heading">¶</a></h3>
+<section id="id32">
+<h3>0.0.3 (2025-09-07 16:17)<a class="headerlink" href="#id32" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Fix/improve rerun visualization, remove matplotlib as an undocumented dep, bump version (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/10">#10</a>)
 * remove unnecessary dependency on matplotlib. also prevents a break
@@ -243,8 +269,8 @@ readme
 <li><p>Contributors: Meher Malladi</p></li>
 </ul>
 </section>
-<section id="id27">
-<h3>0.0.2 (2025-09-07 03:17)<a class="headerlink" href="#id27" title="Link to this heading">¶</a></h3>
+<section id="id35">
+<h3>0.0.2 (2025-09-07 03:17)<a class="headerlink" href="#id35" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Add macOS and Windows support/builds/wheels (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/8">#8</a>)
 * builds on mac arm (14 and 15)
@@ -259,8 +285,8 @@ readme
 <li><p>Contributors: Meher Malladi</p></li>
 </ul>
 </section>
-<section id="id29">
-<h3>0.0.1 (2025-09-06)<a class="headerlink" href="#id29" title="Link to this heading">¶</a></h3>
+<section id="id37">
+<h3>0.0.1 (2025-09-06)<a class="headerlink" href="#id37" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Workflows (<a class="reference external" href="https://github.com/PRBonn/rko_lio/issues/6">#6</a>)
 * test python bindings build workflow

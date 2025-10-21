@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=f6a572b4" />
     <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=56c4699f" />
-    <script src="../_static/documentation_options.js?v=6e0256f3"></script>
+    <script src="../_static/documentation_options.js?v=ca7ad2ea"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
@@ -99,6 +99,30 @@
 <div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
 <span class="gh">Changelog for package rko_lio</span>
 <span class="gh">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+
+<span class="gh">0.1.7 (2025-10-21)</span>
+<span class="gh">------------------</span>
+<span class="m">*</span> python: Update rosbags requirement from to allow 0.11 (<span class="s">`#63 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/63&gt;</span><span class="s">`_</span>)
+  <span class="m">*</span> Update rosbags requirement from &lt;0.11,&gt;=0.10 to &gt;=0.10,&lt;0.12 in /python
+  <span class="m">*</span> Changes to rosbag reader to support older versions and 0.11
+  Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt;
+  Co-authored-by: Meher Malladi &lt;rm.meher97@gmail.com&gt;
+<span class="m">*</span> actions: Bump pypa/cibuildwheel from 3.2.0 to 3.2.1 (<span class="s">`#61 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/61&gt;</span><span class="s">`_</span>)
+  Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt;
+<span class="m">*</span> python: Update typer requirement from &lt;0.20,&gt;=0.19 to &gt;=0.19,&lt;0.21(<span class="s">`#62 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/62&gt;</span><span class="s">`_</span>)
+  Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt;
+<span class="m">*</span> python: Update rerun-sdk version (<span class="s">`#64 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/64&gt;</span><span class="s">`_</span>)
+  Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt;
+<span class="m">*</span> python: pin versions for compatibility (<span class="s">`#60 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/60&gt;</span><span class="s">`_</span>)
+  <span class="m">*</span> add python to dependabot checks
+  <span class="m">*</span> specify upper bounds for pip dependencies
+  <span class="m">*</span> add optional dataloader tests, and add a workflow to install and test
+  <span class="m">*</span> improve the testing a bit
+  <span class="m">*</span> remove the ament cmake find outside of a ros build, as that causes issues on cursed ros setups
+<span class="m">*</span> python: data loader improvements and raw loader overhaul (<span class="s">`#56 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/56&gt;</span><span class="s">`_</span>)
+<span class="m">*</span> docs: overhaul and add a github pages workflow (<span class="s">`#55 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/55&gt;</span><span class="s">`_</span>)
+  essentially a massive overhaul to everything documentation related. we now use rosdocs2, sphinx, doxygen to build docs. and gh-pages-action to deploy to github-pages automatically
+<span class="m">*</span> Contributors: Meher Malladi, dependabot[bot]
 
 <span class="gh">0.1.6 (2025-10-07)</span>
 <span class="gh">------------------</span>

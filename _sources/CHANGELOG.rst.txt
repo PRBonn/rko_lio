@@ -2,6 +2,30 @@
 Changelog for package rko_lio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.1.7 (2025-10-21)
+------------------
+* python: Update rosbags requirement from to allow 0.11 (`#63 <https://github.com/PRBonn/rko_lio/issues/63>`_)
+  * Update rosbags requirement from <0.11,>=0.10 to >=0.10,<0.12 in /python
+  * Changes to rosbag reader to support older versions and 0.11
+  Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+  Co-authored-by: Meher Malladi <rm.meher97@gmail.com>
+* actions: Bump pypa/cibuildwheel from 3.2.0 to 3.2.1 (`#61 <https://github.com/PRBonn/rko_lio/issues/61>`_)
+  Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+* python: Update typer requirement from <0.20,>=0.19 to >=0.19,<0.21(`#62 <https://github.com/PRBonn/rko_lio/issues/62>`_)
+  Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+* python: Update rerun-sdk version (`#64 <https://github.com/PRBonn/rko_lio/issues/64>`_)
+  Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+* python: pin versions for compatibility (`#60 <https://github.com/PRBonn/rko_lio/issues/60>`_)
+  * add python to dependabot checks
+  * specify upper bounds for pip dependencies
+  * add optional dataloader tests, and add a workflow to install and test
+  * improve the testing a bit
+  * remove the ament cmake find outside of a ros build, as that causes issues on cursed ros setups
+* python: data loader improvements and raw loader overhaul (`#56 <https://github.com/PRBonn/rko_lio/issues/56>`_)
+* docs: overhaul and add a github pages workflow (`#55 <https://github.com/PRBonn/rko_lio/issues/55>`_)
+  essentially a massive overhaul to everything documentation related. we now use rosdocs2, sphinx, doxygen to build docs. and gh-pages-action to deploy to github-pages automatically
+* Contributors: Meher Malladi, dependabot[bot]
+
 0.1.6 (2025-10-07)
 ------------------
 * make fPIC a property target ON instead of a global build flag
