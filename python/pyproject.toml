@@ -33,17 +33,17 @@ keywords = [
 ]
 dependencies = [
   "numpy~=2.2",
-  "typer~=0.19",
+  "typer>=0.19,<0.20",
   "pyyaml~=6.0",
-  "pyquaternion~=0.9",
+  "pyquaternion>=0.9,<0.10",
   "tqdm~=4.67"
 ]
 
 [project.optional-dependencies]
 all = [
-  "open3d~=0.19",
-  "rerun-sdk~=0.24",
-  "rosbags~=0.10",
+  "open3d>=0.19,<0.20",
+  "rerun-sdk>=0.24,<0.25",
+  "rosbags>=0.10,<0.11",
   "pytest~=8.4"
 ]
 
