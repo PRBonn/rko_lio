@@ -21,7 +21,7 @@ jobs:
       - name: Build with pip
         run: python -m pip install --verbose ./python/ pytest
       - name: Run pytest
-        run: pytest python/
+        run: pytest python/ -v -rs
   python_bindings_optional:
     runs-on: ${{ inputs.run_os }}
     env:
@@ -37,4 +37,4 @@ jobs:
       - name: Install package with optional dependencies
         run: python -m pip install --verbose "./python/[all]" pytest
       - name: Run pytest with optional dependency tests
-        run: pytest python/
+        run: pytest python/ -v -rs

@@ -22,29 +22,26 @@ def test_helipr_pybind_import():
 
 
 def test_helipr_import():
-    from rko_lio.dataloaders.helipr import HeliprDataloader
+    from rko_lio.dataloaders.helipr import HeliprDataLoader
 
-    assert HeliprDataloader is not None
-
-
-@pytest.mark.skipif(
-    not pytest.importorskip(
-        "open3d", reason="Optional dependency for raw dataloader (open3d) not installed"
-    ),
-)
-def test_raw_import():
-    from rko_lio.dataloaders.raw import RawDataLoader
-
-    assert RawDataLoader is not None
+    assert HeliprDataLoader is not None
 
 
-@pytest.mark.skipif(
-    not pytest.importorskip(
+def test_rosbag_import():
+    _ = pytest.importorskip(
         "rosbags",
         reason="Optional dependency for rosbag dataloader (rosbags) not installed",
-    ),
-)
-def test_rosbag_import():
+    )
     from rko_lio.dataloaders.rosbag import RosbagDataLoader
 
     assert RosbagDataLoader is not None
+
+
+def test_raw_import():
+    _ = pytest.importorskip(
+        "open3d",
+        reason="Optional dependency for raw dataloader (open3d) not installed",
+    )
+    from rko_lio.dataloaders.raw import RawDataLoader
+
+    assert RawDataLoader is not None
