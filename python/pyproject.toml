@@ -41,7 +41,7 @@ dependencies = [
 
 [project.optional-dependencies]
 all = [
-  "open3d>=0.19,<0.20",
+  "open3d>=0.18,<0.20",
   "rerun-sdk>=0.24,<0.25",
   "rosbags>=0.10,<0.11",
   "pytest~=8.4"
