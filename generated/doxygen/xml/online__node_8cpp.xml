@@ -15,10 +15,12 @@
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
       </node>
       <node id="29">
         <label>rko_lio/core/profiler.hpp</label>
-        <link refid="profiler_8hpp"/>
+        <link refid="profiler_8hpp_source"/>
         <childnode refid="9" relation="include">
         </childnode>
         <childnode refid="30" relation="include">
@@ -56,8 +58,6 @@
         <label>node.hpp</label>
         <link refid="node_8hpp_source"/>
         <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
@@ -107,7 +107,7 @@
       <node id="5">
         <label>Eigen/Core</label>
       </node>
-      <node id="11">
+      <node id="12">
         <label>atomic</label>
       </node>
       <node id="6">
@@ -116,10 +116,10 @@
       <node id="9">
         <label>chrono</label>
       </node>
-      <node id="12">
+      <node id="13">
         <label>condition_variable</label>
       </node>
-      <node id="13">
+      <node id="10">
         <label>filesystem</label>
       </node>
       <node id="19">
@@ -143,7 +143,7 @@
       <node id="21">
         <label>nav_msgs/msg/odometry.hpp</label>
       </node>
-      <node id="10">
+      <node id="11">
         <label>optional</label>
       </node>
       <node id="16">
@@ -222,7 +222,7 @@
 <codeline lineno="23"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;node.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="profiler_8hpp" kindref="compound">rko_lio/core/profiler.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;rko_lio/core/profiler.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros<sp/>{</highlight></codeline>
 <codeline lineno="29" refid="classrko__lio_1_1ros_1_1OnlineNode" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrko__lio_1_1ros_1_1OnlineNode" kindref="compound">OnlineNode</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1ros_1_1Node" kindref="compound">Node</ref><sp/>{</highlight></codeline>
@@ -252,11 +252,13 @@
 <codeline lineno="53"><highlight class="normal"><sp/><sp/>rclcpp::node_interfaces::NodeBaseInterface::SharedPtr<sp/>get_node_base_interface()<sp/>{</highlight></codeline>
 <codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>node-&gt;get_node_base_interface();</highlight></codeline>
 <codeline lineno="55"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="56"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="57"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="58"><highlight class="normal"></highlight></codeline>
-<codeline lineno="59"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;rclcpp_components/register_node_macro.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="60"><highlight class="normal">RCLCPP_COMPONENTS_REGISTER_NODE(<ref refid="classrko__lio_1_1ros_1_1OnlineNode" kindref="compound">rko_lio::ros::OnlineNode</ref>)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1OnlineNode" kindref="compound">~OnlineNode</ref>()<sp/>{<sp/>lio-&gt;dump_results_to_disk(results_dir,<sp/>run_name);<sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="59"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;rclcpp_components/register_node_macro.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal">RCLCPP_COMPONENTS_REGISTER_NODE(<ref refid="classrko__lio_1_1ros_1_1OnlineNode" kindref="compound">rko_lio::ros::OnlineNode</ref>)</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/online_node.cpp"/>
   </compounddef>

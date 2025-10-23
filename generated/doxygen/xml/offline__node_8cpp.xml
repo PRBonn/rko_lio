@@ -16,10 +16,12 @@
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
       </node>
       <node id="29">
         <label>rko_lio/core/profiler.hpp</label>
-        <link refid="profiler_8hpp"/>
+        <link refid="profiler_8hpp_source"/>
         <childnode refid="9" relation="include">
         </childnode>
         <childnode refid="30" relation="include">
@@ -57,8 +59,6 @@
         <label>node.hpp</label>
         <link refid="node_8hpp_source"/>
         <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
@@ -140,7 +140,7 @@
       <node id="5">
         <label>Eigen/Core</label>
       </node>
-      <node id="11">
+      <node id="12">
         <label>atomic</label>
       </node>
       <node id="6">
@@ -149,13 +149,13 @@
       <node id="9">
         <label>chrono</label>
       </node>
-      <node id="12">
+      <node id="13">
         <label>condition_variable</label>
       </node>
       <node id="41">
         <label>cstddef</label>
       </node>
-      <node id="13">
+      <node id="10">
         <label>filesystem</label>
       </node>
       <node id="19">
@@ -179,7 +179,7 @@
       <node id="21">
         <label>nav_msgs/msg/odometry.hpp</label>
       </node>
-      <node id="10">
+      <node id="11">
         <label>optional</label>
       </node>
       <node id="16">
@@ -269,7 +269,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" line="129" column="5" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" bodystart="129" bodyend="136"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" line="129" column="5" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" bodystart="129" bodyend="143"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -302,7 +302,7 @@
 <codeline lineno="23"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;node.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="profiler_8hpp" kindref="compound">rko_lio/core/profiler.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;rko_lio/core/profiler.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;rko_lio/ros_utils/rosbag_utils.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>other</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;std_msgs/msg/float32_multi_array.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
@@ -409,10 +409,17 @@
 <codeline lineno="130"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1Timer" kindref="compound">rko_lio::core::Timer</ref><sp/>timer(</highlight><highlight class="stringliteral">&quot;RKO<sp/>LIO<sp/>Offline<sp/>Node&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="131"><highlight class="normal"><sp/><sp/>rclcpp::init(argc,<sp/>argv);</highlight></codeline>
 <codeline lineno="132"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>offline_node<sp/>=<sp/><ref refid="classrko__lio_1_1ros_1_1OfflineNode" kindref="compound">rko_lio::ros::OfflineNode</ref>(rclcpp::NodeOptions());</highlight></codeline>
-<codeline lineno="133"><highlight class="normal"><sp/><sp/>offline_node.run();</highlight></codeline>
-<codeline lineno="134"><highlight class="normal"><sp/><sp/>rclcpp::shutdown();</highlight></codeline>
-<codeline lineno="135"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
-<codeline lineno="136"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>offline_node.run();</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::runtime_error&amp;<sp/>error)<sp/>{</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>RCLCPP_WARN_STREAM(</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rclcpp::get_logger(</highlight><highlight class="stringliteral">&quot;OfflineNode&quot;</highlight><highlight class="normal">),</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Encountered<sp/>runtime_error.<sp/>Still<sp/>attempting<sp/>to<sp/>dump<sp/>trajectory<sp/>to<sp/>disk.<sp/>The<sp/>error<sp/>was:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>error.what());</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/>offline_node.lio-&gt;dump_results_to_disk(offline_node.results_dir,<sp/>offline_node.run_name);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/>rclcpp::shutdown();</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp"/>
   </compounddef>

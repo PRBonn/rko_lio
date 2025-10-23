@@ -70,17 +70,18 @@
     <member refid="classrko__lio_1_1core_1_1LIO_1aaec8a94ec4355ab7269bb02bee19d950" kind="variable"><name>mean_body_acceleration</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a87238efc2008594d5fa9db8344084ec2" kind="variable"><name>body_acceleration_covariance</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a9b89efdfdcc0ab01ef3fd6caaadb69d2" kind="variable"><name>interval_stats</name></member>
-    <member refid="classrko__lio_1_1core_1_1LIO_1ae90f742f8a328a0ce2e119b2b8f881e1" kind="variable"><name>poses_with_timestamps</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1aa0e98c41c711dff7bf50bb1706b2d603" kind="variable"><name>_initialized</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a838be30264dd19a556bd6cd134c88a31" kind="variable"><name>_imu_local_rotation</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1ab754b7e1c345c2db0917e6b7bc471973" kind="variable"><name>_imu_local_rotation_time</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a6cdf1482cca66e3eeeaf4f66e9cff018" kind="variable"><name>_last_real_imu_time</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a8982a3577c4d1c77eb6a9fa2911c6149" kind="variable"><name>_last_real_base_imu_ang_vel</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a5dacf79efe978ca0ef6ea8aa49318b48" kind="variable"><name>_poses_with_timestamps</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a27bdff7e57866bd6429e81d8f7d74ed8" kind="function"><name>LIO</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a34139c65d35e7929125788bdafd0470c" kind="function"><name>add_imu_measurement</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a91736c1595c37bc5d70840538735b12a" kind="function"><name>add_imu_measurement</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a0e2818a3d7d3b07f77a91235b116b607" kind="function"><name>register_scan</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a3963bf670eced93306c73ead313d867f" kind="function"><name>register_scan</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a2dcb387551e7415a98ca90d6dd7bf53f" kind="function"><name>dump_results_to_disk</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1ab8728d90e80d1664ce979c8db5cc2eb2" kind="function"><name>initialize</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a5255f5fcedee204613c41705c263dec4" kind="function"><name>get_accel_info</name></member>
   </compound>
@@ -95,7 +96,6 @@
     <member refid="classrko__lio_1_1ros_1_1Node_1aac4f67a35fae666c0d2dcd77a22f6b03" kind="variable"><name>odom_frame</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1acce2f87faae8959c5b59f484b81be878" kind="variable"><name>odom_topic</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1af6a1630f6d2d17ba44b225e6be11b72d" kind="variable"><name>map_topic</name></member>
-    <member refid="classrko__lio_1_1ros_1_1Node_1a167a6a5a34cdd635ce3a32ee2cf581f3" kind="variable"><name>dump_results</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1a145e14aaf7041beb7bed45fcf7041ba4" kind="variable"><name>results_dir</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1adbc985d64440f596a5cea959dd13ad7e" kind="variable"><name>run_name</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1a6056387e44ee44c7b6497ba28adeed1c" kind="variable"><name>invert_odom_tf</name></member>
@@ -133,7 +133,6 @@
     <member refid="classrko__lio_1_1ros_1_1Node_1a3da69a5529c94c5f593016ce01768eae" kind="function"><name>publish_odometry</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1a384bcb9f442c8dd7a87cc8053b761864" kind="function"><name>publish_lidar_accel</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1aa7714cd8fe127dfa88b7db0ac3c75287" kind="function"><name>publish_map_loop</name></member>
-    <member refid="classrko__lio_1_1ros_1_1Node_1a99b43c9d41110b966ff05645ea7a1941" kind="function"><name>dump_results_to_disk</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1a6bce1b391d69d3db9cc9d7157020ff4d" kind="function"><name>~Node</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1ac1a5bb0dbdc9dec856f87422c8b71dc9" kind="function"><name>Node</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1a247aee9248b976c072c38d353a005717" kind="function"><name>Node</name></member>
@@ -158,6 +157,7 @@
     <member refid="classrko__lio_1_1ros_1_1OnlineNode_1a0e8deb82a3fb444837bd8aff37b81d33" kind="function"><name>operator=</name></member>
     <member refid="classrko__lio_1_1ros_1_1OnlineNode_1af007ddb722ed40ee77ec5c7b1d3c6710" kind="function"><name>OnlineNode</name></member>
     <member refid="classrko__lio_1_1ros_1_1OnlineNode_1a59d58b605334eb6201da6c76fc40dbed" kind="function"><name>get_node_base_interface</name></member>
+    <member refid="classrko__lio_1_1ros_1_1OnlineNode_1ae348d25b0990b0ef210b8e8148b90911" kind="function"><name>~OnlineNode</name></member>
   </compound>
   <compound refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo" kind="struct"><name>rko_lio::core::ScopedProfiler::ProfilingInfo</name>
     <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a75ffb52ae11c7b81ed01727a76cb8c0a" kind="variable"><name>count</name></member>
@@ -345,8 +345,6 @@
   <compound refid="time_8hpp" kind="file"><name>time.hpp</name>
   </compound>
   <compound refid="transforms_8hpp" kind="file"><name>transforms.hpp</name>
-  </compound>
-  <compound refid="deprecated" kind="page"><name>deprecated</name>
   </compound>
   <compound refid="dir_fd68a9f31ee82e3a9ed2bc8a2d2d7410" kind="dir"><name>/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core</name>
   </compound>

@@ -18,7 +18,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="103" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="103" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="99" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="99" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a9cc9bd40427d206f8349bc330c40aa1f" prot="public" static="no" mutable="no">
         <type>size_t</type>
@@ -34,7 +34,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="106" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="106" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="100" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="100" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a0cf92444005352d71aca931390a9ead0" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -44,13 +44,13 @@
         <qualifiedname>rko_lio::core::LIO::Config::voxel_size</qualifiedname>
         <initializer>= 1.0</initializer>
         <briefdescription>
-<para>Size of voxel grid (m). </para>
+<para>Size of voxel grid (meters) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="109" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="109" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="101" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="101" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a670b666aa92cf07b19b8537bf3e9446a" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -66,7 +66,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="112" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="112" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="102" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="102" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a333f16a3ff952ee91e48e0d62dc23533" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -76,13 +76,13 @@
         <qualifiedname>rko_lio::core::LIO::Config::max_range</qualifiedname>
         <initializer>= 100.0</initializer>
         <briefdescription>
-<para>Maximum lidar range (m). </para>
+<para>Max lidar range (meters) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="115" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="115" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="103" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="103" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1af3ef0dac6d1484eac8aa0e91c5578f10" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -92,13 +92,13 @@
         <qualifiedname>rko_lio::core::LIO::Config::min_range</qualifiedname>
         <initializer>= 1.0</initializer>
         <briefdescription>
-<para>Minimum lidar range (m). </para>
+<para>Min lidar range (meters) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="118" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="118" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="104" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="104" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1ae2991e0e372427f93255231b3249b246" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -114,7 +114,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="121" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="121" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="105" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="105" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a9c90e5e455dc7946e69df5229d3ddce0" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -124,13 +124,13 @@
         <qualifiedname>rko_lio::core::LIO::Config::max_correspondance_distance</qualifiedname>
         <initializer>= 0.5</initializer>
         <briefdescription>
-<para>Max distance for correspondences (m). </para>
+<para>Max distance for point correspondences (meters) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="124" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="124" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="106" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="106" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a5089f617d86e9ae45f524c23d322617a" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -140,13 +140,13 @@
         <qualifiedname>rko_lio::core::LIO::Config::max_num_threads</qualifiedname>
         <initializer>= 0</initializer>
         <briefdescription>
-<para>Thread count for data association (0 = automatic). </para>
+<para>Thread count used for data associations, zero for automatic. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="127" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="127" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="107" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="107" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a2d65fe516d188013b626c20f1bc583e2" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -156,13 +156,13 @@
         <qualifiedname>rko_lio::core::LIO::Config::initialization_phase</qualifiedname>
         <initializer>= false</initializer>
         <briefdescription>
-<para>Enable initialization phase. </para>
+<para>True to enable initialization phase. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="130" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="130" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="108" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="108" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a5f5b46b1671012993d30d61657d99714" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -172,13 +172,13 @@
         <qualifiedname>rko_lio::core::LIO::Config::max_expected_jerk</qualifiedname>
         <initializer>= 3</initializer>
         <briefdescription>
-<para>Maximum expected jerk (m/s³). </para>
+<para>Maximum expected jerk for platform (m/s³) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="133" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="133" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="109" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="109" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1ae87229b29b2760d18c47d3b3c67c40ba" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -188,13 +188,13 @@
         <qualifiedname>rko_lio::core::LIO::Config::double_downsample</qualifiedname>
         <initializer>= true</initializer>
         <briefdescription>
-<para>Enable double downsampling. </para>
+<para>Use double downsampling. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="136" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="136" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="110" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="110" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a6121d24b6a6e7f262bb6185a407f434d" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -204,13 +204,13 @@
         <qualifiedname>rko_lio::core::LIO::Config::min_beta</qualifiedname>
         <initializer>= 200</initializer>
         <briefdescription>
-<para>Minimum weight for orientation regularization. </para>
+<para>Minimum weight for orientation regularisation. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="139" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="139" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="111" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="111" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -218,7 +218,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="101" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="101" bodyend="140"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="98" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="98" bodyend="112"/>
     <listofallmembers>
       <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1ae2991e0e372427f93255231b3249b246" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>convergence_criterion</name></member>
       <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a047439a48b3c8afebe95407926efbada" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>deskew</name></member>

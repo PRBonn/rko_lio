@@ -33,10 +33,10 @@ Program Listing for File lio.hpp
     * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     * SOFTWARE.
     */
-   
    #pragma once
    #include "sparse_voxel_grid.hpp"
    #include "util.hpp"
+   #include <filesystem>
    #include <optional>
    
    namespace rko_lio::core {
@@ -46,17 +46,12 @@ Program Listing for File lio.hpp
    };
    
    struct IntervalStats {
-     int imu_count = 0;
-   
-     Eigen::Vector3d angular_velocity_sum = Eigen::Vector3d::Zero();
-   
-     Eigen::Vector3d body_acceleration_sum = Eigen::Vector3d::Zero();
-   
-     Eigen::Vector3d imu_acceleration_sum = Eigen::Vector3d::Zero();
-   
-     double imu_accel_mag_mean = 0;
-   
-     double welford_sum_of_squares = 0;
+     int imu_count = 0;                                               
+     Eigen::Vector3d angular_velocity_sum = Eigen::Vector3d::Zero();  
+     Eigen::Vector3d body_acceleration_sum = Eigen::Vector3d::Zero(); 
+     Eigen::Vector3d imu_acceleration_sum = Eigen::Vector3d::Zero();  
+     double imu_accel_mag_mean = 0;                                   
+     double welford_sum_of_squares = 0;                               
    
      void update(const Eigen::Vector3d& unbiased_ang_vel,
                  const Eigen::Vector3d& uncompensated_unbiased_accel,
@@ -87,44 +82,29 @@ Program Listing for File lio.hpp
    class LIO {
    public:
      struct Config {
-       bool deskew = true;
-   
-       size_t max_iterations = 100;
-   
-       double voxel_size = 1.0;
-   
-       int max_points_per_voxel = 20;
-   
-       double max_range = 100.0;
-   
-       double min_range = 1.0;
-   
-       double convergence_criterion = 1e-5;
-   
-       double max_correspondance_distance = 0.5;
-   
-       int max_num_threads = 0;
-   
-       bool initialization_phase = false;
-   
-       double max_expected_jerk = 3;
-   
-       bool double_downsample = true;
-   
-       double min_beta = 200;
+       bool deskew = true;                       
+       size_t max_iterations = 100;              
+       double voxel_size = 1.0;                  
+       int max_points_per_voxel = 20;            
+       double max_range = 100.0;                 
+       double min_range = 1.0;                   
+       double convergence_criterion = 1e-5;      
+       double max_correspondance_distance = 0.5; 
+       int max_num_threads = 0;                  
+       bool initialization_phase = false;        
+       double max_expected_jerk = 3;             
+       bool double_downsample = true;            
+       double min_beta = 200;                    
      };
    
      Config config;
-   
      SparseVoxelGrid map;
+     State lidar_state; 
+     ImuBias imu_bias;  
    
-     State lidar_state;
-   
-     ImuBias imu_bias;
-   
-     Eigen::Vector3d mean_body_acceleration = Eigen::Vector3d::Zero();
-   
-     Eigen::Matrix3d body_acceleration_covariance = Eigen::Matrix3d::Identity();
+     Eigen::Vector3d mean_body_acceleration = Eigen::Vector3d::Zero(); 
+     Eigen::Matrix3d body_acceleration_covariance =
+         Eigen::Matrix3d::Identity(); 
    
      IntervalStats interval_stats;
    
@@ -132,16 +112,15 @@ Program Listing for File lio.hpp
          : config(config_), map(config_.voxel_size, config_.max_range, config_.max_points_per_voxel) {}
    
      void add_imu_measurement(const ImuControl& base_imu);
-   
      void add_imu_measurement(const Sophus::SE3d& extrinsic_imu2base, const ImuControl& raw_imu);
    
+     // returns deskewed (only using initial motion guess) and clipped scan
      Vector3dVector register_scan(const Vector3dVector& scan, const TimestampVector& timestamps);
-   
      Vector3dVector register_scan(const Sophus::SE3d& extrinsic_lidar2base,
                                   const Vector3dVector& scan,
                                   const TimestampVector& timestamps);
    
-     std::vector<std::pair<Secondsd, Sophus::SE3d>> poses_with_timestamps;
+     void dump_results_to_disk(const std::filesystem::path& results_dir, const std::string& run_name) const;
    
    private:
      void initialize(const Secondsd lidar_time);
@@ -149,13 +128,12 @@ Program Listing for File lio.hpp
      std::optional<AccelInfo> get_accel_info(const Sophus::SO3d& rotation_estimate, const Secondsd& time);
    
      bool _initialized = false;
-   
+     // rotation used for gravity compensating incoming accel
      Sophus::SO3d _imu_local_rotation;
-   
-     Secondsd _imu_local_rotation_time = Secondsd{0.0};
-   
+     Secondsd _imu_local_rotation_time = Secondsd{0.0}; // updated with lidar time on correction
      Secondsd _last_real_imu_time = Secondsd{0.0};
-   
      Eigen::Vector3d _last_real_base_imu_ang_vel = Eigen::Vector3d::Zero();
+   
+     std::vector<std::pair<Secondsd, Sophus::SE3d>> _poses_with_timestamps;
    };
    } // namespace rko_lio::core

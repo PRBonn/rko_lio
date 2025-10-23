@@ -30,12 +30,6 @@ Includes
 --------
 
 
-- ``fstream``
-
-- ``iostream``
-
-- ``nlohmann/json.hpp``
-
 - ``node.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_node.hpp`)
 
 - ``rclcpp/serialization.hpp``
@@ -58,8 +52,6 @@ Namespaces
 
 
 - :ref:`namespace_rko_lio`
-
-- :ref:`namespace_rko_lio__core`
 
 - :ref:`namespace_rko_lio__ros`
 

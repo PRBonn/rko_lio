@@ -5,7 +5,7 @@ Namespace rko_lio::core
 =======================
 
 
-Core namespace containing :ref:`exhale_class_classrko__lio_1_1core_1_1LIO` data structures and state definitions. 
+Core namespace containing :ref:`exhale_class_classrko__lio_1_1core_1_1LIO` data structures. 
 
 
 

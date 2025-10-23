@@ -110,6 +110,11 @@
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="rko_lio.lio.LIO.dump_results_to_disk">
+<span class="sig-name descname"><span class="pre">dump_results_to_disk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio.LIO.dump_results_to_disk" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="rko_lio.lio.LIO.map_point_cloud">
 <span class="sig-name descname"><span class="pre">map_point_cloud</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#rko_lio.lio.LIO.map_point_cloud" title="Link to this definition">¶</a></dt>
 <dd><p>return the local map point cloud <em>in world/odometry frame</em></p>
@@ -120,11 +125,6 @@
 <span class="sig-name descname"><span class="pre">pose</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#rko_lio.lio.LIO.pose" title="Link to this definition">¶</a></dt>
 <dd><p>return the 4x4 transform from the base frame to the world/odometry frame</p>
 </dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rko_lio.lio.LIO.poses_with_timestamps">
-<span class="sig-name descname"><span class="pre">poses_with_timestamps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio.LIO.poses_with_timestamps" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rko_lio.lio.LIO.register_scan">
@@ -162,17 +162,6 @@
 </ul>
 </dd>
 </dl>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rko_lio.lio.LIOConfig.config_keys">
-<span class="sig-name descname"><span class="pre">config_keys</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['deskew',</span> <span class="pre">'max_iterations',</span> <span class="pre">'voxel_size',</span> <span class="pre">'max_points_per_voxel',</span> <span class="pre">'max_range',</span> <span class="pre">'min_range',</span> <span class="pre">'convergence_criterion',</span> <span class="pre">'max_correspondance_distance',</span> <span class="pre">'max_num_threads',</span> <span class="pre">'initialization_phase',</span> <span class="pre">'max_expected_jerk',</span> <span class="pre">'double_downsample',</span> <span class="pre">'min_beta']</span></em><a class="headerlink" href="#rko_lio.lio.LIOConfig.config_keys" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rko_lio.lio.LIOConfig.to_dict">
-<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio.LIOConfig.to_dict" title="Link to this definition">¶</a></dt>
-<dd><p>Return a dict version</p>
-</dd></dl>
-
 </dd></dl>
 
 </section>

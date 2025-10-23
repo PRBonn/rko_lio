@@ -152,6 +152,8 @@
 <span class="w">  </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">node_interfaces</span><span class="o">::</span><span class="n">NodeBaseInterface</span><span class="o">::</span><span class="n">SharedPtr</span><span class="w"> </span><span class="n">get_node_base_interface</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">get_node_base_interface</span><span class="p">();</span>
 <span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="o">~</span><span class="n">OnlineNode</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">lio</span><span class="o">-&gt;</span><span class="n">dump_results_to_disk</span><span class="p">(</span><span class="n">results_dir</span><span class="p">,</span><span class="w"> </span><span class="n">run_name</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
 <span class="p">};</span>
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace rko_lio::ros</span>
 

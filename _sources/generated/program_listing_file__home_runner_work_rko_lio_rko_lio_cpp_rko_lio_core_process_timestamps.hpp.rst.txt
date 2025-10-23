@@ -40,7 +40,8 @@ Program Listing for File process_timestamps.hpp
    #include <vector>
    
    namespace rko_lio::core {
+   // Process raw timestamps to determine absolute timestamps in seconds. returns start stamp, end stamp and (chorno)
+   // timestamp vector
    std::tuple<Secondsd, Secondsd, TimestampVector> process_timestamps(const std::vector<double>& raw_timestamps,
                                                                       const Secondsd& header_stamp);
-   
    } // namespace rko_lio::core
