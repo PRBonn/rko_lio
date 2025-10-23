@@ -21,7 +21,9 @@
 # SOFTWARE.
 
 add_library(rko_lio.core STATIC)
+
 add_library(rko_lio::core ALIAS rko_lio.core)
+
 compat_target_sources(
   rko_lio.core
   PRIVATE lio.cpp sparse_voxel_grid.cpp voxel_down_sample.cpp
@@ -36,11 +38,14 @@ compat_target_sources(
         ../../rko_lio/core/util.hpp
         ../../rko_lio/core/voxel_down_sample.hpp
   BASE_DIRS ../..)
+
 target_link_libraries(
   rko_lio.core
-  PRIVATE nlohmann_json::nlohmann_json TBB::tbb
+  PRIVATE TBB::tbb
   PUBLIC bonxai_core Sophus::Sophus Eigen3::Eigen)
+
 target_compile_features(rko_lio.core PUBLIC cxx_std_20)
+
 set_target_properties(rko_lio.core PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
 # install is a problem because at least Bonxai is always fetch-contented, and

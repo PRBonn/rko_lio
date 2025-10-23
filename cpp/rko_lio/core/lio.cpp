@@ -27,7 +27,6 @@
 #include "util.hpp"
 #include "voxel_down_sample.hpp"
 // other
-#include <nlohmann/json.hpp>
 #include <sophus/se3.hpp>
 // tbb
 #include <tbb/blocked_range.h>
@@ -37,7 +36,6 @@
 #include <tbb/task_arena.h>
 // stl
 #include <algorithm>
-#include <fstream>
 #include <functional>
 #include <iostream>
 #include <stdexcept>

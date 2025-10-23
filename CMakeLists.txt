@@ -33,7 +33,6 @@ include(cmake/compat_target_sources.cmake)
 find_package(Eigen3 3.4 REQUIRED CONFIG)
 find_package(Sophus REQUIRED CONFIG)
 find_package(TBB REQUIRED CONFIG)
-find_package(nlohmann_json REQUIRED CONFIG)
 find_package(Bonxai REQUIRED CONFIG)
 
 add_subdirectory(cpp/rko_lio/core)
@@ -44,6 +43,8 @@ if(NOT RKO_LIO_BUILD_ROS)
   message(STATUS "RKO_LIO_BUILD_ROS is OFF. Skipping ROS Build.")
 else()
   message(STATUS "Building RKO_LIO ROS wrapper.")
+
+  find_package(nlohmann_json REQUIRED CONFIG)
 
   find_package(ament_cmake REQUIRED)
   find_package(rclcpp REQUIRED CONFIG)
