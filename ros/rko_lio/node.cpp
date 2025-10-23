@@ -27,6 +27,9 @@
 #include "rko_lio/core/profiler.hpp"
 #include "rko_lio/ros_utils/ros_utils.hpp"
 // other
+#include <fstream>
+#include <iostream>
+#include <nlohmann/json.hpp>
 #include <rclcpp/serialization.hpp>
 #include <stdexcept>
 
@@ -42,6 +45,24 @@ rko_lio::core::ImuControl imu_msg_to_imu_data(const sensor_msgs::msg::Imu& imu_m
 }
 
 } // namespace
+
+namespace rko_lio::core {
+// necessary for serializing the config, including the namespacing
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(LIO::Config,
+                                   deskew,
+                                   max_iterations,
+                                   voxel_size,
+                                   max_points_per_voxel,
+                                   max_range,
+                                   min_range,
+                                   convergence_criterion,
+                                   max_correspondance_distance,
+                                   max_num_threads,
+                                   initialization_phase,
+                                   max_expected_jerk,
+                                   double_downsample,
+                                   min_beta)
+} // namespace rko_lio::core
 
 namespace rko_lio::ros {
 
@@ -356,4 +377,40 @@ Node::~Node() {
   atomic_node_running = false;
   sync_condition_variable.notify_all();
 }
+
+void Node::dump_results_to_disk(const std::filesystem::path& results_dir, const std::string& run_name) const {
+  // TODO: try and make this noexcept. otherwise dont call in the destructor of online node
+  try {
+    std::filesystem::create_directories(results_dir); // no error if exists
+    int index = 0;
+    std::filesystem::path output_dir = results_dir / (run_name + "_" + std::to_string(index));
+    while (std::filesystem::exists(output_dir)) {
+      ++index;
+      output_dir = results_dir / (run_name + "_" + std::to_string(index));
+    }
+    std::filesystem::create_directory(output_dir);
+    const std::filesystem::path output_file = output_dir / (run_name + "_tum_" + std::to_string(index) + ".txt");
+    // dump poses
+    if (std::ofstream file(output_file); file.is_open()) {
+      for (const auto& [timestamp, pose] : lio->poses_with_timestamps) {
+        const Eigen::Vector3d& translation = pose.translation();
+        const Eigen::Quaterniond& quaternion = pose.so3().unit_quaternion();
+        file << std::fixed << std::setprecision(6) << timestamp.count() << " " << translation.x() << " "
+             << translation.y() << " " << translation.z() << " " << quaternion.x() << " " << quaternion.y() << " "
+             << quaternion.z() << " " << quaternion.w() << "\n";
+      }
+      std::cout << "Poses written to " << std::filesystem::absolute(output_file) << "\n";
+    }
+    // dump config
+    const nlohmann::json json_config = {{"config", lio->config}};
+    const std::filesystem::path config_file = output_dir / "config.json";
+    if (std::ofstream file(config_file); file.is_open()) {
+      file << json_config.dump(4);
+      std::cout << "Configuration written to " << config_file << "\n";
+    }
+  } catch (const std::filesystem::filesystem_error& ex) {
+    std::cerr << "[WARNING] Cannot write files to disk, encountered filesystem error: " << ex.what() << "\n";
+  }
+}
+
 } // namespace rko_lio::ros

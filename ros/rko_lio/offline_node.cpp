@@ -137,7 +137,7 @@ int main(int argc, char** argv) {
         rclcpp::get_logger("OfflineNode"),
         "Encountered runtime_error. Still attempting to dump trajectory to disk. The error was: " << error.what());
   }
-  offline_node.lio->dump_results_to_disk(offline_node.results_dir, offline_node.run_name);
+  offline_node.dump_results_to_disk(offline_node.results_dir, offline_node.run_name);
   rclcpp::shutdown();
   return 0;
 }

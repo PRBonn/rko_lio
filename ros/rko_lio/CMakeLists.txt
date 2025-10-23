@@ -22,8 +22,11 @@
 
 add_subdirectory(ros_utils)
 
+# library: rko_lio::ros
 add_library(rko_lio.ros STATIC)
+
 add_library(rko_lio::ros ALIAS rko_lio.ros)
+
 compat_target_sources(
   rko_lio.ros
   PRIVATE node.cpp
@@ -32,8 +35,10 @@ compat_target_sources(
   HEADERS
   FILES ../rko_lio/node.hpp
   BASE_DIRS ..)
+
 target_link_libraries(
   rko_lio.ros
+  PRIVATE nlohmann_json::nlohmann_json
   PUBLIC rko_lio::ros_utils
          # ros deps
          ${geometry_msgs_TARGETS}
@@ -49,13 +54,19 @@ target_link_libraries(
          rko_lio::core
          Sophus::Sophus
          Eigen3::Eigen)
+
 set_target_properties(rko_lio.ros PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
+# executable: offline_node
 add_executable(offline_node offline_node.cpp)
+
 target_link_libraries(offline_node PRIVATE rko_lio::ros)
+
 set_target_properties(offline_node PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
+# component: online_node_component
 add_library(online_node_component SHARED online_node.cpp)
+
 target_link_libraries(
   online_node_component
   PRIVATE rko_lio::ros
