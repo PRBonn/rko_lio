@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="deprecated" kind="page">
+    <compoundname>deprecated</compoundname>
+    <title>Deprecated List</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><variablelist>
+<varlistentry><term>File <ref refid="profiler_8hpp" kindref="compound">profiler.hpp</ref>  </term></varlistentry>
+<listitem><para><anchor id="deprecated_1_deprecated000001"/>This profiling utility is deprecated and scheduled for removal in a future release. A more fully featured alternative, likely tracy, will be used instead.</para>
+</listitem>
+</variablelist>
+</para>
+    </detaileddescription>
+    <location file="deprecated"/>
+  </compounddef>
+</doxygen>

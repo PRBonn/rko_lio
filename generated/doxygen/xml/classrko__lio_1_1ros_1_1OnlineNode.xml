@@ -148,20 +148,6 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/online_node.cpp" line="53" column="57" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/online_node.cpp" bodystart="53" bodyend="55"/>
       </memberdef>
-      <memberdef kind="function" id="classrko__lio_1_1ros_1_1OnlineNode_1ae348d25b0990b0ef210b8e8148b90911" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>rko_lio::ros::OnlineNode::~OnlineNode</definition>
-        <argsstring>()</argsstring>
-        <name>~OnlineNode</name>
-        <qualifiedname>rko_lio::ros::OnlineNode::~OnlineNode</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/online_node.cpp" line="57" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/online_node.cpp" bodystart="57" bodyend="57"/>
-      </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
@@ -198,13 +184,15 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/online_node.cpp" line="29" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/online_node.cpp" bodystart="29" bodyend="58"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/online_node.cpp" line="29" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/online_node.cpp" bodystart="29" bodyend="56"/>
     <listofallmembers>
       <member refid="classrko__lio_1_1ros_1_1Node_1a6cc5f592565fb6e05e5d7d354ee8a592" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>atomic_can_process</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1aa80856c9108ba7be5fa3cfc873516d7c" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>atomic_node_running</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1ac0daf74fae41e922c6d8264de3fc68ad" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>base_frame</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1a39acaf291c8df92ddb7d3a8077a341a3" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>buffer_mutex</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1a3badf83d95c7e1212a7e0ca5a60fb4bc" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>check_and_set_extrinsics</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a167a6a5a34cdd635ce3a32ee2cf581f3" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>dump_results</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a99b43c9d41110b966ff05645ea7a1941" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>dump_results_to_disk</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1a7083d5096e74dde6386af89e1a4ac3b1" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>extrinsic_imu2base</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1a8c344ff0bc07808258e36769fe5fca4c" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>extrinsic_lidar2base</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1a77c1be00d5ad517466cb5a26e2674938" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>extrinsics_set</name></member>
@@ -261,7 +249,6 @@
       <member refid="classrko__lio_1_1ros_1_1Node_1af6b3aea7512c33b69d5e7b0a6fad3fa4" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>tf_listener</name></member>
       <member refid="classrko__lio_1_1ros_1_1OnlineNode_1ae05287f800b92923088537f0a317244b" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>timer</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1a6bce1b391d69d3db9cc9d7157020ff4d" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>~Node</name></member>
-      <member refid="classrko__lio_1_1ros_1_1OnlineNode_1ae348d25b0990b0ef210b8e8148b90911" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>~OnlineNode</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -10,9 +10,31 @@
     <class kind="struct">rko_lio::core::LIO::Config</class>
     <namespace>rko_lio::core</namespace>
   </compound>
+  <compound kind="file">
+    <name>profiler.hpp</name>
+    <path>/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/</path>
+    <filename>profiler_8hpp.html</filename>
+    <class kind="class">rko_lio::core::ScopedProfiler</class>
+    <class kind="struct">rko_lio::core::Timer</class>
+    <namespace>rko_lio::core</namespace>
+    <member kind="define">
+      <type>#define</type>
+      <name>SCOPED_PROFILER</name>
+      <anchorfile>profiler_8hpp.html</anchorfile>
+      <anchor>af9e43cc52cb0d854f3588064f9f97cd2</anchor>
+      <arglist>(name)</arglist>
+    </member>
+  </compound>
   <compound kind="struct">
     <name>rko_lio::core::AccelInfo</name>
     <filename>structrko__lio_1_1core_1_1AccelInfo.html</filename>
+    <member kind="variable">
+      <type>double</type>
+      <name>accel_mag_variance</name>
+      <anchorfile>structrko__lio_1_1core_1_1AccelInfo.html</anchorfile>
+      <anchor>a5c998a8898cf8363ad918163fc3d4860</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>rko_lio::ros_utils::BufferableBag</name>
@@ -222,12 +244,19 @@
       <anchor>a3963bf670eced93306c73ead313d867f</anchor>
       <arglist>(const Sophus::SE3d &amp;extrinsic_lidar2base, const Vector3dVector &amp;scan, const TimestampVector &amp;timestamps)</arglist>
     </member>
-    <member kind="function">
-      <type>void</type>
-      <name>dump_results_to_disk</name>
+    <member kind="variable">
+      <type>Config</type>
+      <name>config</name>
       <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
-      <anchor>a2dcb387551e7415a98ca90d6dd7bf53f</anchor>
-      <arglist>(const std::filesystem::path &amp;results_dir, const std::string &amp;run_name) const</arglist>
+      <anchor>a1f4be69c50c49c4290265d8ad6058a66</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>SparseVoxelGrid</type>
+      <name>map</name>
+      <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
+      <anchor>a004fb22ebae1428e23606e495eeea01a</anchor>
+      <arglist></arglist>
     </member>
     <member kind="variable">
       <type>State</type>
@@ -257,6 +286,20 @@
       <anchor>a87238efc2008594d5fa9db8344084ec2</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable">
+      <type>IntervalStats</type>
+      <name>interval_stats</name>
+      <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
+      <anchor>a9b89efdfdcc0ab01ef3fd6caaadb69d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::vector&lt; std::pair&lt; Secondsd, Sophus::SE3d &gt; &gt;</type>
+      <name>poses_with_timestamps</name>
+      <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
+      <anchor>ae90f742f8a328a0ce2e119b2b8f881e1</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>rko_lio::ros::Node</name>
@@ -275,6 +318,27 @@
   <compound kind="class">
     <name>rko_lio::core::ScopedProfiler</name>
     <filename>classrko__lio_1_1core_1_1ScopedProfiler.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>finish</name>
+      <anchorfile>classrko__lio_1_1core_1_1ScopedProfiler.html</anchorfile>
+      <anchor>a8add0851636fba92c78f5fa2ca57b985</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~ScopedProfiler</name>
+      <anchorfile>classrko__lio_1_1core_1_1ScopedProfiler.html</anchorfile>
+      <anchor>a0926f45e2a38448e5044bddc59c05882</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>print_results</name>
+      <anchorfile>classrko__lio_1_1core_1_1ScopedProfiler.html</anchorfile>
+      <anchor>a37c572a7a20934eaa21902fe3809d44e</anchor>
+      <arglist>()</arglist>
+    </member>
   </compound>
   <compound kind="struct">
     <name>rko_lio::core::SparseVoxelGrid</name>
@@ -305,6 +369,13 @@
     <class kind="struct">rko_lio::core::SparseVoxelGrid</class>
     <class kind="struct">rko_lio::core::State</class>
     <class kind="struct">rko_lio::core::Timer</class>
+    <member kind="function">
+      <type>std::tuple&lt; Secondsd, Secondsd, TimestampVector &gt;</type>
+      <name>process_timestamps</name>
+      <anchorfile>namespacerko__lio_1_1core.html</anchorfile>
+      <anchor>a6f84ab20273bc1bc121cd6e5ba83d3f6</anchor>
+      <arglist>(const std::vector&lt; double &gt; &amp;raw_timestamps, const Secondsd &amp;header_stamp)</arglist>
+    </member>
     <member kind="function">
       <type>std::vector&lt; Eigen::Vector3d &gt;</type>
       <name>voxel_down_sample</name>

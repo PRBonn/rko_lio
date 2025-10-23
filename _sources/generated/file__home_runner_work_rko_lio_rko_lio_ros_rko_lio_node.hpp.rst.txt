@@ -34,6 +34,8 @@ Includes
 
 - ``condition_variable``
 
+- ``filesystem``
+
 - ``geometry_msgs/msg/accel_stamped.hpp``
 
 - ``geometry_msgs/msg/accel_with_covariance_stamped.hpp``

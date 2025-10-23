@@ -120,10 +120,10 @@
 <span class="cm"> * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
 <span class="cm"> * SOFTWARE.</span>
 <span class="cm"> */</span>
+
 <span class="cp">#pragma once</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;sparse_voxel_grid.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;util.hpp&quot;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;filesystem&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;optional&gt;</span>
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">rko_lio</span><span class="o">::</span><span class="nn">core</span><span class="w"> </span><span class="p">{</span>
@@ -134,10 +134,15 @@
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">IntervalStats</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">imu_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
 <span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="w"> </span><span class="n">angular_velocity_sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">::</span><span class="n">Zero</span><span class="p">();</span>
+
 <span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="w"> </span><span class="n">body_acceleration_sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">::</span><span class="n">Zero</span><span class="p">();</span>
+
 <span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="w"> </span><span class="n">imu_acceleration_sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">::</span><span class="n">Zero</span><span class="p">();</span>
+
 <span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">imu_accel_mag_mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
 <span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">welford_sum_of_squares</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">unbiased_ang_vel</span><span class="p">,</span>
@@ -170,28 +175,43 @@
 <span class="k">public</span><span class="o">:</span>
 <span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">Config</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">deskew</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+
 <span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">max_iterations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">voxel_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">max_points_per_voxel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">max_range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100.0</span><span class="p">;</span>
+
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">min_range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">convergence_criterion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1e-5</span><span class="p">;</span>
+
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">max_correspondance_distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="p">;</span>
+
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">max_num_threads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
 <span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">initialization_phase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">max_expected_jerk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+
 <span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">double_downsample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">min_beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">200</span><span class="p">;</span>
 <span class="w">  </span><span class="p">};</span>
 
 <span class="w">  </span><span class="n">Config</span><span class="w"> </span><span class="n">config</span><span class="p">;</span>
+
 <span class="w">  </span><span class="n">SparseVoxelGrid</span><span class="w"> </span><span class="n">map</span><span class="p">;</span>
+
 <span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="n">lidar_state</span><span class="p">;</span>
+
 <span class="w">  </span><span class="n">ImuBias</span><span class="w"> </span><span class="n">imu_bias</span><span class="p">;</span>
 
 <span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="w"> </span><span class="n">mean_body_acceleration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">::</span><span class="n">Zero</span><span class="p">();</span>
-<span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Matrix3d</span><span class="w"> </span><span class="n">body_acceleration_covariance</span><span class="w"> </span><span class="o">=</span>
-<span class="w">      </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Matrix3d</span><span class="o">::</span><span class="n">Identity</span><span class="p">();</span>
+
+<span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Matrix3d</span><span class="w"> </span><span class="n">body_acceleration_covariance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Matrix3d</span><span class="o">::</span><span class="n">Identity</span><span class="p">();</span>
 
 <span class="w">  </span><span class="n">IntervalStats</span><span class="w"> </span><span class="n">interval_stats</span><span class="p">;</span>
 
@@ -199,15 +219,16 @@
 <span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="n">config</span><span class="p">(</span><span class="n">config_</span><span class="p">),</span><span class="w"> </span><span class="n">map</span><span class="p">(</span><span class="n">config_</span><span class="p">.</span><span class="n">voxel_size</span><span class="p">,</span><span class="w"> </span><span class="n">config_</span><span class="p">.</span><span class="n">max_range</span><span class="p">,</span><span class="w"> </span><span class="n">config_</span><span class="p">.</span><span class="n">max_points_per_voxel</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
 
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">add_imu_measurement</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">ImuControl</span><span class="o">&amp;</span><span class="w"> </span><span class="n">base_imu</span><span class="p">);</span>
+
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">add_imu_measurement</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Sophus</span><span class="o">::</span><span class="n">SE3d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">extrinsic_imu2base</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">ImuControl</span><span class="o">&amp;</span><span class="w"> </span><span class="n">raw_imu</span><span class="p">);</span>
 
-<span class="w">  </span><span class="c1">// returns deskewed (only using initial motion guess) and clipped scan</span>
 <span class="w">  </span><span class="n">Vector3dVector</span><span class="w"> </span><span class="nf">register_scan</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector3dVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">scan</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">TimestampVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">timestamps</span><span class="p">);</span>
+
 <span class="w">  </span><span class="n">Vector3dVector</span><span class="w"> </span><span class="nf">register_scan</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Sophus</span><span class="o">::</span><span class="n">SE3d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">extrinsic_lidar2base</span><span class="p">,</span>
 <span class="w">                               </span><span class="k">const</span><span class="w"> </span><span class="n">Vector3dVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">scan</span><span class="p">,</span>
 <span class="w">                               </span><span class="k">const</span><span class="w"> </span><span class="n">TimestampVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">timestamps</span><span class="p">);</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">dump_results_to_disk</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">path</span><span class="o">&amp;</span><span class="w"> </span><span class="n">results_dir</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">run_name</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">Secondsd</span><span class="p">,</span><span class="w"> </span><span class="n">Sophus</span><span class="o">::</span><span class="n">SE3d</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">poses_with_timestamps</span><span class="p">;</span>
 
 <span class="k">private</span><span class="o">:</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">initialize</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Secondsd</span><span class="w"> </span><span class="n">lidar_time</span><span class="p">);</span>
@@ -215,13 +236,14 @@
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">AccelInfo</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_accel_info</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Sophus</span><span class="o">::</span><span class="n">SO3d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">rotation_estimate</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Secondsd</span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span><span class="p">);</span>
 
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">_initialized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">  </span><span class="c1">// rotation used for gravity compensating incoming accel</span>
-<span class="w">  </span><span class="n">Sophus</span><span class="o">::</span><span class="n">SO3d</span><span class="w"> </span><span class="n">_imu_local_rotation</span><span class="p">;</span>
-<span class="w">  </span><span class="n">Secondsd</span><span class="w"> </span><span class="n">_imu_local_rotation_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Secondsd</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span><span class="w"> </span><span class="c1">// updated with lidar time on correction</span>
-<span class="w">  </span><span class="n">Secondsd</span><span class="w"> </span><span class="n">_last_real_imu_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Secondsd</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
-<span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="w"> </span><span class="n">_last_real_base_imu_ang_vel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">::</span><span class="n">Zero</span><span class="p">();</span>
 
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">Secondsd</span><span class="p">,</span><span class="w"> </span><span class="n">Sophus</span><span class="o">::</span><span class="n">SE3d</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">_poses_with_timestamps</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Sophus</span><span class="o">::</span><span class="n">SO3d</span><span class="w"> </span><span class="n">_imu_local_rotation</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">Secondsd</span><span class="w"> </span><span class="n">_imu_local_rotation_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Secondsd</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
+
+<span class="w">  </span><span class="n">Secondsd</span><span class="w"> </span><span class="n">_last_real_imu_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Secondsd</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
+
+<span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="w"> </span><span class="n">_last_real_base_imu_ang_vel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">::</span><span class="n">Zero</span><span class="p">();</span>
 <span class="p">};</span>
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace rko_lio::core</span>
 </pre></div>

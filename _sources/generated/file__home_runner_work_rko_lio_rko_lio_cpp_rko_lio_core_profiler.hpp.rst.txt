@@ -9,6 +9,11 @@ File profiler.hpp
 .. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
 
 
+
+Utility classes for scoped timing and profiling measurements. 
+
+
+
 .. contents:: Contents
    :local:
    :backlinks: none
@@ -22,6 +27,15 @@ Definition (``/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp``)
 
    program_listing_file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_profiler.hpp.rst
 
+
+
+Detailed Description
+--------------------
+
+DeprecatedThis profiling utility is deprecated and scheduled for removal in a future release. A more fully featured alternative, likely tracy, will be used instead.
+
+
+Contains the ScopedProfiler RAII class for timing named code blocks, a simple Timer class for quick timing prints, and the SCOPED_PROFILER macro for convenience. 
 
 
 

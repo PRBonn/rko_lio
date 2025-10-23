@@ -104,19 +104,28 @@
 <dl class="cpp struct">
 <dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core13IntervalStatsE">
 <span id="_CPPv3N7rko_lio4core13IntervalStatsE"></span><span id="_CPPv2N7rko_lio4core13IntervalStatsE"></span><span id="rko_lio::core::IntervalStats"></span><span class="target" id="structrko__lio_1_1core_1_1IntervalStats"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IntervalStats</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core13IntervalStatsE" title="Link to this definition">¶</a><br /></dt>
-<dd><p>Accumulated IMU data stats over the time interval from previous lidar scan to current. </p>
+<dd><p>Accumulated IMU statistics over the interval between consecutive LiDAR scans. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core13IntervalStats6updateERKN5Eigen8Vector3dERKN5Eigen8Vector3dERKN5Eigen8Vector3dE">
 <span id="_CPPv3N7rko_lio4core13IntervalStats6updateERKN5Eigen8Vector3dERKN5Eigen8Vector3dERKN5Eigen8Vector3dE"></span><span id="_CPPv2N7rko_lio4core13IntervalStats6updateERKN5Eigen8Vector3dERKN5Eigen8Vector3dERKN5Eigen8Vector3dE"></span><span id="rko_lio::core::IntervalStats::update__Eigen::Vector3dCR.Eigen::Vector3dCR.Eigen::Vector3dCR"></span><span class="target" id="structrko__lio_1_1core_1_1IntervalStats_1a50a0e46cf910ee6928aec0fc93a1772b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">update</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector3d</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">unbiased_ang_vel</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector3d</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">uncompensated_unbiased_accel</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector3d</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">compensated_accel</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio4core13IntervalStats6updateERKN5Eigen8Vector3dERKN5Eigen8Vector3dERKN5Eigen8Vector3dE" title="Link to this definition">¶</a><br /></dt>
-<dd><p>Update stats with a new IMU measurement. </p>
+<dd><p>Update accumulated statistics with a new IMU measurement. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>unbiased_ang_vel</strong> – Unbiased angular velocity. </p></li>
+<li><p><strong>uncompensated_unbiased_accel</strong> – Uncompensated, unbiased acceleration. </p></li>
+<li><p><strong>compensated_accel</strong> – Gravity-compensated acceleration. </p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core13IntervalStats5resetEv">
 <span id="_CPPv3N7rko_lio4core13IntervalStats5resetEv"></span><span id="_CPPv2N7rko_lio4core13IntervalStats5resetEv"></span><span id="rko_lio::core::IntervalStats::reset"></span><span class="target" id="structrko__lio_1_1core_1_1IntervalStats_1a93353da910829b6fc1525b55d99fd280"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio4core13IntervalStats5resetEv" title="Link to this definition">¶</a><br /></dt>
-<dd><p>Reset all stats to zero. </p>
+<dd><p>Reset all accumulated statistics to zero. </p>
 </dd></dl>
 
 </div>
@@ -125,37 +134,37 @@
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core13IntervalStats9imu_countE">
 <span id="_CPPv3N7rko_lio4core13IntervalStats9imu_countE"></span><span id="_CPPv2N7rko_lio4core13IntervalStats9imu_countE"></span><span id="rko_lio::core::IntervalStats::imu_count__i"></span><span class="target" id="structrko__lio_1_1core_1_1IntervalStats_1ad03a2f9676e4eb163dc180dd707fd26c"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">imu_count</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core13IntervalStats9imu_countE" title="Link to this definition">¶</a><br /></dt>
-<dd><p>Number of IMU samples accumulated. </p>
+<dd><p>Number of IMU samples accumulated during this interval. </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core13IntervalStats20angular_velocity_sumE">
 <span id="_CPPv3N7rko_lio4core13IntervalStats20angular_velocity_sumE"></span><span id="_CPPv2N7rko_lio4core13IntervalStats20angular_velocity_sumE"></span><span id="rko_lio::core::IntervalStats::angular_velocity_sum__Eigen::Vector3d"></span><span class="target" id="structrko__lio_1_1core_1_1IntervalStats_1a682cba2042c0f98cd5b17004dd52d8ea"></span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector3d</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">angular_velocity_sum</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector3d</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Zero</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core13IntervalStats20angular_velocity_sumE" title="Link to this definition">¶</a><br /></dt>
-<dd><p>Sum of angular velocities. </p>
+<dd><p>Sum of unbiased angular velocity samples. </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core13IntervalStats21body_acceleration_sumE">
 <span id="_CPPv3N7rko_lio4core13IntervalStats21body_acceleration_sumE"></span><span id="_CPPv2N7rko_lio4core13IntervalStats21body_acceleration_sumE"></span><span id="rko_lio::core::IntervalStats::body_acceleration_sum__Eigen::Vector3d"></span><span class="target" id="structrko__lio_1_1core_1_1IntervalStats_1a23ee5f222348a6a395d4ace02cdf33d9"></span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector3d</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">body_acceleration_sum</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector3d</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Zero</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core13IntervalStats21body_acceleration_sumE" title="Link to this definition">¶</a><br /></dt>
-<dd><p>Sum of gravity compensated accelerations. </p>
+<dd><p>Sum of gravity-compensated body-frame accelerations. </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core13IntervalStats20imu_acceleration_sumE">
 <span id="_CPPv3N7rko_lio4core13IntervalStats20imu_acceleration_sumE"></span><span id="_CPPv2N7rko_lio4core13IntervalStats20imu_acceleration_sumE"></span><span id="rko_lio::core::IntervalStats::imu_acceleration_sum__Eigen::Vector3d"></span><span class="target" id="structrko__lio_1_1core_1_1IntervalStats_1aec10e58e32b447b90cd6b8bc8c5a975f"></span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector3d</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">imu_acceleration_sum</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector3d</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Zero</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core13IntervalStats20imu_acceleration_sumE" title="Link to this definition">¶</a><br /></dt>
-<dd><p>Sum of raw IMU accelerations. </p>
+<dd><p>Sum of unbiased raw IMU accelerations. </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core13IntervalStats18imu_accel_mag_meanE">
 <span id="_CPPv3N7rko_lio4core13IntervalStats18imu_accel_mag_meanE"></span><span id="_CPPv2N7rko_lio4core13IntervalStats18imu_accel_mag_meanE"></span><span id="rko_lio::core::IntervalStats::imu_accel_mag_mean__double"></span><span class="target" id="structrko__lio_1_1core_1_1IntervalStats_1ab34ab6019a0695a87893f2c100071f32"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">imu_accel_mag_mean</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core13IntervalStats18imu_accel_mag_meanE" title="Link to this definition">¶</a><br /></dt>
-<dd><p>Mean acceleration magnitude over interval. </p>
+<dd><p>Mean magnitude of raw IMU acceleration over the interval. </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core13IntervalStats22welford_sum_of_squaresE">
 <span id="_CPPv3N7rko_lio4core13IntervalStats22welford_sum_of_squaresE"></span><span id="_CPPv2N7rko_lio4core13IntervalStats22welford_sum_of_squaresE"></span><span id="rko_lio::core::IntervalStats::welford_sum_of_squares__double"></span><span class="target" id="structrko__lio_1_1core_1_1IntervalStats_1a47b5be39a7d1a13c64fdd8e4054702b2"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">welford_sum_of_squares</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core13IntervalStats22welford_sum_of_squaresE" title="Link to this definition">¶</a><br /></dt>
-<dd><p>Variance accumulator for acceleration magnitude. </p>
+<dd><p>Variance accumulator for acceleration magnitude using Welford’s method. </p>
 </dd></dl>
 
 </div>
