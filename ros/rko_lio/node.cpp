@@ -75,6 +75,9 @@ Node::Node(const std::string& node_name, const rclcpp::NodeOptions& options) {
   lidar_frame = node->declare_parameter<std::string>("lidar_frame", lidar_frame);
   odom_frame = node->declare_parameter<std::string>("odom_frame", odom_frame);
   odom_topic = node->declare_parameter<std::string>("odom_topic", odom_topic);
+
+  // disk logging
+  dump_results = node->declare_parameter<bool>("dump_results", dump_results);
   results_dir = node->declare_parameter<std::string>("results_dir", results_dir);
   run_name = node->declare_parameter<std::string>("run_name", run_name);
 

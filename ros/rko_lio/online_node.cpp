@@ -55,8 +55,10 @@ public:
   }
 
   ~OnlineNode() {
-    // NOTE: for now, dump_results_to_disk is not noexcept
-    dump_results_to_disk(results_dir, run_name);
+    if (dump_results) {
+      // NOTE: for now, dump_results_to_disk is not noexcept
+      dump_results_to_disk(results_dir, run_name);
+    }
   }
 };
 } // namespace rko_lio::ros

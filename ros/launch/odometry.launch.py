@@ -213,14 +213,20 @@ configurable_parameters = [
         "description": "YAML config file to load parameters from",
     },
     {
-        "name": "run_name",
-        "default": "rko_lio_odometry_run",
-        "description": "Run name, used when saving results to results_dir",
+        "name": "dump_results",
+        "default": "false",
+        "type": "bool",
+        "description": "Dump the odometry configuration and trajectory to a <results_dir>/<run_name> folder. The folder name includes an index that is incremented automatically to prevent accidental overwrites.",
     },
     {
         "name": "results_dir",
         "default": "results",
-        "description": "When the odometry node exists, it dumps a trajectory file to this directory under a 'run_name' subfolder along with the LIO configuration parameters used for that run.",
+        "description": "When the odometry node exists, this is the folder used for dumping odometry configuration and trajectory up to that point. See `dump_results` which has to be true.",
+    },
+    {
+        "name": "run_name",
+        "default": "rko_lio_odometry_run",
+        "description": "Run name, used when saving results to <results_dir>. See `dump_results` which has to be true.",
     },
     {
         "name": "rviz",

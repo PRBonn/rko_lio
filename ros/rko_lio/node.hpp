@@ -59,6 +59,8 @@ public:
   std::string odom_frame = "odom";
   std::string odom_topic = "/rko_lio/odometry";
   std::string map_topic = "/rko_lio/local_map";
+
+  bool dump_results = false;
   std::string results_dir = "results";
   std::string run_name = "rko_lio_run";
 
