@@ -1,5 +1,5 @@
-Python
-======
+Python - RKO-LIO
+================
 
 TODO: Python specific information here
 
@@ -25,4 +25,7 @@ TODO: Python specific information here
    :maxdepth: 2
    :caption: Contents:
 
-   Python API <../python/modules>
+   Setup <setup>
+   Usage <usage>
+   Dataloaders <dataloaders/dataloaders>
+   Python API <../../python/modules>

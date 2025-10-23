@@ -1,3 +1,22 @@
+"""
+Raw Dataloader Usage
+====================
+
+This module provides the RawDataLoader class.
+
+Example usage:
+
+.. code-block:: python
+
+    from rko_lio.dataloaders.raw import RawDataLoader
+    loader = RawDataLoader("/path/to/data")
+    print(loader.entries)
+    # More on structure, YAML config, file layout, etc.
+
+The loader expects ...
+- instructions, scenarios, etc.
+"""
+
 # MIT License
 #
 # Copyright (c) 2025 Meher V.R. Malladi.
