@@ -412,7 +412,7 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
   if (lidar_state.time < EPSILON_TIME) {
     lidar_state.time = current_lidar_time;
     std::cout << "First LiDAR received, using as global frame.\n";
-    _poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
+    poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
     return {};
   }
 
@@ -488,7 +488,7 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
 
   map.Update(downsampled_frame, lidar_state.pose);
 
-  _poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
+  poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
 
   return deskewed_frame;
 }
@@ -505,56 +505,5 @@ Vector3dVector LIO::register_scan(const Sophus::SE3d& extrinsic_lidar2base,
   Vector3dVector frame = register_scan(transformed_scan, timestamps);
   transform_points(extrinsic_lidar2base.inverse(), frame);
   return frame;
-}
-
-// ============================ logs ===============================
-
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(LIO::Config,
-                                   deskew,
-                                   max_iterations,
-                                   voxel_size,
-                                   max_points_per_voxel,
-                                   max_range,
-                                   min_range,
-                                   convergence_criterion,
-                                   max_correspondance_distance,
-                                   max_num_threads,
-                                   initialization_phase,
-                                   max_expected_jerk,
-                                   double_downsample,
-                                   min_beta)
-
-void LIO::dump_results_to_disk(const std::filesystem::path& results_dir, const std::string& run_name) const {
-  try {
-    std::filesystem::create_directories(results_dir); // no error if exists
-    int index = 0;
-    std::filesystem::path output_dir = results_dir / (run_name + "_" + std::to_string(index));
-    while (std::filesystem::exists(output_dir)) {
-      ++index;
-      output_dir = results_dir / (run_name + "_" + std::to_string(index));
-    }
-    std::filesystem::create_directory(output_dir);
-    const std::filesystem::path output_file = output_dir / (run_name + "_tum_" + std::to_string(index) + ".txt");
-    // dump poses
-    if (std::ofstream file(output_file); file.is_open()) {
-      for (const auto& [timestamp, pose] : _poses_with_timestamps) {
-        const Eigen::Vector3d& translation = pose.translation();
-        const Eigen::Quaterniond& quaternion = pose.so3().unit_quaternion();
-        file << std::fixed << std::setprecision(6) << timestamp.count() << " " << translation.x() << " "
-             << translation.y() << " " << translation.z() << " " << quaternion.x() << " " << quaternion.y() << " "
-             << quaternion.z() << " " << quaternion.w() << "\n";
-      }
-      std::cout << "Poses written to " << std::filesystem::absolute(output_file) << "\n";
-    }
-    // dump config
-    const nlohmann::json json_config = {{"config", config}};
-    const std::filesystem::path config_file = output_dir / "config.json";
-    if (std::ofstream file(config_file); file.is_open()) {
-      file << json_config.dump(4);
-      std::cout << "Configuration written to " << config_file << "\n";
-    }
-  } catch (const std::filesystem::filesystem_error& ex) {
-    std::cerr << "[WARNING] Cannot write files to disk, encountered filesystem error: " << ex.what() << "\n";
-  }
 }
 } // namespace rko_lio::core
