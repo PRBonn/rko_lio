@@ -38,6 +38,7 @@
 #include <algorithm>
 #include <functional>
 #include <iostream>
+#include <numeric>
 #include <stdexcept>
 
 namespace {
