@@ -134,6 +134,8 @@
       <member refid="classrko__lio_1_1ros_1_1Node_1ac0daf74fae41e922c6d8264de3fc68ad" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>base_frame</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1a39acaf291c8df92ddb7d3a8077a341a3" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>buffer_mutex</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1a3badf83d95c7e1212a7e0ca5a60fb4bc" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>check_and_set_extrinsics</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a167a6a5a34cdd635ce3a32ee2cf581f3" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>dump_results</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a99b43c9d41110b966ff05645ea7a1941" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>dump_results_to_disk</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1a7083d5096e74dde6386af89e1a4ac3b1" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>extrinsic_imu2base</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1a8c344ff0bc07808258e36769fe5fca4c" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>extrinsic_lidar2base</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1a77c1be00d5ad517466cb5a26e2674938" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>extrinsics_set</name></member>

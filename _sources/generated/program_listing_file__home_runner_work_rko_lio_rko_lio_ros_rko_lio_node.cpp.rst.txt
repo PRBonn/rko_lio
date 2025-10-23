@@ -39,6 +39,9 @@ Program Listing for File node.cpp
    #include "rko_lio/core/profiler.hpp"
    #include "rko_lio/ros_utils/ros_utils.hpp"
    // other
+   #include <fstream>
+   #include <iostream>
+   #include <nlohmann/json.hpp>
    #include <rclcpp/serialization.hpp>
    #include <stdexcept>
    
@@ -55,6 +58,24 @@ Program Listing for File node.cpp
    
    } // namespace
    
+   namespace rko_lio::core {
+   // necessary for serializing the config, including the namespacing
+   NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(LIO::Config,
+                                      deskew,
+                                      max_iterations,
+                                      voxel_size,
+                                      max_points_per_voxel,
+                                      max_range,
+                                      min_range,
+                                      convergence_criterion,
+                                      max_correspondance_distance,
+                                      max_num_threads,
+                                      initialization_phase,
+                                      max_expected_jerk,
+                                      double_downsample,
+                                      min_beta)
+   } // namespace rko_lio::core
+   
    namespace rko_lio::ros {
    
    Node::Node(const std::string& node_name, const rclcpp::NodeOptions& options) {
@@ -66,8 +87,6 @@ Program Listing for File node.cpp
      lidar_frame = node->declare_parameter<std::string>("lidar_frame", lidar_frame);
      odom_frame = node->declare_parameter<std::string>("odom_frame", odom_frame);
      odom_topic = node->declare_parameter<std::string>("odom_topic", odom_topic);
-     results_dir = node->declare_parameter<std::string>("results_dir", results_dir);
-     run_name = node->declare_parameter<std::string>("run_name", run_name);
    
      // tf
      invert_odom_tf = node->declare_parameter<bool>("invert_odom_tf", invert_odom_tf);
@@ -134,6 +153,21 @@ Program Listing for File node.cpp
                                "estimates to /rko_lio/lidar_acceleration. Deskewing is "
                             << (lio->config.deskew ? "enabled" : "disabled") << "."
                             << (publish_deskewed_scan ? " Publishing deskewed_cloud to /rko_lio/frame." : ""));
+   
+     // disk logging
+     dump_results = node->declare_parameter<bool>("dump_results", dump_results);
+     results_dir = node->declare_parameter<std::string>("results_dir", results_dir);
+     run_name = node->declare_parameter<std::string>("run_name", run_name);
+     rclcpp::on_shutdown([this]() {
+       // i'll need to look into rclcpp::Context a bit more, but for now i think this callback should be called before
+       // anything gets destroyed.
+       if (dump_results) {
+         // it is probably still a veery good idea to make dump_results_to_disk noexcept
+         dump_results_to_disk(results_dir, run_name);
+       }
+       // i'm registering this in the constructor as i'm unclear how to handle this cleanly with the online node component.
+       // might as well reuse for the offline node
+     });
    
      registration_thread = std::jthread([this]() { registration_loop(); });
    
@@ -368,4 +402,39 @@ Program Listing for File node.cpp
      atomic_node_running = false;
      sync_condition_variable.notify_all();
    }
+   
+   void Node::dump_results_to_disk(const std::filesystem::path& results_dir, const std::string& run_name) const {
+     try {
+       std::filesystem::create_directories(results_dir); // no error if exists
+       int index = 0;
+       std::filesystem::path output_dir = results_dir / (run_name + "_" + std::to_string(index));
+       while (std::filesystem::exists(output_dir)) {
+         ++index;
+         output_dir = results_dir / (run_name + "_" + std::to_string(index));
+       }
+       std::filesystem::create_directory(output_dir);
+       const std::filesystem::path output_file = output_dir / (run_name + "_tum_" + std::to_string(index) + ".txt");
+       // dump poses
+       if (std::ofstream file(output_file); file.is_open()) {
+         for (const auto& [timestamp, pose] : lio->poses_with_timestamps) {
+           const Eigen::Vector3d& translation = pose.translation();
+           const Eigen::Quaterniond& quaternion = pose.so3().unit_quaternion();
+           file << std::fixed << std::setprecision(6) << timestamp.count() << " " << translation.x() << " "
+                << translation.y() << " " << translation.z() << " " << quaternion.x() << " " << quaternion.y() << " "
+                << quaternion.z() << " " << quaternion.w() << "\n";
+         }
+         std::cout << "Poses written to " << std::filesystem::absolute(output_file) << "\n";
+       }
+       // dump config
+       const nlohmann::json json_config = {{"config", lio->config}};
+       const std::filesystem::path config_file = output_dir / "config.json";
+       if (std::ofstream file(config_file); file.is_open()) {
+         file << json_config.dump(4);
+         std::cout << "Configuration written to " << config_file << "\n";
+       }
+     } catch (const std::filesystem::filesystem_error& ex) {
+       std::cerr << "[WARNING] Cannot write files to disk, encountered filesystem error: " << ex.what() << "\n";
+     }
+   }
+   
    } // namespace rko_lio::ros

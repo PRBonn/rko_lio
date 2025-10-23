@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="68" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="68" bodyend="68"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="89" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="89" bodyend="89"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a2281daa4450210ce1f16a5a0eb689cff" prot="public" static="no" mutable="no">
         <type>MilliSeconds</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="69" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="69" bodyend="69"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="90" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="90" bodyend="90"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a77b8ab32f6b501dc73446aeabe1e2683" prot="public" static="no" mutable="no">
         <type>MilliSeconds</type>
@@ -46,14 +46,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="70" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="70" bodyend="70"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="91" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="91" bodyend="91"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="67" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="67" bodyend="71"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="88" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="88" bodyend="92"/>
     <listofallmembers>
       <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a75ffb52ae11c7b81ed01727a76cb8c0a" prot="public" virt="non-virtual"><scope>rko_lio::core::ScopedProfiler::ProfilingInfo</scope><name>count</name></member>
       <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a77b8ab32f6b501dc73446aeabe1e2683" prot="public" virt="non-virtual"><scope>rko_lio::core::ScopedProfiler::ProfilingInfo</scope><name>max_time</name></member>

@@ -103,12 +103,48 @@
           <declname>header_stamp</declname>
         </param>
         <briefdescription>
+<para>Process raw timestamps and calculates absolute timestamps in seconds. </para>
         </briefdescription>
         <detaileddescription>
+<para>The input timestamps can be either absolute or relative and may be in seconds or nanoseconds. The function automatically detects whether the timestamps are in nanoseconds by checking the duration spread and converts them to seconds accordingly. Then the case of absolute or relative time is disambiguated based on how close (or away) the min or max times are to the header time.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>raw_timestamps</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of raw sensor timestamps as doubles, can be relative or absolute values. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>header_stamp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference absolute timestamp corresponding to the scan&apos;s header time. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A tuple containing:<itemizedlist>
+<listitem><para>The computed scan start time (absolute, Secondsd),</para>
+</listitem><listitem><para>The computed scan end time (absolute, Secondsd),</para>
+</listitem><listitem><para>A vector of all processed point timestamps converted to absolute seconds (TimestampVector). </para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the timestamp format or values are unrecognized or unsupported. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/process_timestamps.cpp" line="67" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/process_timestamps.cpp" bodystart="67" bodyend="122" declfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/process_timestamps.hpp" declline="33" declcolumn="12"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/process_timestamps.cpp" line="67" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/process_timestamps.cpp" bodystart="67" bodyend="122" declfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/process_timestamps.hpp" declline="53" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacerko__lio_1_1core_1aebf1f823c7fd220695665a8b3e12281e" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>constexpr double</type>
@@ -167,10 +203,10 @@
       </memberdef>
     </sectiondef>
     <briefdescription>
-<para>Core namespace containing <ref refid="classrko__lio_1_1core_1_1LIO" kindref="compound">LIO</ref> data structures. </para>
+<para>Core namespace containing <ref refid="classrko__lio_1_1core_1_1LIO" kindref="compound">LIO</ref> data structures and state definitions. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.cpp" line="250" column="1"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.cpp" line="249" column="1"/>
   </compounddef>
 </doxygen>

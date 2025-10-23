@@ -114,7 +114,10 @@
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core14ScopedProfilerE">
 <span id="_CPPv3N7rko_lio4core14ScopedProfilerE"></span><span id="_CPPv2N7rko_lio4core14ScopedProfilerE"></span><span id="rko_lio::core::ScopedProfiler"></span><span class="target" id="classrko__lio_1_1core_1_1ScopedProfiler"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ScopedProfiler</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core14ScopedProfilerE" title="Link to this definition">¶</a><br /></dt>
-<dd><div class="breathe-sectiondef docutils container">
+<dd><p>Scoped RAII profiler that measures elapsed time for a named code block. </p>
+<p>This class records the execution time between construction and destruction (or explicit finish call) and aggregates statistics including count, total time, and max time per named scope.</p>
+<p>The stats are saved in a static map. Will survive till the end of execution. </p>
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core14ScopedProfiler14ScopedProfilerENSt6stringE">
@@ -144,12 +147,14 @@
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core14ScopedProfiler6finishEv">
 <span id="_CPPv3N7rko_lio4core14ScopedProfiler6finishEv"></span><span id="_CPPv2N7rko_lio4core14ScopedProfiler6finishEv"></span><span id="rko_lio::core::ScopedProfiler::finish"></span><span class="target" id="classrko__lio_1_1core_1_1ScopedProfiler_1a8add0851636fba92c78f5fa2ca57b985"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">finish</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio4core14ScopedProfiler6finishEv" title="Link to this definition">¶</a><br /></dt>
-<dd></dd></dl>
+<dd><p>Explicitly finish timing and update aggregated statistics. </p>
+</dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core14ScopedProfilerD0Ev">
 <span id="_CPPv3N7rko_lio4core14ScopedProfilerD0Ev"></span><span id="_CPPv2N7rko_lio4core14ScopedProfilerD0Ev"></span><span id="rko_lio::core::ScopedProfiler::~ScopedProfiler"></span><span class="target" id="classrko__lio_1_1core_1_1ScopedProfiler_1a0926f45e2a38448e5044bddc59c05882"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~ScopedProfiler</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio4core14ScopedProfilerD0Ev" title="Link to this definition">¶</a><br /></dt>
-<dd></dd></dl>
+<dd><p>Automatically finish timing on destruction if not already finished. </p>
+</dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
@@ -157,7 +162,8 @@
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core14ScopedProfiler13print_resultsEv">
 <span id="_CPPv3N7rko_lio4core14ScopedProfiler13print_resultsEv"></span><span id="_CPPv2N7rko_lio4core14ScopedProfiler13print_resultsEv"></span><span id="rko_lio::core::ScopedProfiler::print_results"></span><span class="target" id="classrko__lio_1_1core_1_1ScopedProfiler_1a37c572a7a20934eaa21902fe3809d44e"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">print_results</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio4core14ScopedProfiler13print_resultsEv" title="Link to this definition">¶</a><br /></dt>
-<dd></dd></dl>
+<dd><p>Print aggregated profiling results to stdout. </p>
+</dd></dl>
 
 </div>
 </dd></dl>
