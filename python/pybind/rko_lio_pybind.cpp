@@ -108,7 +108,7 @@ PYBIND11_MODULE(rko_lio_pybind, m) {
       .def("poses_with_timestamps", [](LIO& self) {
         const size_t n = self.poses_with_timestamps.size();
         std::vector<double> times(n);
-        pybind11::array_t<double> poses({n, 7ZU});
+        pybind11::array_t<double> poses({n, static_cast<size_t>(7)});
         // https://pybind11.readthedocs.io/en/stable/advanced/pycpp/numpy.html#direct-access
         auto pose_buf = poses.mutable_unchecked<2>();
         for (size_t i = 0; i < n; ++i) {

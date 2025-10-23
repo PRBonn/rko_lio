@@ -30,7 +30,6 @@ set(PYBIND11_NEWPYTHON ON)
 find_package(pybind11 REQUIRED CONFIG)
 
 pybind11_add_module(rko_lio_pybind MODULE rko_lio_pybind.cpp)
-target_compile_features(rko_lio_pybind PUBLIC cxx_std_23)
 target_link_libraries(rko_lio_pybind PRIVATE rko_lio::core)
 install(TARGETS rko_lio_pybind DESTINATION rko_lio)
 
