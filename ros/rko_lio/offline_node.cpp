@@ -130,16 +130,7 @@ int main(int argc, char** argv) {
   const rko_lio::core::Timer timer("RKO LIO Offline Node");
   rclcpp::init(argc, argv);
   auto offline_node = rko_lio::ros::OfflineNode(rclcpp::NodeOptions());
-  try {
-    offline_node.run();
-  } catch (const std::runtime_error& error) {
-    RCLCPP_WARN_STREAM(
-        rclcpp::get_logger("OfflineNode"),
-        "Encountered runtime_error. Still attempting to dump trajectory to disk. The error was: " << error.what());
-  }
-  if (offline_node.dump_results) {
-    offline_node.dump_results_to_disk(offline_node.results_dir, offline_node.run_name);
-  }
+  offline_node.run();
   rclcpp::shutdown();
   return 0;
 }

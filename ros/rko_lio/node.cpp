@@ -76,11 +76,6 @@ Node::Node(const std::string& node_name, const rclcpp::NodeOptions& options) {
   odom_frame = node->declare_parameter<std::string>("odom_frame", odom_frame);
   odom_topic = node->declare_parameter<std::string>("odom_topic", odom_topic);
 
-  // disk logging
-  dump_results = node->declare_parameter<bool>("dump_results", dump_results);
-  results_dir = node->declare_parameter<std::string>("results_dir", results_dir);
-  run_name = node->declare_parameter<std::string>("run_name", run_name);
-
   // tf
   invert_odom_tf = node->declare_parameter<bool>("invert_odom_tf", invert_odom_tf);
   tf_buffer = std::make_shared<tf2_ros::Buffer>(node->get_clock());
@@ -146,6 +141,21 @@ Node::Node(const std::string& node_name, const rclcpp::NodeOptions& options) {
                             "estimates to /rko_lio/lidar_acceleration. Deskewing is "
                          << (lio->config.deskew ? "enabled" : "disabled") << "."
                          << (publish_deskewed_scan ? " Publishing deskewed_cloud to /rko_lio/frame." : ""));
+
+  // disk logging
+  dump_results = node->declare_parameter<bool>("dump_results", dump_results);
+  results_dir = node->declare_parameter<std::string>("results_dir", results_dir);
+  run_name = node->declare_parameter<std::string>("run_name", run_name);
+  rclcpp::on_shutdown([this]() {
+    // i'll need to look into rclcpp::Context a bit more, but for now i think this callback should be called before
+    // anything gets destroyed.
+    if (dump_results) {
+      // it is probably still a veery good idea to make dump_results_to_disk noexcept
+      dump_results_to_disk(results_dir, run_name);
+    }
+    // i'm registering this in the constructor as i'm unclear how to handle this cleanly with the online node component.
+    // might as well reuse for the offline node
+  });
 
   registration_thread = std::jthread([this]() { registration_loop(); });
 
@@ -382,7 +392,6 @@ Node::~Node() {
 }
 
 void Node::dump_results_to_disk(const std::filesystem::path& results_dir, const std::string& run_name) const {
-  // TODO: try and make this noexcept. otherwise dont call in the destructor of online node
   try {
     std::filesystem::create_directories(results_dir); // no error if exists
     int index = 0;
