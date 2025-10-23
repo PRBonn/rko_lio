@@ -30,7 +30,12 @@ from pathlib import Path
 import numpy as np
 import typer
 
-from .util import error, info, warning
+from .util import (
+    error,
+    error_and_exit,
+    info,
+    warning,
+)
 
 
 def version_callback(value: bool):
@@ -82,59 +87,34 @@ def dataloader_name_callback(value: str):
 
 
 def parse_extrinsics_from_config(config_data: dict):
-    def convert_quat_xyzw_xyz_to_matrix(quat_xyzw_xyz: np.ndarray) -> np.ndarray:
-        from pyquaternion import Quaternion
-
-        qx, qy, qz, qw = quat_xyzw_xyz[:4]
-        xyz = quat_xyzw_xyz[4:]
-
-        transform = np.eye(4, dtype=np.float64)
-        transform[:3, :3] = Quaternion(x=qx, y=qy, z=qz, w=qw).rotation_matrix
-        transform[:3, 3] = xyz
-        return transform
-
+    """Parse extrinsics from config dict to 4x4 matrices."""
     extrinsic_imu2base = None
     extrinsic_lidar2base = None
+    imu_config_key = "extrinsic_imu2base_quat_xyzw_xyz"
+    lidar_config_key = "extrinsic_lidar2base_quat_xyzw_xyz"
 
-    imu_config_val = config_data.pop("extrinsic_imu2base_quat_xyzw_xyz", None)
-    lidar_config_val = config_data.pop("extrinsic_lidar2base_quat_xyzw_xyz", None)
+    imu_config_val = config_data.pop(imu_config_key, None)
+    lidar_config_val = config_data.pop(lidar_config_key, None)
+
+    for key, valname in [
+        (imu_config_val, imu_config_key),
+        (lidar_config_val, lidar_config_key),
+    ]:
+        if key is not None and len(key) != 7:
+            error_and_exit(f"Error: {valname} has length {len(key)} but should be 7.")
+
+    from .util import quat_xyzw_xyz_to_transform
 
     if imu_config_val is not None:
-        if not len(imu_config_val) == 7:
-            error(
-                "extrinsic_imu2base_quat_xyzw_xyz cannot be of length",
-                len(imu_config_val),
-                "but should be 7. Please modify the config.",
-            )
-            sys.exit(1)
-        extrinsic_imu2base = convert_quat_xyzw_xyz_to_matrix(
+        extrinsic_imu2base = quat_xyzw_xyz_to_transform(
             np.asarray(imu_config_val, dtype=np.float64)
         )
     if lidar_config_val is not None:
-        if not len(lidar_config_val) == 7:
-            error(
-                "extrinsic_lidar2base_quat_xyzw_xyz cannot be of length",
-                len(lidar_config_val),
-                "but should be 7. Please modify the config.",
-            )
-            sys.exit(1)
-        extrinsic_lidar2base = convert_quat_xyzw_xyz_to_matrix(
+        extrinsic_lidar2base = quat_xyzw_xyz_to_transform(
             np.asarray(lidar_config_val, dtype=np.float64)
         )
+
     return extrinsic_imu2base, extrinsic_lidar2base
-
-
-def transform_to_quatxyzw_xyz(transform: np.ndarray):
-    import pyquaternion
-
-    return [
-        float(x)
-        for x in (
-            *pyquaternion.Quaternion(matrix=transform[:3, :3]).vector,
-            pyquaternion.Quaternion(matrix=transform[:3, :3]).scalar,
-            *transform[:3, 3],
-        )
-    ]
 
 
 app = typer.Typer()
@@ -256,11 +236,9 @@ def cli(
     print("Loaded dataloader:", dataloader)
 
     extrinsic_imu2base, extrinsic_lidar2base = parse_extrinsics_from_config(config_data)
-    need_to_query_extrinsics = not (
-        extrinsic_imu2base is not None
-        and len(extrinsic_imu2base)
-        and extrinsic_lidar2base is not None
-        and len(extrinsic_lidar2base)
+    need_to_query_extrinsics = not all(
+        T is not None and T.size != 0
+        for T in (extrinsic_imu2base, extrinsic_lidar2base)
     )
     if need_to_query_extrinsics:
         warning(
@@ -268,19 +246,16 @@ def cli(
         )
         extrinsic_imu2base, extrinsic_lidar2base = dataloader.extrinsics
         print("Extrinsics obtained from dataloader.")
-        print("Imu to Base:\n\tTransform:")
-        for row in extrinsic_imu2base:
-            print("\t\t" + str(row))
-        print(
-            "\tAs a quat_xyzw_xyz:\n\t\t", transform_to_quatxyzw_xyz(extrinsic_imu2base)
-        )
-        print("Lidar to base:\n\tTransform:")
-        for row in extrinsic_lidar2base:
-            print("\t\t" + str(row))
-        print(
-            "\tAs a quat_xyzw_xyz:\n\t\t",
-            transform_to_quatxyzw_xyz(extrinsic_lidar2base),
-        )
+        from .util import transform_to_quat_xyzw_xyz
+
+        def _print_extrinsic(name, T):
+            print(f"{name}:\n\tTransform:")
+            for row in T:
+                print("\t\t" + np.array2string(row, precision=4, suppress_small=True))
+            print("\tAs quat_xyzw_xyz:\n\t\t", transform_to_quat_xyzw_xyz(T), "\n")
+
+        _print_extrinsic("IMU to Base", extrinsic_imu2base)
+        _print_extrinsic("Lidar to Base", extrinsic_lidar2base)
 
     from .lio import LIOConfig
 

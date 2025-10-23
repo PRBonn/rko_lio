@@ -30,9 +30,11 @@ The difference is this is not multi-threaded, therefore is a bit slower.
 from pathlib import Path
 
 import numpy as np
+import yaml
 
 from .lio import LIO, LIOConfig
 from .scoped_profiler import ScopedProfiler
+from .util import height_colors_from_points, info, transform_to_quat_xyzw_xyz
 
 
 class LIOPipeline:
@@ -239,56 +241,55 @@ class LIOPipeline:
 
     def dump_results_to_disk(self, results_dir: Path, run_name: str):
         """
-        Write all result data to disk.
+        Write LIO results to disk in a new {run_name}_{number} directory under results_dir.
 
-        Parameters
-        ----------
-        results_dir : str or pathlib.Path
-            Output directory.
-        run_name : str
-            Output file naming prefix.
+        Automatically bumps numeric suffix (from 0) to avoid overwriting.
+
+        Writes:
+        - Trajectory (timestamps and poses) in TUM format text file.
+        - Configuration as YAML file.
         """
-        self.lio.dump_results_to_disk(results_dir, run_name)
+        results_dir = Path(results_dir)
+        results_dir.mkdir(parents=True, exist_ok=True)
 
+        index = 0
+        while True:
+            output_dir = results_dir / f"{run_name}_{index}"
+            if not output_dir.exists():
+                break
+            index += 1
+        output_dir.mkdir()
 
-viridis_ctrl = np.array(
-    [
-        [68, 1, 84],
-        [71, 44, 122],
-        [59, 81, 139],
-        [44, 113, 142],
-        [33, 144, 140],
-        [39, 173, 129],
-        [92, 200, 99],
-        [170, 220, 50],
-        [253, 231, 37],
-    ],
-    dtype=np.uint8,
-)
+        traj_file = output_dir / f"{run_name}_{index}_tum.txt"
+        timestamps, poses = self.lio.poses_with_timestamps()
+        with traj_file.open("w") as f:
+            for t, p in zip(timestamps, poses):
+                # p: x,y,z,qx,qy,qz,qw
+                line = f"{t:.6f} {p[0]:.6f} {p[1]:.6f} {p[2]:.6f} {p[3]:.6f} {p[4]:.6f} {p[5]:.6f} {p[6]:.6f}\n"
+                f.write(line)
+        info(f"Poses written to {traj_file.resolve()}")
 
+        combined_config = {
+            "lio": self.lio.config.to_dict(),
+            "extrinsic_imu2base_quat_xyzw_xyz": (
+                None
+                if self.extrinsic_imu2base is None
+                else transform_to_quat_xyzw_xyz(self.extrinsic_imu2base)
+            ),
+            "extrinsic_lidar2base_quat_xyzw_xyz": (
+                None
+                if self.extrinsic_lidar2base is None
+                else transform_to_quat_xyzw_xyz(self.extrinsic_lidar2base)
+            ),
+            "viz": self.viz,
+            "viz_every_n_frames": self.viz_every_n_frames,
+        }
 
-def height_colors_from_points(points: np.ndarray) -> np.ndarray:
-    """
-    Given Nx3 array of points, return Nx3 array of RGB colors (dtype uint8)
-    mapped from the z values using the viridis colormap.
-    Colors are uint8 in range [0, 255].
-    """
-    z = points[:, 2]
-    z_min, z_max = np.percentile(z, 1), np.percentile(z, 99)  # accounts for any noise
-    z_clipped = np.clip(z, z_min, z_max)
-
-    if z_max == z_min:
-        norm_z = np.zeros_like(z)
-    else:
-        norm_z = (z_clipped - z_min) / (z_max - z_min)
-
-    idx = norm_z * (len(viridis_ctrl) - 1)
-    idx_low = np.floor(idx).astype(int)
-    idx_high = np.clip(idx_low + 1, 0, len(viridis_ctrl) - 1)
-    alpha = idx - idx_low
-    colors = (
-        (1 - alpha)[:, None] * viridis_ctrl[idx_low]
-        + alpha[:, None] * viridis_ctrl[idx_high]
-    ).astype(np.uint8)
-
-    return colors
+        settings_file = output_dir / "settings.yaml"
+        with settings_file.open("w") as f:
+            f.write(
+                "# please note that this file is not directly useable with rko_lio -c <config_file>.\n"
+                "# please check the result from rko_lio --dump_config for the proper spec needed.\n\n"
+            )
+            yaml.dump(combined_config, f, sort_keys=False)
+        info(f"Configuration written to {settings_file.resolve()}")

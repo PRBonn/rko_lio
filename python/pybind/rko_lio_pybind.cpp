@@ -78,10 +78,10 @@ PYBIND11_MODULE(rko_lio_pybind, m) {
           [](LIO& self, const Eigen::Matrix4d& extrinsic_imu2base, const Eigen::Vector3d& accel,
              const Eigen::Vector3d& gyro, const double time) {
             self.add_imu_measurement(Sophus::SE3d(extrinsic_imu2base), ImuControl{
-                                                                         .time = Secondsd(time),
-                                                                         .acceleration = accel,
-                                                                         .angular_velocity = gyro,
-                                                                     });
+                                                                           .time = Secondsd(time),
+                                                                           .acceleration = accel,
+                                                                           .angular_velocity = gyro,
+                                                                       });
           },
           "extrinsic_imu2base"_a, "acceleration"_a, "angular_velocity"_a, "time"_a)
       .def(
@@ -103,12 +103,29 @@ PYBIND11_MODULE(rko_lio_pybind, m) {
             return self.register_scan(Sophus::SE3d(extrinsic_lidar2base), scan, tsd);
           },
           "extrinsic_lidar2base"_a, "scan"_a, "timestamps"_a)
-      .def("dump_results_to_disk",
-           [](LIO& self, const std::string& results_dir, const std::string& run_name) {
-             self.dump_results_to_disk(std::filesystem::path(results_dir), run_name);
-           })
       .def("map_point_cloud", [](LIO& self) { return self.map.Pointcloud(); })
-      .def("pose", [](LIO& self) { return self.lidar_state.pose.matrix(); });
+      .def("pose", [](LIO& self) { return self.lidar_state.pose.matrix(); })
+      .def("poses_with_timestamps", [](LIO& self) {
+        const size_t n = self.poses_with_timestamps.size();
+        std::vector<double> times(n);
+        pybind11::array_t<double> poses({n, 7ZU});
+        // https://pybind11.readthedocs.io/en/stable/advanced/pycpp/numpy.html#direct-access
+        auto pose_buf = poses.mutable_unchecked<2>();
+        for (size_t i = 0; i < n; ++i) {
+          const auto& [time, pose] = self.poses_with_timestamps[i];
+          times[i] = time.count();
+          const Eigen::Vector3d& trans = pose.translation();
+          const Eigen::Quaterniond& q = pose.unit_quaternion();
+          pose_buf(i, 0) = trans.x();
+          pose_buf(i, 1) = trans.y();
+          pose_buf(i, 2) = trans.z();
+          pose_buf(i, 3) = q.x();
+          pose_buf(i, 4) = q.y();
+          pose_buf(i, 5) = q.z();
+          pose_buf(i, 6) = q.w();
+        }
+        return pybind11::make_tuple(times, poses);
+      });
 
   m.def(
       "_process_timestamps",

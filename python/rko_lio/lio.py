@@ -24,8 +24,6 @@
 Public interface classes for the pybind.
 """
 
-from pathlib import Path
-
 import numpy as np
 
 from .rko_lio_pybind import _LIO, _Config, _Vector3dVector, _VectorDouble
@@ -65,6 +63,23 @@ class LIOConfig(_Config):
         Minimum scaling on the orientation regularisation weight. Set to -1 to disable the cost.
     """
 
+    # probably making the class picklable avoids this
+    config_keys = [
+        "deskew",
+        "max_iterations",
+        "voxel_size",
+        "max_points_per_voxel",
+        "max_range",
+        "min_range",
+        "convergence_criterion",
+        "max_correspondance_distance",
+        "max_num_threads",
+        "initialization_phase",
+        "max_expected_jerk",
+        "double_downsample",
+        "min_beta",
+    ]
+
     def __init__(
         self,
         deskew: bool = True,
@@ -96,23 +111,13 @@ class LIOConfig(_Config):
         self.double_downsample = double_downsample
         self.min_beta = min_beta
 
+    def to_dict(self):
+        """Return a dict version"""
+        return {k: getattr(self, k) for k in self.config_keys}
+
     def __repr__(self):
-        return (
-            f"LIOConfig("
-            f"deskew={self.deskew}, "
-            f"max_iterations={self.max_iterations}, "
-            f"voxel_size={self.voxel_size}, "
-            f"max_points_per_voxel={self.max_points_per_voxel}, "
-            f"max_range={self.max_range}, "
-            f"min_range={self.min_range}, "
-            f"convergence_criterion={self.convergence_criterion}, "
-            f"max_correspondance_distance={self.max_correspondance_distance}, "
-            f"max_num_threads={self.max_num_threads}, "
-            f"initialization_phase={self.initialization_phase}, "
-            f"max_expected_jerk={self.max_expected_jerk}, "
-            f"double_downsample={self.double_downsample}, "
-            f"min_beta={self.min_beta})"
-        )
+        attrs = ", ".join(f"{k}={getattr(self, k)!r}" for k in self.config_keys)
+        return f"LIOConfig({attrs})"
 
 
 class LIO:
@@ -200,5 +205,6 @@ class LIO:
         ret_scan = self._impl.register_scan(extr, scan_vec, time_vec)
         return np.asarray(ret_scan)
 
-    def dump_results_to_disk(self, results_dir: Path, run_name: str):
-        self._impl.dump_results_to_disk(str(results_dir), str(run_name))
+    def poses_with_timestamps(self):
+        timestamps, poses = self._impl.poses_with_timestamps()
+        return np.asarray(timestamps), poses
