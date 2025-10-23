@@ -22,7 +22,16 @@
  * SOFTWARE.
  */
 
-// TODO: remove this file later
+/**
+ * @file profiler.hpp
+ * @brief Utility classes for scoped timing and profiling measurements.
+ *
+ * @deprecated This profiling utility is deprecated and scheduled for removal in a future release.
+ * A more fully featured alternative, likely tracy, will be used instead.
+ *
+ * Contains the ScopedProfiler RAII class for timing named code blocks,
+ * a simple Timer class for quick timing prints, and the SCOPED_PROFILER macro for convenience.
+ */
 #pragma once
 #include <chrono>
 #include <iomanip>
@@ -33,6 +42,15 @@
 
 namespace rko_lio::core {
 
+/**
+ * Scoped RAII profiler that measures elapsed time for a named code block.
+ *
+ * This class records the execution time between construction and destruction (or explicit finish call)
+ * and aggregates statistics including count, total time, and max time per named scope.
+ *
+ * The stats are saved in a static map. Will survive till the end of execution.
+ *
+ */
 class ScopedProfiler {
 public:
   explicit ScopedProfiler(std::string name_) : name(std::move(name_)), start(Clock::now()) {}
@@ -41,6 +59,7 @@ public:
   ScopedProfiler& operator=(const ScopedProfiler&) = delete;
   ScopedProfiler& operator=(ScopedProfiler&&) = delete;
 
+  /// Explicitly finish timing and update aggregated statistics.
   void finish() {
     if (!finished) {
       auto& entry = profile_data.map[name];
@@ -54,8 +73,10 @@ public:
     }
   }
 
+  /// Automatically finish timing on destruction if not already finished.
   ~ScopedProfiler() { finish(); }
 
+  /// Print aggregated profiling results to stdout.
   static void print_results() { profile_data.print_results(); }
 
 private:
@@ -103,6 +124,7 @@ private:
   bool finished = false;
 };
 
+/** Simple timing utility that prints elapsed time for a scope or code block. */
 struct Timer {
   using Clock = std::chrono::high_resolution_clock;
   using TimePoint = std::chrono::time_point<Clock>;
@@ -127,4 +149,13 @@ struct Timer {
 
 #define CONCAT_IMPL(x, y) x##y
 #define CONCAT(x, y) CONCAT_IMPL(x, y)
+/**
+ * @def SCOPED_PROFILER(name)
+ * Macro helper to create a ScopedProfiler instance with an automatic unique name.
+ *
+ * Use this macro at the start of a scope or function to measure execution time and collect
+ * profiling data aggregating count, average, and max times for the named scope.
+ *
+ * @note This macro and the associated ScopedProfiler class are planned for deprecation.
+ */
 #define SCOPED_PROFILER(name) rko_lio::core::ScopedProfiler CONCAT(profiler_, __LINE__)(name)

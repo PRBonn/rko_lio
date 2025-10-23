@@ -22,14 +22,35 @@
  * SOFTWARE.
  */
 
+/**
+ * @file lio.hpp
+ * Contains declarations for timestamp processing.
+ */
+
 #pragma once
 #include "util.hpp"
 #include <tuple>
 #include <vector>
 
 namespace rko_lio::core {
-// Process raw timestamps to determine absolute timestamps in seconds. returns start stamp, end stamp and (chorno)
-// timestamp vector
+/**
+ * Process raw timestamps and calculates absolute timestamps in seconds.
+ *
+ * The input timestamps can be either absolute or relative and may be in seconds or nanoseconds.
+ * The function automatically detects whether the timestamps are in nanoseconds by checking the
+ * duration spread and converts them to seconds accordingly.
+ * Then the case of absolute or relative time is disambiguated based on how close (or away) the min or max times are to
+ * the header time.
+ *
+ * @param raw_timestamps Vector of raw sensor timestamps as doubles, can be relative or absolute values.
+ * @param header_stamp Reference absolute timestamp corresponding to the scan's header time.
+ * @return A tuple containing:
+ *   - The computed scan start time (absolute, Secondsd),
+ *   - The computed scan end time (absolute, Secondsd),
+ *   - A vector of all processed point timestamps converted to absolute seconds (TimestampVector).
+ * @throws std::runtime_error If the timestamp format or values are unrecognized or unsupported.
+ */
 std::tuple<Secondsd, Secondsd, TimestampVector> process_timestamps(const std::vector<double>& raw_timestamps,
                                                                    const Secondsd& header_stamp);
+
 } // namespace rko_lio::core
