@@ -1,5 +1,5 @@
 <h1 align="center">
-  RKO LIO
+  RKO-LIO
 </h1>
 <h3 align="center">Robust LiDAR-Inertial Odometry Without Sensor-Specific Modelling</h3>
 
@@ -43,25 +43,35 @@
 
 <!-- [demo video here] -->
 
-Assuming you have a rosbag (ros1/ros2) which contains a TF tree, you can inspect the results of our odometry system with the following two steps
+The following is the minimal information you need to get going. For more details, please check the [docs](https://prbonn.github.io/rko_lio/).
+
+Assuming you have a rosbag (ros1/ros2) which contains a TF tree, you can run RKO-LIO through
 
 ```bash
 pip install rko_lio rosbags rerun-sdk
-```
-
-Why these three packages?
-- `rko_lio` -> our odometry package
-- `rosbags` -> required for our rosbag dataloader. Both ros1 and ros2 bags are supported!
-- `rerun-sdk` -> required for our optional visualizer (`-v` flag)
-
-Next, run
-
-```bash
 # data path should be a directory with *.bag files (ROS1) or a metadata.yaml (ROS2)
 rko_lio -v /path/to/data
 ```
 
-and you should be good to go!
+Why `pip` install those three packages?
+- `rko_lio` -> our odometry package
+- `rosbags` -> required for our rosbag dataloader. Both ros1 and ros2 bags are supported!
+- `rerun-sdk` -> required for our optional visualizer (`-v` flag)
+
+Check further options for the CLI through `rko_lio --help`.
+
+### ROS
+
+Supported distros: Humble, Jazzy, Kilted, Rolling.
+
+```bash
+sudo apt install ros-$ROS_DISTRO-rko-lio
+ros2 launch rko_lio odometry.launch.py imu_topic:=<topic> lidar_topic:=<topic> base_frame:=base_link
+```
+
+The three parameters above are the minimum you need to specify for the launch file.
+
+Check further launch configuration options through `ros2 launch rko_lio odometry.launch.py -s`
 
 <details>
 <summary><b>Click here for some more details on how the above works and how to use RKO LIO!</b></summary>
@@ -154,7 +164,7 @@ This project is free software made available under the MIT license. For details,
 
 ## Citation
 
-If you found this work useful, please consider leaving a star on this repository and citing our [paper](https://arxiv.org/abs/2509.06593):
+If you found this work useful, please consider leaving a star :star: on this repository and citing our [paper](https://arxiv.org/abs/2509.06593):
 
 ```bib
 @article{malladi2025arxiv,

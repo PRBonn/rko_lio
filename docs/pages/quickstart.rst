@@ -19,12 +19,14 @@ See :doc:`Python Usage <python>` for detailed examples and advanced options.
 ROS
 ---
 
-Installing using system package managers is currently available only on ROS **Kilted**. Please :doc:`build from source <build>` for other distros.
+Supported distros: Humble, Jazzy, Kilted, Rolling
 
 .. code-block:: bash
 
     sudo apt install ros-${ROS_DISTRO}-rko-lio
     ros2 launch rko_lio odometry.launch.py
+
+Please see :doc:`build from source <build>` if you want to do that instead.
 
 The launch file supports both online and offline modes via the ``mode`` argument and expects at least ``lidar_topic``, ``imu_topic``, and ``base_frame``.
 

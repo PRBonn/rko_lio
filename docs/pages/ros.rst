@@ -1,8 +1,6 @@
 ROS (C++)
 =========
 
-TODO: ROS and C++ specific information here
-
 .. raw:: html
 
   <div>
@@ -14,7 +12,6 @@ TODO: ROS and C++ specific information here
   <a href="https://github.com/PRBonn/rko_lio/actions/workflows/ros_build_rolling.yaml"><img src="https://img.shields.io/github/actions/workflow/status/PRBonn/rko_lio/ros_build_rolling.yaml?branch=master&label=Rolling" alt="Rolling" /></a>
   </p>
   </div>
-
 
 .. toctree::
    :maxdepth: 2
