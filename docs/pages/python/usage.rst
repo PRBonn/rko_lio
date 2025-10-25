@@ -13,7 +13,7 @@ The ``-v`` flag enables visualization.
 There are three dataloaders available: ``rosbag`` (ROS1 or ROS2), ``raw``, and ``HeLiPR`` (deprecated).
 For most usages, the system will automatically detect which dataloader to use from your data path, but you can choose explicitly with ``-d``.
 
-A config file can be passed with `--config` or `-c`. Dump a config file with all default options using
+A config file can be passed with ``--config`` or ``-c``. Dump a config file with all default options using
 
 .. code-block:: bash
 
