@@ -5,11 +5,11 @@
     <includes refid="sparse__voxel__grid_8hpp" local="yes">sparse_voxel_grid.hpp</includes>
     <includes refid="util_8hpp" local="yes">util.hpp</includes>
     <includes local="no">optional</includes>
-    <includedby refid="lio_8cpp" local="yes">/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.cpp</includedby>
-    <includedby refid="node_8hpp" local="yes">/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp</includedby>
+    <includedby refid="lio_8cpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp</includedby>
+    <includedby refid="node_8hpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/ros/node.hpp</includedby>
     <incdepgraph>
       <node id="1">
-        <label>/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp</label>
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp</label>
         <link refid="lio_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -56,13 +56,13 @@
     </incdepgraph>
     <invincdepgraph>
       <node id="1">
-        <label>/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp</label>
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp</label>
         <link refid="lio_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
       <node id="2">
-        <label>/home/runner/work/rko_lio/rko_lio/ros/rko_lio/node.hpp</label>
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/node.hpp</label>
         <link refid="node_8hpp_source"/>
       </node>
     </invincdepgraph>
@@ -229,6 +229,6 @@
 <codeline lineno="226"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="227"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp"/>
   </compounddef>
 </doxygen>

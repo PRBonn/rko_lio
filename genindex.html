@@ -60,9 +60,12 @@
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="pages/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pages/general/general.html">General details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pages/ros.html">ROS (C++)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pages/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/primer.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/ros/ros.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/python/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/config.html">Configuring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/core_dependencies.html">Dependencies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="__LICENSE.html">License</a></li>
 </ul>
 
@@ -95,12 +98,17 @@
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
  | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#P"><strong>P</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
  
 </div>
 <h2 id="A">A</h2>
@@ -120,10 +128,14 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/define_profiler_8hpp_1a2f18db18bca26cafa95e9719de4a41ef.html#c.CONCAT">CONCAT (C macro)</a>
+      <li><a href="python/rko_lio.dataloaders.rosbag.html#rko_lio.dataloaders.rosbag.RosbagDataLoader.check_topic">check_topic() (rko_lio.dataloaders.rosbag.RosbagDataLoader method)</a>
+</li>
+      <li><a href="python/rko_lio.cli.html#rko_lio.cli.cli">cli() (in module rko_lio.cli)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/define_profiler_8hpp_1a2f18db18bca26cafa95e9719de4a41ef.html#c.CONCAT">CONCAT (C macro)</a>
+</li>
       <li><a href="generated/define_profiler_8hpp_1a1a31e7e398f6a2fa20e41c0b5a02cdc4.html#c.CONCAT_IMPL">CONCAT_IMPL (C macro)</a>
 </li>
       <li><a href="python/rko_lio.lio.html#rko_lio.lio.LIOConfig.config_keys">config_keys (rko_lio.lio.LIOConfig attribute)</a>
@@ -137,6 +149,12 @@
       <li><a href="python/rko_lio.dataloaders.get_dataloader.html#rko_lio.dataloaders.get_dataloader.dataloader_factory">dataloader_factory() (in module rko_lio.dataloaders.get_dataloader)</a>
 </li>
   </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="python/rko_lio.cli.html#rko_lio.cli.dataloader_name_callback">dataloader_name_callback() (in module rko_lio.cli)</a>
+</li>
+      <li><a href="python/rko_lio.cli.html#rko_lio.cli.dump_config_callback">dump_config_callback() (in module rko_lio.cli)</a>
+</li>
+  </ul></td>
 </tr></table>
 
 <h2 id="E">E</h2>
@@ -146,12 +164,24 @@
 </li>
       <li><a href="generated/typedef_util_8hpp_1aeed2d0773ca5f2d8af17c424c1d38656.html#_CPPv4N5Eigen10Matrix3_6dE">Eigen::Matrix3_6d (C++ type)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/typedef_util_8hpp_1ac472a7c3ac8e9babc4efd3f3286e4b16.html#_CPPv4N5Eigen8Matrix6dE">Eigen::Matrix6d (C++ type)</a>
 </li>
       <li><a href="generated/typedef_util_8hpp_1a256bc41e53605f5abb08663701978077.html#_CPPv4N5Eigen8Vector6dE">Eigen::Vector6d (C++ type)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="python/rko_lio.util.html#rko_lio.util.error">error() (in module rko_lio.util)</a>
+</li>
+      <li><a href="python/rko_lio.util.html#rko_lio.util.error_and_exit">error_and_exit() (in module rko_lio.util)</a>
+</li>
+      <li><a href="python/rko_lio.dataloaders.helipr.html#rko_lio.dataloaders.helipr.HeliprDataLoader.extrinsics">extrinsics (rko_lio.dataloaders.helipr.HeliprDataLoader property)</a>
+
+      <ul>
+        <li><a href="python/rko_lio.dataloaders.raw.html#rko_lio.dataloaders.raw.RawDataLoader.extrinsics">(rko_lio.dataloaders.raw.RawDataLoader property)</a>
+</li>
+        <li><a href="python/rko_lio.dataloaders.rosbag.html#rko_lio.dataloaders.rosbag.RosbagDataLoader.extrinsics">(rko_lio.dataloaders.rosbag.RosbagDataLoader property)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -159,6 +189,26 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="python/rko_lio.dataloaders.get_dataloader.html#rko_lio.dataloaders.get_dataloader.guess_dataloader">guess_dataloader() (in module rko_lio.dataloaders.get_dataloader)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="python/rko_lio.util.html#rko_lio.util.height_colors_from_points">height_colors_from_points() (in module rko_lio.util)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="python/rko_lio.dataloaders.helipr.html#rko_lio.dataloaders.helipr.HeliprDataLoader">HeliprDataLoader (class in rko_lio.dataloaders.helipr)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="python/rko_lio.util.html#rko_lio.util.info">info() (in module rko_lio.util)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -186,15 +236,29 @@
       <ul>
         <li><a href="python/rko_lio.html#module-rko_lio">rko_lio</a>
 </li>
+        <li><a href="python/rko_lio.cli.html#module-rko_lio.cli">rko_lio.cli</a>
+</li>
         <li><a href="python/rko_lio.dataloaders.html#module-rko_lio.dataloaders">rko_lio.dataloaders</a>
 </li>
         <li><a href="python/rko_lio.dataloaders.get_dataloader.html#module-rko_lio.dataloaders.get_dataloader">rko_lio.dataloaders.get_dataloader</a>
 </li>
+        <li><a href="pages/python/dataloaders.html#module-rko_lio.dataloaders.helipr">rko_lio.dataloaders.helipr</a>, <a href="python/rko_lio.dataloaders.helipr.html#module-rko_lio.dataloaders.helipr">[1]</a>
+</li>
+        <li><a href="pages/python/dataloaders.html#module-rko_lio.dataloaders.raw">rko_lio.dataloaders.raw</a>, <a href="python/rko_lio.dataloaders.raw.html#module-rko_lio.dataloaders.raw">[1]</a>
+</li>
+        <li><a href="pages/python/dataloaders.html#module-rko_lio.dataloaders.rosbag">rko_lio.dataloaders.rosbag</a>, <a href="python/rko_lio.dataloaders.rosbag.html#module-rko_lio.dataloaders.rosbag">[1]</a>
+</li>
         <li><a href="python/rko_lio.dataloaders.utils.html#module-rko_lio.dataloaders.utils">rko_lio.dataloaders.utils</a>
+</li>
+        <li><a href="python/rko_lio.dataloaders.utils.ros_read_point_cloud.html#module-rko_lio.dataloaders.utils.ros_read_point_cloud">rko_lio.dataloaders.utils.ros_read_point_cloud</a>
+</li>
+        <li><a href="python/rko_lio.dataloaders.utils.static_tf_tree.html#module-rko_lio.dataloaders.utils.static_tf_tree">rko_lio.dataloaders.utils.static_tf_tree</a>
 </li>
         <li><a href="python/rko_lio.lio.html#module-rko_lio.lio">rko_lio.lio</a>
 </li>
         <li><a href="python/rko_lio.scoped_profiler.html#module-rko_lio.scoped_profiler">rko_lio.scoped_profiler</a>
+</li>
+        <li><a href="python/rko_lio.util.html#module-rko_lio.util">rko_lio.util</a>
 </li>
       </ul></li>
   </ul></td>
@@ -203,10 +267,16 @@
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="python/rko_lio.lio.html#rko_lio.lio.LIO.pose">pose() (rko_lio.lio.LIO method)</a>
+      <li><a href="python/rko_lio.dataloaders.helipr.html#rko_lio.dataloaders.helipr.parse_extrinsic_txt">parse_extrinsic_txt() (in module rko_lio.dataloaders.helipr)</a>
+</li>
+      <li><a href="python/rko_lio.cli.html#rko_lio.cli.parse_extrinsics_from_config">parse_extrinsics_from_config() (in module rko_lio.cli)</a>
+</li>
+      <li><a href="python/rko_lio.dataloaders.helipr.html#rko_lio.dataloaders.helipr.parse_lidar_extrinsic">parse_lidar_extrinsic() (in module rko_lio.dataloaders.helipr)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="python/rko_lio.lio.html#rko_lio.lio.LIO.pose">pose() (rko_lio.lio.LIO method)</a>
+</li>
       <li><a href="python/rko_lio.lio.html#rko_lio.lio.LIO.poses_with_timestamps">poses_with_timestamps() (rko_lio.lio.LIO method)</a>
 </li>
       <li><a href="python/rko_lio.scoped_profiler.html#rko_lio.scoped_profiler.ScopedProfiler.print_results">print_results() (rko_lio.scoped_profiler.ScopedProfiler static method)</a>
@@ -214,9 +284,23 @@
   </ul></td>
 </tr></table>
 
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="python/rko_lio.util.html#rko_lio.util.quat_xyzw_xyz_to_transform">quat_xyzw_xyz_to_transform() (in module rko_lio.util)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="python/rko_lio.dataloaders.raw.html#rko_lio.dataloaders.raw.RawDataLoader">RawDataLoader (class in rko_lio.dataloaders.raw)</a>
+</li>
+      <li><a href="python/rko_lio.dataloaders.rosbag.html#rko_lio.dataloaders.rosbag.RosbagDataLoader.read_imu">read_imu() (rko_lio.dataloaders.rosbag.RosbagDataLoader method)</a>
+</li>
+      <li><a href="python/rko_lio.dataloaders.rosbag.html#rko_lio.dataloaders.rosbag.RosbagDataLoader.read_point_cloud">read_point_cloud() (rko_lio.dataloaders.rosbag.RosbagDataLoader method)</a>
+</li>
       <li><a href="python/rko_lio.lio.html#rko_lio.lio.LIO.register_scan">register_scan() (rko_lio.lio.LIO method)</a>
 </li>
       <li><a href="python/rko_lio.lio.html#rko_lio.lio.LIO.register_scan_with_extrinsic">register_scan_with_extrinsic() (rko_lio.lio.LIO method)</a>
@@ -226,6 +310,13 @@
 
       <ul>
         <li><a href="python/rko_lio.html#module-rko_lio">module</a>
+</li>
+      </ul></li>
+      <li>
+    rko_lio.cli
+
+      <ul>
+        <li><a href="python/rko_lio.cli.html#module-rko_lio.cli">module</a>
 </li>
       </ul></li>
       <li>
@@ -243,10 +334,45 @@
 </li>
       </ul></li>
       <li>
+    rko_lio.dataloaders.helipr
+
+      <ul>
+        <li><a href="pages/python/dataloaders.html#module-rko_lio.dataloaders.helipr">module</a>, <a href="python/rko_lio.dataloaders.helipr.html#module-rko_lio.dataloaders.helipr">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    rko_lio.dataloaders.raw
+
+      <ul>
+        <li><a href="pages/python/dataloaders.html#module-rko_lio.dataloaders.raw">module</a>, <a href="python/rko_lio.dataloaders.raw.html#module-rko_lio.dataloaders.raw">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    rko_lio.dataloaders.rosbag
+
+      <ul>
+        <li><a href="pages/python/dataloaders.html#module-rko_lio.dataloaders.rosbag">module</a>, <a href="python/rko_lio.dataloaders.rosbag.html#module-rko_lio.dataloaders.rosbag">[1]</a>
+</li>
+      </ul></li>
+      <li>
     rko_lio.dataloaders.utils
 
       <ul>
         <li><a href="python/rko_lio.dataloaders.utils.html#module-rko_lio.dataloaders.utils">module</a>
+</li>
+      </ul></li>
+      <li>
+    rko_lio.dataloaders.utils.ros_read_point_cloud
+
+      <ul>
+        <li><a href="python/rko_lio.dataloaders.utils.ros_read_point_cloud.html#module-rko_lio.dataloaders.utils.ros_read_point_cloud">module</a>
+</li>
+      </ul></li>
+      <li>
+    rko_lio.dataloaders.utils.static_tf_tree
+
+      <ul>
+        <li><a href="python/rko_lio.dataloaders.utils.static_tf_tree.html#module-rko_lio.dataloaders.utils.static_tf_tree">module</a>
 </li>
       </ul></li>
       <li>
@@ -261,6 +387,13 @@
 
       <ul>
         <li><a href="python/rko_lio.scoped_profiler.html#module-rko_lio.scoped_profiler">module</a>
+</li>
+      </ul></li>
+      <li>
+    rko_lio.util
+
+      <ul>
+        <li><a href="python/rko_lio.util.html#module-rko_lio.util">module</a>
 </li>
       </ul></li>
       <li><a href="generated/structrko__lio_1_1core_1_1AccelInfo.html#_CPPv4N7rko_lio4core9AccelInfoE">rko_lio::core::AccelInfo (C++ struct)</a>
@@ -427,6 +560,8 @@
 </li>
       <li><a href="generated/structrko__lio_1_1core_1_1SparseVoxelGrid.html#_CPPv4N7rko_lio4core15SparseVoxelGrid6UpdateERKNSt6vectorIN5Eigen8Vector3dEEERKN6Sophus4SE3dE">rko_lio::core::SparseVoxelGrid::Update (C++ function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/structrko__lio_1_1core_1_1SparseVoxelGrid.html#_CPPv4N7rko_lio4core15SparseVoxelGrid11voxel_size_E">rko_lio::core::SparseVoxelGrid::voxel_size_ (C++ member)</a>
 </li>
       <li><a href="generated/function_namespacerko__lio_1_1core_1aebf1f823c7fd220695665a8b3e12281e.html#_CPPv4N7rko_lio4core6squareEd">rko_lio::core::square (C++ function)</a>
@@ -443,8 +578,6 @@
 </li>
       <li><a href="generated/structrko__lio_1_1core_1_1State.html#_CPPv4N7rko_lio4core5State8velocityE">rko_lio::core::State::velocity (C++ member)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/structrko__lio_1_1core_1_1Timer.html#_CPPv4N7rko_lio4core5TimerE">rko_lio::core::Timer (C++ struct)</a>
 </li>
       <li><a href="generated/structrko__lio_1_1core_1_1Timer.html#_CPPv4N7rko_lio4core5Timer5ClockE">rko_lio::core::Timer::Clock (C++ type)</a>
@@ -601,59 +734,61 @@
 </li>
       <li><a href="generated/classrko__lio_1_1ros_1_1OnlineNode.html#_CPPv4N7rko_lio3ros10OnlineNode5timerE">rko_lio::ros::OnlineNode::timer (C++ member)</a>
 </li>
-      <li><a href="generated/classrko__lio_1_1ros__utils_1_1BufferableBag.html#_CPPv4N7rko_lio9ros_utils13BufferableBagE">rko_lio::ros_utils::BufferableBag (C++ class)</a>
+      <li><a href="generated/classrko__lio_1_1ros_1_1utils_1_1BufferableBag.html#_CPPv4N7rko_lio3ros5utils13BufferableBagE">rko_lio::ros::utils::BufferableBag (C++ class)</a>
 </li>
-      <li><a href="generated/classrko__lio_1_1ros__utils_1_1BufferableBag.html#_CPPv4N7rko_lio9ros_utils13BufferableBag13BufferableBagERKNSt6stringEKNSt10shared_ptrI8TFBridgeEERKNSt6vectorINSt6stringEEEKN3tf28DurationEKNSt6chrono7secondsE">rko_lio::ros_utils::BufferableBag::BufferableBag (C++ function)</a>
+      <li><a href="generated/classrko__lio_1_1ros_1_1utils_1_1BufferableBag.html#_CPPv4N7rko_lio3ros5utils13BufferableBag13BufferableBagERKNSt6stringEKNSt10shared_ptrI8TFBridgeEERKNSt6vectorINSt6stringEEEKN3tf28DurationEKNSt6chrono7secondsE">rko_lio::ros::utils::BufferableBag::BufferableBag (C++ function)</a>
 </li>
-      <li><a href="generated/classrko__lio_1_1ros__utils_1_1BufferableBag.html#_CPPv4N7rko_lio9ros_utils13BufferableBag14BufferMessagesEv">rko_lio::ros_utils::BufferableBag::BufferMessages (C++ function)</a>
+      <li><a href="generated/classrko__lio_1_1ros_1_1utils_1_1BufferableBag.html#_CPPv4N7rko_lio3ros5utils13BufferableBag14BufferMessagesEv">rko_lio::ros::utils::BufferableBag::BufferMessages (C++ function)</a>
 </li>
-      <li><a href="generated/classrko__lio_1_1ros__utils_1_1BufferableBag.html#_CPPv4NK7rko_lio9ros_utils13BufferableBag5closeEv">rko_lio::ros_utils::BufferableBag::close (C++ function)</a>
+      <li><a href="generated/classrko__lio_1_1ros_1_1utils_1_1BufferableBag.html#_CPPv4NK7rko_lio3ros5utils13BufferableBag5closeEv">rko_lio::ros::utils::BufferableBag::close (C++ function)</a>
 </li>
-      <li><a href="generated/classrko__lio_1_1ros__utils_1_1BufferableBag.html#_CPPv4NK7rko_lio9ros_utils13BufferableBag8finishedEv">rko_lio::ros_utils::BufferableBag::finished (C++ function)</a>
+      <li><a href="generated/classrko__lio_1_1ros_1_1utils_1_1BufferableBag.html#_CPPv4NK7rko_lio3ros5utils13BufferableBag8finishedEv">rko_lio::ros::utils::BufferableBag::finished (C++ function)</a>
 </li>
-      <li><a href="generated/classrko__lio_1_1ros__utils_1_1BufferableBag.html#_CPPv4NK7rko_lio9ros_utils13BufferableBag13message_countEv">rko_lio::ros_utils::BufferableBag::message_count (C++ function)</a>
+      <li><a href="generated/classrko__lio_1_1ros_1_1utils_1_1BufferableBag.html#_CPPv4NK7rko_lio3ros5utils13BufferableBag13message_countEv">rko_lio::ros::utils::BufferableBag::message_count (C++ function)</a>
 </li>
-      <li><a href="generated/classrko__lio_1_1ros__utils_1_1BufferableBag.html#_CPPv4N7rko_lio9ros_utils13BufferableBag14PopNextMessageEv">rko_lio::ros_utils::BufferableBag::PopNextMessage (C++ function)</a>
+      <li><a href="generated/classrko__lio_1_1ros_1_1utils_1_1BufferableBag.html#_CPPv4N7rko_lio3ros5utils13BufferableBag14PopNextMessageEv">rko_lio::ros::utils::BufferableBag::PopNextMessage (C++ function)</a>
 </li>
-      <li><a href="generated/classrko__lio_1_1ros__utils_1_1BufferableBag.html#_CPPv4N7rko_lio9ros_utils13BufferableBag17publish_tf_staticERKNSt6stringE">rko_lio::ros_utils::BufferableBag::publish_tf_static (C++ function)</a>
+      <li><a href="generated/classrko__lio_1_1ros_1_1utils_1_1BufferableBag.html#_CPPv4N7rko_lio3ros5utils13BufferableBag17publish_tf_staticERKNSt6stringE">rko_lio::ros::utils::BufferableBag::publish_tf_static (C++ function)</a>
 </li>
-      <li><a href="generated/classrko__lio_1_1ros__utils_1_1BufferableBag.html#_CPPv4N7rko_lio9ros_utils13BufferableBag8TFBridgeE">rko_lio::ros_utils::BufferableBag::TFBridge (C++ struct)</a>, <a href="generated/structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge.html#_CPPv4N7rko_lio9ros_utils13BufferableBag8TFBridgeE">[1]</a>
+      <li><a href="generated/classrko__lio_1_1ros_1_1utils_1_1BufferableBag.html#_CPPv4N7rko_lio3ros5utils13BufferableBag8TFBridgeE">rko_lio::ros::utils::BufferableBag::TFBridge (C++ struct)</a>, <a href="generated/structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge.html#_CPPv4N7rko_lio3ros5utils13BufferableBag8TFBridgeE">[1]</a>
 </li>
-      <li><a href="generated/classrko__lio_1_1ros__utils_1_1BufferableBag.html#_CPPv4NK7rko_lio9ros_utils13BufferableBag8TFBridge16ProcessTFMessageENSt10shared_ptrIN15rosbag2_storage20SerializedBagMessageEEE">rko_lio::ros_utils::BufferableBag::TFBridge::ProcessTFMessage (C++ function)</a>, <a href="generated/structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge.html#_CPPv4NK7rko_lio9ros_utils13BufferableBag8TFBridge16ProcessTFMessageENSt10shared_ptrIN15rosbag2_storage20SerializedBagMessageEEE">[1]</a>
+      <li><a href="generated/classrko__lio_1_1ros_1_1utils_1_1BufferableBag.html#_CPPv4NK7rko_lio3ros5utils13BufferableBag8TFBridge16ProcessTFMessageENSt10shared_ptrIN15rosbag2_storage20SerializedBagMessageEEE">rko_lio::ros::utils::BufferableBag::TFBridge::ProcessTFMessage (C++ function)</a>, <a href="generated/structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge.html#_CPPv4NK7rko_lio3ros5utils13BufferableBag8TFBridge16ProcessTFMessageENSt10shared_ptrIN15rosbag2_storage20SerializedBagMessageEEE">[1]</a>
 </li>
-      <li><a href="generated/classrko__lio_1_1ros__utils_1_1BufferableBag.html#_CPPv4N7rko_lio9ros_utils13BufferableBag8TFBridge10serializerE">rko_lio::ros_utils::BufferableBag::TFBridge::serializer (C++ member)</a>, <a href="generated/structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge.html#_CPPv4N7rko_lio9ros_utils13BufferableBag8TFBridge10serializerE">[1]</a>
+      <li><a href="generated/classrko__lio_1_1ros_1_1utils_1_1BufferableBag.html#_CPPv4N7rko_lio3ros5utils13BufferableBag8TFBridge10serializerE">rko_lio::ros::utils::BufferableBag::TFBridge::serializer (C++ member)</a>, <a href="generated/structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge.html#_CPPv4N7rko_lio3ros5utils13BufferableBag8TFBridge10serializerE">[1]</a>
 </li>
-      <li><a href="generated/classrko__lio_1_1ros__utils_1_1BufferableBag.html#_CPPv4N7rko_lio9ros_utils13BufferableBag8TFBridge14tf_broadcasterE">rko_lio::ros_utils::BufferableBag::TFBridge::tf_broadcaster (C++ member)</a>, <a href="generated/structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge.html#_CPPv4N7rko_lio9ros_utils13BufferableBag8TFBridge14tf_broadcasterE">[1]</a>
+      <li><a href="generated/classrko__lio_1_1ros_1_1utils_1_1BufferableBag.html#_CPPv4N7rko_lio3ros5utils13BufferableBag8TFBridge14tf_broadcasterE">rko_lio::ros::utils::BufferableBag::TFBridge::tf_broadcaster (C++ member)</a>, <a href="generated/structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge.html#_CPPv4N7rko_lio3ros5utils13BufferableBag8TFBridge14tf_broadcasterE">[1]</a>
 </li>
-      <li><a href="generated/classrko__lio_1_1ros__utils_1_1BufferableBag.html#_CPPv4N7rko_lio9ros_utils13BufferableBag8TFBridge21tf_static_broadcasterE">rko_lio::ros_utils::BufferableBag::TFBridge::tf_static_broadcaster (C++ member)</a>, <a href="generated/structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge.html#_CPPv4N7rko_lio9ros_utils13BufferableBag8TFBridge21tf_static_broadcasterE">[1]</a>
+      <li><a href="generated/classrko__lio_1_1ros_1_1utils_1_1BufferableBag.html#_CPPv4N7rko_lio3ros5utils13BufferableBag8TFBridge21tf_static_broadcasterE">rko_lio::ros::utils::BufferableBag::TFBridge::tf_static_broadcaster (C++ member)</a>, <a href="generated/structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge.html#_CPPv4N7rko_lio3ros5utils13BufferableBag8TFBridge21tf_static_broadcasterE">[1]</a>
 </li>
-      <li><a href="generated/classrko__lio_1_1ros__utils_1_1BufferableBag.html#_CPPv4N7rko_lio9ros_utils13BufferableBag8TFBridge8TFBridgeEN6rclcpp4Node9SharedPtrE">rko_lio::ros_utils::BufferableBag::TFBridge::TFBridge (C++ function)</a>, <a href="generated/structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge.html#_CPPv4N7rko_lio9ros_utils13BufferableBag8TFBridge8TFBridgeEN6rclcpp4Node9SharedPtrE">[1]</a>
+      <li><a href="generated/classrko__lio_1_1ros_1_1utils_1_1BufferableBag.html#_CPPv4N7rko_lio3ros5utils13BufferableBag8TFBridge8TFBridgeEN6rclcpp4Node9SharedPtrE">rko_lio::ros::utils::BufferableBag::TFBridge::TFBridge (C++ function)</a>, <a href="generated/structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge.html#_CPPv4N7rko_lio3ros5utils13BufferableBag8TFBridge8TFBridgeEN6rclcpp4Node9SharedPtrE">[1]</a>
 </li>
-      <li><a href="generated/function_point__cloud__write_8cpp_1aa1127a7edfcc13ff2c4ac7861761bfd5.html#_CPPv4N7rko_lio9ros_utils21eigen_to_point_cloud2ERKNSt6vectorIN5Eigen8Vector3dEEERK6Header">rko_lio::ros_utils::eigen_to_point_cloud2 (C++ function)</a>, <a href="generated/function_point__cloud__write_8hpp_1a10538ea744e5f5755b53206115dcb62d.html#_CPPv4N7rko_lio9ros_utils21eigen_to_point_cloud2ERKNSt6vectorIN5Eigen8Vector3dEEERKN8std_msgs3msg6HeaderE">[1]</a>
+      <li><a href="generated/function_point__cloud__write_8cpp_1aef4df645b88181b1578767467987ad07.html#_CPPv4N7rko_lio3ros5utils21eigen_to_point_cloud2ERKNSt6vectorIN5Eigen8Vector3dEEERK6Header">rko_lio::ros::utils::eigen_to_point_cloud2 (C++ function)</a>, <a href="generated/function_point__cloud__write_8hpp_1a972f8f407dce7b1824199bd2fe68aca5.html#_CPPv4N7rko_lio3ros5utils21eigen_to_point_cloud2ERKNSt6vectorIN5Eigen8Vector3dEEERKN8std_msgs3msg6HeaderE">[1]</a>
 </li>
-      <li><a href="generated/function_ros__vectors_8hpp_1adc80b1d89da8ab16fb400b64f8de6444.html#_CPPv4N7rko_lio9ros_utils25eigen_vector3d_to_ros_xyzERKN5Eigen8Vector3dERDa">rko_lio::ros_utils::eigen_vector3d_to_ros_xyz (C++ function)</a>
+      <li><a href="generated/function_ros__vectors_8hpp_1a89cb23044180614fae3f2f0a74ae4a4b.html#_CPPv4N7rko_lio3ros5utils25eigen_vector3d_to_ros_xyzERKN5Eigen8Vector3dERDa">rko_lio::ros::utils::eigen_vector3d_to_ros_xyz (C++ function)</a>
 </li>
-      <li><a href="generated/function_transforms_8hpp_1a372c4216c5e01ff6453368d96396068f.html#_CPPv4I0EN7rko_lio9ros_utils13get_transformENSt8optionalIN6Sophus3SE3I6ScalarEEEERKNSt10shared_ptrIN7tf2_ros6BufferEEERKNSt6stringERKNSt6stringERKNSt6chrono8durationIdEERKNSt6chrono8durationIdEE">rko_lio::ros_utils::get_transform (C++ function)</a>
+      <li><a href="generated/function_transforms_8hpp_1a86fa67824d17062f6dc8c767beb6b287.html#_CPPv4I0EN7rko_lio3ros5utils13get_transformENSt8optionalIN6Sophus3SE3I6ScalarEEEERKNSt10shared_ptrIN7tf2_ros6BufferEEERKNSt6stringERKNSt6stringERKNSt6chrono8durationIdEERKNSt6chrono8durationIdEE">rko_lio::ros::utils::get_transform (C++ function)</a>
 </li>
-      <li><a href="generated/function_point__cloud__read_8cpp_1aadaf97a8a3e4a9b43814c3e9390d6fe4.html#_CPPv4N7rko_lio9ros_utils21point_cloud2_to_eigenERKN11sensor_msgs3msg11PointCloud214ConstSharedPtrE">rko_lio::ros_utils::point_cloud2_to_eigen (C++ function)</a>
+      <li><a href="generated/function_point__cloud__read_8cpp_1aabc74c0b21478cc1c3b29cecba96104f.html#_CPPv4N7rko_lio3ros5utils21point_cloud2_to_eigenERKN11sensor_msgs3msg11PointCloud214ConstSharedPtrE">rko_lio::ros::utils::point_cloud2_to_eigen (C++ function)</a>
 </li>
-      <li><a href="generated/function_point__cloud__read_8cpp_1a91531bdd51b54763f6b79ca1b76440e3.html#_CPPv4N7rko_lio9ros_utils37point_cloud2_to_eigen_with_timestampsERKN11PointCloud214ConstSharedPtrE">rko_lio::ros_utils::point_cloud2_to_eigen_with_timestamps (C++ function)</a>, <a href="generated/function_point__cloud__read_8hpp_1a3ad9753d3bfe9abb48f53936563b5dca.html#_CPPv4N7rko_lio9ros_utils37point_cloud2_to_eigen_with_timestampsERKN11sensor_msgs3msg11PointCloud214ConstSharedPtrE">[1]</a>
+      <li><a href="generated/function_point__cloud__read_8cpp_1aace5b499e84699d48b9d23da41a5da43.html#_CPPv4N7rko_lio3ros5utils37point_cloud2_to_eigen_with_timestampsERKN11PointCloud214ConstSharedPtrE">rko_lio::ros::utils::point_cloud2_to_eigen_with_timestamps (C++ function)</a>, <a href="generated/function_point__cloud__read_8hpp_1ad5be96982e1e1956be221378e4c290bf.html#_CPPv4N7rko_lio3ros5utils37point_cloud2_to_eigen_with_timestampsERKN11sensor_msgs3msg11PointCloud214ConstSharedPtrE">[1]</a>
 </li>
-      <li><a href="generated/typedef_point__cloud__read_8cpp_1ac5af74e2ce9903585e656484f3ae50aa.html#_CPPv4N7rko_lio9ros_utils11PointCloud2E">rko_lio::ros_utils::PointCloud2 (C++ type)</a>
+      <li><a href="generated/typedef_point__cloud__read_8cpp_1ae6e9f928a853730fee4156c59d31b232.html#_CPPv4N7rko_lio3ros5utils11PointCloud2E">rko_lio::ros::utils::PointCloud2 (C++ type)</a>
 </li>
-      <li><a href="generated/typedef_point__cloud__read_8cpp_1a7c03cf24cfb52af4d4beed1321f48710.html#_CPPv4N7rko_lio9ros_utils10PointFieldE">rko_lio::ros_utils::PointField (C++ type)</a>
+      <li><a href="generated/typedef_point__cloud__read_8cpp_1ac033ab6bd6b1f2e03682506ba229b194.html#_CPPv4N7rko_lio3ros5utils10PointFieldE">rko_lio::ros::utils::PointField (C++ type)</a>
 </li>
-      <li><a href="generated/function_time_8hpp_1a4d1f77578095092778c1a3299d79aa44.html#_CPPv4N7rko_lio9ros_utils19ros_time_to_secondsERKN18builtin_interfaces3msg4TimeE">rko_lio::ros_utils::ros_time_to_seconds (C++ function)</a>
+      <li><a href="generated/function_time_8hpp_1a2a59e06612a3104e6a1bdd73138ce24c.html#_CPPv4N7rko_lio3ros5utils19ros_time_to_secondsERKN18builtin_interfaces3msg4TimeE">rko_lio::ros::utils::ros_time_to_seconds (C++ function)</a>
 </li>
-      <li><a href="generated/function_ros__vectors_8hpp_1a361635a6dbad79b8734e6394aa42cd0d.html#_CPPv4I0EN7rko_lio9ros_utils25ros_xyz_to_eigen_vector3dEN5Eigen8Vector3dERK1T">rko_lio::ros_utils::ros_xyz_to_eigen_vector3d (C++ function)</a>
+      <li><a href="generated/function_ros__vectors_8hpp_1a3c96f574e69c58072d61040d978d9eb1.html#_CPPv4I0EN7rko_lio3ros5utils25ros_xyz_to_eigen_vector3dEN5Eigen8Vector3dERK1T">rko_lio::ros::utils::ros_xyz_to_eigen_vector3d (C++ function)</a>
 </li>
-      <li><a href="generated/function_transforms_8hpp_1a2fe9738bc742c3ea7bc942e00be5b6fc.html#_CPPv4N7rko_lio9ros_utils14sophus_to_poseERKN6Sophus4SE3dE">rko_lio::ros_utils::sophus_to_pose (C++ function)</a>
+      <li><a href="generated/function_transforms_8hpp_1a5014dc97c9b0a0f693ccfcda33df8f3f.html#_CPPv4N7rko_lio3ros5utils14sophus_to_poseERKN6Sophus4SE3dE">rko_lio::ros::utils::sophus_to_pose (C++ function)</a>
 </li>
-      <li><a href="generated/function_transforms_8hpp_1abb6e8fc75669251dab21b66c068dcbb9.html#_CPPv4N7rko_lio9ros_utils19sophus_to_transformERKN6Sophus4SE3dE">rko_lio::ros_utils::sophus_to_transform (C++ function)</a>
+      <li><a href="generated/function_transforms_8hpp_1a4af614ba2c6c05bda16ac0eb87023891.html#_CPPv4N7rko_lio3ros5utils19sophus_to_transformERKN6Sophus4SE3dE">rko_lio::ros::utils::sophus_to_transform (C++ function)</a>
 </li>
-      <li><a href="generated/function_transforms_8hpp_1a2e0e7e335974020f9500bc3403eee8be.html#_CPPv4I0EN7rko_lio9ros_utils19transform_to_sophusEN6Sophus3SE3I6ScalarEERKN13geometry_msgs3msg16TransformStampedE">rko_lio::ros_utils::transform_to_sophus (C++ function)</a>
+      <li><a href="generated/function_transforms_8hpp_1a30f2577c606faf43523beb7b3b8fd4c3.html#_CPPv4I0EN7rko_lio3ros5utils19transform_to_sophusEN6Sophus3SE3I6ScalarEERKN13geometry_msgs3msg16TransformStampedE">rko_lio::ros::utils::transform_to_sophus (C++ function)</a>
 </li>
-      <li><a href="generated/typedef_point__cloud__read_8cpp_1ab5c0fc527485b86fef66ef94947405e7.html#_CPPv4N7rko_lio9ros_utils14Vector3dVectorE">rko_lio::ros_utils::Vector3dVector (C++ type)</a>
+      <li><a href="generated/typedef_point__cloud__read_8cpp_1adc86f9a4afa9e7b04db32c33665d446f.html#_CPPv4N7rko_lio3ros5utils14Vector3dVectorE">rko_lio::ros::utils::Vector3dVector (C++ type)</a>
+</li>
+      <li><a href="python/rko_lio.dataloaders.rosbag.html#rko_lio.dataloaders.rosbag.RosbagDataLoader">RosbagDataLoader (class in rko_lio.dataloaders.rosbag)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -678,6 +813,26 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="python/rko_lio.lio.html#rko_lio.lio.LIOConfig.to_dict">to_dict() (rko_lio.lio.LIOConfig method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="python/rko_lio.util.html#rko_lio.util.transform_to_quat_xyzw_xyz">transform_to_quat_xyzw_xyz() (in module rko_lio.util)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="python/rko_lio.cli.html#rko_lio.cli.version_callback">version_callback() (in module rko_lio.cli)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="python/rko_lio.util.html#rko_lio.util.warning">warning() (in module rko_lio.util)</a>
 </li>
   </ul></td>
 </tr></table>

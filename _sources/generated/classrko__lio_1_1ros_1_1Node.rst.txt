@@ -3,7 +3,7 @@
 Class Node
 ==========
 
-- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_node.hpp`
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_node.hpp`
 
 
 Inheritance Relationships

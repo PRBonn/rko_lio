@@ -10,7 +10,7 @@
     <includes local="no">stdexcept</includes>
     <incdepgraph>
       <node id="1">
-        <label>/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/process_timestamps.cpp</label>
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.cpp</label>
         <link refid="process__timestamps_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -207,6 +207,6 @@
 <codeline lineno="122"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="123"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/process_timestamps.cpp"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.cpp"/>
   </compounddef>
 </doxygen>

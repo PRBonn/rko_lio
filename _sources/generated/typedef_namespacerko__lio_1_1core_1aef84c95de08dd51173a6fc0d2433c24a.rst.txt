@@ -3,7 +3,7 @@
 Typedef rko_lio::core::VoxelBlock
 =================================
 
-- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_sparse_voxel_grid.hpp`
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_sparse_voxel_grid.hpp`
 
 
 Typedef Documentation

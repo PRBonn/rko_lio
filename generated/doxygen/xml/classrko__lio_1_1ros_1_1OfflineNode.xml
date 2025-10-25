@@ -4,9 +4,9 @@
     <compoundname>rko_lio::ros::OfflineNode</compoundname>
     <basecompoundref refid="classrko__lio_1_1ros_1_1Node" prot="public" virt="non-virtual">rko_lio::ros::Node</basecompoundref>
     <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1OfflineNode_1afbae00f391ffba827f2a75374e33bda6" prot="public" static="no" mutable="no">
-        <type>std::unique_ptr&lt; <ref refid="classrko__lio_1_1ros__utils_1_1BufferableBag" kindref="compound">ros_utils::BufferableBag</ref> &gt;</type>
-        <definition>std::unique_ptr&lt;ros_utils::BufferableBag&gt; rko_lio::ros::OfflineNode::bag</definition>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1OfflineNode_1a492b765756e4d00b19d84c3cc8d5de93" prot="public" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag" kindref="compound">utils::BufferableBag</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;utils::BufferableBag&gt; rko_lio::ros::OfflineNode::bag</definition>
         <argsstring></argsstring>
         <name>bag</name>
         <qualifiedname>rko_lio::ros::OfflineNode::bag</qualifiedname>
@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" line="67" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" bodystart="67" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" line="67" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" bodystart="67" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1OfflineNode_1ad3f8b534140952b2ca4e1d3ba742147d" prot="public" static="no" mutable="no">
         <type>BagProgressPublisher::SharedPtr</type>
@@ -30,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" line="69" column="35" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" bodystart="69" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" line="69" column="35" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" bodystart="69" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1OfflineNode_1a7a831770cf30cf103bb2a2274c1b1b70" prot="public" static="no" mutable="no">
         <type>float</type>
@@ -45,7 +45,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" line="71" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" bodystart="71" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" line="71" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" bodystart="71" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1OfflineNode_1a281e32f4e836a057a2a390e83e5ace1b" prot="public" static="no" mutable="no">
         <type>float</type>
@@ -60,7 +60,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" line="72" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" bodystart="72" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" line="72" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" bodystart="72" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -80,7 +80,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" line="74" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" bodystart="74" bodyend="84"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" line="74" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" bodystart="74" bodyend="84"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1OfflineNode_1a82769092823a22fb97af2d54609e0f55" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -94,7 +94,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" line="86" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" bodystart="86" bodyend="125"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" line="86" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" bodystart="86" bodyend="125"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -125,11 +125,11 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" line="65" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" bodystart="65" bodyend="126"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" line="65" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" bodystart="65" bodyend="126"/>
     <listofallmembers>
       <member refid="classrko__lio_1_1ros_1_1Node_1a6cc5f592565fb6e05e5d7d354ee8a592" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>atomic_can_process</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1aa80856c9108ba7be5fa3cfc873516d7c" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>atomic_node_running</name></member>
-      <member refid="classrko__lio_1_1ros_1_1OfflineNode_1afbae00f391ffba827f2a75374e33bda6" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>bag</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a492b765756e4d00b19d84c3cc8d5de93" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>bag</name></member>
       <member refid="classrko__lio_1_1ros_1_1OfflineNode_1ad3f8b534140952b2ca4e1d3ba742147d" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>bag_progress_publisher</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1ac0daf74fae41e922c6d8264de3fc68ad" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>base_frame</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1a39acaf291c8df92ddb7d3a8077a341a3" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>buffer_mutex</name></member>

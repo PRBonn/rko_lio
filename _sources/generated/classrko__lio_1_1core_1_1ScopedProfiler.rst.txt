@@ -3,7 +3,7 @@
 Class ScopedProfiler
 ====================
 
-- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_profiler.hpp`
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_profiler.hpp`
 
 
 Nested Relationships

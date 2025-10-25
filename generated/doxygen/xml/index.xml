@@ -4,20 +4,20 @@
     <member refid="structrko__lio_1_1core_1_1AccelInfo_1a5c998a8898cf8363ad918163fc3d4860" kind="variable"><name>accel_mag_variance</name></member>
     <member refid="structrko__lio_1_1core_1_1AccelInfo_1ab7be49ea3197b57a929303e74d7f8913" kind="variable"><name>local_gravity_estimate</name></member>
   </compound>
-  <compound refid="classrko__lio_1_1ros__utils_1_1BufferableBag" kind="class"><name>rko_lio::ros_utils::BufferableBag</name>
-    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1a79b817823bd8c20e06254bda83640abf" kind="variable"><name>tf_bridge_</name></member>
-    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1a7443def715adbb468e2c52325e69bf27" kind="variable"><name>bag_reader_</name></member>
-    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1a40a3f8cfa9b037b3302d11ae029a0c3d" kind="variable"><name>buffer_</name></member>
-    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1adfad445ab0171fc2f0d9d061fb0eef1d" kind="variable"><name>buffer_size_</name></member>
-    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1a6aa0761452512bee7c2ac6d07af38c30" kind="variable"><name>topics_</name></member>
-    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1a7018cd27fa577fedb92062e3f6acdcf9" kind="variable"><name>message_count_</name></member>
-    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1a525e3047865a43047735e4a9ae8d7a8e" kind="function"><name>BufferableBag</name></member>
-    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1a2c78ae0dcfa6340e2e3e8bcd17a53ffd" kind="function"><name>publish_tf_static</name></member>
-    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1ab323ef1c8dcfaf7e20f449edc7d34a84" kind="function"><name>message_count</name></member>
-    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1ad0f9a372d77630bca0e55225a208e50d" kind="function"><name>BufferMessages</name></member>
-    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1a473b9a840910b2b0ee4da50e9fe106ea" kind="function"><name>PopNextMessage</name></member>
-    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1ae927d099b70314a3c7955c4177e5fbf2" kind="function"><name>finished</name></member>
-    <member refid="classrko__lio_1_1ros__utils_1_1BufferableBag_1ac472d74339dded88bedad6cca297ac31" kind="function"><name>close</name></member>
+  <compound refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag" kind="class"><name>rko_lio::ros::utils::BufferableBag</name>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a669e909f5143f5d617647cc657c39ec6" kind="variable"><name>tf_bridge_</name></member>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a4601dd851dfca3b4d52866b70fea8402" kind="variable"><name>bag_reader_</name></member>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1adabaf3c114aca738bc1c57234107aca7" kind="variable"><name>buffer_</name></member>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a9ffbf02e26f537eb15e0145d817eaacf" kind="variable"><name>buffer_size_</name></member>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1adf970f1c1e8c83d1c2e29b85d173d1cb" kind="variable"><name>topics_</name></member>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a1aece11fbc2332f540154a0e5f756fc1" kind="variable"><name>message_count_</name></member>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1ad7c83c873e85a905594aafb26d668b27" kind="function"><name>BufferableBag</name></member>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1aaa50d6e8b4d549370be1939d4e8aea4f" kind="function"><name>publish_tf_static</name></member>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1ac3a399562a403b1635a637d7782cb876" kind="function"><name>message_count</name></member>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1af7576b488166fddaa1ab0fdb1dc0e4fe" kind="function"><name>BufferMessages</name></member>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a3c912f950a8411715d2194b6cbe04866" kind="function"><name>PopNextMessage</name></member>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a67df53ba64b89ba36905b177a7ab2463" kind="function"><name>finished</name></member>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a7498145b5a13543c1f920f416034f970" kind="function"><name>close</name></member>
   </compound>
   <compound refid="structrko__lio_1_1core_1_1LIO_1_1Config" kind="struct"><name>rko_lio::core::LIO::Config</name>
     <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a047439a48b3c8afebe95407926efbada" kind="variable"><name>deskew</name></member>
@@ -141,7 +141,7 @@
     <member refid="classrko__lio_1_1ros_1_1Node_1a5e3e6f7bcc4e2100c92cc701a1ceea31" kind="function"><name>operator=</name></member>
   </compound>
   <compound refid="classrko__lio_1_1ros_1_1OfflineNode" kind="class"><name>rko_lio::ros::OfflineNode</name>
-    <member refid="classrko__lio_1_1ros_1_1OfflineNode_1afbae00f391ffba827f2a75374e33bda6" kind="variable"><name>bag</name></member>
+    <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a492b765756e4d00b19d84c3cc8d5de93" kind="variable"><name>bag</name></member>
     <member refid="classrko__lio_1_1ros_1_1OfflineNode_1ad3f8b534140952b2ca4e1d3ba742147d" kind="variable"><name>bag_progress_publisher</name></member>
     <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a7a831770cf30cf103bb2a2274c1b1b70" kind="variable"><name>total_bag_msgs</name></member>
     <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a281e32f4e836a057a2a390e83e5ace1b" kind="variable"><name>processed_bag_msgs</name></member>
@@ -215,12 +215,12 @@
     <member refid="structrko__lio_1_1core_1_1State_1a4e4b51eb997a097ab86dbc5199722e40" kind="variable"><name>angular_velocity</name></member>
     <member refid="structrko__lio_1_1core_1_1State_1ad7e951af4dd757e904af192e1f2b7c90" kind="variable"><name>linear_acceleration</name></member>
   </compound>
-  <compound refid="structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge" kind="struct"><name>rko_lio::ros_utils::BufferableBag::TFBridge</name>
-    <member refid="structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge_1a4a431f14588e94b5b73c39831df4fe6e" kind="variable"><name>tf_broadcaster</name></member>
-    <member refid="structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge_1a3ac0d3183342ba88de7a483499f36218" kind="variable"><name>tf_static_broadcaster</name></member>
-    <member refid="structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge_1a7be4a6bf5c7685640d072db8bb9e038a" kind="variable"><name>serializer</name></member>
-    <member refid="structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge_1ac431433a8b63201631c564600f37a076" kind="function"><name>TFBridge</name></member>
-    <member refid="structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge_1a9c125449db10aedd47101773459e860a" kind="function"><name>ProcessTFMessage</name></member>
+  <compound refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge" kind="struct"><name>rko_lio::ros::utils::BufferableBag::TFBridge</name>
+    <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1a16269296f55efbb230771f82c1ef41b7" kind="variable"><name>tf_broadcaster</name></member>
+    <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1a8bb752d6cf1909fa19b31081a0825c84" kind="variable"><name>tf_static_broadcaster</name></member>
+    <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1a6debf60fdb1f7f3ce4a492292b8d05c0" kind="variable"><name>serializer</name></member>
+    <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1aa00e50e7312bacad27d26522536235cc" kind="function"><name>TFBridge</name></member>
+    <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1a6dff851eea2ab6d57ac847f4bb6a18d1" kind="function"><name>ProcessTFMessage</name></member>
   </compound>
   <compound refid="structrko__lio_1_1core_1_1Timer" kind="struct"><name>rko_lio::core::Timer</name>
     <member refid="structrko__lio_1_1core_1_1Timer_1aa5952c4544711526513ecb9dd327b909" kind="typedef"><name>Clock</name></member>
@@ -244,9 +244,9 @@
   </compound>
   <compound refid="namespace_0d16" kind="namespace"><name>@16</name>
   </compound>
-  <compound refid="namespace_0d2" kind="namespace"><name>@2</name>
+  <compound refid="namespace_0d19" kind="namespace"><name>@19</name>
   </compound>
-  <compound refid="namespace_0d20" kind="namespace"><name>@20</name>
+  <compound refid="namespace_0d2" kind="namespace"><name>@2</name>
   </compound>
   <compound refid="namespace_0d5" kind="namespace"><name>@5</name>
   </compound>
@@ -273,22 +273,22 @@
   </compound>
   <compound refid="namespacerko__lio_1_1ros" kind="namespace"><name>rko_lio::ros</name>
   </compound>
-  <compound refid="namespacerko__lio_1_1ros__utils" kind="namespace"><name>rko_lio::ros_utils</name>
-    <member refid="point__cloud__read_8cpp_1ab5c0fc527485b86fef66ef94947405e7" kind="typedef"><name>Vector3dVector</name></member>
-    <member refid="point__cloud__read_8cpp_1ac5af74e2ce9903585e656484f3ae50aa" kind="typedef"><name>PointCloud2</name></member>
-    <member refid="point__cloud__read_8cpp_1a7c03cf24cfb52af4d4beed1321f48710" kind="typedef"><name>PointField</name></member>
-    <member refid="point__cloud__read_8cpp_1aadaf97a8a3e4a9b43814c3e9390d6fe4" kind="function"><name>point_cloud2_to_eigen</name></member>
-    <member refid="point__cloud__read_8cpp_1a91531bdd51b54763f6b79ca1b76440e3" kind="function"><name>point_cloud2_to_eigen_with_timestamps</name></member>
-    <member refid="point__cloud__read_8hpp_1a3ad9753d3bfe9abb48f53936563b5dca" kind="function"><name>point_cloud2_to_eigen_with_timestamps</name></member>
-    <member refid="point__cloud__write_8cpp_1aa1127a7edfcc13ff2c4ac7861761bfd5" kind="function"><name>eigen_to_point_cloud2</name></member>
-    <member refid="point__cloud__write_8hpp_1a10538ea744e5f5755b53206115dcb62d" kind="function"><name>eigen_to_point_cloud2</name></member>
-    <member refid="ros__vectors_8hpp_1adc80b1d89da8ab16fb400b64f8de6444" kind="function"><name>eigen_vector3d_to_ros_xyz</name></member>
-    <member refid="ros__vectors_8hpp_1a361635a6dbad79b8734e6394aa42cd0d" kind="function"><name>ros_xyz_to_eigen_vector3d</name></member>
-    <member refid="time_8hpp_1a4d1f77578095092778c1a3299d79aa44" kind="function"><name>ros_time_to_seconds</name></member>
-    <member refid="transforms_8hpp_1a2fe9738bc742c3ea7bc942e00be5b6fc" kind="function"><name>sophus_to_pose</name></member>
-    <member refid="transforms_8hpp_1abb6e8fc75669251dab21b66c068dcbb9" kind="function"><name>sophus_to_transform</name></member>
-    <member refid="transforms_8hpp_1a2e0e7e335974020f9500bc3403eee8be" kind="function"><name>transform_to_sophus</name></member>
-    <member refid="transforms_8hpp_1a372c4216c5e01ff6453368d96396068f" kind="function"><name>get_transform</name></member>
+  <compound refid="namespacerko__lio_1_1ros_1_1utils" kind="namespace"><name>rko_lio::ros::utils</name>
+    <member refid="point__cloud__read_8cpp_1adc86f9a4afa9e7b04db32c33665d446f" kind="typedef"><name>Vector3dVector</name></member>
+    <member refid="point__cloud__read_8cpp_1ae6e9f928a853730fee4156c59d31b232" kind="typedef"><name>PointCloud2</name></member>
+    <member refid="point__cloud__read_8cpp_1ac033ab6bd6b1f2e03682506ba229b194" kind="typedef"><name>PointField</name></member>
+    <member refid="point__cloud__read_8cpp_1aabc74c0b21478cc1c3b29cecba96104f" kind="function"><name>point_cloud2_to_eigen</name></member>
+    <member refid="point__cloud__read_8cpp_1aace5b499e84699d48b9d23da41a5da43" kind="function"><name>point_cloud2_to_eigen_with_timestamps</name></member>
+    <member refid="point__cloud__read_8hpp_1ad5be96982e1e1956be221378e4c290bf" kind="function"><name>point_cloud2_to_eigen_with_timestamps</name></member>
+    <member refid="point__cloud__write_8cpp_1aef4df645b88181b1578767467987ad07" kind="function"><name>eigen_to_point_cloud2</name></member>
+    <member refid="point__cloud__write_8hpp_1a972f8f407dce7b1824199bd2fe68aca5" kind="function"><name>eigen_to_point_cloud2</name></member>
+    <member refid="ros__vectors_8hpp_1a89cb23044180614fae3f2f0a74ae4a4b" kind="function"><name>eigen_vector3d_to_ros_xyz</name></member>
+    <member refid="ros__vectors_8hpp_1a3c96f574e69c58072d61040d978d9eb1" kind="function"><name>ros_xyz_to_eigen_vector3d</name></member>
+    <member refid="time_8hpp_1a2a59e06612a3104e6a1bdd73138ce24c" kind="function"><name>ros_time_to_seconds</name></member>
+    <member refid="transforms_8hpp_1a5014dc97c9b0a0f693ccfcda33df8f3f" kind="function"><name>sophus_to_pose</name></member>
+    <member refid="transforms_8hpp_1a4af614ba2c6c05bda16ac0eb87023891" kind="function"><name>sophus_to_transform</name></member>
+    <member refid="transforms_8hpp_1a30f2577c606faf43523beb7b3b8fd4c3" kind="function"><name>transform_to_sophus</name></member>
+    <member refid="transforms_8hpp_1a86fa67824d17062f6dc8c767beb6b287" kind="function"><name>get_transform</name></member>
   </compound>
   <compound refid="namespacestd" kind="namespace"><name>std</name>
   </compound>
@@ -334,30 +334,26 @@
   </compound>
   <compound refid="point__cloud__write_8hpp" kind="file"><name>point_cloud_write.hpp</name>
   </compound>
-  <compound refid="ros__utils_8hpp" kind="file"><name>ros_utils.hpp</name>
-  </compound>
   <compound refid="ros__vectors_8hpp" kind="file"><name>ros_vectors.hpp</name>
   </compound>
-  <compound refid="rosbag__utils_8cpp" kind="file"><name>rosbag_utils.cpp</name>
+  <compound refid="rosbag_8cpp" kind="file"><name>rosbag.cpp</name>
   </compound>
-  <compound refid="rosbag__utils_8hpp" kind="file"><name>rosbag_utils.hpp</name>
+  <compound refid="rosbag_8hpp" kind="file"><name>rosbag.hpp</name>
   </compound>
   <compound refid="time_8hpp" kind="file"><name>time.hpp</name>
   </compound>
   <compound refid="transforms_8hpp" kind="file"><name>transforms.hpp</name>
   </compound>
+  <compound refid="utils_8hpp" kind="file"><name>utils.hpp</name>
+  </compound>
   <compound refid="deprecated" kind="page"><name>deprecated</name>
   </compound>
-  <compound refid="dir_fd68a9f31ee82e3a9ed2bc8a2d2d7410" kind="dir"><name>/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core</name>
+  <compound refid="dir_ced158e9e1bf300f9b2f74cfbeed53ea" kind="dir"><name>/home/runner/work/rko_lio/rko_lio/rko_lio/core</name>
   </compound>
-  <compound refid="dir_df511e5bd85cec96854b39d5e1c27aa8" kind="dir"><name>/home/runner/work/rko_lio/rko_lio/cpp</name>
+  <compound refid="dir_b63784844ef914a6b90a263c9af65f1e" kind="dir"><name>/home/runner/work/rko_lio/rko_lio/rko_lio</name>
   </compound>
-  <compound refid="dir_5a8cfea0e5022a70ade6e69caafb6d6b" kind="dir"><name>/home/runner/work/rko_lio/rko_lio/cpp/rko_lio</name>
+  <compound refid="dir_2a5026bce958500259a839b69814f966" kind="dir"><name>/home/runner/work/rko_lio/rko_lio/rko_lio/ros</name>
   </compound>
-  <compound refid="dir_66a0e909c6382f61079b2ad8a98b081b" kind="dir"><name>/home/runner/work/rko_lio/rko_lio/ros/rko_lio</name>
-  </compound>
-  <compound refid="dir_b6bc2876df5f51b64790622082ac4e8d" kind="dir"><name>/home/runner/work/rko_lio/rko_lio/ros</name>
-  </compound>
-  <compound refid="dir_9d835358343a55b184c94c7ceed5196a" kind="dir"><name>/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils</name>
+  <compound refid="dir_d450ad49c0261fa3fc859fa62c4c0d6f" kind="dir"><name>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils</name>
   </compound>
 </doxygenindex>

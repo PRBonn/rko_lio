@@ -18,7 +18,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="103" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="103" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="103" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="103" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a9cc9bd40427d206f8349bc330c40aa1f" prot="public" static="no" mutable="no">
         <type>size_t</type>
@@ -34,7 +34,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="106" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="106" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="106" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="106" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a0cf92444005352d71aca931390a9ead0" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -50,7 +50,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="109" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="109" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="109" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="109" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a670b666aa92cf07b19b8537bf3e9446a" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -66,7 +66,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="112" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="112" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="112" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="112" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a333f16a3ff952ee91e48e0d62dc23533" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -82,7 +82,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="115" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="115" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="115" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="115" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1af3ef0dac6d1484eac8aa0e91c5578f10" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -98,7 +98,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="118" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="118" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="118" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="118" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1ae2991e0e372427f93255231b3249b246" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -114,7 +114,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="121" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="121" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="121" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="121" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a9c90e5e455dc7946e69df5229d3ddce0" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -130,7 +130,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="124" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="124" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="124" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="124" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a5089f617d86e9ae45f524c23d322617a" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -146,7 +146,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="127" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="127" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="127" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="127" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a2d65fe516d188013b626c20f1bc583e2" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -162,7 +162,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="130" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="130" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="130" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="130" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a5f5b46b1671012993d30d61657d99714" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -178,7 +178,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="133" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="133" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="133" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="133" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1ae87229b29b2760d18c47d3b3c67c40ba" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -194,7 +194,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="136" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="136" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="136" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="136" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a6121d24b6a6e7f262bb6185a407f434d" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -210,7 +210,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="139" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="139" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="139" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="139" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -218,7 +218,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" line="101" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/lio.hpp" bodystart="101" bodyend="140"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="101" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="101" bodyend="140"/>
     <listofallmembers>
       <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1ae2991e0e372427f93255231b3249b246" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>convergence_criterion</name></member>
       <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a047439a48b3c8afebe95407926efbada" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>deskew</name></member>

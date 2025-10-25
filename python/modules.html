@@ -19,7 +19,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="rko_lio package" href="rko_lio.html" />
-    <link rel="prev" title="Python" href="../pages/python.html" />
+    <link rel="prev" title="Python - Dataloaders" href="../pages/python/dataloaders.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -63,12 +63,18 @@
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../pages/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pages/general/general.html">General details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pages/ros.html">ROS (C++)</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../pages/python.html">Python</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/primer.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/ros/ros.html">ROS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pages/python/python.html">Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../pages/python/setup.html">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/python/usage.html">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/python/dataloaders.html">Dataloaders</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Python API</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/config.html">Configuring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/core_dependencies.html">Dependencies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
 </ul>
 
@@ -107,7 +113,14 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="rko_lio.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="rko_lio.cli.html">rko_lio.cli module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.cli.html">rko_lio.cli module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.cli.html#rko_lio.cli.cli"><code class="docutils literal notranslate"><span class="pre">cli()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.cli.html#rko_lio.cli.dataloader_name_callback"><code class="docutils literal notranslate"><span class="pre">dataloader_name_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.cli.html#rko_lio.cli.dump_config_callback"><code class="docutils literal notranslate"><span class="pre">dump_config_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.cli.html#rko_lio.cli.parse_extrinsics_from_config"><code class="docutils literal notranslate"><span class="pre">parse_extrinsics_from_config()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.cli.html#rko_lio.cli.version_callback"><code class="docutils literal notranslate"><span class="pre">version_callback()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="rko_lio.lio.html">rko_lio.lio module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="rko_lio.lio.html#rko_lio.lio.LIO"><code class="docutils literal notranslate"><span class="pre">LIO</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="rko_lio.lio.html#rko_lio.lio.LIOConfig"><code class="docutils literal notranslate"><span class="pre">LIOConfig</span></code></a></li>
@@ -118,7 +131,16 @@
 <li class="toctree-l4"><a class="reference internal" href="rko_lio.scoped_profiler.html#rko_lio.scoped_profiler.ScopedProfiler"><code class="docutils literal notranslate"><span class="pre">ScopedProfiler</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="rko_lio.util.html">rko_lio.util module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.util.html">rko_lio.util module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.util.html#rko_lio.util.error"><code class="docutils literal notranslate"><span class="pre">error()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.util.html#rko_lio.util.error_and_exit"><code class="docutils literal notranslate"><span class="pre">error_and_exit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.util.html#rko_lio.util.height_colors_from_points"><code class="docutils literal notranslate"><span class="pre">height_colors_from_points()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.util.html#rko_lio.util.info"><code class="docutils literal notranslate"><span class="pre">info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.util.html#rko_lio.util.quat_xyzw_xyz_to_transform"><code class="docutils literal notranslate"><span class="pre">quat_xyzw_xyz_to_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.util.html#rko_lio.util.transform_to_quat_xyzw_xyz"><code class="docutils literal notranslate"><span class="pre">transform_to_quat_xyzw_xyz()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.util.html#rko_lio.util.warning"><code class="docutils literal notranslate"><span class="pre">warning()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="rko_lio.html#module-rko_lio">Module contents</a></li>
@@ -136,7 +158,7 @@
     <ul>
         <li>
           &larr;
-          <a href="../pages/python.html" title="Previous document">Python</a>
+          <a href="../pages/python/dataloaders.html" title="Previous document">Python - Dataloaders</a>
         </li>
         <li>
           <a href="rko_lio.html" title="Next document">rko_lio package</a>

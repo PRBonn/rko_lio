@@ -3,7 +3,7 @@
 Function rko_lio::core::voxel_down_sample
 =========================================
 
-- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_voxel_down_sample.cpp`
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_voxel_down_sample.cpp`
 
 
 Function Documentation

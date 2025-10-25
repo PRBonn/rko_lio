@@ -8,7 +8,7 @@
     <includes local="no">stdexcept</includes>
     <incdepgraph>
       <node id="1">
-        <label>/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_read.cpp</label>
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp</label>
         <link refid="point__cloud__read_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -54,7 +54,8 @@
       </node>
     </incdepgraph>
     <innernamespace refid="namespacerko__lio">rko_lio</innernamespace>
-    <innernamespace refid="namespacerko__lio_1_1ros__utils">rko_lio::ros_utils</innernamespace>
+    <innernamespace refid="namespacerko__lio_1_1ros">rko_lio::ros</innernamespace>
+    <innernamespace refid="namespacerko__lio_1_1ros_1_1utils">rko_lio::ros::utils</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -90,7 +91,7 @@
 <codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;functional&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdexcept&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros_utils<sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros::utils<sp/>{</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Vector3dVector<sp/>=<sp/>std::vector&lt;Eigen::Vector3d&gt;;</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">PointCloud2<sp/>=<sp/>sensor_msgs::msg::PointCloud2;</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">PointField<sp/>=<sp/>sensor_msgs::msg::PointField;</highlight></codeline>
@@ -163,8 +164,8 @@
 <codeline lineno="101"><highlight class="normal"></highlight></codeline>
 <codeline lineno="102"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{points,<sp/>raw_timestamps};</highlight></codeline>
 <codeline lineno="103"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="104"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros_utils</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros::utils</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_read.cpp"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp"/>
   </compounddef>
 </doxygen>

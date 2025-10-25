@@ -95,7 +95,7 @@
         </childnode>
       </node>
       <node id="1">
-        <label>/home/runner/work/rko_lio/rko_lio/ros/rko_lio/online_node.cpp</label>
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp</label>
         <link refid="online__node_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -258,6 +258,6 @@
 <codeline lineno="59"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;rclcpp_components/register_node_macro.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="60"><highlight class="normal">RCLCPP_COMPONENTS_REGISTER_NODE(<ref refid="classrko__lio_1_1ros_1_1OnlineNode" kindref="compound">rko_lio::ros::OnlineNode</ref>)</highlight></codeline>
     </programlisting>
-    <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/online_node.cpp"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp"/>
   </compounddef>
 </doxygen>

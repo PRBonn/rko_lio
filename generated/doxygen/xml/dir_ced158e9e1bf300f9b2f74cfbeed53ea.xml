@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_ced158e9e1bf300f9b2f74cfbeed53ea" kind="dir">
+    <compoundname>/home/runner/work/rko_lio/rko_lio/rko_lio/core</compoundname>
+    <innerfile refid="lio_8cpp">lio.cpp</innerfile>
+    <innerfile refid="lio_8hpp">lio.hpp</innerfile>
+    <innerfile refid="process__timestamps_8cpp">process_timestamps.cpp</innerfile>
+    <innerfile refid="process__timestamps_8hpp">process_timestamps.hpp</innerfile>
+    <innerfile refid="profiler_8hpp">profiler.hpp</innerfile>
+    <innerfile refid="sparse__voxel__grid_8cpp">sparse_voxel_grid.cpp</innerfile>
+    <innerfile refid="sparse__voxel__grid_8hpp">sparse_voxel_grid.hpp</innerfile>
+    <innerfile refid="util_8hpp">util.hpp</innerfile>
+    <innerfile refid="voxel__down__sample_8cpp">voxel_down_sample.cpp</innerfile>
+    <innerfile refid="voxel__down__sample_8hpp">voxel_down_sample.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/"/>
+  </compounddef>
+</doxygen>

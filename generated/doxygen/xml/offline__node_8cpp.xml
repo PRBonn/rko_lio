@@ -4,7 +4,7 @@
     <compoundname>offline_node.cpp</compoundname>
     <includes refid="node_8hpp" local="yes">node.hpp</includes>
     <includes refid="profiler_8hpp" local="yes">rko_lio/core/profiler.hpp</includes>
-    <includes refid="rosbag__utils_8hpp" local="yes">rko_lio/ros_utils/rosbag_utils.hpp</includes>
+    <includes refid="rosbag_8hpp" local="yes">rko_lio/ros/utils/rosbag.hpp</includes>
     <includes local="no">std_msgs/msg/float32_multi_array.hpp</includes>
     <incdepgraph>
       <node id="3">
@@ -96,7 +96,7 @@
         </childnode>
       </node>
       <node id="1">
-        <label>/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp</label>
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp</label>
         <link refid="offline__node_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -108,8 +108,8 @@
         </childnode>
       </node>
       <node id="34">
-        <label>rko_lio/ros_utils/rosbag_utils.hpp</label>
-        <link refid="rosbag__utils_8hpp_source"/>
+        <label>rko_lio/ros/utils/rosbag.hpp</label>
+        <link refid="rosbag_8hpp_source"/>
         <childnode refid="35" relation="include">
         </childnode>
         <childnode refid="36" relation="include">
@@ -269,7 +269,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" line="129" column="5" bodyfile="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp" bodystart="129" bodyend="136"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" line="129" column="5" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" bodystart="129" bodyend="136"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -303,7 +303,7 @@
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;node.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="profiler_8hpp" kindref="compound">rko_lio/core/profiler.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;rko_lio/ros_utils/rosbag_utils.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;rko_lio/ros/utils/rosbag.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>other</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;std_msgs/msg/float32_multi_array.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
@@ -343,7 +343,7 @@
 <codeline lineno="64"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros<sp/>{</highlight></codeline>
 <codeline lineno="65" refid="classrko__lio_1_1ros_1_1OfflineNode" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrko__lio_1_1ros_1_1OfflineNode" kindref="compound">OfflineNode</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1ros_1_1Node" kindref="compound">Node</ref><sp/>{</highlight></codeline>
 <codeline lineno="66"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/>std::unique_ptr&lt;ros_utils::BufferableBag&gt;<sp/>bag;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/>std::unique_ptr&lt;utils::BufferableBag&gt;<sp/>bag;</highlight></codeline>
 <codeline lineno="68"><highlight class="normal"></highlight></codeline>
 <codeline lineno="69"><highlight class="normal"><sp/><sp/>BagProgressPublisher::SharedPtr<sp/>bag_progress_publisher;</highlight></codeline>
 <codeline lineno="70"><highlight class="normal"></highlight></codeline>
@@ -355,9 +355,9 @@
 <codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>max_lidar_buffer_size<sp/>=<sp/>100;</highlight></codeline>
 <codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>bag<sp/>reading</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>tf2::Duration<sp/>skip_to_time<sp/>=<sp/>tf2::durationFromSec(node-&gt;declare_parameter&lt;</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&gt;(</highlight><highlight class="stringliteral">&quot;skip_to_time&quot;</highlight><highlight class="normal">,<sp/>0.0));</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>bag<sp/>=<sp/>std::make_unique&lt;ros_utils::BufferableBag&gt;(node-&gt;declare_parameter&lt;std::string&gt;(</highlight><highlight class="stringliteral">&quot;bag_path&quot;</highlight><highlight class="normal">),</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::make_shared&lt;ros_utils::BufferableBag::TFBridge&gt;(node),</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;{imu_topic,<sp/>lidar_topic},<sp/>skip_to_time);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>bag<sp/>=<sp/>std::make_unique&lt;utils::BufferableBag&gt;(node-&gt;declare_parameter&lt;std::string&gt;(</highlight><highlight class="stringliteral">&quot;bag_path&quot;</highlight><highlight class="normal">),</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::make_shared&lt;utils::BufferableBag::TFBridge&gt;(node),</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;{imu_topic,<sp/>lidar_topic},<sp/>skip_to_time);</highlight></codeline>
 <codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>total_bag_msgs<sp/>=<sp/>bag-&gt;message_count();</highlight></codeline>
 <codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>bag_progress_publisher<sp/>=<sp/>node-&gt;create_publisher&lt;std_msgs::msg::Float32MultiArray&gt;(</highlight><highlight class="stringliteral">&quot;/rko_lio/bag_progress&quot;</highlight><highlight class="normal">,<sp/>10);</highlight></codeline>
 <codeline lineno="84"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
@@ -414,6 +414,6 @@
 <codeline lineno="135"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
 <codeline lineno="136"><highlight class="normal">}</highlight></codeline>
     </programlisting>
-    <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/offline_node.cpp"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp"/>
   </compounddef>
 </doxygen>

@@ -1,0 +1,107 @@
+
+.. _file__home_runner_work_rko_lio_rko_lio_rko_lio_core_profiler.hpp:
+
+File profiler.hpp
+=================
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_rko_lio_rko_lio_rko_lio_core>` (``/home/runner/work/rko_lio/rko_lio/rko_lio/core``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+
+Utility classes for scoped timing and profiling measurements. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp``)
+----------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file__home_runner_work_rko_lio_rko_lio_rko_lio_core_profiler.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+DeprecatedThis profiling utility is deprecated and scheduled for removal in a future release. A more fully featured alternative, likely tracy, will be used instead.
+
+
+Contains the ScopedProfiler RAII class for timing named code blocks, a simple Timer class for quick timing prints, and the SCOPED_PROFILER macro for convenience. 
+
+
+
+
+Includes
+--------
+
+
+- ``chrono``
+
+- ``iomanip``
+
+- ``iostream``
+
+- ``string``
+
+- ``unordered_map``
+
+- ``utility``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_lio.cpp`
+
+- :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_node.cpp`
+
+- :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_offline_node.cpp`
+
+- :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_online_node.cpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_rko_lio`
+
+- :ref:`namespace_rko_lio__core`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo`
+
+- :ref:`exhale_struct_structrko__lio_1_1core_1_1Timer`
+
+- :ref:`exhale_class_classrko__lio_1_1core_1_1ScopedProfiler`
+
+- :ref:`exhale_class_classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_profiler_8hpp_1a2f18db18bca26cafa95e9719de4a41ef`
+
+- :ref:`exhale_define_profiler_8hpp_1a1a31e7e398f6a2fa20e41c0b5a02cdc4`
+
+- :ref:`exhale_define_profiler_8hpp_1af9e43cc52cb0d854f3588064f9f97cd2`
+

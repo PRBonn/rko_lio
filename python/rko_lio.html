@@ -63,12 +63,18 @@
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../pages/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pages/general/general.html">General details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pages/ros.html">ROS (C++)</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../pages/python.html">Python</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/primer.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/ros/ros.html">ROS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pages/python/python.html">Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../pages/python/setup.html">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/python/usage.html">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/python/dataloaders.html">Dataloaders</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="modules.html">Python API</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/config.html">Configuring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/core_dependencies.html">Dependencies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
 </ul>
 
@@ -114,9 +120,23 @@
 <li class="toctree-l4"><a class="reference internal" href="rko_lio.dataloaders.get_dataloader.html#rko_lio.dataloaders.get_dataloader.guess_dataloader"><code class="docutils literal notranslate"><span class="pre">guess_dataloader()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="rko_lio.dataloaders.helipr.html">rko_lio.dataloaders.helipr module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="rko_lio.dataloaders.raw.html">rko_lio.dataloaders.raw module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="rko_lio.dataloaders.rosbag.html">rko_lio.dataloaders.rosbag module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.dataloaders.helipr.html">rko_lio.dataloaders.helipr module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.dataloaders.helipr.html#helipr-dataloader">HeLiPR Dataloader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.dataloaders.helipr.html#rko_lio.dataloaders.helipr.HeliprDataLoader"><code class="docutils literal notranslate"><span class="pre">HeliprDataLoader</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.dataloaders.helipr.html#rko_lio.dataloaders.helipr.parse_extrinsic_txt"><code class="docutils literal notranslate"><span class="pre">parse_extrinsic_txt()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.dataloaders.helipr.html#rko_lio.dataloaders.helipr.parse_lidar_extrinsic"><code class="docutils literal notranslate"><span class="pre">parse_lidar_extrinsic()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.dataloaders.raw.html">rko_lio.dataloaders.raw module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.dataloaders.raw.html#raw-dataloader">Raw Dataloader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.dataloaders.raw.html#rko_lio.dataloaders.raw.RawDataLoader"><code class="docutils literal notranslate"><span class="pre">RawDataLoader</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.dataloaders.rosbag.html">rko_lio.dataloaders.rosbag module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.dataloaders.rosbag.html#rosbag-dataloader">Rosbag Dataloader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.dataloaders.rosbag.html#rko_lio.dataloaders.rosbag.RosbagDataLoader"><code class="docutils literal notranslate"><span class="pre">RosbagDataLoader</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="rko_lio.dataloaders.html#module-rko_lio.dataloaders">Module contents</a></li>
@@ -129,7 +149,14 @@
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="rko_lio.cli.html">rko_lio.cli module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rko_lio.cli.html">rko_lio.cli module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rko_lio.cli.html#rko_lio.cli.cli"><code class="docutils literal notranslate"><span class="pre">cli()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rko_lio.cli.html#rko_lio.cli.dataloader_name_callback"><code class="docutils literal notranslate"><span class="pre">dataloader_name_callback()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rko_lio.cli.html#rko_lio.cli.dump_config_callback"><code class="docutils literal notranslate"><span class="pre">dump_config_callback()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rko_lio.cli.html#rko_lio.cli.parse_extrinsics_from_config"><code class="docutils literal notranslate"><span class="pre">parse_extrinsics_from_config()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rko_lio.cli.html#rko_lio.cli.version_callback"><code class="docutils literal notranslate"><span class="pre">version_callback()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="rko_lio.lio.html">rko_lio.lio module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="rko_lio.lio.html#rko_lio.lio.LIO"><code class="docutils literal notranslate"><span class="pre">LIO</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="rko_lio.lio.html#rko_lio.lio.LIO.add_imu_measurement"><code class="docutils literal notranslate"><span class="pre">LIO.add_imu_measurement()</span></code></a></li>
@@ -156,7 +183,16 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="rko_lio.util.html">rko_lio.util module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rko_lio.util.html">rko_lio.util module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rko_lio.util.html#rko_lio.util.error"><code class="docutils literal notranslate"><span class="pre">error()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rko_lio.util.html#rko_lio.util.error_and_exit"><code class="docutils literal notranslate"><span class="pre">error_and_exit()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rko_lio.util.html#rko_lio.util.height_colors_from_points"><code class="docutils literal notranslate"><span class="pre">height_colors_from_points()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rko_lio.util.html#rko_lio.util.info"><code class="docutils literal notranslate"><span class="pre">info()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rko_lio.util.html#rko_lio.util.quat_xyzw_xyz_to_transform"><code class="docutils literal notranslate"><span class="pre">quat_xyzw_xyz_to_transform()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rko_lio.util.html#rko_lio.util.transform_to_quat_xyzw_xyz"><code class="docutils literal notranslate"><span class="pre">transform_to_quat_xyzw_xyz()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rko_lio.util.html#rko_lio.util.warning"><code class="docutils literal notranslate"><span class="pre">warning()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Namespace rko_lio::ros::utils &#8212; RKO-LIO: Lidar-inertial odometry without sensor-specific modeling</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=f6a572b4" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=56c4699f" />
+    <script src="../_static/documentation_options.js?v=ca7ad2ea"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Namespace std" href="namespace_std.html" />
+    <link rel="prev" title="Namespace rko_lio::ros" href="namespace_rko_lio__ros.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">RKO-LIO</a></h1>
+
+
+
+<p class="blurb">Lidar-inertial odometry</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=PRBonn&repo=rko_lio&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/primer.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/data.html">Data</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pages/ros/ros.html">ROS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../pages/ros/setup.html">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/ros/usage.html">Usage</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../__PACKAGE.html">ROS package.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/changelog_literal.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/python/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/config.html">Configuring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/core_dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://index.ros.org/p/rko_lio/">ROS Index</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/rko-lio/">PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://github.com/PRBonn/rko_lio">GitHub</a></li>
+    
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="namespace-rko-lio-ros-utils">
+<span id="id1"></span><h1>Namespace rko_lio::ros::utils<a class="headerlink" href="#namespace-rko-lio-ros-utils" title="Link to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#classes" id="id2">Classes</a></p></li>
+<li><p><a class="reference internal" href="#functions" id="id3">Functions</a></p></li>
+<li><p><a class="reference internal" href="#typedefs" id="id4">Typedefs</a></p></li>
+</ul>
+</nav>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge.html#exhale-struct-structrko-lio-1-1ros-1-1utils-1-1bufferablebag-1-1tfbridge"><span class="std std-ref">Struct BufferableBag::TFBridge</span></a></p></li>
+<li><p><a class="reference internal" href="classrko__lio_1_1ros_1_1utils_1_1BufferableBag.html#exhale-class-classrko-lio-1-1ros-1-1utils-1-1bufferablebag"><span class="std std-ref">Class BufferableBag</span></a></p></li>
+</ul>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="function_point__cloud__write_8cpp_1aef4df645b88181b1578767467987ad07.html#exhale-function-point-cloud-write-8cpp-1aef4df645b88181b1578767467987ad07"><span class="std std-ref">Function rko_lio::ros::utils::eigen_to_point_cloud2(const std::vector&lt;Eigen::Vector3d&gt;&amp;, const Header&amp;)</span></a></p></li>
+<li><p><a class="reference internal" href="function_point__cloud__write_8hpp_1a972f8f407dce7b1824199bd2fe68aca5.html#exhale-function-point-cloud-write-8hpp-1a972f8f407dce7b1824199bd2fe68aca5"><span class="std std-ref">Function rko_lio::ros::utils::eigen_to_point_cloud2(const std::vector&lt;Eigen::Vector3d&gt;&amp;, const std_msgs::msg::Header&amp;)</span></a></p></li>
+<li><p><a class="reference internal" href="function_ros__vectors_8hpp_1a89cb23044180614fae3f2f0a74ae4a4b.html#exhale-function-ros-vectors-8hpp-1a89cb23044180614fae3f2f0a74ae4a4b"><span class="std std-ref">Function rko_lio::ros::utils::eigen_vector3d_to_ros_xyz</span></a></p></li>
+<li><p><a class="reference internal" href="function_transforms_8hpp_1a86fa67824d17062f6dc8c767beb6b287.html#exhale-function-transforms-8hpp-1a86fa67824d17062f6dc8c767beb6b287"><span class="std std-ref">Template Function rko_lio::ros::utils::get_transform</span></a></p></li>
+<li><p><a class="reference internal" href="function_point__cloud__read_8cpp_1aabc74c0b21478cc1c3b29cecba96104f.html#exhale-function-point-cloud-read-8cpp-1aabc74c0b21478cc1c3b29cecba96104f"><span class="std std-ref">Function rko_lio::ros::utils::point_cloud2_to_eigen</span></a></p></li>
+<li><p><a class="reference internal" href="function_point__cloud__read_8cpp_1aace5b499e84699d48b9d23da41a5da43.html#exhale-function-point-cloud-read-8cpp-1aace5b499e84699d48b9d23da41a5da43"><span class="std std-ref">Function rko_lio::ros::utils::point_cloud2_to_eigen_with_timestamps(const PointCloud2::ConstSharedPtr&amp;)</span></a></p></li>
+<li><p><a class="reference internal" href="function_point__cloud__read_8hpp_1ad5be96982e1e1956be221378e4c290bf.html#exhale-function-point-cloud-read-8hpp-1ad5be96982e1e1956be221378e4c290bf"><span class="std std-ref">Function rko_lio::ros::utils::point_cloud2_to_eigen_with_timestamps(const sensor_msgs::msg::PointCloud2::ConstSharedPtr&amp;)</span></a></p></li>
+<li><p><a class="reference internal" href="function_time_8hpp_1a2a59e06612a3104e6a1bdd73138ce24c.html#exhale-function-time-8hpp-1a2a59e06612a3104e6a1bdd73138ce24c"><span class="std std-ref">Function rko_lio::ros::utils::ros_time_to_seconds</span></a></p></li>
+<li><p><a class="reference internal" href="function_ros__vectors_8hpp_1a3c96f574e69c58072d61040d978d9eb1.html#exhale-function-ros-vectors-8hpp-1a3c96f574e69c58072d61040d978d9eb1"><span class="std std-ref">Template Function rko_lio::ros::utils::ros_xyz_to_eigen_vector3d</span></a></p></li>
+<li><p><a class="reference internal" href="function_transforms_8hpp_1a5014dc97c9b0a0f693ccfcda33df8f3f.html#exhale-function-transforms-8hpp-1a5014dc97c9b0a0f693ccfcda33df8f3f"><span class="std std-ref">Function rko_lio::ros::utils::sophus_to_pose</span></a></p></li>
+<li><p><a class="reference internal" href="function_transforms_8hpp_1a4af614ba2c6c05bda16ac0eb87023891.html#exhale-function-transforms-8hpp-1a4af614ba2c6c05bda16ac0eb87023891"><span class="std std-ref">Function rko_lio::ros::utils::sophus_to_transform</span></a></p></li>
+<li><p><a class="reference internal" href="function_transforms_8hpp_1a30f2577c606faf43523beb7b3b8fd4c3.html#exhale-function-transforms-8hpp-1a30f2577c606faf43523beb7b3b8fd4c3"><span class="std std-ref">Template Function rko_lio::ros::utils::transform_to_sophus</span></a></p></li>
+</ul>
+</section>
+<section id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="typedef_point__cloud__read_8cpp_1ae6e9f928a853730fee4156c59d31b232.html#exhale-typedef-point-cloud-read-8cpp-1ae6e9f928a853730fee4156c59d31b232"><span class="std std-ref">Typedef rko_lio::ros::utils::PointCloud2</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_point__cloud__read_8cpp_1ac033ab6bd6b1f2e03682506ba229b194.html#exhale-typedef-point-cloud-read-8cpp-1ac033ab6bd6b1f2e03682506ba229b194"><span class="std std-ref">Typedef rko_lio::ros::utils::PointField</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_point__cloud__read_8cpp_1adc86f9a4afa9e7b04db32c33665d446f.html#exhale-typedef-point-cloud-read-8cpp-1adc86f9a4afa9e7b04db32c33665d446f"><span class="std std-ref">Typedef rko_lio::ros::utils::Vector3dVector</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="namespace_rko_lio__ros.html" title="Previous document">Namespace rko_lio::ros</a>
+        </li>
+        <li>
+          <a href="namespace_std.html" title="Next document">Namespace std</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &#169;2025 Meher Malladi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/generated/namespace_rko_lio__ros__utils.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

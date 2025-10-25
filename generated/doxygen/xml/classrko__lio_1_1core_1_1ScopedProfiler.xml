@@ -18,7 +18,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="83" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="83" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="83" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="83" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="classrko__lio_1_1core_1_1ScopedProfiler_1a344e4d74871cdbd8df3e2e3f2434dace" prot="private" static="no">
         <type>Clock::time_point</type>
@@ -32,7 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="84" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="84" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="84" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="84" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="classrko__lio_1_1core_1_1ScopedProfiler_1a95d95ce83ff33e547ea259f5e0f4d0c8" prot="private" static="no">
         <type>std::chrono::duration&lt; double &gt;</type>
@@ -46,7 +46,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="85" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="85" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="85" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="85" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="classrko__lio_1_1core_1_1ScopedProfiler_1a1b996df402a400510f39c10998f1fe30" prot="private" static="no">
         <type>std::chrono::duration&lt; double, std::milli &gt;</type>
@@ -60,7 +60,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="86" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="86" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="86" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="86" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-static-attrib">
@@ -76,7 +76,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="120" column="34" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="120" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="120" column="34" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="120" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
@@ -92,7 +92,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="122" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="122" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="122" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="122" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1core_1_1ScopedProfiler_1aa90548b5087a6fda9b36f44fd0c70502" prot="private" static="no" mutable="no">
         <type>TimePoint</type>
@@ -106,7 +106,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="123" column="13" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="123" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="123" column="13" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="123" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1core_1_1ScopedProfiler_1a227545f2967d6ace925bc11459e98609" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -121,7 +121,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="124" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="124" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="124" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="124" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -141,7 +141,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="56" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="56" bodyend="56"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="56" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="56" bodyend="56"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1core_1_1ScopedProfiler_1aba8ddaa7373c535a8dd618a41f1046de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -158,7 +158,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="57" column="3"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="57" column="3"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1core_1_1ScopedProfiler_1a7e2b95d42a899a1b6d2f70ef4dfd58c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -175,7 +175,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="58" column="3"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="58" column="3"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1core_1_1ScopedProfiler_1ab24e86336d717442d82591e7191621b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classrko__lio_1_1core_1_1ScopedProfiler" kindref="compound">ScopedProfiler</ref> &amp;</type>
@@ -192,7 +192,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="59" column="18"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="59" column="18"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1core_1_1ScopedProfiler_1accb18244c4f20994d4d0b6c0baa0ba3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classrko__lio_1_1core_1_1ScopedProfiler" kindref="compound">ScopedProfiler</ref> &amp;</type>
@@ -209,7 +209,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="60" column="18"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="60" column="18"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1core_1_1ScopedProfiler_1a8add0851636fba92c78f5fa2ca57b985" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -224,7 +224,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="63" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="63" bodyend="74"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="63" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="63" bodyend="74"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1core_1_1ScopedProfiler_1a0926f45e2a38448e5044bddc59c05882" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -239,7 +239,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="77" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="77" bodyend="77"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="77" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="77" bodyend="77"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-static-func">
@@ -256,7 +256,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="80" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="80" bodyend="80"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="80" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="80" bodyend="80"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -266,7 +266,7 @@
 <para>This class records the execution time between construction and destruction (or explicit finish call) and aggregates statistics including count, total time, and max time per named scope.</para>
 <para>The stats are saved in a static map. Will survive till the end of execution. </para>
     </detaileddescription>
-    <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" line="54" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/profiler.hpp" bodystart="54" bodyend="125"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="54" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="54" bodyend="125"/>
     <listofallmembers>
       <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1a65e007b49e0b806ae940a86973be9c62" prot="private" virt="non-virtual"><scope>rko_lio::core::ScopedProfiler</scope><name>Clock</name></member>
       <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1a8add0851636fba92c78f5fa2ca57b985" prot="public" virt="non-virtual"><scope>rko_lio::core::ScopedProfiler</scope><name>finish</name></member>

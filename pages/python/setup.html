@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Python - Setup &#8212; RKO-LIO: Lidar-inertial odometry without sensor-specific modeling</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=f6a572b4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=56c4699f" />
+    <script src="../../_static/documentation_options.js?v=ca7ad2ea"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Python - Usage" href="usage.html" />
+    <link rel="prev" title="Python - RKO-LIO" href="python.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">RKO-LIO</a></h1>
+
+
+
+<p class="blurb">Lidar-inertial odometry</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=PRBonn&repo=rko_lio&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../primer.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros.html">ROS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="python.html">Python</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataloaders.html">Dataloaders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/modules.html">Python API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../config.html">Configuring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core_dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../__LICENSE.html">License</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://index.ros.org/p/rko_lio/">ROS Index</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/rko-lio/">PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://github.com/PRBonn/rko_lio">GitHub</a></li>
+    
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="python-setup">
+<h1>Python - Setup<a class="headerlink" href="#python-setup" title="Link to this heading">¶</a></h1>
+<section id="install-from-pypi">
+<h2>Install from PyPI<a class="headerlink" href="#install-from-pypi" title="Link to this heading">¶</a></h2>
+<p>Simply run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>rko_lio
+</pre></div>
+</div>
+<p>I provide PyPI wheels for Linux, macOS, and Windows (<a class="reference external" href="https://pypi.org/project/rko-lio">PyPI page</a>).</p>
+<p>To be able to use <code class="docutils literal notranslate"><span class="pre">rko_lio</span></code> with any of the dataloaders or to enable visualization, you’ll need to install additional dependencies.
+You’ll be prompted for specific packages as they become required during runtime.</p>
+<p>For example, to use the rosbag dataloader and visualize the results, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>rko_lio<span class="w"> </span>rosbags<span class="w"> </span>rerun-sdk
+</pre></div>
+</div>
+<p>If you want to install everything at once, use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;rko_lio[all]&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="build-from-source">
+<h2>Build from Source<a class="headerlink" href="#build-from-source" title="Link to this heading">¶</a></h2>
+<p>Clone the repository and then run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>.
+</pre></div>
+</div>
+<p>To have all optional dependencies installed, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;.[all]&quot;</span>
+</pre></div>
+</div>
+<p>Or use the convenience recipes provided in the <a class="reference external" href="Makefile">Makefile</a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>install<span class="w">    </span><span class="c1"># installs all optional deps</span>
+make<span class="w"> </span>editable<span class="w">   </span><span class="c1"># installs an editable version with all deps</span>
+</pre></div>
+</div>
+</section>
+<section id="advanced-details">
+<h2>Advanced Details<a class="headerlink" href="#advanced-details" title="Link to this heading">¶</a></h2>
+<p>The Python build uses <code class="docutils literal notranslate"><span class="pre">scikit-build-core</span></code>.
+You only need Python ≥ 3.10 and <code class="docutils literal notranslate"><span class="pre">pip</span></code> (or another frontend).
+All core dependencies are fetched automatically unless you modify the option in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> (see also <a class="reference internal" href="../core_dependencies.html"><span class="doc">Core Dependencies</span></a>).</p>
+<p>For an editable install recipe, see <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> which will setup other build dependencies.</p>
+</section>
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="python.html" title="Previous document">Python - RKO-LIO</a>
+        </li>
+        <li>
+          <a href="usage.html" title="Next document">Python - Usage</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &#169;2025 Meher Malladi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/pages/python/setup.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

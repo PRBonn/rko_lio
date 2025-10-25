@@ -11,7 +11,7 @@
     <includes local="yes">bonxai/grid_coord.hpp</includes>
     <incdepgraph>
       <node id="1">
-        <label>/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.cpp</label>
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/core/sparse_voxel_grid.cpp</label>
         <link refid="sparse__voxel__grid_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -210,6 +210,6 @@
 <codeline lineno="144"><highlight class="normal"></highlight></codeline>
 <codeline lineno="145"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/sparse_voxel_grid.cpp"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/sparse_voxel_grid.cpp"/>
   </compounddef>
 </doxygen>

@@ -3,7 +3,7 @@
 Function rko_lio::core::process_timestamps
 ==========================================
 
-- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_process_timestamps.cpp`
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_process_timestamps.cpp`
 
 
 Function Documentation

@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" line="63" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" bodystart="63" bodyend="63"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="63" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="63" bodyend="63"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1ImuControl_1aa3982b01ac23e8fd2f8719b3e0f60dc7" prot="public" static="no" mutable="no">
         <type>Eigen::Vector3d</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" line="64" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" bodystart="64" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="64" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="64" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1ImuControl_1a7d3579d3b3d5fb3b82262a9429c453a9" prot="public" static="no" mutable="no">
         <type>Eigen::Vector3d</type>
@@ -46,14 +46,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" line="65" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" bodystart="65" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="65" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="65" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" line="62" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/util.hpp" bodystart="62" bodyend="66"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="62" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="62" bodyend="66"/>
     <listofallmembers>
       <member refid="structrko__lio_1_1core_1_1ImuControl_1aa3982b01ac23e8fd2f8719b3e0f60dc7" prot="public" virt="non-virtual"><scope>rko_lio::core::ImuControl</scope><name>acceleration</name></member>
       <member refid="structrko__lio_1_1core_1_1ImuControl_1a7d3579d3b3d5fb3b82262a9429c453a9" prot="public" virt="non-virtual"><scope>rko_lio::core::ImuControl</scope><name>angular_velocity</name></member>

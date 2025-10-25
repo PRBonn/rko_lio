@@ -1,0 +1,14 @@
+.. _exhale_function_transforms_8hpp_1a5014dc97c9b0a0f693ccfcda33df8f3f:
+
+Function rko_lio::ros::utils::sophus_to_pose
+============================================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_transforms.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: rko_lio::ros::utils::sophus_to_pose(const Sophus::SE3d&)
+   :project: rko_lio Doxygen Project

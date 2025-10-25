@@ -9,7 +9,7 @@
     <includes local="no">sensor_msgs/point_cloud2_iterator.hpp</includes>
     <incdepgraph>
       <node id="1">
-        <label>/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_write.cpp</label>
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_write.cpp</label>
         <link refid="point__cloud__write_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -52,7 +52,8 @@
       </node>
     </incdepgraph>
     <innernamespace refid="namespacerko__lio">rko_lio</innernamespace>
-    <innernamespace refid="namespacerko__lio_1_1ros__utils">rko_lio::ros_utils</innernamespace>
+    <innernamespace refid="namespacerko__lio_1_1ros">rko_lio::ros</innernamespace>
+    <innernamespace refid="namespacerko__lio_1_1ros_1_1utils">rko_lio::ros::utils</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -132,7 +133,7 @@
 <codeline lineno="72"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="73"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="74"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros_utils<sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros::utils<sp/>{</highlight></codeline>
 <codeline lineno="76"><highlight class="normal"></highlight></codeline>
 <codeline lineno="77"><highlight class="normal">PointCloud2::UniquePtr<sp/>eigen_to_point_cloud2(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Eigen::Vector3d&gt;&amp;<sp/>points,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Header&amp;<sp/>header)<sp/>{</highlight></codeline>
 <codeline lineno="78"><highlight class="normal"><sp/><sp/>PointCloud2::UniquePtr<sp/>msg<sp/>=<sp/>create_point_cloud2_msg(points.size(),<sp/>header);</highlight></codeline>
@@ -140,8 +141,8 @@
 <codeline lineno="80"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>msg;</highlight></codeline>
 <codeline lineno="81"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="82"><highlight class="normal"></highlight></codeline>
-<codeline lineno="83"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros_utils</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros::utils</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_write.cpp"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_write.cpp"/>
   </compounddef>
 </doxygen>

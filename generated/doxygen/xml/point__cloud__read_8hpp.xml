@@ -6,11 +6,11 @@
     <includes local="no">sophus/se3.hpp</includes>
     <includes local="no">sensor_msgs/msg/point_cloud2.hpp</includes>
     <includes local="no">sensor_msgs/point_cloud2_iterator.hpp</includes>
-    <includedby refid="point__cloud__read_8cpp" local="yes">/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_read.cpp</includedby>
-    <includedby refid="ros__utils_8hpp" local="yes">/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/ros_utils.hpp</includedby>
+    <includedby refid="point__cloud__read_8cpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp</includedby>
+    <includedby refid="utils_8hpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/utils.hpp</includedby>
     <incdepgraph>
       <node id="1">
-        <label>/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_read.hpp</label>
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp</label>
         <link refid="point__cloud__read_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -36,18 +36,19 @@
     </incdepgraph>
     <invincdepgraph>
       <node id="1">
-        <label>/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_read.hpp</label>
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp</label>
         <link refid="point__cloud__read_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
       <node id="2">
-        <label>/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/ros_utils.hpp</label>
-        <link refid="ros__utils_8hpp_source"/>
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/utils.hpp</label>
+        <link refid="utils_8hpp_source"/>
       </node>
     </invincdepgraph>
     <innernamespace refid="namespacerko__lio">rko_lio</innernamespace>
-    <innernamespace refid="namespacerko__lio_1_1ros__utils">rko_lio::ros_utils</innernamespace>
+    <innernamespace refid="namespacerko__lio_1_1ros">rko_lio::ros</innernamespace>
+    <innernamespace refid="namespacerko__lio_1_1ros_1_1utils">rko_lio::ros::utils</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -84,13 +85,13 @@
 <codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sensor_msgs/point_cloud2_iterator.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros_utils<sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros::utils<sp/>{</highlight></codeline>
 <codeline lineno="33"><highlight class="normal">std::vector&lt;Eigen::Vector3d&gt;<sp/>point_cloud2_to_eigen(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::PointCloud2::ConstSharedPtr&amp;<sp/>msg);</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>
 <codeline lineno="35"><highlight class="normal">std::tuple&lt;std::vector&lt;Eigen::Vector3d&gt;,<sp/>std::vector&lt;double&gt;&gt;</highlight></codeline>
 <codeline lineno="36"><highlight class="normal">point_cloud2_to_eigen_with_timestamps(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::PointCloud2::ConstSharedPtr&amp;<sp/>msg);</highlight></codeline>
-<codeline lineno="37"><highlight class="normal">};<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros_utils</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">};<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros::utils</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/point_cloud_read.hpp"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp"/>
   </compounddef>
 </doxygen>

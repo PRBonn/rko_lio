@@ -1,5 +1,5 @@
-RKO-LIO
-=======
+RKO-LIO - LiDAR-Inertial Odometry
+=================================
 
 .. raw:: html
 
@@ -28,10 +28,13 @@ You don't need to look up manufacturer spec sheets to provide noise specificatio
 
 All you need to provide is the extrinsic transformation between the IMU and LiDAR and you can start using the system for your LiDAR-inertial odometry needs!
 
+.. note::
+   This documentation is still under construction. If you see something you can improve, I'd greatly appreciate any help. Please make an issue or a PR on `GitHub <https://github.com/PRBonn/rko_lio>`__!
+
 Citation
 ^^^^^^^^
 
-If you use this work, please leave a star on our `GitHub repository <https://github.com/PRBonn/rko_lio>`_ and consider citing:
+If you use this work, please leave a star ⭐ on our `GitHub repository <https://github.com/PRBonn/rko_lio>`_ and consider citing:
 
 .. code-block:: bibtex
 
@@ -44,15 +47,15 @@ If you use this work, please leave a star on our `GitHub repository <https://git
     url         = {https://arxiv.org/pdf/2509.06593},
   }
 
-.. note::
-   This documentation is still under construction. If you see something you can improve, I'd greatly appreciate any help. Please make an issue or a PR on `GitHub <https://github.com/PRBonn/rko_lio>`__!
-
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
    Quickstart <pages/quickstart>
-   General details <pages/general/general>
-   pages/ros
-   pages/python
+   About <pages/primer>
+   Data <pages/data>
+   ROS <pages/ros/ros>
+   Python <pages/python/python>
+   Configuring <pages/config>
+   Dependencies <pages/core_dependencies>
    License <__LICENSE>

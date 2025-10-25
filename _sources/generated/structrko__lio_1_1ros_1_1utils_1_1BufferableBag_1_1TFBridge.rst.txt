@@ -1,0 +1,23 @@
+.. _exhale_struct_structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge:
+
+Struct BufferableBag::TFBridge
+==============================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_rosbag.hpp`
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classrko__lio_1_1ros_1_1utils_1_1BufferableBag`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: rko_lio::ros::utils::BufferableBag::TFBridge
+   :project: rko_lio Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -18,7 +18,7 @@
     <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="LICENSE" href="../__LICENSE.html" />
+    <link rel="next" title="Configuring the odometry" href="../pages/config.html" />
     <link rel="prev" title="rko_lio.scoped_profiler module" href="rko_lio.scoped_profiler.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -63,12 +63,18 @@
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../pages/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pages/general/general.html">General details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pages/ros.html">ROS (C++)</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../pages/python.html">Python</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/primer.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/ros/ros.html">ROS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pages/python/python.html">Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../pages/python/setup.html">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/python/usage.html">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/python/dataloaders.html">Dataloaders</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="modules.html">Python API</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/config.html">Configuring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/core_dependencies.html">Dependencies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
 </ul>
 
@@ -92,8 +98,49 @@
 
           <div class="body" role="main">
             
-  <section id="rko-lio-util-module">
-<h1>rko_lio.util module<a class="headerlink" href="#rko-lio-util-module" title="Link to this heading">¶</a></h1>
+  <section id="module-rko_lio.util">
+<span id="rko-lio-util-module"></span><h1>rko_lio.util module<a class="headerlink" href="#module-rko_lio.util" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="rko_lio.util.error">
+<span class="sig-prename descclassname"><span class="pre">rko_lio.util.</span></span><span class="sig-name descname"><span class="pre">error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.util.error" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rko_lio.util.error_and_exit">
+<span class="sig-prename descclassname"><span class="pre">rko_lio.util.</span></span><span class="sig-name descname"><span class="pre">error_and_exit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.util.error_and_exit" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rko_lio.util.height_colors_from_points">
+<span class="sig-prename descclassname"><span class="pre">rko_lio.util.</span></span><span class="sig-name descname"><span class="pre">height_colors_from_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_map</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">numpy.array</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#rko_lio.util.height_colors_from_points" title="Link to this definition">¶</a></dt>
+<dd><p>Given Nx3 array of points, return Nx3 array of RGB colors (dtype uint8)
+mapped from the z values using the colormap.
+Default colormap is viridis.
+Colors are uint8 in range [0, 255].</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rko_lio.util.info">
+<span class="sig-prename descclassname"><span class="pre">rko_lio.util.</span></span><span class="sig-name descname"><span class="pre">info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.util.info" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rko_lio.util.quat_xyzw_xyz_to_transform">
+<span class="sig-prename descclassname"><span class="pre">rko_lio.util.</span></span><span class="sig-name descname"><span class="pre">quat_xyzw_xyz_to_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quat_xyzw_xyz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#rko_lio.util.quat_xyzw_xyz_to_transform" title="Link to this definition">¶</a></dt>
+<dd><p>Convert [qx, qy, qz, qw, x, y, z] to 4x4 transform.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rko_lio.util.transform_to_quat_xyzw_xyz">
+<span class="sig-prename descclassname"><span class="pre">rko_lio.util.</span></span><span class="sig-name descname"><span class="pre">transform_to_quat_xyzw_xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.util.transform_to_quat_xyzw_xyz" title="Link to this definition">¶</a></dt>
+<dd><p>Convert 4x4 transform matrix to [qx, qy, qz, qw, x, y, z].</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rko_lio.util.warning">
+<span class="sig-prename descclassname"><span class="pre">rko_lio.util.</span></span><span class="sig-name descname"><span class="pre">warning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.util.warning" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </section>
 
 
@@ -107,7 +154,7 @@
           <a href="rko_lio.scoped_profiler.html" title="Previous document">rko_lio.scoped_profiler module</a>
         </li>
         <li>
-          <a href="../__LICENSE.html" title="Next document">LICENSE</a>
+          <a href="../pages/config.html" title="Next document">Configuring the odometry</a>
           &rarr;
         </li>
     </ul>

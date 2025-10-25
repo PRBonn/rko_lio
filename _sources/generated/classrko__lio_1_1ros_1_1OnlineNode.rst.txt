@@ -3,7 +3,7 @@
 Class OnlineNode
 ================
 
-- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_ros_rko_lio_online_node.cpp`
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_online_node.cpp`
 
 
 Inheritance Relationships

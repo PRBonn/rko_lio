@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_2a5026bce958500259a839b69814f966" kind="dir">
+    <compoundname>/home/runner/work/rko_lio/rko_lio/rko_lio/ros</compoundname>
+    <innerdir refid="dir_d450ad49c0261fa3fc859fa62c4c0d6f">/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils</innerdir>
+    <innerfile refid="node_8cpp">node.cpp</innerfile>
+    <innerfile refid="node_8hpp">node.hpp</innerfile>
+    <innerfile refid="offline__node_8cpp">offline_node.cpp</innerfile>
+    <innerfile refid="online__node_8cpp">online_node.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/"/>
+  </compounddef>
+</doxygen>

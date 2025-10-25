@@ -1,0 +1,14 @@
+.. _exhale_function_point__cloud__read_8cpp_1aabc74c0b21478cc1c3b29cecba96104f:
+
+Function rko_lio::ros::utils::point_cloud2_to_eigen
+===================================================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_point_cloud_read.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: rko_lio::ros::utils::point_cloud2_to_eigen(const sensor_msgs::msg::PointCloud2::ConstSharedPtr&)
+   :project: rko_lio Doxygen Project

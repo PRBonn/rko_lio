@@ -12,10 +12,10 @@
     <includes local="no">tf2/exceptions.hpp</includes>
     <includes local="no">tf2/time.hpp</includes>
     <includes local="no">tf2_ros/buffer.h</includes>
-    <includedby refid="ros__utils_8hpp" local="yes">/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/ros_utils.hpp</includedby>
+    <includedby refid="utils_8hpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/utils.hpp</includedby>
     <incdepgraph>
       <node id="1">
-        <label>/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/transforms.hpp</label>
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp</label>
         <link refid="transforms_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -70,19 +70,20 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="2">
-        <label>/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/ros_utils.hpp</label>
-        <link refid="ros__utils_8hpp_source"/>
-      </node>
       <node id="1">
-        <label>/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/transforms.hpp</label>
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp</label>
         <link refid="transforms_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
+      <node id="2">
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/utils.hpp</label>
+        <link refid="utils_8hpp_source"/>
+      </node>
     </invincdepgraph>
     <innernamespace refid="namespacerko__lio">rko_lio</innernamespace>
-    <innernamespace refid="namespacerko__lio_1_1ros__utils">rko_lio::ros_utils</innernamespace>
+    <innernamespace refid="namespacerko__lio_1_1ros">rko_lio::ros</innernamespace>
+    <innernamespace refid="namespacerko__lio_1_1ros_1_1utils">rko_lio::ros::utils</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -125,7 +126,7 @@
 <codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tf2/time.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tf2_ros/buffer.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros_utils<sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros::utils<sp/>{</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>geometry_msgs::msg::Pose<sp/>sophus_to_pose(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3d&amp;<sp/>T)<sp/>{</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"><sp/><sp/>geometry_msgs::msg::Pose<sp/>t;</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/>t.position.x<sp/>=<sp/>T.translation().x();</highlight></codeline>
@@ -199,8 +200,8 @@
 <codeline lineno="109"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="110"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::nullopt;</highlight></codeline>
 <codeline lineno="111"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="112"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros_utils</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros::utils</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/transforms.hpp"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp"/>
   </compounddef>
 </doxygen>

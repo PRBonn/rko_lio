@@ -18,8 +18,8 @@
     <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="General Details" href="general/general.html" />
-    <link rel="prev" title="RKO-LIO" href="../index.html" />
+    <link rel="next" title="A short primer" href="primer.html" />
+    <link rel="prev" title="RKO-LIO - LiDAR-Inertial Odometry" href="../index.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -67,9 +67,12 @@
 <li class="toctree-l2"><a class="reference internal" href="#ros">ROS</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="general/general.html">General details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ros.html">ROS (C++)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="primer.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ros/ros.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">Configuring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_dependencies.html">Dependencies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
 </ul>
 
@@ -104,15 +107,16 @@ rko_lio<span class="w"> </span>data_dir
 <p>For example, if you’re running on a ROS bag, place all split parts in one folder (with <code class="docutils literal notranslate"><span class="pre">metadata.yaml</span></code> for ROS2) and pass that folder as <code class="docutils literal notranslate"><span class="pre">data_dir</span></code>.</p>
 <p>By default, <code class="docutils literal notranslate"><span class="pre">rko_lio</span></code> tries to infer topics and TF relationships automatically, but you can override these using flags like <code class="docutils literal notranslate"><span class="pre">--lidar</span></code>, <code class="docutils literal notranslate"><span class="pre">--imu</span></code>, or <code class="docutils literal notranslate"><span class="pre">--base_frame</span></code>.
 If your bag doesn’t contain TF information, you’ll need to specify the IMU–LiDAR extrinsics via a config YAML (<code class="docutils literal notranslate"><span class="pre">rko_lio</span> <span class="pre">--dump_config</span></code> will write a default config).</p>
-<p>See <a class="reference internal" href="python.html"><span class="doc">Python Usage</span></a> for detailed examples and advanced options.</p>
+<p>See <a class="reference internal" href="python/usage.html"><span class="doc">Python Usage</span></a> for detailed examples and advanced options.</p>
 </section>
 <section id="ros">
 <h2>ROS<a class="headerlink" href="#ros" title="Link to this heading">¶</a></h2>
-<p>Installing using system package managers is currently available only on ROS <strong>Kilted</strong>. Please <a class="reference internal" href="build.html"><span class="doc">build from source</span></a> for other distros.</p>
+<p>Supported distros: Humble, Jazzy, Kilted, Rolling</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-<span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>-rko-lio
 ros2<span class="w"> </span>launch<span class="w"> </span>rko_lio<span class="w"> </span>odometry.launch.py
 </pre></div>
 </div>
+<p>Please see <a class="reference internal" href="ros/setup.html"><span class="doc">build from source</span></a> if you want to do that instead.</p>
 <p>The launch file supports both online and offline modes via the <code class="docutils literal notranslate"><span class="pre">mode</span></code> argument and expects at least <code class="docutils literal notranslate"><span class="pre">lidar_topic</span></code>, <code class="docutils literal notranslate"><span class="pre">imu_topic</span></code>, and <code class="docutils literal notranslate"><span class="pre">base_frame</span></code>.</p>
 <p>You can override configuration parameters through CLI or a separate YAML file (e.g., <code class="docutils literal notranslate"><span class="pre">config_file:=/path/to/config</span></code>).</p>
 <p>For visualization, add <code class="docutils literal notranslate"><span class="pre">rviz:=true</span></code>.</p>
@@ -120,7 +124,7 @@ ros2<span class="w"> </span>launch<span class="w"> </span>rko_lio<span class="w"
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>rko_lio<span class="w"> </span>odometry.launch.py<span class="w"> </span>-s
 </pre></div>
 </div>
-<p>See <a class="reference internal" href="ros.html"><span class="doc">ROS Usage</span></a> for an extended description.</p>
+<p>See <a class="reference internal" href="ros/usage.html"><span class="doc">ROS Usage</span></a> for an extended description.</p>
 </section>
 </section>
 
@@ -132,10 +136,10 @@ ros2<span class="w"> </span>launch<span class="w"> </span>rko_lio<span class="w"
     <ul>
         <li>
           &larr;
-          <a href="../index.html" title="Previous document">RKO-LIO</a>
+          <a href="../index.html" title="Previous document">RKO-LIO - LiDAR-Inertial Odometry</a>
         </li>
         <li>
-          <a href="general/general.html" title="Next document">General Details</a>
+          <a href="primer.html" title="Next document">A short primer</a>
           &rarr;
         </li>
     </ul>

@@ -4,10 +4,10 @@
     <compoundname>time.hpp</compoundname>
     <includes local="no">builtin_interfaces/msg/time.hpp</includes>
     <includes local="no">rclcpp/time.hpp</includes>
-    <includedby refid="ros__utils_8hpp" local="yes">/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/ros_utils.hpp</includedby>
+    <includedby refid="utils_8hpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/utils.hpp</includedby>
     <incdepgraph>
       <node id="1">
-        <label>/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/time.hpp</label>
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/time.hpp</label>
         <link refid="time_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -22,19 +22,20 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="2">
-        <label>/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/ros_utils.hpp</label>
-        <link refid="ros__utils_8hpp_source"/>
-      </node>
       <node id="1">
-        <label>/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/time.hpp</label>
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/time.hpp</label>
         <link refid="time_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
+      <node id="2">
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/utils.hpp</label>
+        <link refid="utils_8hpp_source"/>
+      </node>
     </invincdepgraph>
     <innernamespace refid="namespacerko__lio">rko_lio</innernamespace>
-    <innernamespace refid="namespacerko__lio_1_1ros__utils">rko_lio::ros_utils</innernamespace>
+    <innernamespace refid="namespacerko__lio_1_1ros">rko_lio::ros</innernamespace>
+    <innernamespace refid="namespacerko__lio_1_1ros_1_1utils">rko_lio::ros::utils</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -68,12 +69,12 @@
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;builtin_interfaces/msg/time.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;rclcpp/time.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros_utils<sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros::utils<sp/>{</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>std::chrono::duration&lt;double&gt;<sp/>ros_time_to_seconds(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>builtin_interfaces::msg::Time&amp;<sp/>stamp)<sp/>{</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::chrono::duration&lt;double&gt;(rclcpp::Time(stamp).nanoseconds()<sp/>*<sp/>1e-9);</highlight></codeline>
 <codeline lineno="32"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="33"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros_utils</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros::utils</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/runner/work/rko_lio/rko_lio/ros/rko_lio/ros_utils/time.hpp"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/time.hpp"/>
   </compounddef>
 </doxygen>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_b63784844ef914a6b90a263c9af65f1e" kind="dir">
+    <compoundname>/home/runner/work/rko_lio/rko_lio/rko_lio</compoundname>
+    <innerdir refid="dir_ced158e9e1bf300f9b2f74cfbeed53ea">/home/runner/work/rko_lio/rko_lio/rko_lio/core</innerdir>
+    <innerdir refid="dir_2a5026bce958500259a839b69814f966">/home/runner/work/rko_lio/rko_lio/rko_lio/ros</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/"/>
+  </compounddef>
+</doxygen>

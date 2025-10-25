@@ -2,7 +2,7 @@
 <tagfile doxygen_version="1.9.8">
   <compound kind="file">
     <name>lio.hpp</name>
-    <path>/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/</path>
+    <path>/home/runner/work/rko_lio/rko_lio/rko_lio/core/</path>
     <filename>lio_8hpp.html</filename>
     <class kind="struct">rko_lio::core::AccelInfo</class>
     <class kind="struct">rko_lio::core::IntervalStats</class>
@@ -12,7 +12,7 @@
   </compound>
   <compound kind="file">
     <name>profiler.hpp</name>
-    <path>/home/runner/work/rko_lio/rko_lio/cpp/rko_lio/core/</path>
+    <path>/home/runner/work/rko_lio/rko_lio/rko_lio/core/</path>
     <filename>profiler_8hpp.html</filename>
     <class kind="class">rko_lio::core::ScopedProfiler</class>
     <class kind="struct">rko_lio::core::Timer</class>
@@ -37,9 +37,9 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>rko_lio::ros_utils::BufferableBag</name>
-    <filename>classrko__lio_1_1ros__utils_1_1BufferableBag.html</filename>
-    <class kind="struct">rko_lio::ros_utils::BufferableBag::TFBridge</class>
+    <name>rko_lio::ros::utils::BufferableBag</name>
+    <filename>classrko__lio_1_1ros_1_1utils_1_1BufferableBag.html</filename>
+    <class kind="struct">rko_lio::ros::utils::BufferableBag::TFBridge</class>
   </compound>
   <compound kind="struct">
     <name>rko_lio::core::LIO::Config</name>
@@ -349,8 +349,8 @@
     <filename>structrko__lio_1_1core_1_1State.html</filename>
   </compound>
   <compound kind="struct">
-    <name>rko_lio::ros_utils::BufferableBag::TFBridge</name>
-    <filename>structrko__lio_1_1ros__utils_1_1BufferableBag_1_1TFBridge.html</filename>
+    <name>rko_lio::ros::utils::BufferableBag::TFBridge</name>
+    <filename>structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge.html</filename>
   </compound>
   <compound kind="struct">
     <name>rko_lio::core::Timer</name>

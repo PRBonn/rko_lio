@@ -3,7 +3,7 @@
 Typedef Eigen::Matrix3_6d
 =========================
 
-- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_cpp_rko_lio_core_util.hpp`
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_util.hpp`
 
 
 Typedef Documentation
