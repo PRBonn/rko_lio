@@ -23,7 +23,7 @@
 cmake_minimum_required(VERSION 3.28)
 project(rko_lio_python LANGUAGES CXX)
 
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../../
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../../../
                  ${CMAKE_CURRENT_BINARY_DIR}/rko_lio_cpp_build)
 
 set(PYBIND11_NEWPYTHON ON)
