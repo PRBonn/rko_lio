@@ -282,8 +282,9 @@ class LIOPipeline:
                 else transform_to_quat_xyzw_xyz(self.extrinsic_lidar2base)
             ),
             "viz": self.viz,
-            "viz_every_n_frames": self.viz_every_n_frames,
         }
+        if self.viz:
+            combined_config["viz_every_n_frames"] = self.viz_every_n_frames
 
         settings_file = output_dir / "settings.yaml"
         with settings_file.open("w") as f:
