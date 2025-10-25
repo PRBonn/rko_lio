@@ -23,12 +23,12 @@ jobs:
         env: # build 1 build per platform just to make sure we can do it later when releasing
           CIBW_BUILD: "cp312-*"
         with:
-          package-dir: ${{github.workspace}}/python/
+          package-dir: ${{github.workspace}}/
       - name: Build all wheels (release)
         if: github.event_name == 'release'
         uses: pypa/cibuildwheel@v3.2.1
         with:
-          package-dir: ${{github.workspace}}/python/
+          package-dir: ${{github.workspace}}/
       - uses: actions/upload-artifact@v4
         with:
           name: artifact-${{ matrix.os }}

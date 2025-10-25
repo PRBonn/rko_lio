@@ -8,7 +8,7 @@ updates:
       - "dependencies"
       - "actions"
   - package-ecosystem: "pip"
-    directory: "/python"
+    directory: "/"
     schedule:
       interval: "weekly"
     versioning-strategy: increase-if-necessary

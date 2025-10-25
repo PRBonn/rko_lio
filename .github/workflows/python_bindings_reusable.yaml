@@ -19,9 +19,9 @@ jobs:
       - name: Install pip
         run: python -m pip install --upgrade pip
       - name: Build with pip
-        run: python -m pip install --verbose ./python/ pytest
+        run: python -m pip install --verbose . pytest
       - name: Run pytest
-        run: pytest python/ -v -rs
+        run: pytest -v -rs
   python_bindings_optional:
     runs-on: ${{ inputs.run_os }}
     env:
@@ -35,6 +35,6 @@ jobs:
       - name: Install pip
         run: python -m pip install --upgrade pip
       - name: Install package with optional dependencies
-        run: python -m pip install --verbose "./python/[all]" pytest
+        run: python -m pip install --verbose ".[all]" pytest
       - name: Run pytest with optional dependency tests
-        run: pytest python/ -v -rs
+        run: pytest -v -rs
