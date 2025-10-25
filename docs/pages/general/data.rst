@@ -6,6 +6,7 @@ Unsurprisingly, we need both IMU and LiDAR data.
 It is assumed that both sensors are time synchronized, i.e. the data timestamps refer to the same time clock and are consistent across both sensors.
 Some delay in the arrival of the data itself is fine.
 
+.. _data-extrinsics-convention:
 Extrinsics & convention
 -----------------------
 

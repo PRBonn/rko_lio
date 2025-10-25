@@ -17,6 +17,8 @@ ROS (C++)
    :maxdepth: 2
    :caption: Contents:
 
+   Setup <setup>
+   Usage <usage>
    C++ API <../generated/index>
    ROS package.xml <../__PACKAGE>
    Changelog <changelog_literal>

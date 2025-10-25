@@ -1,8 +1,6 @@
 Python - RKO-LIO
 ================
 
-TODO: Python specific information here
-
 .. raw:: html
 
   <div>
@@ -19,7 +17,7 @@ TODO: Python specific information here
   </p>
   </div>
 
-
+The python interface is a convenient tool to run the odometry offline on recorded data.
 
 .. toctree::
    :maxdepth: 2
