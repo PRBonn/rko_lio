@@ -1,20 +1,23 @@
 """
-Raw Dataloader Usage
-====================
+Raw Dataloader
+--------------
 
-This module provides the RawDataLoader class.
+When using the raw dataloader, arrange your dataset directory as follows:
 
-Example usage:
+.. code-block:: none
 
-.. code-block:: python
+   dataset_root/
+   ├── transforms.yaml                 # required: contains 4x4 matrices
+   ├── imu.csv / imu.txt               # must match required columns
+   └── lidar/                          # folder of point clouds
+       ├── 1662622237000000000.ply
+       ├── 1662622238000000000.ply
+       └── ...
 
-    from rko_lio.dataloaders.raw import RawDataLoader
-    loader = RawDataLoader("/path/to/data")
-    print(loader.entries)
-    # More on structure, YAML config, file layout, etc.
-
-The loader expects ...
-- instructions, scenarios, etc.
+- ``transforms.yaml``: defines two keys (``T_imu_to_base``, ``T_lidar_to_base``), each a 4×4 matrix. See :ref:`Extrinsics and conventions <data-extrinsics-convention>`.
+- IMU file: Only one file (CSV or TXT) is allowed. Required columns: ``timestamp, gyro_x, gyro_y, gyro_z, accel_x, accel_y, accel_z``. Extra columns are allowed. ``timestamp`` in nanoseconds, others in SI units.
+- ``lidar/``: contains scans as PLY files. Each filename is a timestamp (ns) for the scan.
+  Each PLY file must have a time field (accepted names: ``time``, ``timestamp``, ``timestamps``, or ``t``) in **seconds**.
 """
 
 # MIT License

@@ -1,3 +1,9 @@
+"""
+HeLiPR Dataloader
+-----------------
+
+This loader is deprecated and will be removed in a future release. If you need it supported, please open an issue.
+"""
 # MIT License
 #
 # Copyright (c) 2025 Meher V.R. Malladi.
@@ -167,8 +173,9 @@ def parse_extrinsic_txt(path: Path) -> np.ndarray:
     """
     Parse an extrinsic calibration .txt file into a transform matrix.
     Assumes:
-      - Inside the [ ] brackets, numbers are always space-separated.
-      - Rotation block has exactly 9 floats, Translation has exactly 3 floats.
+
+    - Inside the [ ] brackets, numbers are always space-separated.
+    - Rotation block has exactly 9 floats, Translation has exactly 3 floats.
     """
     text = path.read_text()
 

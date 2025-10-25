@@ -1,3 +1,30 @@
+"""
+Rosbag Dataloader
+-----------------
+
+The rosbag dataloader works with both ROS1 and ROS2 bags. Place split ROS1 bags together in a single folder and use that folder as the data path.
+ROS2 bags especially require a ``metadata.yaml`` file.
+
+.. note::
+  It is not supported to run RKO LIO on partial or incomplete bags, though you may try and are encouraged to raise an issue if you require this supported.
+
+There are certain reasonable defaults:
+
+- The bag contains one IMU topic and one LiDAR topic (otherwise specify with ``--imu`` or ``--lidar`` flags).
+- A static TF tree is in the bag. We build a static TF tree from topic frame ids and query it for extrinsic between IMU and LiDAR.
+
+  The odometry estimates the robot pose with respect to a base frame, by default assumed to be the LiDAR frame unless you override this with ``--base_frame``.
+  The TF tree is queried for the necessary transformations.
+
+If there is no TF tree, you must supply extrinsics for IMU-to-base and LiDAR-to-base. Set one transformation to identity if you want that frame to be the reference, but both must be given.
+
+Message header frame IDs must match the TF tree frame names. If they do not, override with ``--lidar_frame`` or ``--imu_frame``.
+
+.. code-block:: bash
+
+   # The config should provide extrinsics if they can't be inferred
+   rko_lio -v -c config.yaml --imu imu_topic --lidar lidar_topic /path/to/rosbag_folder
+"""
 # MIT License
 #
 # Copyright (c) 2022 Ignacio Vizzo, Tiziano Guadagnino, Benedikt Mersch, Cyrill

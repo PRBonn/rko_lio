@@ -52,8 +52,8 @@ Or use the convenience recipes provided in the `Makefile <Makefile>`_:
 Advanced Details
 ----------------
 
-The Python build uses ``scikit-build-core``.  
-You only need Python ≥ 3.10 and ``pip`` (or another frontend).  
-All core dependencies are fetched automatically unless you modify the option in ``pyproject.toml`` (see also :doc:`Core Dependencies <../general/core_dependencies>`).
+The Python build uses ``scikit-build-core``.
+You only need Python ≥ 3.10 and ``pip`` (or another frontend).
+All core dependencies are fetched automatically unless you modify the option in ``pyproject.toml`` (see also :doc:`Core Dependencies <../core_dependencies>`).
 
 For an editable install recipe, see ``Makefile`` which will setup other build dependencies.

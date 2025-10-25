@@ -1,9 +1,9 @@
 Configuring the odometry
 ========================
 
-Covered here are the parameters for the odometry itself. These are shared across the Python and ROS versions, and can be specified in their respective config files. Please refer to the version specific usage documentation for further information on that.
-
 The odometry has a set of runtime parameters that are common across both the Python bindings and the ROS interface.
+Please refer to the version specific usage documentations, :doc:`./python/usage` and :doc:`./ros/usage`, for further information on that.
+
 
 The defaults are sane, and I've used the defaults with success across a number of platforms, datasets, etc.
 

@@ -7,6 +7,7 @@ It is assumed that both sensors are time synchronized, i.e. the data timestamps 
 Some delay in the arrival of the data itself is fine.
 
 .. _data-extrinsics-convention:
+
 Extrinsics & convention
 -----------------------
 

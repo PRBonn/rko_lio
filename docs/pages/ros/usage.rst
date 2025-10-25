@@ -15,7 +15,7 @@ To see all possible configuration options:
 
 That will also provide additional documentation about the different parameters.
 
-For some additional details regarding the odometry parameters and data itself, please refer to :doc:`../general/config` and :doc:`../general/data`.
+For some additional details regarding the odometry parameters and data itself, please refer to :doc:`../config` and :doc:`../data`.
 ROS-specific parameters are covered here.
 
 At minimum, you'll need to specify the ``lidar_topic``, ``imu_topic`` and ``base_frame`` parameters.

@@ -1,5 +1,5 @@
-ROS (C++)
-=========
+ROS
+===
 
 .. raw:: html
 
@@ -19,6 +19,6 @@ ROS (C++)
 
    Setup <setup>
    Usage <usage>
-   C++ API <../generated/index>
-   ROS package.xml <../__PACKAGE>
-   Changelog <changelog_literal>
+   C++ API <../../generated/index>
+   ROS package.xml <../../__PACKAGE>
+   Changelog <../changelog_literal>

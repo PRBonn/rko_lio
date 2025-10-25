@@ -52,7 +52,10 @@ If you use this work, please leave a star ⭐ on our `GitHub repository <https:/
    :caption: Contents:
 
    Quickstart <pages/quickstart>
-   General details <pages/general/general>
-   Ros <pages/ros/ros>
+   About <pages/primer>
+   Data <pages/data>
+   ROS <pages/ros/ros>
    Python <pages/python/python>
+   Configuring <pages/config>
+   Dependencies <pages/core_dependencies>
    License <__LICENSE>

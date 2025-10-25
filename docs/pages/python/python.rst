@@ -25,5 +25,5 @@ The python interface is a convenient tool to run the odometry offline on recorde
 
    Setup <setup>
    Usage <usage>
-   Dataloaders <dataloaders/dataloaders>
+   Dataloaders <dataloaders>
    Python API <../../python/modules>

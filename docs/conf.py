@@ -43,11 +43,14 @@ autodoc_mock_imports = [
     "typer",
     "pyyaml",
     "tqdm",
+    "rich",
+    "rosbags",
+    "open3d",
+    "rerun",
     "rko_lio_pybind",
     "rko_lio.rko_lio_pybind",
     "rko_lio.dataloaders.helipr_file_reader_pybind",
     "rko_lio.dataloaders.utils",
-    "open3d",
 ]
 pkgs_to_mock = [
     "numpy",
@@ -55,12 +58,15 @@ pkgs_to_mock = [
     "typer",
     "pyyaml",
     "tqdm",
+    "rich",
+    "rosbags",
+    "open3d",
+    "rerun",
     "rko_lio_pybind",
     ".rko_lio_pybind",
     "rko_lio.rko_lio_pybind",
     "rko_lio.dataloaders.helipr_file_reader_pybind",
     "rko_lio.dataloaders.utils",
-    "open3d",
 ]
 
 extensions = ["sphinx.ext.napoleon"]

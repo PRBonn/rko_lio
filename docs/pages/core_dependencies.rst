@@ -3,7 +3,7 @@ Core dependencies
 
 RKO-LIO is split into three parts:
 
-- a core C++ library in ``cpp``, which implements all the LiDAR-inertial odometry logic,
+- a core C++ library in ``core``, which implements all the LiDAR-inertial odometry logic,
 - the Python bindings in ``python``, and
 - the ROS interface in ``ros``.
 
