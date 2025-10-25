@@ -54,5 +54,5 @@ If you use this work, please leave a star ⭐ on our `GitHub repository <https:/
    Quickstart <pages/quickstart>
    General details <pages/general/general>
    pages/ros
-   pages/python
+   Python <pages/python/python>
    License <__LICENSE>
