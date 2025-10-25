@@ -29,9 +29,9 @@
 #include <sensor_msgs/msg/point_cloud2.hpp>
 #include <sensor_msgs/point_cloud2_iterator.hpp>
 
-namespace rko_lio::ros_utils {
+namespace rko_lio::ros::utils {
 std::vector<Eigen::Vector3d> point_cloud2_to_eigen(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& msg);
 
 std::tuple<std::vector<Eigen::Vector3d>, std::vector<double>>
 point_cloud2_to_eigen_with_timestamps(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& msg);
-}; // namespace rko_lio::ros_utils
+}; // namespace rko_lio::ros::utils

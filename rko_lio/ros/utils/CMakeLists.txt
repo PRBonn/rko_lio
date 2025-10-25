@@ -20,55 +20,35 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-add_subdirectory(ros_utils)
-
-# library: rko_lio::ros
-add_library(rko_lio.ros STATIC)
-
-add_library(rko_lio::ros ALIAS rko_lio.ros)
-
+add_library(rko_lio.ros.utils STATIC)
+add_library(rko_lio::ros::utils ALIAS rko_lio.ros.utils)
 compat_target_sources(
-  rko_lio.ros
-  PRIVATE node.cpp
+  rko_lio.ros.utils
+  PRIVATE point_cloud_read.cpp point_cloud_write.cpp rosbag.cpp
   PUBLIC
   FILE_SET
   HEADERS
-  FILES ../rko_lio/node.hpp
-  BASE_DIRS ..)
-
+  FILES ../../../rko_lio/ros/utils/point_cloud_read.hpp
+        ../../../rko_lio/ros/utils/point_cloud_write.hpp
+        ../../../rko_lio/ros/utils/ros_vectors.hpp
+        ../../../rko_lio/ros/utils/rosbag.hpp
+        ../../../rko_lio/ros/utils/time.hpp
+        ../../../rko_lio/ros/utils/transforms.hpp
+        ../../../rko_lio/ros/utils/utils.hpp
+  BASE_DIRS ../..)
 target_link_libraries(
-  rko_lio.ros
-  PRIVATE nlohmann_json::nlohmann_json
-  PUBLIC rko_lio::ros_utils
-         # ros deps
-         ${geometry_msgs_TARGETS}
-         ${nav_msgs_TARGETS}
+  rko_lio.ros.utils
+  PUBLIC # ros deps
          ${sensor_msgs_TARGETS}
-         ${std_msgs_TARGETS}
          rclcpp::rclcpp
+         rosbag2_cpp::rosbag2_cpp
+         rosbag2_storage::rosbag2_storage
          sensor_msgs::sensor_msgs_library
          tf2::tf2
          tf2_ros::static_transform_broadcaster_node
          tf2_ros::tf2_ros
          # ros deps end
-         rko_lio::core
          Sophus::Sophus
          Eigen3::Eigen)
-
-set_target_properties(rko_lio.ros PROPERTIES POSITION_INDEPENDENT_CODE ON)
-
-# executable: offline_node
-add_executable(offline_node offline_node.cpp)
-
-target_link_libraries(offline_node PRIVATE rko_lio::ros)
-
-set_target_properties(offline_node PROPERTIES POSITION_INDEPENDENT_CODE ON)
-
-# component: online_node_component
-add_library(online_node_component SHARED online_node.cpp)
-
-target_link_libraries(
-  online_node_component
-  PRIVATE rko_lio::ros
-          # ros deps
-          rclcpp_components::component rclcpp_components::component_manager)
+set_target_properties(rko_lio.ros.utils PROPERTIES POSITION_INDEPENDENT_CODE ON)
+# TODO: add the ros.utils as a library export target to enable reuse

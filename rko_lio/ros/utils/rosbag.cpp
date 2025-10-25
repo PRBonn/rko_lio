@@ -41,7 +41,7 @@ inline auto GetTimestampsFromRosbagSerializedMsg(const rosbag2_storage::Serializ
 }
 } // namespace
 
-namespace rko_lio::ros_utils {
+namespace rko_lio::ros::utils {
 // TFBridge----------------------------------------------------------------------------------------
 BufferableBag::TFBridge::TFBridge(rclcpp::Node::SharedPtr node) {
   tf_broadcaster = std::make_unique<tf2_ros::TransformBroadcaster>(node);
@@ -147,4 +147,4 @@ rosbag2_storage::SerializedBagMessage BufferableBag::PopNextMessage() {
   }
   return msg;
 }
-} // namespace rko_lio::ros_utils
+} // namespace rko_lio::ros::utils

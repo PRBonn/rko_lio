@@ -26,8 +26,8 @@
 #include <builtin_interfaces/msg/time.hpp>
 #include <rclcpp/time.hpp>
 
-namespace rko_lio::ros_utils {
+namespace rko_lio::ros::utils {
 inline std::chrono::duration<double> ros_time_to_seconds(const builtin_interfaces::msg::Time& stamp) {
   return std::chrono::duration<double>(rclcpp::Time(stamp).nanoseconds() * 1e-9);
 }
-} // namespace rko_lio::ros_utils
+} // namespace rko_lio::ros::utils

@@ -24,7 +24,7 @@
 
 #include "node.hpp"
 #include "rko_lio/core/profiler.hpp"
-#include "rko_lio/ros_utils/rosbag_utils.hpp"
+#include "rko_lio/ros/utils/rosbag.hpp"
 // other
 #include <std_msgs/msg/float32_multi_array.hpp>
 
@@ -64,7 +64,7 @@ void publish_bag_progress(const BagProgressPublisher::SharedPtr& publisher,
 namespace rko_lio::ros {
 class OfflineNode : public Node {
 public:
-  std::unique_ptr<ros_utils::BufferableBag> bag;
+  std::unique_ptr<utils::BufferableBag> bag;
 
   BagProgressPublisher::SharedPtr bag_progress_publisher;
 
@@ -76,9 +76,9 @@ public:
     max_lidar_buffer_size = 100;
     // bag reading
     const tf2::Duration skip_to_time = tf2::durationFromSec(node->declare_parameter<double>("skip_to_time", 0.0));
-    bag = std::make_unique<ros_utils::BufferableBag>(node->declare_parameter<std::string>("bag_path"),
-                                                     std::make_shared<ros_utils::BufferableBag::TFBridge>(node),
-                                                     std::vector<std::string>{imu_topic, lidar_topic}, skip_to_time);
+    bag = std::make_unique<utils::BufferableBag>(node->declare_parameter<std::string>("bag_path"),
+                                                 std::make_shared<utils::BufferableBag::TFBridge>(node),
+                                                 std::vector<std::string>{imu_topic, lidar_topic}, skip_to_time);
     total_bag_msgs = bag->message_count();
     bag_progress_publisher = node->create_publisher<std_msgs::msg::Float32MultiArray>("/rko_lio/bag_progress", 10);
   }

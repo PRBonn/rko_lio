@@ -26,7 +26,7 @@
 
 #include <Eigen/Core>
 
-namespace rko_lio::ros_utils {
+namespace rko_lio::ros::utils {
 void eigen_vector3d_to_ros_xyz(const Eigen::Vector3d& vector, auto& ros_vector)
   requires requires(decltype(ros_vector) v) {
     { v.x } -> std::convertible_to<double>;
@@ -43,4 +43,4 @@ template <typename T>
 Eigen::Vector3d ros_xyz_to_eigen_vector3d(const T& ros_vector) {
   return Eigen::Vector3d{ros_vector.x, ros_vector.y, ros_vector.z};
 }
-}; // namespace rko_lio::ros_utils
+}; // namespace rko_lio::ros::utils

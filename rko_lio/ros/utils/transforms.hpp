@@ -35,7 +35,7 @@
 #include <tf2/time.hpp>
 #include <tf2_ros/buffer.h>
 
-namespace rko_lio::ros_utils {
+namespace rko_lio::ros::utils {
 inline geometry_msgs::msg::Pose sophus_to_pose(const Sophus::SE3d& T) {
   geometry_msgs::msg::Pose t;
   t.position.x = T.translation().x();
@@ -109,4 +109,4 @@ get_transform(const std::shared_ptr<tf2_ros::Buffer>& tf_buffer,
   }
   return std::nullopt;
 }
-} // namespace rko_lio::ros_utils
+} // namespace rko_lio::ros::utils

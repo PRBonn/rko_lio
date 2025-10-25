@@ -72,7 +72,7 @@ void fill_point_cloud2_xyz(const std::vector<Eigen::Vector3d>& points, PointClou
   }
 }
 } // namespace
-namespace rko_lio::ros_utils {
+namespace rko_lio::ros::utils {
 
 PointCloud2::UniquePtr eigen_to_point_cloud2(const std::vector<Eigen::Vector3d>& points, const Header& header) {
   PointCloud2::UniquePtr msg = create_point_cloud2_msg(points.size(), header);
@@ -80,4 +80,4 @@ PointCloud2::UniquePtr eigen_to_point_cloud2(const std::vector<Eigen::Vector3d>&
   return msg;
 }
 
-} // namespace rko_lio::ros_utils
+} // namespace rko_lio::ros::utils

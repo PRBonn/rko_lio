@@ -26,7 +26,7 @@
 #include <sensor_msgs/msg/point_cloud2.hpp>
 #include <vector>
 
-namespace rko_lio::ros_utils {
+namespace rko_lio::ros::utils {
 std::unique_ptr<sensor_msgs::msg::PointCloud2> eigen_to_point_cloud2(const std::vector<Eigen::Vector3d>& points,
                                                                      const std_msgs::msg::Header& header);
 }

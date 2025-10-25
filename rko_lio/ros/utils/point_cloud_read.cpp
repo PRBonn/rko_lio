@@ -28,7 +28,7 @@
 #include <functional>
 #include <stdexcept>
 
-namespace rko_lio::ros_utils {
+namespace rko_lio::ros::utils {
 using Vector3dVector = std::vector<Eigen::Vector3d>;
 using PointCloud2 = sensor_msgs::msg::PointCloud2;
 using PointField = sensor_msgs::msg::PointField;
@@ -101,4 +101,4 @@ point_cloud2_to_eigen_with_timestamps(const PointCloud2::ConstSharedPtr& msg) {
 
   return {points, raw_timestamps};
 }
-} // namespace rko_lio::ros_utils
+} // namespace rko_lio::ros::utils

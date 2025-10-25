@@ -20,35 +20,52 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-add_library(rko_lio.ros_utils STATIC)
-add_library(rko_lio::ros_utils ALIAS rko_lio.ros_utils)
+# library: rko_lio::ros::utils
+add_subdirectory(utils)
+
+# library: rko_lio::ros
+add_library(rko_lio.ros STATIC)
+add_library(rko_lio::ros ALIAS rko_lio.ros)
+
 compat_target_sources(
-  rko_lio.ros_utils
-  PRIVATE point_cloud_read.cpp point_cloud_write.cpp rosbag_utils.cpp
+  rko_lio.ros
+  PRIVATE node.cpp
   PUBLIC
   FILE_SET
   HEADERS
-  FILES ../../rko_lio/ros_utils/point_cloud_read.hpp
-        ../../rko_lio/ros_utils/point_cloud_write.hpp
-        ../../rko_lio/ros_utils/ros_utils.hpp
-        ../../rko_lio/ros_utils/ros_vectors.hpp
-        ../../rko_lio/ros_utils/rosbag_utils.hpp
-        ../../rko_lio/ros_utils/time.hpp
-        ../../rko_lio/ros_utils/transforms.hpp
-  BASE_DIRS ../..)
+  FILES ../rko_lio/node.hpp
+  BASE_DIRS ..)
+
 target_link_libraries(
-  rko_lio.ros_utils
-  PUBLIC # ros deps
+  rko_lio.ros
+  PRIVATE nlohmann_json::nlohmann_json
+  PUBLIC rko_lio::ros::utils
+         # ros deps
+         ${geometry_msgs_TARGETS}
+         ${nav_msgs_TARGETS}
          ${sensor_msgs_TARGETS}
+         ${std_msgs_TARGETS}
          rclcpp::rclcpp
-         rosbag2_cpp::rosbag2_cpp
-         rosbag2_storage::rosbag2_storage
          sensor_msgs::sensor_msgs_library
          tf2::tf2
          tf2_ros::static_transform_broadcaster_node
          tf2_ros::tf2_ros
          # ros deps end
+         rko_lio::core
          Sophus::Sophus
          Eigen3::Eigen)
-set_target_properties(rko_lio.ros_utils PROPERTIES POSITION_INDEPENDENT_CODE ON)
-# TODO: add the ros_utils as a library export target to enable reuse
+
+set_target_properties(rko_lio.ros PROPERTIES POSITION_INDEPENDENT_CODE ON)
+
+# executable: offline_node
+add_executable(offline_node offline_node.cpp)
+target_link_libraries(offline_node PRIVATE rko_lio::ros)
+set_target_properties(offline_node PROPERTIES POSITION_INDEPENDENT_CODE ON)
+
+# component: online_node_component
+add_library(online_node_component SHARED online_node.cpp)
+target_link_libraries(
+  online_node_component
+  PRIVATE rko_lio::ros
+          # ros deps
+          rclcpp_components::component rclcpp_components::component_manager)

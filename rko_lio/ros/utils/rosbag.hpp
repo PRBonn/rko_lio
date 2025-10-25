@@ -41,7 +41,7 @@
 #include <string>
 #include <vector>
 
-namespace rko_lio::ros_utils {
+namespace rko_lio::ros::utils {
 class BufferableBag {
 public:
   // Wrapper node to process the transforamtions present in the bagfile
@@ -74,4 +74,4 @@ private:
   std::vector<std::string> topics_;
   size_t message_count_{0};
 };
-} // namespace rko_lio::ros_utils
+} // namespace rko_lio::ros::utils

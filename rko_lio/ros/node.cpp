@@ -25,7 +25,7 @@
 #include "node.hpp"
 #include "rko_lio/core/process_timestamps.hpp"
 #include "rko_lio/core/profiler.hpp"
-#include "rko_lio/ros_utils/ros_utils.hpp"
+#include "rko_lio/ros/utils/utils.hpp"
 // other
 #include <fstream>
 #include <iostream>
@@ -38,9 +38,9 @@ using namespace std::literals;
 
 rko_lio::core::ImuControl imu_msg_to_imu_data(const sensor_msgs::msg::Imu& imu_msg) {
   rko_lio::core::ImuControl imu_data;
-  imu_data.time = rko_lio::ros_utils::ros_time_to_seconds(imu_msg.header.stamp);
-  imu_data.angular_velocity = rko_lio::ros_utils::ros_xyz_to_eigen_vector3d(imu_msg.angular_velocity);
-  imu_data.acceleration = rko_lio::ros_utils::ros_xyz_to_eigen_vector3d(imu_msg.linear_acceleration);
+  imu_data.time = rko_lio::ros::utils::ros_time_to_seconds(imu_msg.header.stamp);
+  imu_data.angular_velocity = rko_lio::ros::utils::ros_xyz_to_eigen_vector3d(imu_msg.angular_velocity);
+  imu_data.acceleration = rko_lio::ros::utils::ros_xyz_to_eigen_vector3d(imu_msg.linear_acceleration);
   return imu_data;
 }
 
@@ -153,8 +153,6 @@ Node::Node(const std::string& node_name, const rclcpp::NodeOptions& options) {
       // it is probably still a veery good idea to make dump_results_to_disk noexcept
       dump_results_to_disk(results_dir, run_name);
     }
-    // i'm registering this in the constructor as i'm unclear how to handle this cleanly with the online node component.
-    // might as well reuse for the offline node
   });
 
   registration_thread = std::jthread([this]() { registration_loop(); });
@@ -194,11 +192,11 @@ bool Node::check_and_set_extrinsics() {
   if (extrinsics_set) {
     return true;
   }
-  const std::optional<Sophus::SE3d> imu_transform = ros_utils::get_transform(tf_buffer, imu_frame, base_frame, 0s);
+  const std::optional<Sophus::SE3d> imu_transform = utils::get_transform(tf_buffer, imu_frame, base_frame, 0s);
   if (!imu_transform) {
     return false;
   }
-  const std::optional<Sophus::SE3d> lidar_transform = ros_utils::get_transform(tf_buffer, lidar_frame, base_frame, 0s);
+  const std::optional<Sophus::SE3d> lidar_transform = utils::get_transform(tf_buffer, lidar_frame, base_frame, 0s);
   if (!lidar_transform) {
     return false;
   }
@@ -255,16 +253,16 @@ void Node::lidar_callback(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& l
   try {
     const auto& [start_stamp, end_stamp, timestamps, scan] =
         std::invoke([&]() -> std::tuple<core::Secondsd, core::Secondsd, core::TimestampVector, core::Vector3dVector> {
-          const auto& header_stamp = ros_utils::ros_time_to_seconds(lidar_msg->header.stamp);
+          const auto& header_stamp = utils::ros_time_to_seconds(lidar_msg->header.stamp);
           if (lio->config.deskew) {
-            const auto& [scan, raw_timestamps] = ros_utils::point_cloud2_to_eigen_with_timestamps(lidar_msg);
+            const auto& [scan, raw_timestamps] = utils::point_cloud2_to_eigen_with_timestamps(lidar_msg);
             const auto& [start_stamp, end_stamp, timestamp_vector] =
                 core::process_timestamps(raw_timestamps, header_stamp);
             return {start_stamp, end_stamp, timestamp_vector, scan};
           } else {
             RCLCPP_WARN_STREAM_ONCE(node->get_logger(),
                                     "Deskewing is disabled. Populating timestamps with static header time.");
-            const core::Vector3dVector scan = ros_utils::point_cloud2_to_eigen(lidar_msg);
+            const core::Vector3dVector scan = utils::point_cloud2_to_eigen(lidar_msg);
             return {header_stamp, header_stamp, core::TimestampVector(scan.size(), header_stamp), scan};
           }
         });
@@ -319,7 +317,7 @@ void Node::registration_loop() {
           std_msgs::msg::Header header;
           header.frame_id = lidar_frame;
           header.stamp = rclcpp::Time(std::chrono::duration_cast<std::chrono::nanoseconds>(end_stamp).count());
-          frame_publisher->publish(ros_utils::eigen_to_point_cloud2(deskewed_frame, header));
+          frame_publisher->publish(utils::eigen_to_point_cloud2(deskewed_frame, header));
         }
         publish_odometry(lio->lidar_state, end_stamp);
         if (publish_lidar_acceleration) {
@@ -342,11 +340,11 @@ void Node::publish_odometry(const core::State& state, const core::Secondsd& stam
   if (invert_odom_tf) {
     transform_msg.header.frame_id = from_frame;
     transform_msg.child_frame_id = to_frame;
-    transform_msg.transform = ros_utils::sophus_to_transform(state.pose.inverse());
+    transform_msg.transform = utils::sophus_to_transform(state.pose.inverse());
   } else {
     transform_msg.header.frame_id = to_frame;
     transform_msg.child_frame_id = from_frame;
-    transform_msg.transform = ros_utils::sophus_to_transform(state.pose);
+    transform_msg.transform = utils::sophus_to_transform(state.pose);
   }
   tf_broadcaster->sendTransform(transform_msg);
 
@@ -355,9 +353,9 @@ void Node::publish_odometry(const core::State& state, const core::Secondsd& stam
   odom_msg.header.stamp = rclcpp::Time(std::chrono::duration_cast<std::chrono::nanoseconds>(stamp).count());
   odom_msg.header.frame_id = to_frame;
   odom_msg.child_frame_id = from_frame;
-  odom_msg.pose.pose = ros_utils::sophus_to_pose(state.pose);
-  ros_utils::eigen_vector3d_to_ros_xyz(state.velocity, odom_msg.twist.twist.linear);
-  ros_utils::eigen_vector3d_to_ros_xyz(state.angular_velocity, odom_msg.twist.twist.angular);
+  odom_msg.pose.pose = utils::sophus_to_pose(state.pose);
+  utils::eigen_vector3d_to_ros_xyz(state.velocity, odom_msg.twist.twist.linear);
+  utils::eigen_vector3d_to_ros_xyz(state.angular_velocity, odom_msg.twist.twist.angular);
   odom_publisher->publish(odom_msg);
 }
 
@@ -365,7 +363,7 @@ void Node::publish_lidar_accel(const Eigen::Vector3d& acceleration, const core::
   auto accel_msg = geometry_msgs::msg::AccelStamped();
   accel_msg.header.stamp = rclcpp::Time(std::chrono::duration_cast<std::chrono::nanoseconds>(stamp).count());
   accel_msg.header.frame_id = base_frame;
-  ros_utils::eigen_vector3d_to_ros_xyz(acceleration, accel_msg.accel.linear);
+  utils::eigen_vector3d_to_ros_xyz(acceleration, accel_msg.accel.linear);
   lidar_accel_publisher->publish(accel_msg);
 }
 
@@ -382,7 +380,7 @@ void Node::publish_map_loop() {
     std_msgs::msg::Header map_header;
     map_header.stamp = node->now();
     map_header.frame_id = odom_frame;
-    map_publisher->publish(ros_utils::eigen_to_point_cloud2(map_points, map_header));
+    map_publisher->publish(utils::eigen_to_point_cloud2(map_points, map_header));
   }
 }
 

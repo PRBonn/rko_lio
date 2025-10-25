@@ -54,7 +54,7 @@ Homepage = "https://github.com/PRBonn/rko_lio"
 rko_lio = "rko_lio.cli:app"
 
 [tool.scikit-build]
-wheel.packages = ["rko_lio"]
+wheel.packages = ["rko_lio/python/rko_lio"]
 build-dir = "build/{wheel_tag}"
 build.verbose = true
 editable.mode = "redirect"
@@ -62,7 +62,7 @@ editable.rebuild = true
 editable.verbose = true
 
 [tool.scikit-build.cmake]
-source-dir = "pybind"
+source-dir = "rko_lio/pybind"
 version = ">=3.28"
 build-type = "Release"
 
@@ -83,5 +83,5 @@ archs = ["x86_64", "arm64"]
 
 [tool.pytest.ini_options]
 testpaths = [
-  "tests"
+  "tests/python"
 ]
