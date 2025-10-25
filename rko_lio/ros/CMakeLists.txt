@@ -33,8 +33,8 @@ compat_target_sources(
   PUBLIC
   FILE_SET
   HEADERS
-  FILES ../rko_lio/node.hpp
-  BASE_DIRS ..)
+  FILES ../../rko_lio/ros/node.hpp
+  BASE_DIRS ../..)
 
 target_link_libraries(
   rko_lio.ros
