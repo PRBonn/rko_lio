@@ -62,7 +62,7 @@ editable.rebuild = true
 editable.verbose = true
 
 [tool.scikit-build.cmake]
-source-dir = "rko_lio/pybind"
+source-dir = "rko_lio/python/pybind"
 version = ">=3.28"
 build-type = "Release"
 

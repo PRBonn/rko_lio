@@ -1,4 +1,4 @@
-INPUT = ../cpp ../ros
+INPUT = ../rko_lio/core ../rko_lio/ros
 RECURSIVE = YES
 GENERATE_XML = YES
 GENERATE_HTML = NO
