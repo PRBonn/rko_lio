@@ -144,15 +144,16 @@ def cli(
         "-l",
         help="Log trajectory results to disk at 'results_dir' on completion",
     ),
-    results_dir: Path | None = typer.Option(
-        "results", "--results_dir", "-r", help="Where to dump LIO results if logging"
+    log_dir: Path = typer.Option(
+        "results", "--log_dir", "-o", help="Where to dump LIO results if logging"
     ),
     run_name: str | None = typer.Option(
         None,
         "--run_name",
         "-n",
-        help="Name prefix for output files if logging. Default takes the name from the data_path argument",
+        help="Name prefix for output files if logging. Leave empty to take the name from the data_path argument",
     ),
+    dump_deskewed_scans: bool = typer.Option(False, "--dump_deskewed",  help="Dump each deskewed/motion-undistorted scan as a .ply file under log_dir/run_name, only if logging with --log"),
     sequence: str | None = typer.Option(
         None,
         "--sequence",
@@ -268,6 +269,9 @@ def cli(
         extrinsic_imu2base=extrinsic_imu2base,
         extrinsic_lidar2base=extrinsic_lidar2base,
         viz=viz,
+        log_dir=log_dir,
+        run_name=run_name or data_path.name,
+        dump_deskewed_scans=log_results and dump_deskewed_scans
     )
 
     from tqdm import tqdm
@@ -278,9 +282,8 @@ def cli(
         elif kind == "lidar":
             pipeline.add_lidar(*data_tuple)
 
-    if log_results and results_dir:
-        results_dir.mkdir(parents=True, exist_ok=True)
-        pipeline.dump_results_to_disk(results_dir, run_name or data_path.name)
+    if log_results:
+        pipeline.dump_results_to_disk()
 
 
 if __name__ == "__main__":

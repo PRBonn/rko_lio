@@ -105,3 +105,28 @@ def quat_xyzw_xyz_to_transform(quat_xyzw_xyz: np.ndarray) -> np.ndarray:
     transform[:3, :3] = Quaternion(x=qx, y=qy, z=qz, w=qw).rotation_matrix
     transform[:3, 3] = xyz
     return transform
+
+def save_scan_as_ply(
+    scan: np.ndarray,
+    end_time_seconds: float,
+    output_dir: Path,
+):
+    """
+    dumps the scan as PLY.
+    The filename is <nanoseconds_as_int>.ply based on end_time_seconds.
+    """
+    if scan is None or len(scan) == 0:
+        return
+    try:
+        import open3d
+    except ModuleNotFoundError:
+        error_and_exit(
+            'Open3d is not installed, required for dumping the deskewed scans. Please "pip install -U open3d"'
+        )
+
+    output_dir.mkdir(exist_ok=True, parents=True)
+    fname = output_dir / f"{int(end_time_seconds * 1e9)}.ply"
+
+    pc_o3d = open3d.geometry.PointCloud()
+    pc_o3d.points = open3d.utility.Vector3dVector(scan)
+    o3d.io.write_point_cloud(fname.as_posix(), pc_o3d)
