@@ -19,17 +19,17 @@ jobs:
       - uses: actions/checkout@v5
       - name: Build test wheels (only PRs)
         if: github.event_name != 'release'
-        uses: pypa/cibuildwheel@v3.1.4
+        uses: pypa/cibuildwheel@v3.2.1
         env: # build 1 build per platform just to make sure we can do it later when releasing
           CIBW_BUILD: "cp312-*"
         with:
-          package-dir: ${{github.workspace}}/python/
+          package-dir: ${{github.workspace}}/
       - name: Build all wheels (release)
         if: github.event_name == 'release'
-        uses: pypa/cibuildwheel@v3.1.4
+        uses: pypa/cibuildwheel@v3.2.1
         with:
-          package-dir: ${{github.workspace}}/python/
-      - uses: actions/upload-artifact@v4
+          package-dir: ${{github.workspace}}/
+      - uses: actions/upload-artifact@v5
         with:
           name: artifact-${{ matrix.os }}
           path: ./wheelhouse/*.whl
@@ -38,13 +38,13 @@ jobs:
     if: github.event_name == 'release'
     needs: [cibuildwheel]
     runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
     steps:
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         with:
           pattern: artifact*
           path: dist
           merge-multiple: true
       - uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
-          # TODO: switch to trusted publishing

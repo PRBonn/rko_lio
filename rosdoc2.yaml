@@ -1,0 +1,11 @@
+type: 'rosdoc2 config'
+version: 1
+---
+settings:
+  generate_package_index: true
+  python_source: 'rko_lio/python/rko_lio'
+  always_run_doxygen: false
+  always_run_sphinx_apidoc: false
+builders:
+  - doxygen: {name: 'rko_lio C++ API', output_dir: 'generated/doxygen', doxyfile: "docs/Doxyfile"}
+  - sphinx: {name: 'rko_lio', doxygen_xml_directory: 'generated/doxygen/xml', output_dir: '', sphinx_sourcedir: "docs"}

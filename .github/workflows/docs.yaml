@@ -1,0 +1,30 @@
+name: Deploy Docs
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v5
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.x'
+      - name: Install rosdoc2 and myst
+        run: |
+          python3 -m pip install --upgrade 'git+https://github.com/ros-infrastructure/rosdoc2@main' myst
+      - name: Install Doxygen
+        run: sudo apt-get update && sudo apt-get install -y doxygen
+      - name: Build documentation with rosdoc2
+        run: |
+          rosdoc2 build --package-path $GITHUB_WORKSPACE
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs_output/rko_lio
+          publish_branch: gh-pages

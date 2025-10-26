@@ -9,3 +9,4 @@ jobs:
     uses: ./.github/workflows/ros_build_reusable.yaml
     with:
       ros_distro: kilted
+      container_image: osrf/ros:kilted-desktop

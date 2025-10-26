@@ -1,0 +1,12 @@
+name: Bump FetchContent
+on:
+  schedule:
+    - cron: '0 0 1 * *' # At 00:00 on the 1st day of every month (UTC)
+  workflow_dispatch: # Allow manual trigger
+jobs:
+  bump-fetchcontent:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mehermvr/bump_fetchcontent@v0.0.1
+        with:
+          github_token: ${{ secrets.BUMP_FETCHCONTENT_TOKEN }}

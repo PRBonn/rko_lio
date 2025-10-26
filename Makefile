@@ -1,24 +1,24 @@
-.PHONY: python
-python:
-	$(MAKE) -C python install
+.PHONY: install
+install:
+	pip install -v ".[all]"
 
-.PHONY: cpp
-cpp:
-	cmake -G Ninja -S cpp -B build_cpp \
+.PHONY: editable
+editable:
+	pip install scikit-build-core pyproject_metadata pathspec pybind11 ninja cmake && pip install --no-build-isolation -ve  ".[all]"
+
+.PHONY: core
+core:
+	cmake -G Ninja -S . -B build/core \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
 		-DCMAKE_POSITION_INDEPENDENT_CODE=ON \
-		-DRKO_LIO_FETCH_CONTENT_DEPS=ON
-	cmake --build build_cpp
-	touch build_cpp/COLCON_IGNORE
-
-cpp-install: cpp
-	cmake --install build_cpp --prefix install
+		-DRKO_LIO_FETCH_CONTENT_DEPS=ON \
+		-DRKO_LIO_BUILD_ROS=OFF
+	cmake --build build/core
+	touch build/COLCON_IGNORE
 
 .PHONY: clean
 clean:
-	rm -rf build_cpp install
+	rm -rf build
 
-.PHONY: clean_all
-clean_all:
-	rm -rf build build_cpp python/build install
+
