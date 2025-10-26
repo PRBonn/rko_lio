@@ -139,16 +139,28 @@ rko_lio<span class="w"> </span>-v<span class="w"> </span>/path/to/data
 <li><p><code class="docutils literal notranslate"><span class="pre">rerun-sdk</span></code> -&gt; required for our optional visualizer (<code class="docutils literal notranslate"><span class="pre">-v</span></code> flag)</p></li>
 </ul>
 <p>Check further options for the CLI through <code class="docutils literal notranslate"><span class="pre">rko_lio</span> <span class="pre">--help</span></code>.</p>
+</section>
 <section id="ros">
-<h2>ROS<a class="headerlink" href="#ros" title="Link to this heading">¶</a></h2>
+<h1>ROS<a class="headerlink" href="#ros" title="Link to this heading">¶</a></h1>
 <p>Supported distros: Humble, Jazzy, Kilted, Rolling.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-<span class="nv">$ROS_DISTRO</span>-rko-lio
-ros2<span class="w"> </span>launch<span class="w"> </span>rko_lio<span class="w"> </span>odometry.launch.py<span class="w"> </span>imu_topic:<span class="o">=</span>&lt;topic&gt;<span class="w"> </span>lidar_topic:<span class="o">=</span>&lt;topic&gt;<span class="w"> </span>base_frame:<span class="o">=</span>base_link
+</pre></div>
+</div>
+<p>Or if you’d like to build from source, clone the repo into your colcon workspace and</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rosdep<span class="w"> </span>install<span class="w"> </span>--from-paths<span class="w"> </span>src<span class="w"> </span>--ignore-src<span class="w"> </span>-r<span class="w"> </span>-y
+colcon<span class="w"> </span>build<span class="w"> </span>--packages-select<span class="w"> </span>rko_lio<span class="w">  </span><span class="c1"># --symlink-install --event-handlers console_direct+</span>
+</pre></div>
+</div>
+<p>In case you cannot system install the necessary dependencies through rosdep, you can also build the dependencies while building RKO-LIO</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>colcon<span class="w"> </span>build<span class="w"> </span>--packages-select<span class="w"> </span>rko_lio<span class="w"> </span>--cmake-args<span class="w"> </span>-DRKO_LIO_FETCH_CONTENT_DEPS<span class="o">=</span>ON
+</pre></div>
+</div>
+<p>A launch file is provided:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>rko_lio<span class="w"> </span>odometry.launch.py<span class="w"> </span>imu_topic:<span class="o">=</span>&lt;topic&gt;<span class="w"> </span>lidar_topic:<span class="o">=</span>&lt;topic&gt;<span class="w"> </span>base_frame:<span class="o">=</span>base_link
 </pre></div>
 </div>
 <p>The three parameters above are the minimum you need to specify for the launch file.</p>
 <p>Check further launch configuration options through <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">launch</span> <span class="pre">rko_lio</span> <span class="pre">odometry.launch.py</span> <span class="pre">-s</span></code></p>
-</section>
 </section>
 <section id="license">
 <h1>License<a class="headerlink" href="#license" title="Link to this heading">¶</a></h1>

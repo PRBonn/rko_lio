@@ -60,12 +60,30 @@ Why `pip` install those three packages?
 
 Check further options for the CLI through `rko_lio --help`.
 
-### ROS
+## ROS
 
 Supported distros: Humble, Jazzy, Kilted, Rolling.
 
 ```bash
 sudo apt install ros-$ROS_DISTRO-rko-lio
+```
+
+Or if you'd like to build from source, clone the repo into your colcon workspace and
+
+```bash
+rosdep install --from-paths src --ignore-src -r -y
+colcon build --packages-select rko_lio  # --symlink-install --event-handlers console_direct+
+```
+
+In case you cannot system install the necessary dependencies through rosdep, you can also build the dependencies while building RKO-LIO
+
+```bash
+colcon build --packages-select rko_lio --cmake-args -DRKO_LIO_FETCH_CONTENT_DEPS=ON
+```
+
+A launch file is provided:
+
+```bash
 ros2 launch rko_lio odometry.launch.py imu_topic:=<topic> lidar_topic:=<topic> base_frame:=base_link
 ```
 
