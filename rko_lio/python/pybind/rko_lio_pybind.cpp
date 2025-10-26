@@ -61,6 +61,16 @@ PYBIND11_MODULE(rko_lio_pybind, m) {
       .def_readwrite("double_downsample", &Config::double_downsample)
       .def_readwrite("min_beta", &Config::min_beta);
 
+  // for introspecting IMU data
+  py::class_<IntervalStats>(m, "_IntervalStats")
+      .def(py::init<>())
+      .def_readonly("imu_count", &IntervalStats::imu_count)
+      .def_readonly("angular_velocity_sum", &IntervalStats::angular_velocity_sum)
+      .def_readonly("body_acceleration_sum", &IntervalStats::body_acceleration_sum)
+      .def_readonly("imu_acceleration_sum", &IntervalStats::imu_acceleration_sum)
+      .def_readonly("imu_accel_mag_mean", &IntervalStats::imu_accel_mag_mean)
+      .def_readonly("welford_sum_of_squares", &IntervalStats::welford_sum_of_squares);
+
   py::class_<LIO>(m, "_LIO")
       .def(py::init<const Config&>(), "config"_a)
       .def(
@@ -105,27 +115,29 @@ PYBIND11_MODULE(rko_lio_pybind, m) {
           "extrinsic_lidar2base"_a, "scan"_a, "timestamps"_a)
       .def("map_point_cloud", [](LIO& self) { return self.map.Pointcloud(); })
       .def("pose", [](LIO& self) { return self.lidar_state.pose.matrix(); })
-      .def("poses_with_timestamps", [](LIO& self) {
-        const size_t n = self.poses_with_timestamps.size();
-        std::vector<double> times(n);
-        pybind11::array_t<double> poses({n, static_cast<size_t>(7)});
-        // https://pybind11.readthedocs.io/en/stable/advanced/pycpp/numpy.html#direct-access
-        auto pose_buf = poses.mutable_unchecked<2>();
-        for (size_t i = 0; i < n; ++i) {
-          const auto& [time, pose] = self.poses_with_timestamps[i];
-          times[i] = time.count();
-          const Eigen::Vector3d& trans = pose.translation();
-          const Eigen::Quaterniond& q = pose.unit_quaternion();
-          pose_buf(i, 0) = trans.x();
-          pose_buf(i, 1) = trans.y();
-          pose_buf(i, 2) = trans.z();
-          pose_buf(i, 3) = q.x();
-          pose_buf(i, 4) = q.y();
-          pose_buf(i, 5) = q.z();
-          pose_buf(i, 6) = q.w();
-        }
-        return pybind11::make_tuple(times, poses);
-      });
+      .def("poses_with_timestamps",
+           [](LIO& self) {
+             const size_t n = self.poses_with_timestamps.size();
+             std::vector<double> times(n);
+             pybind11::array_t<double> poses({n, static_cast<size_t>(7)});
+             // https://pybind11.readthedocs.io/en/stable/advanced/pycpp/numpy.html#direct-access
+             auto pose_buf = poses.mutable_unchecked<2>();
+             for (size_t i = 0; i < n; ++i) {
+               const auto& [time, pose] = self.poses_with_timestamps[i];
+               times[i] = time.count();
+               const Eigen::Vector3d& trans = pose.translation();
+               const Eigen::Quaterniond& q = pose.unit_quaternion();
+               pose_buf(i, 0) = trans.x();
+               pose_buf(i, 1) = trans.y();
+               pose_buf(i, 2) = trans.z();
+               pose_buf(i, 3) = q.x();
+               pose_buf(i, 4) = q.y();
+               pose_buf(i, 5) = q.z();
+               pose_buf(i, 6) = q.w();
+             }
+             return pybind11::make_tuple(times, poses);
+           })
+      .def_readonly("interval_stats", &LIO::interval_stats);
 
   m.def(
       "_process_timestamps",

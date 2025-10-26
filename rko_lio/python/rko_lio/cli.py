@@ -124,9 +124,23 @@ app = typer.Typer()
     epilog="Please open an issue on https://github.com/PRBonn/rko_lio if the usage of any option is unclear or you need some help!"
 )
 def cli(
-    data_path: Path = typer.Argument(..., exists=True, help="Path to data folder"),
+    data_path: Path = typer.Argument(
+        ...,
+        exists=True,
+        help="Path to data folder",
+        file_okay=False,
+        dir_okay=True,
+        readable=True,
+    ),
     config_fp: Path | None = typer.Option(
-        None, "--config", "-c", exists=True, help="Path to config.yaml"
+        None,
+        "--config",
+        "-c",
+        exists=True,
+        help="Path to config.yaml",
+        file_okay=True,
+        dir_okay=False,
+        readable=True,
     ),
     dataloader_name: str | None = typer.Option(
         None,
@@ -137,48 +151,96 @@ def cli(
         callback=dataloader_name_callback,
         case_sensitive=False,
     ),
-    viz: bool = typer.Option(False, "--viz", "-v", help="Enable Rerun visualization"),
+    viz: bool = typer.Option(
+        False,
+        "--viz",
+        "-v",
+        help="Enable Rerun visualization",
+        rich_help_panel="Visualisation options",
+    ),
+    viz_every_n_frames: int = typer.Option(
+        20,
+        "--viz_frame_skip",
+        help="Publish LiDAR information after (every) specified number of frames. A low value will slow down the entire pipeline as logging LiDAR is expensive.",
+        rich_help_panel="Visualisation options",
+    ),
+    rbl_path: Path | None = typer.Option(
+        None,
+        "--rbl",
+        exists=True,
+        help="Path to a rerun blueprint file (.rbl). Leave empty to use the default rerun configuration. Respects --no_reset_viz if set",
+        file_okay=True,
+        dir_okay=False,
+        readable=True,
+        rich_help_panel="Visualisation options",
+    ),
+    reset_viz: bool = typer.Option(
+        True,
+        " /--no_reset_viz",
+        help="Pass this option to disable resetting rerun viewer configuration as per the blueprint (default or with --rbl). Useful if you want to take advantage of rerun's caching behaviour.",
+        show_default=False,
+        rich_help_panel="Visualisation options",
+    ),
     log_results: bool = typer.Option(
         True,
         "--log",
         "-l",
-        help="Log trajectory results to disk at 'results_dir' on completion",
+        help="Log trajectory results to disk at 'log_dir' on completion",
+        rich_help_panel="Disk logging options",
     ),
-    log_dir: Path = typer.Option(
-        "results", "--log_dir", "-o", help="Where to dump LIO results if logging"
+    log_dir: Path | None = typer.Option(
+        "results",
+        "--log_dir",
+        "-o",
+        help="Where to dump LIO results if logging",
+        file_okay=False,
+        dir_okay=True,
+        writable=True,
+        rich_help_panel="Disk logging options",
     ),
     run_name: str | None = typer.Option(
         None,
         "--run_name",
         "-n",
         help="Name prefix for output files if logging. Leave empty to take the name from the data_path argument",
+        rich_help_panel="Disk logging options",
     ),
-    dump_deskewed_scans: bool = typer.Option(False, "--dump_deskewed",  help="Dump each deskewed/motion-undistorted scan as a .ply file under log_dir/run_name, only if logging with --log"),
+    dump_deskewed_scans: bool = typer.Option(False, "--dump_deskewed",  help="Dump each deskewed/motion-undistorted scan as a .ply file under log_dir/run_name, only if logging with --log", rich_help_panel="Disk logging options"),
     sequence: str | None = typer.Option(
         None,
         "--sequence",
-        help="Extra dataloader argument: sensor sequence (for helipr only)",
+        help="Extra dataloader argument: sensor sequence",
+        rich_help_panel="HeLiPR dataloader options",
     ),
     imu_topic: str | None = typer.Option(
-        None, "--imu", help="Extra dataloader argument: imu topic (for rosbag only)"
+        None,
+        "--imu",
+        help="Extra dataloader argument: imu topic",
+        rich_help_panel="Rosbag dataloader options",
     ),
     lidar_topic: str | None = typer.Option(
-        None, "--lidar", help="Extra dataloader argument: lidar topic (for rosbag only)"
+        None,
+        "--lidar",
+        help="Extra dataloader argument: lidar topic",
+        rich_help_panel="Rosbag dataloader options",
     ),
     base_frame: str | None = typer.Option(
         None,
         "--base_frame",
-        help="Extra dataloader argument: base_frame for odometry estimation, default is lidar frame (for rosbag only)",
+        help="Extra dataloader argument: base_frame for odometry estimation, default is lidar frame",
+        rich_help_panel="Rosbag dataloader options",
     ),
     imu_frame: str | None = typer.Option(
         None,
         "--imu_frame",
-        help="Extra dataloader argument: imu frame overload (for rosbag only)",
+        help="Extra dataloader argument: imu frame overload",
+        rich_help_panel="Rosbag dataloader options",
     ),
     lidar_frame: str | None = typer.Option(
         None,
         "--lidar_frame",
-        help="Extra dataloader argument: lidar frame overload (for rosbag only)",
+        help="Extra dataloader argument: lidar frame overload",
+        rich_help_panel="Rosbag dataloader options",
     ),
     version: bool | None = typer.Option(
         None,
@@ -207,13 +269,17 @@ def cli(
 
             rr.init("rko_lio")
             rr.spawn(memory_limit="2GB")
-            rr.log_file_from_path(Path(__file__).parent / "rko_lio.rbl")
+            if reset_viz:
+                rr.log_file_from_path(
+                    Path(__file__).parent / "rko_lio.rbl"
+                    if rbl_path is None
+                    else rbl_path
+                )
 
         except ImportError:
-            error(
+            error_and_exit(
                 "Please install rerun with `pip install rerun-sdk` to enable visualization."
             )
-            sys.exit(1)
 
     config_data = {}
     if config_fp:
@@ -271,7 +337,8 @@ def cli(
         viz=viz,
         log_dir=log_dir,
         run_name=run_name or data_path.name,
-        dump_deskewed_scans=log_results and dump_deskewed_scans
+        dump_deskewed_scans=log_results and dump_deskewed_scans,
+        viz_every_n_frames=viz_every_n_frames,
     )
 
     from tqdm import tqdm

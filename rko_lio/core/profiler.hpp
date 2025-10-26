@@ -64,11 +64,20 @@ public:
     if (!finished) {
       auto& entry = profile_data.map[name];
       const MilliSeconds elapsed = Clock::now() - start;
+
+      ++entry.count;
+
+      // Update Welford's online algorithm for variance
+      const double delta = (elapsed - entry.mean).count();
+      entry.mean += MilliSeconds{delta / entry.count};
+      entry.M2 += delta * (elapsed - entry.mean).count();
+
       if (elapsed > entry.max_time) {
         entry.max_time = elapsed;
       }
+
       entry.total += elapsed;
-      ++entry.count;
+
       finished = true;
     }
   }
@@ -89,7 +98,17 @@ private:
     size_t count{0};
     MilliSeconds total{};
     MilliSeconds max_time{};
+    MilliSeconds mean{};
+    double M2{0.0}; // Welford variance accumulator
+
+    MilliSeconds stddev() const {
+      if (count < 2) {
+        return MilliSeconds{0.0};
+      }
+      return MilliSeconds{std::sqrt(M2 / (count - 1))};
+    }
   };
+
   class ProfilingInfoMap {
   public:
     std::unordered_map<std::string, ProfilingInfo> map;
@@ -103,16 +122,12 @@ private:
         std::cout << "Profiling results\n";
       }
       for (const auto& [name, info] : map) {
-        const auto avg_ms = info.total / info.count;
         std::cout << "\t" << name << ":\n"
                   << "\t\tExecution count: " << info.count << "\n"
-                  << "\t\tAverage time: " << std::fixed << std::setprecision(2) << avg_ms.count() << "ms\n"
-                  << "\t\tAverage frequency: " << std::fixed << std::setprecision(2) << (1.0 / Seconds(avg_ms).count())
-                  << "Hz\n"
-                  << "\t\tMax (worst-case) time: " << std::fixed << std::setprecision(2) << info.max_time.count()
-                  << "ms\n"
-                  << "\t\tWorst-case frequency: " << std::fixed << std::setprecision(2)
-                  << (1.0 / Seconds(info.max_time).count()) << "Hz\n";
+                  << "\t\tAverage time: " << std::fixed << std::setprecision(2) << info.mean.count() << " ms\n"
+                  << "\t\tStd. dev. time: " << info.stddev().count() << " ms\n"
+                  << "\t\tAverage frequency: " << (1.0 / Seconds(info.mean).count()) << "Hz\n"
+                  << "\t\tMax (worst-case) frequency: " << (1.0 / Seconds(info.max_time).count()) << "Hz\n";
       }
     }
     ~ProfilingInfoMap() { print_results(); }

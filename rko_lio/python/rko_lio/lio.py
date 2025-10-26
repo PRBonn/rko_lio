@@ -26,7 +26,13 @@ Public interface classes for the pybind.
 
 import numpy as np
 
-from .rko_lio_pybind import _LIO, _Config, _Vector3dVector, _VectorDouble
+from .rko_lio_pybind import (
+    _LIO,
+    _Config,
+    _IntervalStats,
+    _Vector3dVector,
+    _VectorDouble,
+)
 
 
 class LIOConfig(_Config):
@@ -120,6 +126,70 @@ class LIOConfig(_Config):
         return f"LIOConfig({attrs})"
 
 
+class IntervalStats:
+    """Convenience class to compute the interval actual averages"""
+
+    def __init__(self, raw_stats):
+        self._impl = raw_stats
+
+    @property
+    def imu_count(self):
+        return self._impl.imu_count
+
+    @property
+    def imu_accel_mag_mean(self):
+        return self._impl.imu_accel_mag_mean
+
+    @property
+    def welford_sum_of_squares(self):
+        return self._impl.welford_sum_of_squares
+
+    @property
+    def imu_acceleration_sum(self):
+        return np.array(self._impl.imu_acceleration_sum)
+
+    @property
+    def body_acceleration_sum(self):
+        return np.array(self._impl.body_acceleration_sum)
+
+    @property
+    def angular_velocity_sum(self):
+        return np.array(self._impl.angular_velocity_sum)
+
+    def __repr__(self):
+        return (
+            f"IntervalStats(imu_count={self.imu_count}, "
+            f"imu_accel_mag_mean={self.imu_accel_mag_mean:.6f}, "
+            f"welford_sum_of_squares={self.welford_sum_of_squares:.6f}, "
+            f"imu_acceleration_sum={self.imu_acceleration_sum}, "
+            f"body_acceleration_sum={self.body_acceleration_sum}, "
+            f"angular_velocity_sum={self.angular_velocity_sum})"
+        )
+
+    def avg_imu_accel(self):
+        if self.imu_count == 0:
+            return np.zeros(3)
+        return self.imu_acceleration_sum / self.imu_count
+
+    def avg_body_accel(self):
+        if self.imu_count == 0:
+            return np.zeros(3)
+        return self.body_acceleration_sum / self.imu_count
+
+    def avg_ang_vel(self):
+        if self.imu_count == 0:
+            return np.zeros(3)
+        return self.angular_velocity_sum / self.imu_count
+
+    def accel_mag_variance(self):
+        if self.imu_count < 2:
+            return 0.0
+        return self.welford_sum_of_squares / (self.imu_count - 1)
+
+    def accel_mag_stddev(self):
+        return np.sqrt(self.accel_mag_variance())
+
+
 class LIO:
     def __init__(self, config: LIOConfig):
         self.config = config
@@ -127,6 +197,10 @@ class LIO:
 
     def __repr__(self):
         return f"LIO with config: {repr(self.config)}"
+
+    def interval_stats(self):
+        """Can be useful for introspecting some IMU details."""
+        return IntervalStats(self._impl.interval_stats)
 
     def map_point_cloud(self) -> np.ndarray:
         """return the local map point cloud *in world/odometry frame*"""
