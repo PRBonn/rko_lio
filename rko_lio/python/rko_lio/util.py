@@ -128,6 +128,6 @@ def save_scan_as_ply(
     output_dir.mkdir(exist_ok=True, parents=True)
     fname = output_dir / f"{int(end_time_seconds * 1e9)}.ply"
 
-    pc_o3d = open3d.geometry.PointCloud()
-    pc_o3d.points = open3d.utility.Vector3dVector(scan)
-    o3d.io.write_point_cloud(fname.as_posix(), pc_o3d)
+    pc = open3d.geometry.PointCloud()
+    pc.points = open3d.utility.Vector3dVector(scan)
+    open3d.io.write_point_cloud(fname.as_posix(), pc)

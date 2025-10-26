@@ -182,7 +182,7 @@ def cli(
         rich_help_panel="Visualisation options",
     ),
     log_results: bool = typer.Option(
-        True,
+        False,
         "--log",
         "-l",
         help="Log trajectory results to disk at 'log_dir' on completion",
