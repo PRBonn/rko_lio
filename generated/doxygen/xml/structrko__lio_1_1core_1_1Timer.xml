@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="129" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="129" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="144" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="144" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="structrko__lio_1_1core_1_1Timer_1a715164e0a268bf21fac0b439ca674440" prot="public" static="no">
         <type>std::chrono::time_point&lt; Clock &gt;</type>
@@ -30,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="130" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="130" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="145" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="145" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="structrko__lio_1_1core_1_1Timer_1a2c4dde4f9651c79711e59c6c5b9c6883" prot="public" static="no">
         <type>std::chrono::duration&lt; double &gt;</type>
@@ -44,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="131" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="131" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="146" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="146" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-attrib">
@@ -60,7 +60,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="144" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="144" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="159" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="159" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1Timer_1ac68dc9c9d4f3b702fd518978e5362e3f" prot="public" static="no" mutable="no">
         <type>TimePoint</type>
@@ -74,7 +74,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="145" column="13" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="145" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="160" column="13" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="160" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -90,7 +90,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="133" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="133" bodyend="133"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="148" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="148" bodyend="148"/>
       </memberdef>
       <memberdef kind="function" id="structrko__lio_1_1core_1_1Timer_1a80e56a9f13072aec671ee74b7d5be406" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
         <type></type>
@@ -108,7 +108,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="134" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="134" bodyend="134"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="149" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="149" bodyend="149"/>
       </memberdef>
       <memberdef kind="function" id="structrko__lio_1_1core_1_1Timer_1a1480b7483ffda1d5ba23f0f54063f6ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -125,7 +125,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="135" column="3"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="150" column="3"/>
       </memberdef>
       <memberdef kind="function" id="structrko__lio_1_1core_1_1Timer_1a09b7895b9931887dad2a9b5e23f5eff3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -142,7 +142,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="136" column="3"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="151" column="3"/>
       </memberdef>
       <memberdef kind="function" id="structrko__lio_1_1core_1_1Timer_1af73241010569a47595e18b9a97315d79" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structrko__lio_1_1core_1_1Timer" kindref="compound">Timer</ref> &amp;</type>
@@ -159,7 +159,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="137" column="9"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="152" column="9"/>
       </memberdef>
       <memberdef kind="function" id="structrko__lio_1_1core_1_1Timer_1ac2f0c7dd196f11e1ff6211e008aa0ec7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structrko__lio_1_1core_1_1Timer" kindref="compound">Timer</ref> &amp;</type>
@@ -176,7 +176,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="138" column="9"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="153" column="9"/>
       </memberdef>
       <memberdef kind="function" id="structrko__lio_1_1core_1_1Timer_1adaf6fe6d98f58d17620f3ccbade46b99" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -190,7 +190,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="139" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="139" bodyend="143"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="154" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="154" bodyend="158"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -198,7 +198,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="128" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="128" bodyend="146"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="143" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="143" bodyend="161"/>
     <listofallmembers>
       <member refid="structrko__lio_1_1core_1_1Timer_1aa5952c4544711526513ecb9dd327b909" prot="public" virt="non-virtual"><scope>rko_lio::core::Timer</scope><name>Clock</name></member>
       <member refid="structrko__lio_1_1core_1_1Timer_1a2c4dde4f9651c79711e59c6c5b9c6883" prot="public" virt="non-virtual"><scope>rko_lio::core::Timer</scope><name>Duration</name></member>

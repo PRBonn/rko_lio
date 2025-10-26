@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="89" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="89" bodyend="89"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="98" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="98" bodyend="98"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a2281daa4450210ce1f16a5a0eb689cff" prot="public" static="no" mutable="no">
         <type>MilliSeconds</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="90" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="90" bodyend="90"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="99" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="99" bodyend="99"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a77b8ab32f6b501dc73446aeabe1e2683" prot="public" static="no" mutable="no">
         <type>MilliSeconds</type>
@@ -46,17 +46,66 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="91" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="91" bodyend="91"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="100" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="100" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a5ad8b94e83242dc08d6b52a4186b4539" prot="public" static="no" mutable="no">
+        <type>MilliSeconds</type>
+        <definition>MilliSeconds rko_lio::core::ScopedProfiler::ProfilingInfo::mean</definition>
+        <argsstring></argsstring>
+        <name>mean</name>
+        <qualifiedname>rko_lio::core::ScopedProfiler::ProfilingInfo::mean</qualifiedname>
+        <initializer>{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="101" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="101" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1afb7e855ec715155bfb0e4d251c8d0394" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double rko_lio::core::ScopedProfiler::ProfilingInfo::M2</definition>
+        <argsstring></argsstring>
+        <name>M2</name>
+        <qualifiedname>rko_lio::core::ScopedProfiler::ProfilingInfo::M2</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="102" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="102" bodyend="102"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1aa1e9233ccd08e2efa1d76cf1a221c874" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>MilliSeconds</type>
+        <definition>MilliSeconds rko_lio::core::ScopedProfiler::ProfilingInfo::stddev</definition>
+        <argsstring>() const</argsstring>
+        <name>stddev</name>
+        <qualifiedname>rko_lio::core::ScopedProfiler::ProfilingInfo::stddev</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="104" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="104" bodyend="109"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="88" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="88" bodyend="92"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="97" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="97" bodyend="110"/>
     <listofallmembers>
       <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a75ffb52ae11c7b81ed01727a76cb8c0a" prot="public" virt="non-virtual"><scope>rko_lio::core::ScopedProfiler::ProfilingInfo</scope><name>count</name></member>
+      <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1afb7e855ec715155bfb0e4d251c8d0394" prot="public" virt="non-virtual"><scope>rko_lio::core::ScopedProfiler::ProfilingInfo</scope><name>M2</name></member>
       <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a77b8ab32f6b501dc73446aeabe1e2683" prot="public" virt="non-virtual"><scope>rko_lio::core::ScopedProfiler::ProfilingInfo</scope><name>max_time</name></member>
+      <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a5ad8b94e83242dc08d6b52a4186b4539" prot="public" virt="non-virtual"><scope>rko_lio::core::ScopedProfiler::ProfilingInfo</scope><name>mean</name></member>
+      <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1aa1e9233ccd08e2efa1d76cf1a221c874" prot="public" virt="non-virtual"><scope>rko_lio::core::ScopedProfiler::ProfilingInfo</scope><name>stddev</name></member>
       <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a2281daa4450210ce1f16a5a0eb689cff" prot="public" virt="non-virtual"><scope>rko_lio::core::ScopedProfiler::ProfilingInfo</scope><name>total</name></member>
     </listofallmembers>
   </compounddef>

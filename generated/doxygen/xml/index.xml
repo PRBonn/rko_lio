@@ -163,6 +163,9 @@
     <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a75ffb52ae11c7b81ed01727a76cb8c0a" kind="variable"><name>count</name></member>
     <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a2281daa4450210ce1f16a5a0eb689cff" kind="variable"><name>total</name></member>
     <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a77b8ab32f6b501dc73446aeabe1e2683" kind="variable"><name>max_time</name></member>
+    <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a5ad8b94e83242dc08d6b52a4186b4539" kind="variable"><name>mean</name></member>
+    <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1afb7e855ec715155bfb0e4d251c8d0394" kind="variable"><name>M2</name></member>
+    <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1aa1e9233ccd08e2efa1d76cf1a221c874" kind="function"><name>stddev</name></member>
   </compound>
   <compound refid="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap" kind="class"><name>rko_lio::core::ScopedProfiler::ProfilingInfoMap</name>
     <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1a58c5f81a3a1cc777cb8c725c3a914387" kind="variable"><name>map</name></member>

@@ -102,6 +102,68 @@
 <span id="rko-lio-lio-module"></span><h1>rko_lio.lio module<a class="headerlink" href="#module-rko_lio.lio" title="Link to this heading">¶</a></h1>
 <p>Public interface classes for the pybind.</p>
 <dl class="py class">
+<dt class="sig sig-object py" id="rko_lio.lio.IntervalStats">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rko_lio.lio.</span></span><span class="sig-name descname"><span class="pre">IntervalStats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_stats</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio.IntervalStats" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Convenience class to compute the interval actual averages</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rko_lio.lio.IntervalStats.accel_mag_stddev">
+<span class="sig-name descname"><span class="pre">accel_mag_stddev</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio.IntervalStats.accel_mag_stddev" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rko_lio.lio.IntervalStats.accel_mag_variance">
+<span class="sig-name descname"><span class="pre">accel_mag_variance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio.IntervalStats.accel_mag_variance" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="rko_lio.lio.IntervalStats.angular_velocity_sum">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">angular_velocity_sum</span></span><a class="headerlink" href="#rko_lio.lio.IntervalStats.angular_velocity_sum" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rko_lio.lio.IntervalStats.avg_ang_vel">
+<span class="sig-name descname"><span class="pre">avg_ang_vel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio.IntervalStats.avg_ang_vel" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rko_lio.lio.IntervalStats.avg_body_accel">
+<span class="sig-name descname"><span class="pre">avg_body_accel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio.IntervalStats.avg_body_accel" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rko_lio.lio.IntervalStats.avg_imu_accel">
+<span class="sig-name descname"><span class="pre">avg_imu_accel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio.IntervalStats.avg_imu_accel" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="rko_lio.lio.IntervalStats.body_acceleration_sum">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">body_acceleration_sum</span></span><a class="headerlink" href="#rko_lio.lio.IntervalStats.body_acceleration_sum" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="rko_lio.lio.IntervalStats.imu_accel_mag_mean">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">imu_accel_mag_mean</span></span><a class="headerlink" href="#rko_lio.lio.IntervalStats.imu_accel_mag_mean" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="rko_lio.lio.IntervalStats.imu_acceleration_sum">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">imu_acceleration_sum</span></span><a class="headerlink" href="#rko_lio.lio.IntervalStats.imu_acceleration_sum" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="rko_lio.lio.IntervalStats.imu_count">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">imu_count</span></span><a class="headerlink" href="#rko_lio.lio.IntervalStats.imu_count" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="rko_lio.lio.IntervalStats.welford_sum_of_squares">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">welford_sum_of_squares</span></span><a class="headerlink" href="#rko_lio.lio.IntervalStats.welford_sum_of_squares" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="rko_lio.lio.LIO">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rko_lio.lio.</span></span><span class="sig-name descname"><span class="pre">LIO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#rko_lio.lio.LIOConfig" title="rko_lio.lio.LIOConfig"><span class="pre">LIOConfig</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio.LIO" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
@@ -114,6 +176,12 @@
 <dt class="sig sig-object py" id="rko_lio.lio.LIO.add_imu_measurement_with_extrinsic">
 <span class="sig-name descname"><span class="pre">add_imu_measurement_with_extrinsic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extrinsic_imu2base</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acceleration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular_velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio.LIO.add_imu_measurement_with_extrinsic" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rko_lio.lio.LIO.interval_stats">
+<span class="sig-name descname"><span class="pre">interval_stats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio.LIO.interval_stats" title="Link to this definition">¶</a></dt>
+<dd><p>Can be useful for introspecting some IMU details.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rko_lio.lio.LIO.map_point_cloud">
