@@ -161,7 +161,7 @@ def cli(
     viz_every_n_frames: int = typer.Option(
         20,
         "--viz_frame_skip",
-        help="Publish LiDAR information after (every) specified number of frames. A low value will slow down the entire pipeline as logging LiDAR is expensive.",
+        help="Publish (rerun) LiDAR information after specified number of frames. A low value will slow down the entire pipeline as logging LiDAR data is expensive.",
         rich_help_panel="Visualisation options",
     ),
     rbl_path: Path | None = typer.Option(
