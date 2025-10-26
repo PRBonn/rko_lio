@@ -259,7 +259,7 @@ class LIOPipeline:
                 except ValueError as e:
                     print(
                         "ERROR: Dropping LiDAR frame as there was an error. Odometry might suffer. Error:",
-                        e
+                        e,
                     )
                     continue
 
@@ -351,6 +351,7 @@ class LIOPipeline:
             )
             yaml.dump(combined_config, f, sort_keys=False)
         info(f"Configuration written to {settings_file.resolve()}")
+
 
 def log_vector(rerun, entity_path_prefix: str, vector):
     """

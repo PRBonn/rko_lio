@@ -205,7 +205,12 @@ def cli(
         help="Name prefix for output files if logging. Leave empty to take the name from the data_path argument",
         rich_help_panel="Disk logging options",
     ),
-    dump_deskewed_scans: bool = typer.Option(False, "--dump_deskewed",  help="Dump each deskewed/motion-undistorted scan as a .ply file under log_dir/run_name, only if logging with --log", rich_help_panel="Disk logging options"),
+    dump_deskewed_scans: bool = typer.Option(
+        False,
+        "--dump_deskewed",
+        help="Dump each deskewed/motion-undistorted scan as a .ply file under log_dir/run_name, only if logging with --log",
+        rich_help_panel="Disk logging options",
+    ),
     sequence: str | None = typer.Option(
         None,
         "--sequence",

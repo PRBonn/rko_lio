@@ -107,6 +107,7 @@ def quat_xyzw_xyz_to_transform(quat_xyzw_xyz: np.ndarray) -> np.ndarray:
     transform[:3, 3] = xyz
     return transform
 
+
 def save_scan_as_ply(
     scan: np.ndarray,
     end_time_seconds: float,
