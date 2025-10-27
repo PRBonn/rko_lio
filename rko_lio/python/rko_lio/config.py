@@ -305,6 +305,8 @@ class PipelineConfig:
                     if isinstance(value, Path):
                         value = value.resolve().as_posix()
                     d[key] = value
+        d["lio"] = self.lio.to_dict()
+        d["timestamps"] = self.timestamps.to_dict()
         return d
 
     @classmethod
