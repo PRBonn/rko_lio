@@ -1,7 +1,6 @@
 import numpy as np
 import pytest
-
-from rko_lio.lio import LIOConfig
+from rko_lio.config import PipelineConfig
 from rko_lio.lio_pipeline import LIOPipeline
 
 
@@ -19,29 +18,29 @@ def identity_extrinsics():
     return np.eye(4)
 
 
+@pytest.fixture
+def pipeline(identity_extrinsics):
+    config = PipelineConfig()
+    config.extrinsic_imu2base = identity_extrinsics
+    config.extrinsic_lidar2base = identity_extrinsics
+    return LIOPipeline(config)
+
+
 def create_lidar_timestamps(n):
     return np.linspace(0, 0.1, n).astype(np.float32)
 
 
-def test_pipeline_creation(identity_extrinsics):
-    config = LIOConfig()
-    pipeline = LIOPipeline(config, identity_extrinsics, identity_extrinsics)
+def test_pipeline_creation(pipeline):
     assert pipeline is not None
 
 
-def test_add_imu_sequence(identity_extrinsics):
-    config = LIOConfig()
-    pipeline = LIOPipeline(config, identity_extrinsics, identity_extrinsics)
-
+def test_add_imu_sequence(pipeline):
     pipeline.add_imu(0.0, np.zeros(3), np.zeros(3))
     pipeline.add_imu(0.01, np.zeros(3), np.zeros(3))
     assert len(pipeline.imu_buffer) == 2
 
 
-def test_add_lidar_points(identity_extrinsics, simple_point_cloud):
-    config = LIOConfig()
-    pipeline = LIOPipeline(config, identity_extrinsics, identity_extrinsics)
-
+def test_add_lidar_points(pipeline, simple_point_cloud):
     cloud1 = simple_point_cloud
     timestamps1 = create_lidar_timestamps(len(cloud1))
     pipeline.add_lidar(cloud1, timestamps1)
@@ -54,10 +53,7 @@ def test_add_lidar_points(identity_extrinsics, simple_point_cloud):
     assert len(pipeline.lidar_buffer) == 2
 
 
-def test_add_lidar_points_with_imu(identity_extrinsics, simple_point_cloud):
-    config = LIOConfig()
-    pipeline = LIOPipeline(config, identity_extrinsics, identity_extrinsics)
-
+def test_add_lidar_points_with_imu(pipeline, simple_point_cloud):
     cloud1 = simple_point_cloud
     timestamps1 = create_lidar_timestamps(len(cloud1))
     pipeline.add_lidar(cloud1, timestamps1)
