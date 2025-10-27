@@ -25,6 +25,7 @@ from pathlib import Path
 import launch_ros.actions
 import yaml
 from ament_index_python.packages import get_package_share_directory
+
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, OpaqueFunction
 from launch.substitutions import LaunchConfiguration
@@ -200,6 +201,49 @@ configurable_parameters = [
         "default": "200",
         "type": "float",
         "description": "Scale parameter that decides the minimum amount of orientation regularisation applied during ICP registration.",
+    },
+    # lidar timestamp processing parameters
+    {
+        "name": "lts_multiplier_to_seconds",
+        "default": "0.0",
+        "type": "float",
+        "description": "Multiplier to convert per-point raw timestamps to seconds. Default 0.0 tries to automatically handle seconds or nanoseconds. Specify for any other, e.g., if timestamps are in microseconds, set to 1e-6.",
+    },
+    {
+        "name": "lts_force_absolute",
+        "default": "false",
+        "type": "bool",
+        "description": "Force treat per-point timestamps as absolute times (wall-clock), bypassing heuristic detection.",
+    },
+    {
+        "name": "lts_force_relative",
+        "default": "false",
+        "type": "bool",
+        "description": "Force treat per-point timestamps as offsets relative to each message's header time.",
+    },
+    {
+        "name": "lts_absolute_start_threshold_ms",
+        "default": "1",
+        "type": "int",
+        "description": "Heuristic for absolute times: if abs(header_time - min per-point timestamp) < this value (in ms), treat times as absolute.",
+    },
+    {
+        "name": "lts_absolute_end_threshold_ms",
+        "default": "1",
+        "type": "int",
+        "description": "Heuristic for absolute times: if abs(header_time - max per-point timestamp) < this value (in ms), treat times as absolute.",
+    },
+    {
+        "name": "lts_relative_start_threshold_ms",
+        "default": "10",
+        "type": "int",
+        "description": "Heuristic for relative times: if abs(min per-point timestamp) < this value (in ms), consider times as relative.",
+    },
+    {
+        "name": "lts_relative_end_threshold_ms",
+        "default": "10",
+        "type": "int",
+        "description": "Heuristic for relative times: If abs(max per-point timestamp) < this value, consider times as relative.",
     },
     # ros params
     {
@@ -398,9 +442,13 @@ def prepare_rviz_config(rviz_config_file: Path, parameters: dict) -> Path:
     try:
         # Patch whichever frame is specified
         if base_frame:
-            rviz_cfg["Visualization Manager"]["Views"]["Current"]["Target Frame"] = base_frame
+            rviz_cfg["Visualization Manager"]["Views"]["Current"][
+                "Target Frame"
+            ] = base_frame
         if odom_frame:
-            rviz_cfg["Visualization Manager"]["Global Options"]["Fixed Frame"] = odom_frame
+            rviz_cfg["Visualization Manager"]["Global Options"][
+                "Fixed Frame"
+            ] = odom_frame
     except Exception as e:
         raise RuntimeError(
             f"Could not patch RViz config with frames (base_frame={base_frame}, odom_frame={odom_frame}): {e}"

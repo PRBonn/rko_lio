@@ -1,7 +1,7 @@
 # PLEASE NOTE THIS FILE IS NOT USED AUTOMATICALLY BY THE ODOMETRY'S LAUNCH FILE
 # it's meant to just tell you what are the defaults for all the parameters
-# to use this config with the launch file, you will still have to pass it with 
-# `config_file:=<full_or_relative_path_to>/default.yaml`
+# to use this config with the launch file, you will still have to pass it with
+# `config_file:=<full_or_relative_path_to>/ros_default.yaml`
 # #############################################################################
 # base_frame: base
 # imu_topic: /imu

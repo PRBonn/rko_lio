@@ -24,6 +24,7 @@
 
 #pragma once
 #include "rko_lio/core/lio.hpp"
+#include "rko_lio/core/process_timestamps.hpp"
 // stl
 #include <atomic>
 #include <condition_variable>
@@ -50,6 +51,7 @@ class Node {
 public:
   rclcpp::Node::SharedPtr node;
   std::unique_ptr<core::LIO> lio;
+  core::TimestampProcessingConfig timestamp_proc_config;
 
   std::string imu_topic;
   std::string imu_frame = ""; // default: get from the first imu message

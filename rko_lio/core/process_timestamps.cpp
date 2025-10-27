@@ -43,7 +43,7 @@ Timestamps timestamps_in_sec_from_raw(const std::vector<double>& raw_timestamps,
   const double max_stamp = *max_it;
   double timestamp_multiplier = multiplier_to_seconds;
 
-  if (timestamp_multiplier < 1e-10) {
+  if (timestamp_multiplier < 1e-12) {
     const double scan_duration = std::abs(max_stamp - min_stamp);
     const bool is_nanoseconds = (scan_duration > 100.0);
     // 100 seconds is far more than the duration of any normal scan
@@ -53,7 +53,9 @@ Timestamps timestamps_in_sec_from_raw(const std::vector<double>& raw_timestamps,
   TimestampVector times_in_seconds(raw_timestamps.size());
   std::transform(raw_timestamps.cbegin(), raw_timestamps.cend(), times_in_seconds.begin(),
                  [timestamp_multiplier](const double ts) { return Secondsd(ts * timestamp_multiplier); });
-  return {Secondsd(min_stamp * timestamp_multiplier), Secondsd(max_stamp * timestamp_multiplier), times_in_seconds};
+  return {.min = Secondsd(min_stamp * timestamp_multiplier),
+          .max = Secondsd(max_stamp * timestamp_multiplier),
+          .times = times_in_seconds};
 }
 } // namespace
 

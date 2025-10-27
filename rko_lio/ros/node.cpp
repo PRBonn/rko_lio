@@ -128,6 +128,22 @@ Node::Node(const std::string& node_name, const rclcpp::NodeOptions& options) {
   lio_config.min_beta = node->declare_parameter<double>("min_beta", lio_config.min_beta);
   lio = std::make_unique<core::LIO>(lio_config);
 
+  // Timestamp processing params - lts for lidar time stamps, without having 100 char param names
+  timestamp_proc_config.multiplier_to_seconds =
+      node->declare_parameter<double>("lts_multiplier_to_seconds", timestamp_proc_config.multiplier_to_seconds);
+  timestamp_proc_config.force_absolute =
+      node->declare_parameter<bool>("lts_force_absolute", timestamp_proc_config.force_absolute);
+  timestamp_proc_config.force_relative =
+      node->declare_parameter<bool>("lts_force_relative", timestamp_proc_config.force_relative);
+  timestamp_proc_config.absolute_start_threshold = std::chrono::milliseconds(node->declare_parameter<int>(
+      "lts_absolute_start_threshold_ms", timestamp_proc_config.absolute_start_threshold.count()));
+  timestamp_proc_config.absolute_end_threshold = std::chrono::milliseconds(node->declare_parameter<int>(
+      "lts_absolute_end_threshold_ms", timestamp_proc_config.absolute_end_threshold.count()));
+  timestamp_proc_config.relative_start_threshold = std::chrono::milliseconds(node->declare_parameter<int>(
+      "lts_relative_start_threshold_ms", timestamp_proc_config.relative_start_threshold.count()));
+  timestamp_proc_config.relative_end_threshold = std::chrono::milliseconds(node->declare_parameter<int>(
+      "lts_relative_end_threshold_ms", timestamp_proc_config.relative_end_threshold.count()));
+
   // manually, if, define extrinsics
   parse_cli_extrinsics();
 
@@ -223,7 +239,7 @@ void Node::imu_callback(const sensor_msgs::msg::Imu::ConstSharedPtr& imu_msg) {
   {
     std::lock_guard lock(buffer_mutex);
     imu_buffer.emplace(imu_msg_to_imu_data(*imu_msg));
-    atomic_can_process = !lidar_buffer.empty() && imu_buffer.back().time > lidar_buffer.front().end;
+    atomic_can_process = !lidar_buffer.empty() && imu_buffer.back().time > lidar_buffer.front().timestamps.max;
   }
   if (atomic_can_process) {
     sync_condition_variable.notify_one();
@@ -251,26 +267,26 @@ void Node::lidar_callback(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& l
     }
   }
   try {
-    const auto& [start_stamp, end_stamp, timestamps, scan] =
-        std::invoke([&]() -> std::tuple<core::Secondsd, core::Secondsd, core::TimestampVector, core::Vector3dVector> {
-          const auto& header_stamp = utils::ros_time_to_seconds(lidar_msg->header.stamp);
-          if (lio->config.deskew) {
-            const auto& [scan, raw_timestamps] = utils::point_cloud2_to_eigen_with_timestamps(lidar_msg);
-            const auto& [start_stamp, end_stamp, timestamp_vector] =
-                core::process_timestamps(raw_timestamps, header_stamp);
-            return {start_stamp, end_stamp, timestamp_vector, scan};
-          } else {
-            RCLCPP_WARN_STREAM_ONCE(node->get_logger(),
-                                    "Deskewing is disabled. Populating timestamps with static header time.");
-            const core::Vector3dVector scan = utils::point_cloud2_to_eigen(lidar_msg);
-            return {header_stamp, header_stamp, core::TimestampVector(scan.size(), header_stamp), scan};
-          }
-        });
+    const auto& [timestamps, scan] = std::invoke([&]() -> std::tuple<core::Timestamps, core::Vector3dVector> {
+      const core::Secondsd& header_stamp = utils::ros_time_to_seconds(lidar_msg->header.stamp);
+      if (lio->config.deskew) {
+        const auto& [scan, raw_timestamps] = utils::point_cloud2_to_eigen_with_timestamps(lidar_msg);
+        const core::Timestamps& timestamps =
+            core::process_timestamps(raw_timestamps, header_stamp, timestamp_proc_config);
+        return {timestamps, scan};
+      } else {
+        RCLCPP_WARN_STREAM_ONCE(node->get_logger(),
+                                "Deskewing is disabled. Populating timestamps with static header time.");
+        const core::Vector3dVector scan = utils::point_cloud2_to_eigen(lidar_msg);
+        return {{.min = header_stamp, .max = header_stamp, .times = core::TimestampVector(scan.size(), header_stamp)},
+                scan};
+      }
+    });
 
     {
       std::lock_guard lock(buffer_mutex);
-      lidar_buffer.emplace(start_stamp, end_stamp, timestamps, scan);
-      atomic_can_process = !imu_buffer.empty() && imu_buffer.back().time > lidar_buffer.front().end;
+      lidar_buffer.emplace(timestamps, scan);
+      atomic_can_process = !imu_buffer.empty() && imu_buffer.back().time > lidar_buffer.front().timestamps.max;
     }
     if (atomic_can_process) {
       sync_condition_variable.notify_one();
@@ -291,23 +307,24 @@ void Node::registration_loop() {
     }
     core::LidarFrame frame = std::move(lidar_buffer.front());
     lidar_buffer.pop();
-    const auto& [start_stamp, end_stamp, timestamps, scan] = frame;
+    const auto& [timestamps, scan] = frame;
+    const auto& [start_stamp, end_stamp, time_vector] = timestamps;
     for (; !imu_buffer.empty() && imu_buffer.front().time < end_stamp; imu_buffer.pop()) {
       const core::ImuControl& imu_data = imu_buffer.front();
       lio->add_imu_measurement(extrinsic_imu2base, imu_data);
     }
     // check if there are more messages buffered already
     atomic_can_process =
-        !imu_buffer.empty() && !lidar_buffer.empty() && imu_buffer.back().time > lidar_buffer.front().end;
+        !imu_buffer.empty() && !lidar_buffer.empty() && imu_buffer.back().time > lidar_buffer.front().timestamps.max;
     buffer_lock.unlock(); // we dont touch the buffers anymore
 
     try {
       const core::Vector3dVector deskewed_frame = std::invoke([&]() {
         if (publish_local_map) {
           std::lock_guard lock(local_map_mutex); // publish_map thread might access simultaneously
-          return lio->register_scan(extrinsic_lidar2base, scan, timestamps);
+          return lio->register_scan(extrinsic_lidar2base, scan, time_vector);
         } else {
-          return lio->register_scan(extrinsic_lidar2base, scan, timestamps);
+          return lio->register_scan(extrinsic_lidar2base, scan, time_vector);
         }
       });
 
