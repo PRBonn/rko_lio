@@ -14,7 +14,7 @@ For example, if you’re running on a ROS bag, place all split parts in one fold
 By default, ``rko_lio`` tries to infer topics and TF relationships automatically, but you can override these using flags like ``--lidar``, ``--imu``, or ``--base_frame``.
 If your bag doesn’t contain TF information, you’ll need to specify the IMU–LiDAR extrinsics via a config YAML (``rko_lio --dump_config`` will write a default config).
 
-See :doc:`Python Usage <python/usage>` for detailed examples and advanced options.
+See :doc:`Python usage <python/usage>` for detailed examples and advanced options.
 
 ROS
 ---

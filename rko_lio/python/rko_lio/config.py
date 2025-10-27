@@ -19,8 +19,84 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+# TODO: extend the documentation to include pipeline config information, and perhaps the LIO config.
 """
-Public config class handling the pybinded config class setup.
+The C++ backend (`rko_lio::core::process_timestamps`) tries to automatically
+decide whether a LiDAR timestamp sequence is **absolute** (already aligned to
+wall-clock time) or **relative** (offsets that must be shifted by the message
+header time). If the data cannot be confidently classified as either, a
+`std::runtime_error` is thrown:
+
+.. code-block::
+
+    Runtime Error: TimestampProcessingConfig does not cover this particular
+    case of data. Please investigate, modify the config, or open an issue.
+
+
+When this error occurs, you can potentially adjust the `timestamps` section of your
+configuration file to fix the issue. Typically, specifying one of `force_absolute` or `force_relative` should do the trick.
+
+Example (default configuration)
+-------------------------------
+
+.. code-block:: yaml
+
+    your other configuration keys here
+    timestamps:
+      multiplier_to_seconds: 0.0
+      force_absolute: false
+      force_relative: false
+      absolute_start_threshold: 1
+      absolute_end_threshold: 1
+      relative_start_threshold: 10
+      relative_end_threshold: 10
+
+Description of parameters
+--------------------------
+
+- ``multiplier_to_seconds``:
+
+    Factor applied to raw timestamp values to convert them to seconds.
+    Secondsd and nanoseconds are detected automatically when this is 0.0 (default).
+    Specify this for any other case.
+    For example, if timestamps are in microseconds, use ``1e-6``.
+
+- ``force_absolute``:
+
+    If set, timestamps are always treated as absolute, bypassing heuristics.
+
+- ``force_relative``:
+
+    If set, timestamps are always interpreted as relative to the LiDAR message header time, bypassing heuristics.
+
+- ``absolute_start_threshold``:
+
+    A tolerance around the *earliest* measured timestamp compared to header time.
+    If its absolute difference to the header time is below this threshold, the scan is treated as absolute.
+
+    Units: milliseconds.
+
+- ``absolute_end_threshold``:
+
+    Similar to the above, but applied to the *latest* scan timestamp. the absolute difference is compared to this threshold.
+
+    Units: milliseconds.
+
+- ``relative_start_threshold``:
+
+    Used to check for relative timestamps. If the scan’s absolute minimum time is below this threshold, the timestamps are considered relative.
+
+    Units: milliseconds.
+
+- ``relative_end_threshold``:
+
+    Also used for relative checks. If the scan's absolute maximum time is below this threshold, the timestamps are considered relative. The expectation is the max time is either a very small negative or positive value.
+
+    Units: milliseconds.
+
+.. note::
+
+    First, absolute timestamps are checked for. Then, relative. If the threshold checks are still not satisfied, then the above described error is thrown.
 """
 
 from pathlib import Path
@@ -33,85 +109,6 @@ from .util import quat_xyzw_xyz_to_transform, transform_to_quat_xyzw_xyz
 
 
 class TimestampProcessingConfig(_TimestampProcessingConfig):
-    """
-    The C++ backend (`rko_lio::core::process_timestamps`) tries to automatically
-    decide whether a LiDAR timestamp sequence is **absolute** (already aligned to
-    wall-clock time) or **relative** (offsets that must be shifted by the message
-    header time). If the data cannot be confidently classified as either, a
-    `std::runtime_error` is thrown:
-
-    .. code-block:: cpp
-
-        throw std::runtime_error(
-            "TimestampProcessingConfig does not cover this particular case of data. "
-            "Please investigate, modify the config, or open an issue."
-        );
-
-    When this error occurs, you can potentially adjust the `timestamps` section of your
-    configuration file to fix the issue. Typically, specifying either `force_absolute` or `force_relative` should do the trick.
-
-    Example (default configuration)
-    -------------------------------
-
-    .. code-block:: yaml
-
-        your other configuration keys here
-        timestamps:
-          multiplier_to_seconds: 0.0
-          force_absolute: false
-          force_relative: false
-          absolute_start_threshold: 1
-          absolute_end_threshold: 1
-          relative_start_threshold: 10
-          relative_end_threshold: 10
-
-    Description of parameters
-    --------------------------
-
-    - ``multiplier_to_seconds``:
-
-        Conversion factor applied to raw timestamp values.
-        Secondsd and nanoseconds are detected automatically when this is 0.0 (default).
-        Specify this for any other case.
-        For example, if timestamps are in microseconds, use ``1e-6``.
-
-    - ``force_absolute``:
-
-        If set, timestamps are always treated as absolute, bypassing heuristics.
-
-    - ``force_relative``:
-
-        If set, timestamps are always interpreted as relative to the LiDAR message header time, bypassing heuristics.
-
-    - ``absolute_start_threshold``:
-
-        A tolerance around the *earliest* measured timestamp compared to header time.
-        If its absolute difference to the header time is below this threshold, the scan is treated as absolute.
-
-        Units: milliseconds.
-
-    - ``absolute_end_threshold``:
-
-        Similar to the above, but applied to the *latest* scan timestamp. the absolute difference is compared to this threshold.
-
-        Units: milliseconds.
-
-    - ``relative_start_threshold``:
-
-        Used to check for relative timestamps. If the scan’s absolute minimum time is below this threshold, the timestamps are considered relative.
-
-        Units: milliseconds.
-
-    - ``relative_end_threshold``:
-
-        Also used for relative checks. If the scan's absolute maximum time is below this threshold, the timestamps are considered relative. The expectation is the max time is either a very small negative or positive value.
-
-        Units: milliseconds.
-
-    .. note::
-
-        First, absolute timestamps are checked for. Then, relative. If the threshold checks are still not satisfied, then the above described error is thrown.
-    """
 
     default_config = {
         "multiplier_to_seconds": 0.0,

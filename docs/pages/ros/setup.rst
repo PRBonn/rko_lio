@@ -16,7 +16,7 @@ Build from source
 The system dependencies are:
 
 - CMake, ROS environment
-- Optionally: Eigen, Sophus, nlohmann_json, TBB, Bonxai (see :doc:`../core_dependencies` for more details)
+- Optionally: Eigen, Sophus, nlohmann_json, TBB, Bonxai (see :doc:`../uncategorised/core` for more details)
 
 Clone the repository into a colcon workspace’s ``src``.
 
