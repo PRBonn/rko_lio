@@ -37,99 +37,84 @@ Program Listing for File process_timestamps.cpp
    #include "process_timestamps.hpp"
    #include <algorithm>
    #include <cmath>
+   #include <functional>
    #include <iomanip>
    #include <iostream>
    #include <stdexcept>
    
    namespace {
    using rko_lio::core::Secondsd;
+   using rko_lio::core::TimestampProcessingConfig;
+   using rko_lio::core::Timestamps;
    using rko_lio::core::TimestampVector;
    
-   // Returns the number of integer digits in a value.
-   inline int number_of_digits_integer_part(const double value) {
-     const double abs_val = std::abs(value);
-     const auto int_part = static_cast<uint64_t>(std::round(abs_val));
-     return int_part > 0 ? static_cast<int>(std::floor(std::log10(int_part) + 1)) : 1;
-   }
-   
-   // The timestamps are either in seconds or in nanoseconds, we handle no other case for now
-   std::tuple<Secondsd, Secondsd, TimestampVector> timestamps_in_sec_from_raw(const std::vector<double>& raw_timestamps) {
+   // The timestamps are either in seconds or in nanoseconds, otherwise the user needs to specify the multiplier
+   Timestamps timestamps_in_sec_from_raw(const std::vector<double>& raw_timestamps, const double multiplier_to_seconds) {
      const auto& [min_it, max_it] = std::minmax_element(raw_timestamps.begin(), raw_timestamps.end());
      const double min_stamp = *min_it;
      const double max_stamp = *max_it;
-     const double scan_duration = std::abs(max_stamp - min_stamp);
+     double timestamp_multiplier = multiplier_to_seconds;
    
-     const bool is_nanoseconds = (scan_duration > 100.0);
-     // 100 seconds is far more than the duration of any normal scan
-     // but note that this was necessary because a hesai sensor spit out a 20 sec difference in a real scan
-     // I'll welcome improvements to logic here to handle edge cases like this
-   
-     TimestampVector timestamps_in_seconds(raw_timestamps.size());
-     std::transform(raw_timestamps.cbegin(), raw_timestamps.cend(), timestamps_in_seconds.begin(),
-                    [is_nanoseconds](const double ts) { return Secondsd(is_nanoseconds ? ts * 1e-9 : ts); });
-     if (is_nanoseconds) {
-       return {Secondsd(min_stamp * 1e-9), Secondsd(max_stamp * 1e-9), timestamps_in_seconds};
-     } else {
-       return {Secondsd(min_stamp), Secondsd(max_stamp), timestamps_in_seconds};
+     if (timestamp_multiplier < 1e-12) {
+       const double scan_duration = std::abs(max_stamp - min_stamp);
+       const bool is_nanoseconds = (scan_duration > 100.0);
+       // 100 seconds is far more than the duration of any normal scan
+       timestamp_multiplier = is_nanoseconds ? 1e-9 : 1.0;
      }
+   
+     TimestampVector times_in_seconds(raw_timestamps.size());
+     std::transform(raw_timestamps.cbegin(), raw_timestamps.cend(), times_in_seconds.begin(),
+                    [timestamp_multiplier](const double ts) { return Secondsd(ts * timestamp_multiplier); });
+     return {.min = Secondsd(min_stamp * timestamp_multiplier),
+             .max = Secondsd(max_stamp * timestamp_multiplier),
+             .times = times_in_seconds};
    }
    } // namespace
    
    namespace rko_lio::core {
-   std::tuple<Secondsd, Secondsd, TimestampVector> process_timestamps(const std::vector<double>& raw_timestamps,
-                                                                      const Secondsd& header_stamp) {
-     constexpr auto EPSILON_TIME = std::chrono::nanoseconds(10);
+   Timestamps process_timestamps(const std::vector<double>& raw_timestamps,
+                                 const Secondsd& header_stamp,
+                                 const TimestampProcessingConfig& config) {
+     Timestamps timestamps = timestamps_in_sec_from_raw(raw_timestamps, config.multiplier_to_seconds);
    
-     const auto& [min_ts, max_ts, raw_timestamps_in_sec] = timestamps_in_sec_from_raw(raw_timestamps);
-     TimestampVector timestamps = raw_timestamps_in_sec;
-     const Secondsd scan_duration = std::chrono::abs(max_ts - min_ts);
+     const bool absolute_stamps = config.force_absolute ||
+                                  (std::chrono::abs(header_stamp - timestamps.min) < config.absolute_start_threshold) ||
+                                  (std::chrono::abs(header_stamp - timestamps.max) < config.absolute_end_threshold);
    
-     Secondsd begin_stamp;
-     Secondsd end_stamp;
-   
-     // Case: absolute timestamps
-     // min or max is within 1ms to stamp time. If the timestamps are not absolute, I don't know what they are.
-     if (std::chrono::abs(header_stamp - min_ts) < std::chrono::milliseconds(1) ||
-         std::chrono::abs(header_stamp - max_ts) < std::chrono::milliseconds(1)) {
-       begin_stamp = min_ts;
-       end_stamp = max_ts;
-       return {begin_stamp, end_stamp, std::move(timestamps)};
+     if (absolute_stamps) {
+       return timestamps;
      }
    
-     // - Case 1: timestamps are relative to scan start
-     // - Case 2: timestamps are relative to scan end
-     //   the limits i've set empirically based on all the cases encountered till now and what felt reasonable
-     bool relative_stamps = (min_ts >= Secondsd(0) && std::chrono::abs(min_ts) < std::chrono::milliseconds(4)) ||
-                            (max_ts <= Secondsd(0) && std::chrono::abs(max_ts) < std::chrono::milliseconds(4));
-   
-     // here are weirdo cases i've seen which i think should be kept separate so its always in mind in case they cause
-     // problems in the future
-     // - Avia Livox on HeLiPR - min timestamps are oten greater than the header stamp by a significant amount
-     // - VLP-16 on Leg-KILO: relative to the end, but some points are ahead of the header stamp
-     relative_stamps = relative_stamps ||
-                       (min_ts >= Secondsd(0) && std::chrono::abs(min_ts) < std::chrono::milliseconds(20)) ||
-                       (min_ts < Secondsd(0) && max_ts > Secondsd(0) && max_ts < std::chrono::milliseconds(10));
+     const bool relative_stamps = config.force_relative ||
+                                  (std::chrono::abs(timestamps.min) < config.relative_start_threshold) ||
+                                  (std::chrono::abs(timestamps.max) < config.relative_end_threshold);
    
      if (relative_stamps) {
-       std::transform(timestamps.begin(), timestamps.end(), timestamps.begin(),
+       std::transform(timestamps.times.cbegin(), timestamps.times.cend(), timestamps.times.begin(),
                       [&header_stamp](const Secondsd& ts) { return ts + header_stamp; });
-       begin_stamp = min_ts + header_stamp;
-       end_stamp = max_ts + header_stamp;
-       return {begin_stamp, end_stamp, std::move(timestamps)};
+       timestamps.min += header_stamp;
+       timestamps.max += header_stamp;
+       return timestamps;
      }
    
      // Error-out for unique/unsupported cases
      std::cout << std::setprecision(18);
+     std::cout << "is_absolute: " << relative_stamps << "\n";
      std::cout << "is_relative: " << relative_stamps << "\n";
-     std::cout << "point min_time: " << min_ts.count() << "\n";
-     std::cout << "point max_time: " << max_ts.count() << "\n";
+     std::cout << "point times min: " << timestamps.min.count() << "\n";
+     std::cout << "point times max: " << timestamps.max.count() << "\n";
      std::cout << "header_sec: " << header_stamp.count() << "\n";
-     std::cout << "header_sec + min_time: " << (header_stamp + min_ts).count() << "\n";
-     std::cout << "header_sec + max_time: " << (header_stamp + max_ts).count() << "\n";
+     std::cout << "TimestampProcessingConfig:\n"
+               << "  multiplier_to_seconds: " << config.multiplier_to_seconds << "\n"
+               << "  force_absolute: " << std::boolalpha << config.force_absolute << "\n"
+               << "  force_relative: " << std::boolalpha << config.force_relative << "\n"
+               << "  absolute_start_threshold: " << config.absolute_start_threshold.count() << " ms\n"
+               << "  absolute_end_threshold: " << config.absolute_end_threshold.count() << " ms\n"
+               << "  relative_start_threshold: " << config.relative_start_threshold.count() << " ms\n"
+               << "  relative_end_threshold: " << config.relative_end_threshold.count() << " ms\n"
+               << std::noboolalpha;
      throw std::runtime_error(
-         "Can not handle timestamp conversion. Some unique case encountered. Please report an issue with this data.");
-   
-     // NOTE: one could assume that once a case has been detected for one scan, it should probably stay the same going
-     // forward for the current run at least. In case someone needs more performance, this is an easy improvement
+         "TimestampProcessingConfig does not cover this particular case of data. Please investigate, modify "
+         "the config, or open an issue.");
    }
    } // namespace rko_lio::core

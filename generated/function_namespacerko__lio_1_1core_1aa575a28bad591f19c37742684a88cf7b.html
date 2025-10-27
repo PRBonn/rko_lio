@@ -62,8 +62,8 @@
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/primer.html">Primer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pages/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pages/primer.html">About</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pages/data.html">Data</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../pages/ros/ros.html">ROS</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../pages/ros/setup.html">Setup</a></li>
@@ -74,8 +74,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../pages/python/python.html">Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pages/config.html">Configuring</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pages/core_dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/config.html">Configuring rko_lio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/uncategorised/index.html">Uncategorised</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
 </ul>
 
@@ -100,29 +100,31 @@
           <div class="body" role="main">
             
   <section id="function-rko-lio-core-process-timestamps">
-<span id="exhale-function-namespacerko-lio-1-1core-1a6f84ab20273bc1bc121cd6e5ba83d3f6"></span><h1>Function rko_lio::core::process_timestamps<a class="headerlink" href="#function-rko-lio-core-process-timestamps" title="Link to this heading">¶</a></h1>
+<span id="exhale-function-namespacerko-lio-1-1core-1aa575a28bad591f19c37742684a88cf7b"></span><h1>Function rko_lio::core::process_timestamps<a class="headerlink" href="#function-rko-lio-core-process-timestamps" title="Link to this heading">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_rko_lio_core_process_timestamps.cpp.html#file-home-runner-work-rko-lio-rko-lio-rko-lio-core-process-timestamps-cpp"><span class="std std-ref">File process_timestamps.cpp</span></a></p></li>
 </ul>
 <section id="function-documentation">
 <h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Link to this heading">¶</a></h2>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core18process_timestampsERKNSt6vectorIdEERK8Secondsd">
-<span id="_CPPv3N7rko_lio4core18process_timestampsERKNSt6vectorIdEERK8Secondsd"></span><span id="_CPPv2N7rko_lio4core18process_timestampsERKNSt6vectorIdEERK8Secondsd"></span><span id="rko_lio::core::process_timestamps__std::vector:double:CR.SecondsdCR"></span><span class="target" id="namespacerko__lio_1_1core_1a6f84ab20273bc1bc121cd6e5ba83d3f6"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">tuple</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1aeb6128bc63af6919453e303e7eb5613d.html#_CPPv4N7rko_lio4core8SecondsdE" title="rko_lio::core::Secondsd"><span class="n"><span class="pre">Secondsd</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1aeb6128bc63af6919453e303e7eb5613d.html#_CPPv4N7rko_lio4core8SecondsdE" title="rko_lio::core::Secondsd"><span class="n"><span class="pre">Secondsd</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1a50d343fe8fc3d44fdf883bc4a77b1ccf.html#_CPPv4N7rko_lio4core15TimestampVectorE" title="rko_lio::core::TimestampVector"><span class="n"><span class="pre">TimestampVector</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">rko_lio</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">core</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">process_timestamps</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">raw_timestamps</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1aeb6128bc63af6919453e303e7eb5613d.html#_CPPv4N7rko_lio4core8SecondsdE" title="rko_lio::core::Secondsd"><span class="n"><span class="pre">Secondsd</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">header_stamp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio4core18process_timestampsERKNSt6vectorIdEERK8Secondsd" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core18process_timestampsERKNSt6vectorIdEERK8SecondsdRK25TimestampProcessingConfig">
+<span id="_CPPv3N7rko_lio4core18process_timestampsERKNSt6vectorIdEERK8SecondsdRK25TimestampProcessingConfig"></span><span id="_CPPv2N7rko_lio4core18process_timestampsERKNSt6vectorIdEERK8SecondsdRK25TimestampProcessingConfig"></span><span id="rko_lio::core::process_timestamps__std::vector:double:CR.SecondsdCR.TimestampProcessingConfigCR"></span><span class="target" id="namespacerko__lio_1_1core_1aa575a28bad591f19c37742684a88cf7b"></span><a class="reference internal" href="structrko__lio_1_1core_1_1Timestamps.html#_CPPv4N7rko_lio4core10TimestampsE" title="rko_lio::core::Timestamps"><span class="n"><span class="pre">Timestamps</span></span></a><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">rko_lio</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">core</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">process_timestamps</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">raw_timestamps</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1aeb6128bc63af6919453e303e7eb5613d.html#_CPPv4N7rko_lio4core8SecondsdE" title="rko_lio::core::Secondsd"><span class="n"><span class="pre">Secondsd</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">header_stamp</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structrko__lio_1_1core_1_1TimestampProcessingConfig.html#_CPPv4N7rko_lio4core25TimestampProcessingConfigE" title="rko_lio::core::TimestampProcessingConfig"><span class="n"><span class="pre">TimestampProcessingConfig</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">config</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio4core18process_timestampsERKNSt6vectorIdEERK8SecondsdRK25TimestampProcessingConfig" title="Link to this definition">¶</a><br /></dt>
 <dd><p>Process raw timestamps and calculates absolute timestamps in seconds. </p>
 <p>The input timestamps can be either absolute or relative and may be in seconds or nanoseconds. The function automatically detects whether the timestamps are in nanoseconds by checking the duration spread and converts them to seconds accordingly. Then the case of absolute or relative time is disambiguated based on how close (or away) the min or max times are to the header time.</p>
+<p>Alternatively you can specify <code class="docutils literal notranslate"><span class="pre">force_absolute</span></code> or <code class="docutils literal notranslate"><span class="pre">force_relative</span></code> in the config to skip the checks for automatic conversion.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>raw_timestamps</strong> – Vector of raw sensor timestamps as doubles, can be relative or absolute values. </p></li>
 <li><p><strong>header_stamp</strong> – Reference absolute timestamp corresponding to the scan’s header time. </p></li>
+<li><p><strong>config</strong> – timestamp specific config to use in processing. </p></li>
 </ul>
 </dd>
 <dt class="field-even">Throws<span class="colon">:</span></dt>
 <dd class="field-even"><p><span><span class="cpp-expr sig sig-inline cpp"><span class="n">std</span><span class="p">::</span><span class="n">runtime_error</span></span></span> – If the timestamp format or values are unrecognized or unsupported. </p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A tuple containing:<ul class="simple">
+<dd class="field-odd"><p>A struct containing:<ul class="simple">
 <li><p>The computed scan start time (absolute, Secondsd),</p></li>
 <li><p>The computed scan end time (absolute, Secondsd),</p></li>
 <li><p>A vector of all processed point timestamps converted to absolute seconds (TimestampVector). </p></li>
@@ -165,7 +167,7 @@
       &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
-      <a href="../_sources/generated/function_namespacerko__lio_1_1core_1a6f84ab20273bc1bc121cd6e5ba83d3f6.rst.txt"
+      <a href="../_sources/generated/function_namespacerko__lio_1_1core_1aa575a28bad591f19c37742684a88cf7b.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

@@ -12,6 +12,8 @@
     <innerclass refid="structrko__lio_1_1core_1_1SparseVoxelGrid" prot="public">rko_lio::core::SparseVoxelGrid</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1State" prot="public">rko_lio::core::State</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1Timer" prot="public">rko_lio::core::Timer</innerclass>
+    <innerclass refid="structrko__lio_1_1core_1_1TimestampProcessingConfig" prot="public">rko_lio::core::TimestampProcessingConfig</innerclass>
+    <innerclass refid="structrko__lio_1_1core_1_1Timestamps" prot="public">rko_lio::core::Timestamps</innerclass>
     <sectiondef kind="typedef">
       <memberdef kind="typedef" id="namespacerko__lio_1_1core_1aef84c95de08dd51173a6fc0d2433c24a" prot="public" static="no">
         <type>std::vector&lt; Eigen::Vector3d &gt;</type>
@@ -88,10 +90,10 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="func">
-      <memberdef kind="function" id="namespacerko__lio_1_1core_1a6f84ab20273bc1bc121cd6e5ba83d3f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>std::tuple&lt; Secondsd, Secondsd, TimestampVector &gt;</type>
-        <definition>std::tuple&lt; Secondsd, Secondsd, TimestampVector &gt; rko_lio::core::process_timestamps</definition>
-        <argsstring>(const std::vector&lt; double &gt; &amp;raw_timestamps, const Secondsd &amp;header_stamp)</argsstring>
+      <memberdef kind="function" id="namespacerko__lio_1_1core_1aa575a28bad591f19c37742684a88cf7b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structrko__lio_1_1core_1_1Timestamps" kindref="compound">Timestamps</ref></type>
+        <definition>Timestamps rko_lio::core::process_timestamps</definition>
+        <argsstring>(const std::vector&lt; double &gt; &amp;raw_timestamps, const Secondsd &amp;header_stamp, const TimestampProcessingConfig &amp;config)</argsstring>
         <name>process_timestamps</name>
         <qualifiedname>rko_lio::core::process_timestamps</qualifiedname>
         <param>
@@ -102,11 +104,16 @@
           <type>const Secondsd &amp;</type>
           <declname>header_stamp</declname>
         </param>
+        <param>
+          <type>const <ref refid="structrko__lio_1_1core_1_1TimestampProcessingConfig" kindref="compound">TimestampProcessingConfig</ref> &amp;</type>
+          <declname>config</declname>
+        </param>
         <briefdescription>
 <para>Process raw timestamps and calculates absolute timestamps in seconds. </para>
         </briefdescription>
         <detaileddescription>
 <para>The input timestamps can be either absolute or relative and may be in seconds or nanoseconds. The function automatically detects whether the timestamps are in nanoseconds by checking the duration spread and converts them to seconds accordingly. Then the case of absolute or relative time is disambiguated based on how close (or away) the min or max times are to the header time.</para>
+<para>Alternatively you can specify <computeroutput>force_absolute</computeroutput> or <computeroutput>force_relative</computeroutput> in the config to skip the checks for automatic conversion.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>raw_timestamps</parametername>
@@ -123,8 +130,16 @@
 <para>Reference absolute timestamp corresponding to the scan&apos;s header time. </para>
 </parameterdescription>
 </parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>config</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>timestamp specific config to use in processing. </para>
+</parameterdescription>
+</parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>A tuple containing:<itemizedlist>
+<simplesect kind="return"><para>A struct containing:<itemizedlist>
 <listitem><para>The computed scan start time (absolute, Secondsd),</para>
 </listitem><listitem><para>The computed scan end time (absolute, Secondsd),</para>
 </listitem><listitem><para>A vector of all processed point timestamps converted to absolute seconds (TimestampVector). </para>
@@ -144,7 +159,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.cpp" line="67" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.cpp" bodystart="67" bodyend="122" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" declline="53" declcolumn="12"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.cpp" line="63" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.cpp" bodystart="63" bodyend="107" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" declline="76" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacerko__lio_1_1core_1aebf1f823c7fd220695665a8b3e12281e" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>constexpr double</type>

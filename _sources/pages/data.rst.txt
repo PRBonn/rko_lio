@@ -32,6 +32,10 @@ We only need the measurement time, the accelerometer reading, and the gyroscope 
 Acceleration values should be in m/s².
 If your accelerometer outputs readings in g's, be sure to convert them to m/s² before using the odometry.
 
+.. warning::
+
+  It is assumed that at rest, the accelerometer measures **gravity pointing upwards** in its local frame. Please ensure your extrinsic accounts for this, if you have a different setup.
+
 Angular velocity values should be in rad/s; if your device uses other units, convert accordingly.
 
 LiDAR

@@ -5,6 +5,7 @@
     <includes refid="process__timestamps_8hpp" local="yes">process_timestamps.hpp</includes>
     <includes local="no">algorithm</includes>
     <includes local="no">cmath</includes>
+    <includes local="no">functional</includes>
     <includes local="no">iomanip</includes>
     <includes local="no">iostream</includes>
     <includes local="no">stdexcept</includes>
@@ -23,6 +24,8 @@
         <childnode refid="12" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -58,15 +61,18 @@
         <label>cmath</label>
       </node>
       <node id="11">
-        <label>iomanip</label>
+        <label>functional</label>
       </node>
       <node id="12">
+        <label>iomanip</label>
+      </node>
+      <node id="13">
         <label>iostream</label>
       </node>
       <node id="6">
         <label>sophus/se3.hpp</label>
       </node>
-      <node id="13">
+      <node id="14">
         <label>stdexcept</label>
       </node>
       <node id="7">
@@ -110,102 +116,87 @@
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;process_timestamps.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iomanip&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdexcept&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">rko_lio::core::Secondsd;</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">rko_lio::core::TimestampVector;</highlight></codeline>
-<codeline lineno="35"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Returns<sp/>the<sp/>number<sp/>of<sp/>integer<sp/>digits<sp/>in<sp/>a<sp/>value.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>number_of_digits_integer_part(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value)<sp/>{</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>abs_val<sp/>=<sp/>std::abs(value);</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>int_part<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">uint64_t</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(std::round(abs_val));</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>int_part<sp/>&gt;<sp/>0<sp/>?<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(std::floor(std::log10(int_part)<sp/>+<sp/>1))<sp/>:<sp/>1;</highlight></codeline>
-<codeline lineno="41"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"></highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/>The<sp/>timestamps<sp/>are<sp/>either<sp/>in<sp/>seconds<sp/>or<sp/>in<sp/>nanoseconds,<sp/>we<sp/>handle<sp/>no<sp/>other<sp/>case<sp/>for<sp/>now</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="44"><highlight class="normal">std::tuple&lt;Secondsd,<sp/>Secondsd,<sp/>TimestampVector&gt;<sp/>timestamps_in_sec_from_raw(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;&amp;<sp/>raw_timestamps)<sp/>{</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>[min_it,<sp/>max_it]<sp/>=<sp/>std::minmax_element(raw_timestamps.begin(),<sp/>raw_timestamps.end());</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>min_stamp<sp/>=<sp/>*min_it;</highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>max_stamp<sp/>=<sp/>*max_it;</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>scan_duration<sp/>=<sp/>std::abs(max_stamp<sp/>-<sp/>min_stamp);</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>is_nanoseconds<sp/>=<sp/>(scan_duration<sp/>&gt;<sp/>100.0);</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>100<sp/>seconds<sp/>is<sp/>far<sp/>more<sp/>than<sp/>the<sp/>duration<sp/>of<sp/>any<sp/>normal<sp/>scan</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>but<sp/>note<sp/>that<sp/>this<sp/>was<sp/>necessary<sp/>because<sp/>a<sp/>hesai<sp/>sensor<sp/>spit<sp/>out<sp/>a<sp/>20<sp/>sec<sp/>difference<sp/>in<sp/>a<sp/>real<sp/>scan</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>I&apos;ll<sp/>welcome<sp/>improvements<sp/>to<sp/>logic<sp/>here<sp/>to<sp/>handle<sp/>edge<sp/>cases<sp/>like<sp/>this</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="54"><highlight class="normal"></highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/>TimestampVector<sp/>timestamps_in_seconds(raw_timestamps.size());</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/>std::transform(raw_timestamps.cbegin(),<sp/>raw_timestamps.cend(),<sp/>timestamps_in_seconds.begin(),</highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[is_nanoseconds](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ts)<sp/>{<sp/>return<sp/>Secondsd(is_nanoseconds<sp/>?<sp/>ts<sp/>*<sp/>1e-9<sp/>:<sp/>ts);<sp/>});</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(is_nanoseconds)<sp/>{</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{Secondsd(min_stamp<sp/>*<sp/>1e-9),<sp/>Secondsd(max_stamp<sp/>*<sp/>1e-9),<sp/>timestamps_in_seconds};</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{Secondsd(min_stamp),<sp/>Secondsd(max_stamp),<sp/>timestamps_in_seconds};</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="63"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="64"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="65"><highlight class="normal"></highlight></codeline>
-<codeline lineno="66"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacerko__lio_1_1core" kindref="compound">rko_lio::core</ref><sp/>{</highlight></codeline>
-<codeline lineno="67"><highlight class="normal">std::tuple&lt;Secondsd,<sp/>Secondsd,<sp/>TimestampVector&gt;<sp/><ref refid="namespacerko__lio_1_1core_1a6f84ab20273bc1bc121cd6e5ba83d3f6" kindref="member">process_timestamps</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;&amp;<sp/>raw_timestamps,</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Secondsd&amp;<sp/>header_stamp)<sp/>{</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>EPSILON_TIME<sp/>=<sp/>std::chrono::nanoseconds(10);</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"></highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>[min_ts,<sp/>max_ts,<sp/>raw_timestamps_in_sec]<sp/>=<sp/>timestamps_in_sec_from_raw(raw_timestamps);</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/>TimestampVector<sp/>timestamps<sp/>=<sp/>raw_timestamps_in_sec;</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Secondsd<sp/>scan_duration<sp/>=<sp/>std::chrono::abs(max_ts<sp/>-<sp/>min_ts);</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"></highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/>Secondsd<sp/>begin_stamp;</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/>Secondsd<sp/>end_stamp;</highlight></codeline>
-<codeline lineno="77"><highlight class="normal"></highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Case:<sp/>absolute<sp/>timestamps</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>min<sp/>or<sp/>max<sp/>is<sp/>within<sp/>1ms<sp/>to<sp/>stamp<sp/>time.<sp/>If<sp/>the<sp/>timestamps<sp/>are<sp/>not<sp/>absolute,<sp/>I<sp/>don&apos;t<sp/>know<sp/>what<sp/>they<sp/>are.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(std::chrono::abs(header_stamp<sp/>-<sp/>min_ts)<sp/>&lt;<sp/>std::chrono::milliseconds(1)<sp/>||</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>std::chrono::abs(header_stamp<sp/>-<sp/>max_ts)<sp/>&lt;<sp/>std::chrono::milliseconds(1))<sp/>{</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>begin_stamp<sp/>=<sp/>min_ts;</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>end_stamp<sp/>=<sp/>max_ts;</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{begin_stamp,<sp/>end_stamp,<sp/>std::move(timestamps)};</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"></highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Case<sp/>1:<sp/>timestamps<sp/>are<sp/>relative<sp/>to<sp/>scan<sp/>start</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="88"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Case<sp/>2:<sp/>timestamps<sp/>are<sp/>relative<sp/>to<sp/>scan<sp/>end</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/>the<sp/>limits<sp/>i&apos;ve<sp/>set<sp/>empirically<sp/>based<sp/>on<sp/>all<sp/>the<sp/>cases<sp/>encountered<sp/>till<sp/>now<sp/>and<sp/>what<sp/>felt<sp/>reasonable</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>relative_stamps<sp/>=<sp/>(min_ts<sp/>&gt;=<sp/>Secondsd(0)<sp/>&amp;&amp;<sp/>std::chrono::abs(min_ts)<sp/>&lt;<sp/>std::chrono::milliseconds(4))<sp/>||</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(max_ts<sp/>&lt;=<sp/>Secondsd(0)<sp/>&amp;&amp;<sp/>std::chrono::abs(max_ts)<sp/>&lt;<sp/>std::chrono::milliseconds(4));</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"></highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>here<sp/>are<sp/>weirdo<sp/>cases<sp/>i&apos;ve<sp/>seen<sp/>which<sp/>i<sp/>think<sp/>should<sp/>be<sp/>kept<sp/>separate<sp/>so<sp/>its<sp/>always<sp/>in<sp/>mind<sp/>in<sp/>case<sp/>they<sp/>cause</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>problems<sp/>in<sp/>the<sp/>future</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Avia<sp/>Livox<sp/>on<sp/>HeLiPR<sp/>-<sp/>min<sp/>timestamps<sp/>are<sp/>oten<sp/>greater<sp/>than<sp/>the<sp/>header<sp/>stamp<sp/>by<sp/>a<sp/>significant<sp/>amount</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>VLP-16<sp/>on<sp/>Leg-KILO:<sp/>relative<sp/>to<sp/>the<sp/>end,<sp/>but<sp/>some<sp/>points<sp/>are<sp/>ahead<sp/>of<sp/>the<sp/>header<sp/>stamp</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/>relative_stamps<sp/>=<sp/>relative_stamps<sp/>||</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(min_ts<sp/>&gt;=<sp/>Secondsd(0)<sp/>&amp;&amp;<sp/>std::chrono::abs(min_ts)<sp/>&lt;<sp/>std::chrono::milliseconds(20))<sp/>||</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(min_ts<sp/>&lt;<sp/>Secondsd(0)<sp/>&amp;&amp;<sp/>max_ts<sp/>&gt;<sp/>Secondsd(0)<sp/>&amp;&amp;<sp/>max_ts<sp/>&lt;<sp/>std::chrono::milliseconds(10));</highlight></codeline>
-<codeline lineno="100"><highlight class="normal"></highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(relative_stamps)<sp/>{</highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>std::transform(timestamps.begin(),<sp/>timestamps.end(),<sp/>timestamps.begin(),</highlight></codeline>
-<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[&amp;header_stamp](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Secondsd&amp;<sp/>ts)<sp/>{<sp/>return<sp/>ts<sp/>+<sp/>header_stamp;<sp/>});</highlight></codeline>
-<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>begin_stamp<sp/>=<sp/>min_ts<sp/>+<sp/>header_stamp;</highlight></codeline>
-<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>end_stamp<sp/>=<sp/>max_ts<sp/>+<sp/>header_stamp;</highlight></codeline>
-<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{begin_stamp,<sp/>end_stamp,<sp/>std::move(timestamps)};</highlight></codeline>
-<codeline lineno="107"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="108"><highlight class="normal"></highlight></codeline>
-<codeline lineno="109"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Error-out<sp/>for<sp/>unique/unsupported<sp/>cases</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="110"><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/>std::setprecision(18);</highlight></codeline>
-<codeline lineno="111"><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;is_relative:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>relative_stamps<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="112"><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;point<sp/>min_time:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>min_ts.count()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="113"><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;point<sp/>max_time:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>max_ts.count()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="114"><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;header_sec:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>header_stamp.count()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="115"><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;header_sec<sp/>+<sp/>min_time:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>(header_stamp<sp/>+<sp/>min_ts).count()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="116"><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;header_sec<sp/>+<sp/>max_time:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>(header_stamp<sp/>+<sp/>max_ts).count()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="117"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Can<sp/>not<sp/>handle<sp/>timestamp<sp/>conversion.<sp/>Some<sp/>unique<sp/>case<sp/>encountered.<sp/>Please<sp/>report<sp/>an<sp/>issue<sp/>with<sp/>this<sp/>data.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="119"><highlight class="normal"></highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>NOTE:<sp/>one<sp/>could<sp/>assume<sp/>that<sp/>once<sp/>a<sp/>case<sp/>has<sp/>been<sp/>detected<sp/>for<sp/>one<sp/>scan,<sp/>it<sp/>should<sp/>probably<sp/>stay<sp/>the<sp/>same<sp/>going</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="121"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>forward<sp/>for<sp/>the<sp/>current<sp/>run<sp/>at<sp/>least.<sp/>In<sp/>case<sp/>someone<sp/>needs<sp/>more<sp/>performance,<sp/>this<sp/>is<sp/>an<sp/>easy<sp/>improvement</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="122"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="123"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;functional&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iomanip&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdexcept&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">rko_lio::core::Secondsd;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1TimestampProcessingConfig" kindref="compound">rko_lio::core::TimestampProcessingConfig</ref>;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1Timestamps" kindref="compound">rko_lio::core::Timestamps</ref>;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">rko_lio::core::TimestampVector;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/>The<sp/>timestamps<sp/>are<sp/>either<sp/>in<sp/>seconds<sp/>or<sp/>in<sp/>nanoseconds,<sp/>otherwise<sp/>the<sp/>user<sp/>needs<sp/>to<sp/>specify<sp/>the<sp/>multiplier</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal">Timestamps<sp/>timestamps_in_sec_from_raw(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;&amp;<sp/>raw_timestamps,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>multiplier_to_seconds)<sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>[min_it,<sp/>max_it]<sp/>=<sp/>std::minmax_element(raw_timestamps.begin(),<sp/>raw_timestamps.end());</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>min_stamp<sp/>=<sp/>*min_it;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>max_stamp<sp/>=<sp/>*max_it;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>timestamp_multiplier<sp/>=<sp/>multiplier_to_seconds;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(timestamp_multiplier<sp/>&lt;<sp/>1e-12)<sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>scan_duration<sp/>=<sp/>std::abs(max_stamp<sp/>-<sp/>min_stamp);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>is_nanoseconds<sp/>=<sp/>(scan_duration<sp/>&gt;<sp/>100.0);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>100<sp/>seconds<sp/>is<sp/>far<sp/>more<sp/>than<sp/>the<sp/>duration<sp/>of<sp/>any<sp/>normal<sp/>scan</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>timestamp_multiplier<sp/>=<sp/>is_nanoseconds<sp/>?<sp/>1e-9<sp/>:<sp/>1.0;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/>TimestampVector<sp/>times_in_seconds(raw_timestamps.size());</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/>std::transform(raw_timestamps.cbegin(),<sp/>raw_timestamps.cend(),<sp/>times_in_seconds.begin(),</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[timestamp_multiplier](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ts)<sp/>{<sp/>return<sp/>Secondsd(ts<sp/>*<sp/>timestamp_multiplier);<sp/>});</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{.min<sp/>=<sp/>Secondsd(min_stamp<sp/>*<sp/>timestamp_multiplier),</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.max<sp/>=<sp/>Secondsd(max_stamp<sp/>*<sp/>timestamp_multiplier),</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.times<sp/>=<sp/>times_in_seconds};</highlight></codeline>
+<codeline lineno="59"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacerko__lio_1_1core" kindref="compound">rko_lio::core</ref><sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal">Timestamps<sp/><ref refid="namespacerko__lio_1_1core_1aa575a28bad591f19c37742684a88cf7b" kindref="member">process_timestamps</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;&amp;<sp/>raw_timestamps,</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Secondsd&amp;<sp/>header_stamp,</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>TimestampProcessingConfig&amp;<sp/>config)<sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/>Timestamps<sp/>timestamps<sp/>=<sp/>timestamps_in_sec_from_raw(raw_timestamps,<sp/>config.multiplier_to_seconds);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>absolute_stamps<sp/>=<sp/>config.force_absolute<sp/>||</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(std::chrono::abs(header_stamp<sp/>-<sp/>timestamps.min)<sp/>&lt;<sp/>config.absolute_start_threshold)<sp/>||</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(std::chrono::abs(header_stamp<sp/>-<sp/>timestamps.max)<sp/>&lt;<sp/>config.absolute_end_threshold);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(absolute_stamps)<sp/>{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>timestamps;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>relative_stamps<sp/>=<sp/>config.force_relative<sp/>||</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(std::chrono::abs(timestamps.min)<sp/>&lt;<sp/>config.relative_start_threshold)<sp/>||</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(std::chrono::abs(timestamps.max)<sp/>&lt;<sp/>config.relative_end_threshold);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(relative_stamps)<sp/>{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>std::transform(timestamps.times.cbegin(),<sp/>timestamps.times.cend(),<sp/>timestamps.times.begin(),</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[&amp;header_stamp](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Secondsd&amp;<sp/>ts)<sp/>{<sp/>return<sp/>ts<sp/>+<sp/>header_stamp;<sp/>});</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>timestamps.min<sp/>+=<sp/>header_stamp;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>timestamps.max<sp/>+=<sp/>header_stamp;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>timestamps;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Error-out<sp/>for<sp/>unique/unsupported<sp/>cases</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/>std::setprecision(18);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;is_absolute:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>relative_stamps<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;is_relative:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>relative_stamps<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;point<sp/>times<sp/>min:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>timestamps.min.count()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;point<sp/>times<sp/>max:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>timestamps.max.count()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;header_sec:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>header_stamp.count()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;TimestampProcessingConfig:\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/>multiplier_to_seconds:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>config.multiplier_to_seconds<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/>force_absolute:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std::boolalpha<sp/>&lt;&lt;<sp/>config.force_absolute<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/>force_relative:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std::boolalpha<sp/>&lt;&lt;<sp/>config.force_relative<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/>absolute_start_threshold:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>config.absolute_start_threshold.count()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>ms\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/>absolute_end_threshold:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>config.absolute_end_threshold.count()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>ms\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/>relative_start_threshold:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>config.relative_start_threshold.count()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>ms\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/>relative_end_threshold:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>config.relative_end_threshold.count()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>ms\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>std::noboolalpha;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;TimestampProcessingConfig<sp/>does<sp/>not<sp/>cover<sp/>this<sp/>particular<sp/>case<sp/>of<sp/>data.<sp/>Please<sp/>investigate,<sp/>modify<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;the<sp/>config,<sp/>or<sp/>open<sp/>an<sp/>issue.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.cpp"/>
   </compounddef>

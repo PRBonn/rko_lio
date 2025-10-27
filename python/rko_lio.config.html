@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>rko_lio.config module &#8212; RKO-LIO: Lidar-inertial odometry without sensor-specific modeling</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=f6a572b4" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=56c4699f" />
+    <script src="../_static/documentation_options.js?v=ca7ad2ea"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="rko_lio.lio module" href="rko_lio.lio.html" />
+    <link rel="prev" title="rko_lio.cli module" href="rko_lio.cli.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">RKO-LIO</a></h1>
+
+
+
+<p class="blurb">Lidar-inertial odometry</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=PRBonn&repo=rko_lio&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/primer.html">Primer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/ros/ros.html">ROS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pages/python/python.html">Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../pages/python/setup.html">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/python/usage.html">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/python/dataloaders.html">Dataloaders</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="modules.html">Python API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/config.html">Configuring rko_lio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/uncategorised/index.html">Uncategorised</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://index.ros.org/p/rko_lio/">ROS Index</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/rko-lio/">PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://github.com/PRBonn/rko_lio">GitHub</a></li>
+    
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-rko_lio.config">
+<span id="rko-lio-config-module"></span><h1>rko_lio.config module<a class="headerlink" href="#module-rko_lio.config" title="Link to this heading">¶</a></h1>
+<p>The C++ backend (<cite>rko_lio::core::process_timestamps</cite>) tries to automatically
+decide whether a LiDAR timestamp sequence is <strong>absolute</strong> (already aligned to
+wall-clock time) or <strong>relative</strong> (offsets that must be shifted by the message
+header time). If the data cannot be confidently classified as either, a
+<cite>std::runtime_error</cite> is thrown:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Runtime</span> <span class="n">Error</span><span class="p">:</span> <span class="n">TimestampProcessingConfig</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">cover</span> <span class="n">this</span> <span class="n">particular</span>
+<span class="k">case</span> <span class="n">of</span> <span class="n">data</span><span class="o">.</span> <span class="n">Please</span> <span class="n">investigate</span><span class="p">,</span> <span class="n">modify</span> <span class="n">the</span> <span class="n">config</span><span class="p">,</span> <span class="ow">or</span> <span class="nb">open</span> <span class="n">an</span> <span class="n">issue</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>When this error occurs, you can potentially adjust the <cite>timestamps</cite> section of your
+configuration file to fix the issue. Typically, specifying one of <cite>force_absolute</cite> or <cite>force_relative</cite> should do the trick.</p>
+<section id="example-default-configuration">
+<h2>Example (default configuration)<a class="headerlink" href="#example-default-configuration" title="Link to this heading">¶</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">your other configuration keys here</span>
+<span class="l l-Scalar l-Scalar-Plain">timestamps</span><span class="p p-Indicator">:</span>
+<span class="w">  </span><span class="nt">multiplier_to_seconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">  </span><span class="nt">force_absolute</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">force_relative</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">absolute_start_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">absolute_end_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">relative_start_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">  </span><span class="nt">relative_end_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+</pre></div>
+</div>
+</section>
+<section id="description-of-parameters">
+<h2>Description of parameters<a class="headerlink" href="#description-of-parameters" title="Link to this heading">¶</a></h2>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">multiplier_to_seconds</span></code>:</p>
+<blockquote>
+<div><p>Factor applied to raw timestamp values to convert them to seconds.
+Secondsd and nanoseconds are detected automatically when this is 0.0 (default).
+Specify this for any other case.
+For example, if timestamps are in microseconds, use <code class="docutils literal notranslate"><span class="pre">1e-6</span></code>.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">force_absolute</span></code>:</p>
+<blockquote>
+<div><p>If set, timestamps are always treated as absolute, bypassing heuristics.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">force_relative</span></code>:</p>
+<blockquote>
+<div><p>If set, timestamps are always interpreted as relative to the LiDAR message header time, bypassing heuristics.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">absolute_start_threshold</span></code>:</p>
+<blockquote>
+<div><p>A tolerance around the <em>earliest</em> measured timestamp compared to header time.
+If its absolute difference to the header time is below this threshold, the scan is treated as absolute.</p>
+<p>Units: milliseconds.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">absolute_end_threshold</span></code>:</p>
+<blockquote>
+<div><p>Similar to the above, but applied to the <em>latest</em> scan timestamp. the absolute difference is compared to this threshold.</p>
+<p>Units: milliseconds.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">relative_start_threshold</span></code>:</p>
+<blockquote>
+<div><p>Used to check for relative timestamps. If the scan’s absolute minimum time is below this threshold, the timestamps are considered relative.</p>
+<p>Units: milliseconds.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">relative_end_threshold</span></code>:</p>
+<blockquote>
+<div><p>Also used for relative checks. If the scan’s absolute maximum time is below this threshold, the timestamps are considered relative. The expectation is the max time is either a very small negative or positive value.</p>
+<p>Units: milliseconds.</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>First, absolute timestamps are checked for. Then, relative. If the threshold checks are still not satisfied, then the above described error is thrown.</p>
+</div>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rko_lio.config.</span></span><span class="sig-name descname"><span class="pre">LIOConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.config.LIOConfig" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_LIOConfig</span></code></p>
+<p>LIO configuration options.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>deskew</strong> (<em>bool</em><em>, </em><em>default True</em>) – If True, perform scan deskewing.</p></li>
+<li><p><strong>max_iterations</strong> (<em>int</em><em>, </em><em>default 100</em>) – Maximum optimization iterations for scan matching.</p></li>
+<li><p><strong>voxel_size</strong> (<em>float</em><em>, </em><em>default 1.0</em>) – Size of map voxels (meters).</p></li>
+<li><p><strong>max_points_per_voxel</strong> (<em>int</em><em>, </em><em>default 20</em>) – Maximum points stored per voxel.</p></li>
+<li><p><strong>max_range</strong> (<em>float</em><em>, </em><em>default 100.0</em>) – Max usable range of lidar (meters).</p></li>
+<li><p><strong>min_range</strong> (<em>float</em><em>, </em><em>default 1.0</em>) – Minimum usable range of lidar (meters).</p></li>
+<li><p><strong>convergence_criterion</strong> (<em>float</em><em>, </em><em>default 1e-5</em>) – Convergence threshold for optimization.</p></li>
+<li><p><strong>max_correspondance_distance</strong> (<em>float</em><em>, </em><em>default 0.5</em>) – Max distance for associating points (meters).</p></li>
+<li><p><strong>max_num_threads</strong> (<em>int</em><em>, </em><em>default 0</em>) – Max thread count (0 = autodetect).</p></li>
+<li><p><strong>initialization_phase</strong> (<em>bool</em><em>, </em><em>default False</em>) – Whether to initialize on the first two lidar message.</p></li>
+<li><p><strong>max_expected_jerk</strong> (<em>float</em><em>, </em><em>default 3.0</em>) – Max expected IMU jerk (m/s^3).</p></li>
+<li><p><strong>double_downsample</strong> (<em>bool</em><em>, </em><em>default True</em>) – Double downsamples the incoming scan before registering. Disabling for sparse LiDARs may improve results.</p></li>
+<li><p><strong>min_beta</strong> (<em>float</em><em>, </em><em>default 200.0</em>) – Minimum scaling on the orientation regularisation weight. Set to -1 to disable the cost.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.default_config">
+<span class="sig-name descname"><span class="pre">default_config</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'convergence_criterion':</span> <span class="pre">1e-05,</span> <span class="pre">'deskew':</span> <span class="pre">True,</span> <span class="pre">'double_downsample':</span> <span class="pre">True,</span> <span class="pre">'initialization_phase':</span> <span class="pre">False,</span> <span class="pre">'max_correspondance_distance':</span> <span class="pre">0.5,</span> <span class="pre">'max_expected_jerk':</span> <span class="pre">3.0,</span> <span class="pre">'max_iterations':</span> <span class="pre">100,</span> <span class="pre">'max_num_threads':</span> <span class="pre">0,</span> <span class="pre">'max_points_per_voxel':</span> <span class="pre">20,</span> <span class="pre">'max_range':</span> <span class="pre">100.0,</span> <span class="pre">'min_beta':</span> <span class="pre">200.0,</span> <span class="pre">'min_range':</span> <span class="pre">1.0,</span> <span class="pre">'voxel_size':</span> <span class="pre">1.0}</span></em><a class="headerlink" href="#rko_lio.config.LIOConfig.default_config" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.config.LIOConfig.to_dict" title="Link to this definition">¶</a></dt>
+<dd><p>Return a dict version</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="rko_lio.config.PipelineConfig">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rko_lio.config.</span></span><span class="sig-name descname"><span class="pre">PipelineConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.config.PipelineConfig" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Configuration for the LIOPipeline, wrapping both LIO- and timestamp-related configs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lio</strong> (<em>dict</em><em> or </em><a class="reference internal" href="#rko_lio.config.LIOConfig" title="rko_lio.config.LIOConfig"><em>LIOConfig</em></a>)</p></li>
+<li><p><strong>timestamps</strong> (<em>dict</em><em> or </em><a class="reference internal" href="#rko_lio.config.TimestampProcessingConfig" title="rko_lio.config.TimestampProcessingConfig"><em>TimestampProcessingConfig</em></a>) – Configuration for timestamp preprocessing.</p></li>
+<li><p><strong>extrinsic_imu2base</strong> (<em>np.ndarray</em><em>[</em><em>4</em><em>,</em><em>4</em><em>] or </em><em>None</em><em>, </em><em>optional</em>) – Extrinsic transform from IMU frame to base frame.</p></li>
+<li><p><strong>extrinsic_lidar2base</strong> (<em>np.ndarray</em><em>[</em><em>4</em><em>,</em><em>4</em><em>] or </em><em>None</em><em>, </em><em>optional</em>) – Extrinsic transform from lidar frame to base frame.</p></li>
+<li><p><strong>viz</strong> (<em>bool</em><em>, </em><em>default False</em>) – Enable visualization using rerun.</p></li>
+<li><p><strong>viz_every_n_frames</strong> (<em>int</em><em>, </em><em>default 20</em>)</p></li>
+<li><p><strong>dump_deskewed_scans</strong> (<em>bool</em><em>, </em><em>default False</em>) – Save deskewed scans to disk.</p></li>
+<li><p><strong>log_dir</strong> (<em>Path</em><em>, </em><em>default &quot;results&quot;</em>) – Directory to store trajectory results.</p></li>
+<li><p><strong>run_name</strong> (<em>str</em><em>, </em><em>default &quot;rko_lio_run&quot;</em>) – Name of the current run.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.PipelineConfig.default_config">
+<span class="sig-name descname"><span class="pre">default_config</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'dump_deskewed_scans':</span> <span class="pre">False,</span> <span class="pre">'extrinsic_imu2base_quat_xyzw_xyz':</span> <span class="pre">None,</span> <span class="pre">'extrinsic_lidar2base_quat_xyzw_xyz':</span> <span class="pre">None,</span> <span class="pre">'log_dir':</span> <span class="pre">'/home/runner/work/rko_lio/rko_lio/docs_build/rko_lio/rko_lio/wrapped_sphinx_directory/results',</span> <span class="pre">'run_name':</span> <span class="pre">None,</span> <span class="pre">'viz':</span> <span class="pre">False,</span> <span class="pre">'viz_every_n_frames':</span> <span class="pre">20}</span></em><a class="headerlink" href="#rko_lio.config.PipelineConfig.default_config" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rko_lio.config.PipelineConfig.default_dict">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">default_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">include_timestamps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.config.PipelineConfig.default_dict" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>include_timestamps</strong> (<em>bool</em><em>, </em><em>default False</em>) – If True, include the timestamp subconfig.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rko_lio.config.PipelineConfig.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.config.PipelineConfig.to_dict" title="Link to this definition">¶</a></dt>
+<dd><p>Return full configuration as serializable dict.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="rko_lio.config.TimestampProcessingConfig">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rko_lio.config.</span></span><span class="sig-name descname"><span class="pre">TimestampProcessingConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.config.TimestampProcessingConfig" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_TimestampProcessingConfig</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.TimestampProcessingConfig.default_config">
+<span class="sig-name descname"><span class="pre">default_config</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'absolute_end_threshold':</span> <span class="pre">1,</span> <span class="pre">'absolute_start_threshold':</span> <span class="pre">1,</span> <span class="pre">'force_absolute':</span> <span class="pre">False,</span> <span class="pre">'force_relative':</span> <span class="pre">False,</span> <span class="pre">'multiplier_to_seconds':</span> <span class="pre">0.0,</span> <span class="pre">'relative_end_threshold':</span> <span class="pre">10,</span> <span class="pre">'relative_start_threshold':</span> <span class="pre">10}</span></em><a class="headerlink" href="#rko_lio.config.TimestampProcessingConfig.default_config" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rko_lio.config.TimestampProcessingConfig.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.config.TimestampProcessingConfig.to_dict" title="Link to this definition">¶</a></dt>
+<dd><p>Return a dict version</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="rko_lio.cli.html" title="Previous document">rko_lio.cli module</a>
+        </li>
+        <li>
+          <a href="rko_lio.lio.html" title="Next document">rko_lio.lio module</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &#169;2025 Meher Malladi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/python/rko_lio.config.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

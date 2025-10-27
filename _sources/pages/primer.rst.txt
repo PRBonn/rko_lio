@@ -12,7 +12,7 @@ It offers **better performance** due to more efficient handling of incoming data
 If possible, prefer using the ROS version.
 The Python version is intended mainly for convenience.
 
-For a short demo video of RKO-LIO, you can check this YouTube video:
+For a short demo of RKO-LIO, you can check this YouTube video:
 
 .. figure:: ../_static/odometry_video_thumbnail.png
    :target: https://www.youtube.com/watch?v=NNpzXdf9XmU

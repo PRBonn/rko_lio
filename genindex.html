@@ -59,13 +59,13 @@
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="pages/primer.html">Primer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pages/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pages/primer.html">About</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pages/data.html">Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pages/ros/ros.html">ROS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pages/python/python.html">Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pages/config.html">Configuring</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pages/core_dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/config.html">Configuring rko_lio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/uncategorised/index.html">Uncategorised</a></li>
 <li class="toctree-l1"><a class="reference internal" href="__LICENSE.html">License</a></li>
 </ul>
 
@@ -103,6 +103,7 @@
  | <a href="#I"><strong>I</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
+ | <a href="#O"><strong>O</strong></a>
  | <a href="#P"><strong>P</strong></a>
  | <a href="#Q"><strong>Q</strong></a>
  | <a href="#R"><strong>R</strong></a>
@@ -119,12 +120,16 @@
 </li>
       <li><a href="python/rko_lio.lio.html#rko_lio.lio.IntervalStats.accel_mag_variance">accel_mag_variance() (rko_lio.lio.IntervalStats method)</a>
 </li>
+      <li><a href="python/rko_lio.lio_pipeline.html#rko_lio.lio_pipeline.LIOPipeline.add_imu">add_imu() (rko_lio.lio_pipeline.LIOPipeline method)</a>
+</li>
       <li><a href="python/rko_lio.lio.html#rko_lio.lio.LIO.add_imu_measurement">add_imu_measurement() (rko_lio.lio.LIO method)</a>
 </li>
       <li><a href="python/rko_lio.lio.html#rko_lio.lio.LIO.add_imu_measurement_with_extrinsic">add_imu_measurement_with_extrinsic() (rko_lio.lio.LIO method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="python/rko_lio.lio_pipeline.html#rko_lio.lio_pipeline.LIOPipeline.add_lidar">add_lidar() (rko_lio.lio_pipeline.LIOPipeline method)</a>
+</li>
       <li><a href="python/rko_lio.lio.html#rko_lio.lio.IntervalStats.angular_velocity_sum">angular_velocity_sum (rko_lio.lio.IntervalStats property)</a>
 </li>
       <li><a href="python/rko_lio.dataloaders.get_dataloader.html#rko_lio.dataloaders.get_dataloader.available_dataloaders">available_dataloaders() (in module rko_lio.dataloaders.get_dataloader)</a>
@@ -159,8 +164,6 @@
 </li>
       <li><a href="generated/define_profiler_8hpp_1a1a31e7e398f6a2fa20e41c0b5a02cdc4.html#c.CONCAT_IMPL">CONCAT_IMPL (C macro)</a>
 </li>
-      <li><a href="python/rko_lio.lio.html#rko_lio.lio.LIOConfig.config_keys">config_keys (rko_lio.lio.LIOConfig attribute)</a>
-</li>
   </ul></td>
 </tr></table>
 
@@ -169,11 +172,23 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="python/rko_lio.dataloaders.get_dataloader.html#rko_lio.dataloaders.get_dataloader.dataloader_factory">dataloader_factory() (in module rko_lio.dataloaders.get_dataloader)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="python/rko_lio.cli.html#rko_lio.cli.dataloader_name_callback">dataloader_name_callback() (in module rko_lio.cli)</a>
 </li>
+      <li><a href="python/rko_lio.config.html#rko_lio.config.LIOConfig.default_config">default_config (rko_lio.config.LIOConfig attribute)</a>
+
+      <ul>
+        <li><a href="python/rko_lio.config.html#rko_lio.config.PipelineConfig.default_config">(rko_lio.config.PipelineConfig attribute)</a>
+</li>
+        <li><a href="python/rko_lio.config.html#rko_lio.config.TimestampProcessingConfig.default_config">(rko_lio.config.TimestampProcessingConfig attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="python/rko_lio.config.html#rko_lio.config.PipelineConfig.default_dict">default_dict() (rko_lio.config.PipelineConfig class method)</a>
+</li>
       <li><a href="python/rko_lio.cli.html#rko_lio.cli.dump_config_callback">dump_config_callback() (in module rko_lio.cli)</a>
+</li>
+      <li><a href="python/rko_lio.lio_pipeline.html#rko_lio.lio_pipeline.LIOPipeline.dump_results_to_disk">dump_results_to_disk() (rko_lio.lio_pipeline.LIOPipeline method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -251,9 +266,15 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="python/rko_lio.lio.html#rko_lio.lio.LIO">LIO (class in rko_lio.lio)</a>
 </li>
+      <li><a href="python/rko_lio.config.html#rko_lio.config.LIOConfig">LIOConfig (class in rko_lio.config)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="python/rko_lio.lio.html#rko_lio.lio.LIOConfig">LIOConfig (class in rko_lio.lio)</a>
+      <li><a href="python/rko_lio.lio_pipeline.html#rko_lio.lio_pipeline.LIOPipeline">LIOPipeline (class in rko_lio.lio_pipeline)</a>
+</li>
+      <li><a href="python/rko_lio.lio_pipeline.html#rko_lio.lio_pipeline.log_vector">log_vector() (in module rko_lio.lio_pipeline)</a>
+</li>
+      <li><a href="python/rko_lio.lio_pipeline.html#rko_lio.lio_pipeline.log_vector_columns">log_vector_columns() (in module rko_lio.lio_pipeline)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -270,6 +291,8 @@
         <li><a href="python/rko_lio.html#module-rko_lio">rko_lio</a>
 </li>
         <li><a href="python/rko_lio.cli.html#module-rko_lio.cli">rko_lio.cli</a>
+</li>
+        <li><a href="pages/uncategorised/lidar_timestamps.html#module-rko_lio.config">rko_lio.config</a>, <a href="python/rko_lio.config.html#module-rko_lio.config">[1]</a>
 </li>
         <li><a href="python/rko_lio.dataloaders.html#module-rko_lio.dataloaders">rko_lio.dataloaders</a>
 </li>
@@ -289,6 +312,8 @@
 </li>
         <li><a href="python/rko_lio.lio.html#module-rko_lio.lio">rko_lio.lio</a>
 </li>
+        <li><a href="python/rko_lio.lio_pipeline.html#module-rko_lio.lio_pipeline">rko_lio.lio_pipeline</a>
+</li>
         <li><a href="python/rko_lio.scoped_profiler.html#module-rko_lio.scoped_profiler">rko_lio.scoped_profiler</a>
 </li>
         <li><a href="python/rko_lio.util.html#module-rko_lio.util">rko_lio.util</a>
@@ -297,14 +322,22 @@
   </ul></td>
 </tr></table>
 
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="python/rko_lio.lio_pipeline.html#rko_lio.lio_pipeline.LIOPipeline.output_dir">output_dir (rko_lio.lio_pipeline.LIOPipeline property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="python/rko_lio.dataloaders.helipr.html#rko_lio.dataloaders.helipr.parse_extrinsic_txt">parse_extrinsic_txt() (in module rko_lio.dataloaders.helipr)</a>
 </li>
-      <li><a href="python/rko_lio.cli.html#rko_lio.cli.parse_extrinsics_from_config">parse_extrinsics_from_config() (in module rko_lio.cli)</a>
-</li>
       <li><a href="python/rko_lio.dataloaders.helipr.html#rko_lio.dataloaders.helipr.parse_lidar_extrinsic">parse_lidar_extrinsic() (in module rko_lio.dataloaders.helipr)</a>
+</li>
+      <li><a href="python/rko_lio.config.html#rko_lio.config.PipelineConfig">PipelineConfig (class in rko_lio.config)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -350,6 +383,13 @@
 
       <ul>
         <li><a href="python/rko_lio.cli.html#module-rko_lio.cli">module</a>
+</li>
+      </ul></li>
+      <li>
+    rko_lio.config
+
+      <ul>
+        <li><a href="pages/uncategorised/lidar_timestamps.html#module-rko_lio.config">module</a>, <a href="python/rko_lio.config.html#module-rko_lio.config">[1]</a>
 </li>
       </ul></li>
       <li>
@@ -416,6 +456,13 @@
 </li>
       </ul></li>
       <li>
+    rko_lio.lio_pipeline
+
+      <ul>
+        <li><a href="python/rko_lio.lio_pipeline.html#module-rko_lio.lio_pipeline">module</a>
+</li>
+      </ul></li>
+      <li>
     rko_lio.scoped_profiler
 
       <ul>
@@ -473,11 +520,7 @@
 </li>
       <li><a href="generated/structrko__lio_1_1core_1_1LidarFrame.html#_CPPv4N7rko_lio4core10LidarFrameE">rko_lio::core::LidarFrame (C++ struct)</a>
 </li>
-      <li><a href="generated/structrko__lio_1_1core_1_1LidarFrame.html#_CPPv4N7rko_lio4core10LidarFrame3endE">rko_lio::core::LidarFrame::end (C++ member)</a>
-</li>
       <li><a href="generated/structrko__lio_1_1core_1_1LidarFrame.html#_CPPv4N7rko_lio4core10LidarFrame6pointsE">rko_lio::core::LidarFrame::points (C++ member)</a>
-</li>
-      <li><a href="generated/structrko__lio_1_1core_1_1LidarFrame.html#_CPPv4N7rko_lio4core10LidarFrame5startE">rko_lio::core::LidarFrame::start (C++ member)</a>
 </li>
       <li><a href="generated/structrko__lio_1_1core_1_1LidarFrame.html#_CPPv4N7rko_lio4core10LidarFrame10timestampsE">rko_lio::core::LidarFrame::timestamps (C++ member)</a>
 </li>
@@ -533,7 +576,7 @@
 </li>
       <li><a href="generated/classrko__lio_1_1core_1_1LIO.html#_CPPv4N7rko_lio4core3LIO13register_scanERK14Vector3dVectorRK15TimestampVector">rko_lio::core::LIO::register_scan (C++ function)</a>, <a href="generated/classrko__lio_1_1core_1_1LIO.html#_CPPv4N7rko_lio4core3LIO13register_scanERKN6Sophus4SE3dERK14Vector3dVectorRK15TimestampVector">[1]</a>
 </li>
-      <li><a href="generated/function_namespacerko__lio_1_1core_1a6f84ab20273bc1bc121cd6e5ba83d3f6.html#_CPPv4N7rko_lio4core18process_timestampsERKNSt6vectorIdEERK8Secondsd">rko_lio::core::process_timestamps (C++ function)</a>
+      <li><a href="generated/function_namespacerko__lio_1_1core_1aa575a28bad591f19c37742684a88cf7b.html#_CPPv4N7rko_lio4core18process_timestampsERKNSt6vectorIdEERK8SecondsdRK25TimestampProcessingConfig">rko_lio::core::process_timestamps (C++ function)</a>
 </li>
       <li><a href="generated/classrko__lio_1_1core_1_1ScopedProfiler.html#_CPPv4N7rko_lio4core14ScopedProfilerE">rko_lio::core::ScopedProfiler (C++ class)</a>
 </li>
@@ -597,8 +640,6 @@
 </li>
       <li><a href="generated/structrko__lio_1_1core_1_1SparseVoxelGrid.html#_CPPv4N7rko_lio4core15SparseVoxelGrid15SparseVoxelGridEKdKdKj">rko_lio::core::SparseVoxelGrid::SparseVoxelGrid (C++ function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/structrko__lio_1_1core_1_1SparseVoxelGrid.html#_CPPv4N7rko_lio4core15SparseVoxelGrid6UpdateERKNSt6vectorIN5Eigen8Vector3dEEERKN6Sophus4SE3dE">rko_lio::core::SparseVoxelGrid::Update (C++ function)</a>
 </li>
       <li><a href="generated/structrko__lio_1_1core_1_1SparseVoxelGrid.html#_CPPv4N7rko_lio4core15SparseVoxelGrid11voxel_size_E">rko_lio::core::SparseVoxelGrid::voxel_size_ (C++ member)</a>
@@ -611,6 +652,8 @@
 </li>
       <li><a href="generated/structrko__lio_1_1core_1_1State.html#_CPPv4N7rko_lio4core5State19linear_accelerationE">rko_lio::core::State::linear_acceleration (C++ member)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/structrko__lio_1_1core_1_1State.html#_CPPv4N7rko_lio4core5State4poseE">rko_lio::core::State::pose (C++ member)</a>
 </li>
       <li><a href="generated/structrko__lio_1_1core_1_1State.html#_CPPv4N7rko_lio4core5State4timeE">rko_lio::core::State::time (C++ member)</a>
@@ -634,6 +677,32 @@
       <li><a href="generated/structrko__lio_1_1core_1_1Timer.html#_CPPv4N7rko_lio4core5Timer5TimerERK5Timer">rko_lio::core::Timer::Timer (C++ function)</a>, <a href="generated/structrko__lio_1_1core_1_1Timer.html#_CPPv4N7rko_lio4core5Timer5TimerERKNSt6stringE">[1]</a>, <a href="generated/structrko__lio_1_1core_1_1Timer.html#_CPPv4N7rko_lio4core5Timer5TimerERR5Timer">[2]</a>, <a href="generated/structrko__lio_1_1core_1_1Timer.html#_CPPv4N7rko_lio4core5Timer5TimerEv">[3]</a>
 </li>
       <li><a href="generated/structrko__lio_1_1core_1_1Timer.html#_CPPv4N7rko_lio4core5TimerD0Ev">rko_lio::core::Timer::~Timer (C++ function)</a>
+</li>
+      <li><a href="generated/structrko__lio_1_1core_1_1TimestampProcessingConfig.html#_CPPv4N7rko_lio4core25TimestampProcessingConfigE">rko_lio::core::TimestampProcessingConfig (C++ struct)</a>
+</li>
+      <li><a href="generated/structrko__lio_1_1core_1_1TimestampProcessingConfig.html#_CPPv4N7rko_lio4core25TimestampProcessingConfig22absolute_end_thresholdE">rko_lio::core::TimestampProcessingConfig::absolute_end_threshold (C++ member)</a>
+</li>
+      <li><a href="generated/structrko__lio_1_1core_1_1TimestampProcessingConfig.html#_CPPv4N7rko_lio4core25TimestampProcessingConfig24absolute_start_thresholdE">rko_lio::core::TimestampProcessingConfig::absolute_start_threshold (C++ member)</a>
+</li>
+      <li><a href="generated/structrko__lio_1_1core_1_1TimestampProcessingConfig.html#_CPPv4N7rko_lio4core25TimestampProcessingConfig14force_absoluteE">rko_lio::core::TimestampProcessingConfig::force_absolute (C++ member)</a>
+</li>
+      <li><a href="generated/structrko__lio_1_1core_1_1TimestampProcessingConfig.html#_CPPv4N7rko_lio4core25TimestampProcessingConfig14force_relativeE">rko_lio::core::TimestampProcessingConfig::force_relative (C++ member)</a>
+</li>
+      <li><a href="generated/structrko__lio_1_1core_1_1TimestampProcessingConfig.html#_CPPv4N7rko_lio4core25TimestampProcessingConfig2msE">rko_lio::core::TimestampProcessingConfig::ms (C++ type)</a>
+</li>
+      <li><a href="generated/structrko__lio_1_1core_1_1TimestampProcessingConfig.html#_CPPv4N7rko_lio4core25TimestampProcessingConfig21multiplier_to_secondsE">rko_lio::core::TimestampProcessingConfig::multiplier_to_seconds (C++ member)</a>
+</li>
+      <li><a href="generated/structrko__lio_1_1core_1_1TimestampProcessingConfig.html#_CPPv4N7rko_lio4core25TimestampProcessingConfig22relative_end_thresholdE">rko_lio::core::TimestampProcessingConfig::relative_end_threshold (C++ member)</a>
+</li>
+      <li><a href="generated/structrko__lio_1_1core_1_1TimestampProcessingConfig.html#_CPPv4N7rko_lio4core25TimestampProcessingConfig24relative_start_thresholdE">rko_lio::core::TimestampProcessingConfig::relative_start_threshold (C++ member)</a>
+</li>
+      <li><a href="generated/structrko__lio_1_1core_1_1Timestamps.html#_CPPv4N7rko_lio4core10TimestampsE">rko_lio::core::Timestamps (C++ struct)</a>
+</li>
+      <li><a href="generated/structrko__lio_1_1core_1_1Timestamps.html#_CPPv4N7rko_lio4core10Timestamps3maxE">rko_lio::core::Timestamps::max (C++ member)</a>
+</li>
+      <li><a href="generated/structrko__lio_1_1core_1_1Timestamps.html#_CPPv4N7rko_lio4core10Timestamps3minE">rko_lio::core::Timestamps::min (C++ member)</a>
+</li>
+      <li><a href="generated/structrko__lio_1_1core_1_1Timestamps.html#_CPPv4N7rko_lio4core10Timestamps5timesE">rko_lio::core::Timestamps::times (C++ member)</a>
 </li>
       <li><a href="generated/typedef_namespacerko__lio_1_1core_1a50d343fe8fc3d44fdf883bc4a77b1ccf.html#_CPPv4N7rko_lio4core15TimestampVectorE">rko_lio::core::TimestampVector (C++ type)</a>
 </li>
@@ -742,6 +811,8 @@
       <li><a href="generated/classrko__lio_1_1ros_1_1Node.html#_CPPv4N7rko_lio3ros4Node9tf_bufferE">rko_lio::ros::Node::tf_buffer (C++ member)</a>
 </li>
       <li><a href="generated/classrko__lio_1_1ros_1_1Node.html#_CPPv4N7rko_lio3ros4Node11tf_listenerE">rko_lio::ros::Node::tf_listener (C++ member)</a>
+</li>
+      <li><a href="generated/classrko__lio_1_1ros_1_1Node.html#_CPPv4N7rko_lio3ros4Node21timestamp_proc_configE">rko_lio::ros::Node::timestamp_proc_config (C++ member)</a>
 </li>
       <li><a href="generated/classrko__lio_1_1ros_1_1Node.html#_CPPv4N7rko_lio3ros4NodeD0Ev">rko_lio::ros::Node::~Node (C++ function)</a>
 </li>
@@ -853,8 +924,16 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="python/rko_lio.lio.html#rko_lio.lio.LIOConfig.to_dict">to_dict() (rko_lio.lio.LIOConfig method)</a>
+      <li><a href="python/rko_lio.config.html#rko_lio.config.TimestampProcessingConfig">TimestampProcessingConfig (class in rko_lio.config)</a>
 </li>
+      <li><a href="python/rko_lio.config.html#rko_lio.config.LIOConfig.to_dict">to_dict() (rko_lio.config.LIOConfig method)</a>
+
+      <ul>
+        <li><a href="python/rko_lio.config.html#rko_lio.config.PipelineConfig.to_dict">(rko_lio.config.PipelineConfig method)</a>
+</li>
+        <li><a href="python/rko_lio.config.html#rko_lio.config.TimestampProcessingConfig.to_dict">(rko_lio.config.TimestampProcessingConfig method)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="python/rko_lio.util.html#rko_lio.util.transform_to_quat_xyzw_xyz">transform_to_quat_xyzw_xyz() (in module rko_lio.util)</a>

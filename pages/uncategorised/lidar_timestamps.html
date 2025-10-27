@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Timestamp Processing &#8212; RKO-LIO: Lidar-inertial odometry without sensor-specific modeling</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=f6a572b4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=56c4699f" />
+    <script src="../../_static/documentation_options.js?v=ca7ad2ea"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="LICENSE" href="../../__LICENSE.html" />
+    <link rel="prev" title="Core library" href="core.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">RKO-LIO</a></h1>
+
+
+
+<p class="blurb">Lidar-inertial odometry</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=PRBonn&repo=rko_lio&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../primer.html">Primer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config.html">Configuring rko_lio</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Uncategorised</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="core.html">Core library</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">LiDAR timestamps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../__LICENSE.html">License</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://index.ros.org/p/rko_lio/">ROS Index</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/rko-lio/">PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://github.com/PRBonn/rko_lio">GitHub</a></li>
+    
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-rko_lio.config">
+<span id="timestamp-processing"></span><h1>Timestamp Processing<a class="headerlink" href="#module-rko_lio.config" title="Link to this heading">¶</a></h1>
+<p>The C++ backend (<cite>rko_lio::core::process_timestamps</cite>) tries to automatically
+decide whether a LiDAR timestamp sequence is <strong>absolute</strong> (already aligned to
+wall-clock time) or <strong>relative</strong> (offsets that must be shifted by the message
+header time). If the data cannot be confidently classified as either, a
+<cite>std::runtime_error</cite> is thrown:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Runtime</span> <span class="n">Error</span><span class="p">:</span> <span class="n">TimestampProcessingConfig</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">cover</span> <span class="n">this</span> <span class="n">particular</span>
+<span class="k">case</span> <span class="n">of</span> <span class="n">data</span><span class="o">.</span> <span class="n">Please</span> <span class="n">investigate</span><span class="p">,</span> <span class="n">modify</span> <span class="n">the</span> <span class="n">config</span><span class="p">,</span> <span class="ow">or</span> <span class="nb">open</span> <span class="n">an</span> <span class="n">issue</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>When this error occurs, you can potentially adjust the <cite>timestamps</cite> section of your
+configuration file to fix the issue. Typically, specifying one of <cite>force_absolute</cite> or <cite>force_relative</cite> should do the trick.</p>
+<section id="example-default-configuration">
+<h2>Example (default configuration)<a class="headerlink" href="#example-default-configuration" title="Link to this heading">¶</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">your other configuration keys here</span>
+<span class="l l-Scalar l-Scalar-Plain">timestamps</span><span class="p p-Indicator">:</span>
+<span class="w">  </span><span class="nt">multiplier_to_seconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">  </span><span class="nt">force_absolute</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">force_relative</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">absolute_start_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">absolute_end_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">relative_start_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">  </span><span class="nt">relative_end_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+</pre></div>
+</div>
+</section>
+<section id="description-of-parameters">
+<h2>Description of parameters<a class="headerlink" href="#description-of-parameters" title="Link to this heading">¶</a></h2>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">multiplier_to_seconds</span></code>:</p>
+<blockquote>
+<div><p>Factor applied to raw timestamp values to convert them to seconds.
+Secondsd and nanoseconds are detected automatically when this is 0.0 (default).
+Specify this for any other case.
+For example, if timestamps are in microseconds, use <code class="docutils literal notranslate"><span class="pre">1e-6</span></code>.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">force_absolute</span></code>:</p>
+<blockquote>
+<div><p>If set, timestamps are always treated as absolute, bypassing heuristics.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">force_relative</span></code>:</p>
+<blockquote>
+<div><p>If set, timestamps are always interpreted as relative to the LiDAR message header time, bypassing heuristics.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">absolute_start_threshold</span></code>:</p>
+<blockquote>
+<div><p>A tolerance around the <em>earliest</em> measured timestamp compared to header time.
+If its absolute difference to the header time is below this threshold, the scan is treated as absolute.</p>
+<p>Units: milliseconds.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">absolute_end_threshold</span></code>:</p>
+<blockquote>
+<div><p>Similar to the above, but applied to the <em>latest</em> scan timestamp. the absolute difference is compared to this threshold.</p>
+<p>Units: milliseconds.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">relative_start_threshold</span></code>:</p>
+<blockquote>
+<div><p>Used to check for relative timestamps. If the scan’s absolute minimum time is below this threshold, the timestamps are considered relative.</p>
+<p>Units: milliseconds.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">relative_end_threshold</span></code>:</p>
+<blockquote>
+<div><p>Also used for relative checks. If the scan’s absolute maximum time is below this threshold, the timestamps are considered relative. The expectation is the max time is either a very small negative or positive value.</p>
+<p>Units: milliseconds.</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>First, absolute timestamps are checked for. Then, relative. If the threshold checks are still not satisfied, then the above described error is thrown.</p>
+</div>
+</section>
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="core.html" title="Previous document">Core library</a>
+        </li>
+        <li>
+          <a href="../../__LICENSE.html" title="Next document">LICENSE</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &#169;2025 Meher Malladi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/pages/uncategorised/lidar_timestamps.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

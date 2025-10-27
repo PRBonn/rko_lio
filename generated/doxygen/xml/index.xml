@@ -57,9 +57,7 @@
     <member refid="structrko__lio_1_1core_1_1IntervalStats_1a93353da910829b6fc1525b55d99fd280" kind="function"><name>reset</name></member>
   </compound>
   <compound refid="structrko__lio_1_1core_1_1LidarFrame" kind="struct"><name>rko_lio::core::LidarFrame</name>
-    <member refid="structrko__lio_1_1core_1_1LidarFrame_1a28261ef3f282668ad8157e3ffa8f7a8d" kind="variable"><name>start</name></member>
-    <member refid="structrko__lio_1_1core_1_1LidarFrame_1ab9eafbfeefb5d680d56d56fc5658af42" kind="variable"><name>end</name></member>
-    <member refid="structrko__lio_1_1core_1_1LidarFrame_1a9c3835ea0ffb4ecadebc90cb4c72e92d" kind="variable"><name>timestamps</name></member>
+    <member refid="structrko__lio_1_1core_1_1LidarFrame_1a08e971b78e68547011009956d897876a" kind="variable"><name>timestamps</name></member>
     <member refid="structrko__lio_1_1core_1_1LidarFrame_1ac371b0837eaec4db447c228b65844fdc" kind="variable"><name>points</name></member>
   </compound>
   <compound refid="classrko__lio_1_1core_1_1LIO" kind="class"><name>rko_lio::core::LIO</name>
@@ -87,6 +85,7 @@
   <compound refid="classrko__lio_1_1ros_1_1Node" kind="class"><name>rko_lio::ros::Node</name>
     <member refid="classrko__lio_1_1ros_1_1Node_1a65ac7ad7d5b24f1efebe12e3ab287b40" kind="variable"><name>node</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1a29fac57b5b0a3daed568d4e5ce02deb9" kind="variable"><name>lio</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a4850c9ceeeec32efcf1eeaae09a85561" kind="variable"><name>timestamp_proc_config</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1a48450009c62072955a41aca0e0f58ec4" kind="variable"><name>imu_topic</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1a7f7be404c390d0a5ab57c68b05f4f729" kind="variable"><name>imu_frame</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1a09a24cf69a51d7b319f221a0af5927cc" kind="variable"><name>lidar_topic</name></member>
@@ -239,6 +238,21 @@
     <member refid="structrko__lio_1_1core_1_1Timer_1ac2f0c7dd196f11e1ff6211e008aa0ec7" kind="function"><name>operator=</name></member>
     <member refid="structrko__lio_1_1core_1_1Timer_1adaf6fe6d98f58d17620f3ccbade46b99" kind="function"><name>~Timer</name></member>
   </compound>
+  <compound refid="structrko__lio_1_1core_1_1TimestampProcessingConfig" kind="struct"><name>rko_lio::core::TimestampProcessingConfig</name>
+    <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a24293977e3c01769906c2aac28aa36ad" kind="typedef"><name>ms</name></member>
+    <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a46cc425d4f72adff3fec06fda2ade916" kind="variable"><name>multiplier_to_seconds</name></member>
+    <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a166b875f4043d2ad0be90aa46ab3c1f4" kind="variable"><name>force_absolute</name></member>
+    <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a1eb1124319b0987ff5960af828dedcfe" kind="variable"><name>force_relative</name></member>
+    <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a3d07c2552bf9591cb00b7177f139fbb4" kind="variable"><name>absolute_start_threshold</name></member>
+    <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a7d4e80b61d5e691c99c3822184a71a0c" kind="variable"><name>absolute_end_threshold</name></member>
+    <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a0da3756f27f8178900cbc9a80a8f1c37" kind="variable"><name>relative_start_threshold</name></member>
+    <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1acdbbb355f5ea64b709d76498ca0e9a53" kind="variable"><name>relative_end_threshold</name></member>
+  </compound>
+  <compound refid="structrko__lio_1_1core_1_1Timestamps" kind="struct"><name>rko_lio::core::Timestamps</name>
+    <member refid="structrko__lio_1_1core_1_1Timestamps_1a35ee9e2ba868ab50384c55faa49b12b4" kind="variable"><name>min</name></member>
+    <member refid="structrko__lio_1_1core_1_1Timestamps_1abc99b4d2813605ed314bc6262f4dde4c" kind="variable"><name>max</name></member>
+    <member refid="structrko__lio_1_1core_1_1Timestamps_1a0090c8ed31eeb5da017dcda0c0eaa2cb" kind="variable"><name>times</name></member>
+  </compound>
   <compound refid="namespace_0d0" kind="namespace"><name>@0</name>
   </compound>
   <compound refid="namespace_0d10" kind="namespace"><name>@10</name>
@@ -269,7 +283,7 @@
     <member refid="namespacerko__lio_1_1core_1aeb6128bc63af6919453e303e7eb5613d" kind="typedef"><name>Secondsd</name></member>
     <member refid="namespacerko__lio_1_1core_1a50d343fe8fc3d44fdf883bc4a77b1ccf" kind="typedef"><name>TimestampVector</name></member>
     <member refid="namespacerko__lio_1_1core_1a1beb022f953c50f94a2a815a4d3716b5" kind="variable"><name>GRAVITY_MAG</name></member>
-    <member refid="namespacerko__lio_1_1core_1a6f84ab20273bc1bc121cd6e5ba83d3f6" kind="function"><name>process_timestamps</name></member>
+    <member refid="namespacerko__lio_1_1core_1aa575a28bad591f19c37742684a88cf7b" kind="function"><name>process_timestamps</name></member>
     <member refid="namespacerko__lio_1_1core_1aebf1f823c7fd220695665a8b3e12281e" kind="function"><name>square</name></member>
     <member refid="namespacerko__lio_1_1core_1ae12b01bb20a1a7280bc26af2de2f15dd" kind="function"><name>gravity</name></member>
     <member refid="namespacerko__lio_1_1core_1ad33113e678270ae389705f90113e7df9" kind="function"><name>voxel_down_sample</name></member>

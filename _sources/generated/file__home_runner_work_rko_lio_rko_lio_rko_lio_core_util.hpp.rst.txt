@@ -74,6 +74,8 @@ Classes
 
 - :ref:`exhale_struct_structrko__lio_1_1core_1_1State`
 
+- :ref:`exhale_struct_structrko__lio_1_1core_1_1Timestamps`
+
 
 Functions
 ---------

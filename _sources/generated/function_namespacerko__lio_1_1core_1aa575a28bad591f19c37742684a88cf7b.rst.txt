@@ -1,4 +1,4 @@
-.. _exhale_function_namespacerko__lio_1_1core_1a6f84ab20273bc1bc121cd6e5ba83d3f6:
+.. _exhale_function_namespacerko__lio_1_1core_1aa575a28bad591f19c37742684a88cf7b:
 
 Function rko_lio::core::process_timestamps
 ==========================================
@@ -10,5 +10,5 @@ Function Documentation
 ----------------------
 
 
-.. doxygenfunction:: rko_lio::core::process_timestamps(const std::vector<double>&, const Secondsd&)
+.. doxygenfunction:: rko_lio::core::process_timestamps(const std::vector<double>&, const Secondsd&, const TimestampProcessingConfig&)
    :project: rko_lio Doxygen Project

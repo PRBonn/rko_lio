@@ -62,8 +62,8 @@
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/primer.html">Primer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pages/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pages/primer.html">About</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pages/data.html">Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pages/ros/ros.html">ROS</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../pages/python/python.html">Python</a><ul class="current">
@@ -73,8 +73,8 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Python API</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../pages/config.html">Configuring</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pages/core_dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/config.html">Configuring rko_lio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/uncategorised/index.html">Uncategorised</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
 </ul>
 
@@ -117,17 +117,28 @@
 <li class="toctree-l4"><a class="reference internal" href="rko_lio.cli.html#rko_lio.cli.cli"><code class="docutils literal notranslate"><span class="pre">cli()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="rko_lio.cli.html#rko_lio.cli.dataloader_name_callback"><code class="docutils literal notranslate"><span class="pre">dataloader_name_callback()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="rko_lio.cli.html#rko_lio.cli.dump_config_callback"><code class="docutils literal notranslate"><span class="pre">dump_config_callback()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="rko_lio.cli.html#rko_lio.cli.parse_extrinsics_from_config"><code class="docutils literal notranslate"><span class="pre">parse_extrinsics_from_config()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="rko_lio.cli.html#rko_lio.cli.version_callback"><code class="docutils literal notranslate"><span class="pre">version_callback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html">rko_lio.config module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.config.html#example-default-configuration">Example (default configuration)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.config.html#description-of-parameters">Description of parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.LIOConfig"><code class="docutils literal notranslate"><span class="pre">LIOConfig</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.PipelineConfig"><code class="docutils literal notranslate"><span class="pre">PipelineConfig</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.TimestampProcessingConfig"><code class="docutils literal notranslate"><span class="pre">TimestampProcessingConfig</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="rko_lio.lio.html">rko_lio.lio module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="rko_lio.lio.html#rko_lio.lio.IntervalStats"><code class="docutils literal notranslate"><span class="pre">IntervalStats</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="rko_lio.lio.html#rko_lio.lio.LIO"><code class="docutils literal notranslate"><span class="pre">LIO</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="rko_lio.lio.html#rko_lio.lio.LIOConfig"><code class="docutils literal notranslate"><span class="pre">LIOConfig</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="rko_lio.lio_pipeline.html">rko_lio.lio_pipeline module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.lio_pipeline.html">rko_lio.lio_pipeline module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.lio_pipeline.html#rko_lio.lio_pipeline.LIOPipeline"><code class="docutils literal notranslate"><span class="pre">LIOPipeline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.lio_pipeline.html#rko_lio.lio_pipeline.log_vector"><code class="docutils literal notranslate"><span class="pre">log_vector()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.lio_pipeline.html#rko_lio.lio_pipeline.log_vector_columns"><code class="docutils literal notranslate"><span class="pre">log_vector_columns()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="rko_lio.scoped_profiler.html">rko_lio.scoped_profiler module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="rko_lio.scoped_profiler.html#rko_lio.scoped_profiler.ScopedProfiler"><code class="docutils literal notranslate"><span class="pre">ScopedProfiler</span></code></a></li>
 </ul>

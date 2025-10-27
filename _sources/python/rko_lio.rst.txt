@@ -16,6 +16,7 @@ Submodules
    :maxdepth: 4
 
    rko_lio.cli
+   rko_lio.config
    rko_lio.lio
    rko_lio.lio_pipeline
    rko_lio.scoped_profiler

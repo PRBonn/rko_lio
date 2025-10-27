@@ -39,6 +39,8 @@
       <node id="4">
         <label>/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp</label>
         <link refid="process__timestamps_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
       </node>
       <node id="1">
         <label>/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp</label>
@@ -56,6 +58,7 @@
     <innerclass refid="structrko__lio_1_1core_1_1State" prot="public">rko_lio::core::State</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1ImuBias" prot="public">rko_lio::core::ImuBias</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1ImuControl" prot="public">rko_lio::core::ImuControl</innerclass>
+    <innerclass refid="structrko__lio_1_1core_1_1Timestamps" prot="public">rko_lio::core::Timestamps</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1LidarFrame" prot="public">rko_lio::core::LidarFrame</innerclass>
     <innernamespace refid="namespaceEigen">Eigen</innernamespace>
     <innernamespace refid="namespacerko__lio">rko_lio</innernamespace>
@@ -132,13 +135,18 @@
 <codeline lineno="65"><highlight class="normal"><sp/><sp/>Eigen::Vector3d<sp/>angular_velocity<sp/>=<sp/>Eigen::Vector3d::Zero();</highlight></codeline>
 <codeline lineno="66"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="67"><highlight class="normal"></highlight></codeline>
-<codeline lineno="68" refid="structrko__lio_1_1core_1_1LidarFrame" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1LidarFrame" kindref="compound">LidarFrame</ref><sp/>{</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/>Secondsd<sp/>start;</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/>Secondsd<sp/>end;</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/>TimestampVector<sp/>timestamps;</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/>Vector3dVector<sp/>points;</highlight></codeline>
-<codeline lineno="73"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="74"><highlight class="normal">};<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="structrko__lio_1_1core_1_1Timestamps" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1Timestamps" kindref="compound">Timestamps</ref><sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/>Secondsd<sp/>min;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/>Secondsd<sp/>max;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/>TimestampVector<sp/>times;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="structrko__lio_1_1core_1_1LidarFrame" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1LidarFrame" kindref="compound">LidarFrame</ref><sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1Timestamps" kindref="compound">Timestamps</ref><sp/>timestamps;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/>Vector3dVector<sp/>points;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal">};<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp"/>
   </compounddef>

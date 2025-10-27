@@ -27,4 +27,4 @@ Extrinsic transformations must be specified with the following keys in the confi
 These are **required parameters**. But if the dataloader can provide the extrinsics automatically, then they are **not required**.
 
 .. warning::
-  If your dataloader provides extrinsics, but you specify them in a config, the config values *will* take priority**.
+  If your dataloader provides extrinsics, but you specify them in a config, the config values *will* take priority.

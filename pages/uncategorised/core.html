@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Core dependencies &#8212; RKO-LIO: Lidar-inertial odometry without sensor-specific modeling</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
-    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=f6a572b4" />
-    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=56c4699f" />
-    <script src="../_static/documentation_options.js?v=ca7ad2ea"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
-    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="LICENSE" href="../__LICENSE.html" />
-    <link rel="prev" title="Configuring the odometry" href="config.html" />
+    <title>Core library &#8212; RKO-LIO: Lidar-inertial odometry without sensor-specific modeling</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=f6a572b4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=56c4699f" />
+    <script src="../../_static/documentation_options.js?v=ca7ad2ea"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Timestamp Processing" href="lidar_timestamps.html" />
+    <link rel="prev" title="Uncategorised documentation" href="index.html" />
    
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
 
   
@@ -32,7 +32,7 @@
     
       <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../index.html">RKO-LIO</a></h1>
+<h1 class="logo"><a href="../../index.html">RKO-LIO</a></h1>
 
 
 
@@ -53,7 +53,7 @@
 
 <search id="searchbox" style="display: none" role="search">
     <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
+    <form class="search" action="../../search.html" method="get">
       <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
       <input type="submit" value="Go" />
     </form>
@@ -62,17 +62,18 @@
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="primer.html">About</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data.html">Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ros/ros.html">ROS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="python/python.html">Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="config.html">Configuring</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Dependencies</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#the-core-library">The core library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../primer.html">Primer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config.html">Configuring rko_lio</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Uncategorised</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Core library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lidar_timestamps.html">LiDAR timestamps</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../__LICENSE.html">License</a></li>
 </ul>
 
 
@@ -95,8 +96,8 @@
 
           <div class="body" role="main">
             
-  <section id="core-dependencies">
-<h1>Core dependencies<a class="headerlink" href="#core-dependencies" title="Link to this heading">¶</a></h1>
+  <section id="core-library">
+<h1>Core library<a class="headerlink" href="#core-library" title="Link to this heading">¶</a></h1>
 <p>RKO-LIO is split into three parts:</p>
 <ul class="simple">
 <li><p>a core C++ library in <code class="docutils literal notranslate"><span class="pre">core</span></code>, which implements all the LiDAR-inertial odometry logic,</p></li>
@@ -114,8 +115,8 @@ On ubuntu, you can install it with</p>
 </pre></div>
 </div>
 <p>The python build will automatically use both <code class="docutils literal notranslate"><span class="pre">cmake&gt;=3.28</span></code> and <code class="docutils literal notranslate"><span class="pre">ninja</span></code>.</p>
-<section id="the-core-library">
-<h2>The core library<a class="headerlink" href="#the-core-library" title="Link to this heading">¶</a></h2>
+<section id="core-dependencies">
+<h2>Core dependencies<a class="headerlink" href="#core-dependencies" title="Link to this heading">¶</a></h2>
 <p>The core library dependencies are:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/facontidavide/Bonxai">Bonxai</a>: for the VDB map</p></li>
@@ -174,10 +175,10 @@ cmake<span class="w"> </span>--version
     <ul>
         <li>
           &larr;
-          <a href="config.html" title="Previous document">Configuring the odometry</a>
+          <a href="index.html" title="Previous document">Uncategorised documentation</a>
         </li>
         <li>
-          <a href="../__LICENSE.html" title="Next document">LICENSE</a>
+          <a href="lidar_timestamps.html" title="Next document">Timestamp Processing</a>
           &rarr;
         </li>
     </ul>
@@ -196,7 +197,7 @@ cmake<span class="w"> </span>--version
       &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
-      <a href="../_sources/pages/core_dependencies.rst.txt"
+      <a href="../../_sources/pages/uncategorised/core.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

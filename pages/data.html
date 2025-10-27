@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="ROS" href="ros/ros.html" />
-    <link rel="prev" title="A short primer" href="primer.html" />
+    <link rel="prev" title="The TL;DR" href="quickstart.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -63,8 +63,8 @@
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="primer.html">Primer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="primer.html">About</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Data</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#extrinsics-convention">Extrinsics &amp; convention</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#imu">IMU</a></li>
@@ -73,8 +73,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ros/ros.html">ROS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python/python.html">Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="config.html">Configuring</a></li>
-<li class="toctree-l1"><a class="reference internal" href="core_dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">Configuring rko_lio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uncategorised/index.html">Uncategorised</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
 </ul>
 
@@ -119,6 +119,10 @@ Some delay in the arrival of the data itself is fine.</p>
 <p>We only need the measurement time, the accelerometer reading, and the gyroscope reading (from a 6-axis IMU).</p>
 <p>Acceleration values should be in m/s².
 If your accelerometer outputs readings in g’s, be sure to convert them to m/s² before using the odometry.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>It is assumed that at rest, the accelerometer measures <strong>gravity pointing upwards</strong> in its local frame. Please ensure your extrinsic accounts for this, if you have a different setup.</p>
+</div>
 <p>Angular velocity values should be in rad/s; if your device uses other units, convert accordingly.</p>
 </section>
 <section id="lidar">
@@ -141,7 +145,7 @@ Check <a class="reference external" href="../cpp/rko_lio/core/process_timestamps
     <ul>
         <li>
           &larr;
-          <a href="primer.html" title="Previous document">A short primer</a>
+          <a href="quickstart.html" title="Previous document">The TL;DR</a>
         </li>
         <li>
           <a href="ros/ros.html" title="Next document">ROS</a>

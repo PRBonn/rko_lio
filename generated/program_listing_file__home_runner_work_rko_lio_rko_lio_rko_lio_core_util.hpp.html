@@ -62,8 +62,8 @@
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/primer.html">Primer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pages/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pages/primer.html">About</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pages/data.html">Data</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../pages/ros/ros.html">ROS</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../pages/ros/setup.html">Setup</a></li>
@@ -74,8 +74,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../pages/python/python.html">Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pages/config.html">Configuring</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pages/core_dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/config.html">Configuring rko_lio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/uncategorised/index.html">Uncategorised</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
 </ul>
 
@@ -169,12 +169,17 @@
 <span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="w"> </span><span class="n">angular_velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">::</span><span class="n">Zero</span><span class="p">();</span>
 <span class="p">};</span>
 
+<span class="k">struct</span><span class="w"> </span><span class="nc">Timestamps</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Secondsd</span><span class="w"> </span><span class="n">min</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Secondsd</span><span class="w"> </span><span class="n">max</span><span class="p">;</span>
+<span class="w">  </span><span class="n">TimestampVector</span><span class="w"> </span><span class="n">times</span><span class="p">;</span>
+<span class="p">};</span>
+
 <span class="k">struct</span><span class="w"> </span><span class="nc">LidarFrame</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">Secondsd</span><span class="w"> </span><span class="n">start</span><span class="p">;</span>
-<span class="w">  </span><span class="n">Secondsd</span><span class="w"> </span><span class="n">end</span><span class="p">;</span>
-<span class="w">  </span><span class="n">TimestampVector</span><span class="w"> </span><span class="n">timestamps</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Timestamps</span><span class="w"> </span><span class="n">timestamps</span><span class="p">;</span>
 <span class="w">  </span><span class="n">Vector3dVector</span><span class="w"> </span><span class="n">points</span><span class="p">;</span>
 <span class="p">};</span>
+
 <span class="p">};</span><span class="w"> </span><span class="c1">// namespace rko_lio::core</span>
 </pre></div>
 </div>

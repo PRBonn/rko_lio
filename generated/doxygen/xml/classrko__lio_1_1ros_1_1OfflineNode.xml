@@ -114,9 +114,16 @@
       </node>
     </inheritancegraph>
     <collaborationgraph>
+      <node id="3">
+        <label>rko_lio::core::TimestampProcessingConfig</label>
+        <link refid="structrko__lio_1_1core_1_1TimestampProcessingConfig"/>
+      </node>
       <node id="2">
         <label>rko_lio::ros::Node</label>
         <link refid="classrko__lio_1_1ros_1_1Node"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>timestamp_proc_config</edgelabel>
+        </childnode>
       </node>
       <node id="1">
         <label>rko_lio::ros::OfflineNode</label>
@@ -185,6 +192,7 @@
       <member refid="classrko__lio_1_1ros_1_1Node_1ad80ccf3eea0e6024234e3927f5295651" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>tf_broadcaster</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1aba93bc27b6ae3f1ddf61155993551731" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>tf_buffer</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1af6b3aea7512c33b69d5e7b0a6fad3fa4" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>tf_listener</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a4850c9ceeeec32efcf1eeaae09a85561" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>timestamp_proc_config</name></member>
       <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a7a831770cf30cf103bb2a2274c1b1b70" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>total_bag_msgs</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1a6bce1b391d69d3db9cc9d7157020ff4d" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>~Node</name></member>
     </listofallmembers>

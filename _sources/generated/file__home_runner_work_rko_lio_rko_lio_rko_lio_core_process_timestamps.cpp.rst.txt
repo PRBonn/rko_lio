@@ -34,6 +34,8 @@ Includes
 
 - ``cmath``
 
+- ``functional``
+
 - ``iomanip``
 
 - ``iostream``
@@ -60,5 +62,5 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_namespacerko__lio_1_1core_1a6f84ab20273bc1bc121cd6e5ba83d3f6`
+- :ref:`exhale_function_namespacerko__lio_1_1core_1aa575a28bad591f19c37742684a88cf7b`
 

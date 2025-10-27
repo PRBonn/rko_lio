@@ -1,4 +1,4 @@
-Core dependencies
+Core library
 =================
 
 RKO-LIO is split into three parts:
@@ -24,8 +24,8 @@ On ubuntu, you can install it with
 
 The python build will automatically use both ``cmake>=3.28`` and ``ninja``.
 
-The core library
-----------------
+Core dependencies
+-----------------
 
 The core library dependencies are:
 

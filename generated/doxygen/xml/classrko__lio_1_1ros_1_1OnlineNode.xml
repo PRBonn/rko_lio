@@ -166,20 +166,27 @@
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="3">
+      <node id="4">
         <label>rko_lio::core::Timer</label>
         <link refid="structrko__lio_1_1core_1_1Timer"/>
+      </node>
+      <node id="3">
+        <label>rko_lio::core::TimestampProcessingConfig</label>
+        <link refid="structrko__lio_1_1core_1_1TimestampProcessingConfig"/>
       </node>
       <node id="2">
         <label>rko_lio::ros::Node</label>
         <link refid="classrko__lio_1_1ros_1_1Node"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>timestamp_proc_config</edgelabel>
+        </childnode>
       </node>
       <node id="1">
         <label>rko_lio::ros::OnlineNode</label>
         <link refid="classrko__lio_1_1ros_1_1OnlineNode"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-        <childnode refid="3" relation="usage">
+        <childnode refid="4" relation="usage">
           <edgelabel>timer</edgelabel>
         </childnode>
       </node>
@@ -216,11 +223,11 @@
       <member refid="classrko__lio_1_1ros_1_1Node_1ac9f148d0733f2a867876e69cd92b91a0" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>map_publisher</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1af6a1630f6d2d17ba44b225e6be11b72d" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>map_topic</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1adb045ddac0f726cfaa1f31df0739549f" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>max_lidar_buffer_size</name></member>
-      <member refid="classrko__lio_1_1ros_1_1Node_1a65ac7ad7d5b24f1efebe12e3ab287b40" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>node</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1ad8b9ef3f14e5ae9b2fb18e008adc0fa7" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>Node</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1ae033875ce3dad98ed51d63a97697c3fa" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>Node</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1ac1a5bb0dbdc9dec856f87422c8b71dc9" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>Node</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1a247aee9248b976c072c38d353a005717" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>Node</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a65ac7ad7d5b24f1efebe12e3ab287b40" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>node</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1aac4f67a35fae666c0d2dcd77a22f6b03" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>odom_frame</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1aca5b014339825d4e15aef73299290566" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>odom_publisher</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1acce2f87faae8959c5b59f484b81be878" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>odom_topic</name></member>
@@ -248,6 +255,7 @@
       <member refid="classrko__lio_1_1ros_1_1Node_1aba93bc27b6ae3f1ddf61155993551731" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>tf_buffer</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1af6b3aea7512c33b69d5e7b0a6fad3fa4" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>tf_listener</name></member>
       <member refid="classrko__lio_1_1ros_1_1OnlineNode_1ae05287f800b92923088537f0a317244b" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>timer</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1a4850c9ceeeec32efcf1eeaae09a85561" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>timestamp_proc_config</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1a6bce1b391d69d3db9cc9d7157020ff4d" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>~Node</name></member>
     </listofallmembers>
   </compounddef>

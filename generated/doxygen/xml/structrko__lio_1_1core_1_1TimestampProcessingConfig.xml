@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structrko__lio_1_1core_1_1TimestampProcessingConfig" kind="struct" language="C++" prot="public">
+    <compoundname>rko_lio::core::TimestampProcessingConfig</compoundname>
+    <includes refid="process__timestamps_8hpp" local="no">process_timestamps.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a24293977e3c01769906c2aac28aa36ad" prot="public" static="no">
+        <type>std::chrono::milliseconds</type>
+        <definition>using rko_lio::core::TimestampProcessingConfig::ms =  std::chrono::milliseconds</definition>
+        <argsstring></argsstring>
+        <name>ms</name>
+        <qualifiedname>rko_lio::core::TimestampProcessingConfig::ms</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" line="44" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a46cc425d4f72adff3fec06fda2ade916" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double rko_lio::core::TimestampProcessingConfig::multiplier_to_seconds</definition>
+        <argsstring></argsstring>
+        <name>multiplier_to_seconds</name>
+        <qualifiedname>rko_lio::core::TimestampProcessingConfig::multiplier_to_seconds</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" line="46" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a166b875f4043d2ad0be90aa46ab3c1f4" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool rko_lio::core::TimestampProcessingConfig::force_absolute</definition>
+        <argsstring></argsstring>
+        <name>force_absolute</name>
+        <qualifiedname>rko_lio::core::TimestampProcessingConfig::force_absolute</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" line="47" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a1eb1124319b0987ff5960af828dedcfe" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool rko_lio::core::TimestampProcessingConfig::force_relative</definition>
+        <argsstring></argsstring>
+        <name>force_relative</name>
+        <qualifiedname>rko_lio::core::TimestampProcessingConfig::force_relative</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" line="48" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a3d07c2552bf9591cb00b7177f139fbb4" prot="public" static="no" mutable="no">
+        <type>ms</type>
+        <definition>ms rko_lio::core::TimestampProcessingConfig::absolute_start_threshold</definition>
+        <argsstring></argsstring>
+        <name>absolute_start_threshold</name>
+        <qualifiedname>rko_lio::core::TimestampProcessingConfig::absolute_start_threshold</qualifiedname>
+        <initializer>= ms(1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" line="49" column="6" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a7d4e80b61d5e691c99c3822184a71a0c" prot="public" static="no" mutable="no">
+        <type>ms</type>
+        <definition>ms rko_lio::core::TimestampProcessingConfig::absolute_end_threshold</definition>
+        <argsstring></argsstring>
+        <name>absolute_end_threshold</name>
+        <qualifiedname>rko_lio::core::TimestampProcessingConfig::absolute_end_threshold</qualifiedname>
+        <initializer>= ms(1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" line="50" column="6" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a0da3756f27f8178900cbc9a80a8f1c37" prot="public" static="no" mutable="no">
+        <type>ms</type>
+        <definition>ms rko_lio::core::TimestampProcessingConfig::relative_start_threshold</definition>
+        <argsstring></argsstring>
+        <name>relative_start_threshold</name>
+        <qualifiedname>rko_lio::core::TimestampProcessingConfig::relative_start_threshold</qualifiedname>
+        <initializer>= ms(10)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" line="51" column="6" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1TimestampProcessingConfig_1acdbbb355f5ea64b709d76498ca0e9a53" prot="public" static="no" mutable="no">
+        <type>ms</type>
+        <definition>ms rko_lio::core::TimestampProcessingConfig::relative_end_threshold</definition>
+        <argsstring></argsstring>
+        <name>relative_end_threshold</name>
+        <qualifiedname>rko_lio::core::TimestampProcessingConfig::relative_end_threshold</qualifiedname>
+        <initializer>= ms(10)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" line="52" column="6" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Configuration struct for timestamp processing. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>There was an attempt to have a one-size-fits-all approach before, but that lead to increasingly complicated branching patterns. If the given defaults don&apos;t apply to your sensor for whatever reason, simply modify this config. </para>
+    </detaileddescription>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" line="43" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" bodystart="43" bodyend="53"/>
+    <listofallmembers>
+      <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a7d4e80b61d5e691c99c3822184a71a0c" prot="public" virt="non-virtual"><scope>rko_lio::core::TimestampProcessingConfig</scope><name>absolute_end_threshold</name></member>
+      <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a3d07c2552bf9591cb00b7177f139fbb4" prot="public" virt="non-virtual"><scope>rko_lio::core::TimestampProcessingConfig</scope><name>absolute_start_threshold</name></member>
+      <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a166b875f4043d2ad0be90aa46ab3c1f4" prot="public" virt="non-virtual"><scope>rko_lio::core::TimestampProcessingConfig</scope><name>force_absolute</name></member>
+      <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a1eb1124319b0987ff5960af828dedcfe" prot="public" virt="non-virtual"><scope>rko_lio::core::TimestampProcessingConfig</scope><name>force_relative</name></member>
+      <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a24293977e3c01769906c2aac28aa36ad" prot="public" virt="non-virtual"><scope>rko_lio::core::TimestampProcessingConfig</scope><name>ms</name></member>
+      <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a46cc425d4f72adff3fec06fda2ade916" prot="public" virt="non-virtual"><scope>rko_lio::core::TimestampProcessingConfig</scope><name>multiplier_to_seconds</name></member>
+      <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1acdbbb355f5ea64b709d76498ca0e9a53" prot="public" virt="non-virtual"><scope>rko_lio::core::TimestampProcessingConfig</scope><name>relative_end_threshold</name></member>
+      <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a0da3756f27f8178900cbc9a80a8f1c37" prot="public" virt="non-virtual"><scope>rko_lio::core::TimestampProcessingConfig</scope><name>relative_start_threshold</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

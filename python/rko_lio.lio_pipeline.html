@@ -62,8 +62,8 @@
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/primer.html">Primer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pages/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pages/primer.html">About</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pages/data.html">Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pages/ros/ros.html">ROS</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../pages/python/python.html">Python</a><ul class="current">
@@ -73,8 +73,8 @@
 <li class="toctree-l2 current"><a class="reference internal" href="modules.html">Python API</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../pages/config.html">Configuring</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pages/core_dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/config.html">Configuring rko_lio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/uncategorised/index.html">Uncategorised</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
 </ul>
 
@@ -98,8 +98,100 @@
 
           <div class="body" role="main">
             
-  <section id="rko-lio-lio-pipeline-module">
-<h1>rko_lio.lio_pipeline module<a class="headerlink" href="#rko-lio-lio-pipeline-module" title="Link to this heading">¶</a></h1>
+  <section id="module-rko_lio.lio_pipeline">
+<span id="rko-lio-lio-pipeline-module"></span><h1>rko_lio.lio_pipeline module<a class="headerlink" href="#module-rko_lio.lio_pipeline" title="Link to this heading">¶</a></h1>
+<p>Equivalent logic to the ros wrapper’s message buffering.
+A convenience class to buffer IMU and LiDAR messages to ensure the core cpp implementation always
+gets the data in sync.
+The difference is this is not multi-threaded, therefore is a bit slower.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="rko_lio.lio_pipeline.LIOPipeline">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rko_lio.lio_pipeline.</span></span><span class="sig-name descname"><span class="pre">LIOPipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.PipelineConfig" title="rko_lio.config.PipelineConfig"><span class="pre">PipelineConfig</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.LIOPipeline" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Minimal sequential pipeline for LIO processing with out-of-sync IMU/lidar.
+Buffers are managed internally; data is added via add_imu and add_lidar.
+When IMU data covers an already available lidar frame, registration is triggered.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rko_lio.lio_pipeline.LIOPipeline.add_imu">
+<span class="sig-name descname"><span class="pre">add_imu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acceleration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular_velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.LIOPipeline.add_imu" title="Link to this definition">¶</a></dt>
+<dd><p>Add IMU measurement to pipeline (will be buffered until processed by lidar).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time</strong> (<em>float</em>) – Measurement timestamp in seconds.</p></li>
+<li><p><strong>acceleration</strong> (<em>array</em><em> of </em><em>float</em><em>, </em><em>shape</em><em> (</em><em>3</em><em>,</em><em>)</em>) – Acceleration vector in m/s^2.</p></li>
+<li><p><strong>angular_velocity</strong> (<em>array</em><em> of </em><em>float</em><em>, </em><em>shape</em><em> (</em><em>3</em><em>,</em><em>)</em>) – Angular velocity in rad/s.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rko_lio.lio_pipeline.LIOPipeline.add_lidar">
+<span class="sig-name descname"><span class="pre">add_lidar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.LIOPipeline.add_lidar" title="Link to this definition">¶</a></dt>
+<dd><p>Add a lidar point cloud and <em>absolute</em> timestamps. Scan start and end times
+are inferred from the timestamps vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scan</strong> (<em>array</em><em> of </em><em>float</em><em>, </em><em>shape</em><em> (</em><em>N</em><em>,</em><em>3</em><em>)</em>) – Point cloud.</p></li>
+<li><p><strong>timestamps</strong> (<em>array</em><em> of </em><em>float</em><em>, </em><em>shape</em><em> (</em><em>N</em><em>,</em><em>)</em>) – Absolute timestamps (seconds) for each point.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rko_lio.lio_pipeline.LIOPipeline.dump_results_to_disk">
+<span class="sig-name descname"><span class="pre">dump_results_to_disk</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.LIOPipeline.dump_results_to_disk" title="Link to this definition">¶</a></dt>
+<dd><p>Write LIO results to disk under LIOPipeline.output_dir.</p>
+<p>Writes:
+- Trajectory (timestamps and poses) in TUM format text file.
+- Configuration as YAML file.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="rko_lio.lio_pipeline.LIOPipeline.output_dir">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">output_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#rko_lio.lio_pipeline.LIOPipeline.output_dir" title="Link to this definition">¶</a></dt>
+<dd><p>The directory used for file logging if enabled.
+Folder is {log_dir}/{run_name}_{index}.
+Automatically bumps the index (from 0) if similar names exist, to avoid overwriting.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rko_lio.lio_pipeline.log_vector">
+<span class="sig-prename descclassname"><span class="pre">rko_lio.lio_pipeline.</span></span><span class="sig-name descname"><span class="pre">log_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rerun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entity_path_prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.log_vector" title="Link to this definition">¶</a></dt>
+<dd><p>Logs a vector as three scalar time-series in rerun.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rerun</strong> – rerun module</p></li>
+<li><p><strong>entity_path_prefix</strong> – Base path for scalar logs (e.g. “imu/avg_acceleration”)</p></li>
+<li><p><strong>vector</strong> – Iterable or np.ndarray with 3 elements (x, y, z)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rko_lio.lio_pipeline.log_vector_columns">
+<span class="sig-prename descclassname"><span class="pre">rko_lio.lio_pipeline.</span></span><span class="sig-name descname"><span class="pre">log_vector_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rerun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entity_path_prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">times</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vectors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.log_vector_columns" title="Link to this definition">¶</a></dt>
+<dd><p>Log a batch of 3D vectors over multiple timestamps in rerun,
+sending one column batch per vector axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rerun</strong> – rerun module or rerun instance.</p></li>
+<li><p><strong>entity_path_prefix</strong> – base path e.g. ‘imu/acceleration’.</p></li>
+<li><p><strong>times</strong> – 1D np.ndarray of timestamps (float64).</p></li>
+<li><p><strong>vectors</strong> – 2D np.ndarray, shape (N, 3) where columns are x,y,z.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 

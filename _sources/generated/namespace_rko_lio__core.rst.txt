@@ -42,6 +42,10 @@ Classes
 
 - :ref:`exhale_struct_structrko__lio_1_1core_1_1Timer`
 
+- :ref:`exhale_struct_structrko__lio_1_1core_1_1TimestampProcessingConfig`
+
+- :ref:`exhale_struct_structrko__lio_1_1core_1_1Timestamps`
+
 - :ref:`exhale_class_classrko__lio_1_1core_1_1LIO`
 
 - :ref:`exhale_class_classrko__lio_1_1core_1_1ScopedProfiler`
@@ -55,7 +59,7 @@ Functions
 
 - :ref:`exhale_function_namespacerko__lio_1_1core_1ae12b01bb20a1a7280bc26af2de2f15dd`
 
-- :ref:`exhale_function_namespacerko__lio_1_1core_1a6f84ab20273bc1bc121cd6e5ba83d3f6`
+- :ref:`exhale_function_namespacerko__lio_1_1core_1aa575a28bad591f19c37742684a88cf7b`
 
 - :ref:`exhale_function_namespacerko__lio_1_1core_1aebf1f823c7fd220695665a8b3e12281e`
 

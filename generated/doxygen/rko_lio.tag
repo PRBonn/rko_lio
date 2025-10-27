@@ -356,6 +356,14 @@
     <name>rko_lio::core::Timer</name>
     <filename>structrko__lio_1_1core_1_1Timer.html</filename>
   </compound>
+  <compound kind="struct">
+    <name>rko_lio::core::TimestampProcessingConfig</name>
+    <filename>structrko__lio_1_1core_1_1TimestampProcessingConfig.html</filename>
+  </compound>
+  <compound kind="struct">
+    <name>rko_lio::core::Timestamps</name>
+    <filename>structrko__lio_1_1core_1_1Timestamps.html</filename>
+  </compound>
   <compound kind="namespace">
     <name>rko_lio::core</name>
     <filename>namespacerko__lio_1_1core.html</filename>
@@ -369,12 +377,14 @@
     <class kind="struct">rko_lio::core::SparseVoxelGrid</class>
     <class kind="struct">rko_lio::core::State</class>
     <class kind="struct">rko_lio::core::Timer</class>
+    <class kind="struct">rko_lio::core::TimestampProcessingConfig</class>
+    <class kind="struct">rko_lio::core::Timestamps</class>
     <member kind="function">
-      <type>std::tuple&lt; Secondsd, Secondsd, TimestampVector &gt;</type>
+      <type>Timestamps</type>
       <name>process_timestamps</name>
       <anchorfile>namespacerko__lio_1_1core.html</anchorfile>
-      <anchor>a6f84ab20273bc1bc121cd6e5ba83d3f6</anchor>
-      <arglist>(const std::vector&lt; double &gt; &amp;raw_timestamps, const Secondsd &amp;header_stamp)</arglist>
+      <anchor>aa575a28bad591f19c37742684a88cf7b</anchor>
+      <arglist>(const std::vector&lt; double &gt; &amp;raw_timestamps, const Secondsd &amp;header_stamp, const TimestampProcessingConfig &amp;config)</arglist>
     </member>
     <member kind="function">
       <type>std::vector&lt; Eigen::Vector3d &gt;</type>

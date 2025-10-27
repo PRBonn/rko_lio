@@ -18,8 +18,8 @@
     <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="A short primer" href="primer.html" />
-    <link rel="prev" title="RKO-LIO - LiDAR-Inertial Odometry" href="../index.html" />
+    <link rel="next" title="The sensor data" href="data.html" />
+    <link rel="prev" title="A short primer" href="primer.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -62,17 +62,17 @@
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="primer.html">Primer</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#python">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ros">ROS</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="primer.html">About</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ros/ros.html">ROS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python/python.html">Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="config.html">Configuring</a></li>
-<li class="toctree-l1"><a class="reference internal" href="core_dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">Configuring rko_lio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uncategorised/index.html">Uncategorised</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
 </ul>
 
@@ -107,7 +107,7 @@ rko_lio<span class="w"> </span>data_dir
 <p>For example, if you’re running on a ROS bag, place all split parts in one folder (with <code class="docutils literal notranslate"><span class="pre">metadata.yaml</span></code> for ROS2) and pass that folder as <code class="docutils literal notranslate"><span class="pre">data_dir</span></code>.</p>
 <p>By default, <code class="docutils literal notranslate"><span class="pre">rko_lio</span></code> tries to infer topics and TF relationships automatically, but you can override these using flags like <code class="docutils literal notranslate"><span class="pre">--lidar</span></code>, <code class="docutils literal notranslate"><span class="pre">--imu</span></code>, or <code class="docutils literal notranslate"><span class="pre">--base_frame</span></code>.
 If your bag doesn’t contain TF information, you’ll need to specify the IMU–LiDAR extrinsics via a config YAML (<code class="docutils literal notranslate"><span class="pre">rko_lio</span> <span class="pre">--dump_config</span></code> will write a default config).</p>
-<p>See <a class="reference internal" href="python/usage.html"><span class="doc">Python Usage</span></a> for detailed examples and advanced options.</p>
+<p>See <a class="reference internal" href="python/usage.html"><span class="doc">Python usage</span></a> for detailed examples and advanced options.</p>
 </section>
 <section id="ros">
 <h2>ROS<a class="headerlink" href="#ros" title="Link to this heading">¶</a></h2>
@@ -136,10 +136,10 @@ ros2<span class="w"> </span>launch<span class="w"> </span>rko_lio<span class="w"
     <ul>
         <li>
           &larr;
-          <a href="../index.html" title="Previous document">RKO-LIO - LiDAR-Inertial Odometry</a>
+          <a href="primer.html" title="Previous document">A short primer</a>
         </li>
         <li>
-          <a href="primer.html" title="Next document">A short primer</a>
+          <a href="data.html" title="Next document">The sensor data</a>
           &rarr;
         </li>
     </ul>

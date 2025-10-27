@@ -51,11 +51,11 @@ If you use this work, please leave a star ⭐ on our `GitHub repository <https:/
    :maxdepth: 2
    :caption: Contents:
 
+   Primer <pages/primer>
    Quickstart <pages/quickstart>
-   About <pages/primer>
    Data <pages/data>
    ROS <pages/ros/ros>
    Python <pages/python/python>
-   Configuring <pages/config>
-   Dependencies <pages/core_dependencies>
+   Configuring rko_lio <pages/config>
+   Uncategorised <pages/uncategorised/index>
    License <__LICENSE>

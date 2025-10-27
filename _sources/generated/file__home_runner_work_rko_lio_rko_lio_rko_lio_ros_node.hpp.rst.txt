@@ -54,6 +54,8 @@ Includes
 
 - ``rko_lio/core/lio.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_lio.hpp`)
 
+- ``rko_lio/core/process_timestamps.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_process_timestamps.hpp`)
+
 - ``sensor_msgs/msg/imu.hpp``
 
 - ``sensor_msgs/msg/point_cloud2.hpp``

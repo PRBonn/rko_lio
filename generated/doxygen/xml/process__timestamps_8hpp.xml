@@ -7,6 +7,7 @@
     <includes local="no">vector</includes>
     <includedby refid="process__timestamps_8cpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.cpp</includedby>
     <includedby refid="node_8cpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/ros/node.cpp</includedby>
+    <includedby refid="node_8hpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/ros/node.hpp</includedby>
     <incdepgraph>
       <node id="1">
         <label>/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp</label>
@@ -44,6 +45,19 @@
         <label>vector</label>
       </node>
     </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp</label>
+        <link refid="process__timestamps_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/node.hpp</label>
+        <link refid="node_8hpp_source"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structrko__lio_1_1core_1_1TimestampProcessingConfig" prot="public">rko_lio::core::TimestampProcessingConfig</innerclass>
     <innernamespace refid="namespacerko__lio">rko_lio</innernamespace>
     <innernamespace refid="namespacerko__lio_1_1core">rko_lio::core</innernamespace>
     <briefdescription>
@@ -81,10 +95,24 @@
 <codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacerko__lio_1_1core" kindref="compound">rko_lio::core</ref><sp/>{</highlight></codeline>
-<codeline lineno="53"><highlight class="normal">std::tuple&lt;Secondsd,<sp/>Secondsd,<sp/>TimestampVector&gt;<sp/><ref refid="namespacerko__lio_1_1core_1a6f84ab20273bc1bc121cd6e5ba83d3f6" kindref="member">process_timestamps</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;&amp;<sp/>raw_timestamps,</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Secondsd&amp;<sp/>header_stamp);</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"></highlight></codeline>
-<codeline lineno="56"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="structrko__lio_1_1core_1_1TimestampProcessingConfig" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1TimestampProcessingConfig" kindref="compound">TimestampProcessingConfig</ref><sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">ms<sp/>=<sp/>std::chrono::milliseconds;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>multiplier_to_seconds<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>force_absolute<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>force_relative<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/>ms<sp/>absolute_start_threshold<sp/>=<sp/>ms(1);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/>ms<sp/>absolute_end_threshold<sp/>=<sp/>ms(1);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/>ms<sp/>relative_start_threshold<sp/>=<sp/>ms(10);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/>ms<sp/>relative_end_threshold<sp/>=<sp/>ms(10);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1Timestamps" kindref="compound">Timestamps</ref><sp/><ref refid="namespacerko__lio_1_1core_1aa575a28bad591f19c37742684a88cf7b" kindref="member">process_timestamps</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;&amp;<sp/>raw_timestamps,</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Secondsd&amp;<sp/>header_stamp,</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1TimestampProcessingConfig" kindref="compound">TimestampProcessingConfig</ref>&amp;<sp/>config);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp"/>
   </compounddef>
