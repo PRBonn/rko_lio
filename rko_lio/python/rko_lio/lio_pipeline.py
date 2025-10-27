@@ -32,7 +32,8 @@ from pathlib import Path
 import numpy as np
 import yaml
 
-from .lio import LIO, LIOConfig
+from .config import PipelineConfig
+from .lio import LIO
 from .scoped_profiler import ScopedProfiler
 from .util import (
     height_colors_from_points,
@@ -51,46 +52,23 @@ class LIOPipeline:
 
     def __init__(
         self,
-        config: LIOConfig,
-        extrinsic_imu2base: np.ndarray | None = None,
-        extrinsic_lidar2base: np.ndarray | None = None,
-        viz: bool = False,
-        viz_every_n_frames: int = 20,
-        dump_deskewed_scans: bool = False,
-        log_dir: Path = Path("results"),
-        run_name: str = "rko_lio_run",
+        config: PipelineConfig,
     ):
-        """
-        Parameters
-        ----------
-        config : LIOConfig
-            Config used to instantiate a LIO estimator.
-        extrinsic_imu2base : np.ndarray[4,4] or None
-            If provided, used for all IMU updates.
-        extrinsic_lidar2base : np.ndarray[4,4] or None
-            If provided, used for all scan registrations.
-        """
-        self.lio = LIO(config)
-        self.extrinsic_imu2base = extrinsic_imu2base
-        self.extrinsic_lidar2base = extrinsic_lidar2base
+        self.config = config
+        self.lio = LIO(config.lio)
 
         # Each: dict with keys 'time', 'accel', 'gyro'
         self.imu_buffer: list[dict] = []
         # Each: dict with keys 'start_time', 'end_time', 'scan', 'timestamps'
         self.lidar_buffer: list[dict] = []
 
-        self.dump_deskewed_scans = dump_deskewed_scans
-        self.log_dir = log_dir
-        self.run_name = run_name
         self._output_dir = None
 
-        self.viz = viz
-        if viz:
+        if self.config.viz:
             import rerun
 
             self.rerun = rerun
             self.viz_counter = 0
-            self.viz_every_n_frames = viz_every_n_frames
             self.last_xyz = np.zeros(3)
             if self.lio.config.initialization_phase:
                 self.rerun.log(
@@ -107,10 +85,10 @@ class LIOPipeline:
         Automatically bumps the index (from 0) if similar names exist, to avoid overwriting.
         """
         if self._output_dir is None:
-            self.log_dir.mkdir(parents=True, exist_ok=True)
+            self.config.log_dir.mkdir(parents=True, exist_ok=True)
             index = 0
             while True:
-                output_dir = self.log_dir / f"{self.run_name}_{index}"
+                output_dir = self.config.log_dir / f"{self.config.run_name}_{index}"
                 if not output_dir.exists():
                     break
                 index += 1
@@ -193,9 +171,9 @@ class LIOPipeline:
                     imu for imu in self.imu_buffer if imu["time"] < frame["end_time"]
                 ]
                 for imu in imu_to_process:
-                    if self.extrinsic_imu2base is not None:
+                    if self.config.extrinsic_imu2base is not None:
                         self.lio.add_imu_measurement_with_extrinsic(
-                            self.extrinsic_imu2base,
+                            self.config.extrinsic_imu2base,
                             imu["acceleration"],
                             imu["angular_velocity"],
                             imu["time"],
@@ -206,7 +184,7 @@ class LIOPipeline:
                             imu["angular_velocity"],
                             imu["time"],
                         )
-                if self.viz:
+                if self.config.viz and len(imu_to_process):
                     times = np.array(
                         [imu["time"] for imu in imu_to_process], dtype=np.float64
                     )
@@ -218,7 +196,6 @@ class LIOPipeline:
                         [imu["angular_velocity"] for imu in imu_to_process],
                         dtype=np.float64,
                     )
-
                     log_vector_columns(self.rerun, "imu/acceleration", times, accels)
                     log_vector_columns(
                         self.rerun, "imu/angular_velocity", times, ang_vels
@@ -244,10 +221,10 @@ class LIOPipeline:
 
                 # Register the lidar scan
                 try:
-                    if self.extrinsic_lidar2base is not None:
+                    if self.config.extrinsic_lidar2base is not None:
                         # TODO: rerun the deskewed scan as well, but there is some flickering in the viz for some reason
                         deskewed_scan = self.lio.register_scan_with_extrinsic(
-                            self.extrinsic_lidar2base,
+                            self.config.extrinsic_lidar2base,
                             frame["scan"],
                             frame["timestamps"],
                         )
@@ -263,14 +240,14 @@ class LIOPipeline:
                     )
                     continue
 
-            if self.dump_deskewed_scans:
+            if self.config.dump_deskewed_scans:
                 save_scan_as_ply(
                     deskewed_scan,
                     frame["end_time"],
                     output_dir=self.output_dir / "deskewed_scans",
                 )
 
-            if self.viz:
+            if self.config.viz:
                 with ScopedProfiler("Pipeline - Visualization") as viz_timer:
                     pose = self.lio.pose()
                     self.rerun.log(
@@ -293,7 +270,7 @@ class LIOPipeline:
                     self.last_xyz = pose[:3, 3].copy()
 
                     self.viz_counter += 1
-                    if self.viz_counter % self.viz_every_n_frames != 0:
+                    if self.viz_counter % self.config.viz_every_n_frames != 0:
                         # logging the point clouds is more expensive
                         # especially the local map, as we have to iterate over the entire map data structure
                         # so we publish the scans every n frames
@@ -326,30 +303,10 @@ class LIOPipeline:
                 f.write(line)
         info(f"Poses written to {traj_file.resolve()}")
 
-        combined_config = {
-            "lio": self.lio.config.to_dict(),
-            "extrinsic_imu2base_quat_xyzw_xyz": (
-                None
-                if self.extrinsic_imu2base is None
-                else transform_to_quat_xyzw_xyz(self.extrinsic_imu2base)
-            ),
-            "extrinsic_lidar2base_quat_xyzw_xyz": (
-                None
-                if self.extrinsic_lidar2base is None
-                else transform_to_quat_xyzw_xyz(self.extrinsic_lidar2base)
-            ),
-            "viz": self.viz,
-        }
-        if self.viz:
-            combined_config["viz_every_n_frames"] = self.viz_every_n_frames
-
+        config = self.config.to_dict()
         settings_file = self.output_dir / "settings.yaml"
         with settings_file.open("w") as f:
-            f.write(
-                "# please note that this file is not directly useable with rko_lio -c <config_file>.\n"
-                "# please check the result from rko_lio --dump_config for the proper spec needed.\n\n"
-            )
-            yaml.dump(combined_config, f, sort_keys=False)
+            yaml.dump(config, f, sort_keys=False)
         info(f"Configuration written to {settings_file.resolve()}")
 
 

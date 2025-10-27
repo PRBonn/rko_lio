@@ -26,110 +26,19 @@ Public interface classes for the pybind.
 
 import numpy as np
 
+from .config import LIOConfig
 from .rko_lio_pybind import (
     _LIO,
-    _Config,
     _IntervalStats,
     _Vector3dVector,
     _VectorDouble,
 )
 
 
-class LIOConfig(_Config):
-    """
-    LIO configuration options.
-
-    Parameters
-    ----------
-    deskew : bool, default True
-        If True, perform scan deskewing.
-    max_iterations : int, default 100
-        Maximum optimization iterations for scan matching.
-    voxel_size : float, default 1.0
-        Size of map voxels (meters).
-    max_points_per_voxel : int, default 20
-        Maximum points stored per voxel.
-    max_range : float, default 100.0
-        Max usable range of lidar (meters).
-    min_range : float, default 1.0
-        Minimum usable range of lidar (meters).
-    convergence_criterion : float, default 1e-5
-        Convergence threshold for optimization.
-    max_correspondance_distance : float, default 0.5
-        Max distance for associating points (meters).
-    max_num_threads : int, default 0
-        Max thread count (0 = autodetect).
-    initialization_phase : bool, default False
-        Whether to initialize on the first two lidar message.
-    max_expected_jerk : float, default 3.0
-        Max expected IMU jerk (m/s^3).
-    double_downsample : bool, default True
-        Double downsamples the incoming scan before registering. Disabling for sparse LiDARs may improve results.
-    min_beta : float, default 200.0
-        Minimum scaling on the orientation regularisation weight. Set to -1 to disable the cost.
-    """
-
-    # probably making the class picklable avoids this
-    config_keys = [
-        "deskew",
-        "max_iterations",
-        "voxel_size",
-        "max_points_per_voxel",
-        "max_range",
-        "min_range",
-        "convergence_criterion",
-        "max_correspondance_distance",
-        "max_num_threads",
-        "initialization_phase",
-        "max_expected_jerk",
-        "double_downsample",
-        "min_beta",
-    ]
-
-    def __init__(
-        self,
-        deskew: bool = True,
-        max_iterations: int = 100,
-        voxel_size: float = 1.0,
-        max_points_per_voxel: int = 20,
-        max_range: float = 100.0,
-        min_range: float = 1.0,
-        convergence_criterion: float = 1e-5,
-        max_correspondance_distance: float = 0.5,
-        max_num_threads: int = 0,
-        initialization_phase: bool = False,
-        max_expected_jerk: float = 3.0,
-        double_downsample: bool = True,
-        min_beta: float = 200.0,
-    ):
-        super().__init__()
-        self.deskew = deskew
-        self.max_iterations = max_iterations
-        self.voxel_size = voxel_size
-        self.max_points_per_voxel = max_points_per_voxel
-        self.max_range = max_range
-        self.min_range = min_range
-        self.convergence_criterion = convergence_criterion
-        self.max_correspondance_distance = max_correspondance_distance
-        self.max_num_threads = max_num_threads
-        self.initialization_phase = initialization_phase
-        self.max_expected_jerk = max_expected_jerk
-        self.double_downsample = double_downsample
-        self.min_beta = min_beta
-
-    def to_dict(self):
-        """Return a dict version"""
-        return {k: getattr(self, k) for k in self.config_keys}
-
-    def __repr__(self):
-        attrs = ", ".join(f"{k}={getattr(self, k)!r}" for k in self.config_keys)
-        return f"LIOConfig({attrs})"
-
-
 class IntervalStats:
     """Convenience class to compute the interval actual averages"""
 
-    def __init__(self, raw_stats):
+    def __init__(self, raw_stats: _IntervalStats):
         self._impl = raw_stats
 
     @property

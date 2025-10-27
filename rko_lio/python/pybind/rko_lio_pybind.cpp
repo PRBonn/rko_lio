@@ -44,23 +44,6 @@ PYBIND11_MODULE(rko_lio_pybind, m) {
       m, "_Vector3dVector", "std::vector<Eigen::Vector3d>", py::py_array_to_vectors_double<Eigen::Vector3d>);
   py::bind_vector<std::vector<double>>(m, "_VectorDouble");
 
-  using Config = LIO::Config;
-  py::class_<Config>(m, "_Config")
-      .def(py::init<>())
-      .def_readwrite("deskew", &Config::deskew)
-      .def_readwrite("max_iterations", &Config::max_iterations)
-      .def_readwrite("voxel_size", &Config::voxel_size)
-      .def_readwrite("max_points_per_voxel", &Config::max_points_per_voxel)
-      .def_readwrite("max_range", &Config::max_range)
-      .def_readwrite("min_range", &Config::min_range)
-      .def_readwrite("convergence_criterion", &Config::convergence_criterion)
-      .def_readwrite("max_correspondance_distance", &Config::max_correspondance_distance)
-      .def_readwrite("max_num_threads", &Config::max_num_threads)
-      .def_readwrite("initialization_phase", &Config::initialization_phase)
-      .def_readwrite("max_expected_jerk", &Config::max_expected_jerk)
-      .def_readwrite("double_downsample", &Config::double_downsample)
-      .def_readwrite("min_beta", &Config::min_beta);
-
   // for introspecting IMU data
   py::class_<IntervalStats>(m, "_IntervalStats")
       .def(py::init<>())
@@ -71,8 +54,24 @@ PYBIND11_MODULE(rko_lio_pybind, m) {
       .def_readonly("imu_accel_mag_mean", &IntervalStats::imu_accel_mag_mean)
       .def_readonly("welford_sum_of_squares", &IntervalStats::welford_sum_of_squares);
 
+  py::class_<LIO::Config>(m, "_LIOConfig")
+      .def(py::init<>())
+      .def_readwrite("deskew", &LIO::Config::deskew)
+      .def_readwrite("max_iterations", &LIO::Config::max_iterations)
+      .def_readwrite("voxel_size", &LIO::Config::voxel_size)
+      .def_readwrite("max_points_per_voxel", &LIO::Config::max_points_per_voxel)
+      .def_readwrite("max_range", &LIO::Config::max_range)
+      .def_readwrite("min_range", &LIO::Config::min_range)
+      .def_readwrite("convergence_criterion", &LIO::Config::convergence_criterion)
+      .def_readwrite("max_correspondance_distance", &LIO::Config::max_correspondance_distance)
+      .def_readwrite("max_num_threads", &LIO::Config::max_num_threads)
+      .def_readwrite("initialization_phase", &LIO::Config::initialization_phase)
+      .def_readwrite("max_expected_jerk", &LIO::Config::max_expected_jerk)
+      .def_readwrite("double_downsample", &LIO::Config::double_downsample)
+      .def_readwrite("min_beta", &LIO::Config::min_beta);
+
   py::class_<LIO>(m, "_LIO")
-      .def(py::init<const Config&>(), "config"_a)
+      .def(py::init<const LIO::Config&>(), "config"_a)
       .def(
           "add_imu_measurement",
           [](LIO& self, const Eigen::Vector3d& accel, const Eigen::Vector3d& gyro, const double time) {
@@ -139,13 +138,32 @@ PYBIND11_MODULE(rko_lio_pybind, m) {
            })
       .def_readonly("interval_stats", &LIO::interval_stats);
 
+  using TPConfig = TimestampProcessingConfig;
+  py::class_<TPConfig>(m, "_TimestampProcessingConfig")
+      .def(py::init<>())
+      .def_readwrite("multiplier_to_seconds", &TPConfig::multiplier_to_seconds)
+      .def_readwrite("force_absolute", &TPConfig::force_absolute)
+      .def_readwrite("force_relative", &TPConfig::force_relative)
+      .def_property(
+          "absolute_start_threshold", [](const TPConfig& cfg) { return cfg.absolute_start_threshold.count(); },
+          [](TPConfig& cfg, const int ms_) { cfg.absolute_start_threshold = TPConfig::ms(ms_); })
+      .def_property(
+          "absolute_end_threshold", [](const TPConfig& cfg) { return cfg.absolute_end_threshold.count(); },
+          [](TPConfig& cfg, const int ms_) { cfg.absolute_end_threshold = TPConfig::ms(ms_); })
+      .def_property(
+          "relative_start_threshold", [](const TPConfig& cfg) { return cfg.relative_start_threshold.count(); },
+          [](TPConfig& cfg, const int ms_) { cfg.relative_start_threshold = TPConfig::ms(ms_); })
+      .def_property(
+          "relative_end_threshold", [](const TPConfig& cfg) { return cfg.relative_end_threshold.count(); },
+          [](TPConfig& cfg, const int ms_) { cfg.relative_end_threshold = TPConfig::ms(ms_); });
+
   m.def(
       "_process_timestamps",
-      [](const std::vector<double>& raw_ts, const double header_stamp) {
-        const auto& [begin, end, abs_ts] = process_timestamps(raw_ts, Secondsd(header_stamp));
+      [](const std::vector<double>& raw_ts, const double header_stamp, const TPConfig& config) {
+        const auto& [begin, end, abs_ts] = process_timestamps(raw_ts, Secondsd(header_stamp), config);
         std::vector<double> abs_ts_double(abs_ts.size());
         std::transform(abs_ts.cbegin(), abs_ts.cend(), abs_ts_double.begin(), [&](const auto& t) { return t.count(); });
         return std::make_tuple(begin.count(), end.count(), std::move(abs_ts_double));
       },
-      "raw_timestamps"_a, "header_stamp"_a);
+      "raw_timestamps"_a, "header_stamp"_a, "config"_a);
 }

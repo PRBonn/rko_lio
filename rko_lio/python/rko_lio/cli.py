@@ -24,14 +24,11 @@
 Entrypoint typer application for the python wrapper.
 """
 
-import sys
 from pathlib import Path
 
-import numpy as np
 import typer
 
 from .util import (
-    error,
     error_and_exit,
     info,
     warning,
@@ -51,23 +48,12 @@ def dump_config_callback(value: bool):
     if value:
         import yaml
 
-        from .lio import LIOConfig
-
-        def pybind_to_dict(obj):
-            return {
-                attr: getattr(obj, attr)
-                for attr in dir(obj)
-                if not attr.startswith("_") and not callable(getattr(obj, attr))
-            }
-
-        config = pybind_to_dict(LIOConfig())
-        config["extrinsic_imu2base_quat_xyzw_xyz"] = []
-        config["extrinsic_lidar2base_quat_xyzw_xyz"] = []
+        from .config import PipelineConfig
 
         with open("config.yaml", "w") as f:
-            yaml.dump(config, f, default_flow_style=False)
+            yaml.dump(PipelineConfig.default_dict(), f, default_flow_style=False)
         info(
-            "Default config dumped to config.yaml. Note that the extrinsics are left as an empty list. If you don't need them, delete the two respective keys. If you need them, you need to specify them as \[qx, qy, qz, qw, x, y, z]."
+            "Default config dumped to config.yaml. Note that the extrinsics are left as an empty list. If you need them, you need to specify them as \[qx, qy, qz, qw, x, y, z]. Delete all the keys you don't need."
         )
         raise typer.Exit(0)
 
@@ -84,37 +70,6 @@ def dataloader_name_callback(value: str):
         if value.lower() == d.lower():
             return d
     return value
-
-
-def parse_extrinsics_from_config(config_data: dict):
-    """Parse extrinsics from config dict to 4x4 matrices."""
-    extrinsic_imu2base = None
-    extrinsic_lidar2base = None
-    imu_config_key = "extrinsic_imu2base_quat_xyzw_xyz"
-    lidar_config_key = "extrinsic_lidar2base_quat_xyzw_xyz"
-
-    imu_config_val = config_data.pop(imu_config_key, None)
-    lidar_config_val = config_data.pop(lidar_config_key, None)
-
-    for key, valname in [
-        (imu_config_val, imu_config_key),
-        (lidar_config_val, lidar_config_key),
-    ]:
-        if key is not None and len(key) != 7:
-            error_and_exit(f"Error: {valname} has length {len(key)} but should be 7.")
-
-    from .util import quat_xyzw_xyz_to_transform
-
-    if imu_config_val is not None:
-        extrinsic_imu2base = quat_xyzw_xyz_to_transform(
-            np.asarray(imu_config_val, dtype=np.float64)
-        )
-    if lidar_config_val is not None:
-        extrinsic_lidar2base = quat_xyzw_xyz_to_transform(
-            np.asarray(lidar_config_val, dtype=np.float64)
-        )
-
-    return extrinsic_imu2base, extrinsic_lidar2base
 
 
 app = typer.Typer()
@@ -189,10 +144,10 @@ def cli(
         rich_help_panel="Disk logging options",
     ),
     log_dir: Path | None = typer.Option(
-        "results",
+        None,
         "--log_dir",
         "-o",
-        help="Where to dump LIO results if logging",
+        help="Where to dump LIO results if logging. If unspecified, and logging is enabled, a folder `results` will be created in the current directory.",
         file_okay=False,
         dir_okay=True,
         writable=True,
@@ -286,12 +241,27 @@ def cli(
                 "Please install rerun with `pip install rerun-sdk` to enable visualization."
             )
 
-    config_data = {}
+    user_config = {}
     if config_fp:
         with open(config_fp, "r") as f:
             import yaml
 
-            config_data.update(yaml.safe_load(f))
+            user_config.update(yaml.safe_load(f))
+    user_config["log_dir"] = log_dir or user_config.get("log_dir", "results")
+    user_config["run_name"] = run_name or user_config.get("run_name", data_path.name)
+    user_config["dump_deskewed_scans"] = log_results and (
+        dump_deskewed_scans or user_config.get("dump_deskewed_scans", False)
+    )
+    invalid_keys = ["viz", "viz_every_n_frames"]
+    for key in invalid_keys:
+        if key in user_config:
+            warning(f"{key} specified in config will be ignored.")
+    user_config["viz"] = viz
+    user_config["viz_every_n_frames"] = viz_every_n_frames
+
+    from .config import PipelineConfig
+
+    pipeline_config = PipelineConfig(**user_config)
 
     from .dataloaders import dataloader_factory
 
@@ -304,47 +274,42 @@ def cli(
         imu_frame_id=imu_frame,
         lidar_frame_id=lidar_frame,
         base_frame_id=base_frame,
+        timestamp_processing_config=pipeline_config.timestamps,
     )
     print("Loaded dataloader:", dataloader)
 
-    extrinsic_imu2base, extrinsic_lidar2base = parse_extrinsics_from_config(config_data)
-    need_to_query_extrinsics = not all(
-        T is not None and T.size != 0
-        for T in (extrinsic_imu2base, extrinsic_lidar2base)
-    )
-    if need_to_query_extrinsics:
-        warning(
-            "One or both extrinsics are not specified in the config. Will try to obtain it from the data itself."
+    user_ext_imu2base = pipeline_config.extrinsic_imu2base
+    user_ext_lidar2base = pipeline_config.extrinsic_lidar2base
+    if user_ext_imu2base is None or user_ext_lidar2base is None:
+        info("Extrinsics missing or not fully specified in config.")
+        dl_ext_imu2base, dl_ext_lidar2base = dataloader.extrinsics
+        if user_ext_imu2base is None:
+            pipeline_config.extrinsic_imu2base = dl_ext_imu2base
+        if user_ext_lidar2base is None:
+            pipeline_config.extrinsic_lidar2base = dl_ext_lidar2base
+
+    if (
+        pipeline_config.extrinsic_imu2base is None
+        or pipeline_config.extrinsic_lidar2base is None
+    ):
+        error_and_exit(
+            "Fatal: Could not obtain required IMU/Lidar extrinsics. Please specify in a config or as part of your data."
         )
-        extrinsic_imu2base, extrinsic_lidar2base = dataloader.extrinsics
-        print("Extrinsics obtained from dataloader.")
-        from .util import transform_to_quat_xyzw_xyz
 
-        def _print_extrinsic(name, T):
-            print(f"{name}:\n\tTransform:")
-            for row in T:
-                print("\t\t" + np.array2string(row, precision=4, suppress_small=True))
-            print("\tAs quat_xyzw_xyz:\n\t\t", transform_to_quat_xyzw_xyz(T), "\n")
+    from .util import transform_to_quat_xyzw_xyz
 
-        _print_extrinsic("IMU to Base", extrinsic_imu2base)
-        _print_extrinsic("Lidar to Base", extrinsic_lidar2base)
-
-    from .lio import LIOConfig
-
-    config = LIOConfig(**config_data)
+    print("Resolved extrinsics:")
+    print(
+        "  IMU to Base:", transform_to_quat_xyzw_xyz(pipeline_config.extrinsic_imu2base)
+    )
+    print(
+        "  Lidar to Base:",
+        transform_to_quat_xyzw_xyz(pipeline_config.extrinsic_lidar2base),
+    )
 
     from .lio_pipeline import LIOPipeline
 
-    pipeline = LIOPipeline(
-        config,
-        extrinsic_imu2base=extrinsic_imu2base,
-        extrinsic_lidar2base=extrinsic_lidar2base,
-        viz=viz,
-        log_dir=log_dir,
-        run_name=run_name or data_path.name,
-        dump_deskewed_scans=log_results and dump_deskewed_scans,
-        viz_every_n_frames=viz_every_n_frames,
-    )
+    pipeline = LIOPipeline(pipeline_config)
 
     from tqdm import tqdm
 

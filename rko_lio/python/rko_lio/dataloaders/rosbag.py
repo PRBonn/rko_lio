@@ -25,6 +25,7 @@ Message header frame IDs must match the TF tree frame names. If they do not, ove
    # The config should provide extrinsics if they can't be inferred
    rko_lio -v -c config.yaml --imu imu_topic --lidar lidar_topic /path/to/rosbag_folder
 """
+
 # MIT License
 #
 # Copyright (c) 2022 Ignacio Vizzo, Tiziano Guadagnino, Benedikt Mersch, Cyrill
@@ -62,6 +63,7 @@ except ModuleNotFoundError:
     )
 
 from .. import rko_lio_pybind
+from ..config import TimestampProcessingConfig
 from ..scoped_profiler import ScopedProfiler
 from .utils.ros_read_point_cloud import read_point_cloud as ros_read_point_cloud
 from .utils.static_tf_tree import create_static_tf_tree, query_static_tf
@@ -76,17 +78,14 @@ class RosbagDataLoader:
         imu_frame_id: str | None,
         lidar_frame_id: str | None,
         base_frame_id: str | None,
+        timestamp_processing_config: TimestampProcessingConfig,
         *args,
         **kwargs,
     ):
         """query_tf_tree: try to query a tf tree if it exists"""
-
         assert (
             data_path.is_dir()
         ), "Pass a directory to data_path with ros1 or ros2 bag files"
-
-        self.rko_lio_pybind = rko_lio_pybind
-        self.ros_read_point_cloud = ros_read_point_cloud
 
         ros1_bagfiles = sorted(list(data_path.glob("*.bag")))
         bagfiles = None
@@ -96,6 +95,7 @@ class RosbagDataLoader:
         else:
             self.bag_type = "ROS2"
             bagfiles = [data_path]
+
         self.first_bag_path = bagfiles[0]  # for logging
         self.bag = AnyReader(bagfiles)
         if len(bagfiles) > 1:
@@ -109,17 +109,18 @@ class RosbagDataLoader:
         self.imu_topic = self.check_topic(
             imu_topic, expected_msgtype="sensor_msgs/msg/Imu"
         )
+
         self.connections = [
             x
             for x in self.bag.connections
             if (x.topic == self.imu_topic or x.topic == self.lidar_topic)
         ]
+
         self.imu_frame_id = imu_frame_id or self._read_first_frame_id(self.imu_topic)
         self.lidar_frame_id = lidar_frame_id or self._read_first_frame_id(
             self.lidar_topic
         )
         self.base_frame_id = base_frame_id or self.lidar_frame_id
-
         if self.base_frame_id is None:
             error_and_exit(
                 f"Could not automatically determine a base frame id. Please pass it with --base_frame."
@@ -129,6 +130,8 @@ class RosbagDataLoader:
         self.T_lidar_to_base = None
 
         self.msgs = self.bag.messages(connections=self.connections)
+
+        self.timestamp_processing_config = timestamp_processing_config
 
     def __del__(self):
         if hasattr(self, "bag"):
@@ -185,9 +188,7 @@ class RosbagDataLoader:
                         return "lidar", self.read_point_cloud(deserialized_data)
                     except RuntimeError as e:
                         # the cpp side can throw on _process_timestamps
-                        warning(
-                            "Error processing lidar frame. You should probably report an issue."
-                        )
+                        warning("Error processing lidar frame.", e)
                         continue
                 raise NotImplementedError("Shouldn't happen.")
 
@@ -209,10 +210,12 @@ class RosbagDataLoader:
     def read_point_cloud(self, data):
         header_stamp = data.header.stamp
         header_stamp_sec = header_stamp.sec + (header_stamp.nanosec / 1e9)
-        points, raw_timestamps = self.ros_read_point_cloud(data)
+        points, raw_timestamps = ros_read_point_cloud(data)
         if raw_timestamps is not None and raw_timestamps.size > 0:
-            _, _, abs_timestamps = self.rko_lio_pybind._process_timestamps(
-                self.rko_lio_pybind._VectorDouble(raw_timestamps), header_stamp_sec
+            start, end, abs_timestamps = rko_lio_pybind._process_timestamps(
+                rko_lio_pybind._VectorDouble(raw_timestamps),
+                header_stamp_sec,
+                self.timestamp_processing_config,
             )
             return points, np.asarray(abs_timestamps)
         else:

@@ -65,10 +65,15 @@ struct ImuControl {
   Eigen::Vector3d angular_velocity = Eigen::Vector3d::Zero();
 };
 
+struct Timestamps {
+  Secondsd min;
+  Secondsd max;
+  TimestampVector times;
+};
+
 struct LidarFrame {
-  Secondsd start;
-  Secondsd end;
-  TimestampVector timestamps;
+  Timestamps timestamps;
   Vector3dVector points;
 };
+
 }; // namespace rko_lio::core

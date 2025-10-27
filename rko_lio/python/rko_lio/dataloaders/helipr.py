@@ -4,6 +4,7 @@ HeLiPR Dataloader
 
 This loader is deprecated and will be removed in a future release. If you need it supported, please open an issue.
 """
+
 # MIT License
 #
 # Copyright (c) 2025 Meher V.R. Malladi.
@@ -159,7 +160,7 @@ class HeliprDataLoader:
                     str(data["filename"]), self.sensor
                 )
                 points_arr = np.asarray(points).reshape(-1, 3)
-                _, _, abs_timestamps = rko_lio_pybind._process_timestamps(
+                start, end, abs_timestamps = rko_lio_pybind._process_timestamps(
                     rko_lio_pybind._VectorDouble(np.asarray(raw_timestamps)),
                     header_stamp_sec,
                 )

@@ -405,6 +405,9 @@ void LIO::add_imu_measurement(const Sophus::SE3d& extrinsic_imu2base, const ImuC
 // ============================ lidar ===============================
 
 Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVector& timestamps) {
+  // TODO: redundant max compute as its available after process_timestamps. but changing the API of register scan
+  // requires significant modifications and a whole lot of new boilerplate for the pybind. i'm leaving this alone until
+  // i'm able to think of a better design
   const auto max = std::max_element(timestamps.cbegin(), timestamps.cend());
   const Secondsd current_lidar_time = *max;
 
