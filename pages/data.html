@@ -121,7 +121,7 @@ Some delay in the arrival of the data itself is fine.</p>
 If your accelerometer outputs readings in g’s, be sure to convert them to m/s² before using the odometry.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>It is assumed that at rest, the accelerometer measures <strong>gravity pointing upwards</strong> in its local frame. Please ensure your extrinsic accounts for this, if you have a different setup.</p>
+<p>We follow the typical ros convention for the IMU (see <a class="reference external" href="https://www.ros.org/reps/rep-0145.html">ROS REP 145</a>). If the system is at rest and in a neutral orientation, i.e., the imu and world frames are aligned, then the imu <em>z</em> axis points upwards and the accelerometer is measuring +g m/s² along +*z*.</p>
 </div>
 <p>Angular velocity values should be in rad/s; if your device uses other units, convert accordingly.</p>
 </section>

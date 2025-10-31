@@ -34,7 +34,7 @@ If your accelerometer outputs readings in g's, be sure to convert them to m/s² 
 
 .. warning::
 
-  It is assumed that at rest, the accelerometer measures **gravity pointing upwards** in its local frame. Please ensure your extrinsic accounts for this, if you have a different setup.
+  We follow the typical ros convention for the IMU (see `ROS REP 145 <https://www.ros.org/reps/rep-0145.html>`__). If the system is at rest and in a neutral orientation, i.e., the imu and world frames are aligned, then the imu *z* axis points upwards and the accelerometer is measuring +g m/s² along +*z*. 
 
 Angular velocity values should be in rad/s; if your device uses other units, convert accordingly.
 
