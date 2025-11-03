@@ -26,12 +26,16 @@ add_library(rko_lio::core ALIAS rko_lio.core)
 
 compat_target_sources(
   rko_lio.core
-  PRIVATE lio.cpp sparse_voxel_grid.cpp voxel_down_sample.cpp
+  PRIVATE lio.cpp
+          sparse_voxel_grid.cpp
+          voxel_down_sample.cpp
           process_timestamps.cpp
+          preprocess_scan.cpp
   PUBLIC
   FILE_SET
   HEADERS
   FILES ../../rko_lio/core/lio.hpp
+        ../../rko_lio/core/preprocess_scan.hpp
         ../../rko_lio/core/process_timestamps.hpp
         ../../rko_lio/core/profiler.hpp
         ../../rko_lio/core/sparse_voxel_grid.hpp

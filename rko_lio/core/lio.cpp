@@ -23,9 +23,9 @@
  */
 
 #include "lio.hpp"
+#include "preprocess_scan.hpp"
 #include "profiler.hpp"
 #include "util.hpp"
-#include "voxel_down_sample.hpp"
 // other
 #include <sophus/se3.hpp>
 // tbb
@@ -78,50 +78,6 @@ using namespace rko_lio::core;
 
 inline void transform_points(const Sophus::SE3d& T, Vector3dVector& points) {
   std::transform(points.begin(), points.end(), points.begin(), [&](const auto& point) { return T * point; });
-}
-
-template <typename Functor>
-  requires requires(Functor f, Secondsd stamp) {
-    { f(stamp) } -> std::same_as<Sophus::SE3d>;
-  }
-std::tuple<Vector3dVector, Vector3dVector, Vector3dVector> preprocess_scan(const Vector3dVector& frame,
-                                                                           const TimestampVector& timestamps,
-                                                                           const Secondsd end_time,
-                                                                           const Functor& relative_pose_at_time,
-                                                                           const LIO::Config config) {
-  // efficiency can potentially be improved using c++20 ranges
-  const std::vector<Eigen::Vector3d>& deskewed_frame = std::invoke([&]() {
-    if (!config.deskew) {
-      return frame;
-    }
-    const Sophus::SE3d& scan_to_scan_motion_inverse = relative_pose_at_time(end_time).inverse();
-    Vector3dVector deskewed_frame(frame.size());
-    std::transform(frame.cbegin(), frame.cend(), timestamps.cbegin(), deskewed_frame.begin(),
-                   [&](const Eigen::Vector3d& point, const Secondsd timestamp) {
-                     const auto pose = scan_to_scan_motion_inverse * relative_pose_at_time(timestamp);
-                     return pose * point;
-                   });
-    return deskewed_frame;
-  });
-  std::vector<Eigen::Vector3d> clipped_frame;
-  clipped_frame.reserve(deskewed_frame.size());
-  std::for_each(deskewed_frame.cbegin(), deskewed_frame.cend(), [&](const auto& point) {
-    const double point_range = point.norm();
-    if (point_range > config.min_range && point_range < config.max_range) {
-      clipped_frame.emplace_back(point);
-    }
-  });
-  clipped_frame.shrink_to_fit();
-
-  if (config.double_downsample) {
-    const Vector3dVector downsampled_frame = voxel_down_sample(clipped_frame, config.voxel_size * 0.5);
-    const Vector3dVector keypoints = voxel_down_sample(downsampled_frame, config.voxel_size * 1.5);
-    return {clipped_frame, downsampled_frame, keypoints};
-  } else {
-    const Vector3dVector downsampled_frame = voxel_down_sample(clipped_frame, config.voxel_size);
-    // TODO: there's a downsampled_frame copy here as we return a pair. see if we can reduce the copy
-    return {clipped_frame, downsampled_frame, downsampled_frame};
-  }
 }
 
 inline Eigen::Vector3d compute_point_to_point_residual(const Sophus::SE3d& pose,
@@ -413,14 +369,19 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
 
   if (lidar_state.time < EPSILON_TIME) {
     lidar_state.time = current_lidar_time;
-    std::cout << "First LiDAR received, using as global frame.\n";
+    std::cout << "First LiDAR received, using pose at this time as the global frame.\n";
+    const auto& preproc_result = preprocess_scan(scan, config);
+    if (!config.initialization_phase) {
+      // use the first frame for the map only if we're not initializing
+      map.Update(preproc_result.map_update_frame(), lidar_state.pose);
+    }
     poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
-    return {};
+    return preproc_result.filtered_frame;
   }
 
   if (std::chrono::abs(current_lidar_time - lidar_state.time).count() > 1.0) {
     const double diff_seconds = (current_lidar_time - lidar_state.time).count();
-    // std::expected would be better, but thats c++23. unless we add another dep...
+    // TODO: std::expected with tl::expected (because ros humble)
     throw std::invalid_argument("Received LiDAR scan with " + std::to_string(diff_seconds) +
                                 " seconds delta to previous scan.");
   }
@@ -458,13 +419,11 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
   // body acceleration filter
   const auto& accel_filter_info = get_accel_info(initial_guess.so3(), current_lidar_time);
 
-  // deskew + clip, and (double) down sample
-  const auto& [deskewed_frame, downsampled_frame, keypoints] =
-      preprocess_scan(scan, timestamps, current_lidar_time, relative_pose_at_time, config);
+  const auto& preproc_result = preprocess_scan(scan, timestamps, current_lidar_time, relative_pose_at_time, config);
 
   if (!map.Empty()) {
     SCOPED_PROFILER("ICP");
-    const Sophus::SE3d optimized_pose = icp(keypoints, map, initial_guess, config, accel_filter_info);
+    const Sophus::SE3d optimized_pose = icp(preproc_result.keypoints, map, initial_guess, config, accel_filter_info);
 
     // estimate velocities and accelerations from the new pose
     const double dt = (current_lidar_time - lidar_state.time).count();
@@ -488,11 +447,11 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
   // reset imu averages
   interval_stats.reset();
 
-  map.Update(downsampled_frame, lidar_state.pose);
+  map.Update(preproc_result.map_update_frame(), lidar_state.pose);
 
   poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
 
-  return deskewed_frame;
+  return preproc_result.filtered_frame;
 }
 
 Vector3dVector LIO::register_scan(const Sophus::SE3d& extrinsic_lidar2base,
