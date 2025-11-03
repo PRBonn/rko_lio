@@ -3,7 +3,7 @@
 
 namespace rko_lio::core {
 
-PreprocessingResult preprocess_scan(const Vector3dVector& frame, const Config& config) {
+PreprocessingResult preprocess_scan(const Vector3dVector& frame, const LIO::Config& config) {
   std::vector<Eigen::Vector3d> clipped_frame;
   clipped_frame.reserve(frame.size());
 

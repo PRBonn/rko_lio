@@ -32,6 +32,7 @@ find_package(pybind11 REQUIRED CONFIG)
 pybind11_add_module(rko_lio_pybind MODULE rko_lio_pybind.cpp)
 target_link_libraries(rko_lio_pybind PRIVATE rko_lio::core)
 target_compile_features(rko_lio_pybind PUBLIC cxx_std_20)
+set_target_properties(rko_lio_pybind PROPERTIES POSITION_INDEPENDENT_CODE ON)
 install(TARGETS rko_lio_pybind DESTINATION rko_lio)
 
 # NOTE: helipr support will be removed in the next major version release

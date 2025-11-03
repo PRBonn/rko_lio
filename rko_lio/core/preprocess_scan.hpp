@@ -18,7 +18,7 @@ struct PreprocessingResult {
 };
 
 // clip and downsample the input cloud
-PreprocessingResult preprocess_scan(const Vector3dVector& frame, const Config config);
+PreprocessingResult preprocess_scan(const Vector3dVector& frame, const LIO::Config& config);
 
 template <typename Functor>
   requires requires(Functor f, Secondsd stamp) {
@@ -28,7 +28,7 @@ PreprocessingResult preprocess_scan(const Vector3dVector& frame,
                                     const TimestampVector& timestamps,
                                     Secondsd end_time,
                                     const Functor& relative_pose_at_time,
-                                    const Config config) {
+                                    const LIO::Config config) {
   if (!config.deskew) {
     return preprocess_scan(frame, config);
   }
