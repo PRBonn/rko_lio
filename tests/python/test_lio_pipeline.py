@@ -99,7 +99,7 @@ def test_identity_registration(pipeline_with_init_phase, simple_point_cloud, sta
         rotation_angle = np.degrees(np.arccos((trace_val - 1) / 2))
 
         assert translation_error <= 1e-3, f"Translation error too high at scan {scan_num}: {translation_error} m"
-        assert rotation_angle_deg <= 1e-3, f"Rotation error too high at scan {scan_num}: {rotation_angle_deg} degrees"
+        assert rotation_angle <= 1e-3, f"Rotation error too high at scan {scan_num}: {rotation_angle} degrees"
     
     # First scan; base_time 0
     last_lidar_end = add_scan_with_imu(0.0)
