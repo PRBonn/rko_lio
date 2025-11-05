@@ -41,6 +41,7 @@ def pipeline_with_init_phase(identity_extrinsics, request):
     config.extrinsic_imu2base = identity_extrinsics
     config.extrinsic_lidar2base = identity_extrinsics
     config.initialization_phase = request.param
+    config.min_beta = -1
     return LIOPipeline(config)
 
 
