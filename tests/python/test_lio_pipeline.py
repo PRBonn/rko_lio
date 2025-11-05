@@ -35,16 +35,6 @@ def pipeline(identity_extrinsics):
     return LIOPipeline(config)
 
 
-@pytest.fixture(params=[True, False])
-def pipeline_with_init_phase(identity_extrinsics, request):
-    config = PipelineConfig()
-    config.extrinsic_imu2base = identity_extrinsics
-    config.extrinsic_lidar2base = identity_extrinsics
-    config.initialization_phase = request.param
-    config.min_beta = -1
-    return LIOPipeline(config)
-
-
 def create_lidar_timestamps(n):
     return np.linspace(0, 0.1, n).astype(np.float32)
 
@@ -73,15 +63,23 @@ def test_add_lidar_points(pipeline, simple_point_cloud):
     assert len(pipeline.lidar_buffer) == 2
 
 
-def test_identity_registration(pipeline_with_init_phase, simple_point_cloud, static_imu_measurement):
-    pipeline = pipeline_with_init_phase
+@pytest.mark.parametrize("initialization_phase", [True, False])
+def test_identity_registration(identity_extrinsics, simple_point_cloud, static_imu_measurement, initialization_phase):
+    def pipeline_with_init_phase():
+        config = PipelineConfig()
+        config.extrinsic_imu2base = identity_extrinsics
+        config.extrinsic_lidar2base = identity_extrinsics
+        config.lio.initialization_phase = initialization_phase
+        return LIOPipeline(config)
+
+    pipeline = pipeline_with_init_phase()
     accel, gyro = static_imu_measurement
     cloud = simple_point_cloud
 
     def add_scan_with_imu(base_time):
         timestamps = create_lidar_timestamps(len(cloud)) + base_time
         pipeline.add_lidar(cloud, timestamps)
-        
+
         # Add 10 IMU measurements after the lidar scan end time
         start_time = timestamps[-1] + 0.01
         for i in range(10):
@@ -100,12 +98,12 @@ def test_identity_registration(pipeline_with_init_phase, simple_point_cloud, sta
 
         assert translation_error <= 1e-3, f"Translation error too high at scan {scan_num}: {translation_error} m"
         assert rotation_angle <= 1e-3, f"Rotation error too high at scan {scan_num}: {rotation_angle} degrees"
-    
+
     # First scan; base_time 0
     last_lidar_end = add_scan_with_imu(0.0)
     assert len(pipeline.lidar_buffer) == 0  # first lidar processed
     verify_identity_pose(1)
-    
+
     # Second scan; base time is last lidar end time
     last_lidar_end = add_scan_with_imu(last_lidar_end)
     assert len(pipeline.lidar_buffer) == 0  # second lidar processed

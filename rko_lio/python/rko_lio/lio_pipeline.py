@@ -269,6 +269,8 @@ class LIOPipeline:
                     )
                     self.last_xyz = pose[:3, 3].copy()
 
+                    self.rerun.log("world/lidar/raw_scan", self.rerun.Points3D(frame["scan"]))
+                    self.rerun.log("world/lidar/deskewed_scan", self.rerun.Points3D(deskewed_scan))
                     self.viz_counter += 1
                     if self.viz_counter % self.config.viz_every_n_frames != 0:
                         # logging the point clouds is more expensive
