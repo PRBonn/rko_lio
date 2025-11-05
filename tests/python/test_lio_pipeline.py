@@ -91,8 +91,15 @@ def test_identity_registration(pipeline_with_init_phase, simple_point_cloud, sta
 
     def verify_identity_pose(scan_num):
         pose = pipeline.lio.pose()
-        # atol 1e-3 -> less than 1mm registration error
-        assert np.allclose(pose, np.eye(4), atol=1e-3), f"Pose check failed at scan {scan_num}"
+        translation = pose[0:3, 3]
+        rot_matrix = pose[0:3, 0:3]
+
+        translation_error = np.linalg.norm(translation)
+        trace_val = np.trace(rot_matrix)
+        rotation_angle = np.degrees(np.arccos((trace_val - 1) / 2))
+
+        assert translation_error <= 1e-3, f"Translation error too high at scan {scan_num}: {translation_error} m"
+        assert rotation_angle_deg <= 1e-3, f"Rotation error too high at scan {scan_num}: {rotation_angle_deg} degrees"
     
     # First scan; base_time 0
     last_lidar_end = add_scan_with_imu(0.0)
