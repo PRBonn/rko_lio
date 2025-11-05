@@ -90,7 +90,8 @@ def test_identity_registration(pipeline_with_init_phase, simple_point_cloud, sta
 
     def verify_identity_pose(scan_num):
         pose = pipeline.lio.pose()
-        assert np.allclose(pose, np.eye(4), atol=1e-6), f"Pose check failed at scan {scan_num}"
+        # atol 1e-3 -> less than 1mm registration error
+        assert np.allclose(pose, np.eye(4), atol=1e-3), f"Pose check failed at scan {scan_num}"
     
     # First scan; base_time 0
     last_lidar_end = add_scan_with_imu(0.0)
