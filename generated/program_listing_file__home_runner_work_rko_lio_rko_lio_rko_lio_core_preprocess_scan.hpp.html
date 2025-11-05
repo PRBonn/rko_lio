@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Program Listing for File preprocess_scan.hpp &#8212; RKO-LIO: Lidar-inertial odometry without sensor-specific modeling</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=f6a572b4" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=56c4699f" />
+    <script src="../_static/documentation_options.js?v=ca7ad2ea"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="File process_timestamps.cpp" href="file__home_runner_work_rko_lio_rko_lio_rko_lio_core_process_timestamps.cpp.html" />
+    <link rel="prev" title="File preprocess_scan.hpp" href="file__home_runner_work_rko_lio_rko_lio_rko_lio_core_preprocess_scan.hpp.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">RKO-LIO</a></h1>
+
+
+
+<p class="blurb">Lidar-inertial odometry</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=PRBonn&repo=rko_lio&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/primer.html">Primer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/data.html">Data</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pages/ros/ros.html">ROS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../pages/ros/setup.html">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/ros/usage.html">Usage</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../__PACKAGE.html">ROS package.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/changelog_literal.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/python/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/config.html">Configuring rko_lio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/uncategorised/index.html">Uncategorised</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://index.ros.org/p/rko_lio/">ROS Index</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/rko-lio/">PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://github.com/PRBonn/rko_lio">GitHub</a></li>
+    
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="program-listing-for-file-preprocess-scan-hpp">
+<span id="program-listing-file-home-runner-work-rko-lio-rko-lio-rko-lio-core-preprocess-scan-hpp"></span><h1>Program Listing for File preprocess_scan.hpp<a class="headerlink" href="#program-listing-for-file-preprocess-scan-hpp" title="Link to this heading">¶</a></h1>
+<p>↰ <a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_rko_lio_core_preprocess_scan.hpp.html#file-home-runner-work-rko-lio-rko-lio-rko-lio-core-preprocess-scan-hpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.hpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Eigen/Dense&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;optional&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sophus/se3.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;tuple&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;lio.hpp&quot;</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">rko_lio</span><span class="o">::</span><span class="nn">core</span><span class="w"> </span><span class="p">{</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">PreprocessingResult</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Vector3dVector</span><span class="w"> </span><span class="n">filtered_frame</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">Vector3dVector</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map_frame</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Vector3dVector</span><span class="w"> </span><span class="n">keypoints</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">Vector3dVector</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">map_update_frame</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">map_frame</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="o">*</span><span class="n">map_frame</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">keypoints</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// clip and downsample the input cloud</span>
+<span class="n">PreprocessingResult</span><span class="w"> </span><span class="nf">preprocess_scan</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector3dVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">frame</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">LIO</span><span class="o">::</span><span class="n">Config</span><span class="o">&amp;</span><span class="w"> </span><span class="n">config</span><span class="p">);</span>
+
+<span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Functor</span><span class="o">&gt;</span>
+<span class="w">  </span><span class="k">requires</span><span class="w"> </span><span class="k">requires</span><span class="p">(</span><span class="n">Functor</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">Secondsd</span><span class="w"> </span><span class="n">stamp</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">stamp</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">same_as</span><span class="o">&lt;</span><span class="n">Sophus</span><span class="o">::</span><span class="n">SE3d</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="n">PreprocessingResult</span><span class="w"> </span><span class="n">preprocess_scan</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector3dVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">frame</span><span class="p">,</span>
+<span class="w">                                    </span><span class="k">const</span><span class="w"> </span><span class="n">TimestampVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">timestamps</span><span class="p">,</span>
+<span class="w">                                    </span><span class="n">Secondsd</span><span class="w"> </span><span class="n">end_time</span><span class="p">,</span>
+<span class="w">                                    </span><span class="k">const</span><span class="w"> </span><span class="n">Functor</span><span class="o">&amp;</span><span class="w"> </span><span class="n">relative_pose_at_time</span><span class="p">,</span>
+<span class="w">                                    </span><span class="k">const</span><span class="w"> </span><span class="n">LIO</span><span class="o">::</span><span class="n">Config</span><span class="w"> </span><span class="n">config</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">config</span><span class="p">.</span><span class="n">deskew</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">preprocess_scan</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">Sophus</span><span class="o">::</span><span class="n">SE3d</span><span class="w"> </span><span class="n">scan_to_scan_motion_inverse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">relative_pose_at_time</span><span class="p">(</span><span class="n">end_time</span><span class="p">).</span><span class="n">inverse</span><span class="p">();</span>
+<span class="w">  </span><span class="n">Vector3dVector</span><span class="w"> </span><span class="nf">deskewed_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">transform</span><span class="p">(</span><span class="n">frame</span><span class="p">.</span><span class="n">cbegin</span><span class="p">(),</span><span class="w"> </span><span class="n">frame</span><span class="p">.</span><span class="n">cend</span><span class="p">(),</span><span class="w"> </span><span class="n">timestamps</span><span class="p">.</span><span class="n">cbegin</span><span class="p">(),</span><span class="w"> </span><span class="n">deskewed_frame</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span>
+<span class="w">                 </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">point</span><span class="p">,</span><span class="w"> </span><span class="n">Secondsd</span><span class="w"> </span><span class="n">timestamp</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                   </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">pose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scan_to_scan_motion_inverse</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">relative_pose_at_time</span><span class="p">(</span><span class="n">timestamp</span><span class="p">);</span>
+<span class="w">                   </span><span class="k">return</span><span class="w"> </span><span class="n">pose</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">point</span><span class="p">;</span>
+<span class="w">                 </span><span class="p">});</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">preprocess_scan</span><span class="p">(</span><span class="n">deskewed_frame</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace rko_lio::core</span>
+</pre></div>
+</div>
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="file__home_runner_work_rko_lio_rko_lio_rko_lio_core_preprocess_scan.hpp.html" title="Previous document">File preprocess_scan.hpp</a>
+        </li>
+        <li>
+          <a href="file__home_runner_work_rko_lio_rko_lio_rko_lio_core_process_timestamps.cpp.html" title="Next document">File process_timestamps.cpp</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &#169;2025 Meher Malladi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/generated/program_listing_file__home_runner_work_rko_lio_rko_lio_rko_lio_core_preprocess_scan.hpp.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

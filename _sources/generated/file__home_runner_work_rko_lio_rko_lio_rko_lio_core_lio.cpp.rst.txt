@@ -40,6 +40,8 @@ Includes
 
 - ``numeric``
 
+- ``preprocess_scan.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_preprocess_scan.hpp`)
+
 - ``profiler.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_profiler.hpp`)
 
 - ``sophus/se3.hpp``
@@ -57,8 +59,6 @@ Includes
 - ``tbb/task_arena.h``
 
 - ``util.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_util.hpp`)
-
-- ``voxel_down_sample.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_voxel_down_sample.hpp`)
 
 
 

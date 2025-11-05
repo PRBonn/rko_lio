@@ -8,6 +8,7 @@
     <innerclass refid="structrko__lio_1_1core_1_1IntervalStats" prot="public">rko_lio::core::IntervalStats</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1LidarFrame" prot="public">rko_lio::core::LidarFrame</innerclass>
     <innerclass refid="classrko__lio_1_1core_1_1LIO" prot="public">rko_lio::core::LIO</innerclass>
+    <innerclass refid="structrko__lio_1_1core_1_1PreprocessingResult" prot="public">rko_lio::core::PreprocessingResult</innerclass>
     <innerclass refid="classrko__lio_1_1core_1_1ScopedProfiler" prot="public">rko_lio::core::ScopedProfiler</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1SparseVoxelGrid" prot="public">rko_lio::core::SparseVoxelGrid</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1State" prot="public">rko_lio::core::State</innerclass>
@@ -90,6 +91,68 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="func">
+      <memberdef kind="function" id="namespacerko__lio_1_1core_1a3261153e7f790d6973c2b7446db233ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structrko__lio_1_1core_1_1PreprocessingResult" kindref="compound">PreprocessingResult</ref></type>
+        <definition>PreprocessingResult rko_lio::core::preprocess_scan</definition>
+        <argsstring>(const Vector3dVector &amp;frame, const LIO::Config &amp;config)</argsstring>
+        <name>preprocess_scan</name>
+        <qualifiedname>rko_lio::core::preprocess_scan</qualifiedname>
+        <param>
+          <type>const Vector3dVector &amp;</type>
+          <declname>frame</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structrko__lio_1_1core_1_1LIO_1_1Config" kindref="compound">LIO::Config</ref> &amp;</type>
+          <declname>config</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.cpp" line="6" column="21" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.cpp" bodystart="6" bodyend="26" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.hpp" declline="21" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacerko__lio_1_1core_1a71405b1d5022915649f38adad01926d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Functor</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="structrko__lio_1_1core_1_1PreprocessingResult" kindref="compound">PreprocessingResult</ref></type>
+        <definition>PreprocessingResult rko_lio::core::preprocess_scan</definition>
+        <argsstring>(const Vector3dVector &amp;frame, const TimestampVector &amp;timestamps, Secondsd end_time, const Functor &amp;relative_pose_at_time, const LIO::Config config)</argsstring>
+        <name>preprocess_scan</name>
+        <qualifiedname>rko_lio::core::preprocess_scan</qualifiedname>
+        <param>
+          <type>const Vector3dVector &amp;</type>
+          <declname>frame</declname>
+        </param>
+        <param>
+          <type>const TimestampVector &amp;</type>
+          <declname>timestamps</declname>
+        </param>
+        <param>
+          <type>Secondsd</type>
+          <declname>end_time</declname>
+        </param>
+        <param>
+          <type>const Functor &amp;</type>
+          <declname>relative_pose_at_time</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structrko__lio_1_1core_1_1LIO_1_1Config" kindref="compound">LIO::Config</ref></type>
+          <declname>config</declname>
+        </param>
+    <requiresclause>requires(Functor f, Secondsd stamp) { { f(stamp) } -&gt; std::same_as&lt;Sophus::SE3d&gt;; }    </requiresclause>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.hpp" line="27" column="21" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.hpp" bodystart="27" bodyend="45"/>
+      </memberdef>
       <memberdef kind="function" id="namespacerko__lio_1_1core_1aa575a28bad591f19c37742684a88cf7b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structrko__lio_1_1core_1_1Timestamps" kindref="compound">Timestamps</ref></type>
         <definition>Timestamps rko_lio::core::process_timestamps</definition>
@@ -222,6 +285,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" line="249" column="1"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" line="205" column="1"/>
   </compounddef>
 </doxygen>

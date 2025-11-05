@@ -4,6 +4,8 @@
     <compoundname>/home/runner/work/rko_lio/rko_lio/rko_lio/core</compoundname>
     <innerfile refid="lio_8cpp">lio.cpp</innerfile>
     <innerfile refid="lio_8hpp">lio.hpp</innerfile>
+    <innerfile refid="preprocess__scan_8cpp">preprocess_scan.cpp</innerfile>
+    <innerfile refid="preprocess__scan_8hpp">preprocess_scan.hpp</innerfile>
     <innerfile refid="process__timestamps_8cpp">process_timestamps.cpp</innerfile>
     <innerfile refid="process__timestamps_8hpp">process_timestamps.hpp</innerfile>
     <innerfile refid="profiler_8hpp">profiler.hpp</innerfile>

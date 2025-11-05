@@ -158,6 +158,12 @@
     <member refid="classrko__lio_1_1ros_1_1OnlineNode_1af007ddb722ed40ee77ec5c7b1d3c6710" kind="function"><name>OnlineNode</name></member>
     <member refid="classrko__lio_1_1ros_1_1OnlineNode_1a59d58b605334eb6201da6c76fc40dbed" kind="function"><name>get_node_base_interface</name></member>
   </compound>
+  <compound refid="structrko__lio_1_1core_1_1PreprocessingResult" kind="struct"><name>rko_lio::core::PreprocessingResult</name>
+    <member refid="structrko__lio_1_1core_1_1PreprocessingResult_1aa616e415247e87e1d2a2ba5192d33b47" kind="variable"><name>filtered_frame</name></member>
+    <member refid="structrko__lio_1_1core_1_1PreprocessingResult_1a564d0c85ba4788f9fc8f3af2c60bf3e9" kind="variable"><name>map_frame</name></member>
+    <member refid="structrko__lio_1_1core_1_1PreprocessingResult_1a20720dc17b7807f18ac34ec7bbe0fa06" kind="variable"><name>keypoints</name></member>
+    <member refid="structrko__lio_1_1core_1_1PreprocessingResult_1ad543b84f67a655def66be9b5952f4959" kind="function"><name>map_update_frame</name></member>
+  </compound>
   <compound refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo" kind="struct"><name>rko_lio::core::ScopedProfiler::ProfilingInfo</name>
     <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a75ffb52ae11c7b81ed01727a76cb8c0a" kind="variable"><name>count</name></member>
     <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a2281daa4450210ce1f16a5a0eb689cff" kind="variable"><name>total</name></member>
@@ -259,15 +265,15 @@
   </compound>
   <compound refid="namespace_0d12" kind="namespace"><name>@12</name>
   </compound>
-  <compound refid="namespace_0d16" kind="namespace"><name>@16</name>
+  <compound refid="namespace_0d14" kind="namespace"><name>@14</name>
   </compound>
-  <compound refid="namespace_0d19" kind="namespace"><name>@19</name>
+  <compound refid="namespace_0d18" kind="namespace"><name>@18</name>
   </compound>
-  <compound refid="namespace_0d2" kind="namespace"><name>@2</name>
+  <compound refid="namespace_0d21" kind="namespace"><name>@21</name>
   </compound>
-  <compound refid="namespace_0d5" kind="namespace"><name>@5</name>
+  <compound refid="namespace_0d4" kind="namespace"><name>@4</name>
   </compound>
-  <compound refid="namespace_0d8" kind="namespace"><name>@8</name>
+  <compound refid="namespace_0d7" kind="namespace"><name>@7</name>
   </compound>
   <compound refid="namespaceEigen" kind="namespace"><name>Eigen</name>
     <member refid="util_8hpp_1aeed2d0773ca5f2d8af17c424c1d38656" kind="typedef"><name>Matrix3_6d</name></member>
@@ -283,6 +289,8 @@
     <member refid="namespacerko__lio_1_1core_1aeb6128bc63af6919453e303e7eb5613d" kind="typedef"><name>Secondsd</name></member>
     <member refid="namespacerko__lio_1_1core_1a50d343fe8fc3d44fdf883bc4a77b1ccf" kind="typedef"><name>TimestampVector</name></member>
     <member refid="namespacerko__lio_1_1core_1a1beb022f953c50f94a2a815a4d3716b5" kind="variable"><name>GRAVITY_MAG</name></member>
+    <member refid="namespacerko__lio_1_1core_1a3261153e7f790d6973c2b7446db233ef" kind="function"><name>preprocess_scan</name></member>
+    <member refid="namespacerko__lio_1_1core_1a71405b1d5022915649f38adad01926d1" kind="function"><name>preprocess_scan</name></member>
     <member refid="namespacerko__lio_1_1core_1aa575a28bad591f19c37742684a88cf7b" kind="function"><name>process_timestamps</name></member>
     <member refid="namespacerko__lio_1_1core_1aebf1f823c7fd220695665a8b3e12281e" kind="function"><name>square</name></member>
     <member refid="namespacerko__lio_1_1core_1ae12b01bb20a1a7280bc26af2de2f15dd" kind="function"><name>gravity</name></member>
@@ -314,6 +322,10 @@
   <compound refid="lio_8cpp" kind="file"><name>lio.cpp</name>
   </compound>
   <compound refid="lio_8hpp" kind="file"><name>lio.hpp</name>
+  </compound>
+  <compound refid="preprocess__scan_8cpp" kind="file"><name>preprocess_scan.cpp</name>
+  </compound>
+  <compound refid="preprocess__scan_8hpp" kind="file"><name>preprocess_scan.hpp</name>
   </compound>
   <compound refid="process__timestamps_8cpp" kind="file"><name>process_timestamps.cpp</name>
   </compound>

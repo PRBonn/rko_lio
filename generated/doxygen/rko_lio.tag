@@ -315,6 +315,10 @@
     <filename>classrko__lio_1_1ros_1_1OnlineNode.html</filename>
     <base>rko_lio::ros::Node</base>
   </compound>
+  <compound kind="struct">
+    <name>rko_lio::core::PreprocessingResult</name>
+    <filename>structrko__lio_1_1core_1_1PreprocessingResult.html</filename>
+  </compound>
   <compound kind="class">
     <name>rko_lio::core::ScopedProfiler</name>
     <filename>classrko__lio_1_1core_1_1ScopedProfiler.html</filename>
@@ -373,6 +377,7 @@
     <class kind="struct">rko_lio::core::IntervalStats</class>
     <class kind="struct">rko_lio::core::LidarFrame</class>
     <class kind="class">rko_lio::core::LIO</class>
+    <class kind="struct">rko_lio::core::PreprocessingResult</class>
     <class kind="class">rko_lio::core::ScopedProfiler</class>
     <class kind="struct">rko_lio::core::SparseVoxelGrid</class>
     <class kind="struct">rko_lio::core::State</class>

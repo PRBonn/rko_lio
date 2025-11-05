@@ -18,6 +18,8 @@ Files
 
 - :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_lio.cpp`
 - :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_lio.hpp`
+- :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_preprocess_scan.cpp`
+- :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_preprocess_scan.hpp`
 - :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_process_timestamps.cpp`
 - :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_process_timestamps.hpp`
 - :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_profiler.hpp`

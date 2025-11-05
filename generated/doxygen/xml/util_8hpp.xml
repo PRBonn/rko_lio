@@ -35,11 +35,17 @@
         <link refid="lio_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
       </node>
-      <node id="4">
+      <node id="3">
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.hpp</label>
+        <link refid="preprocess__scan_8hpp_source"/>
+      </node>
+      <node id="5">
         <label>/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp</label>
         <link refid="process__timestamps_8hpp_source"/>
-        <childnode refid="3" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -47,10 +53,10 @@
         <link refid="util_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="3">
+      <node id="4">
         <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/node.hpp</label>
         <link refid="node_8hpp_source"/>
       </node>

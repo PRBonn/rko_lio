@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structrko__lio_1_1core_1_1PreprocessingResult" kind="struct" language="C++" prot="public">
+    <compoundname>rko_lio::core::PreprocessingResult</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1PreprocessingResult_1aa616e415247e87e1d2a2ba5192d33b47" prot="public" static="no" mutable="no">
+        <type>Vector3dVector</type>
+        <definition>Vector3dVector rko_lio::core::PreprocessingResult::filtered_frame</definition>
+        <argsstring></argsstring>
+        <name>filtered_frame</name>
+        <qualifiedname>rko_lio::core::PreprocessingResult::filtered_frame</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.hpp" line="13" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.hpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1PreprocessingResult_1a564d0c85ba4788f9fc8f3af2c60bf3e9" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; Vector3dVector &gt;</type>
+        <definition>std::optional&lt;Vector3dVector&gt; rko_lio::core::PreprocessingResult::map_frame</definition>
+        <argsstring></argsstring>
+        <name>map_frame</name>
+        <qualifiedname>rko_lio::core::PreprocessingResult::map_frame</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.hpp" line="14" column="17" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1PreprocessingResult_1a20720dc17b7807f18ac34ec7bbe0fa06" prot="public" static="no" mutable="no">
+        <type>Vector3dVector</type>
+        <definition>Vector3dVector rko_lio::core::PreprocessingResult::keypoints</definition>
+        <argsstring></argsstring>
+        <name>keypoints</name>
+        <qualifiedname>rko_lio::core::PreprocessingResult::keypoints</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.hpp" line="15" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1PreprocessingResult_1ad543b84f67a655def66be9b5952f4959" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Vector3dVector &amp;</type>
+        <definition>const Vector3dVector &amp; rko_lio::core::PreprocessingResult::map_update_frame</definition>
+        <argsstring>() const</argsstring>
+        <name>map_update_frame</name>
+        <qualifiedname>rko_lio::core::PreprocessingResult::map_update_frame</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.hpp" line="17" column="24" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.hpp" bodystart="17" bodyend="17"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.hpp" line="12" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.hpp" bodystart="12" bodyend="18"/>
+    <listofallmembers>
+      <member refid="structrko__lio_1_1core_1_1PreprocessingResult_1aa616e415247e87e1d2a2ba5192d33b47" prot="public" virt="non-virtual"><scope>rko_lio::core::PreprocessingResult</scope><name>filtered_frame</name></member>
+      <member refid="structrko__lio_1_1core_1_1PreprocessingResult_1a20720dc17b7807f18ac34ec7bbe0fa06" prot="public" virt="non-virtual"><scope>rko_lio::core::PreprocessingResult</scope><name>keypoints</name></member>
+      <member refid="structrko__lio_1_1core_1_1PreprocessingResult_1a564d0c85ba4788f9fc8f3af2c60bf3e9" prot="public" virt="non-virtual"><scope>rko_lio::core::PreprocessingResult</scope><name>map_frame</name></member>
+      <member refid="structrko__lio_1_1core_1_1PreprocessingResult_1ad543b84f67a655def66be9b5952f4959" prot="public" virt="non-virtual"><scope>rko_lio::core::PreprocessingResult</scope><name>map_update_frame</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

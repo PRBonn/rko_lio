@@ -34,6 +34,8 @@ Classes
 
 - :ref:`exhale_struct_structrko__lio_1_1core_1_1LIO_1_1Config`
 
+- :ref:`exhale_struct_structrko__lio_1_1core_1_1PreprocessingResult`
+
 - :ref:`exhale_struct_structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo`
 
 - :ref:`exhale_struct_structrko__lio_1_1core_1_1SparseVoxelGrid`
@@ -58,6 +60,10 @@ Functions
 
 
 - :ref:`exhale_function_namespacerko__lio_1_1core_1ae12b01bb20a1a7280bc26af2de2f15dd`
+
+- :ref:`exhale_function_namespacerko__lio_1_1core_1a3261153e7f790d6973c2b7446db233ef`
+
+- :ref:`exhale_function_namespacerko__lio_1_1core_1a71405b1d5022915649f38adad01926d1`
 
 - :ref:`exhale_function_namespacerko__lio_1_1core_1aa575a28bad591f19c37742684a88cf7b`
 
