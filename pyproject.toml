@@ -44,7 +44,7 @@ all = [
   "open3d>=0.18,<0.20",
   "rerun-sdk>=0.24,<0.27",
   "rosbags>=0.10,<0.12",
-  "pytest~=8.4"
+  "pytest~=9.0"
 ]
 
 [project.urls]
