@@ -221,30 +221,6 @@ configurable_parameters = [
         "type": "bool",
         "description": "Force treat per-point timestamps as offsets relative to each message's header time.",
     },
-    {
-        "name": "lts_absolute_start_threshold_ms",
-        "default": "1",
-        "type": "int",
-        "description": "Heuristic for absolute times: if abs(header_time - min per-point timestamp) < this value (in ms), treat times as absolute.",
-    },
-    {
-        "name": "lts_absolute_end_threshold_ms",
-        "default": "1",
-        "type": "int",
-        "description": "Heuristic for absolute times: if abs(header_time - max per-point timestamp) < this value (in ms), treat times as absolute.",
-    },
-    {
-        "name": "lts_relative_start_threshold_ms",
-        "default": "10",
-        "type": "int",
-        "description": "Heuristic for relative times: if abs(min per-point timestamp) < this value (in ms), consider times as relative.",
-    },
-    {
-        "name": "lts_relative_end_threshold_ms",
-        "default": "10",
-        "type": "int",
-        "description": "Heuristic for relative times: If abs(max per-point timestamp) < this value, consider times as relative.",
-    },
     # ros params
     {
         "name": "mode",

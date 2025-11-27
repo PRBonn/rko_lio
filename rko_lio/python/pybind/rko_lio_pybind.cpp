@@ -143,19 +143,7 @@ PYBIND11_MODULE(rko_lio_pybind, m) {
       .def(py::init<>())
       .def_readwrite("multiplier_to_seconds", &TPConfig::multiplier_to_seconds)
       .def_readwrite("force_absolute", &TPConfig::force_absolute)
-      .def_readwrite("force_relative", &TPConfig::force_relative)
-      .def_property(
-          "absolute_start_threshold", [](const TPConfig& cfg) { return cfg.absolute_start_threshold.count(); },
-          [](TPConfig& cfg, const int ms_) { cfg.absolute_start_threshold = TPConfig::ms(ms_); })
-      .def_property(
-          "absolute_end_threshold", [](const TPConfig& cfg) { return cfg.absolute_end_threshold.count(); },
-          [](TPConfig& cfg, const int ms_) { cfg.absolute_end_threshold = TPConfig::ms(ms_); })
-      .def_property(
-          "relative_start_threshold", [](const TPConfig& cfg) { return cfg.relative_start_threshold.count(); },
-          [](TPConfig& cfg, const int ms_) { cfg.relative_start_threshold = TPConfig::ms(ms_); })
-      .def_property(
-          "relative_end_threshold", [](const TPConfig& cfg) { return cfg.relative_end_threshold.count(); },
-          [](TPConfig& cfg, const int ms_) { cfg.relative_end_threshold = TPConfig::ms(ms_); });
+      .def_readwrite("force_relative", &TPConfig::force_relative);
 
   m.def(
       "_process_timestamps",

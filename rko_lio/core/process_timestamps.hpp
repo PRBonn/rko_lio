@@ -41,15 +41,9 @@ namespace rko_lio::core {
  * patterns. If the given defaults don't apply to your sensor for whatever reason, simply modify this config.
  */
 struct TimestampProcessingConfig {
-  using ms = std::chrono::milliseconds;
-
   double multiplier_to_seconds = 0;
   bool force_absolute = false;
   bool force_relative = false;
-  ms absolute_start_threshold = ms(1);
-  ms absolute_end_threshold = ms(1);
-  ms relative_start_threshold = ms(10);
-  ms relative_end_threshold = ms(10);
 };
 
 /**

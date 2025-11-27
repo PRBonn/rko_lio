@@ -35,6 +35,7 @@ using rko_lio::core::Secondsd;
 using rko_lio::core::TimestampProcessingConfig;
 using rko_lio::core::Timestamps;
 using rko_lio::core::TimestampVector;
+using namespace std::chrono_literals;
 
 // The timestamps are either in seconds or in nanoseconds, otherwise the user needs to specify the multiplier
 Timestamps timestamps_in_sec_from_raw(const std::vector<double>& raw_timestamps, const double multiplier_to_seconds) {
@@ -65,17 +66,15 @@ Timestamps process_timestamps(const std::vector<double>& raw_timestamps,
                               const TimestampProcessingConfig& config) {
   Timestamps timestamps = timestamps_in_sec_from_raw(raw_timestamps, config.multiplier_to_seconds);
 
-  const bool absolute_stamps = config.force_absolute ||
-                               (std::chrono::abs(header_stamp - timestamps.min) < config.absolute_start_threshold) ||
-                               (std::chrono::abs(header_stamp - timestamps.max) < config.absolute_end_threshold);
+  const bool absolute_stamps = config.force_absolute || (std::chrono::abs(header_stamp - timestamps.min) < 1ms) ||
+                               (std::chrono::abs(header_stamp - timestamps.max) < 10ms);
 
   if (absolute_stamps) {
     return timestamps;
   }
 
-  const bool relative_stamps = config.force_relative ||
-                               (std::chrono::abs(timestamps.min) < config.relative_start_threshold) ||
-                               (std::chrono::abs(timestamps.max) < config.relative_end_threshold);
+  const bool relative_stamps =
+      config.force_relative || (std::chrono::abs(timestamps.min) < 1ms) || (std::chrono::abs(timestamps.max) < 10ms);
 
   if (relative_stamps) {
     std::transform(timestamps.times.cbegin(), timestamps.times.cend(), timestamps.times.begin(),
@@ -96,10 +95,8 @@ Timestamps process_timestamps(const std::vector<double>& raw_timestamps,
             << "  multiplier_to_seconds: " << config.multiplier_to_seconds << "\n"
             << "  force_absolute: " << std::boolalpha << config.force_absolute << "\n"
             << "  force_relative: " << std::boolalpha << config.force_relative << "\n"
-            << "  absolute_start_threshold: " << config.absolute_start_threshold.count() << " ms\n"
-            << "  absolute_end_threshold: " << config.absolute_end_threshold.count() << " ms\n"
-            << "  relative_start_threshold: " << config.relative_start_threshold.count() << " ms\n"
-            << "  relative_end_threshold: " << config.relative_end_threshold.count() << " ms\n"
+            << "  start and end difference thresholds to header time are 1 and 10 milliseconds. Please force a case if "
+               "those thresholds don't suit your sensor.\n"
             << std::noboolalpha;
   throw std::runtime_error(
       "TimestampProcessingConfig does not cover this particular case of data. Please investigate, modify "

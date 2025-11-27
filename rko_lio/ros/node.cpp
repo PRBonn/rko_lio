@@ -135,14 +135,6 @@ Node::Node(const std::string& node_name, const rclcpp::NodeOptions& options) {
       node->declare_parameter<bool>("lts_force_absolute", timestamp_proc_config.force_absolute);
   timestamp_proc_config.force_relative =
       node->declare_parameter<bool>("lts_force_relative", timestamp_proc_config.force_relative);
-  timestamp_proc_config.absolute_start_threshold = std::chrono::milliseconds(node->declare_parameter<int>(
-      "lts_absolute_start_threshold_ms", timestamp_proc_config.absolute_start_threshold.count()));
-  timestamp_proc_config.absolute_end_threshold = std::chrono::milliseconds(node->declare_parameter<int>(
-      "lts_absolute_end_threshold_ms", timestamp_proc_config.absolute_end_threshold.count()));
-  timestamp_proc_config.relative_start_threshold = std::chrono::milliseconds(node->declare_parameter<int>(
-      "lts_relative_start_threshold_ms", timestamp_proc_config.relative_start_threshold.count()));
-  timestamp_proc_config.relative_end_threshold = std::chrono::milliseconds(node->declare_parameter<int>(
-      "lts_relative_end_threshold_ms", timestamp_proc_config.relative_end_threshold.count()));
 
   // manually, if, define extrinsics
   parse_cli_extrinsics();

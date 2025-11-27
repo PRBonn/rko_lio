@@ -34,7 +34,7 @@ header time). If the data cannot be confidently classified as either, a
 
 
 When this error occurs, you can potentially adjust the `timestamps` section of your
-configuration file to fix the issue. Typically, specifying one of `force_absolute` or `force_relative` should do the trick.
+configuration file to fix the issue. Specifying one of `force_absolute` or `force_relative` should do the trick.
 
 Example (default configuration)
 -------------------------------
@@ -46,10 +46,6 @@ Example (default configuration)
       multiplier_to_seconds: 0.0
       force_absolute: false
       force_relative: false
-      absolute_start_threshold: 1
-      absolute_end_threshold: 1
-      relative_start_threshold: 10
-      relative_end_threshold: 10
 
 Description of parameters
 --------------------------
@@ -69,34 +65,9 @@ Description of parameters
 
     If set, timestamps are always interpreted as relative to the LiDAR message header time, bypassing heuristics.
 
-- ``absolute_start_threshold``:
-
-    A tolerance around the *earliest* measured timestamp compared to header time.
-    If its absolute difference to the header time is below this threshold, the scan is treated as absolute.
-
-    Units: milliseconds.
-
-- ``absolute_end_threshold``:
-
-    Similar to the above, but applied to the *latest* scan timestamp. the absolute difference is compared to this threshold.
-
-    Units: milliseconds.
-
-- ``relative_start_threshold``:
-
-    Used to check for relative timestamps. If the scan’s absolute minimum time is below this threshold, the timestamps are considered relative.
-
-    Units: milliseconds.
-
-- ``relative_end_threshold``:
-
-    Also used for relative checks. If the scan's absolute maximum time is below this threshold, the timestamps are considered relative. The expectation is the max time is either a very small negative or positive value.
-
-    Units: milliseconds.
-
 .. note::
 
-    First, absolute timestamps are checked for. Then, relative. If the threshold checks are still not satisfied, then the above described error is thrown.
+    First, absolute timestamps are checked for. Then, relative. If the heuristics are still not satisfied, then the above described error is thrown.
 """
 
 from pathlib import Path
@@ -114,10 +85,6 @@ class TimestampProcessingConfig(_TimestampProcessingConfig):
         "multiplier_to_seconds": 0.0,
         "force_absolute": False,
         "force_relative": False,
-        "absolute_start_threshold": 1,  # ms
-        "absolute_end_threshold": 1,  # ms
-        "relative_start_threshold": 10,  # ms
-        "relative_end_threshold": 10,  # ms
     }
 
     def __init__(self, **kwargs):
