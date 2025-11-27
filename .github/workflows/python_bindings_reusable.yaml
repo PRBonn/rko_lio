@@ -21,6 +21,8 @@ jobs:
       IGNORED_FILES: "colcon.pkg|package.xml|rosdoc2.yaml|CHANGELOG.rst|LICENSE|README.md"
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
       - id: check
         run: |
           changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
