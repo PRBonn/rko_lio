@@ -33,6 +33,7 @@ jobs:
             echo "continue_run=false" >> $GITHUB_OUTPUT
           fi
   python_bindings:
+    needs: check_relevant_changes
     if: needs.check_relevant_changes.outputs.continue_run == 'true'
     runs-on: ${{ inputs.run_os }}
     env:
@@ -50,6 +51,7 @@ jobs:
       - name: Run pytest
         run: pytest -v -rs
   python_bindings_optional:
+    needs: check_relevant_changes
     if: ${{ inputs.run_optional && needs.check_relevant_changes.outputs.continue_run == 'true' }}
     runs-on: ${{ inputs.run_os }}
     env:
