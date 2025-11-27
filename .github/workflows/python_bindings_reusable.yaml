@@ -25,7 +25,7 @@ jobs:
           fetch-depth: 0
       - id: check
         run: |
-          changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+          changed_files=$(git diff --name-only origin/master)
           echo "Changed files: $changed_files"
           if echo "$changed_files" | grep -vE "^($IGNORED_FOLDERS)/|^($IGNORED_FILES)$" > /dev/null; then
             echo "continue_run=true" >> $GITHUB_OUTPUT
