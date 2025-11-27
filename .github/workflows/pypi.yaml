@@ -4,8 +4,6 @@ on:
     types: [published]
   push:
     branches: ["master"]
-  pull_request:
-    branches: ["master"]
 jobs:
   cibuildwheel:
     name: Build py wheels on ${{ matrix.os }}
