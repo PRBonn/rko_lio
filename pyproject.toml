@@ -44,7 +44,6 @@ all = [
   "open3d>=0.18,<0.20",
   "rerun-sdk>=0.24,<0.27",
   "rosbags>=0.10,<0.12",
-  "pytest~=8.4"
 ]
 
 [project.urls]
@@ -81,7 +80,9 @@ manylinux-x86_64-image = "manylinux_2_28"
 environment = "MACOSX_DEPLOYMENT_TARGET=11.0"
 archs = ["x86_64", "arm64"]
 
-[tool.pytest.ini_options]
+[tool.pytest]
+minversion = "9.0"
+addopts = ["-v"]
 testpaths = [
   "tests/python"
 ]
