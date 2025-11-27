@@ -9,7 +9,26 @@ on:
         type: string
         required: true
 jobs:
+  check_relevant_changes:
+    runs-on: ubuntu-latest
+    outputs:
+      continue_run: ${{ steps.check.outputs.continue_run }}
+    env:
+      IGNORED_FOLDERS: "rko_lio/python|docs|tests/python"
+      IGNORED_FILES: "pyproject.toml|CHANGELOG.rst|LICENSE|README.md"
+    steps:
+      - uses: actions/checkout@v5
+      - id: check
+        run: |
+          changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+          echo "Changed files: $changed_files"
+          if echo "$changed_files" | grep -vE "^($IGNORED_FOLDERS)/|^($IGNORED_FILES)$" > /dev/null; then
+            echo "continue_run=true" >> $GITHUB_OUTPUT
+          else
+            echo "continue_run=false" >> $GITHUB_OUTPUT
+          fi
   ros_build_with_rosdep:
+    if: needs.check_relevant_changes.outputs.continue_run == 'true'
     runs-on: ubuntu-latest
     container:
       image: ${{ inputs.container_image }}
@@ -27,6 +46,7 @@ jobs:
           rosdep install --from-paths . --ignore-src -r -y
           colcon build --event-handlers console_direct+
   ros_build_no_rosdep:
+    if: needs.check_relevant_changes.outputs.continue_run == 'true'
     runs-on: ubuntu-latest
     container:
       image: ${{ inputs.container_image }}
