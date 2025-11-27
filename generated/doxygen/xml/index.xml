@@ -245,14 +245,9 @@
     <member refid="structrko__lio_1_1core_1_1Timer_1adaf6fe6d98f58d17620f3ccbade46b99" kind="function"><name>~Timer</name></member>
   </compound>
   <compound refid="structrko__lio_1_1core_1_1TimestampProcessingConfig" kind="struct"><name>rko_lio::core::TimestampProcessingConfig</name>
-    <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a24293977e3c01769906c2aac28aa36ad" kind="typedef"><name>ms</name></member>
     <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a46cc425d4f72adff3fec06fda2ade916" kind="variable"><name>multiplier_to_seconds</name></member>
     <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a166b875f4043d2ad0be90aa46ab3c1f4" kind="variable"><name>force_absolute</name></member>
     <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a1eb1124319b0987ff5960af828dedcfe" kind="variable"><name>force_relative</name></member>
-    <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a3d07c2552bf9591cb00b7177f139fbb4" kind="variable"><name>absolute_start_threshold</name></member>
-    <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a7d4e80b61d5e691c99c3822184a71a0c" kind="variable"><name>absolute_end_threshold</name></member>
-    <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a0da3756f27f8178900cbc9a80a8f1c37" kind="variable"><name>relative_start_threshold</name></member>
-    <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1acdbbb355f5ea64b709d76498ca0e9a53" kind="variable"><name>relative_end_threshold</name></member>
   </compound>
   <compound refid="structrko__lio_1_1core_1_1Timestamps" kind="struct"><name>rko_lio::core::Timestamps</name>
     <member refid="structrko__lio_1_1core_1_1Timestamps_1a35ee9e2ba868ab50384c55faa49b12b4" kind="variable"><name>min</name></member>
@@ -316,6 +311,8 @@
     <member refid="transforms_8hpp_1a86fa67824d17062f6dc8c767beb6b287" kind="function"><name>get_transform</name></member>
   </compound>
   <compound refid="namespacestd" kind="namespace"><name>std</name>
+  </compound>
+  <compound refid="namespacestd_1_1chrono__literals" kind="namespace"><name>std::chrono_literals</name>
   </compound>
   <compound refid="namespacestd_1_1literals" kind="namespace"><name>std::literals</name>
   </compound>

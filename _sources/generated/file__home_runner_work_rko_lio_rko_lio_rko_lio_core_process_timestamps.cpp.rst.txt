@@ -57,6 +57,8 @@ Namespaces
 
 - :ref:`namespace_rko_lio__core`
 
+- :ref:`namespace_std__chrono_literals`
+
 
 Functions
 ---------

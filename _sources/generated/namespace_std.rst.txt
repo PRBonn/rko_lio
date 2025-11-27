@@ -17,6 +17,8 @@ Namespaces
 ----------
 
 
+- :ref:`namespace_std__chrono_literals`
+
 - :ref:`namespace_std__literals`
 
 

@@ -108,7 +108,7 @@ header time). If the data cannot be confidently classified as either, a
 </pre></div>
 </div>
 <p>When this error occurs, you can potentially adjust the <cite>timestamps</cite> section of your
-configuration file to fix the issue. Typically, specifying one of <cite>force_absolute</cite> or <cite>force_relative</cite> should do the trick.</p>
+configuration file to fix the issue. Specifying one of <cite>force_absolute</cite> or <cite>force_relative</cite> should do the trick.</p>
 <section id="example-default-configuration">
 <h2>Example (default configuration)<a class="headerlink" href="#example-default-configuration" title="Link to this heading">¶</a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">your other configuration keys here</span>
@@ -116,10 +116,6 @@ configuration file to fix the issue. Typically, specifying one of <cite>force_ab
 <span class="w">  </span><span class="nt">multiplier_to_seconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
 <span class="w">  </span><span class="nt">force_absolute</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">  </span><span class="nt">force_relative</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">  </span><span class="nt">absolute_start_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
-<span class="w">  </span><span class="nt">absolute_end_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
-<span class="w">  </span><span class="nt">relative_start_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
-<span class="w">  </span><span class="nt">relative_end_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
 </pre></div>
 </div>
 </section>
@@ -144,35 +140,10 @@ For example, if timestamps are in microseconds, use <code class="docutils litera
 <div><p>If set, timestamps are always interpreted as relative to the LiDAR message header time, bypassing heuristics.</p>
 </div></blockquote>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">absolute_start_threshold</span></code>:</p>
-<blockquote>
-<div><p>A tolerance around the <em>earliest</em> measured timestamp compared to header time.
-If its absolute difference to the header time is below this threshold, the scan is treated as absolute.</p>
-<p>Units: milliseconds.</p>
-</div></blockquote>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">absolute_end_threshold</span></code>:</p>
-<blockquote>
-<div><p>Similar to the above, but applied to the <em>latest</em> scan timestamp. the absolute difference is compared to this threshold.</p>
-<p>Units: milliseconds.</p>
-</div></blockquote>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">relative_start_threshold</span></code>:</p>
-<blockquote>
-<div><p>Used to check for relative timestamps. If the scan’s absolute minimum time is below this threshold, the timestamps are considered relative.</p>
-<p>Units: milliseconds.</p>
-</div></blockquote>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">relative_end_threshold</span></code>:</p>
-<blockquote>
-<div><p>Also used for relative checks. If the scan’s absolute maximum time is below this threshold, the timestamps are considered relative. The expectation is the max time is either a very small negative or positive value.</p>
-<p>Units: milliseconds.</p>
-</div></blockquote>
-</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>First, absolute timestamps are checked for. Then, relative. If the threshold checks are still not satisfied, then the above described error is thrown.</p>
+<p>First, absolute timestamps are checked for. Then, relative. If the heuristics are still not satisfied, then the above described error is thrown.</p>
 </div>
 </section>
 </section>
