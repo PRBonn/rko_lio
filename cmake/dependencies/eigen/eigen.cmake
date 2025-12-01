@@ -19,7 +19,7 @@ set(EIGEN_BUILD_LAPACK
 
 FetchContent_Declare(
   Eigen3
-  URL https://gitlab.com/libeigen/eigen/-/archive/5.0.0/eigen-5.0.0.tar.gz
+  URL https://gitlab.com/libeigen/eigen/-/archive/5.0.1/eigen-5.0.1.tar.gz
       ${RKO_LIO_FETCHCONTENT_COMMON_FLAGS})
 FetchContent_MakeAvailable(Eigen3)
 
