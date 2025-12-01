@@ -9,7 +9,7 @@ jobs:
   check-version-sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Check Python and ROS version match
         run: |
           py_version=$(sed -n 's/^version\s*=\s*"\(.*\)"/\1/p' pyproject.toml | head -n 1)

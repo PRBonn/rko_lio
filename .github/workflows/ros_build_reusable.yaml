@@ -17,7 +17,7 @@ jobs:
       IGNORED_FOLDERS: "rko_lio/python|docs|tests/python"
       IGNORED_FILES: "pyproject.toml|CHANGELOG.rst|LICENSE|README.md"
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - id: check
@@ -36,7 +36,7 @@ jobs:
     container:
       image: ${{ inputs.container_image }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Install build tools
         run: |
           apt-get update
@@ -55,7 +55,7 @@ jobs:
     container:
       image: ${{ inputs.container_image }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Install build tools
         run: |
           apt-get update

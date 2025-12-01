@@ -14,7 +14,7 @@ jobs:
       matrix:
         os: [ubuntu-24.04, ubuntu-24.04-arm, windows-2022, macos-15]
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Build test wheels (only PRs)
         if: github.event_name != 'release'
         uses: pypa/cibuildwheel@v3.2.1
