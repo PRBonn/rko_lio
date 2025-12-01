@@ -223,6 +223,8 @@ Program Listing for File lio.cpp
    void LIO::initialize(const Secondsd lidar_time) {
      if (interval_stats.imu_count == 0) {
        std::cerr << "[WARNING] Cannot initialize. No imu measurements received.\n";
+       // lidar_state.time has the time from the previous lidar, which we didn't log if init_phase was on
+       poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
        _initialized = true;
        return;
      }
@@ -233,6 +235,11 @@ Program Listing for File lio.cpp
      _imu_local_rotation = align_accel_to_z_world(avg_accel);
      _imu_local_rotation_time = lidar_time;
      lidar_state.pose.so3() = _imu_local_rotation;
+   
+     // lidar_state.time has the time from the previous lidar, which we didn't log if init_phase was on
+     poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
+   
+     // the pose for the current time gets logged at the end of register_scan in the typical fashion
      lidar_state.time = lidar_time;
    
      const Eigen::Vector3d local_gravity = _imu_local_rotation.inverse() * gravity();
@@ -240,9 +247,10 @@ Program Listing for File lio.cpp
      imu_bias.gyroscope = avg_gyro;
    
      _initialized = true;
-     std::cout << "LIO initialized using " << interval_stats.imu_count
-               << " IMU measurements. Estimated starting rotation [se(3)] is " << _imu_local_rotation.log().transpose()
-               << ". Estimated accel bias: " << imu_bias.accelerometer.transpose()
+     std::cout << "[INFO] Odometry map frame initialized using " << interval_stats.imu_count
+               << " IMU measurements. Estimated initial rotation [se(3)] is " << _imu_local_rotation.log().transpose()
+               << "\n";
+     std::cout << "[INFO] Estimated accel bias: " << imu_bias.accelerometer.transpose()
                << ", gyro bias: " << imu_bias.gyroscope.transpose() << "\n";
    }
    
@@ -381,13 +389,13 @@ Program Listing for File lio.cpp
    
      if (lidar_state.time < EPSILON_TIME) {
        lidar_state.time = current_lidar_time;
-       std::cout << "First LiDAR received, using pose at this time as the global frame.\n";
        const auto& preproc_result = preprocess_scan(scan, config);
        if (!config.initialization_phase) {
          // use the first frame for the map only if we're not initializing
          map.Update(preproc_result.map_update_frame(), lidar_state.pose);
+         poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
+         std::cout << "[INFO] Odometry map frame initialized with first lidar scan.\n";
        }
-       poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
        return preproc_result.filtered_frame;
      }
    
