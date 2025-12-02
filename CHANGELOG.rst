@@ -2,8 +2,8 @@
 Changelog for package rko_lio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.2.0 (2025-12-02)
+------------------
 * Fix (core): log proper pose for the first frame if init. phase is on (`#89 <https://github.com/PRBonn/rko_lio/issues/89>`_)
 * chore: bump FetchContent Eigen to 5.0.1 (`#88 <https://github.com/PRBonn/rko_lio/issues/88>`_)
   Co-authored-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
