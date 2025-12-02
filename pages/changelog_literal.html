@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=f6a572b4" />
     <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=56c4699f" />
-    <script src="../_static/documentation_options.js?v=ca7ad2ea"></script>
+    <script src="../_static/documentation_options.js?v=938c9ccc"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
@@ -104,6 +104,50 @@
 <div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
 <span class="gh">Changelog for package rko_lio</span>
 <span class="gh">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+
+<span class="gh">0.2.0 (2025-12-02)</span>
+<span class="gh">------------------</span>
+<span class="m">*</span> Fix (core): log proper pose for the first frame if init. phase is on (<span class="s">`#89 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/89&gt;</span><span class="s">`_</span>)
+<span class="m">*</span> chore: bump FetchContent Eigen to 5.0.1 (<span class="s">`#88 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/88&gt;</span><span class="s">`_</span>)
+  Co-authored-by: github-actions[bot] &lt;github-actions[bot]@users.noreply.github.com&gt;
+<span class="m">*</span> core: minimize TimestampProcessingConfig (<span class="s">`#87 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/87&gt;</span><span class="s">`_</span>)
+  <span class="m">*</span> remove the configs for start and end time thresholds that can be satisfied much simpler by just forcing relative or absolute overrides
+<span class="m">*</span> python: remove unnecessary scan viz (<span class="s">`#85 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/85&gt;</span><span class="s">`_</span>)
+<span class="m">*</span> remove pytest as optional dep, added toml based config (<span class="s">`#83 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/83&gt;</span><span class="s">`_</span>)
+<span class="m">*</span> Rename published_deskewed_cloud to publish_deskewed_scan (<span class="s">`#81 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/81&gt;</span><span class="s">`_</span>)
+<span class="m">*</span> Fix: core - proper second frame pose if initialization off (<span class="s">`#77 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/77&gt;</span><span class="s">`_</span>)
+  <span class="m">*</span> move preproc to its own file and fix the non intialization behaviour
+  <span class="m">*</span> better (but not cross platform-worthy) identity registration testing
+<span class="m">*</span> Update accelerometer data expectation in docs. Clarified accelerometer assumptions
+<span class="m">*</span> core: Configurable lidar timestamp processing (<span class="s">`#74 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/74&gt;</span><span class="s">`_</span>)
+  <span class="m">*</span> thresholds and timestamp processing behaviour is configurable
+  <span class="m">*</span> config modifications to the python side
+  <span class="m">*</span> ros side launch config modified to have more params
+  <span class="m">*</span> docs additions and cleanup
+  <span class="m">*</span> fix the py tests since the api changed
+<span class="m">*</span> update installation instructions and badge formatting. Updated README.md to improve formatting and clarity of installation instructions and dependencies.
+<span class="m">*</span> More CLI options, profiles stats has variance, dumping deskewed scans (<span class="s">`#73 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/73&gt;</span><span class="s">`_</span>)
+  <span class="m">*</span> add the modifications needed to dump the plys when running
+  <span class="m">*</span> add variance to profile stats
+  <span class="m">*</span> python: pybind interval stats, and imu logging in rerun
+  <span class="m">*</span> more cli options, viz improvements a bit
+  <span class="m">*</span> update the cli for dumping deskewed
+  <span class="m">*</span> update the rbl
+<span class="m">*</span> Update README.md. Add ros source build details
+<span class="m">*</span> Folder reorganisation and docs update (<span class="s">`#69 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/69&gt;</span><span class="s">`_</span>)
+  <span class="m">*</span> flatten the directories. massive renaming across the board
+  <span class="m">*</span> docs rework
+  <span class="m">*</span> docs updates
+  <span class="m">*</span> rename the config file so its explicit
+  <span class="m">*</span> fix workflows
+<span class="m">*</span> Core/move logging to wrappers (<span class="s">`#68 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/68&gt;</span><span class="s">`_</span>)
+  <span class="m">*</span> remove logging from core. improve docs
+  <span class="m">*</span> python side now does its own config and traj dumping
+  <span class="m">*</span> nlohmann json is no longer a core requirement. ros only
+  <span class="m">*</span> result dumping on ros side now
+  <span class="m">*</span> make result logging on ros optional. and add launch config for that
+  <span class="m">*</span> use a shutdown callback for ros to dump results
+<span class="m">*</span> Contributors: Anthony Bisulco, Meher Malladi, dependabot[bot]
 
 <span class="gh">0.1.7 (2025-10-21)</span>
 <span class="gh">------------------</span>
