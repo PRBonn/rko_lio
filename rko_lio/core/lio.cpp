@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2025 Meher V.R. Malladi.
+ * Copyright (c) 2025 Meher V.R. Malladi, Luca Lobefaro.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,12 +27,13 @@
 #include "profiler.hpp"
 #include "util.hpp"
 // other
+#include <eigen3/Eigen/src/Core/Matrix.h>
 #include <sophus/se3.hpp>
 // tbb
 #include <tbb/blocked_range.h>
 #include <tbb/concurrent_vector.h>
 #include <tbb/global_control.h>
-#include <tbb/parallel_for.h>
+#include <tbb/parallel_reduce.h>
 #include <tbb/task_arena.h>
 // stl
 #include <algorithm>
@@ -42,49 +43,12 @@
 #include <stdexcept>
 
 namespace {
-// The only parallel part. taken from kiss-icp
-// correspondence - original point and corresponding map point, in that order
-using OneCorrespondence = std::pair<Eigen::Vector3d, Eigen::Vector3d>;
-using Correspondences = tbb::concurrent_vector<OneCorrespondence>;
-Correspondences data_association(const Sophus::SE3d& pose,
-                                 const rko_lio::core::Vector3dVector& points,
-                                 const rko_lio::core::SparseVoxelGrid& voxel_map,
-                                 const rko_lio::core::LIO::Config& config) {
-  const int max_threads = config.max_num_threads > 0 ? config.max_num_threads : tbb::this_task_arena::max_concurrency();
-  static const auto tbb_control_settings =
-      tbb::global_control(tbb::global_control::max_allowed_parallelism, static_cast<size_t>(max_threads));
-  using points_iterator = std::vector<Eigen::Vector3d>::const_iterator;
-  Correspondences correspondences;
-  correspondences.reserve(points.size());
-  tbb::parallel_for(tbb::blocked_range<points_iterator>{points.cbegin(), points.cend()},
-                    [&](const tbb::blocked_range<points_iterator>& r) {
-                      std::for_each(r.begin(), r.end(), [&](const auto& point) {
-                        // TODO: left jacobian means we can reduce some compute here
-                        // transform the source point here and get the corresponding map point
-                        const auto& [closest_neighbor, distance] = voxel_map.GetClosestNeighbor(pose * point);
-                        if (distance < config.max_correspondance_distance) {
-                          correspondences.emplace_back(point, closest_neighbor);
-                        }
-                      });
-                    });
-  return correspondences;
-}
-} // namespace
-
-namespace {
 constexpr double EPSILON = 1e-8;
 constexpr auto EPSILON_TIME = std::chrono::nanoseconds(10);
 using namespace rko_lio::core;
 
 inline void transform_points(const Sophus::SE3d& T, Vector3dVector& points) {
   std::transform(points.begin(), points.end(), points.begin(), [&](const auto& point) { return T * point; });
-}
-
-inline Eigen::Vector3d compute_point_to_point_residual(const Sophus::SE3d& pose,
-                                                       const OneCorrespondence& correspondence) {
-  const auto& [source, target] = correspondence;
-  const Eigen::Vector3d residual = (pose * source) - target;
-  return residual;
 }
 
 inline Eigen::Vector3d compute_acceleration_cost_residual(const Eigen::Vector3d& local_gravity_estimate,
@@ -96,7 +60,10 @@ inline Eigen::Vector3d compute_acceleration_cost_residual(const Eigen::Vector3d&
 }
 
 using LinearSystem = std::tuple<Eigen::Matrix6d, Eigen::Vector6d, double>;
-LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose, const Correspondences& correspondences) {
+LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose,
+                                     const rko_lio::core::Vector3dVector& frame,
+                                     const rko_lio::core::SparseVoxelGrid& voxel_map,
+                                     const double& max_correspondance_distance) {
   auto linear_system_reduce = [](LinearSystem lhs, const LinearSystem& rhs) {
     auto& [lhs_H, lhs_b, lhs_chi] = lhs;
     const auto& [rhs_H, rhs_b, rhs_chi] = rhs;
@@ -106,28 +73,39 @@ LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose, const Cor
     return lhs;
   };
 
-  auto calculate_icp_jacobian = [](const Sophus::SE3d& current_pose, const OneCorrespondence& correspondence) {
-    const auto& [source, _] = correspondence;
-    Eigen::Matrix3_6d J_icp_l = Eigen::Matrix3_6d::Zero();
-    J_icp_l.block<3, 3>(0, 0) = Eigen::Matrix3d::Identity();
-    J_icp_l.block<3, 3>(0, 3) = -1 * Sophus::SO3d::hat(current_pose * source);
-    return J_icp_l;
+  auto update_linear_system = [](const Eigen::Vector3d& source, const Eigen::Vector3d& target) {
+    Eigen::Matrix3_6d J_r;
+    J_r.block<3, 3>(0, 0) = Eigen::Matrix3d::Identity();
+    J_r.block<3, 3>(0, 3) = -1.0 * Sophus::SO3d::hat(target);
+    const Eigen::Vector3d residual = source - target;
+    return LinearSystem(J_r.transpose() * J_r,      // JTJ
+                        J_r.transpose() * residual, // JTr
+                        residual.squaredNorm());    // chi
   };
 
-  const auto& [H_icp, b_icp, chi_icp] =
-      std::transform_reduce(correspondences.cbegin(), correspondences.cend(),
-                            LinearSystem(Eigen::Matrix6d::Zero(), Eigen::Vector6d::Zero(), 0.0), linear_system_reduce,
-                            // transform
-                            [&](const auto& correspondence) {
-                              const Eigen::Vector3d residual =
-                                  compute_point_to_point_residual(current_pose, correspondence);
-                              const auto J = calculate_icp_jacobian(current_pose, correspondence);
-                              return LinearSystem(J.transpose() * J,        // JT * R.inv() * J
-                                                  J.transpose() * residual, // JT * R.inv() * r
-                                                  residual.squaredNorm());  // chi
-                            });
+  // The only parallel part
+  using points_iterator = std::vector<Eigen::Vector3d>::const_iterator;
+  const auto& [H_icp, b_icp, chi_icp] = tbb::parallel_reduce(
+      // Range
+      tbb::blocked_range<points_iterator>{frame.cbegin(), frame.cend()},
+      // Identity
+      LinearSystem(Eigen::Matrix6d::Zero(), Eigen::Vector6d::Zero(), 0.0),
+      // 1st Lambda: Parallel computation
+      [&](const tbb::blocked_range<points_iterator>& r, LinearSystem J) -> LinearSystem {
+        return std::transform_reduce(r.begin(), r.end(), J, linear_system_reduce, [&](const auto& point) {
+          // Compute data association and linear system
+          const Eigen::Vector3d transformed_point = current_pose * point;
+          const auto& [closest_neighbor, distance] = voxel_map.GetClosestNeighbor(transformed_point);
+          if (distance < max_correspondance_distance) {
+            return update_linear_system(transformed_point, closest_neighbor);
+          }
+          return LinearSystem(Eigen::Matrix6d::Zero(), Eigen::Vector6d::Zero(), 0.0);
+        });
+      },
+      // 2nd Lambda: Parallel reduction of the private Jacobians
+      linear_system_reduce);
 
-  return {H_icp / correspondences.size(), b_icp / correspondences.size(), 0.5 * chi_icp};
+  return {H_icp / frame.size(), b_icp / frame.size(), 0.5 * chi_icp};
 }
 
 LinearSystem build_orientation_linear_system(const Sophus::SE3d& current_pose,
@@ -160,21 +138,15 @@ Sophus::SE3d icp(const Vector3dVector& frame,
   Sophus::SE3d current_pose = initial_guess;
 
   for (size_t i = 0; i < config.max_iterations; ++i) {
-
-    const Correspondences& correspondences = data_association(current_pose, frame, voxel_map, config);
-    if (correspondences.empty()) {
-      throw std::runtime_error("Number of correspondences are 0.");
-    }
-
     const auto& [H, b, chi] = std::invoke([&]() -> LinearSystem {
+      const auto& [H_icp, b_icp, chi_icp] =
+          build_icp_linear_system(current_pose, frame, voxel_map, config.max_correspondance_distance);
       if (beta >= 0) {
-        const auto& [H_icp, b_icp, chi_icp] = build_icp_linear_system(current_pose, correspondences);
         const auto& [H_ori, b_ori, chi_ori] =
             build_orientation_linear_system(current_pose, optional_accel_info->local_gravity_estimate);
         return {H_icp + H_ori / beta, b_icp + b_ori / beta, chi_icp + chi_ori / beta};
-      } else {
-        return build_icp_linear_system(current_pose, correspondences);
       }
+      return {H_icp, b_icp, chi_icp};
     });
 
     const Eigen::Vector6d dx = H.ldlt().solve(-b);
