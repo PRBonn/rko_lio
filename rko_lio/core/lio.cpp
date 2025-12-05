@@ -107,10 +107,10 @@ LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose,
       // 2nd Lambda: Parallel reduction of the private Jacobians
       linear_system_reduce);
 
-  if (correspondences_counter == 0) {
+  if (correspondances_counter == 0) {
     throw std::runtime_error("Number of correspondences are 0.");
   }
-  
+
   return {H_icp / correspondances_counter, b_icp / correspondances_counter, 0.5 * chi_icp};
 }
 
