@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2025 Meher V.R. Malladi, Luca Lobefaro.
+ * Copyright (c) 2025 Meher V.R. Malladi.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -72,10 +72,10 @@ LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose,
     return lhs;
   };
 
-  auto update_linear_system = [](const Eigen::Vector3d& source, const Eigen::Vector3d& target) {
+  auto linear_system_for_one_point = [](const Eigen::Vector3d& source, const Eigen::Vector3d& target) {
     Eigen::Matrix3_6d J_r;
     J_r.block<3, 3>(0, 0) = Eigen::Matrix3d::Identity();
-    J_r.block<3, 3>(0, 3) = -1.0 * Sophus::SO3d::hat(target);
+    J_r.block<3, 3>(0, 3) = -1.0 * Sophus::SO3d::hat(source);
     const Eigen::Vector3d residual = source - target;
     return LinearSystem(J_r.transpose() * J_r,      // JTJ
                         J_r.transpose() * residual, // JTr
@@ -98,14 +98,19 @@ LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose,
           const auto& [closest_neighbor, distance] = voxel_map.GetClosestNeighbor(transformed_point);
           if (distance < max_correspondance_distance) {
             correspondances_counter++;
-            return update_linear_system(transformed_point, closest_neighbor);
+            return linear_system_for_one_point(transformed_point, closest_neighbor);
           }
+          // TODO (meher): additional 0 add flops, which may hurt single threaded perf slightly
           return LinearSystem(Eigen::Matrix6d::Zero(), Eigen::Vector6d::Zero(), 0.0);
         });
       },
       // 2nd Lambda: Parallel reduction of the private Jacobians
       linear_system_reduce);
 
+  if (correspondences_counter == 0) {
+    throw std::runtime_error("Number of correspondences are 0.");
+  }
+  
   return {H_icp / correspondances_counter, b_icp / correspondances_counter, 0.5 * chi_icp};
 }
 
