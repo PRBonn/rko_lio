@@ -27,7 +27,6 @@
 #include "profiler.hpp"
 #include "util.hpp"
 // other
-#include <eigen3/Eigen/src/Core/Matrix.h>
 #include <sophus/se3.hpp>
 // tbb
 #include <tbb/blocked_range.h>
