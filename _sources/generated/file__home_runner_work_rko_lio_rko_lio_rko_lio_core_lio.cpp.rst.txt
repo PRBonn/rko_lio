@@ -54,7 +54,7 @@ Includes
 
 - ``tbb/global_control.h``
 
-- ``tbb/parallel_for.h``
+- ``tbb/parallel_reduce.h``
 
 - ``tbb/task_arena.h``
 
