@@ -76,4 +76,63 @@ struct LidarFrame {
   Vector3dVector points;
 };
 
+/** Accumulated IMU statistics over the interval between consecutive LiDAR scans. */
+struct IntervalStats {
+  /** Number of IMU samples accumulated during this interval. */
+  int imu_count = 0;
+
+  /** Sum of unbiased angular velocity samples. */
+  Eigen::Vector3d angular_velocity_sum = Eigen::Vector3d::Zero();
+
+  /** Sum of gravity-compensated body-frame accelerations. */
+  Eigen::Vector3d body_acceleration_sum = Eigen::Vector3d::Zero();
+
+  /** Sum of unbiased raw IMU accelerations. */
+  Eigen::Vector3d imu_acceleration_sum = Eigen::Vector3d::Zero();
+
+  /** Mean magnitude of raw IMU acceleration over the interval. */
+  double imu_accel_mag_mean = 0;
+
+  /** Variance accumulator for acceleration magnitude using Welford’s method. */
+  double welford_sum_of_squares = 0;
+
+  /**
+   * Update accumulated statistics with a new IMU measurement.
+   * @param unbiased_ang_vel Unbiased angular velocity.
+   * @param uncompensated_unbiased_accel Uncompensated, unbiased acceleration.
+   * @param compensated_accel Gravity-compensated acceleration.
+   */
+  void update(const Eigen::Vector3d& unbiased_ang_vel,
+              const Eigen::Vector3d& uncompensated_unbiased_accel,
+              const Eigen::Vector3d& compensated_accel) {
+    ++imu_count;
+    angular_velocity_sum += unbiased_ang_vel;
+    imu_acceleration_sum += uncompensated_unbiased_accel;
+
+    const double previous_mean = imu_accel_mag_mean;
+    const double accel_norm = uncompensated_unbiased_accel.norm();
+
+    imu_accel_mag_mean += (accel_norm - previous_mean) / imu_count;
+    welford_sum_of_squares += (accel_norm - previous_mean) * (accel_norm - imu_accel_mag_mean);
+
+    body_acceleration_sum += compensated_accel;
+  }
+
+  /** Reset all accumulated statistics to zero. */
+  void reset() {
+    imu_count = 0;
+    angular_velocity_sum.setZero();
+    body_acceleration_sum.setZero();
+    imu_acceleration_sum.setZero();
+    imu_accel_mag_mean = 0;
+    welford_sum_of_squares = 0;
+  }
+};
+
+/** Detail: return type for the acceleration Kalman filter containing gravity and variance estimates. */
+struct AccelInfo {
+  /** Variance of the raw imu acceleration magnitude. */
+  double accel_mag_variance;
+  Eigen::Vector3d local_gravity_estimate;
+};
 }; // namespace rko_lio::core
