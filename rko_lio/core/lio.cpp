@@ -84,6 +84,7 @@ LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose,
 
   // The only parallel part
   using points_iterator = std::vector<Eigen::Vector3d>::const_iterator;
+  std::atomic<int> correspondances_counter = 0;
   const auto& [H_icp, b_icp, chi_icp] = tbb::parallel_reduce(
       // Range
       tbb::blocked_range<points_iterator>{frame.cbegin(), frame.cend()},
@@ -96,6 +97,7 @@ LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose,
           const Eigen::Vector3d transformed_point = current_pose * point;
           const auto& [closest_neighbor, distance] = voxel_map.GetClosestNeighbor(transformed_point);
           if (distance < max_correspondance_distance) {
+            correspondances_counter++;
             return update_linear_system(transformed_point, closest_neighbor);
           }
           return LinearSystem(Eigen::Matrix6d::Zero(), Eigen::Vector6d::Zero(), 0.0);
@@ -104,7 +106,7 @@ LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose,
       // 2nd Lambda: Parallel reduction of the private Jacobians
       linear_system_reduce);
 
-  return {H_icp / frame.size(), b_icp / frame.size(), 0.5 * chi_icp};
+  return {H_icp / correspondances_counter, b_icp / correspondances_counter, 0.5 * chi_icp};
 }
 
 LinearSystem build_orientation_linear_system(const Sophus::SE3d& current_pose,
