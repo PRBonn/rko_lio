@@ -66,6 +66,8 @@
     <innerclass refid="structrko__lio_1_1core_1_1ImuControl" prot="public">rko_lio::core::ImuControl</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1Timestamps" prot="public">rko_lio::core::Timestamps</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1LidarFrame" prot="public">rko_lio::core::LidarFrame</innerclass>
+    <innerclass refid="structrko__lio_1_1core_1_1IntervalStats" prot="public">rko_lio::core::IntervalStats</innerclass>
+    <innerclass refid="structrko__lio_1_1core_1_1AccelInfo" prot="public">rko_lio::core::AccelInfo</innerclass>
     <innernamespace refid="namespaceEigen">Eigen</innernamespace>
     <innernamespace refid="namespacerko__lio">rko_lio</innernamespace>
     <innernamespace refid="namespacerko__lio_1_1core">rko_lio::core</innernamespace>
@@ -152,7 +154,50 @@
 <codeline lineno="76"><highlight class="normal"><sp/><sp/>Vector3dVector<sp/>points;</highlight></codeline>
 <codeline lineno="77"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="78"><highlight class="normal"></highlight></codeline>
-<codeline lineno="79"><highlight class="normal">};<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="structrko__lio_1_1core_1_1IntervalStats" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1IntervalStats" kindref="compound">IntervalStats</ref><sp/>{</highlight></codeline>
+<codeline lineno="82" refid="structrko__lio_1_1core_1_1IntervalStats_1ad03a2f9676e4eb163dc180dd707fd26c" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1ad03a2f9676e4eb163dc180dd707fd26c" kindref="member">imu_count</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="structrko__lio_1_1core_1_1IntervalStats_1a682cba2042c0f98cd5b17004dd52d8ea" refkind="member"><highlight class="normal"><sp/><sp/>Eigen::Vector3d<sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a682cba2042c0f98cd5b17004dd52d8ea" kindref="member">angular_velocity_sum</ref><sp/>=<sp/>Eigen::Vector3d::Zero();</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88" refid="structrko__lio_1_1core_1_1IntervalStats_1a23ee5f222348a6a395d4ace02cdf33d9" refkind="member"><highlight class="normal"><sp/><sp/>Eigen::Vector3d<sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a23ee5f222348a6a395d4ace02cdf33d9" kindref="member">body_acceleration_sum</ref><sp/>=<sp/>Eigen::Vector3d::Zero();</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91" refid="structrko__lio_1_1core_1_1IntervalStats_1aec10e58e32b447b90cd6b8bc8c5a975f" refkind="member"><highlight class="normal"><sp/><sp/>Eigen::Vector3d<sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1aec10e58e32b447b90cd6b8bc8c5a975f" kindref="member">imu_acceleration_sum</ref><sp/>=<sp/>Eigen::Vector3d::Zero();</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="structrko__lio_1_1core_1_1IntervalStats_1ab34ab6019a0695a87893f2c100071f32" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1ab34ab6019a0695a87893f2c100071f32" kindref="member">imu_accel_mag_mean</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97" refid="structrko__lio_1_1core_1_1IntervalStats_1a47b5be39a7d1a13c64fdd8e4054702b2" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a47b5be39a7d1a13c64fdd8e4054702b2" kindref="member">welford_sum_of_squares</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105" refid="structrko__lio_1_1core_1_1IntervalStats_1a50a0e46cf910ee6928aec0fc93a1772b" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a50a0e46cf910ee6928aec0fc93a1772b" kindref="member">update</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3d&amp;<sp/>unbiased_ang_vel,</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3d&amp;<sp/>uncompensated_unbiased_accel,</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3d&amp;<sp/>compensated_accel)<sp/>{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>++<ref refid="structrko__lio_1_1core_1_1IntervalStats_1ad03a2f9676e4eb163dc180dd707fd26c" kindref="member">imu_count</ref>;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a682cba2042c0f98cd5b17004dd52d8ea" kindref="member">angular_velocity_sum</ref><sp/>+=<sp/>unbiased_ang_vel;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1aec10e58e32b447b90cd6b8bc8c5a975f" kindref="member">imu_acceleration_sum</ref><sp/>+=<sp/>uncompensated_unbiased_accel;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>previous_mean<sp/>=<sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1ab34ab6019a0695a87893f2c100071f32" kindref="member">imu_accel_mag_mean</ref>;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>accel_norm<sp/>=<sp/>uncompensated_unbiased_accel.norm();</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1ab34ab6019a0695a87893f2c100071f32" kindref="member">imu_accel_mag_mean</ref><sp/>+=<sp/>(accel_norm<sp/>-<sp/>previous_mean)<sp/>/<sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1ad03a2f9676e4eb163dc180dd707fd26c" kindref="member">imu_count</ref>;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a47b5be39a7d1a13c64fdd8e4054702b2" kindref="member">welford_sum_of_squares</ref><sp/>+=<sp/>(accel_norm<sp/>-<sp/>previous_mean)<sp/>*<sp/>(accel_norm<sp/>-<sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1ab34ab6019a0695a87893f2c100071f32" kindref="member">imu_accel_mag_mean</ref>);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a23ee5f222348a6a395d4ace02cdf33d9" kindref="member">body_acceleration_sum</ref><sp/>+=<sp/>compensated_accel;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122" refid="structrko__lio_1_1core_1_1IntervalStats_1a93353da910829b6fc1525b55d99fd280" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a93353da910829b6fc1525b55d99fd280" kindref="member">reset</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1ad03a2f9676e4eb163dc180dd707fd26c" kindref="member">imu_count</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a682cba2042c0f98cd5b17004dd52d8ea" kindref="member">angular_velocity_sum</ref>.setZero();</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a23ee5f222348a6a395d4ace02cdf33d9" kindref="member">body_acceleration_sum</ref>.setZero();</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1aec10e58e32b447b90cd6b8bc8c5a975f" kindref="member">imu_acceleration_sum</ref>.setZero();</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1ab34ab6019a0695a87893f2c100071f32" kindref="member">imu_accel_mag_mean</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a47b5be39a7d1a13c64fdd8e4054702b2" kindref="member">welford_sum_of_squares</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="130"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133" refid="structrko__lio_1_1core_1_1AccelInfo" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1AccelInfo" kindref="compound">AccelInfo</ref><sp/>{</highlight></codeline>
+<codeline lineno="135" refid="structrko__lio_1_1core_1_1AccelInfo_1a5c998a8898cf8363ad918163fc3d4860" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1AccelInfo_1a5c998a8898cf8363ad918163fc3d4860" kindref="member">accel_mag_variance</ref>;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/>Eigen::Vector3d<sp/>local_gravity_estimate;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="138"><highlight class="normal">};<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp"/>
   </compounddef>

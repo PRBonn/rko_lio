@@ -180,6 +180,49 @@
 <span class="w">  </span><span class="n">Vector3dVector</span><span class="w"> </span><span class="n">points</span><span class="p">;</span>
 <span class="p">};</span>
 
+<span class="k">struct</span><span class="w"> </span><span class="nc">IntervalStats</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">imu_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="w"> </span><span class="n">angular_velocity_sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">::</span><span class="n">Zero</span><span class="p">();</span>
+
+<span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="w"> </span><span class="n">body_acceleration_sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">::</span><span class="n">Zero</span><span class="p">();</span>
+
+<span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="w"> </span><span class="n">imu_acceleration_sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">::</span><span class="n">Zero</span><span class="p">();</span>
+
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">imu_accel_mag_mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">welford_sum_of_squares</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">unbiased_ang_vel</span><span class="p">,</span>
+<span class="w">              </span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">uncompensated_unbiased_accel</span><span class="p">,</span>
+<span class="w">              </span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">compensated_accel</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="o">++</span><span class="n">imu_count</span><span class="p">;</span>
+<span class="w">    </span><span class="n">angular_velocity_sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">unbiased_ang_vel</span><span class="p">;</span>
+<span class="w">    </span><span class="n">imu_acceleration_sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">uncompensated_unbiased_accel</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">previous_mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">imu_accel_mag_mean</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">accel_norm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uncompensated_unbiased_accel</span><span class="p">.</span><span class="n">norm</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">imu_accel_mag_mean</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="n">accel_norm</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">previous_mean</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">imu_count</span><span class="p">;</span>
+<span class="w">    </span><span class="n">welford_sum_of_squares</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="n">accel_norm</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">previous_mean</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">accel_norm</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">imu_accel_mag_mean</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">body_acceleration_sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">compensated_accel</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">reset</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">imu_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">angular_velocity_sum</span><span class="p">.</span><span class="n">setZero</span><span class="p">();</span>
+<span class="w">    </span><span class="n">body_acceleration_sum</span><span class="p">.</span><span class="n">setZero</span><span class="p">();</span>
+<span class="w">    </span><span class="n">imu_acceleration_sum</span><span class="p">.</span><span class="n">setZero</span><span class="p">();</span>
+<span class="w">    </span><span class="n">imu_accel_mag_mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">welford_sum_of_squares</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">AccelInfo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">accel_mag_variance</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="w"> </span><span class="n">local_gravity_estimate</span><span class="p">;</span>
+<span class="p">};</span>
 <span class="p">};</span><span class="w"> </span><span class="c1">// namespace rko_lio::core</span>
 </pre></div>
 </div>

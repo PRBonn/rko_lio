@@ -4,8 +4,6 @@
     <name>lio.hpp</name>
     <path>/home/runner/work/rko_lio/rko_lio/rko_lio/core/</path>
     <filename>lio_8hpp.html</filename>
-    <class kind="struct">rko_lio::core::AccelInfo</class>
-    <class kind="struct">rko_lio::core::IntervalStats</class>
     <class kind="class">rko_lio::core::LIO</class>
     <class kind="struct">rko_lio::core::LIO::Config</class>
     <namespace>rko_lio::core</namespace>

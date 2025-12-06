@@ -2,7 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="structrko__lio_1_1core_1_1AccelInfo" kind="struct" language="C++" prot="public">
     <compoundname>rko_lio::core::AccelInfo</compoundname>
-    <includes refid="lio_8hpp" local="no">lio.hpp</includes>
+    <includes refid="util_8hpp" local="no">util.hpp</includes>
     <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1AccelInfo_1a5c998a8898cf8363ad918163fc3d4860" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="40" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="40" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="135" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="135" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1AccelInfo_1ab7be49ea3197b57a929303e74d7f8913" prot="public" static="no" mutable="no">
         <type>Eigen::Vector3d</type>
@@ -31,15 +31,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="41" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="41" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="136" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="136" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
-<para>Return type for the acceleration Kalman filter containing gravity and variance estimates. </para>
+<para>Detail: return type for the acceleration Kalman filter containing gravity and variance estimates. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="38" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="38" bodyend="42"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="133" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="133" bodyend="137"/>
     <listofallmembers>
       <member refid="structrko__lio_1_1core_1_1AccelInfo_1a5c998a8898cf8363ad918163fc3d4860" prot="public" virt="non-virtual"><scope>rko_lio::core::AccelInfo</scope><name>accel_mag_variance</name></member>
       <member refid="structrko__lio_1_1core_1_1AccelInfo_1ab7be49ea3197b57a929303e74d7f8913" prot="public" virt="non-virtual"><scope>rko_lio::core::AccelInfo</scope><name>local_gravity_estimate</name></member>

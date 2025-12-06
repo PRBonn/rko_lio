@@ -66,9 +66,13 @@ Classes
 -------
 
 
+- :ref:`exhale_struct_structrko__lio_1_1core_1_1AccelInfo`
+
 - :ref:`exhale_struct_structrko__lio_1_1core_1_1ImuBias`
 
 - :ref:`exhale_struct_structrko__lio_1_1core_1_1ImuControl`
+
+- :ref:`exhale_struct_structrko__lio_1_1core_1_1IntervalStats`
 
 - :ref:`exhale_struct_structrko__lio_1_1core_1_1LidarFrame`
 

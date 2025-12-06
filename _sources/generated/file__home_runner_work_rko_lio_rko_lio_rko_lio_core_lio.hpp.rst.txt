@@ -75,10 +75,6 @@ Classes
 -------
 
 
-- :ref:`exhale_struct_structrko__lio_1_1core_1_1AccelInfo`
-
-- :ref:`exhale_struct_structrko__lio_1_1core_1_1IntervalStats`
-
 - :ref:`exhale_struct_structrko__lio_1_1core_1_1LIO_1_1Config`
 
 - :ref:`exhale_class_classrko__lio_1_1core_1_1LIO`

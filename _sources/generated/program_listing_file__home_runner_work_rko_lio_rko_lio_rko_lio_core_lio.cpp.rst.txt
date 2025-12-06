@@ -62,14 +62,6 @@ Program Listing for File lio.cpp
      std::transform(points.begin(), points.end(), points.begin(), [&](const auto& point) { return T * point; });
    }
    
-   inline Eigen::Vector3d compute_acceleration_cost_residual(const Eigen::Vector3d& local_gravity_estimate,
-                                                             const Sophus::SO3d& current_rotation) {
-     const Eigen::Vector3d predicted_gravity =
-         current_rotation.inverse() * (-1 * gravity()); // points upwards, same as local_gravity_estimate
-     const Eigen::Vector3d error = predicted_gravity - local_gravity_estimate;
-     return error;
-   }
-   
    using LinearSystem = std::tuple<Eigen::Matrix6d, Eigen::Vector6d, double>;
    LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose,
                                         const rko_lio::core::Vector3dVector& frame,
@@ -128,19 +120,15 @@ Program Listing for File lio.cpp
    
    LinearSystem build_orientation_linear_system(const Sophus::SE3d& current_pose,
                                                 const Eigen::Vector3d& local_gravity_estimate) {
-     auto calculate_acceleration_jacobian = [](const Sophus::SO3d& current_rotation) {
-       Eigen::Matrix3_6d J_ori = Eigen::Matrix3_6d::Zero();
-       J_ori.block<3, 3>(0, 3) = current_rotation.inverse().matrix() * Sophus::SO3d::hat(-1 * gravity()).matrix();
-       return J_ori;
-     };
+     const Sophus::SO3d& current_rotation = current_pose.so3();
+     const Eigen::Vector3d predicted_gravity =
+         current_rotation.inverse() * (-1 * gravity()); // points upwards, same as local_gravity_estimate
+     const Eigen::Vector3d residual = predicted_gravity - local_gravity_estimate;
    
-     const auto& [H_ori, b_ori, chi_ori] = std::invoke([&]() {
-       const Eigen::Vector3d residual = compute_acceleration_cost_residual(local_gravity_estimate, current_pose.so3());
-       const Eigen::Matrix3_6d J_ori = calculate_acceleration_jacobian(current_pose.so3());
-       return LinearSystem{J_ori.transpose() * J_ori, J_ori.transpose() * residual, residual.squaredNorm()};
-     });
+     Eigen::Matrix3_6d J_ori = Eigen::Matrix3_6d::Zero();
+     J_ori.block<3, 3>(0, 3) = current_rotation.inverse().matrix() * Sophus::SO3d::hat(-1 * gravity()).matrix();
    
-     return {H_ori, b_ori, 0.5 * chi_ori};
+     return LinearSystem{J_ori.transpose() * J_ori, J_ori.transpose() * residual, 0.5 * residual.squaredNorm()};
    }
    
    Sophus::SE3d icp(const Vector3dVector& frame,
@@ -294,7 +282,7 @@ Program Listing for File lio.cpp
      if (dt < 0.0) {
        // messages are out of sync. thats a problem, since we integrate gyro from last lidar time onwards
        std::cerr << "[WARNING] Received IMU message from the past. Can result in errors.\n";
-       // skip this imu reading?
+       // maybe skip this imu reading?
      }
    
      const Eigen::Vector3d unbiased_ang_vel = base_imu.angular_velocity - imu_bias.gyroscope;
@@ -359,9 +347,7 @@ Program Listing for File lio.cpp
    // ============================ lidar ===============================
    
    Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVector& timestamps) {
-     // TODO: redundant max compute as its available after process_timestamps. but changing the API of register scan
-     // requires significant modifications and a whole lot of new boilerplate for the pybind. i'm leaving this alone until
-     // i'm able to think of a better design
+     // TODO: redundant max compute as its available after process_timestamps
      const auto max = std::max_element(timestamps.cbegin(), timestamps.cend());
      const Secondsd current_lidar_time = *max;
    
