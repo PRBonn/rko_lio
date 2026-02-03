@@ -439,4 +439,61 @@ Vector3dVector LIO::register_scan(const Sophus::SE3d& extrinsic_lidar2base,
   transform_points(extrinsic_lidar2base.inverse(), frame);
   return frame;
 }
+
+void LIO::reset_to_origin(bool keep_map, bool keep_rotation) {
+  // NOTE: This function is NOT thread-safe. Caller must ensure proper locking.
+  
+  // Store current pose for map transformation
+  const Sophus::SE3d old_pose = lidar_state.pose;
+
+  // Reset pose based on keep_rotation flag
+  // - keep_rotation=true:  new_pose = (R_old, 0) - only translation reset
+  // - keep_rotation=false: new_pose = (I, 0)     - full identity reset
+  if (keep_rotation) {
+    lidar_state.pose.translation().setZero();
+  } else {
+    lidar_state.pose = Sophus::SE3d();
+  }
+
+  // Reset motion states
+  lidar_state.velocity.setZero();
+  lidar_state.angular_velocity.setZero();
+  lidar_state.linear_acceleration.setZero();
+  // Note: lidar_state.time is preserved for IMU synchronization
+
+  // Handle the local map
+  if (keep_map && !map.Empty()) {
+    // Transform map points: p_new = T_new * T_old^-1 * p_old
+    // When keep_rotation=true:  transform = (I, -t_old) - translation only
+    // When keep_rotation=false: transform = T_old^-1   - rotation + translation
+    const Sophus::SE3d transform = lidar_state.pose * old_pose.inverse();
+    Vector3dVector map_points = map.Pointcloud();
+    transform_points(transform, map_points);
+    map.Clear();
+    map.AddPoints(map_points);
+  } else {
+    map.Clear();
+  }
+
+  // Clear trajectory history
+  poses_with_timestamps.clear();
+
+  // Reset IMU integration state (sync with new pose orientation)
+  _imu_local_rotation = lidar_state.pose.so3();
+  // Note: _imu_local_rotation_time is preserved for timing continuity
+  // Note: imu_bias is preserved (assumed already calibrated)
+
+  // Reset body acceleration Kalman filter
+  mean_body_acceleration.setZero();
+  body_acceleration_covariance = Eigen::Matrix3d::Identity();
+
+  // Reset IMU interval statistics
+  interval_stats.reset();
+
+  // Record initial pose in new coordinate frame
+  poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
+
+  std::cout << "[INFO] Odometry reset to origin. keep_map=" << keep_map
+            << ", keep_rotation=" << keep_rotation << "\n";
+}
 } // namespace rko_lio::core

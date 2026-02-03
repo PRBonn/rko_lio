@@ -138,6 +138,15 @@ public:
   /** Sequence of registered scan poses with corresponding timestamps. */
   std::vector<std::pair<Secondsd, Sophus::SE3d>> poses_with_timestamps;
 
+  /**
+   * Reset odometry to use current pose as the new origin.
+   * @param keep_map If true, transform existing map to new coordinate frame.
+   *                 If false, clear the map entirely.
+   * @param keep_rotation If true, only reset translation (keep current orientation).
+   *                      If false, reset both rotation and translation.
+   */
+  void reset_to_origin(bool keep_map = false, bool keep_rotation = false);
+
 private:
   /**
    * Initialize internal odometry state using the given lidar timestamp.
