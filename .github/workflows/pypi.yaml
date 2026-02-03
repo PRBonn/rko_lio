@@ -17,17 +17,17 @@ jobs:
       - uses: actions/checkout@v6
       - name: Build test wheels (only PRs)
         if: github.event_name != 'release'
-        uses: pypa/cibuildwheel@v3.3.0
+        uses: pypa/cibuildwheel@v3.3.1
         env: # build 1 build per platform just to make sure we can do it later when releasing
           CIBW_BUILD: "cp312-*"
         with:
           package-dir: ${{github.workspace}}/
       - name: Build all wheels (release)
         if: github.event_name == 'release'
-        uses: pypa/cibuildwheel@v3.3.0
+        uses: pypa/cibuildwheel@v3.3.1
         with:
           package-dir: ${{github.workspace}}/
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           name: artifact-${{ matrix.os }}
           path: ./wheelhouse/*.whl
@@ -40,7 +40,7 @@ jobs:
     permissions:
       id-token: write
     steps:
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v7
         with:
           pattern: artifact*
           path: dist
