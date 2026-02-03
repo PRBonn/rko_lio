@@ -42,6 +42,7 @@
 #include <rclcpp/node_options.hpp>
 #include <sensor_msgs/msg/imu.hpp>
 #include <sensor_msgs/msg/point_cloud2.hpp>
+#include <std_srvs/srv/trigger.hpp>
 #include <tf2_ros/buffer.h>
 #include <tf2_ros/transform_broadcaster.h>
 #include <tf2_ros/transform_listener.h>
@@ -84,6 +85,9 @@ public:
   rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr map_publisher;
   rclcpp::Publisher<geometry_msgs::msg::AccelStamped>::SharedPtr lidar_accel_publisher;
 
+  // reset service
+  rclcpp::Service<std_srvs::srv::Trigger>::SharedPtr reset_service;
+
   // multithreading
   std::jthread map_publish_thead;
   core::Secondsd publish_map_after = std::chrono::seconds(1);
@@ -110,6 +114,8 @@ public:
   void publish_lidar_accel(const Eigen::Vector3d& acceleration, const core::Secondsd& stamp) const;
   void publish_map_loop();
   void dump_results_to_disk(const std::filesystem::path& results_dir, const std::string& run_name) const;
+  void reset_odometry_callback(const std::shared_ptr<std_srvs::srv::Trigger::Request> request,
+                               std::shared_ptr<std_srvs::srv::Trigger::Response> response);
 
   ~Node();
   Node(const Node&) = delete;
