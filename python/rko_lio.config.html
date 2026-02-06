@@ -173,15 +173,74 @@ For example, if timestamps are in microseconds, use <code class="docutils litera
 </dd>
 </dl>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.default_config">
-<span class="sig-name descname"><span class="pre">default_config</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'convergence_criterion':</span> <span class="pre">1e-05,</span> <span class="pre">'deskew':</span> <span class="pre">True,</span> <span class="pre">'double_downsample':</span> <span class="pre">True,</span> <span class="pre">'initialization_phase':</span> <span class="pre">False,</span> <span class="pre">'max_correspondance_distance':</span> <span class="pre">0.5,</span> <span class="pre">'max_expected_jerk':</span> <span class="pre">3.0,</span> <span class="pre">'max_iterations':</span> <span class="pre">100,</span> <span class="pre">'max_num_threads':</span> <span class="pre">0,</span> <span class="pre">'max_points_per_voxel':</span> <span class="pre">20,</span> <span class="pre">'max_range':</span> <span class="pre">100.0,</span> <span class="pre">'min_beta':</span> <span class="pre">200.0,</span> <span class="pre">'min_range':</span> <span class="pre">1.0,</span> <span class="pre">'voxel_size':</span> <span class="pre">1.0}</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.default_config" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.convergence_criterion">
+<span class="sig-name descname"><span class="pre">convergence_criterion</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-05</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.convergence_criterion" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.deskew">
+<span class="sig-name descname"><span class="pre">deskew</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.deskew" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.double_downsample">
+<span class="sig-name descname"><span class="pre">double_downsample</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.double_downsample" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.initialization_phase">
+<span class="sig-name descname"><span class="pre">initialization_phase</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.initialization_phase" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.max_correspondance_distance">
+<span class="sig-name descname"><span class="pre">max_correspondance_distance</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.5</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.max_correspondance_distance" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.max_expected_jerk">
+<span class="sig-name descname"><span class="pre">max_expected_jerk</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3.0</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.max_expected_jerk" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.max_iterations">
+<span class="sig-name descname"><span class="pre">max_iterations</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.max_iterations" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.max_num_threads">
+<span class="sig-name descname"><span class="pre">max_num_threads</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.max_num_threads" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.max_points_per_voxel">
+<span class="sig-name descname"><span class="pre">max_points_per_voxel</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">20</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.max_points_per_voxel" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.max_range">
+<span class="sig-name descname"><span class="pre">max_range</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100.0</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.max_range" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.min_beta">
+<span class="sig-name descname"><span class="pre">min_beta</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">200.0</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.min_beta" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.min_range">
+<span class="sig-name descname"><span class="pre">min_range</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.0</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.min_range" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rko_lio.config.LIOConfig.to_dict">
 <span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.config.LIOConfig.to_dict" title="Link to this definition">¶</a></dt>
-<dd><p>Return a dict version</p>
-</dd></dl>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.voxel_size">
+<span class="sig-name descname"><span class="pre">voxel_size</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.0</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.voxel_size" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -230,18 +289,27 @@ For example, if timestamps are in microseconds, use <code class="docutils litera
 
 <dl class="py class">
 <dt class="sig sig-object py" id="rko_lio.config.TimestampProcessingConfig">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">rko_lio.config.</span></span><span class="sig-name descname"><span class="pre">TimestampProcessingConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.config.TimestampProcessingConfig" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">rko_lio.config.</span></span><span class="sig-name descname"><span class="pre">TimestampProcessingConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">multiplier_to_seconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_absolute</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_relative</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.config.TimestampProcessingConfig" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_TimestampProcessingConfig</span></code></p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="rko_lio.config.TimestampProcessingConfig.default_config">
-<span class="sig-name descname"><span class="pre">default_config</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'force_absolute':</span> <span class="pre">False,</span> <span class="pre">'force_relative':</span> <span class="pre">False,</span> <span class="pre">'multiplier_to_seconds':</span> <span class="pre">0.0}</span></span><a class="headerlink" href="#rko_lio.config.TimestampProcessingConfig.default_config" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rko_lio.config.TimestampProcessingConfig.force_absolute">
+<span class="sig-name descname"><span class="pre">force_absolute</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></span><a class="headerlink" href="#rko_lio.config.TimestampProcessingConfig.force_absolute" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.TimestampProcessingConfig.force_relative">
+<span class="sig-name descname"><span class="pre">force_relative</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></span><a class="headerlink" href="#rko_lio.config.TimestampProcessingConfig.force_relative" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.TimestampProcessingConfig.multiplier_to_seconds">
+<span class="sig-name descname"><span class="pre">multiplier_to_seconds</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></span><a class="headerlink" href="#rko_lio.config.TimestampProcessingConfig.multiplier_to_seconds" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rko_lio.config.TimestampProcessingConfig.to_dict">
 <span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.config.TimestampProcessingConfig.to_dict" title="Link to this definition">¶</a></dt>
-<dd><p>Return a dict version</p>
-</dd></dl>
+<dd></dd></dl>
 
 </dd></dl>
 
