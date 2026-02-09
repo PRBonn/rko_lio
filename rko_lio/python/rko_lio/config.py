@@ -70,6 +70,7 @@ Description of parameters
     First, absolute timestamps are checked for. Then, relative. If the heuristics are still not satisfied, then the above described error is thrown.
 """
 
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
 from .rko_lio_pybind import (
@@ -79,33 +80,20 @@ from .rko_lio_pybind import (
 from .util import quat_xyzw_xyz_to_transform, transform_to_quat_xyzw_xyz
 
 
+@dataclass
 class TimestampProcessingConfig(_TimestampProcessingConfig):
+    multiplier_to_seconds: float = 0.0
+    force_absolute: bool = False
+    force_relative: bool = False
 
-    default_config = {
-        "multiplier_to_seconds": 0.0,
-        "force_absolute": False,
-        "force_relative": False,
-    }
-
-    def __init__(self, **kwargs):
-        """kwargs should match the keys expected in default_config"""
+    def __post_init__(self):
         super().__init__()
-        cfg = dict(self.default_config)
-        cfg.update(kwargs)
-        for k, v in cfg.items():
-            setattr(self, k, v)
 
     def to_dict(self):
-        """Return a dict version"""
-        return {k: getattr(self, k) for k in self.default_config.keys()}
-
-    def __repr__(self):
-        attrs = ", ".join(
-            f"{k}={getattr(self, k)!r}" for k in self.default_config.keys()
-        )
-        return f"TimestampProcessingConfig({attrs})"
+        return asdict(self)
 
 
+@dataclass
 class LIOConfig(_LIOConfig):
     """
     LIO configuration options.
@@ -140,39 +128,25 @@ class LIOConfig(_LIOConfig):
         Minimum scaling on the orientation regularisation weight. Set to -1 to disable the cost.
     """
 
-    default_config = {
-        "deskew": True,
-        "max_iterations": 100,
-        "voxel_size": 1.0,
-        "max_points_per_voxel": 20,
-        "max_range": 100.0,
-        "min_range": 1.0,
-        "convergence_criterion": 1e-5,
-        "max_correspondance_distance": 0.5,
-        "max_num_threads": 0,
-        "initialization_phase": False,
-        "max_expected_jerk": 3.0,
-        "double_downsample": True,
-        "min_beta": 200.0,
-    }
+    deskew: bool = True
+    max_iterations: int = 100
+    voxel_size: float = 1.0
+    max_points_per_voxel: int = 20
+    max_range: float = 100.0
+    min_range: float = 1.0
+    convergence_criterion: float = 1e-5
+    max_correspondance_distance: float = 0.5
+    max_num_threads: int = 0
+    initialization_phase: bool = False
+    max_expected_jerk: float = 3.0
+    double_downsample: bool = True
+    min_beta: float = 200.0
 
-    def __init__(self, **kwargs):
-        """kwargs should match the keys expected in default_config"""
+    def __post_init__(self):
         super().__init__()
-        cfg = dict(self.default_config)
-        cfg.update(kwargs)
-        for k, v in cfg.items():
-            setattr(self, k, v)
 
     def to_dict(self):
-        """Return a dict version"""
-        return {k: getattr(self, k) for k in self.default_config.keys()}
-
-    def __repr__(self):
-        attrs = ", ".join(
-            f"{k}={getattr(self, k)!r}" for k in self.default_config.keys()
-        )
-        return f"LIOConfig({attrs})"
+        return asdict(self)
 
 
 class PipelineConfig:
@@ -218,9 +192,7 @@ class PipelineConfig:
             self.lio = lio
         else:
             # collect any keys from kwargs intended for LIOConfig
-            lio_args = {
-                k: v for k, v in kwargs.items() if k in LIOConfig.default_config
-            }
+            lio_args = {k: v for k, v in kwargs.items() if k in LIOConfig().to_dict()}
             self.lio = LIOConfig(**lio_args)
 
         # ---- build TimestampProcessing subconfig ----
@@ -232,7 +204,7 @@ class PipelineConfig:
             ts_args = {
                 k: v
                 for k, v in kwargs.items()
-                if k in TimestampProcessingConfig.default_config
+                if k in TimestampProcessingConfig().to_dict()
             }
             self.timestamps = TimestampProcessingConfig(**ts_args)
 
@@ -289,9 +261,9 @@ class PipelineConfig:
         # or should not be specified in a user config
         d.pop("viz")
         d.pop("viz_every_n_frames")
-        d["lio"] = dict(LIOConfig.default_config)
+        d["lio"] = LIOConfig().to_dict()
         if include_timestamps:
-            d["timestamps"] = dict(TimestampProcessingConfig.default_config)
+            d["timestamps"] = TimestampProcessingConfig().to_dict()
         return d
 
     def __repr__(self):
