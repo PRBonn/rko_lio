@@ -9,3 +9,4 @@ I don't really have a good structure for these pages yet, but they still might c
 
    Core library <core>
    LiDAR timestamps <lidar_timestamps>
+   RA-L Supplementary Material <supplementary_material>
