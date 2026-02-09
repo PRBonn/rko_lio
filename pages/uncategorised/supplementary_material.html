@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>RA-L Supplementary Material &#8212; RKO-LIO: Lidar-inertial odometry without sensor-specific modeling</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=f6a572b4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=56c4699f" />
+    <script src="../../_static/documentation_options.js?v=938c9ccc"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="LICENSE" href="../../__LICENSE.html" />
+    <link rel="prev" title="Timestamp Processing" href="lidar_timestamps.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">RKO-LIO</a></h1>
+
+
+
+<p class="blurb">Lidar-inertial odometry</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=PRBonn&repo=rko_lio&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../primer.html">Primer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ros/ros.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config.html">Configuring rko_lio</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Uncategorised</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="core.html">Core library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lidar_timestamps.html">LiDAR timestamps</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">RA-L Supplementary Material</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../__LICENSE.html">License</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://index.ros.org/p/rko_lio/">ROS Index</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/rko-lio/">PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://github.com/PRBonn/rko_lio">GitHub</a></li>
+    
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="ra-l-supplementary-material">
+<h1>RA-L Supplementary Material<a class="headerlink" href="#ra-l-supplementary-material" title="Link to this heading">¶</a></h1>
+<section id="system-pipeline">
+<h2>System Pipeline<a class="headerlink" href="#system-pipeline" title="Link to this heading">¶</a></h2>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../../_images/pipeline.png"><img alt="System Pipeline Schematic" src="../../_images/pipeline.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Fig 1:</strong> Pipeline of the LiDAR-inertial odometry system.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The motion model computes average acceleration <span class="math notranslate nohighlight">\(\bar{\mathbf{a}}\)</span> and angular velocity <span class="math notranslate nohighlight">\(\bar{\boldsymbol{\omega}}\)</span> for the window of IMU measurements between two LiDAR scans. These control inputs are used to deskew the incoming LiDAR scan <span class="math notranslate nohighlight">\(\mathcal{P}\)</span> into the deskewed scan <span class="math notranslate nohighlight">\(\mathcal{P}^*\)</span>.</p>
+<p>The deskewed scan is first downsampled to <span class="math notranslate nohighlight">\(\mathcal{P}^*_{merge}\)</span> (which is later used to update the map). An optional second downsampling step produces <span class="math notranslate nohighlight">\(\mathcal{Q}\)</span>; if this second step is disabled, <span class="math notranslate nohighlight">\(\mathcal{Q} = \mathcal{P}^*_{merge}\)</span>.</p>
+<p>For registration, <span class="math notranslate nohighlight">\(\mathcal{Q}\)</span> is matched against the VDB-based map by computing data associations via a nearest neighbor search with an association threshold. The motion model provides the initial guess for the first iteration of the optimization, while subsequent iterations use the current best estimate.</p>
+<p>The iterative optimization minimizes a joint cost: an ICP cost from the associations, and an orientation regularization cost. The final estimated pose <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> (after convergence) is used to transform <span class="math notranslate nohighlight">\(\mathcal{P}^*_{merge}\)</span> and update the map.</p>
+</section>
+<section id="trajectory-plots">
+<h2>Trajectory Plots<a class="headerlink" href="#trajectory-plots" title="Link to this heading">¶</a></h2>
+<p>In this section, we present trajectory plots using <code class="docutils literal notranslate"><span class="pre">evo_ape</span></code> (Absolute Pose Error). The trajectories are colored based on error magnitude, where “hotter” colors (reds/yellows) indicate higher error.</p>
+<section id="oxford-spires-radcliffe">
+<h3>Oxford Spires (Radcliffe)<a class="headerlink" href="#oxford-spires-radcliffe" title="Link to this heading">¶</a></h3>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../../_images/oxfs_radcliffe_02_no_ar.png"><img alt="Oxford Spires Radcliffe - No AR" src="../../_images/oxfs_radcliffe_02_no_ar.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Fig 2:</strong> Odometry result when adaptive regularization is disabled (<code class="docutils literal notranslate"><span class="pre">-AR</span></code> ablation in the paper) on Oxford Spires Radcliffe sequence.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../../_images/oxfs_radcliffe_02_full.png"><img alt="Oxford Spires Radcliffe - Full System" src="../../_images/oxfs_radcliffe_02_full.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Fig 3:</strong> Full odometry system result (<code class="docutils literal notranslate"><span class="pre">Ours</span></code> ablation in the paper) on Oxford Spires Radcliffe sequence.</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Shown above are two trajectory results when ablating the performance of the odometry system. The color scale represents the APE error. Please note that the range of error (color bar scale) is different in both plots; the full system trajectory has a lower total error than the no-regularization version. From this comparison, it can be seen that the full system (<code class="docutils literal notranslate"><span class="pre">Ours</span></code>) performs better on this sequence.</p>
+</section>
+<section id="car-dataset-urban">
+<h3>Car Dataset (Urban)<a class="headerlink" href="#car-dataset-urban" title="Link to this heading">¶</a></h3>
+<figure class="align-default" id="id4">
+<a class="reference internal image-reference" href="../../_images/ipbcar_urban_no_ar.png"><img alt="Car Urban - No AR" src="../../_images/ipbcar_urban_no_ar.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Fig 4:</strong> Odometry result when adaptive regularization is disabled (<code class="docutils literal notranslate"><span class="pre">-AR</span></code> ablation in the paper) on Car (Urban) sequence.</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id5">
+<a class="reference internal image-reference" href="../../_images/ipbcar_urban_full.png"><img alt="Car Urban - Full System" src="../../_images/ipbcar_urban_full.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Fig 5:</strong> Full odometry system result (<code class="docutils literal notranslate"><span class="pre">Ours</span></code> ablation in the paper) on Car (Urban) sequence.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Similar to the Oxford Spires results, we once again see the full system performs (<code class="docutils literal notranslate"><span class="pre">Ours</span></code>) better than the ablated version (<code class="docutils literal notranslate"><span class="pre">-AR</span></code>). Additionally, when looking at the individual axes plots below, the specific benefits become clearer.</p>
+<figure class="align-default" id="id6">
+<a class="reference internal image-reference" href="../../_images/ipbcar_urban_comp_z.png"><img alt="Car Urban - Z Axis Comparison" src="../../_images/ipbcar_urban_comp_z.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Fig 6:</strong> Comparison of Z-axis trajectory estimates on Car (Urban) sequence. (Blue) No adaptive regularization corresponds to the <code class="docutils literal notranslate"><span class="pre">-AR</span></code> ablation in the paper. (Green) Full system corresponds to the <code class="docutils literal notranslate"><span class="pre">Ours</span></code> ablation in the paper.</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>We can see that while the performance on X and Y across the full trajectory might be similar between ablations, there is noticeably less Z-axis drift in the full system version. Please note that “No adaptive regularization (blue)” corresponds to the <code class="docutils literal notranslate"><span class="pre">-AR</span></code> ablation and “Full system (green)” corresponds to the <code class="docutils literal notranslate"><span class="pre">Ours</span></code> ablation.</p>
+</section>
+<section id="car-dataset-rural">
+<h3>Car Dataset (Rural)<a class="headerlink" href="#car-dataset-rural" title="Link to this heading">¶</a></h3>
+<p>This behavior of reduced vertical drift is seen across other sequences as well. Below we examine the rural sequence.</p>
+<figure class="align-default" id="id7">
+<a class="reference internal image-reference" href="../../_images/ipbcar_rural_comp_z_zoomed.png"><img alt="Car Rural - Z Axis Zoomed" src="../../_images/ipbcar_rural_comp_z_zoomed.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Fig 7:</strong> Zoomed view of Z-axis trajectory estimates on the Car (Rural) sequence. (Blue) No adaptive regularization corresponds to the <code class="docutils literal notranslate"><span class="pre">-AR</span></code> ablation in the paper. (Green) Full system corresponds to the <code class="docutils literal notranslate"><span class="pre">Ours</span></code> ablation in the paper.</span><a class="headerlink" href="#id7" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Here we have zoomed into the start of the trajectory results on the 50 km long rural sequence data. We observe a similar behavior where the Z drift is reduced by enabling the adaptive regularization in the full system (green, corresponds to <code class="docutils literal notranslate"><span class="pre">Ours</span></code> ablation).</p>
+<figure class="align-default" id="id8">
+<a class="reference internal image-reference" href="../../_images/ipbcar_rural_comp_xy_multiple_methods.png"><img alt="Car Rural - Multiple Methods Comparison" src="../../_images/ipbcar_rural_comp_xy_multiple_methods.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Fig 8:</strong> Trajectory comparison of multiple methods on the Car (Rural) sequence.</span><a class="headerlink" href="#id8" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Here we plot the full XY trajectory results from all the methods which successfully ran on the rural sequence. The trajectories have been aligned (using Umeyama alignment) to the reference trajectory, which is defined in a GPS coordinate frame. Each approach experiences significant drift on this 50 km long sequence, and as a consequence of the alignment process, the trajectories appear well-aligned near the middle of the sequence but drift at the ends. Nevertheless, we see that our approach (red) is the one that remains closest to the reference trajectory overall.</p>
+</section>
+</section>
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="lidar_timestamps.html" title="Previous document">Timestamp Processing</a>
+        </li>
+        <li>
+          <a href="../../__LICENSE.html" title="Next document">LICENSE</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &#169;2026 Meher Malladi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/pages/uncategorised/supplementary_material.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
