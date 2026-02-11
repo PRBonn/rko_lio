@@ -94,6 +94,7 @@
     <member refid="classrko__lio_1_1ros_1_1Node_1aac4f67a35fae666c0d2dcd77a22f6b03" kind="variable"><name>odom_frame</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1acce2f87faae8959c5b59f484b81be878" kind="variable"><name>odom_topic</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1af6a1630f6d2d17ba44b225e6be11b72d" kind="variable"><name>map_topic</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1a26dce0012524bf500c0b405db31046ca" kind="variable"><name>deskewed_scan_topic</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1a167a6a5a34cdd635ce3a32ee2cf581f3" kind="variable"><name>dump_results</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1a145e14aaf7041beb7bed45fcf7041ba4" kind="variable"><name>results_dir</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1adbc985d64440f596a5cea959dd13ad7e" kind="variable"><name>run_name</name></member>

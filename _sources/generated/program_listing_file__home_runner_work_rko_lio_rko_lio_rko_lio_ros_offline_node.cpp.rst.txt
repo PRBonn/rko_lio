@@ -92,7 +92,7 @@ Program Listing for File offline_node.cpp
                                                     std::make_shared<utils::BufferableBag::TFBridge>(node),
                                                     std::vector<std::string>{imu_topic, lidar_topic}, skip_to_time);
        total_bag_msgs = bag->message_count();
-       bag_progress_publisher = node->create_publisher<std_msgs::msg::Float32MultiArray>("/rko_lio/bag_progress", 10);
+       bag_progress_publisher = node->create_publisher<std_msgs::msg::Float32MultiArray>("rko_lio/bag_progress", 10);
      }
    
      void run() {
