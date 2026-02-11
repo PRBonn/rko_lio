@@ -149,7 +149,7 @@ Node::Node(const std::string& node_name, const rclcpp::NodeOptions& options) {
                          << " ) and acceleration "
                             "estimates to rko_lio/lidar_acceleration. Deskewing is "
                          << (lio->config.deskew ? "enabled" : "disabled") << "."
-                         << (publish_deskewed_scan ? (" Publishing deskewed_cloud to " << deskewed_scan_topic << ".")
+                         << (publish_deskewed_scan ? (" Publishing deskewed_cloud to " + deskewed_scan_topic + ".")
                                                    : ""));
 
   // disk logging
