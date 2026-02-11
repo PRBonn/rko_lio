@@ -89,17 +89,18 @@ Node::Node(const std::string& node_name, const rclcpp::NodeOptions& options) {
   publish_lidar_acceleration = node->declare_parameter<bool>("publish_lidar_acceleration", publish_lidar_acceleration);
   if (publish_lidar_acceleration) {
     lidar_accel_publisher =
-        node->create_publisher<geometry_msgs::msg::AccelStamped>("/rko_lio/lidar_acceleration", publisher_qos);
+        node->create_publisher<geometry_msgs::msg::AccelStamped>("rko_lio/lidar_acceleration", publisher_qos);
   }
 
   publish_deskewed_scan = node->declare_parameter<bool>("publish_deskewed_scan", publish_deskewed_scan);
   if (publish_deskewed_scan) {
-    frame_publisher = node->create_publisher<sensor_msgs::msg::PointCloud2>("/rko_lio/frame", publisher_qos);
+    deskewed_scan_topic = node->declare_parameter<std::string>("deskewed_scan_topic", deskewed_scan_topic);
+    frame_publisher = node->create_publisher<sensor_msgs::msg::PointCloud2>(deskewed_scan_topic, publisher_qos);
   }
 
   publish_local_map = node->declare_parameter<bool>("publish_local_map", publish_local_map);
   if (publish_local_map) {
-    map_topic = node->declare_parameter<std::string>("map_topic", "/rko_lio/local_map");
+    map_topic = node->declare_parameter<std::string>("map_topic", map_topic);
     publish_map_after = core::Secondsd(node->declare_parameter<double>("publish_map_after", publish_map_after.count()));
     map_publisher = node->create_publisher<sensor_msgs::msg::PointCloud2>(map_topic, publisher_qos);
     map_publish_thead = std::jthread([this]() { publish_map_loop(); });
@@ -146,9 +147,10 @@ Node::Node(const std::string& node_name, const rclcpp::NodeOptions& options) {
                          << ". Max number of threads: " << lio_config.max_num_threads << ". Publishing odometry to "
                          << odom_topic << " ( " << odom_frame
                          << " ) and acceleration "
-                            "estimates to /rko_lio/lidar_acceleration. Deskewing is "
+                            "estimates to rko_lio/lidar_acceleration. Deskewing is "
                          << (lio->config.deskew ? "enabled" : "disabled") << "."
-                         << (publish_deskewed_scan ? " Publishing deskewed_cloud to /rko_lio/frame." : ""));
+                         << (publish_deskewed_scan ? (" Publishing deskewed_cloud to " + deskewed_scan_topic + ".")
+                                                   : ""));
 
   // disk logging
   dump_results = node->declare_parameter<bool>("dump_results", dump_results);

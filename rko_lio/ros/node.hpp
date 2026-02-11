@@ -59,8 +59,9 @@ public:
   std::string lidar_frame = ""; // default: get from the first lidar message
   std::string base_frame;
   std::string odom_frame = "odom";
-  std::string odom_topic = "/rko_lio/odometry";
-  std::string map_topic = "/rko_lio/local_map";
+  std::string odom_topic = "rko_lio/odometry";
+  std::string map_topic = "rko_lio/local_map";
+  std::string deskewed_scan_topic = "rko_lio/frame";
 
   bool dump_results = false;
   std::string results_dir = "results";

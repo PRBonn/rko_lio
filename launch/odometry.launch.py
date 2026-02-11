@@ -30,10 +30,6 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, OpaqueFunction
 from launch.substitutions import LaunchConfiguration
 
-# import logging
-# logging.root.setLevel(logging.DEBUG)
-
-
 offline_only_parameters = [
     {
         "name": "bag_path",
@@ -85,7 +81,7 @@ configurable_parameters = [
     },
     {
         "name": "odom_topic",
-        "default": "/rko_lio/odometry",
+        "default": "rko_lio/odometry",
         "description": "Odometry topic name",
     },
     {
@@ -102,7 +98,7 @@ configurable_parameters = [
     },
     {
         "name": "map_topic",
-        "default": "/rko_lio/local_map",
+        "default": "rko_lio/local_map",
         "description": "Local map topic. Published if publish_local_map is true",
     },
     {
@@ -115,7 +111,7 @@ configurable_parameters = [
         "name": "publish_lidar_acceleration",
         "default": "False",
         "type": "bool",
-        "description": "Publish the linear acceleration of the `base_frame` expressed in `base_frame` coordinates. Note that this acceleration can be quite noisy, as it is essentially a double time derivative of the pose update from the lidar scan registration (similar to the twist/velocity in the odometry topic). The topic name is /rko_lio/lidar_acceleration.",
+        "description": "Publish the linear acceleration of the `base_frame` expressed in `base_frame` coordinates. Note that this acceleration can be quite noisy, as it is essentially a double time derivative of the pose update from the lidar scan registration (similar to the twist/velocity in the odometry topic). The topic name is rko_lio/lidar_acceleration.",
     },
     # lio parameters
     {
@@ -171,6 +167,11 @@ configurable_parameters = [
         "default": "false",
         "type": "bool",
         "description": "Publish deskewed scan for visualization",
+    },
+    {
+        "name": "deskewed_scan_topic",
+        "default": "rko_lio/frame",
+        "description": "Deskewed scan topic. Published if publish_deskewed_scan is true",
     },
     {
         "name": "initialization_phase",
