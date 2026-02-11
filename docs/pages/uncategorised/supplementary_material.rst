@@ -33,7 +33,7 @@ Oxford Spires (Radcliffe)
    :width: 100%
    :alt: Oxford Spires Radcliffe - No AR
 
-   **Fig 2:** Odometry result when adaptive regularization is disabled (``-AR`` ablation in the paper) on Oxford Spires Radcliffe sequence.
+   **Fig 2:** Odometry result when adaptive regularization is disabled (``no-AR`` ablation in the paper) on Oxford Spires Radcliffe sequence.
 
 .. figure:: images/oxfs_radcliffe_02_full.png
    :width: 100%
@@ -50,7 +50,7 @@ Car Dataset (Urban)
    :width: 100%
    :alt: Car Urban - No AR
 
-   **Fig 4:** Odometry result when adaptive regularization is disabled (``-AR`` ablation in the paper) on Car (Urban) sequence.
+   **Fig 4:** Odometry result when adaptive regularization is disabled (``no-AR`` ablation in the paper) on Car (Urban) sequence.
 
 .. figure:: images/ipbcar_urban_full.png
    :width: 100%
@@ -58,7 +58,7 @@ Car Dataset (Urban)
 
    **Fig 5:** Full odometry system result (``Ours`` ablation in the paper) on Car (Urban) sequence.
 
-Similar to the Oxford Spires results, we once again see the full system performs (``Ours``) better than the ablated version (``-AR``).
+Similar to the Oxford Spires results, we once again see the full system performs (``Ours``) better than the ablated version (``no-AR``).
 
 Car Dataset (Rural)
 ^^^^^^^^^^^^^^^^^^^
