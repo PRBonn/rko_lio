@@ -151,32 +151,15 @@
 <p><span class="caption-text"><strong>Fig 5:</strong> Full odometry system result (<code class="docutils literal notranslate"><span class="pre">Ours</span></code> ablation in the paper) on Car (Urban) sequence.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>Similar to the Oxford Spires results, we once again see the full system performs (<code class="docutils literal notranslate"><span class="pre">Ours</span></code>) better than the ablated version (<code class="docutils literal notranslate"><span class="pre">-AR</span></code>). Additionally, when looking at the individual axes plots below, the specific benefits become clearer.</p>
-<figure class="align-default" id="id6">
-<a class="reference internal image-reference" href="../../_images/ipbcar_urban_comp_z.png"><img alt="Car Urban - Z Axis Comparison" src="../../_images/ipbcar_urban_comp_z.png" style="width: 100%;" />
-</a>
-<figcaption>
-<p><span class="caption-text"><strong>Fig 6:</strong> Comparison of Z-axis trajectory estimates on Car (Urban) sequence. (Blue) No adaptive regularization corresponds to the <code class="docutils literal notranslate"><span class="pre">-AR</span></code> ablation in the paper. (Green) Full system corresponds to the <code class="docutils literal notranslate"><span class="pre">Ours</span></code> ablation in the paper.</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
-</figcaption>
-</figure>
-<p>We can see that while the performance on X and Y across the full trajectory might be similar between ablations, there is noticeably less Z-axis drift in the full system version. Please note that “No adaptive regularization (blue)” corresponds to the <code class="docutils literal notranslate"><span class="pre">-AR</span></code> ablation and “Full system (green)” corresponds to the <code class="docutils literal notranslate"><span class="pre">Ours</span></code> ablation.</p>
+<p>Similar to the Oxford Spires results, we once again see the full system performs (<code class="docutils literal notranslate"><span class="pre">Ours</span></code>) better than the ablated version (<code class="docutils literal notranslate"><span class="pre">-AR</span></code>).</p>
 </section>
 <section id="car-dataset-rural">
 <h3>Car Dataset (Rural)<a class="headerlink" href="#car-dataset-rural" title="Link to this heading">¶</a></h3>
-<p>This behavior of reduced vertical drift is seen across other sequences as well. Below we examine the rural sequence.</p>
-<figure class="align-default" id="id7">
-<a class="reference internal image-reference" href="../../_images/ipbcar_rural_comp_z_zoomed.png"><img alt="Car Rural - Z Axis Zoomed" src="../../_images/ipbcar_rural_comp_z_zoomed.png" style="width: 100%;" />
-</a>
-<figcaption>
-<p><span class="caption-text"><strong>Fig 7:</strong> Zoomed view of Z-axis trajectory estimates on the Car (Rural) sequence. (Blue) No adaptive regularization corresponds to the <code class="docutils literal notranslate"><span class="pre">-AR</span></code> ablation in the paper. (Green) Full system corresponds to the <code class="docutils literal notranslate"><span class="pre">Ours</span></code> ablation in the paper.</span><a class="headerlink" href="#id7" title="Link to this image">¶</a></p>
-</figcaption>
-</figure>
-<p>Here we have zoomed into the start of the trajectory results on the 50 km long rural sequence data. We observe a similar behavior where the Z drift is reduced by enabling the adaptive regularization in the full system (green, corresponds to <code class="docutils literal notranslate"><span class="pre">Ours</span></code> ablation).</p>
-<figure class="align-default" id="id8">
+<figure class="align-default" id="id6">
 <a class="reference internal image-reference" href="../../_images/ipbcar_rural_comp_xy_multiple_methods.png"><img alt="Car Rural - Multiple Methods Comparison" src="../../_images/ipbcar_rural_comp_xy_multiple_methods.png" style="width: 100%;" />
 </a>
 <figcaption>
-<p><span class="caption-text"><strong>Fig 8:</strong> Trajectory comparison of multiple methods on the Car (Rural) sequence.</span><a class="headerlink" href="#id8" title="Link to this image">¶</a></p>
+<p><span class="caption-text"><strong>Fig 8:</strong> Trajectory comparison of multiple methods on the Car (Rural) sequence.</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Here we plot the full XY trajectory results from all the methods which successfully ran on the rural sequence. The trajectories have been aligned (using Umeyama alignment) to the reference trajectory, which is defined in a GPS coordinate frame. Each approach experiences significant drift on this 50 km long sequence, and as a consequence of the alignment process, the trajectories appear well-aligned near the middle of the sequence but drift at the ends. Nevertheless, we see that our approach (red) is the one that remains closest to the reference trajectory overall.</p>
