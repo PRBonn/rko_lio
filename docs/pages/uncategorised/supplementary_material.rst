@@ -58,28 +58,10 @@ Car Dataset (Urban)
 
    **Fig 5:** Full odometry system result (``Ours`` ablation in the paper) on Car (Urban) sequence.
 
-Similar to the Oxford Spires results, we once again see the full system performs (``Ours``) better than the ablated version (``-AR``). Additionally, when looking at the individual axes plots below, the specific benefits become clearer.
-
-.. figure:: images/ipbcar_urban_comp_z.png
-   :width: 100%
-   :alt: Car Urban - Z Axis Comparison
-
-   **Fig 6:** Comparison of Z-axis trajectory estimates on Car (Urban) sequence. (Blue) No adaptive regularization corresponds to the ``-AR`` ablation in the paper. (Green) Full system corresponds to the ``Ours`` ablation in the paper.
-
-We can see that while the performance on X and Y across the full trajectory might be similar between ablations, there is noticeably less Z-axis drift in the full system version. Please note that "No adaptive regularization (blue)" corresponds to the ``-AR`` ablation and "Full system (green)" corresponds to the ``Ours`` ablation.
+Similar to the Oxford Spires results, we once again see the full system performs (``Ours``) better than the ablated version (``-AR``).
 
 Car Dataset (Rural)
 ^^^^^^^^^^^^^^^^^^^
-
-This behavior of reduced vertical drift is seen across other sequences as well. Below we examine the rural sequence.
-
-.. figure:: images/ipbcar_rural_comp_z_zoomed.png
-   :width: 100%
-   :alt: Car Rural - Z Axis Zoomed
-
-   **Fig 7:** Zoomed view of Z-axis trajectory estimates on the Car (Rural) sequence. (Blue) No adaptive regularization corresponds to the ``-AR`` ablation in the paper. (Green) Full system corresponds to the ``Ours`` ablation in the paper.
-
-Here we have zoomed into the start of the trajectory results on the 50 km long rural sequence data. We observe a similar behavior where the Z drift is reduced by enabling the adaptive regularization in the full system (green, corresponds to ``Ours`` ablation).
 
 .. figure:: images/ipbcar_rural_comp_xy_multiple_methods.png
    :width: 100%
