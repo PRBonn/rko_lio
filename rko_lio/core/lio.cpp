@@ -393,6 +393,15 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
 
   const auto& preproc_result = preprocess_scan(scan, timestamps, current_lidar_time, relative_pose_at_time, config);
 
+  if (preproc_result.keypoints.size() < 10) {
+    const std::string error_msg =
+        "Keypoints for ICP registration = " + std::to_string(preproc_result.keypoints.size()) +
+        ", this is too little for ICP and likely unintended. Input scan size = " + std::to_string(scan.size()) +
+        ". Config voxel size = " + std::to_string(config.voxel_size) +
+        ". Either the input scan is corrupt (empty) or the downsampling is too aggressive.";
+    throw std::invalid_argument(error_msg);
+  }
+
   if (!map.Empty()) {
     SCOPED_PROFILER("ICP");
     const Sophus::SE3d optimized_pose = icp(preproc_result.keypoints, map, initial_guess, config, accel_filter_info);
