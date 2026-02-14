@@ -45,6 +45,7 @@ target_link_libraries(
          ${nav_msgs_TARGETS}
          ${sensor_msgs_TARGETS}
          ${std_msgs_TARGETS}
+         ${std_srvs_TARGETS}
          rclcpp::rclcpp
          sensor_msgs::sensor_msgs_library
          tf2::tf2

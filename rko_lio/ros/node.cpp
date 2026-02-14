@@ -167,6 +167,11 @@ Node::Node(const std::string& node_name, const rclcpp::NodeOptions& options) {
 
   registration_thread = std::jthread([this]() { registration_loop(); });
 
+  // Reset odometry service
+  reset_service = node->create_service<std_srvs::srv::Trigger>(
+      "/rko_lio/reset_odometry",
+      std::bind(&Node::reset_odometry_callback, this, std::placeholders::_1, std::placeholders::_2));
+
   RCLCPP_INFO(node->get_logger(), "RKO LIO Node is up!");
 }
 
@@ -175,6 +180,9 @@ void Node::parse_cli_extrinsics() {
     const std::string param_name = "extrinsic_" + name + "2base_quat_xyzw_xyz";
     const std::vector<double> vec = node->declare_parameter<std::vector<double>>(param_name, std::vector<double>{});
 
+    RCLCPP_INFO_STREAM(node->get_logger(), "Parsing " << name << " extrinsic from parameter " << param_name);
+    // print vec value 
+    RCLCPP_INFO_STREAM(node->get_logger(), "vec value: " << Eigen::Map<const Eigen::VectorXd>(vec.data(), vec.size()).transpose());
     if (vec.size() != 7) {
       if (!vec.empty()) {
         RCLCPP_WARN_STREAM(node->get_logger(),
@@ -196,6 +204,7 @@ void Node::parse_cli_extrinsics() {
   const bool imu_ok = parse_extrinsic("imu", extrinsic_imu2base);
   const bool lidar_ok = parse_extrinsic("lidar", extrinsic_lidar2base);
   extrinsics_set = imu_ok && lidar_ok;
+  RCLCPP_INFO_STREAM(node->get_logger(), "extrinsics_set status " << extrinsics_set);
 }
 
 bool Node::check_and_set_extrinsics() {
@@ -431,6 +440,33 @@ void Node::dump_results_to_disk(const std::filesystem::path& results_dir, const 
     }
   } catch (const std::filesystem::filesystem_error& ex) {
     std::cerr << "[WARNING] Cannot write files to disk, encountered filesystem error: " << ex.what() << "\n";
+  }
+}
+
+void Node::reset_odometry_callback(const std::shared_ptr<std_srvs::srv::Trigger::Request> /*request*/,
+                                   std::shared_ptr<std_srvs::srv::Trigger::Response> response) {
+  try {
+    // Acquire both locks to safely reset
+    std::scoped_lock lock(buffer_mutex, local_map_mutex);
+
+    // Clear the sensor buffers
+    while (!imu_buffer.empty()) {
+      imu_buffer.pop();
+    }
+    while (!lidar_buffer.empty()) {
+      lidar_buffer.pop();
+    }
+
+    // Reset the LIO algorithm (keep rotation for stability, clear map)
+    lio->reset_to_origin(/*keep_map=*/false, /*keep_rotation=*/true);
+
+    response->success = true;
+    response->message = "Odometry reset to origin successfully.";
+    RCLCPP_INFO(node->get_logger(), "Odometry reset to origin.");
+  } catch (const std::exception& ex) {
+    response->success = false;
+    response->message = std::string("Reset failed: ") + ex.what();
+    RCLCPP_ERROR(node->get_logger(), "Odometry reset failed: %s", ex.what());
   }
 }
 
