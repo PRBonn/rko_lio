@@ -4,8 +4,8 @@ Standard Documents
 .. toctree::
    :maxdepth: 1
 
-   __README
    __LICENSE
+   __README
    __PACKAGE
    __CHANGELOG
 
