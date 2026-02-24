@@ -6,6 +6,7 @@ from rko_lio.lio_pipeline import LIOPipeline
 GRAVITY = 9.81
 EPSILON = 1e-8
 
+
 @pytest.fixture
 def simple_point_cloud():
     # 10x10x10 uniform grid = 1000 points
@@ -43,28 +44,31 @@ def test_pipeline_creation(pipeline):
     assert pipeline is not None
 
 
-def test_add_imu_sequence(pipeline, static_imu_measurement):
+def test_add_imu(pipeline, static_imu_measurement):
     accel, gyro = static_imu_measurement
     pipeline.add_imu(0.0, accel, gyro)
-    pipeline.add_imu(0.01, accel, gyro)
-    assert len(pipeline.imu_buffer) == 2
 
 
-def test_add_lidar_points(pipeline, simple_point_cloud):
+def test_register_scan(pipeline, simple_point_cloud):
     cloud1 = simple_point_cloud
     timestamps1 = create_lidar_timestamps(len(cloud1))
-    pipeline.add_lidar(cloud1, timestamps1)
+    min_t, max_t = np.min(timestamps1), np.max(timestamps1)
+    pipeline.register_scan(min_t, max_t, cloud1, timestamps1)
 
     cloud2 = simple_point_cloud
     timestamps2 = create_lidar_timestamps(len(cloud2))
 
-    pipeline.add_lidar(cloud2, timestamps2)
-
-    assert len(pipeline.lidar_buffer) == 2
+    min_t, max_t = np.min(timestamps2), np.max(timestamps2)
+    pipeline.register_scan(min_t, max_t, cloud2, timestamps2)
 
 
 @pytest.mark.parametrize("initialization_phase", [True, False])
-def test_identity_registration(identity_extrinsics, simple_point_cloud, static_imu_measurement, initialization_phase):
+def test_identity_registration(
+    identity_extrinsics,
+    simple_point_cloud,
+    static_imu_measurement,
+    initialization_phase,
+):
     def pipeline_with_init_phase():
         config = PipelineConfig()
         config.extrinsic_imu2base = identity_extrinsics
@@ -78,7 +82,8 @@ def test_identity_registration(identity_extrinsics, simple_point_cloud, static_i
 
     def add_scan_with_imu(base_time):
         timestamps = create_lidar_timestamps(len(cloud)) + base_time
-        pipeline.add_lidar(cloud, timestamps)
+        min_t, max_t = np.min(timestamps), np.max(timestamps)
+        pipeline.register_scan(min_t, max_t, cloud, timestamps)
 
         # Add 10 IMU measurements after the lidar scan end time
         start_time = timestamps[-1] + 0.01
@@ -97,23 +102,26 @@ def test_identity_registration(identity_extrinsics, simple_point_cloud, static_i
         rotation_angle = np.degrees(np.arccos((trace_val - 1) / 2))
 
         # TODO: windows for whatever reason gives a 0.111m error on this where every other platform passes with less than a 1mm error. a problem for future me
-        assert translation_error <= 0.2, f"Translation error too high at scan {scan_num}: {translation_error} m"
-        assert rotation_angle <= 1e-3, f"Rotation error too high at scan {scan_num}: {rotation_angle} degrees"
+        assert (
+            translation_error <= 0.2
+        ), f"Translation error too high at scan {scan_num}: {translation_error} m"
+        assert (
+            rotation_angle <= 1e-3
+        ), f"Rotation error too high at scan {scan_num}: {rotation_angle} degrees"
 
     # First scan; base_time 0
     last_lidar_end = add_scan_with_imu(0.0)
-    assert len(pipeline.lidar_buffer) == 0  # first lidar processed
     verify_identity_pose(1)
 
     # Second scan
     last_lidar_end = add_scan_with_imu(last_lidar_end)
-    pipeline.add_imu(last_lidar_end + 0.01, accel, gyro) # ensure the second lidar gets processed
-    assert len(pipeline.lidar_buffer) == 0  # second lidar processed
+    pipeline.add_imu(
+        last_lidar_end + 0.01, accel, gyro
+    )  # ensure the second lidar gets processed
     verify_identity_pose(2)
 
     # TODO: ARM builds break on the third scan with more than a 1mm error, and only the ARM builds. i dont know why. same as above. problem for future me
     # Third scan
     # last_lidar_end = add_scan_with_imu(last_lidar_end)
     # pipeline.add_imu(last_lidar_end + 0.01, accel, gyro) # ensure the third lidar gets processed
-    # assert len(pipeline.lidar_buffer) == 0  # third lidar processed
     # verify_identity_pose(3)
