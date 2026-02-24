@@ -86,8 +86,11 @@ def height_colors_from_points(
     return colors
 
 
-def transform_to_quat_xyzw_xyz(T: np.ndarray):
+def transform_to_quat_xyzw_xyz(T: np.ndarray | None):
     """Convert 4x4 transform matrix to [qx, qy, qz, qw, x, y, z]."""
+    if T is None:
+        return [0, 0, 0, 1, 0, 0, 0]
+
     from pyquaternion import Quaternion
 
     assert T.shape == (4, 4), "Transform must be 4x4"
@@ -96,8 +99,11 @@ def transform_to_quat_xyzw_xyz(T: np.ndarray):
     return [float(val) for val in (q.x, q.y, q.z, q.w, x, y, z)]
 
 
-def quat_xyzw_xyz_to_transform(quat_xyzw_xyz: np.ndarray) -> np.ndarray:
+def quat_xyzw_xyz_to_transform(quat_xyzw_xyz: np.ndarray | list | None) -> np.ndarray:
     """Convert [qx, qy, qz, qw, x, y, z] to 4x4 transform."""
+    if quat_xyzw_xyz is None:
+        return np.eye(4, dtype=np.float64)
+
     from pyquaternion import Quaternion
 
     qx, qy, qz, qw = quat_xyzw_xyz[:4]

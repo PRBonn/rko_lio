@@ -63,7 +63,7 @@ except ModuleNotFoundError:
     )
 
 from .. import rko_lio_pybind
-from ..config import TimestampProcessingConfig
+from ..config import TimestampConfig
 from ..scoped_profiler import ScopedProfiler
 from .utils.ros_read_point_cloud import read_point_cloud as ros_read_point_cloud
 from .utils.static_tf_tree import create_static_tf_tree, query_static_tf
@@ -78,7 +78,7 @@ class RosbagDataLoader:
         imu_frame_id: str | None,
         lidar_frame_id: str | None,
         base_frame_id: str | None,
-        timestamp_processing_config: TimestampProcessingConfig,
+        timestamp_processing_config: TimestampConfig,
         *args,
         **kwargs,
     ):
@@ -209,7 +209,7 @@ class RosbagDataLoader:
             start, end, abs_timestamps = rko_lio_pybind._process_timestamps(
                 rko_lio_pybind._VectorDouble(mock_timestamps),
                 header_stamp_sec,
-                self.timestamp_processing_config,
+                self.timestamp_processing_config.to_pybind(),
             )
             return {
                 "start_time": start,

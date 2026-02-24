@@ -38,6 +38,7 @@ from .scoped_profiler import ScopedProfiler
 from .util import (
     height_colors_from_points,
     info,
+    quat_xyzw_xyz_to_transform,
     save_scan_as_ply,
     transform_to_quat_xyzw_xyz,
 )
@@ -54,6 +55,12 @@ class LIOPipeline:
     ):
         self.config = config
         self.lio = LIO(config.lio)
+        self.extrinsic_imu2base = quat_xyzw_xyz_to_transform(
+            config.extrinsic_imu2base_quat_xyzw_xyz
+        )
+        self.extrinsic_lidar2base = quat_xyzw_xyz_to_transform(
+            config.extrinsic_lidar2base_quat_xyzw_xyz
+        )
 
         self._output_dir = None
 
@@ -107,9 +114,9 @@ class LIOPipeline:
         angular_velocity : array of float, shape (3,)
             Angular velocity in rad/s.
         """
-        if self.config.extrinsic_imu2base is not None:
+        if self.extrinsic_imu2base is not None:
             self.lio.add_imu_measurement_with_extrinsic(
-                self.config.extrinsic_imu2base,
+                self.extrinsic_imu2base,
                 time=time,
                 acceleration=acceleration,
                 angular_velocity=angular_velocity,
@@ -163,10 +170,10 @@ class LIOPipeline:
                 log_vector(self.rerun, "imu/avg_ang_velocity", stats.avg_ang_vel())
 
             try:
-                if self.config.extrinsic_lidar2base is not None:
+                if self.extrinsic_lidar2base is not None:
                     # TODO: rerun the deskewed scan as well, but there is some flickering in the viz for some reason
                     deskewed_scan = self.lio.register_scan_with_extrinsic(
-                        self.config.extrinsic_lidar2base,
+                        self.extrinsic_lidar2base,
                         scan,
                         timestamps,
                     )
@@ -246,7 +253,8 @@ class LIOPipeline:
         info(f"Poses written to {traj_file.resolve()}")
 
         config = self.config.to_dict()
-        settings_file = self.output_dir / "settings.yaml"
+        config["log_dir"] = config["log_dir"].as_posix()
+        settings_file = self.output_dir / "config.yaml"
         with settings_file.open("w") as f:
             yaml.dump(config, f, sort_keys=False)
         info(f"Configuration written to {settings_file.resolve()}")

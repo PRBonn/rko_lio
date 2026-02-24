@@ -261,7 +261,7 @@ def cli(
 
     from .config import PipelineConfig
 
-    pipeline_config = PipelineConfig(**user_config)
+    pipeline_config = PipelineConfig.from_dict(user_config)
 
     from .dataloaders import LidarIMUSequencer, dataloader_factory
 
@@ -279,19 +279,29 @@ def cli(
     sequenced_dataloader = LidarIMUSequencer(dataloader)
     print("Loaded dataloader:", dataloader)
 
-    user_ext_imu2base = pipeline_config.extrinsic_imu2base
-    user_ext_lidar2base = pipeline_config.extrinsic_lidar2base
+    from .util import quat_xyzw_xyz_to_transform, transform_to_quat_xyzw_xyz
+
+    user_ext_imu2base = quat_xyzw_xyz_to_transform(
+        pipeline_config.extrinsic_imu2base_quat_xyzw_xyz
+    )
+    user_ext_lidar2base = quat_xyzw_xyz_to_transform(
+        pipeline_config.extrinsic_lidar2base_quat_xyzw_xyz
+    )
     if user_ext_imu2base is None or user_ext_lidar2base is None:
         info("Extrinsics missing or not fully specified in config.")
         dl_ext_imu2base, dl_ext_lidar2base = dataloader.extrinsics
         if user_ext_imu2base is None:
-            pipeline_config.extrinsic_imu2base = dl_ext_imu2base
+            pipeline_config.extrinsic_imu2base_quat_xyzw_xyz = (
+                transform_to_quat_xyzw_xyz(dl_ext_imu2base)
+            )
         if user_ext_lidar2base is None:
-            pipeline_config.extrinsic_lidar2base = dl_ext_lidar2base
+            pipeline_config.extrinsic_lidar2base_quat_xyzw_xyz = (
+                transform_to_quat_xyzw_xyz(dl_ext_lidar2base)
+            )
 
     if (
-        pipeline_config.extrinsic_imu2base is None
-        or pipeline_config.extrinsic_lidar2base is None
+        pipeline_config.extrinsic_imu2base_quat_xyzw_xyz is None
+        or pipeline_config.extrinsic_lidar2base_quat_xyzw_xyz is None
     ):
         error_and_exit(
             "Fatal: Could not obtain required IMU/Lidar extrinsics. Please specify in a config or as part of your data."
@@ -300,12 +310,10 @@ def cli(
     from .util import transform_to_quat_xyzw_xyz
 
     print("Resolved extrinsics:")
-    print(
-        "  IMU to Base:", transform_to_quat_xyzw_xyz(pipeline_config.extrinsic_imu2base)
-    )
+    print("  IMU to Base:", pipeline_config.extrinsic_imu2base_quat_xyzw_xyz)
     print(
         "  Lidar to Base:",
-        transform_to_quat_xyzw_xyz(pipeline_config.extrinsic_lidar2base),
+        pipeline_config.extrinsic_lidar2base_quat_xyzw_xyz,
     )
 
     from .lio_pipeline import LIOPipeline
