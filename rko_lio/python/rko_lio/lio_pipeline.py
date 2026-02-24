@@ -162,71 +162,71 @@ class LIOPipeline:
                 )
                 log_vector(self.rerun, "imu/avg_ang_velocity", stats.avg_ang_vel())
 
-                try:
-                    if self.config.extrinsic_lidar2base is not None:
-                        # TODO: rerun the deskewed scan as well, but there is some flickering in the viz for some reason
-                        deskewed_scan = self.lio.register_scan_with_extrinsic(
-                            self.config.extrinsic_lidar2base,
-                            scan,
-                            timestamps,
-                        )
-                    else:
-                        deskewed_scan = self.lio.register_scan(
-                            scan,
-                            timestamps,
-                        )
-                except ValueError as e:
-                    print(
-                        "ERROR: Dropping LiDAR frame as there was an error. Odometry might suffer. Error:",
-                        e,
+            try:
+                if self.config.extrinsic_lidar2base is not None:
+                    # TODO: rerun the deskewed scan as well, but there is some flickering in the viz for some reason
+                    deskewed_scan = self.lio.register_scan_with_extrinsic(
+                        self.config.extrinsic_lidar2base,
+                        scan,
+                        timestamps,
                     )
-                if self.config.dump_deskewed_scans:
-                    save_scan_as_ply(
-                        deskewed_scan,
-                        end_time,
-                        output_dir=self.output_dir / "deskewed_scans",
+                else:
+                    deskewed_scan = self.lio.register_scan(
+                        scan,
+                        timestamps,
                     )
+            except ValueError as e:
+                print(
+                    "ERROR: Dropping LiDAR frame as there was an error. Odometry might suffer. Error:",
+                    e,
+                )
+            if self.config.dump_deskewed_scans:
+                save_scan_as_ply(
+                    deskewed_scan,
+                    end_time,
+                    output_dir=self.output_dir / "deskewed_scans",
+                )
 
-                if self.config.viz:
-                    with ScopedProfiler("Pipeline - Visualization") as _:
-                        pose = self.lio.pose()
+            if self.config.viz:
+                with ScopedProfiler("Pipeline - Visualization") as _:
+                    pose = self.lio.pose()
+                    self.rerun.log(
+                        "world/lidar",
+                        self.rerun.Transform3D(
+                            translation=pose[:3, 3],
+                            mat3x3=pose[:3, :3],
+                            axis_length=2,
+                        ),
+                    )
+                    self.rerun.log(
+                        "world/view_anchor",
+                        self.rerun.Transform3D(translation=pose[:3, 3]),
+                    )
+                    traj_pts = np.array([self.last_xyz, pose[:3, 3]])
+                    self.rerun.log(
+                        "world/trajectory",
+                        self.rerun.LineStrips3D(
+                            [traj_pts], radii=[0.1], colors=[255, 111, 111]
+                        ),
+                    )
+                    self.last_xyz = pose[:3, 3].copy()
+
+                    self.viz_counter += 1
+                    if self.viz_counter % self.config.viz_every_n_frames != 0:
+                        # logging the point clouds is more expensive
+                        # especially the local map, as we have to iterate over the entire map
+                        # so we publish the lidar every n frames
+                        return
+
+                    local_map_points = self.lio.map_point_cloud()
+                    if local_map_points.size > 0:
                         self.rerun.log(
-                            "world/lidar",
-                            self.rerun.Transform3D(
-                                translation=pose[:3, 3],
-                                mat3x3=pose[:3, :3],
-                                axis_length=2,
+                            "world/local_map",
+                            self.rerun.Points3D(
+                                local_map_points,
+                                colors=height_colors_from_points(local_map_points),
                             ),
                         )
-                        self.rerun.log(
-                            "world/view_anchor",
-                            self.rerun.Transform3D(translation=pose[:3, 3]),
-                        )
-                        traj_pts = np.array([self.last_xyz, pose[:3, 3]])
-                        self.rerun.log(
-                            "world/trajectory",
-                            self.rerun.LineStrips3D(
-                                [traj_pts], radii=[0.1], colors=[255, 111, 111]
-                            ),
-                        )
-                        self.last_xyz = pose[:3, 3].copy()
-
-                        self.viz_counter += 1
-                        if self.viz_counter % self.config.viz_every_n_frames != 0:
-                            # logging the point clouds is more expensive
-                            # especially the local map, as we have to iterate over the entire map
-                            # so we publish the lidar every n frames
-                            return
-
-                        local_map_points = self.lio.map_point_cloud()
-                        if local_map_points.size > 0:
-                            self.rerun.log(
-                                "world/local_map",
-                                self.rerun.Points3D(
-                                    local_map_points,
-                                    colors=height_colors_from_points(local_map_points),
-                                ),
-                            )
 
     def dump_results_to_disk(self):
         """
