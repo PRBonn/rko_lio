@@ -323,7 +323,7 @@ def cli(
     from tqdm import tqdm
 
     for kind, data_dict in tqdm(
-        sequenced_dataloader, total=len(dataloader), desc="data"
+        sequenced_dataloader, total=len(sequenced_dataloader), desc="data"
     ):
         if kind == "imu":
             pipeline.add_imu(**data_dict)
