@@ -263,7 +263,7 @@ def cli(
 
     pipeline_config = PipelineConfig(**user_config)
 
-    from .dataloaders import dataloader_factory
+    from .dataloaders import LidarIMUSequencer, dataloader_factory
 
     dataloader = dataloader_factory(
         name=dataloader_name,
@@ -276,6 +276,7 @@ def cli(
         base_frame_id=base_frame,
         timestamp_processing_config=pipeline_config.timestamps,
     )
+    sequenced_dataloader = LidarIMUSequencer(dataloader)
     print("Loaded dataloader:", dataloader)
 
     user_ext_imu2base = pipeline_config.extrinsic_imu2base
@@ -313,11 +314,13 @@ def cli(
 
     from tqdm import tqdm
 
-    for kind, data_tuple in tqdm(dataloader, total=len(dataloader), desc="Data"):
+    for kind, data_dict in tqdm(
+        sequenced_dataloader, total=len(dataloader), desc="data"
+    ):
         if kind == "imu":
-            pipeline.add_imu(*data_tuple)
+            pipeline.add_imu(**data_dict)
         elif kind == "lidar":
-            pipeline.add_lidar(*data_tuple)
+            pipeline.register_scan(**data_dict)
 
     if log_results:
         pipeline.dump_results_to_disk()
