@@ -78,7 +78,7 @@ class RosbagDataLoader:
         imu_frame_id: str | None,
         lidar_frame_id: str | None,
         base_frame_id: str | None,
-        timestamp_processing_config: TimestampConfig,
+        timestamp_config: TimestampConfig,
         *args,
         **kwargs,
     ):
@@ -130,7 +130,7 @@ class RosbagDataLoader:
 
         self.msgs = self.bag.messages(connections=self.connections)
 
-        self.timestamp_processing_config = timestamp_processing_config
+        self.timestamp_config = timestamp_config
 
     def __len__(self):
         return (
@@ -209,7 +209,7 @@ class RosbagDataLoader:
             start, end, abs_timestamps = rko_lio_pybind._process_timestamps(
                 rko_lio_pybind._VectorDouble(mock_timestamps),
                 header_stamp_sec,
-                self.timestamp_processing_config.to_pybind(),
+                self.timestamp_config.to_pybind(),
             )
             return {
                 "start_time": start,

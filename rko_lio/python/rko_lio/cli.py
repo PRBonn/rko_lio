@@ -274,7 +274,7 @@ def cli(
         imu_frame_id=imu_frame,
         lidar_frame_id=lidar_frame,
         base_frame_id=base_frame,
-        timestamp_processing_config=pipeline_config.timestamps,
+        timestamp_config=pipeline_config.timestamps,
     )
     sequenced_dataloader = LidarIMUSequencer(dataloader)
     print("Loaded dataloader:", dataloader)
