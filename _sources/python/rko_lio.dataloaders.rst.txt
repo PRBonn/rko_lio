@@ -19,6 +19,7 @@ Submodules
    rko_lio.dataloaders.helipr
    rko_lio.dataloaders.raw
    rko_lio.dataloaders.rosbag
+   rko_lio.dataloaders.sequencer
 
 Module contents
 ---------------

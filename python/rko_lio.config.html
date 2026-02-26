@@ -150,8 +150,8 @@ For example, if timestamps are in microseconds, use <code class="docutils litera
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="rko_lio.config.LIOConfig">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">rko_lio.config.</span></span><span class="sig-name descname"><span class="pre">LIOConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.config.LIOConfig" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_LIOConfig</span></code></p>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">rko_lio.config.</span></span><span class="sig-name descname"><span class="pre">LIOConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deskew</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iterations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxel_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_points_per_voxel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_range</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_range</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convergence_criterion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_correspondance_distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_num_threads</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initialization_phase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_expected_jerk</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">double_downsample</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">200.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.config.LIOConfig" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>LIO configuration options.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -173,28 +173,92 @@ For example, if timestamps are in microseconds, use <code class="docutils litera
 </dd>
 </dl>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.default_config">
-<span class="sig-name descname"><span class="pre">default_config</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'convergence_criterion':</span> <span class="pre">1e-05,</span> <span class="pre">'deskew':</span> <span class="pre">True,</span> <span class="pre">'double_downsample':</span> <span class="pre">True,</span> <span class="pre">'initialization_phase':</span> <span class="pre">False,</span> <span class="pre">'max_correspondance_distance':</span> <span class="pre">0.5,</span> <span class="pre">'max_expected_jerk':</span> <span class="pre">3.0,</span> <span class="pre">'max_iterations':</span> <span class="pre">100,</span> <span class="pre">'max_num_threads':</span> <span class="pre">0,</span> <span class="pre">'max_points_per_voxel':</span> <span class="pre">20,</span> <span class="pre">'max_range':</span> <span class="pre">100.0,</span> <span class="pre">'min_beta':</span> <span class="pre">200.0,</span> <span class="pre">'min_range':</span> <span class="pre">1.0,</span> <span class="pre">'voxel_size':</span> <span class="pre">1.0}</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.default_config" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.convergence_criterion">
+<span class="sig-name descname"><span class="pre">convergence_criterion</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-05</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.convergence_criterion" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.deskew">
+<span class="sig-name descname"><span class="pre">deskew</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.deskew" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.double_downsample">
+<span class="sig-name descname"><span class="pre">double_downsample</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.double_downsample" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.initialization_phase">
+<span class="sig-name descname"><span class="pre">initialization_phase</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.initialization_phase" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.max_correspondance_distance">
+<span class="sig-name descname"><span class="pre">max_correspondance_distance</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.5</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.max_correspondance_distance" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.max_expected_jerk">
+<span class="sig-name descname"><span class="pre">max_expected_jerk</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3.0</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.max_expected_jerk" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.max_iterations">
+<span class="sig-name descname"><span class="pre">max_iterations</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.max_iterations" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.max_num_threads">
+<span class="sig-name descname"><span class="pre">max_num_threads</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.max_num_threads" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.max_points_per_voxel">
+<span class="sig-name descname"><span class="pre">max_points_per_voxel</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">20</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.max_points_per_voxel" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.max_range">
+<span class="sig-name descname"><span class="pre">max_range</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100.0</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.max_range" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.min_beta">
+<span class="sig-name descname"><span class="pre">min_beta</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">200.0</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.min_beta" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.min_range">
+<span class="sig-name descname"><span class="pre">min_range</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.0</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.min_range" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rko_lio.config.LIOConfig.to_dict">
 <span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.config.LIOConfig.to_dict" title="Link to this definition">¶</a></dt>
-<dd><p>Return a dict version</p>
-</dd></dl>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.to_pybind">
+<span class="sig-name descname"><span class="pre">to_pybind</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">rko_lio.rko_lio_pybind._LIOConfig</span></span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.to_pybind" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.LIOConfig.voxel_size">
+<span class="sig-name descname"><span class="pre">voxel_size</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.0</span></span><a class="headerlink" href="#rko_lio.config.LIOConfig.voxel_size" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="rko_lio.config.PipelineConfig">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">rko_lio.config.</span></span><span class="sig-name descname"><span class="pre">PipelineConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.config.PipelineConfig" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">rko_lio.config.</span></span><span class="sig-name descname"><span class="pre">PipelineConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#rko_lio.config.LIOConfig" title="rko_lio.config.LIOConfig"><span class="pre">LIOConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#rko_lio.config.TimestampConfig" title="rko_lio.config.TimestampConfig"><span class="pre">TimestampConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extrinsic_imu2base_quat_xyzw_xyz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extrinsic_lidar2base_quat_xyzw_xyz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">viz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">viz_every_n_frames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dump_deskewed_scans</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">PosixPath('results')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.config.PipelineConfig" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Configuration for the LIOPipeline, wrapping both LIO- and timestamp-related configs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>lio</strong> (<em>dict</em><em> or </em><a class="reference internal" href="#rko_lio.config.LIOConfig" title="rko_lio.config.LIOConfig"><em>LIOConfig</em></a>)</p></li>
-<li><p><strong>timestamps</strong> (<em>dict</em><em> or </em><a class="reference internal" href="#rko_lio.config.TimestampProcessingConfig" title="rko_lio.config.TimestampProcessingConfig"><em>TimestampProcessingConfig</em></a>) – Configuration for timestamp preprocessing.</p></li>
+<li><p><strong>timestamps</strong> (<em>dict</em><em> or </em><em>TimestampProcessingConfig</em>) – Configuration for timestamp preprocessing.</p></li>
 <li><p><strong>extrinsic_imu2base</strong> (<em>np.ndarray</em><em>[</em><em>4</em><em>,</em><em>4</em><em>] or </em><em>None</em><em>, </em><em>optional</em>) – Extrinsic transform from IMU frame to base frame.</p></li>
 <li><p><strong>extrinsic_lidar2base</strong> (<em>np.ndarray</em><em>[</em><em>4</em><em>,</em><em>4</em><em>] or </em><em>None</em><em>, </em><em>optional</em>) – Extrinsic transform from lidar frame to base frame.</p></li>
 <li><p><strong>viz</strong> (<em>bool</em><em>, </em><em>default False</em>) – Enable visualization using rerun.</p></li>
@@ -206,42 +270,90 @@ For example, if timestamps are in microseconds, use <code class="docutils litera
 </dd>
 </dl>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="rko_lio.config.PipelineConfig.default_config">
-<span class="sig-name descname"><span class="pre">default_config</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'dump_deskewed_scans':</span> <span class="pre">False,</span> <span class="pre">'extrinsic_imu2base_quat_xyzw_xyz':</span> <span class="pre">None,</span> <span class="pre">'extrinsic_lidar2base_quat_xyzw_xyz':</span> <span class="pre">None,</span> <span class="pre">'log_dir':</span> <span class="pre">'/home/runner/work/rko_lio/rko_lio/docs_build/rko_lio/rko_lio/wrapped_sphinx_directory/results',</span> <span class="pre">'run_name':</span> <span class="pre">None,</span> <span class="pre">'viz':</span> <span class="pre">False,</span> <span class="pre">'viz_every_n_frames':</span> <span class="pre">20}</span></span><a class="headerlink" href="#rko_lio.config.PipelineConfig.default_config" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rko_lio.config.PipelineConfig.dump_deskewed_scans">
+<span class="sig-name descname"><span class="pre">dump_deskewed_scans</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></span><a class="headerlink" href="#rko_lio.config.PipelineConfig.dump_deskewed_scans" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.PipelineConfig.extrinsic_imu2base_quat_xyzw_xyz">
+<span class="sig-name descname"><span class="pre">extrinsic_imu2base_quat_xyzw_xyz</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#rko_lio.config.PipelineConfig.extrinsic_imu2base_quat_xyzw_xyz" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.PipelineConfig.extrinsic_lidar2base_quat_xyzw_xyz">
+<span class="sig-name descname"><span class="pre">extrinsic_lidar2base_quat_xyzw_xyz</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#rko_lio.config.PipelineConfig.extrinsic_lidar2base_quat_xyzw_xyz" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rko_lio.config.PipelineConfig.default_dict">
-<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">default_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">include_timestamps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.config.PipelineConfig.default_dict" title="Link to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>include_timestamps</strong> (<em>bool</em><em>, </em><em>default False</em>) – If True, include the timestamp subconfig.</p>
-</dd>
-</dl>
-</dd></dl>
+<dt class="sig sig-object py" id="rko_lio.config.PipelineConfig.from_dict">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.config.PipelineConfig.from_dict" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.PipelineConfig.lio">
+<span class="sig-name descname"><span class="pre">lio</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rko_lio.config.LIOConfig" title="rko_lio.config.LIOConfig"><span class="pre">LIOConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#rko_lio.config.PipelineConfig.lio" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.PipelineConfig.log_dir">
+<span class="sig-name descname"><span class="pre">log_dir</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PosixPath('results')</span></span><a class="headerlink" href="#rko_lio.config.PipelineConfig.log_dir" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.PipelineConfig.run_name">
+<span class="sig-name descname"><span class="pre">run_name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#rko_lio.config.PipelineConfig.run_name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.PipelineConfig.timestamps">
+<span class="sig-name descname"><span class="pre">timestamps</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rko_lio.config.TimestampConfig" title="rko_lio.config.TimestampConfig"><span class="pre">TimestampConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#rko_lio.config.PipelineConfig.timestamps" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rko_lio.config.PipelineConfig.to_dict">
 <span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.config.PipelineConfig.to_dict" title="Link to this definition">¶</a></dt>
-<dd><p>Return full configuration as serializable dict.</p>
-</dd></dl>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.PipelineConfig.viz">
+<span class="sig-name descname"><span class="pre">viz</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></span><a class="headerlink" href="#rko_lio.config.PipelineConfig.viz" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.PipelineConfig.viz_every_n_frames">
+<span class="sig-name descname"><span class="pre">viz_every_n_frames</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">20</span></span><a class="headerlink" href="#rko_lio.config.PipelineConfig.viz_every_n_frames" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="rko_lio.config.TimestampProcessingConfig">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">rko_lio.config.</span></span><span class="sig-name descname"><span class="pre">TimestampProcessingConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.config.TimestampProcessingConfig" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_TimestampProcessingConfig</span></code></p>
+<dt class="sig sig-object py" id="rko_lio.config.TimestampConfig">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">rko_lio.config.</span></span><span class="sig-name descname"><span class="pre">TimestampConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">multiplier_to_seconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_absolute</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_relative</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.config.TimestampConfig" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="rko_lio.config.TimestampProcessingConfig.default_config">
-<span class="sig-name descname"><span class="pre">default_config</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'force_absolute':</span> <span class="pre">False,</span> <span class="pre">'force_relative':</span> <span class="pre">False,</span> <span class="pre">'multiplier_to_seconds':</span> <span class="pre">0.0}</span></span><a class="headerlink" href="#rko_lio.config.TimestampProcessingConfig.default_config" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="rko_lio.config.TimestampConfig.force_absolute">
+<span class="sig-name descname"><span class="pre">force_absolute</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></span><a class="headerlink" href="#rko_lio.config.TimestampConfig.force_absolute" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.TimestampConfig.force_relative">
+<span class="sig-name descname"><span class="pre">force_relative</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></span><a class="headerlink" href="#rko_lio.config.TimestampConfig.force_relative" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rko_lio.config.TimestampConfig.multiplier_to_seconds">
+<span class="sig-name descname"><span class="pre">multiplier_to_seconds</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></span><a class="headerlink" href="#rko_lio.config.TimestampConfig.multiplier_to_seconds" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rko_lio.config.TimestampProcessingConfig.to_dict">
-<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.config.TimestampProcessingConfig.to_dict" title="Link to this definition">¶</a></dt>
-<dd><p>Return a dict version</p>
-</dd></dl>
+<dt class="sig sig-object py" id="rko_lio.config.TimestampConfig.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.config.TimestampConfig.to_dict" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rko_lio.config.TimestampConfig.to_pybind">
+<span class="sig-name descname"><span class="pre">to_pybind</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">rko_lio.rko_lio_pybind._TimestampProcessingConfig</span></span></span><a class="headerlink" href="#rko_lio.config.TimestampConfig.to_pybind" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 

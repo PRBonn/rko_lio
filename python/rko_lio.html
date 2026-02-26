@@ -137,6 +137,10 @@
 <li class="toctree-l4"><a class="reference internal" href="rko_lio.dataloaders.rosbag.html#rko_lio.dataloaders.rosbag.RosbagDataLoader"><code class="docutils literal notranslate"><span class="pre">RosbagDataLoader</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.dataloaders.sequencer.html">rko_lio.dataloaders.sequencer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rko_lio.dataloaders.sequencer.html#rko_lio.dataloaders.sequencer.LidarIMUSequencer"><code class="docutils literal notranslate"><span class="pre">LidarIMUSequencer</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="rko_lio.dataloaders.html#module-rko_lio.dataloaders">Module contents</a></li>
@@ -160,19 +164,43 @@
 <li class="toctree-l2"><a class="reference internal" href="rko_lio.config.html#example-default-configuration">Example (default configuration)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rko_lio.config.html#description-of-parameters">Description of parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.LIOConfig"><code class="docutils literal notranslate"><span class="pre">LIOConfig</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.LIOConfig.default_config"><code class="docutils literal notranslate"><span class="pre">LIOConfig.default_config</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.LIOConfig.convergence_criterion"><code class="docutils literal notranslate"><span class="pre">LIOConfig.convergence_criterion</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.LIOConfig.deskew"><code class="docutils literal notranslate"><span class="pre">LIOConfig.deskew</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.LIOConfig.double_downsample"><code class="docutils literal notranslate"><span class="pre">LIOConfig.double_downsample</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.LIOConfig.initialization_phase"><code class="docutils literal notranslate"><span class="pre">LIOConfig.initialization_phase</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.LIOConfig.max_correspondance_distance"><code class="docutils literal notranslate"><span class="pre">LIOConfig.max_correspondance_distance</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.LIOConfig.max_expected_jerk"><code class="docutils literal notranslate"><span class="pre">LIOConfig.max_expected_jerk</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.LIOConfig.max_iterations"><code class="docutils literal notranslate"><span class="pre">LIOConfig.max_iterations</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.LIOConfig.max_num_threads"><code class="docutils literal notranslate"><span class="pre">LIOConfig.max_num_threads</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.LIOConfig.max_points_per_voxel"><code class="docutils literal notranslate"><span class="pre">LIOConfig.max_points_per_voxel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.LIOConfig.max_range"><code class="docutils literal notranslate"><span class="pre">LIOConfig.max_range</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.LIOConfig.min_beta"><code class="docutils literal notranslate"><span class="pre">LIOConfig.min_beta</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.LIOConfig.min_range"><code class="docutils literal notranslate"><span class="pre">LIOConfig.min_range</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.LIOConfig.to_dict"><code class="docutils literal notranslate"><span class="pre">LIOConfig.to_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.LIOConfig.to_pybind"><code class="docutils literal notranslate"><span class="pre">LIOConfig.to_pybind()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.LIOConfig.voxel_size"><code class="docutils literal notranslate"><span class="pre">LIOConfig.voxel_size</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.PipelineConfig"><code class="docutils literal notranslate"><span class="pre">PipelineConfig</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.PipelineConfig.default_config"><code class="docutils literal notranslate"><span class="pre">PipelineConfig.default_config</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.PipelineConfig.default_dict"><code class="docutils literal notranslate"><span class="pre">PipelineConfig.default_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.PipelineConfig.dump_deskewed_scans"><code class="docutils literal notranslate"><span class="pre">PipelineConfig.dump_deskewed_scans</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.PipelineConfig.extrinsic_imu2base_quat_xyzw_xyz"><code class="docutils literal notranslate"><span class="pre">PipelineConfig.extrinsic_imu2base_quat_xyzw_xyz</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.PipelineConfig.extrinsic_lidar2base_quat_xyzw_xyz"><code class="docutils literal notranslate"><span class="pre">PipelineConfig.extrinsic_lidar2base_quat_xyzw_xyz</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.PipelineConfig.from_dict"><code class="docutils literal notranslate"><span class="pre">PipelineConfig.from_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.PipelineConfig.lio"><code class="docutils literal notranslate"><span class="pre">PipelineConfig.lio</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.PipelineConfig.log_dir"><code class="docutils literal notranslate"><span class="pre">PipelineConfig.log_dir</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.PipelineConfig.run_name"><code class="docutils literal notranslate"><span class="pre">PipelineConfig.run_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.PipelineConfig.timestamps"><code class="docutils literal notranslate"><span class="pre">PipelineConfig.timestamps</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.PipelineConfig.to_dict"><code class="docutils literal notranslate"><span class="pre">PipelineConfig.to_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.PipelineConfig.viz"><code class="docutils literal notranslate"><span class="pre">PipelineConfig.viz</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.PipelineConfig.viz_every_n_frames"><code class="docutils literal notranslate"><span class="pre">PipelineConfig.viz_every_n_frames</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.TimestampProcessingConfig"><code class="docutils literal notranslate"><span class="pre">TimestampProcessingConfig</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.TimestampProcessingConfig.default_config"><code class="docutils literal notranslate"><span class="pre">TimestampProcessingConfig.default_config</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.TimestampProcessingConfig.to_dict"><code class="docutils literal notranslate"><span class="pre">TimestampProcessingConfig.to_dict()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.TimestampConfig"><code class="docutils literal notranslate"><span class="pre">TimestampConfig</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.TimestampConfig.force_absolute"><code class="docutils literal notranslate"><span class="pre">TimestampConfig.force_absolute</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.TimestampConfig.force_relative"><code class="docutils literal notranslate"><span class="pre">TimestampConfig.force_relative</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.TimestampConfig.multiplier_to_seconds"><code class="docutils literal notranslate"><span class="pre">TimestampConfig.multiplier_to_seconds</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.TimestampConfig.to_dict"><code class="docutils literal notranslate"><span class="pre">TimestampConfig.to_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.TimestampConfig.to_pybind"><code class="docutils literal notranslate"><span class="pre">TimestampConfig.to_pybind()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -208,9 +236,9 @@
 <li class="toctree-l1"><a class="reference internal" href="rko_lio.lio_pipeline.html">rko_lio.lio_pipeline module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="rko_lio.lio_pipeline.html#rko_lio.lio_pipeline.LIOPipeline"><code class="docutils literal notranslate"><span class="pre">LIOPipeline</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="rko_lio.lio_pipeline.html#rko_lio.lio_pipeline.LIOPipeline.add_imu"><code class="docutils literal notranslate"><span class="pre">LIOPipeline.add_imu()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="rko_lio.lio_pipeline.html#rko_lio.lio_pipeline.LIOPipeline.add_lidar"><code class="docutils literal notranslate"><span class="pre">LIOPipeline.add_lidar()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="rko_lio.lio_pipeline.html#rko_lio.lio_pipeline.LIOPipeline.dump_results_to_disk"><code class="docutils literal notranslate"><span class="pre">LIOPipeline.dump_results_to_disk()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="rko_lio.lio_pipeline.html#rko_lio.lio_pipeline.LIOPipeline.output_dir"><code class="docutils literal notranslate"><span class="pre">LIOPipeline.output_dir</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rko_lio.lio_pipeline.html#rko_lio.lio_pipeline.LIOPipeline.register_scan"><code class="docutils literal notranslate"><span class="pre">LIOPipeline.register_scan()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="rko_lio.lio_pipeline.html#rko_lio.lio_pipeline.log_vector"><code class="docutils literal notranslate"><span class="pre">log_vector()</span></code></a></li>

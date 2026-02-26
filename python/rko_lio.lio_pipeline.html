@@ -108,9 +108,7 @@ The difference is this is not multi-threaded, therefore is a bit slower.</p>
 <dt class="sig sig-object py" id="rko_lio.lio_pipeline.LIOPipeline">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">rko_lio.lio_pipeline.</span></span><span class="sig-name descname"><span class="pre">LIOPipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.PipelineConfig" title="rko_lio.config.PipelineConfig"><span class="pre">PipelineConfig</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.LIOPipeline" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Minimal sequential pipeline for LIO processing with out-of-sync IMU/lidar.
-Buffers are managed internally; data is added via add_imu and add_lidar.
-When IMU data covers an already available lidar frame, registration is triggered.</p>
+<p>Minimal sequential pipeline for LIO processing.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="rko_lio.lio_pipeline.LIOPipeline.add_imu">
 <span class="sig-name descname"><span class="pre">add_imu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acceleration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular_velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.LIOPipeline.add_imu" title="Link to this definition">¶</a></dt>
@@ -121,21 +119,6 @@ When IMU data covers an already available lidar frame, registration is triggered
 <li><p><strong>time</strong> (<em>float</em>) – Measurement timestamp in seconds.</p></li>
 <li><p><strong>acceleration</strong> (<em>array</em><em> of </em><em>float</em><em>, </em><em>shape</em><em> (</em><em>3</em><em>,</em><em>)</em>) – Acceleration vector in m/s^2.</p></li>
 <li><p><strong>angular_velocity</strong> (<em>array</em><em> of </em><em>float</em><em>, </em><em>shape</em><em> (</em><em>3</em><em>,</em><em>)</em>) – Angular velocity in rad/s.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rko_lio.lio_pipeline.LIOPipeline.add_lidar">
-<span class="sig-name descname"><span class="pre">add_lidar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.LIOPipeline.add_lidar" title="Link to this definition">¶</a></dt>
-<dd><p>Add a lidar point cloud and <em>absolute</em> timestamps. Scan start and end times
-are inferred from the timestamps vector.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>scan</strong> (<em>array</em><em> of </em><em>float</em><em>, </em><em>shape</em><em> (</em><em>N</em><em>,</em><em>3</em><em>)</em>) – Point cloud.</p></li>
-<li><p><strong>timestamps</strong> (<em>array</em><em> of </em><em>float</em><em>, </em><em>shape</em><em> (</em><em>N</em><em>,</em><em>)</em>) – Absolute timestamps (seconds) for each point.</p></li>
 </ul>
 </dd>
 </dl>
@@ -156,6 +139,24 @@ are inferred from the timestamps vector.</p>
 <dd><p>The directory used for file logging if enabled.
 Folder is {log_dir}/{run_name}_{index}.
 Automatically bumps the index (from 0) if similar names exist, to avoid overwriting.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rko_lio.lio_pipeline.LIOPipeline.register_scan">
+<span class="sig-name descname"><span class="pre">register_scan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.LIOPipeline.register_scan" title="Link to this definition">¶</a></dt>
+<dd><p>Register a lidar scan.
+Timestamps are assumed to be absolute seconds.
+It is assumed there is sufficient IMU data added to the pipeline before triggering the registration (use the Sequencer).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_time</strong> (<em>float</em>) – Absolute time of the scan recording start</p></li>
+<li><p><strong>end_time</strong> (<em>float</em>) – Absolute time of the scan recording end</p></li>
+<li><p><strong>scan</strong> (<em>array</em><em> of </em><em>float</em><em>, </em><em>shape</em><em> (</em><em>N</em><em>,</em><em>3</em><em>)</em>) – Point cloud.</p></li>
+<li><p><strong>timestamps</strong> (<em>array</em><em> of </em><em>float</em><em>, </em><em>shape</em><em> (</em><em>N</em><em>,</em><em>)</em>) – Absolute timestamps (seconds) for each point.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
