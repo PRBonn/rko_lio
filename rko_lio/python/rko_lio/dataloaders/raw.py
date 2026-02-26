@@ -303,13 +303,18 @@ class RawDataLoader:
             kind, _, data = next(self._iter)
 
             if kind == "imu":
-                return "imu", (data["timestamp"] / 1e9, data["accel"], data["gyro"])
+                return "imu", {
+                    "time": data["timestamp"] / 1e9,
+                    "acceleration": data["accel"],
+                    "angular_velocity": data["gyro"],
+                }
             elif kind == "lidar":
                 ply = o3d.t.io.read_point_cloud(str(data["filename"]))
                 # Find a field for per-point timestamp
                 for attr_name in self.possible_timestamp_attribute_names:
                     if attr_name in ply.point:
                         timestamps = ply.point[attr_name].numpy().flatten()
+                        # TODO: use pybind.process_timestamps to handle non seconds cases
                         break
                 else:
                     # TODO: should not throw if deskew: false
@@ -317,7 +322,12 @@ class RawDataLoader:
                         f"No per-point timestamp attribute found in {data['filename']}. Please check the attributes."
                     )
                 points = ply.point["positions"].numpy()
-                return "lidar", (points, timestamps)
+                return "lidar", {
+                    "start_time": np.min(timestamps),
+                    "end_time": np.max(timestamps),
+                    "scan": points,
+                    "timestamps": timestamps,
+                }
 
     def __repr__(self):
         imu_info = f"{len(self.imu_data)} IMU readings"

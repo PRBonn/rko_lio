@@ -63,7 +63,7 @@ except ModuleNotFoundError:
     )
 
 from .. import rko_lio_pybind
-from ..config import TimestampProcessingConfig
+from ..config import TimestampConfig
 from ..scoped_profiler import ScopedProfiler
 from .utils.ros_read_point_cloud import read_point_cloud as ros_read_point_cloud
 from .utils.static_tf_tree import create_static_tf_tree, query_static_tf
@@ -78,11 +78,10 @@ class RosbagDataLoader:
         imu_frame_id: str | None,
         lidar_frame_id: str | None,
         base_frame_id: str | None,
-        timestamp_processing_config: TimestampProcessingConfig,
+        timestamp_config: TimestampConfig,
         *args,
         **kwargs,
     ):
-        """query_tf_tree: try to query a tf tree if it exists"""
         assert (
             data_path.is_dir()
         ), "Pass a directory to data_path with ros1 or ros2 bag files"
@@ -131,11 +130,7 @@ class RosbagDataLoader:
 
         self.msgs = self.bag.messages(connections=self.connections)
 
-        self.timestamp_processing_config = timestamp_processing_config
-
-    def __del__(self):
-        if hasattr(self, "bag"):
-            self.bag.close()
+        self.timestamp_config = timestamp_config
 
     def __len__(self):
         return (
@@ -179,7 +174,7 @@ class RosbagDataLoader:
     def __next__(self):
         while True:
             with ScopedProfiler("Rosbag Dataloader") as data_timer:
-                connection, bag_timestamp, rawdata = next(self.msgs)
+                connection, _, rawdata = next(self.msgs)
                 deserialized_data = self.bag.deserialize(rawdata, connection.msgtype)
                 if connection.topic == self.imu_topic:
                     return "imu", self.read_imu(deserialized_data)
@@ -187,10 +182,9 @@ class RosbagDataLoader:
                     try:
                         return "lidar", self.read_point_cloud(deserialized_data)
                     except RuntimeError as e:
-                        # the cpp side can throw on _process_timestamps
+                        # pybinded cpp side can throw on _process_timestamps
                         warning("Error processing lidar frame.", e)
                         continue
-                raise NotImplementedError("Shouldn't happen.")
 
     def read_imu(self, data):
         header_stamp = data.header.stamp
@@ -205,27 +199,37 @@ class RosbagDataLoader:
             data.linear_acceleration.y,
             data.linear_acceleration.z,
         ]
-        return timestamp, accel, gyro
+        return {"time": timestamp, "acceleration": accel, "angular_velocity": gyro}
 
     def read_point_cloud(self, data):
         header_stamp = data.header.stamp
         header_stamp_sec = header_stamp.sec + (header_stamp.nanosec / 1e9)
-        points, raw_timestamps = ros_read_point_cloud(data)
-        if raw_timestamps is not None and raw_timestamps.size > 0:
+        points, mock_timestamps = ros_read_point_cloud(data)
+        if mock_timestamps is not None and mock_timestamps.size > 0:
             start, end, abs_timestamps = rko_lio_pybind._process_timestamps(
-                rko_lio_pybind._VectorDouble(raw_timestamps),
+                rko_lio_pybind._VectorDouble(mock_timestamps),
                 header_stamp_sec,
-                self.timestamp_processing_config,
+                self.timestamp_config.to_pybind(),
             )
-            return points, np.asarray(abs_timestamps)
+            return {
+                "start_time": start,
+                "end_time": end,
+                "scan": points,
+                "timestamps": np.asarray(abs_timestamps),
+            }
         else:
-            raw_timestamps = np.ones(points.shape[0]) * header_stamp_sec
+            mock_timestamps = np.ones(points.shape[0]) * header_stamp_sec
             if not hasattr(self, "_printed_timestamp_warning"):
                 self._printed_timestamp_warning = True
                 warning(
                     "Could not detect timestamps in the point cloud. Odometry performance will suffer. Also please disable deskewing (enabled by default) otherwise the odometry may not work properly."
                 )
-            return points, raw_timestamps
+            return {
+                "start_time": header_stamp_sec,
+                "end_time": header_stamp_sec,
+                "scan": points,
+                "timestamps": mock_timestamps,
+            }
 
     def check_topic(self, topic: str | None, expected_msgtype: str) -> str:
         topics_of_type = [
@@ -274,3 +278,7 @@ class RosbagDataLoader:
             f"{self.bag.topics[self.lidar_topic].msgcount if self.lidar_topic in self.bag.topics else 0} LiDAR msgs"
         )
         return f"RosbagDataLoader({bag_type}, {path_info}, {imu_info}, {lidar_info}, {msg_counts})"
+
+    def __del__(self):
+        if hasattr(self, "bag"):
+            self.bag.close()

@@ -102,7 +102,7 @@ class IntervalStats:
 class LIO:
     def __init__(self, config: LIOConfig):
         self.config = config
-        self._impl = _LIO(config)
+        self._impl = _LIO(config.to_pybind())
 
     def __repr__(self):
         return f"LIO with config: {repr(self.config)}"

@@ -148,11 +148,11 @@ class HeliprDataLoader:
             if kind == "imu":
                 return (
                     "imu",
-                    (
-                        data["timestamp"] / 1e9,
-                        data["accel"],
-                        data["gyro"],
-                    ),
+                    {
+                        "time": data["timestamp"] / 1e9,
+                        "acceleration": data["accel"],
+                        "angular_velocity": data["gyro"],
+                    },
                 )
             elif kind == "lidar":
                 header_stamp_sec = data["timestamp"] / 1e9
@@ -164,7 +164,15 @@ class HeliprDataLoader:
                     rko_lio_pybind._VectorDouble(np.asarray(raw_timestamps)),
                     header_stamp_sec,
                 )
-                return ("lidar", (points_arr, np.asarray(abs_timestamps)))
+                return (
+                    "lidar",
+                    {
+                        "start_time": start,
+                        "end_time": end,
+                        "scan": points_arr,
+                        "timestamps": np.asarray(abs_timestamps),
+                    },
+                )
 
     def __repr__(self):
         return f"HeliprDataLoader({self.data_path.name}, Sensor={self.sensor}, {len(self.entries)} entries)"
