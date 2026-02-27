@@ -187,6 +187,8 @@ class LIOPipeline:
                     "ERROR: Dropping LiDAR frame as there was an error. Odometry might suffer. Error:",
                     e,
                 )
+                return
+
             if self.config.dump_deskewed_scans:
                 save_scan_as_ply(
                     deskewed_scan,
