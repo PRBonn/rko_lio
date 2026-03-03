@@ -265,18 +265,19 @@ def cli(
 
     from .dataloaders import LidarIMUSequencer, dataloader_factory
 
-    dataloader = dataloader_factory(
-        name=dataloader_name,
-        data_path=data_path,
-        sequence=sequence,
-        imu_topic=imu_topic,
-        lidar_topic=lidar_topic,
-        imu_frame_id=imu_frame,
-        lidar_frame_id=lidar_frame,
-        base_frame_id=base_frame,
-        timestamp_config=pipeline_config.timestamps,
+    dataloader = LidarIMUSequencer(
+        dataloader_factory(
+            name=dataloader_name,
+            data_path=data_path,
+            sequence=sequence,
+            imu_topic=imu_topic,
+            lidar_topic=lidar_topic,
+            imu_frame_id=imu_frame,
+            lidar_frame_id=lidar_frame,
+            base_frame_id=base_frame,
+            timestamp_config=pipeline_config.timestamps,
+        )
     )
-    sequenced_dataloader = LidarIMUSequencer(dataloader)
     print("Loaded dataloader:", dataloader)
 
     from .util import transform_to_quat_xyzw_xyz
@@ -319,9 +320,7 @@ def cli(
 
     from tqdm import tqdm
 
-    for kind, data_dict in tqdm(
-        sequenced_dataloader, total=len(sequenced_dataloader), desc="data"
-    ):
+    for kind, data_dict in tqdm(dataloader, total=len(dataloader), desc="data"):
         if kind == "imu":
             pipeline.add_imu(**data_dict)
         elif kind == "lidar":

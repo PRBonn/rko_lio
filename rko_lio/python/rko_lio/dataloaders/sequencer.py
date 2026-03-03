@@ -68,3 +68,7 @@ class LidarIMUSequencer:
 
     def __len__(self):
         return len(self.dataloader)
+
+    @property
+    def extrinsics(self):
+        return self.dataloader.extrinsics
