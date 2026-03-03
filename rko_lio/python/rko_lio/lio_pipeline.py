@@ -34,13 +34,13 @@ import yaml
 
 from .config import PipelineConfig
 from .lio import LIO
-from .scoped_profiler import ScopedProfiler
+from .scoped_profiler import ScopedProfiler, profile_func
 from .util import (
     height_colors_from_points,
     info,
+    log_vector,
     quat_xyzw_xyz_to_transform,
     save_scan_as_ply,
-    transform_to_quat_xyzw_xyz,
 )
 
 
@@ -133,6 +133,7 @@ class LIOPipeline:
             log_vector(self.rerun, "imu/acceleration", acceleration)
             log_vector(self.rerun, "imu/angular_velocity", angular_velocity)
 
+    @profile_func("Pipeline - Register Scan")
     def register_scan(
         self,
         start_time: float,
@@ -156,88 +157,92 @@ class LIOPipeline:
             Point cloud.
         timestamps : array of float, shape (N,)
             Absolute timestamps (seconds) for each point.
+
+        Returns
+        -------
+        np.ndarray or None
+            Deskewed scan if successful, None if registration failed
         """
-        with ScopedProfiler("Pipeline - Registration") as registration_timer:
-            if self.config.viz:
-                # needs to be logged before the pybinded register function is called
-                self.rerun.set_time("data_time", timestamp=end_time)
-                stats = self.lio.interval_stats()
-                self.rerun.log(
-                    "imu/imu_count", self.rerun.Scalars(float(stats.imu_count))
+        if self.config.viz:
+            # needs to be logged before the pybinded register function is called
+            self.rerun.set_time("data_time", timestamp=end_time)
+            stats = self.lio.interval_stats()
+            self.rerun.log("imu/imu_count", self.rerun.Scalars(float(stats.imu_count)))
+            log_vector(self.rerun, "imu/avg_acceleration", stats.avg_imu_accel())
+            log_vector(self.rerun, "imu/avg_body_acceleration", stats.avg_body_accel())
+            log_vector(self.rerun, "imu/avg_ang_velocity", stats.avg_ang_vel())
+
+        try:
+            if self.extrinsic_lidar2base is not None:
+                deskewed_scan = self.lio.register_scan_with_extrinsic(
+                    self.extrinsic_lidar2base,
+                    scan,
+                    timestamps,
                 )
-                log_vector(self.rerun, "imu/avg_acceleration", stats.avg_imu_accel())
-                log_vector(
-                    self.rerun, "imu/avg_body_acceleration", stats.avg_body_accel()
+            else:
+                deskewed_scan = self.lio.register_scan(
+                    scan,
+                    timestamps,
                 )
-                log_vector(self.rerun, "imu/avg_ang_velocity", stats.avg_ang_vel())
+        except ValueError as e:
+            print(
+                "ERROR: Dropping LiDAR frame as there was an error. Odometry might suffer. Error:",
+                e,
+            )
+            return None
 
-            try:
-                if self.extrinsic_lidar2base is not None:
-                    # TODO: rerun the deskewed scan as well, but there is some flickering in the viz for some reason
-                    deskewed_scan = self.lio.register_scan_with_extrinsic(
-                        self.extrinsic_lidar2base,
-                        scan,
-                        timestamps,
-                    )
-                else:
-                    deskewed_scan = self.lio.register_scan(
-                        scan,
-                        timestamps,
-                    )
-            except ValueError as e:
-                print(
-                    "ERROR: Dropping LiDAR frame as there was an error. Odometry might suffer. Error:",
-                    e,
-                )
-                return
+        if self.config.dump_deskewed_scans:
+            save_scan_as_ply(
+                deskewed_scan,
+                end_time,
+                output_dir=self.output_dir / "deskewed_scans",
+            )
 
-            if self.config.dump_deskewed_scans:
-                save_scan_as_ply(
-                    deskewed_scan,
-                    end_time,
-                    output_dir=self.output_dir / "deskewed_scans",
-                )
+        if self.config.viz:
+            # TODO: rerun the deskewed scan as well, but there is some flickering in the viz for some reason
+            self._visualize_frame(end_time)
 
-            if self.config.viz:
-                with ScopedProfiler("Pipeline - Visualization") as _:
-                    pose = self.lio.pose()
-                    self.rerun.log(
-                        "world/lidar",
-                        self.rerun.Transform3D(
-                            translation=pose[:3, 3],
-                            mat3x3=pose[:3, :3],
-                            axis_length=2,
-                        ),
-                    )
-                    self.rerun.log(
-                        "world/view_anchor",
-                        self.rerun.Transform3D(translation=pose[:3, 3]),
-                    )
-                    traj_pts = np.array([self.last_xyz, pose[:3, 3]])
-                    self.rerun.log(
-                        "world/trajectory",
-                        self.rerun.LineStrips3D(
-                            [traj_pts], radii=[0.1], colors=[255, 111, 111]
-                        ),
-                    )
-                    self.last_xyz = pose[:3, 3].copy()
+        return deskewed_scan
 
-                    self.viz_counter += 1
-                    if self.viz_counter % self.config.viz_every_n_frames != 0:
-                        # logging the point clouds is more expensive
-                        # especially the local map, as we have to iterate over the entire map
-                        # so we publish the lidar every n frames
-                        return
+    @profile_func("Pipeline - Visualization")
+    def _visualize_frame(self, end_time: float):
+        self.rerun.set_time("data_time", timestamp=end_time)
+        pose = self.lio.pose()
+        self.rerun.log(
+            "world/lidar",
+            self.rerun.Transform3D(
+                translation=pose[:3, 3],
+                mat3x3=pose[:3, :3],
+                axis_length=2,
+            ),
+        )
+        self.rerun.log(
+            "world/view_anchor",
+            self.rerun.Transform3D(translation=pose[:3, 3]),
+        )
+        traj_pts = np.array([self.last_xyz, pose[:3, 3]])
+        self.rerun.log(
+            "world/trajectory",
+            self.rerun.LineStrips3D([traj_pts], radii=[0.1], colors=[255, 111, 111]),
+        )
+        self.last_xyz = pose[:3, 3].copy()
 
-                    local_map_points = self.lio.map_point_cloud()
-                    if local_map_points.size > 0:
-                        self.rerun.log(
-                            "world/local_map",
-                            self.rerun.Points3D(
-                                local_map_points,
-                                colors=height_colors_from_points(local_map_points),
-                            ),
-                        )
+        self.viz_counter += 1
+        if self.viz_counter % self.config.viz_every_n_frames != 0:
+            # logging the point clouds is more expensive
+            # especially the local map, as we have to iterate over the entire map
+            # so we publish the lidar every n frames
+            return
+
+        local_map_points = self.lio.map_point_cloud()
+        if local_map_points.size > 0:
+            self.rerun.log(
+                "world/local_map",
+                self.rerun.Points3D(
+                    local_map_points,
+                    colors=height_colors_from_points(local_map_points),
+                ),
+            )
 
     def dump_results_to_disk(self):
         """
@@ -262,42 +267,3 @@ class LIOPipeline:
         with settings_file.open("w") as f:
             yaml.dump(config, f, sort_keys=False)
         info(f"Configuration written to {settings_file.resolve()}")
-
-
-def log_vector(rerun, entity_path_prefix: str, vector):
-    """
-    Logs a vector as three scalar time-series in rerun.
-
-    Args:
-        rerun: rerun module
-        entity_path_prefix: Base path for scalar logs (e.g. "imu/avg_acceleration")
-        vector: Iterable or np.ndarray with 3 elements (x, y, z)
-    """
-    rerun.log(f"{entity_path_prefix}/x", rerun.Scalars(vector[0]))
-    rerun.log(f"{entity_path_prefix}/y", rerun.Scalars(vector[1]))
-    rerun.log(f"{entity_path_prefix}/z", rerun.Scalars(vector[2]))
-
-
-def log_vector_columns(
-    rerun, entity_path_prefix: str, times: np.ndarray, vectors: np.ndarray
-):
-    """
-    Log a batch of 3D vectors over multiple timestamps in rerun,
-    sending one column batch per vector axis.
-
-    Args:
-        rerun: rerun module or rerun instance.
-        entity_path_prefix: base path e.g. 'imu/acceleration'.
-        times: 1D np.ndarray of timestamps (float64).
-        vectors: 2D np.ndarray, shape (N, 3) where columns are x,y,z.
-    """
-    # Common time column to link all components
-    time_col = rerun.TimeColumn("data_time", timestamp=times)
-
-    # For each component, prepare scalar column and send
-    for dim, axis_label in enumerate(["x", "y", "z"]):
-        rerun.send_columns(
-            f"{entity_path_prefix}/{axis_label}",
-            indexes=[time_col],
-            columns=rerun.Scalars.columns(scalars=vectors[:, dim]),
-        )
