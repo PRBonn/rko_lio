@@ -134,13 +134,6 @@ class HeliprDataLoader:
         entries.sort(key=lambda x: x[1])
         return entries
 
-    def __len__(self):
-        return len(self.entries)
-
-    def __iter__(self):
-        self._iter = iter(self.entries)
-        return self
-
     def __next__(self):
         with ScopedProfiler("HeLiPR Dataloader") as data_timer:
             kind, _, data = next(self._iter)
@@ -176,6 +169,13 @@ class HeliprDataLoader:
 
     def __repr__(self):
         return f"HeliprDataLoader({self.data_path.name}, Sensor={self.sensor}, {len(self.entries)} entries)"
+
+    def __len__(self):
+        return len(self.entries)
+
+    def __iter__(self):
+        self._iter = iter(self.entries)
+        return self
 
 
 def parse_extrinsic_txt(path: Path) -> np.ndarray:

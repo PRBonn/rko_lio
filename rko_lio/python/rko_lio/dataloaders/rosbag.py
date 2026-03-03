@@ -132,12 +132,6 @@ class RosbagDataLoader:
 
         self.timestamp_config = timestamp_config
 
-    def __len__(self):
-        return (
-            self.bag.topics[self.imu_topic].msgcount
-            + self.bag.topics[self.lidar_topic].msgcount
-        )
-
     def _read_first_frame_id(self, topic_name):
         """Read the frame_id from the first message of the given topic."""
         for connection in self.bag.connections:
@@ -167,9 +161,6 @@ class RosbagDataLoader:
                 static_tf_tree, self.lidar_frame_id, self.base_frame_id
             )
         return self.T_imu_to_base, self.T_lidar_to_base
-
-    def __iter__(self):
-        return self
 
     def __next__(self):
         while True:
@@ -282,3 +273,12 @@ class RosbagDataLoader:
     def __del__(self):
         if hasattr(self, "bag"):
             self.bag.close()
+
+    def __len__(self):
+        return (
+            self.bag.topics[self.imu_topic].msgcount
+            + self.bag.topics[self.lidar_topic].msgcount
+        )
+
+    def __iter__(self):
+        return self

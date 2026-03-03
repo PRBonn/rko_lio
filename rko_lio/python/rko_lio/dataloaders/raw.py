@@ -127,9 +127,6 @@ class RawDataLoader:
         self.T_imu_to_base = None
         self.T_lidar_to_base = None
 
-    def __len__(self):
-        return len(self.entries)
-
     def _get_from_settings(self, key: str, default_callable, _warned_keys=set()):
         """
         warned_keys is a trick (hack) to have a global variable to prevent repeated warnings.
@@ -294,10 +291,6 @@ class RawDataLoader:
             lidar_data.append({"timestamp": timestamp, "filename": lf_name})
         return lidar_data
 
-    def __iter__(self):
-        self._iter = iter(self.entries)
-        return self
-
     def __next__(self):
         with ScopedProfiler("Raw Dataloader") as data_timer:
             kind, _, data = next(self._iter)
@@ -335,3 +328,10 @@ class RawDataLoader:
         path_info = f"path={self.data_path}"
         entry_info = f"{len(self.entries)} total entries"
         return f"RawDataLoader({path_info}, {imu_info}, {lidar_info}, {entry_info})"
+
+    def __len__(self):
+        return len(self.entries)
+
+    def __iter__(self):
+        self._iter = iter(self.entries)
+        return self
