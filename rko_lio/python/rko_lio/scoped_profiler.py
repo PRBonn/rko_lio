@@ -60,4 +60,15 @@ class ScopedProfiler:
             )
 
 
+def profile_func(name):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            with ScopedProfiler(name):
+                return func(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
+
+
 atexit.register(ScopedProfiler.print_results)
