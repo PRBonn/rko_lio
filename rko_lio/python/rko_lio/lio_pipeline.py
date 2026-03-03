@@ -84,16 +84,18 @@ class LIOPipeline:
         Folder is {log_dir}/{run_name}_{index}.
         Automatically bumps the index (from 0) if similar names exist, to avoid overwriting.
         """
-        if self._output_dir is None:
-            self.config.log_dir.mkdir(parents=True, exist_ok=True)
-            index = 0
-            while True:
-                output_dir = self.config.log_dir / f"{self.config.run_name}_{index}"
-                if not output_dir.exists():
-                    break
-                index += 1
-            output_dir.mkdir()
-            self._output_dir = output_dir
+        if self._output_dir is not None:
+            return self._output_dir
+
+        self.config.log_dir.mkdir(parents=True, exist_ok=True)
+        index = 0
+        while True:
+            output_dir = self.config.log_dir / f"{self.config.run_name}_{index}"
+            if not output_dir.exists():
+                break
+            index += 1
+        output_dir.mkdir()
+        self._output_dir = output_dir
         return self._output_dir
 
     def add_imu(
