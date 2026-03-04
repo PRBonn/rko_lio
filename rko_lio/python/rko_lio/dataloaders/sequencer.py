@@ -16,6 +16,7 @@ class LidarIMUSequencer:
 
     def __init__(self, dataloader):
         self.dataloader = dataloader
+        self.data_it = iter(dataloader)
         # Each: dict with keys 'time', 'accel', 'gyro'
         self.imu_buffer: list[dict] = []
         # Each: dict with keys 'start_time', 'end_time', 'scan', 'timestamps'
@@ -32,7 +33,7 @@ class LidarIMUSequencer:
     def _read_next_from_wrapped_loader(self):
         "reads the next data point and appends to the appropriate buffer"
         try:
-            kind, data = next(self.dataloader)
+            kind, data = next(self.data_it)
         except StopIteration:
             raise
 

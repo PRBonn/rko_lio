@@ -35,6 +35,7 @@ from pathlib import Path
 import numpy as np
 
 from .. import rko_lio_pybind
+from ..config import TimestampConfig
 from ..scoped_profiler import ScopedProfiler
 from ..util import error_and_exit, info
 from .helipr_file_reader_pybind import read_lidar_bin
@@ -47,7 +48,14 @@ class HeliprDataLoader:
     sequence: LiDAR sensor name: 'Aeva', 'Avia', 'Ouster', 'Velodyne'
     """
 
-    def __init__(self, data_path: Path, sequence: str | None = None, *args, **kwargs):
+    def __init__(
+        self,
+        data_path: Path,
+        timestamp_config: TimestampConfig,
+        sequence: str | None = None,
+        *args,
+        **kwargs,
+    ):
         if sequence is None:
             error_and_exit("HeLiPR dataloader needs a --sequence argument.")
 
@@ -57,10 +65,10 @@ class HeliprDataLoader:
             stacklevel=2,
         )
 
-        self.read_lidar_bin = read_lidar_bin
-
         self.data_path = Path(data_path)
         self.sensor = sequence  # e.g. "Aeva"
+        self.timestamp_config = timestamp_config
+
         self._imu_data = self._load_imu()
         self._lidar_entries = self._find_lidar_bin_files()
         self.entries = self._build_entries()
@@ -149,13 +157,14 @@ class HeliprDataLoader:
                 )
             elif kind == "lidar":
                 header_stamp_sec = data["timestamp"] / 1e9
-                points, raw_timestamps = self.read_lidar_bin(
+                points, raw_timestamps = read_lidar_bin(
                     str(data["filename"]), self.sensor
                 )
                 points_arr = np.asarray(points).reshape(-1, 3)
                 start, end, abs_timestamps = rko_lio_pybind._process_timestamps(
                     rko_lio_pybind._VectorDouble(np.asarray(raw_timestamps)),
                     header_stamp_sec,
+                    self.timestamp_config.to_pybind(),
                 )
                 return (
                     "lidar",
@@ -167,15 +176,15 @@ class HeliprDataLoader:
                     },
                 )
 
+    def __iter__(self):
+        self._iter = iter(self.entries)
+        return self
+
     def __repr__(self):
         return f"HeliprDataLoader({self.data_path.name}, Sensor={self.sensor}, {len(self.entries)} entries)"
 
     def __len__(self):
         return len(self.entries)
-
-    def __iter__(self):
-        self._iter = iter(self.entries)
-        return self
 
 
 def parse_extrinsic_txt(path: Path) -> np.ndarray:
