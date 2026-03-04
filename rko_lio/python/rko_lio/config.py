@@ -225,4 +225,6 @@ class PipelineConfig:
         )
 
     def to_dict(self):
-        return asdict(self)
+        res = asdict(self)
+        res["log_dir"] = res["log_dir"].as_posix()
+        return res

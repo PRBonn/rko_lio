@@ -51,7 +51,7 @@ def dump_config_callback(value: bool):
         from .config import PipelineConfig
 
         with open("config.yaml", "w") as f:
-            yaml.dump(PipelineConfig.default_dict(), f, default_flow_style=False)
+            yaml.dump(PipelineConfig().to_dict(), f, default_flow_style=False)
         info(
             "Default config dumped to config.yaml. Note that the extrinsics are left as an empty list. If you need them, you need to specify them as \[qx, qy, qz, qw, x, y, z]. Delete all the keys you don't need."
         )
