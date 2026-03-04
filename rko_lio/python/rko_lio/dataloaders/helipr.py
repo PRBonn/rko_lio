@@ -238,6 +238,10 @@ def parse_lidar_extrinsic(path: Path, target_sensor: str) -> np.ndarray:
     Assumes inside Rotation and Translation brackets, numbers are space-separated.
     Matches are case-insensitive and multiline.
     """
+    if target_sensor.lower() == "ouster":
+        # extrinsic file has no ouster - ouster
+        return np.eye(4, dtype=float)
+
     text = path.read_text()
 
     # Regex pattern to find each block starting with [Ouster - <sensor> Extrinsic Calibration]
