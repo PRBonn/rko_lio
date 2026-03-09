@@ -22,6 +22,9 @@ class LidarIMUSequencer:
         # Each: dict with keys 'start_time', 'end_time', 'scan', 'timestamps'
         self.lidar_buffer: list[dict] = []
 
+    def __len__(self):
+        return len(self.dataloader)
+
     def _buffers_ready(self):
         "if true, there's at least one valid lidar and imu data sequence"
         return (
@@ -66,9 +69,6 @@ class LidarIMUSequencer:
 
     def __repr__(self):
         return "LidarIMUSequencer wrapping " + self.dataloader.__repr__()
-
-    def __len__(self):
-        return len(self.dataloader)
 
     @property
     def extrinsics(self):
