@@ -36,8 +36,8 @@ import numpy as np
 
 from .. import rko_lio_pybind
 from ..config import TimestampConfig
-from ..scoped_profiler import ScopedProfiler
-from ..util import error_and_exit, info
+from ..scoped_profiler import ScopedProfiler, profile_func
+from ..util import error_and_exit, info, warning
 from .helipr_file_reader_pybind import read_lidar_bin
 
 
@@ -142,8 +142,9 @@ class HeliprDataLoader:
         entries.sort(key=lambda x: x[1])
         return entries
 
+    @profile_func("HeLiPR Dataloader")
     def __next__(self):
-        with ScopedProfiler("HeLiPR Dataloader") as data_timer:
+        while True:
             kind, _, data = next(self._iter)
 
             if kind == "imu":
@@ -157,9 +158,16 @@ class HeliprDataLoader:
                 )
             elif kind == "lidar":
                 header_stamp_sec = data["timestamp"] / 1e9
-                points, raw_timestamps = read_lidar_bin(
-                    str(data["filename"]), self.sensor
-                )
+
+                try:
+                    points, raw_timestamps = read_lidar_bin(
+                        str(data["filename"]), self.sensor
+                    )
+                except RuntimeError as e:
+                    # pybinded cpp side can throw
+                    warning("Error processing lidar frame.", e)
+                    continue
+
                 points_arr = np.asarray(points).reshape(-1, 3)
                 start, end, abs_timestamps = rko_lio_pybind._process_timestamps(
                     rko_lio_pybind._VectorDouble(np.asarray(raw_timestamps)),
