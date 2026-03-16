@@ -57,6 +57,7 @@ from ..util import error, error_and_exit, info, warning
 
 try:
     from rosbags.highlevel import AnyReader
+    from rosbags.typesys import Stores, get_typestore
 except ModuleNotFoundError:
     error_and_exit(
         'rosbags library not installed for using rosbag dataloader, please install with "pip install -U rosbags"'
@@ -91,12 +92,14 @@ class RosbagDataLoader:
         if ros1_bagfiles:
             self.bag_type = "ROS1"  # for logging
             bagfiles = ros1_bagfiles
+            default_typestore = get_typestore(Stores.ROS1_NOETIC)
         else:
             self.bag_type = "ROS2"
             bagfiles = [data_path]
+            default_typestore = get_typestore(Stores.LATEST)
 
         self.first_bag_path = bagfiles[0]  # for logging
-        self.bag = AnyReader(bagfiles)
+        self.bag = AnyReader(bagfiles, typestore=default_typestore)
         if len(bagfiles) > 1:
             print("Reading multiple .bag files in directory:")
             print("\n".join(sorted([path.name for path in bagfiles])))
@@ -280,5 +283,6 @@ class RosbagDataLoader:
         return f"RosbagDataLoader({bag_type}, {path_info}, {imu_info}, {lidar_info}, {msg_counts})"
 
     def __del__(self):
-        if hasattr(self, "bag"):
-            self.bag.close()
+        bag = getattr(self, "bag", None)
+        if bag is not None and getattr(bag, "isopen", False):
+            bag.close()
