@@ -99,7 +99,7 @@ class RosbagDataLoader:
             default_typestore = get_typestore(Stores.LATEST)
 
         self.first_bag_path = bagfiles[0]  # for logging
-        self.bag = AnyReader(bagfiles, typestore=default_typestore)
+        self.bag = AnyReader(bagfiles, default_typestore=default_typestore)
         if len(bagfiles) > 1:
             print("Reading multiple .bag files in directory:")
             print("\n".join(sorted([path.name for path in bagfiles])))
