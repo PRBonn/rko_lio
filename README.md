@@ -42,8 +42,14 @@ More details are available in the [Python usage docs](https://prbonn.github.io/r
 
 ### Extrinsics and convention
 
-Please note that the system needs the extrinsic to be specified between IMU and LiDAR. Either your data includes this in some format, and then the dataloaders try to automatically read it, or otherwise you can specify it in a config file (required if it's missing in the data). Pass the config file with `rko_lio --config config_file.yaml`. This file needs two keys: `extrinsic_imu2base_quat_xyzw_xyz` and `extrinsic_lidar2base_quat_xyzw_xyz`, which must each be a list. For example, `[0,0,0,1,0,0,0]` for identity. Both keys are required.
+Please note that the system needs the extrinsic to be specified between IMU and LiDAR. Either your data includes this in some format, and then the dataloaders try to automatically read it, or otherwise you can specify it in a config file (required if it's missing in the data).
+Pass the config file with
 
+```bash
+rko_lio --config config_file.yaml
+```
+
+This file needs two keys: `extrinsic_imu2base_quat_xyzw_xyz` and `extrinsic_lidar2base_quat_xyzw_xyz`, which must each be a list. For example: `[0,0,0,1,0,0,0]` for identity. Both keys are required.
 
 Throughout this package, I refer to transformations using `transform_<from-frame>2<to-frame>`. By this, I mean a transformation that converts a vector expressed in the `<from-frame>` coordinate system to the `<to-frame>` coordinate system. Mathematically, this translates to:
 
@@ -78,7 +84,7 @@ A launch file is provided:
 ros2 launch rko_lio odometry.launch.py imu_topic:=<topic> lidar_topic:=<topic> base_frame:=base_link
 ```
 
-The three parameters `imu_topic`, `lidar_topic`, and `base_frame` are the minimum you need to specify for the launch file.
+The three parameters `imu_topic`, `lidar_topic`, and `base_frame` are the minimum you need to specify for the launch file. You can specify them and other options all at once in a config file passed with `config_file:=file.yaml`.
 
 Check further launch configuration options through `ros2 launch rko_lio odometry.launch.py -s`
 
@@ -105,7 +111,8 @@ If you found this work useful, please consider leaving a star :star: on this rep
 
 My goal with this project is to have a simple LiDAR-Inertial odometry system that can work with minimal friction, in the lines of ["it just works"](https://youtu.be/nVqcxarP9J4?si=LvTfV4m0NkNC62Tf&t=6). I gladly welcome any contribution or feedback you think would help in this direction. Performance improvements or bug fixes are of course always appreciated.
 
-Thanks to the following contributors:
+Thanks to the following contributors
+
 <a href="https://github.com/PRBonn/rko_lio/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=PRBonn/rko_lio" />
 </a>
@@ -121,7 +128,6 @@ Additionally, we use and rely heavily on, either in the package itself or during
 A special mention goes out to [Rerun](https://rerun.io/) for providing an extremely easy-to-use but highly performative visualization system. Without this, I probably would not have made a python interface at all.
 
 </details>
-
 
 ### RA-L Submission
 
