@@ -122,6 +122,18 @@ rko_lio<span class="w"> </span>-v<span class="w"> </span>/path/to/data
 </ul>
 <p>Check further options for the CLI through <code class="docutils literal notranslate"><span class="pre">rko_lio</span> <span class="pre">--help</span></code>.</p>
 <p>More details are available in the <a class="reference external" href="https://prbonn.github.io/rko_lio/pages/python/usage.html">Python usage docs</a>.</p>
+<section id="extrinsics-and-convention">
+<h2>Extrinsics and convention<a class="headerlink" href="#extrinsics-and-convention" title="Link to this heading">¶</a></h2>
+<p>Please note that the system needs the extrinsic to be specified between IMU and LiDAR. Either your data includes this in some format, and then the dataloaders try to automatically read it, or otherwise you can specify it in a config file (required if it’s missing in the data).
+Pass the config file with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rko_lio<span class="w"> </span>--config<span class="w"> </span>config_file.yaml
+</pre></div>
+</div>
+<p>This file needs two keys: <code class="docutils literal notranslate"><span class="pre">extrinsic_imu2base_quat_xyzw_xyz</span></code> and <code class="docutils literal notranslate"><span class="pre">extrinsic_lidar2base_quat_xyzw_xyz</span></code>, which must each be a list. For example: <code class="docutils literal notranslate"><span class="pre">[0,0,0,1,0,0,0]</span></code> for identity. Both keys are required.</p>
+<p>Throughout this package, I refer to transformations using <code class="docutils literal notranslate"><span class="pre">transform_&lt;from-frame&gt;2&lt;to-frame&gt;</span></code>. By this, I mean a transformation that converts a vector expressed in the <code class="docutils literal notranslate"><span class="pre">&lt;from-frame&gt;</span></code> coordinate system to the <code class="docutils literal notranslate"><span class="pre">&lt;to-frame&gt;</span></code> coordinate system. Mathematically, this translates to:</p>
+<p>$$ \mathbf{v}^{\mathrm{to}} = {}^{\mathrm{to}}\mathbf{T}_{\mathrm{from}} \mathbf{v}^{\mathrm{from}} $$</p>
+<p>The superscript on the vector indicates the frame in which the vector is expressed, and $^{ \mathrm{to} }\mathbf{T}_{\mathrm{from}}$ corresponds to <code class="docutils literal notranslate"><span class="pre">transform_&lt;from-frame&gt;_to_&lt;to-frame&gt;</span></code>.</p>
+</section>
 </section>
 <section id="ros">
 <h1>ROS<a class="headerlink" href="#ros" title="Link to this heading">¶</a></h1>
@@ -142,13 +154,10 @@ colcon<span class="w"> </span>build<span class="w"> </span>--packages-select<spa
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>rko_lio<span class="w"> </span>odometry.launch.py<span class="w"> </span>imu_topic:<span class="o">=</span>&lt;topic&gt;<span class="w"> </span>lidar_topic:<span class="o">=</span>&lt;topic&gt;<span class="w"> </span>base_frame:<span class="o">=</span>base_link
 </pre></div>
 </div>
-<p>The three parameters above are the minimum you need to specify for the launch file.</p>
+<p>The three parameters <code class="docutils literal notranslate"><span class="pre">imu_topic</span></code>, <code class="docutils literal notranslate"><span class="pre">lidar_topic</span></code>, and <code class="docutils literal notranslate"><span class="pre">base_frame</span></code> are the minimum you need to specify for the launch file. You can specify them and other options all at once in a config file passed with <code class="docutils literal notranslate"><span class="pre">config_file:=file.yaml</span></code>.</p>
 <p>Check further launch configuration options through <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">launch</span> <span class="pre">rko_lio</span> <span class="pre">odometry.launch.py</span> <span class="pre">-s</span></code></p>
 <p>More details are available in the <a class="reference external" href="https://prbonn.github.io/rko_lio/pages/ros/usage.html">ROS usage docs</a>.</p>
-</section>
-<section id="license">
-<h1>License<a class="headerlink" href="#license" title="Link to this heading">¶</a></h1>
-<p>This project is free software made available under the MIT license. For details, see the <a class="reference download internal" download="" href="_downloads/9879d6db96fd29134fc802214163b95a/LICENSE"><span class="xref download myst">LICENSE</span></a> file.</p>
+<p>The same note <a class="reference internal" href="#extrinsics-and-convention"><span class="xref myst">above about extrinsics</span></a> applies here as well. Though you probably have a well defined TF tree and need not concern yourself with this (I hope).</p>
 </section>
 <section id="citation">
 <h1>Citation<a class="headerlink" href="#citation" title="Link to this heading">¶</a></h1>
@@ -163,10 +172,14 @@ colcon<span class="w"> </span>build<span class="w"> </span>--packages-select<spa
 <span class="p">}</span>
 </pre></div>
 </div>
-<section id="ra-l-submission">
-<h2>RA-L Submission<a class="headerlink" href="#ra-l-submission" title="Link to this heading">¶</a></h2>
-<p>You can check out the branch <code class="docutils literal notranslate"><span class="pre">ral_submission</span></code> for the version of the code used for submission to RA-L. Please note that that branch is meant to be an as-is reproduction of the code used during submission and is not supported. The <code class="docutils literal notranslate"><span class="pre">master</span></code> and release versions are vastly improved, supported, and are the recommended way to use this system.</p>
 </section>
+<section id="contributing">
+<h1>Contributing<a class="headerlink" href="#contributing" title="Link to this heading">¶</a></h1>
+<p>My goal with this project is to have a simple LiDAR-Inertial odometry system that can work with minimal friction, in the lines of <a class="reference external" href="https://youtu.be/nVqcxarP9J4?si=LvTfV4m0NkNC62Tf&amp;amp;t=6">“it just works”</a>. I gladly welcome any contribution or feedback you think would help in this direction. Performance improvements or bug fixes are of course always appreciated.</p>
+<p>Thanks to the following contributors</p>
+<a href="https://github.com/PRBonn/rko_lio/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=PRBonn/rko_lio" />
+</a>
 </section>
 <section id="acknowledgements">
 <h1>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading">¶</a></h1>
@@ -176,6 +189,14 @@ colcon<span class="w"> </span>build<span class="w"> </span>--packages-select<spa
 Additionally, we use and rely heavily on, either in the package itself or during development, <a class="reference external" href="https://github.com/facontidavide/Bonxai">Bonxai</a>, <a class="reference external" href="https://github.com/facontidavide/PlotJuggler">PlotJuggler</a>, <a class="reference external" href="https://github.com/rerun-io/rerun">Rerun</a>, and of course ROS itself.</p>
 <p>A special mention goes out to <a class="reference external" href="https://rerun.io/">Rerun</a> for providing an extremely easy-to-use but highly performative visualization system. Without this, I probably would not have made a python interface at all.</p>
 </details>
+<section id="ra-l-submission">
+<h2>RA-L Submission<a class="headerlink" href="#ra-l-submission" title="Link to this heading">¶</a></h2>
+<p>You can check out the branch <code class="docutils literal notranslate"><span class="pre">ral_submission</span></code> for the version of the code used for submission to RA-L. Please note that that branch is meant to be an as-is reproduction of the code used during submission and is not supported. The <code class="docutils literal notranslate"><span class="pre">master</span></code> and release versions are vastly improved, supported, and are the recommended way to use this system.</p>
+</section>
+</section>
+<section id="license">
+<h1>License<a class="headerlink" href="#license" title="Link to this heading">¶</a></h1>
+<p>This project is free software made available under the MIT license. For details, see the <a class="reference download internal" download="" href="_downloads/9879d6db96fd29134fc802214163b95a/LICENSE"><span class="xref download myst">LICENSE</span></a> file.</p>
 </section>
 
 

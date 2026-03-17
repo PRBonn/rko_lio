@@ -40,6 +40,23 @@ Check further options for the CLI through `rko_lio --help`.
 
 More details are available in the [Python usage docs](https://prbonn.github.io/rko_lio/pages/python/usage.html).
 
+### Extrinsics and convention
+
+Please note that the system needs the extrinsic to be specified between IMU and LiDAR. Either your data includes this in some format, and then the dataloaders try to automatically read it, or otherwise you can specify it in a config file (required if it's missing in the data).
+Pass the config file with
+
+```bash
+rko_lio --config config_file.yaml
+```
+
+This file needs two keys: `extrinsic_imu2base_quat_xyzw_xyz` and `extrinsic_lidar2base_quat_xyzw_xyz`, which must each be a list. For example: `[0,0,0,1,0,0,0]` for identity. Both keys are required.
+
+Throughout this package, I refer to transformations using `transform_<from-frame>2<to-frame>`. By this, I mean a transformation that converts a vector expressed in the `<from-frame>` coordinate system to the `<to-frame>` coordinate system. Mathematically, this translates to:
+
+$$ \mathbf{v}^{\mathrm{to}} = {}^{\mathrm{to}}\mathbf{T}_{\mathrm{from}} \mathbf{v}^{\mathrm{from}} $$
+
+The superscript on the vector indicates the frame in which the vector is expressed, and $^{ \mathrm{to} }\mathbf{T}_{\mathrm{from}}$ corresponds to `transform_<from-frame>_to_<to-frame>`.
+
 ## ROS
 
 Supported distros: Humble, Jazzy, Kilted, Rolling.
@@ -67,15 +84,13 @@ A launch file is provided:
 ros2 launch rko_lio odometry.launch.py imu_topic:=<topic> lidar_topic:=<topic> base_frame:=base_link
 ```
 
-The three parameters above are the minimum you need to specify for the launch file.
+The three parameters `imu_topic`, `lidar_topic`, and `base_frame` are the minimum you need to specify for the launch file. You can specify them and other options all at once in a config file passed with `config_file:=file.yaml`.
 
 Check further launch configuration options through `ros2 launch rko_lio odometry.launch.py -s`
 
 More details are available in the [ROS usage docs](https://prbonn.github.io/rko_lio/pages/ros/usage.html).
 
-## License
-
-This project is free software made available under the MIT license. For details, see the [LICENSE](LICENSE) file.
+The same note [above about extrinsics](#extrinsics-and-convention) applies here as well. Though you probably have a well defined TF tree and need not concern yourself with this (I hope).
 
 ## Citation
 
@@ -92,9 +107,15 @@ If you found this work useful, please consider leaving a star :star: on this rep
 }
 ```
 
-### RA-L Submission
+## Contributing
 
-You can check out the branch `ral_submission` for the version of the code used for submission to RA-L. Please note that that branch is meant to be an as-is reproduction of the code used during submission and is not supported. The `master` and release versions are vastly improved, supported, and are the recommended way to use this system.
+My goal with this project is to have a simple LiDAR-Inertial odometry system that can work with minimal friction, in the lines of ["it just works"](https://youtu.be/nVqcxarP9J4?si=LvTfV4m0NkNC62Tf&t=6). I gladly welcome any contribution or feedback you think would help in this direction. Performance improvements or bug fixes are of course always appreciated.
+
+Thanks to the following contributors
+
+<a href="https://github.com/PRBonn/rko_lio/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=PRBonn/rko_lio" />
+</a>
 
 ## Acknowledgements
 
@@ -107,3 +128,11 @@ Additionally, we use and rely heavily on, either in the package itself or during
 A special mention goes out to [Rerun](https://rerun.io/) for providing an extremely easy-to-use but highly performative visualization system. Without this, I probably would not have made a python interface at all.
 
 </details>
+
+### RA-L Submission
+
+You can check out the branch `ral_submission` for the version of the code used for submission to RA-L. Please note that that branch is meant to be an as-is reproduction of the code used during submission and is not supported. The `master` and release versions are vastly improved, supported, and are the recommended way to use this system.
+
+## License
+
+This project is free software made available under the MIT license. For details, see the [LICENSE](LICENSE) file.
