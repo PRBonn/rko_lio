@@ -47,12 +47,9 @@ Please note that the system needs the extrinsic to be specified between IMU and 
 
 Throughout this package, I refer to transformations using `transform_<from-frame>2<to-frame>`. By this, I mean a transformation that converts a vector expressed in the `<from-frame>` coordinate system to the `<to-frame>` coordinate system. Mathematically, this translates to:
 
-\[
-\mathbf{v}^{\text{to}} = {}^{\text{to}} \mathbf{T}_{\text{from}} \, \mathbf{v}^{\text{from}}
-\]
+$$ \mathbf{v}^{\mathrm{to}} = {}^{\mathrm{to}}\mathbf{T}_{\mathrm{from}} \mathbf{v}^{\mathrm{from}} $$
 
-The superscript on the vector indicates the frame in which the vector is expressed, and  \({}^{\text{to}} \mathbf{T}_{\text{from}}\) corresponds to `transform_<from-frame>2<to-frame>`.
-
+The superscript on the vector indicates the frame in which the vector is expressed, and $^{ \mathrm{to} }\mathbf{T}_{\mathrm{from}}$ corresponds to `transform_<from-frame>_to_<to-frame>`.
 
 ## ROS
 
