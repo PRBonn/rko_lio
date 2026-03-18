@@ -7,7 +7,7 @@
 
 [![arXiv](https://img.shields.io/badge/arXiv-2509.06593-b31b1b.svg)](https://arxiv.org/abs/2509.06593) [![GitHub License](https://img.shields.io/github/license/PRBonn/rko_lio)](/LICENSE) [![GitHub last commit](https://img.shields.io/github/last-commit/PRBonn/rko_lio)](/)
 
-[![PyPI - Version](https://img.shields.io/pypi/v/rko_lio?color=blue)](https://pypi.org/project/rko-lio/) ![ROS Package Index](https://img.shields.io/ros/v/humble/rko_lio) ![ROS Package Index](https://img.shields.io/ros/v/jazzy/rko_lio) ![ROS Package Index](https://img.shields.io/ros/v/kilted/rko_lio) ![ROS Package Index](https://img.shields.io/ros/v/rolling/rko_lio)
+[![PyPI - Version](https://img.shields.io/pypi/v/rko_lio?color=blue)](https://pypi.org/project/rko-lio/) [![ROS Package Index](https://img.shields.io/ros/v/humble/rko_lio?color=blue)](https://index.ros.org/p/rko_lio/#humble) [![ROS Package Index](https://img.shields.io/ros/v/jazzy/rko_lio?color=blue)](https://index.ros.org/p/rko_lio/#jazzy) [![ROS Package Index](https://img.shields.io/ros/v/kilted/rko_lio?color=blue)](https://index.ros.org/p/rko_lio/#kilted) [![ROS Package Index](https://img.shields.io/ros/v/rolling/rko_lio?color=blue)](https://index.ros.org/p/rko_lio/#rolling)
 
 </div>
 
