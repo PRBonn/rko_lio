@@ -143,54 +143,9 @@ Automatically bumps the index (from 0) if similar names exist, to avoid overwrit
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rko_lio.lio_pipeline.LIOPipeline.register_scan">
-<span class="sig-name descname"><span class="pre">register_scan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.LIOPipeline.register_scan" title="Link to this definition">¶</a></dt>
-<dd><p>Register a lidar scan.
-Timestamps are assumed to be absolute seconds.
-It is assumed there is sufficient IMU data added to the pipeline before triggering the registration (use the Sequencer).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>start_time</strong> (<em>float</em>) – Absolute time of the scan recording start</p></li>
-<li><p><strong>end_time</strong> (<em>float</em>) – Absolute time of the scan recording end</p></li>
-<li><p><strong>scan</strong> (<em>array</em><em> of </em><em>float</em><em>, </em><em>shape</em><em> (</em><em>N</em><em>,</em><em>3</em><em>)</em>) – Point cloud.</p></li>
-<li><p><strong>timestamps</strong> (<em>array</em><em> of </em><em>float</em><em>, </em><em>shape</em><em> (</em><em>N</em><em>,</em><em>)</em>) – Absolute timestamps (seconds) for each point.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-name descname"><span class="pre">register_scan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.LIOPipeline.register_scan" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="rko_lio.lio_pipeline.log_vector">
-<span class="sig-prename descclassname"><span class="pre">rko_lio.lio_pipeline.</span></span><span class="sig-name descname"><span class="pre">log_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rerun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entity_path_prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.log_vector" title="Link to this definition">¶</a></dt>
-<dd><p>Logs a vector as three scalar time-series in rerun.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>rerun</strong> – rerun module</p></li>
-<li><p><strong>entity_path_prefix</strong> – Base path for scalar logs (e.g. “imu/avg_acceleration”)</p></li>
-<li><p><strong>vector</strong> – Iterable or np.ndarray with 3 elements (x, y, z)</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="rko_lio.lio_pipeline.log_vector_columns">
-<span class="sig-prename descclassname"><span class="pre">rko_lio.lio_pipeline.</span></span><span class="sig-name descname"><span class="pre">log_vector_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rerun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entity_path_prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">times</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vectors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.log_vector_columns" title="Link to this definition">¶</a></dt>
-<dd><p>Log a batch of 3D vectors over multiple timestamps in rerun,
-sending one column batch per vector axis.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>rerun</strong> – rerun module or rerun instance.</p></li>
-<li><p><strong>entity_path_prefix</strong> – base path e.g. ‘imu/acceleration’.</p></li>
-<li><p><strong>times</strong> – 1D np.ndarray of timestamps (float64).</p></li>
-<li><p><strong>vectors</strong> – 2D np.ndarray, shape (N, 3) where columns are x,y,z.</p></li>
-</ul>
-</dd>
-</dl>
 </dd></dl>
 
 </section>
