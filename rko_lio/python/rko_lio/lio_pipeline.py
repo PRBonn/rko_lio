@@ -262,7 +262,6 @@ class LIOPipeline:
         info(f"Poses written to {traj_file.resolve()}")
 
         config = self.config.to_dict()
-        config["log_dir"] = config["log_dir"].as_posix()
         settings_file = self.output_dir / "config.yaml"
         with settings_file.open("w") as f:
             yaml.dump(config, f, sort_keys=False)
