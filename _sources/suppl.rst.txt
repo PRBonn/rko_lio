@@ -7,7 +7,7 @@ RA-L Supplementary Material
 System Pipeline
 ===============
 
-.. figure:: images/pipeline.png
+.. figure:: pages/uncategorised/images/pipeline.png
    :width: 100%
    :alt: System Pipeline Schematic
 
@@ -29,13 +29,13 @@ In this section, we present trajectory plots using ``evo_ape`` (Absolute Pose Er
 Oxford Spires (Radcliffe)
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. figure:: images/oxfs_radcliffe_02_no_ar.png
+.. figure:: pages/uncategorised/images/oxfs_radcliffe_02_no_ar.png
    :width: 100%
    :alt: Oxford Spires Radcliffe - No AR
 
    **Fig 2:** Odometry result when adaptive regularization is disabled (``no-AR`` ablation in the paper) on Oxford Spires Radcliffe sequence.
 
-.. figure:: images/oxfs_radcliffe_02_full.png
+.. figure:: pages/uncategorised/images/oxfs_radcliffe_02_full.png
    :width: 100%
    :alt: Oxford Spires Radcliffe - Full System
 
@@ -46,13 +46,13 @@ Shown above are two trajectory results when ablating the performance of the odom
 Car Dataset (Urban)
 ^^^^^^^^^^^^^^^^^^^
 
-.. figure:: images/ipbcar_urban_no_ar.png
+.. figure:: pages/uncategorised/images/ipbcar_urban_no_ar.png
    :width: 100%
    :alt: Car Urban - No AR
 
    **Fig 4:** Odometry result when adaptive regularization is disabled (``no-AR`` ablation in the paper) on Car (Urban) sequence.
 
-.. figure:: images/ipbcar_urban_full.png
+.. figure:: pages/uncategorised/images/ipbcar_urban_full.png
    :width: 100%
    :alt: Car Urban - Full System
 
@@ -63,7 +63,7 @@ Similar to the Oxford Spires results, we once again see the full system performs
 Car Dataset (Rural)
 ^^^^^^^^^^^^^^^^^^^
 
-.. figure:: images/ipbcar_rural_comp_xy_multiple_methods.png
+.. figure:: pages/uncategorised/images/ipbcar_rural_comp_xy_multiple_methods.png
    :width: 100%
    :alt: Car Rural - Multiple Methods Comparison
 
