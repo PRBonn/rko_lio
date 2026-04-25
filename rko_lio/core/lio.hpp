@@ -138,6 +138,13 @@ public:
   /** Sequence of registered scan poses with corresponding timestamps. */
   std::vector<std::pair<Secondsd, Sophus::SE3d>> poses_with_timestamps;
 
+  /** Latest IMU orientation used for gravity compensation. This is ahead of the rotation in the state. */
+  Sophus::SO3d imu_local_rotation;
+
+  /** Timestamp of the latest IMU orientation. Once a scan is registered, this is reset to the lidar state orientation.
+   */
+  Secondsd imu_local_rotation_time = Secondsd{0.0};
+
 private:
   /**
    * Initialize internal odometry state using the given lidar timestamp.
@@ -150,13 +157,6 @@ private:
 
   /** True if odometry initialization has been completed. */
   bool _initialized = false;
-
-  /** Latest IMU orientation used for gravity compensation. This is ahead of the rotation in the state. */
-  Sophus::SO3d _imu_local_rotation;
-
-  /** Timestamp of the latest IMU orientation. Once a scan is registered, this is reset to the lidar state orientation.
-   */
-  Secondsd _imu_local_rotation_time = Secondsd{0.0};
 
   /** Timestamp of the most recent real IMU measurement. */
   Secondsd _last_real_imu_time = Secondsd{0.0};

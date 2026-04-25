@@ -50,3 +50,7 @@ if(RKO_LIO_FETCH_CONTENT_DEPS)
     include(${CMAKE_CURRENT_LIST_DIR}/dependencies/json/nlohmann_json.cmake)
   endif()
 endif()
+
+if(RKO_LIO_BUILD_TESTS)
+  include(${CMAKE_CURRENT_LIST_DIR}/dependencies/catch2/catch2.cmake)
+endif()
