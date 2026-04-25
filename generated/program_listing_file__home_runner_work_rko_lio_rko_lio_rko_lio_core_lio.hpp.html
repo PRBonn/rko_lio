@@ -191,16 +191,16 @@
 
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">Secondsd</span><span class="p">,</span><span class="w"> </span><span class="n">Sophus</span><span class="o">::</span><span class="n">SE3d</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">poses_with_timestamps</span><span class="p">;</span>
 
+<span class="w">  </span><span class="n">Sophus</span><span class="o">::</span><span class="n">SO3d</span><span class="w"> </span><span class="n">imu_local_rotation</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">Secondsd</span><span class="w"> </span><span class="n">imu_local_rotation_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Secondsd</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
+
 <span class="k">private</span><span class="o">:</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">initialize</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Secondsd</span><span class="w"> </span><span class="n">lidar_time</span><span class="p">);</span>
 
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">AccelInfo</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_accel_info</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Sophus</span><span class="o">::</span><span class="n">SO3d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">rotation_estimate</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Secondsd</span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span><span class="p">);</span>
 
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">_initialized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-
-<span class="w">  </span><span class="n">Sophus</span><span class="o">::</span><span class="n">SO3d</span><span class="w"> </span><span class="n">_imu_local_rotation</span><span class="p">;</span>
-
-<span class="w">  </span><span class="n">Secondsd</span><span class="w"> </span><span class="n">_imu_local_rotation_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Secondsd</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
 
 <span class="w">  </span><span class="n">Secondsd</span><span class="w"> </span><span class="n">_last_real_imu_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Secondsd</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
 

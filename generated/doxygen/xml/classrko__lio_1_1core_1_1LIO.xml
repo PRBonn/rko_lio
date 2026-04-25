@@ -127,6 +127,39 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="139" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="139" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1core_1_1LIO_1a92ed5e0e19360ccf344af97d6d85b19d" prot="public" static="no" mutable="no">
+        <type>Sophus::SO3d</type>
+        <definition>Sophus::SO3d rko_lio::core::LIO::imu_local_rotation</definition>
+        <argsstring></argsstring>
+        <name>imu_local_rotation</name>
+        <qualifiedname>rko_lio::core::LIO::imu_local_rotation</qualifiedname>
+        <briefdescription>
+<para>Latest IMU orientation used for gravity compensation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is ahead of the rotation in the state. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="142" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1core_1_1LIO_1a0730b976dcec884d5fb0744070621003" prot="public" static="no" mutable="no">
+        <type>Secondsd</type>
+        <definition>Secondsd rko_lio::core::LIO::imu_local_rotation_time</definition>
+        <argsstring></argsstring>
+        <name>imu_local_rotation_time</name>
+        <qualifiedname>rko_lio::core::LIO::imu_local_rotation_time</qualifiedname>
+        <initializer>= Secondsd{0.0}</initializer>
+        <briefdescription>
+<para>Timestamp of the latest IMU orientation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Once a scan is registered, this is reset to the lidar state orientation. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="146" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="146" bodyend="146"/>
+      </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classrko__lio_1_1core_1_1LIO_1aa0e98c41c711dff7bf50bb1706b2d603" prot="private" static="no" mutable="no">
@@ -143,40 +176,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="152" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="152" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classrko__lio_1_1core_1_1LIO_1a838be30264dd19a556bd6cd134c88a31" prot="private" static="no" mutable="no">
-        <type>Sophus::SO3d</type>
-        <definition>Sophus::SO3d rko_lio::core::LIO::_imu_local_rotation</definition>
-        <argsstring></argsstring>
-        <name>_imu_local_rotation</name>
-        <qualifiedname>rko_lio::core::LIO::_imu_local_rotation</qualifiedname>
-        <briefdescription>
-<para>Latest IMU orientation used for gravity compensation. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>This is ahead of the rotation in the state. </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="155" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="155" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classrko__lio_1_1core_1_1LIO_1ab754b7e1c345c2db0917e6b7bc471973" prot="private" static="no" mutable="no">
-        <type>Secondsd</type>
-        <definition>Secondsd rko_lio::core::LIO::_imu_local_rotation_time</definition>
-        <argsstring></argsstring>
-        <name>_imu_local_rotation_time</name>
-        <qualifiedname>rko_lio::core::LIO::_imu_local_rotation_time</qualifiedname>
-        <initializer>= Secondsd{0.0}</initializer>
-        <briefdescription>
-<para>Timestamp of the latest IMU orientation. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>Once a scan is registered, this is reset to the lidar state orientation. </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="159" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="159" bodyend="159"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="159" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="159" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1core_1_1LIO_1a6cdf1482cca66e3eeeaf4f66e9cff018" prot="private" static="no" mutable="no">
         <type>Secondsd</type>
@@ -417,7 +417,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="146" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" bodystart="177" bodyend="209"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="153" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" bodystart="177" bodyend="209"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1core_1_1LIO_1a5255f5fcedee204613c41705c263dec4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::optional&lt; <ref refid="structrko__lio_1_1core_1_1AccelInfo" kindref="compound">AccelInfo</ref> &gt;</type>
@@ -440,7 +440,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="149" column="17" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" bodystart="212" bodyend="244"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="156" column="17" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" bodystart="212" bodyend="244"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -491,8 +491,6 @@
     </collaborationgraph>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="38" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="38" bodyend="166"/>
     <listofallmembers>
-      <member refid="classrko__lio_1_1core_1_1LIO_1a838be30264dd19a556bd6cd134c88a31" prot="private" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>_imu_local_rotation</name></member>
-      <member refid="classrko__lio_1_1core_1_1LIO_1ab754b7e1c345c2db0917e6b7bc471973" prot="private" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>_imu_local_rotation_time</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1aa0e98c41c711dff7bf50bb1706b2d603" prot="private" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>_initialized</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1a8982a3577c4d1c77eb6a9fa2911c6149" prot="private" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>_last_real_base_imu_ang_vel</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1a6cdf1482cca66e3eeeaf4f66e9cff018" prot="private" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>_last_real_imu_time</name></member>
@@ -502,6 +500,8 @@
       <member refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>config</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1a5255f5fcedee204613c41705c263dec4" prot="private" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>get_accel_info</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1aedab30ea81941b951314113cd9d3166a" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>imu_bias</name></member>
+      <member refid="classrko__lio_1_1core_1_1LIO_1a92ed5e0e19360ccf344af97d6d85b19d" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>imu_local_rotation</name></member>
+      <member refid="classrko__lio_1_1core_1_1LIO_1a0730b976dcec884d5fb0744070621003" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>imu_local_rotation_time</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1ab8728d90e80d1664ce979c8db5cc2eb2" prot="private" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>initialize</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1a9b89efdfdcc0ab01ef3fd6caaadb69d2" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>interval_stats</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>lidar_state</name></member>

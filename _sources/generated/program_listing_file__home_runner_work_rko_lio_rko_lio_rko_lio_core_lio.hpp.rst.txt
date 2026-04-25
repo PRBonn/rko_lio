@@ -99,16 +99,16 @@ Program Listing for File lio.hpp
    
      std::vector<std::pair<Secondsd, Sophus::SE3d>> poses_with_timestamps;
    
+     Sophus::SO3d imu_local_rotation;
+   
+     Secondsd imu_local_rotation_time = Secondsd{0.0};
+   
    private:
      void initialize(const Secondsd lidar_time);
    
      std::optional<AccelInfo> get_accel_info(const Sophus::SO3d& rotation_estimate, const Secondsd& time);
    
      bool _initialized = false;
-   
-     Sophus::SO3d _imu_local_rotation;
-   
-     Secondsd _imu_local_rotation_time = Secondsd{0.0};
    
      Secondsd _last_real_imu_time = Secondsd{0.0};
    

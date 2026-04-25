@@ -298,6 +298,20 @@
       <anchor>ae90f742f8a328a0ce2e119b2b8f881e1</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable">
+      <type>Sophus::SO3d</type>
+      <name>imu_local_rotation</name>
+      <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
+      <anchor>a92ed5e0e19360ccf344af97d6d85b19d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Secondsd</type>
+      <name>imu_local_rotation_time</name>
+      <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
+      <anchor>a0730b976dcec884d5fb0744070621003</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>rko_lio::ros::Node</name>
