@@ -17,7 +17,7 @@ jobs:
     outputs:
       continue_run: ${{ steps.check.outputs.continue_run }}
     env:
-      IGNORED_FOLDERS: "rko_lio/ros|docs|launch|config"
+      IGNORED_FOLDERS: "rko_lio/ros|tests/core|cmake/dependencies/catch2|docs|launch|config"
       IGNORED_FILES: "colcon.pkg|package.xml|rosdoc2.yaml|CHANGELOG.rst|LICENSE|README.md"
     steps:
       - uses: actions/checkout@v6

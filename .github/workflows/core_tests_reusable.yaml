@@ -1,0 +1,52 @@
+name: Core C++ Tests Reusable
+on:
+  workflow_call:
+    inputs:
+      run_os:
+        type: string
+        required: true
+jobs:
+  check_relevant_changes:
+    runs-on: ubuntu-latest
+    outputs:
+      continue_run: ${{ steps.check.outputs.continue_run }}
+    env:
+      IGNORED_FOLDERS: "rko_lio/ros|rko_lio/python|tests/python|docs|launch|config"
+      IGNORED_FILES: "colcon.pkg|package.xml|rosdoc2.yaml|CHANGELOG.rst|LICENSE|README.md|pyproject.toml"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - id: check
+        run: |
+          changed_files=$(git diff --name-only origin/master)
+          echo "Changed files: $changed_files"
+          if echo "$changed_files" | grep -vE "^($IGNORED_FOLDERS)/|^($IGNORED_FILES)$" > /dev/null; then
+            echo "continue_run=true" >> $GITHUB_OUTPUT
+          else
+            echo "continue_run=false" >> $GITHUB_OUTPUT
+          fi
+  core_tests:
+    needs: check_relevant_changes
+    if: needs.check_relevant_changes.outputs.continue_run == 'true'
+    runs-on: ${{ inputs.run_os }}
+    env:
+      GIT_LFS_SKIP_SMUDGE: 1
+    steps:
+      - uses: actions/checkout@v6
+      - name: Configure
+        shell: bash
+        run: |
+          cmake -G Ninja -S . -B build/core \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+            -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
+            -DRKO_LIO_FETCH_CONTENT_DEPS=ON \
+            -DRKO_LIO_BUILD_ROS=OFF \
+            -DRKO_LIO_BUILD_TESTS=ON
+      - name: Build
+        shell: bash
+        run: cmake --build build/core
+      - name: Test
+        shell: bash
+        run: ctest --test-dir build/core --output-on-failure

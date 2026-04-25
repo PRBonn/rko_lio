@@ -1,0 +1,11 @@
+name: Core C++ Tests macOS 15
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+jobs:
+  core_tests_macos_15:
+    uses: ./.github/workflows/core_tests_reusable.yaml
+    with:
+      run_os: macos-15

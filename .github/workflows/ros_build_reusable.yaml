@@ -14,7 +14,7 @@ jobs:
     outputs:
       continue_run: ${{ steps.check.outputs.continue_run }}
     env:
-      IGNORED_FOLDERS: "rko_lio/python|docs|tests/python"
+      IGNORED_FOLDERS: "rko_lio/python|docs|tests/python|tests/core|cmake/dependencies/catch2"
       IGNORED_FILES: "pyproject.toml|CHANGELOG.rst|LICENSE|README.md"
     steps:
       - uses: actions/checkout@v6
@@ -63,4 +63,10 @@ jobs:
       - name: Source ROS environment and build with extra CMake args
         run: |
           . /opt/ros/${{ inputs.ros_distro }}/setup.sh
-          colcon build --event-handlers console_direct+ --cmake-args -DRKO_LIO_FETCH_CONTENT_DEPS=ON
+          colcon build --event-handlers console_direct+ \
+            --cmake-args -DRKO_LIO_FETCH_CONTENT_DEPS=ON -DRKO_LIO_BUILD_TESTS=ON
+      - name: Run core C++ tests via colcon
+        run: |
+          . /opt/ros/${{ inputs.ros_distro }}/setup.sh
+          colcon test --event-handlers console_direct+ --return-code-on-test-failure
+          colcon test-result --verbose

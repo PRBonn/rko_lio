@@ -27,6 +27,8 @@ if(POLICY CMP0135)
   cmake_policy(SET CMP0135 NEW)
 endif()
 
+option(RKO_LIO_BUILD_TESTS "Build core C++ tests" OFF)
+
 include(cmake/dependencies.cmake)
 include(cmake/compat_target_sources.cmake)
 
@@ -78,4 +80,9 @@ else()
   ament_export_targets(rko_lioTargets)
 
   ament_package()
+endif()
+
+if(RKO_LIO_BUILD_TESTS)
+  enable_testing()
+  add_subdirectory(tests/core)
 endif()
