@@ -132,6 +132,21 @@ TEST_CASE("Identity registration: same cloud twice -> pose ~= identity", "[regis
   REQUIRE(lio.lidar_state.pose.so3().log().norm() < 1e-3);
 }
 
+TEST_CASE("deskew = false: register_scan still produces a valid pose", "[register_scan]") {
+  LIO::Config cfg{};
+  cfg.deskew = false;
+  LIO lio(cfg);
+  const auto cloud = make_hollow_cube();
+
+  lio.register_scan(cloud, linspace_timestamps(cloud.size(), 0.0, FIRST_SCAN_END));
+  feed_static_imu(lio, FIRST_SCAN_END + 0.05, SECOND_SCAN_END - 0.05, 10);
+  lio.register_scan(cloud, instant_timestamps(cloud.size(), SECOND_SCAN_END));
+
+  REQUIRE(lio.poses_with_timestamps.size() == 2);
+  REQUIRE(lio.lidar_state.pose.translation().norm() < 1e-3);
+  REQUIRE(lio.lidar_state.pose.so3().log().norm() < 1e-3);
+}
+
 TEST_CASE("Pure translation: recover +1m in x", "[register_scan]") {
   LIO lio((LIO::Config{}));
   const auto cloud = make_hollow_cube();

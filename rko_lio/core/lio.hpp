@@ -30,7 +30,6 @@
 #pragma once
 #include "sparse_voxel_grid.hpp"
 #include "util.hpp"
-#include <optional>
 
 /** Core namespace containing LIO data structures and state definitions. */
 namespace rko_lio::core {
@@ -152,8 +151,11 @@ private:
    */
   void initialize(const Secondsd lidar_time);
 
-  /** get the convenience struct with accel mag variance and local gravity estimate. */
-  std::optional<AccelInfo> get_accel_info(const Sophus::SO3d& rotation_estimate, const Secondsd& time);
+  /** First-scan path: stamps state, optionally seeds the map, logs the pose. */
+  Vector3dVector bootstrap_first_scan(const Vector3dVector& scan, const Secondsd& current_lidar_time);
+
+  /** Average body acceleration and angular velocity over the IMU interval, with init-phase and no-IMU fallbacks. */
+  std::pair<Eigen::Vector3d, Eigen::Vector3d> motion_priors_from_imu(const Secondsd& current_lidar_time);
 
   /** True if odometry initialization has been completed. */
   bool _initialized = false;

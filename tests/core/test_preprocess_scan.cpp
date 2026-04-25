@@ -25,7 +25,6 @@
 
 using rko_lio::core::LIO;
 using rko_lio::core::preprocess_scan;
-using rko_lio::core::Secondsd;
 using rko_lio::core::Vector3dVector;
 
 namespace {
@@ -101,41 +100,3 @@ TEST_CASE("preprocess_scan: double_downsample = true -> all three populated", "[
   REQUIRE(result.map_update_frame().size() == result.map_frame->size());
 }
 
-TEST_CASE("preprocess_scan: deskew with identity returns same as static overload", "[preprocess_scan]") {
-  LIO::Config cfg = default_config();
-
-  Vector3dVector frame;
-  rko_lio::core::TimestampVector timestamps;
-  for (int i = 0; i < 50; ++i) {
-    frame.emplace_back(2.0 + 0.05 * i, 1.0, 1.0);
-    timestamps.emplace_back(Secondsd{0.001 * i});
-  }
-
-  auto identity_pose = [](Secondsd) { return Sophus::SE3d{}; };
-
-  const auto result_deskew =
-      preprocess_scan(frame, timestamps, Secondsd{0.05}, identity_pose, cfg);
-  const auto result_static = preprocess_scan(frame, cfg);
-
-  REQUIRE(result_deskew.filtered_frame.size() == result_static.filtered_frame.size());
-  REQUIRE(result_deskew.keypoints.size() == result_static.keypoints.size());
-}
-
-TEST_CASE("preprocess_scan: deskew = false bypasses the deskew transform", "[preprocess_scan]") {
-  LIO::Config cfg = default_config();
-  cfg.deskew = false;
-
-  Vector3dVector frame;
-  rko_lio::core::TimestampVector timestamps;
-  for (int i = 0; i < 50; ++i) {
-    frame.emplace_back(2.0 + 0.05 * i, 1.0, 1.0);
-    timestamps.emplace_back(Secondsd{0.001 * i});
-  }
-
-  // Functor must never be called when deskew is off.
-  auto exploding_motion = [](Secondsd) -> Sophus::SE3d {
-    throw std::runtime_error("deskew should not have been invoked");
-  };
-
-  REQUIRE_NOTHROW(preprocess_scan(frame, timestamps, Secondsd{0.05}, exploding_motion, cfg));
-}

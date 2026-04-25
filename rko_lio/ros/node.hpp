@@ -47,6 +47,11 @@
 #include <tf2_ros/transform_listener.h>
 
 namespace rko_lio::ros {
+struct LidarFrame {
+  core::Timestamps timestamps;
+  core::Vector3dVector points;
+};
+
 class Node {
 public:
   rclcpp::Node::SharedPtr node;
@@ -96,7 +101,7 @@ public:
   std::atomic<bool> atomic_node_running = true;
   std::atomic<bool> atomic_can_process = false;
   std::queue<core::ImuControl> imu_buffer;
-  std::queue<core::LidarFrame> lidar_buffer;
+  std::queue<LidarFrame> lidar_buffer;
   size_t max_lidar_buffer_size = 50;
 
   Node() = delete;
