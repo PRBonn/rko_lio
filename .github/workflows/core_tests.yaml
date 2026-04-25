@@ -1,10 +1,9 @@
-name: Core C++ Tests Reusable
+name: Core C++ Tests
 on:
-  workflow_call:
-    inputs:
-      run_os:
-        type: string
-        required: true
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
 jobs:
   check_relevant_changes:
     runs-on: ubuntu-latest
@@ -29,7 +28,17 @@ jobs:
   core_tests:
     needs: check_relevant_changes
     if: needs.check_relevant_changes.outputs.continue_run == 'true'
-    runs-on: ${{ inputs.run_os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-22.04
+          - ubuntu-22.04-arm
+          - ubuntu-24.04
+          - ubuntu-24.04-arm
+          - macos-14
+          - macos-15
     env:
       GIT_LFS_SKIP_SMUDGE: 1
     steps:
