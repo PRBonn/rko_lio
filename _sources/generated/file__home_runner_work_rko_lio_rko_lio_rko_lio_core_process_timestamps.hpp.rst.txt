@@ -66,3 +66,5 @@ Classes
 
 - :ref:`exhale_struct_structrko__lio_1_1core_1_1TimestampProcessingConfig`
 
+- :ref:`exhale_struct_structrko__lio_1_1core_1_1Timestamps`
+

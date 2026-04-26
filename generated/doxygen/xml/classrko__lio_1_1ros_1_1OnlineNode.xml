@@ -213,7 +213,7 @@
       <member refid="classrko__lio_1_1ros_1_1Node_1a48450009c62072955a41aca0e0f58ec4" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>imu_topic</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1a6056387e44ee44c7b6497ba28adeed1c" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>invert_odom_tf</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1a4cb42094dd4e25ddc151e2f0b4ca3ca0" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>lidar_accel_publisher</name></member>
-      <member refid="classrko__lio_1_1ros_1_1Node_1a5872ea32a8e8ff2d5ec3de7a248a43d0" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>lidar_buffer</name></member>
+      <member refid="classrko__lio_1_1ros_1_1Node_1abea697339d3d98e4ebf2be76aa061a1a" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>lidar_buffer</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1a8c9e7b34b2f56e37901103d03228aa44" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>lidar_callback</name></member>
       <member refid="classrko__lio_1_1ros_1_1Node_1a4c665c7e6238b0fc1a01ad43ce1a2c66" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>lidar_frame</name></member>
       <member refid="classrko__lio_1_1ros_1_1OnlineNode_1aec3b1caa5e42c9526af48b351aa46a2f" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>lidar_sub</name></member>

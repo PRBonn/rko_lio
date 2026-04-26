@@ -41,6 +41,12 @@ Program Listing for File process_timestamps.hpp
    
    namespace rko_lio::core {
    
+   struct Timestamps {
+     Secondsd min;
+     Secondsd max;
+     TimestampVector times;
+   };
+   
    struct TimestampProcessingConfig {
      double multiplier_to_seconds = 0;
      bool force_absolute = false;

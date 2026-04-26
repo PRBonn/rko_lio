@@ -1,9 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.8" xml:lang="en-US">
-  <compound refid="structrko__lio_1_1core_1_1AccelInfo" kind="struct"><name>rko_lio::core::AccelInfo</name>
-    <member refid="structrko__lio_1_1core_1_1AccelInfo_1a5c998a8898cf8363ad918163fc3d4860" kind="variable"><name>accel_mag_variance</name></member>
-    <member refid="structrko__lio_1_1core_1_1AccelInfo_1ab7be49ea3197b57a929303e74d7f8913" kind="variable"><name>local_gravity_estimate</name></member>
-  </compound>
   <compound refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag" kind="class"><name>rko_lio::ros::utils::BufferableBag</name>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a669e909f5143f5d617647cc657c39ec6" kind="variable"><name>tf_bridge_</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a4601dd851dfca3b4d52866b70fea8402" kind="variable"><name>bag_reader_</name></member>
@@ -56,9 +52,9 @@
     <member refid="structrko__lio_1_1core_1_1IntervalStats_1a50a0e46cf910ee6928aec0fc93a1772b" kind="function"><name>update</name></member>
     <member refid="structrko__lio_1_1core_1_1IntervalStats_1a93353da910829b6fc1525b55d99fd280" kind="function"><name>reset</name></member>
   </compound>
-  <compound refid="structrko__lio_1_1core_1_1LidarFrame" kind="struct"><name>rko_lio::core::LidarFrame</name>
-    <member refid="structrko__lio_1_1core_1_1LidarFrame_1a08e971b78e68547011009956d897876a" kind="variable"><name>timestamps</name></member>
-    <member refid="structrko__lio_1_1core_1_1LidarFrame_1ac371b0837eaec4db447c228b65844fdc" kind="variable"><name>points</name></member>
+  <compound refid="structrko__lio_1_1ros_1_1LidarFrame" kind="struct"><name>rko_lio::ros::LidarFrame</name>
+    <member refid="structrko__lio_1_1ros_1_1LidarFrame_1a91edd07c96ffb3961d6ddf18feaecd55" kind="variable"><name>timestamps</name></member>
+    <member refid="structrko__lio_1_1ros_1_1LidarFrame_1a83fbd1ab6f1efebd01bf71e7b87b7ae7" kind="variable"><name>points</name></member>
   </compound>
   <compound refid="classrko__lio_1_1core_1_1LIO" kind="class"><name>rko_lio::core::LIO</name>
     <member refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" kind="variable"><name>config</name></member>
@@ -80,7 +76,8 @@
     <member refid="classrko__lio_1_1core_1_1LIO_1a0e2818a3d7d3b07f77a91235b116b607" kind="function"><name>register_scan</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a3963bf670eced93306c73ead313d867f" kind="function"><name>register_scan</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1ab8728d90e80d1664ce979c8db5cc2eb2" kind="function"><name>initialize</name></member>
-    <member refid="classrko__lio_1_1core_1_1LIO_1a5255f5fcedee204613c41705c263dec4" kind="function"><name>get_accel_info</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a896c687b0c0edb14b930913100093cfc" kind="function"><name>bootstrap_first_scan</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a72f44928d9d63ee2abda98f61308f366" kind="function"><name>motion_priors_from_imu</name></member>
   </compound>
   <compound refid="classrko__lio_1_1ros_1_1Node" kind="class"><name>rko_lio::ros::Node</name>
     <member refid="classrko__lio_1_1ros_1_1Node_1a65ac7ad7d5b24f1efebe12e3ab287b40" kind="variable"><name>node</name></member>
@@ -121,7 +118,7 @@
     <member refid="classrko__lio_1_1ros_1_1Node_1aa80856c9108ba7be5fa3cfc873516d7c" kind="variable"><name>atomic_node_running</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1a6cc5f592565fb6e05e5d7d354ee8a592" kind="variable"><name>atomic_can_process</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1a407e2eb2accf1953cf1537bdeee1c9bf" kind="variable"><name>imu_buffer</name></member>
-    <member refid="classrko__lio_1_1ros_1_1Node_1a5872ea32a8e8ff2d5ec3de7a248a43d0" kind="variable"><name>lidar_buffer</name></member>
+    <member refid="classrko__lio_1_1ros_1_1Node_1abea697339d3d98e4ebf2be76aa061a1a" kind="variable"><name>lidar_buffer</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1adb045ddac0f726cfaa1f31df0739549f" kind="variable"><name>max_lidar_buffer_size</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1ad8b9ef3f14e5ae9b2fb18e008adc0fa7" kind="function"><name>Node</name></member>
     <member refid="classrko__lio_1_1ros_1_1Node_1ae033875ce3dad98ed51d63a97697c3fa" kind="function"><name>Node</name></member>
@@ -275,7 +272,6 @@
     <member refid="util_8hpp_1aeed2d0773ca5f2d8af17c424c1d38656" kind="typedef"><name>Matrix3_6d</name></member>
     <member refid="util_8hpp_1a256bc41e53605f5abb08663701978077" kind="typedef"><name>Vector6d</name></member>
     <member refid="util_8hpp_1ac472a7c3ac8e9babc4efd3f3286e4b16" kind="typedef"><name>Matrix6d</name></member>
-    <member refid="util_8hpp_1aac76b29ea1d91860971afa149e3be689" kind="typedef"><name>Matrix12d</name></member>
   </compound>
   <compound refid="namespacerko__lio" kind="namespace"><name>rko_lio</name>
   </compound>
@@ -286,7 +282,6 @@
     <member refid="namespacerko__lio_1_1core_1a50d343fe8fc3d44fdf883bc4a77b1ccf" kind="typedef"><name>TimestampVector</name></member>
     <member refid="namespacerko__lio_1_1core_1a1beb022f953c50f94a2a815a4d3716b5" kind="variable"><name>GRAVITY_MAG</name></member>
     <member refid="namespacerko__lio_1_1core_1a3261153e7f790d6973c2b7446db233ef" kind="function"><name>preprocess_scan</name></member>
-    <member refid="namespacerko__lio_1_1core_1a71405b1d5022915649f38adad01926d1" kind="function"><name>preprocess_scan</name></member>
     <member refid="namespacerko__lio_1_1core_1aa575a28bad591f19c37742684a88cf7b" kind="function"><name>process_timestamps</name></member>
     <member refid="namespacerko__lio_1_1core_1aebf1f823c7fd220695665a8b3e12281e" kind="function"><name>square</name></member>
     <member refid="namespacerko__lio_1_1core_1ae12b01bb20a1a7280bc26af2de2f15dd" kind="function"><name>gravity</name></member>

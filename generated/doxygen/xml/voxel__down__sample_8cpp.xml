@@ -103,20 +103,16 @@
 <codeline lineno="45"><highlight class="normal">std::vector&lt;Eigen::Vector3d&gt;<sp/><ref refid="namespacerko__lio_1_1core_1ad33113e678270ae389705f90113e7df9" kindref="member">voxel_down_sample</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Eigen::Vector3d&gt;&amp;<sp/>frame,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>voxel_size)<sp/>{</highlight></codeline>
 <codeline lineno="46"><highlight class="normal"><sp/><sp/>std::unordered_map&lt;Voxel,<sp/>Eigen::Vector3d&gt;<sp/>grid;</highlight></codeline>
 <codeline lineno="47"><highlight class="normal"><sp/><sp/>grid.reserve(frame.size());</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/>std::for_each(frame.cbegin(),<sp/>frame.cend(),<sp/>[&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>point)<sp/>{</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>auto<sp/>voxel<sp/>=<sp/>PointToVoxel(point,<sp/>voxel_size);</highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(!grid.contains(voxel))<sp/>{</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>grid.insert({voxel,<sp/>point});</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/>});</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/>std::vector&lt;Eigen::Vector3d&gt;<sp/>frame_dowsampled;</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/>frame_dowsampled.reserve(grid.size());</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/>std::for_each(grid.cbegin(),<sp/>grid.cend(),</highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>voxel_and_point)<sp/>{<sp/>frame_dowsampled.emplace_back(voxel_and_point.second);<sp/>});</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>frame_dowsampled;</highlight></codeline>
-<codeline lineno="59"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"></highlight></codeline>
-<codeline lineno="61"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/>std::for_each(frame.cbegin(),<sp/>frame.cend(),</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>point)<sp/>{<sp/>grid.try_emplace(PointToVoxel(point,<sp/>voxel_size),<sp/>point);<sp/>});</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/>std::vector&lt;Eigen::Vector3d&gt;<sp/>frame_dowsampled;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/>frame_dowsampled.reserve(grid.size());</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/>std::for_each(grid.cbegin(),<sp/>grid.cend(),</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>voxel_and_point)<sp/>{<sp/>frame_dowsampled.emplace_back(voxel_and_point.second);<sp/>});</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>frame_dowsampled;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.cpp"/>
   </compounddef>

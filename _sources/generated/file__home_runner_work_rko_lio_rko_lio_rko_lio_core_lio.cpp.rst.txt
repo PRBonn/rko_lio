@@ -40,6 +40,8 @@ Includes
 
 - ``numeric``
 
+- ``optional``
+
 - ``preprocess_scan.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_preprocess_scan.hpp`)
 
 - ``profiler.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_profiler.hpp`)

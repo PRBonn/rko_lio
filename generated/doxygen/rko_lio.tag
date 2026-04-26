@@ -23,17 +23,6 @@
       <arglist>(name)</arglist>
     </member>
   </compound>
-  <compound kind="struct">
-    <name>rko_lio::core::AccelInfo</name>
-    <filename>structrko__lio_1_1core_1_1AccelInfo.html</filename>
-    <member kind="variable">
-      <type>double</type>
-      <name>accel_mag_variance</name>
-      <anchorfile>structrko__lio_1_1core_1_1AccelInfo.html</anchorfile>
-      <anchor>a5c998a8898cf8363ad918163fc3d4860</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
   <compound kind="class">
     <name>rko_lio::ros::utils::BufferableBag</name>
     <filename>classrko__lio_1_1ros_1_1utils_1_1BufferableBag.html</filename>
@@ -207,8 +196,8 @@
     </member>
   </compound>
   <compound kind="struct">
-    <name>rko_lio::core::LidarFrame</name>
-    <filename>structrko__lio_1_1core_1_1LidarFrame.html</filename>
+    <name>rko_lio::ros::LidarFrame</name>
+    <filename>structrko__lio_1_1ros_1_1LidarFrame.html</filename>
   </compound>
   <compound kind="class">
     <name>rko_lio::core::LIO</name>
@@ -383,11 +372,9 @@
   <compound kind="namespace">
     <name>rko_lio::core</name>
     <filename>namespacerko__lio_1_1core.html</filename>
-    <class kind="struct">rko_lio::core::AccelInfo</class>
     <class kind="struct">rko_lio::core::ImuBias</class>
     <class kind="struct">rko_lio::core::ImuControl</class>
     <class kind="struct">rko_lio::core::IntervalStats</class>
-    <class kind="struct">rko_lio::core::LidarFrame</class>
     <class kind="class">rko_lio::core::LIO</class>
     <class kind="struct">rko_lio::core::PreprocessingResult</class>
     <class kind="class">rko_lio::core::ScopedProfiler</class>

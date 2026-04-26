@@ -98,5 +98,7 @@ Classes
 -------
 
 
+- :ref:`exhale_struct_structrko__lio_1_1ros_1_1LidarFrame`
+
 - :ref:`exhale_class_classrko__lio_1_1ros_1_1Node`
 

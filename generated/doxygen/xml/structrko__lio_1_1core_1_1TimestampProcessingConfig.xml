@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" line="44" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" bodystart="44" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" line="50" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" bodystart="50" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a166b875f4043d2ad0be90aa46ab3c1f4" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -32,7 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" line="45" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" bodystart="45" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" line="51" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" bodystart="51" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a1eb1124319b0987ff5960af828dedcfe" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -47,7 +47,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" line="46" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" bodystart="46" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" line="52" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" bodystart="52" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -56,7 +56,7 @@
     <detaileddescription>
 <para>There was an attempt to have a one-size-fits-all approach before, but that lead to increasingly complicated branching patterns. If the given defaults don&apos;t apply to your sensor for whatever reason, simply modify this config. </para>
     </detaileddescription>
-    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" line="43" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" bodystart="43" bodyend="47"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" line="49" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" bodystart="49" bodyend="53"/>
     <listofallmembers>
       <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a166b875f4043d2ad0be90aa46ab3c1f4" prot="public" virt="non-virtual"><scope>rko_lio::core::TimestampProcessingConfig</scope><name>force_absolute</name></member>
       <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a1eb1124319b0987ff5960af828dedcfe" prot="public" virt="non-virtual"><scope>rko_lio::core::TimestampProcessingConfig</scope><name>force_relative</name></member>

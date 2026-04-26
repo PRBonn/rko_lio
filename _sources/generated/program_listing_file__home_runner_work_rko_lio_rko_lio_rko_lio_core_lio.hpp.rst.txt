@@ -37,7 +37,6 @@ Program Listing for File lio.hpp
    #pragma once
    #include "sparse_voxel_grid.hpp"
    #include "util.hpp"
-   #include <optional>
    
    namespace rko_lio::core {
    class LIO {
@@ -106,7 +105,9 @@ Program Listing for File lio.hpp
    private:
      void initialize(const Secondsd lidar_time);
    
-     std::optional<AccelInfo> get_accel_info(const Sophus::SO3d& rotation_estimate, const Secondsd& time);
+     Vector3dVector bootstrap_first_scan(const Vector3dVector& scan, const Secondsd& current_lidar_time);
+   
+     std::pair<Eigen::Vector3d, Eigen::Vector3d> motion_priors_from_imu(const Secondsd& current_lidar_time);
    
      bool _initialized = false;
    

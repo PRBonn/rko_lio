@@ -105,8 +105,6 @@
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Eigen/Dense&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;optional&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sophus/se3.hpp&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;tuple&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;lio.hpp&quot;</span>
@@ -123,30 +121,6 @@
 
 <span class="c1">// clip and downsample the input cloud</span>
 <span class="n">PreprocessingResult</span><span class="w"> </span><span class="nf">preprocess_scan</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector3dVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">frame</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">LIO</span><span class="o">::</span><span class="n">Config</span><span class="o">&amp;</span><span class="w"> </span><span class="n">config</span><span class="p">);</span>
-
-<span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Functor</span><span class="o">&gt;</span>
-<span class="w">  </span><span class="k">requires</span><span class="w"> </span><span class="k">requires</span><span class="p">(</span><span class="n">Functor</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">Secondsd</span><span class="w"> </span><span class="n">stamp</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">stamp</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">same_as</span><span class="o">&lt;</span><span class="n">Sophus</span><span class="o">::</span><span class="n">SE3d</span><span class="o">&gt;</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="n">PreprocessingResult</span><span class="w"> </span><span class="n">preprocess_scan</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector3dVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">frame</span><span class="p">,</span>
-<span class="w">                                    </span><span class="k">const</span><span class="w"> </span><span class="n">TimestampVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">timestamps</span><span class="p">,</span>
-<span class="w">                                    </span><span class="n">Secondsd</span><span class="w"> </span><span class="n">end_time</span><span class="p">,</span>
-<span class="w">                                    </span><span class="k">const</span><span class="w"> </span><span class="n">Functor</span><span class="o">&amp;</span><span class="w"> </span><span class="n">relative_pose_at_time</span><span class="p">,</span>
-<span class="w">                                    </span><span class="k">const</span><span class="w"> </span><span class="n">LIO</span><span class="o">::</span><span class="n">Config</span><span class="w"> </span><span class="n">config</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">config</span><span class="p">.</span><span class="n">deskew</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">preprocess_scan</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">Sophus</span><span class="o">::</span><span class="n">SE3d</span><span class="w"> </span><span class="n">scan_to_scan_motion_inverse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">relative_pose_at_time</span><span class="p">(</span><span class="n">end_time</span><span class="p">).</span><span class="n">inverse</span><span class="p">();</span>
-<span class="w">  </span><span class="n">Vector3dVector</span><span class="w"> </span><span class="nf">deskewed_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">transform</span><span class="p">(</span><span class="n">frame</span><span class="p">.</span><span class="n">cbegin</span><span class="p">(),</span><span class="w"> </span><span class="n">frame</span><span class="p">.</span><span class="n">cend</span><span class="p">(),</span><span class="w"> </span><span class="n">timestamps</span><span class="p">.</span><span class="n">cbegin</span><span class="p">(),</span><span class="w"> </span><span class="n">deskewed_frame</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span>
-<span class="w">                 </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">point</span><span class="p">,</span><span class="w"> </span><span class="n">Secondsd</span><span class="w"> </span><span class="n">timestamp</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                   </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">pose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scan_to_scan_motion_inverse</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">relative_pose_at_time</span><span class="p">(</span><span class="n">timestamp</span><span class="p">);</span>
-<span class="w">                   </span><span class="k">return</span><span class="w"> </span><span class="n">pose</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">point</span><span class="p">;</span>
-<span class="w">                 </span><span class="p">});</span>
-
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">preprocess_scan</span><span class="p">(</span><span class="n">deskewed_frame</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">);</span>
-<span class="p">}</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace rko_lio::core</span>
 </pre></div>

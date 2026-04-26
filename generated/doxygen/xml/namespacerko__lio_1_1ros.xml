@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespacerko__lio_1_1ros" kind="namespace" language="C++">
     <compoundname>rko_lio::ros</compoundname>
+    <innerclass refid="structrko__lio_1_1ros_1_1LidarFrame" prot="public">rko_lio::ros::LidarFrame</innerclass>
     <innerclass refid="classrko__lio_1_1ros_1_1Node" prot="public">rko_lio::ros::Node</innerclass>
     <innerclass refid="classrko__lio_1_1ros_1_1OfflineNode" prot="public">rko_lio::ros::OfflineNode</innerclass>
     <innerclass refid="classrko__lio_1_1ros_1_1OnlineNode" prot="public">rko_lio::ros::OnlineNode</innerclass>

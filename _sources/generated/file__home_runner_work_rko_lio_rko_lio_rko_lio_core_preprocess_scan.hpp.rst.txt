@@ -36,10 +36,6 @@ Includes
 
 - ``optional``
 
-- ``sophus/se3.hpp``
-
-- ``tuple``
-
 - ``vector`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_ros_vectors.hpp`)
 
 
@@ -69,11 +65,4 @@ Classes
 
 
 - :ref:`exhale_struct_structrko__lio_1_1core_1_1PreprocessingResult`
-
-
-Functions
----------
-
-
-- :ref:`exhale_function_namespacerko__lio_1_1core_1a71405b1d5022915649f38adad01926d1`
 
