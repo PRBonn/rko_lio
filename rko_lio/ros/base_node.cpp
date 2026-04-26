@@ -216,15 +216,12 @@ BaseNode::process_lidar_msg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr&
   const core::Secondsd& header_stamp = utils::ros_time_to_seconds(lidar_msg->header.stamp);
   if (lio->config.deskew) {
     const auto& [scan, raw_timestamps] = utils::point_cloud2_to_eigen_with_timestamps(lidar_msg);
-    const core::Timestamps& timestamps =
-        core::process_timestamps(raw_timestamps, header_stamp, timestamp_proc_config);
+    const core::Timestamps& timestamps = core::process_timestamps(raw_timestamps, header_stamp, timestamp_proc_config);
     return {timestamps, scan};
   }
-  RCLCPP_WARN_STREAM_ONCE(node->get_logger(),
-                          "Deskewing is disabled. Populating timestamps with static header time.");
+  RCLCPP_WARN_STREAM_ONCE(node->get_logger(), "Deskewing is disabled. Populating timestamps with static header time.");
   const core::Vector3dVector scan = utils::point_cloud2_to_eigen(lidar_msg);
-  return {{.min = header_stamp, .max = header_stamp, .times = core::TimestampVector(scan.size(), header_stamp)},
-          scan};
+  return {{.min = header_stamp, .max = header_stamp, .times = core::TimestampVector(scan.size(), header_stamp)}, scan};
 }
 
 core::Vector3dVector BaseNode::register_scan_locked(const core::Vector3dVector& scan,
@@ -236,8 +233,7 @@ core::Vector3dVector BaseNode::register_scan_locked(const core::Vector3dVector& 
   return lio->register_scan(extrinsic_lidar2base, scan, time_vector);
 }
 
-void BaseNode::publish_lidar_outputs(const core::Vector3dVector& deskewed_frame,
-                                     const core::Secondsd& stamp) const {
+void BaseNode::publish_lidar_outputs(const core::Vector3dVector& deskewed_frame, const core::Secondsd& stamp) const {
   if (publish_deskewed_scan) {
     std_msgs::msg::Header header;
     header.frame_id = lidar_frame;
@@ -301,9 +297,7 @@ void BaseNode::publish_map_loop() {
   }
 }
 
-BaseNode::~BaseNode() {
-  atomic_node_running = false;
-}
+BaseNode::~BaseNode() { atomic_node_running = false; }
 
 void BaseNode::dump_results_to_disk(const std::filesystem::path& results_dir, const std::string& run_name) const {
   try {

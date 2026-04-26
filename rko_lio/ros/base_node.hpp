@@ -46,7 +46,6 @@
 #include <tf2_ros/transform_listener.h>
 
 namespace rko_lio::ros {
-
 // Shared helper used by both the threaded and sequential nodes.
 core::ImuControl imu_msg_to_imu_data(const sensor_msgs::msg::Imu& imu_msg);
 
@@ -95,6 +94,13 @@ public:
 
   // shutdown flag
   std::atomic<bool> atomic_node_running = true;
+<<<<<<< HEAD:rko_lio/ros/base_node.hpp
+=======
+  std::atomic<bool> atomic_can_process = false;
+  std::queue<core::ImuControl> imu_buffer;
+  std::queue<LidarFrame> lidar_buffer;
+  size_t max_lidar_buffer_size = 50;
+>>>>>>> master:rko_lio/ros/node.hpp
 
   BaseNode() = delete;
   BaseNode(const std::string& node_name, const rclcpp::NodeOptions& options);
@@ -105,11 +111,9 @@ public:
   std::tuple<core::Timestamps, core::Vector3dVector>
   process_lidar_msg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& lidar_msg) const;
 
-  core::Vector3dVector register_scan_locked(const core::Vector3dVector& scan,
-                                            const core::TimestampVector& time_vector);
+  core::Vector3dVector register_scan_locked(const core::Vector3dVector& scan, const core::TimestampVector& time_vector);
 
-  void publish_lidar_outputs(const core::Vector3dVector& deskewed_frame,
-                             const core::Secondsd& stamp) const;
+  void publish_lidar_outputs(const core::Vector3dVector& deskewed_frame, const core::Secondsd& stamp) const;
 
   void publish_odometry(const core::State& state, const core::Secondsd& stamp) const;
   void publish_tf(const Sophus::SE3d& pose, const core::Secondsd& stamp) const;

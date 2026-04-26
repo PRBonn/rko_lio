@@ -256,7 +256,7 @@ void LIO::initialize(const Secondsd lidar_time) {
 
   const Sophus::SO3d initial_rotation = align_accel_to_z_world(avg_accel);
   lidar_state.pose.so3() = initial_rotation;
-  imu_state = lidar_state; 
+  imu_state = lidar_state;
 
   // lidar_state.time has the time from the previous lidar, which we didn't log if init_phase was on
   poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
@@ -271,8 +271,8 @@ void LIO::initialize(const Secondsd lidar_time) {
 
   _initialized = true;
   std::cout << "[INFO] Odometry map frame initialized using " << interval_stats.imu_count
-            << " IMU measurements. Estimated initial rotation [se(3)] is "
-            << imu_state.pose.so3().log().transpose() << "\n";
+            << " IMU measurements. Estimated initial rotation [se(3)] is " << imu_state.pose.so3().log().transpose()
+            << "\n";
   std::cout << "[INFO] Estimated accel bias: " << imu_bias.accelerometer.transpose()
             << ", gyro bias: " << imu_bias.gyroscope.transpose() << "\n";
 }
@@ -289,8 +289,7 @@ Vector3dVector LIO::bootstrap_first_scan(const Vector3dVector& scan, const Secon
   return std::move(preproc.filtered_frame);
 }
 
-std::pair<Eigen::Vector3d, Eigen::Vector3d>
-LIO::motion_priors_from_imu(const Secondsd& current_lidar_time) {
+std::pair<Eigen::Vector3d, Eigen::Vector3d> LIO::motion_priors_from_imu(const Secondsd& current_lidar_time) {
   if (config.initialization_phase && !_initialized) {
     // assume static and
     initialize(current_lidar_time);
@@ -435,18 +434,15 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
   const Sophus::SE3d initial_guess = lidar_state.pose * relative_pose_at_time(current_lidar_time);
 
   // body acceleration filter
-  const auto kf_step = step_body_accel_filter({mean_body_acceleration, body_acceleration_covariance},
-                                              interval_stats,
-                                              initial_guess.so3(),
-                                              current_lidar_time - lidar_state.time,
-                                              config.max_expected_jerk);
+  const auto kf_step =
+      step_body_accel_filter({mean_body_acceleration, body_acceleration_covariance}, interval_stats,
+                             initial_guess.so3(), current_lidar_time - lidar_state.time, config.max_expected_jerk);
   mean_body_acceleration = kf_step.updated.mean;
   body_acceleration_covariance = kf_step.updated.covariance;
 
   auto preproc_result =
-      config.deskew
-          ? preprocess_scan(deskew_scan(scan, timestamps, current_lidar_time, relative_pose_at_time), config)
-          : preprocess_scan(scan, config);
+      config.deskew ? preprocess_scan(deskew_scan(scan, timestamps, current_lidar_time, relative_pose_at_time), config)
+                    : preprocess_scan(scan, config);
 
   if (preproc_result.keypoints.size() < 10) {
     const std::string error_msg =
