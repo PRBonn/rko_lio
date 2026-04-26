@@ -1,1 +1,6 @@
-/* This file intentionally left blank. */
+/* Heading backlinks (from `.. contents::` blocks) should look like normal headings,
+   not like blue underlined links. Click target is preserved. */
+a.toc-backref {
+    color: inherit;
+    text-decoration: none;
+}
