@@ -38,7 +38,9 @@ Why `pip install` those three packages?
 
 Check further options for the CLI through `rko_lio --help`.
 
-More details are available in the [Python usage docs](https://prbonn.github.io/rko_lio/pages/python/usage.html).
+To dump a default config you can edit and pass with `--config`, run `rko_lio --dump_config`.
+
+More details are available in the [Python docs](https://prbonn.github.io/rko_lio/pages/python.html).
 
 ### Extrinsics and convention
 
@@ -88,7 +90,7 @@ The three parameters `imu_topic`, `lidar_topic`, and `base_frame` are the minimu
 
 Check further launch configuration options through `ros2 launch rko_lio odometry.launch.py -s`
 
-More details are available in the [ROS usage docs](https://prbonn.github.io/rko_lio/pages/ros/usage.html).
+More details are available in the [ROS docs](https://prbonn.github.io/rko_lio/pages/ros.html).
 
 The same note [above about extrinsics](#extrinsics-and-convention) applies here as well. Though you probably have a well defined TF tree and need not concern yourself with this (I hope).
 
@@ -106,6 +108,8 @@ If you found this work useful, please consider leaving a star :star: on this rep
   url         = {https://arxiv.org/pdf/2509.06593},
 }
 ```
+
+The [paper supplementary material](https://prbonn.github.io/rko_lio/suppl.html) page collects extra figures and explanations pertaining to the RA-L paper.
 
 ## Contributing
 

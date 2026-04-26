@@ -14,10 +14,12 @@ When using the raw dataloader, arrange your dataset directory as follows:
        ├── 1662622238000000000.ply
        └── ...
 
-- ``transforms.yaml``: defines two keys (``T_imu_to_base``, ``T_lidar_to_base``), each a 4×4 matrix. See :ref:`Extrinsics and conventions <data-extrinsics-convention>`.
+- ``transforms.yaml``: defines two keys (``T_imu_to_base``, ``T_lidar_to_base``), each a 4x4 matrix. See :ref:`Extrinsics and conventions <data-extrinsics-convention>`.
 - IMU file: Only one file (CSV or TXT) is allowed. Required columns: ``timestamp, gyro_x, gyro_y, gyro_z, accel_x, accel_y, accel_z``. Extra columns are allowed. ``timestamp`` in nanoseconds, others in SI units.
 - ``lidar/``: contains scans as PLY files. Each filename is a timestamp (ns) for the scan.
   Each PLY file must have a time field (accepted names: ``time``, ``timestamp``, ``timestamps``, or ``t``) in **seconds**.
+
+Note the unit difference: filenames are in **nanoseconds**, the per-point time field inside each PLY is in **seconds**. This is intentional (filenames are easier to sort as integers) but easy to get wrong.
 """
 
 # MIT License
