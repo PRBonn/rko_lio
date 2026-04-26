@@ -1,13 +1,15 @@
+:orphan:
+
 RA-L Supplementary Material
 ---------------------------
 
-.. .. note::
-..    This page serves as supplementary website for our RA-L submission.
+This page is the supplementary material for our RA-L submission.
+The main page of the documentation is `here <index.html>`__.
 
 System Pipeline
 ===============
 
-.. figure:: pages/uncategorised/images/pipeline.png
+.. figure:: _static/suppl/pipeline.png
    :width: 100%
    :alt: System Pipeline Schematic
 
@@ -29,13 +31,13 @@ In this section, we present trajectory plots using ``evo_ape`` (Absolute Pose Er
 Oxford Spires (Radcliffe)
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. figure:: pages/uncategorised/images/oxfs_radcliffe_02_no_ar.png
+.. figure:: _static/suppl/oxfs_radcliffe_02_no_ar.png
    :width: 100%
    :alt: Oxford Spires Radcliffe - No AR
 
    **Fig 2:** Odometry result when adaptive regularization is disabled (``no-AR`` ablation in the paper) on Oxford Spires Radcliffe sequence.
 
-.. figure:: pages/uncategorised/images/oxfs_radcliffe_02_full.png
+.. figure:: _static/suppl/oxfs_radcliffe_02_full.png
    :width: 100%
    :alt: Oxford Spires Radcliffe - Full System
 
@@ -46,13 +48,13 @@ Shown above are two trajectory results when ablating the performance of the odom
 Car Dataset (Urban)
 ^^^^^^^^^^^^^^^^^^^
 
-.. figure:: pages/uncategorised/images/ipbcar_urban_no_ar.png
+.. figure:: _static/suppl/ipbcar_urban_no_ar.png
    :width: 100%
    :alt: Car Urban - No AR
 
    **Fig 4:** Odometry result when adaptive regularization is disabled (``no-AR`` ablation in the paper) on Car (Urban) sequence.
 
-.. figure:: pages/uncategorised/images/ipbcar_urban_full.png
+.. figure:: _static/suppl/ipbcar_urban_full.png
    :width: 100%
    :alt: Car Urban - Full System
 
@@ -63,10 +65,26 @@ Similar to the Oxford Spires results, we once again see the full system performs
 Car Dataset (Rural)
 ^^^^^^^^^^^^^^^^^^^
 
-.. figure:: pages/uncategorised/images/ipbcar_rural_comp_xy_multiple_methods.png
+.. figure:: _static/suppl/ipbcar_rural_comp_xy_multiple_methods.png
    :width: 100%
    :alt: Car Rural - Multiple Methods Comparison
 
    **Fig 8:** Trajectory comparison of multiple methods on the Car (Rural) sequence.
 
 Here we plot the full XY trajectory results from all the methods which successfully ran on the rural sequence. The trajectories have been aligned (using Umeyama alignment) to the reference trajectory, which is defined in a GPS coordinate frame. Each approach experiences significant drift on this 50 km long sequence, and as a consequence of the alignment process, the trajectories appear well-aligned near the middle of the sequence but drift at the ends. Nevertheless, we see that our approach (red) is the one that remains closest to the reference trajectory overall.
+
+Citation
+========
+
+If you use this work, please leave a star on our `GitHub repository <https://github.com/PRBonn/rko_lio>`_ and consider citing:
+
+.. code-block:: bibtex
+
+  @article{malladi2025arxiv,
+    author      = {M.V.R. Malladi and T. Guadagnino and L. Lobefaro and C. Stachniss},
+    title       = {A Robust Approach for LiDAR-Inertial Odometry Without Sensor-Specific Modeling},
+    journal     = {arXiv preprint},
+    year        = {2025},
+    volume      = {arXiv:2509.06593},
+    url         = {https://arxiv.org/pdf/2509.06593},
+  }
