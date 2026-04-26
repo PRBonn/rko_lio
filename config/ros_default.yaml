@@ -10,12 +10,17 @@
 # lidar_frame: <leave empty if tf is well defined>
 # extrinsic_lidar2base_quat_xyzw_xyz: [qxyzw_xyz as a list, unnecessary if tf is well defined]
 # extrinsic_imu2base_quat_xyzw_xyz: [qxyzw_xyz as a list, unnecessary if tf is well defined]
-odom_topic: /rko_lio/odometry
+odom_topic: /rko_lio/odom
 odom_frame: odom
 invert_odom_tf: false
 publish_local_map: true
 map_topic: /rko_lio/local_map
 publish_deskewed_scan: true
+odom_at_imu_rate: false
+# IMU-rate seq pipeline (used when launched with odom_at_imu_rate:=true and mode:=online):
+# seq.odom_at_imu_rate_topic: rko_lio/odom_at_imu_rate
+# seq.tf_at_imu_rate: false
+
 # lio config
 deskew: true
 voxel_size: 1.0
@@ -29,3 +34,7 @@ initialization_phase: false
 double_downsample: true
 max_expected_jerk: 3.0
 min_beta: 200.0
+# Lidar per-point timestamp processing - set when the heuristic fails.
+# lidar_timestamps.multiplier_to_seconds: 0.0   # 0.0 = autodetect; e.g. 1e-6 for microseconds
+# lidar_timestamps.force_absolute: false
+# lidar_timestamps.force_relative: false

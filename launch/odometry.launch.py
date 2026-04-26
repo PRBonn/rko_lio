@@ -34,14 +34,14 @@ offline_only_parameters = [
     {
         "name": "bag_path",
         "default": "",
-        "description": "[Offline node only] ROS bag path to process (required)",
+        "description": "[offline only] ROS bag path to process (required)",
         "required": True,
     },
     {
         "name": "skip_to_time",
         "default": "0.0",
         "type": "float",
-        "description": "[Offline node only] Skip to timestamp in the bag (seconds)",
+        "description": "[offline only] Skip to timestamp in the bag (seconds)",
     },
 ]
 
@@ -81,7 +81,7 @@ configurable_parameters = [
     },
     {
         "name": "odom_topic",
-        "default": "rko_lio/odometry",
+        "default": "rko_lio/odom",
         "description": "Odometry topic name",
     },
     {
@@ -203,30 +203,55 @@ configurable_parameters = [
         "type": "float",
         "description": "Scale parameter that decides the minimum amount of orientation regularisation applied during ICP registration.",
     },
-    # lidar timestamp processing parameters
+    # lidar per-point timestamp processing parameters
     {
-        "name": "lts_multiplier_to_seconds",
+        "name": "lidar_timestamps.multiplier_to_seconds",
         "default": "0.0",
         "type": "float",
         "description": "Multiplier to convert per-point raw timestamps to seconds. Default 0.0 tries to automatically handle seconds or nanoseconds. Specify for any other, e.g., if timestamps are in microseconds, set to 1e-6.",
     },
     {
-        "name": "lts_force_absolute",
+        "name": "lidar_timestamps.force_absolute",
         "default": "false",
         "type": "bool",
         "description": "Force treat per-point timestamps as absolute times (wall-clock), bypassing heuristic detection.",
     },
     {
-        "name": "lts_force_relative",
+        "name": "lidar_timestamps.force_relative",
         "default": "false",
         "type": "bool",
         "description": "Force treat per-point timestamps as offsets relative to each message's header time.",
+    },
+    # threaded node specific parameters
+    {
+        "name": "async.max_lidar_buffer_size",
+        "default": "50",
+        "type": "int",
+        "description": "[threaded only] Max lidar frames buffered before older frames are dropped.",
+    },
+    # seq-pipeline-specific parameters (online with odom_at_imu_rate:=true)
+    {
+        "name": "seq.odom_at_imu_rate_topic",
+        "default": "rko_lio/odom_at_imu_rate",
+        "description": "[online seq only] Topic for IMU-rate odometry. Used when odom_at_imu_rate:=true.",
+    },
+    {
+        "name": "seq.tf_at_imu_rate",
+        "default": "false",
+        "type": "bool",
+        "description": "[online seq only] Publish base->odom TF at IMU rate instead of LiDAR rate. Used when odom_at_imu_rate:=true.",
     },
     # ros params
     {
         "name": "mode",
         "default": "online",
-        "description": "Launch mode: 'offline' or 'online'",
+        "description": "Launch mode: 'online' (subscribe to live topics) or 'offline' (drain a rosbag at full speed).",
+    },
+    {
+        "name": "odom_at_imu_rate",
+        "default": "false",
+        "type": "bool",
+        "description": "When true (and mode:=online), launch the sequential variant which additionally publishes IMU-rate odometry on seq.odom_at_imu_rate_topic. Has no effect when mode:=offline.",
     },
     {
         "name": "config_file",
@@ -328,6 +353,7 @@ def merge_and_validate_parameters(
     cli_params: dict,
     file_params: dict,
     mode: str,
+    odom_at_imu_rate: bool,
 ) -> dict:
     """
     Merge CLI and file parameters:
@@ -343,13 +369,17 @@ def merge_and_validate_parameters(
         if v not in ("", None):
             merged[k] = v
 
-    # validating required params
+    # mode + flag determines which pipeline runs
+    is_offline = mode == "offline"
+    is_seq = mode == "online" and odom_at_imu_rate
+    is_async = not is_seq  # offline + online-without-flag both run async
+
     missing = []
     for param in configurable_parameters:
         name = param["name"]
 
-        # skip offline-only params in online mode
-        if mode == "online" and param in offline_only_parameters:
+        # offline-only params are required only in offline mode
+        if not is_offline and param in offline_only_parameters:
             continue
 
         if param.get("required", False):
@@ -365,6 +395,32 @@ def merge_and_validate_parameters(
         import sys
 
         sys.exit(1)
+
+    # warn if odom_at_imu_rate=true is paired with offline (no offline seq variant)
+    if is_offline and odom_at_imu_rate:
+        print(
+            "[WARN] odom_at_imu_rate:=true has no effect with mode:=offline; "
+            "running the async offline pipeline."
+        )
+
+    # warn about parameters that won't take effect for the chosen pipeline
+    if not is_seq:
+        leaked_seq = [p for p in merged if p.startswith("seq.")]
+        if leaked_seq:
+            print(f"[WARN] seq.* params ignored (not running seq pipeline): {leaked_seq}")
+    if not is_async:
+        leaked_async = [p for p in merged if p.startswith("async.")]
+        if leaked_async:
+            print(f"[WARN] async.* params ignored (not running async pipeline): {leaked_async}")
+
+    # warn about legacy lts_* keys
+    legacy_lts = [p for p in merged if p.startswith("lts_")]
+    if legacy_lts:
+        print(
+            f"[WARN] Legacy lidar timestamp parameters {legacy_lts} are ignored. "
+            "Rename them to 'lidar_timestamps.<suffix>' (e.g. lts_force_absolute "
+            "-> lidar_timestamps.force_absolute)."
+        )
 
     # Check extrinsics
     extrinsic_params = [
@@ -446,6 +502,9 @@ def prepare_rviz_config(rviz_config_file: Path, parameters: dict) -> Path:
 
 def launch_setup(context, *args, **kwargs):
     mode = LaunchConfiguration("mode").perform(context).lower()
+    odom_at_imu_rate = (
+        LaunchConfiguration("odom_at_imu_rate").perform(context).lower() == "true"
+    )
 
     # Prepare parameters
     cli_params = get_configured_cli_parameters(configurable_parameters, context=context)
@@ -454,6 +513,7 @@ def launch_setup(context, *args, **kwargs):
         cli_params=cli_params,
         file_params=params_from_file,
         mode=mode,
+        odom_at_imu_rate=odom_at_imu_rate,
     )
 
     print("\n" + "=" * 40 + "\n")
@@ -468,7 +528,12 @@ def launch_setup(context, *args, **kwargs):
             final_params,
         )
 
-    node_executable = "online_node" if mode == "online" else "offline_node"
+    if mode == "online":
+        node_executable = "online_imu_rate_node" if odom_at_imu_rate else "online_node"
+    elif mode == "offline":
+        node_executable = "offline_node"
+    else:
+        raise RuntimeError(f"Unknown mode '{mode}'. Valid: online | offline.")
 
     nodes = [
         launch_ros.actions.Node(

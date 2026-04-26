@@ -1,0 +1,68 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2025 Meher V.R. Malladi.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+#pragma once
+#include "base_node.hpp"
+// stl
+#include <atomic>
+#include <condition_variable>
+#include <mutex>
+#include <queue>
+#include <thread>
+// ros
+#include <sensor_msgs/msg/imu.hpp>
+#include <sensor_msgs/msg/point_cloud2.hpp>
+
+namespace rko_lio::ros {
+
+struct LidarFrame {
+  core::Timestamps timestamps;
+  core::Vector3dVector points;
+};
+
+class ThreadedNode : public BaseNode {
+public:
+  std::jthread registration_thread;
+  std::mutex buffer_mutex;
+  std::condition_variable sync_condition_variable;
+  std::atomic<bool> atomic_can_process = false;
+  std::queue<core::ImuControl> imu_buffer;
+  std::queue<LidarFrame> lidar_buffer;
+  size_t max_lidar_buffer_size = 50;
+
+  ThreadedNode() = delete;
+  ThreadedNode(const std::string& node_name, const rclcpp::NodeOptions& options);
+
+  void imu_callback(const sensor_msgs::msg::Imu::ConstSharedPtr& imu_msg);
+  void lidar_callback(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& lidar_msg);
+  void registration_loop();
+
+  ~ThreadedNode();
+  ThreadedNode(const ThreadedNode&) = delete;
+  ThreadedNode(ThreadedNode&&) = delete;
+  ThreadedNode& operator=(const ThreadedNode&) = delete;
+  ThreadedNode& operator=(ThreadedNode&&) = delete;
+};
+
+} // namespace rko_lio::ros

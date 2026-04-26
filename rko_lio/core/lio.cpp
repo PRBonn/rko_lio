@@ -254,30 +254,32 @@ void LIO::initialize(const Secondsd lidar_time) {
   const Eigen::Vector3d avg_accel = interval_stats.imu_acceleration_sum / interval_stats.imu_count;
   const Eigen::Vector3d avg_gyro = interval_stats.angular_velocity_sum / interval_stats.imu_count;
 
-  imu_local_rotation = align_accel_to_z_world(avg_accel);
-  imu_local_rotation_time = lidar_time;
-  lidar_state.pose.so3() = imu_local_rotation;
+  const Sophus::SO3d initial_rotation = align_accel_to_z_world(avg_accel);
+  lidar_state.pose.so3() = initial_rotation;
+  imu_state = lidar_state; 
 
   // lidar_state.time has the time from the previous lidar, which we didn't log if init_phase was on
   poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
 
   // the pose for the current time gets logged at the end of register_scan in the typical fashion
   lidar_state.time = lidar_time;
+  imu_state.time = lidar_time;
 
-  const Eigen::Vector3d local_gravity = imu_local_rotation.inverse() * gravity();
+  const Eigen::Vector3d local_gravity = imu_state.pose.so3().inverse() * gravity();
   imu_bias.accelerometer = avg_accel + local_gravity;
   imu_bias.gyroscope = avg_gyro;
 
   _initialized = true;
   std::cout << "[INFO] Odometry map frame initialized using " << interval_stats.imu_count
-            << " IMU measurements. Estimated initial rotation [se(3)] is " << imu_local_rotation.log().transpose()
-            << "\n";
+            << " IMU measurements. Estimated initial rotation [se(3)] is "
+            << imu_state.pose.so3().log().transpose() << "\n";
   std::cout << "[INFO] Estimated accel bias: " << imu_bias.accelerometer.transpose()
             << ", gyro bias: " << imu_bias.gyroscope.transpose() << "\n";
 }
 
 Vector3dVector LIO::bootstrap_first_scan(const Vector3dVector& scan, const Secondsd& current_lidar_time) {
   lidar_state.time = current_lidar_time;
+  imu_state = lidar_state;
   auto preproc = preprocess_scan(scan, config);
   if (!config.initialization_phase) {
     map.Update(preproc.map_update_frame(), lidar_state.pose);
@@ -325,11 +327,11 @@ void LIO::add_imu_measurement(const ImuControl& base_imu) {
     return;
   }
 
-  if (imu_local_rotation_time < EPSILON_TIME) {
-    imu_local_rotation_time = lidar_state.time;
+  if (imu_state.time < EPSILON_TIME) {
+    imu_state = lidar_state;
   }
 
-  const double dt = (base_imu.time - imu_local_rotation_time).count();
+  const double dt = (base_imu.time - imu_state.time).count();
 
   if (dt < 0.0) {
     // messages are out of sync. thats a problem, since we integrate gyro from last lidar time onwards
@@ -340,11 +342,17 @@ void LIO::add_imu_measurement(const ImuControl& base_imu) {
   const Eigen::Vector3d unbiased_ang_vel = base_imu.angular_velocity - imu_bias.gyroscope;
   const Eigen::Vector3d unbiased_accel = base_imu.acceleration - imu_bias.accelerometer;
 
-  imu_local_rotation = imu_local_rotation * Sophus::SO3d::exp(unbiased_ang_vel * dt);
-  imu_local_rotation_time = base_imu.time;
-
-  const Eigen::Vector3d local_gravity = imu_local_rotation.inverse() * gravity();
+  const Eigen::Vector3d local_gravity = imu_state.pose.so3().inverse() * gravity();
   const Eigen::Vector3d compensated_accel = unbiased_accel + local_gravity;
+
+  // imu state update
+  Eigen::Vector6d tau;
+  tau.head<3>() = imu_state.velocity * dt + compensated_accel * square(dt) / 2;
+  tau.tail<3>() = unbiased_ang_vel * dt;
+  imu_state.pose = imu_state.pose * Sophus::SE3d::exp(tau);
+  imu_state.velocity += compensated_accel * dt;
+  imu_state.angular_velocity = unbiased_ang_vel;
+  imu_state.time = base_imu.time;
 
   interval_stats.update(unbiased_ang_vel, unbiased_accel, compensated_accel);
 
@@ -465,13 +473,11 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
     lidar_state.velocity = local_velocity.head<3>();
     lidar_state.angular_velocity = local_velocity.tail<3>();
     lidar_state.linear_acceleration = local_linear_acceleration;
-
-    imu_local_rotation = optimized_pose.so3(); // correct the drift in imu integration
   }
   // even if map is empty, time should still update
   lidar_state.time = current_lidar_time;
-  imu_local_rotation_time = current_lidar_time;
-
+  // reset imu to last know lidar state
+  imu_state = lidar_state;
   // reset imu averages
   interval_stats.reset();
 

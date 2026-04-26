@@ -22,28 +22,17 @@
  * SOFTWARE.
  */
 
-#include "node.hpp"
+#include "base_node.hpp"
 #include "rko_lio/core/process_timestamps.hpp"
-#include "rko_lio/core/profiler.hpp"
 #include "rko_lio/ros/utils/utils.hpp"
 // other
 #include <fstream>
 #include <iostream>
 #include <nlohmann/json.hpp>
-#include <rclcpp/serialization.hpp>
 #include <stdexcept>
 
 namespace {
 using namespace std::literals;
-
-rko_lio::core::ImuControl imu_msg_to_imu_data(const sensor_msgs::msg::Imu& imu_msg) {
-  rko_lio::core::ImuControl imu_data;
-  imu_data.time = rko_lio::ros::utils::ros_time_to_seconds(imu_msg.header.stamp);
-  imu_data.angular_velocity = rko_lio::ros::utils::ros_xyz_to_eigen_vector3d(imu_msg.angular_velocity);
-  imu_data.acceleration = rko_lio::ros::utils::ros_xyz_to_eigen_vector3d(imu_msg.linear_acceleration);
-  return imu_data;
-}
-
 } // namespace
 
 namespace rko_lio::core {
@@ -66,7 +55,15 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(LIO::Config,
 
 namespace rko_lio::ros {
 
-Node::Node(const std::string& node_name, const rclcpp::NodeOptions& options) {
+core::ImuControl imu_msg_to_imu_data(const sensor_msgs::msg::Imu& imu_msg) {
+  core::ImuControl imu_data;
+  imu_data.time = utils::ros_time_to_seconds(imu_msg.header.stamp);
+  imu_data.angular_velocity = utils::ros_xyz_to_eigen_vector3d(imu_msg.angular_velocity);
+  imu_data.acceleration = utils::ros_xyz_to_eigen_vector3d(imu_msg.linear_acceleration);
+  return imu_data;
+}
+
+BaseNode::BaseNode(const std::string& node_name, const rclcpp::NodeOptions& options) {
   node = rclcpp::Node::make_shared(node_name, options);
   imu_topic = node->declare_parameter<std::string>("imu_topic");     // required
   lidar_topic = node->declare_parameter<std::string>("lidar_topic"); // required
@@ -129,13 +126,13 @@ Node::Node(const std::string& node_name, const rclcpp::NodeOptions& options) {
   lio_config.min_beta = node->declare_parameter<double>("min_beta", lio_config.min_beta);
   lio = std::make_unique<core::LIO>(lio_config);
 
-  // Timestamp processing params - lts for lidar time stamps, without having 100 char param names
-  timestamp_proc_config.multiplier_to_seconds =
-      node->declare_parameter<double>("lts_multiplier_to_seconds", timestamp_proc_config.multiplier_to_seconds);
+  // Lidar per-point timestamp processing params, namespaced under lidar_timestamps.*
+  timestamp_proc_config.multiplier_to_seconds = node->declare_parameter<double>(
+      "lidar_timestamps.multiplier_to_seconds", timestamp_proc_config.multiplier_to_seconds);
   timestamp_proc_config.force_absolute =
-      node->declare_parameter<bool>("lts_force_absolute", timestamp_proc_config.force_absolute);
+      node->declare_parameter<bool>("lidar_timestamps.force_absolute", timestamp_proc_config.force_absolute);
   timestamp_proc_config.force_relative =
-      node->declare_parameter<bool>("lts_force_relative", timestamp_proc_config.force_relative);
+      node->declare_parameter<bool>("lidar_timestamps.force_relative", timestamp_proc_config.force_relative);
 
   // manually, if, define extrinsics
   parse_cli_extrinsics();
@@ -165,12 +162,10 @@ Node::Node(const std::string& node_name, const rclcpp::NodeOptions& options) {
     }
   });
 
-  registration_thread = std::jthread([this]() { registration_loop(); });
-
   RCLCPP_INFO(node->get_logger(), "RKO LIO Node is up!");
 }
 
-void Node::parse_cli_extrinsics() {
+void BaseNode::parse_cli_extrinsics() {
   auto parse_extrinsic = [this](const std::string& name, Sophus::SE3d& extrinsic) {
     const std::string param_name = "extrinsic_" + name + "2base_quat_xyzw_xyz";
     const std::vector<double> vec = node->declare_parameter<std::vector<double>>(param_name, std::vector<double>{});
@@ -198,7 +193,7 @@ void Node::parse_cli_extrinsics() {
   extrinsics_set = imu_ok && lidar_ok;
 }
 
-bool Node::check_and_set_extrinsics() {
+bool BaseNode::check_and_set_extrinsics() {
   if (extrinsics_set) {
     return true;
   }
@@ -216,161 +211,72 @@ bool Node::check_and_set_extrinsics() {
   return true;
 }
 
-void Node::imu_callback(const sensor_msgs::msg::Imu::ConstSharedPtr& imu_msg) {
-  if (imu_frame.empty()) {
-    if (imu_msg->header.frame_id.empty() && !extrinsics_set) {
-      throw std::runtime_error("IMU message header has no frame id and we need it to query TF for the extrinsics. "
-                               "Either specify the frame id or the extrinsic manually.");
-    }
-    imu_frame = imu_msg->header.frame_id;
-    RCLCPP_INFO_STREAM(node->get_logger(), "Parsed the imu frame id as: " << imu_frame);
+std::tuple<core::Timestamps, core::Vector3dVector>
+BaseNode::process_lidar_msg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& lidar_msg) const {
+  const core::Secondsd& header_stamp = utils::ros_time_to_seconds(lidar_msg->header.stamp);
+  if (lio->config.deskew) {
+    const auto& [scan, raw_timestamps] = utils::point_cloud2_to_eigen_with_timestamps(lidar_msg);
+    const core::Timestamps& timestamps =
+        core::process_timestamps(raw_timestamps, header_stamp, timestamp_proc_config);
+    return {timestamps, scan};
   }
-  if (!check_and_set_extrinsics()) {
-    // we assume that extrinsics are static. if they change, its better to query the tf directly in the registration
-    // loop for each message being processed asynchronously.
-    return;
+  RCLCPP_WARN_STREAM_ONCE(node->get_logger(),
+                          "Deskewing is disabled. Populating timestamps with static header time.");
+  const core::Vector3dVector scan = utils::point_cloud2_to_eigen(lidar_msg);
+  return {{.min = header_stamp, .max = header_stamp, .times = core::TimestampVector(scan.size(), header_stamp)},
+          scan};
+}
+
+core::Vector3dVector BaseNode::register_scan_locked(const core::Vector3dVector& scan,
+                                                    const core::TimestampVector& time_vector) {
+  if (publish_local_map) {
+    std::lock_guard lock(local_map_mutex); // map publish thread may access map simultaneously
+    return lio->register_scan(extrinsic_lidar2base, scan, time_vector);
   }
-  {
-    std::lock_guard lock(buffer_mutex);
-    imu_buffer.emplace(imu_msg_to_imu_data(*imu_msg));
-    atomic_can_process = !lidar_buffer.empty() && imu_buffer.back().time > lidar_buffer.front().timestamps.max;
+  return lio->register_scan(extrinsic_lidar2base, scan, time_vector);
+}
+
+void BaseNode::publish_lidar_outputs(const core::Vector3dVector& deskewed_frame,
+                                     const core::Secondsd& stamp) const {
+  if (publish_deskewed_scan) {
+    std_msgs::msg::Header header;
+    header.frame_id = lidar_frame;
+    header.stamp = rclcpp::Time(std::chrono::duration_cast<std::chrono::nanoseconds>(stamp).count());
+    frame_publisher->publish(utils::eigen_to_point_cloud2(deskewed_frame, header));
   }
-  if (atomic_can_process) {
-    sync_condition_variable.notify_one();
+  publish_odometry(lio->lidar_state, stamp);
+  if (publish_lidar_acceleration) {
+    publish_lidar_accel(lio->lidar_state.linear_acceleration, stamp);
   }
 }
 
-void Node::lidar_callback(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& lidar_msg) {
-  if (lidar_frame.empty()) {
-    if (lidar_msg->header.frame_id.empty() && !extrinsics_set) {
-      throw std::runtime_error("LiDAR message header has no frame id and we need it to query TF for the extrinsics. "
-                               "Either specify the frame id or the extrinsic manually.");
-    }
-    lidar_frame = lidar_msg->header.frame_id;
-    RCLCPP_INFO_STREAM(node->get_logger(), "Parsed the lidar frame id as: " << lidar_frame);
-  }
-  if (!check_and_set_extrinsics()) {
-    return;
-  }
-  {
-    std::lock_guard lock(buffer_mutex);
-    if (lidar_buffer.size() >= max_lidar_buffer_size) {
-      RCLCPP_WARN_STREAM(node->get_logger(), "Registration lidar buffer limit reached. Dropping frame.");
-      sync_condition_variable.notify_one();
-      return;
-    }
-  }
-  try {
-    const auto& [timestamps, scan] = std::invoke([&]() -> std::tuple<core::Timestamps, core::Vector3dVector> {
-      const core::Secondsd& header_stamp = utils::ros_time_to_seconds(lidar_msg->header.stamp);
-      if (lio->config.deskew) {
-        const auto& [scan, raw_timestamps] = utils::point_cloud2_to_eigen_with_timestamps(lidar_msg);
-        const core::Timestamps& timestamps =
-            core::process_timestamps(raw_timestamps, header_stamp, timestamp_proc_config);
-        return {timestamps, scan};
-      } else {
-        RCLCPP_WARN_STREAM_ONCE(node->get_logger(),
-                                "Deskewing is disabled. Populating timestamps with static header time.");
-        const core::Vector3dVector scan = utils::point_cloud2_to_eigen(lidar_msg);
-        return {{.min = header_stamp, .max = header_stamp, .times = core::TimestampVector(scan.size(), header_stamp)},
-                scan};
-      }
-    });
-
-    {
-      std::lock_guard lock(buffer_mutex);
-      lidar_buffer.emplace(timestamps, scan);
-      atomic_can_process = !imu_buffer.empty() && imu_buffer.back().time > lidar_buffer.front().timestamps.max;
-    }
-    if (atomic_can_process) {
-      sync_condition_variable.notify_one();
-    }
-  } catch (const std::invalid_argument& ex) {
-    RCLCPP_ERROR_STREAM(node->get_logger(), "Encountered error, dropping frame: Error. " << ex.what());
-  }
-}
-
-void Node::registration_loop() {
-  while (rclcpp::ok() && atomic_node_running) {
-    SCOPED_PROFILER("ROS Registration Loop");
-    std::unique_lock buffer_lock(buffer_mutex);
-    sync_condition_variable.wait(buffer_lock, [this]() { return !atomic_node_running || atomic_can_process; });
-    if (!atomic_node_running) {
-      // node could have been killed after waiting on the cv
-      break;
-    }
-    LidarFrame frame = std::move(lidar_buffer.front());
-    lidar_buffer.pop();
-    const auto& [timestamps, scan] = frame;
-    const auto& [start_stamp, end_stamp, time_vector] = timestamps;
-    for (; !imu_buffer.empty() && imu_buffer.front().time < end_stamp; imu_buffer.pop()) {
-      const core::ImuControl& imu_data = imu_buffer.front();
-      lio->add_imu_measurement(extrinsic_imu2base, imu_data);
-    }
-    // check if there are more messages buffered already
-    atomic_can_process =
-        !imu_buffer.empty() && !lidar_buffer.empty() && imu_buffer.back().time > lidar_buffer.front().timestamps.max;
-    buffer_lock.unlock(); // we dont touch the buffers anymore
-
-    try {
-      const core::Vector3dVector deskewed_frame = std::invoke([&]() {
-        if (publish_local_map) {
-          std::lock_guard lock(local_map_mutex); // publish_map thread might access simultaneously
-          return lio->register_scan(extrinsic_lidar2base, scan, time_vector);
-        } else {
-          return lio->register_scan(extrinsic_lidar2base, scan, time_vector);
-        }
-      });
-
-      if (!deskewed_frame.empty()) {
-        // TODO: first frame is skipped and an empty frame is returned. improve how we handle this
-        if (publish_deskewed_scan) {
-          std_msgs::msg::Header header;
-          header.frame_id = lidar_frame;
-          header.stamp = rclcpp::Time(std::chrono::duration_cast<std::chrono::nanoseconds>(end_stamp).count());
-          frame_publisher->publish(utils::eigen_to_point_cloud2(deskewed_frame, header));
-        }
-        publish_odometry(lio->lidar_state, end_stamp);
-        if (publish_lidar_acceleration) {
-          publish_lidar_accel(lio->lidar_state.linear_acceleration, end_stamp);
-        }
-      }
-    } catch (const std::invalid_argument& ex) {
-      RCLCPP_ERROR_STREAM(node->get_logger(), "Encountered error, dropping frame. Error: " << ex.what());
-    }
-  }
-  atomic_node_running = false;
-}
-
-void Node::publish_odometry(const core::State& state, const core::Secondsd& stamp) const {
-  const std::string_view from_frame = base_frame;
-  const std::string_view to_frame = odom_frame;
-  // tf message
-  geometry_msgs::msg::TransformStamped transform_msg;
-  transform_msg.header.stamp = rclcpp::Time(std::chrono::duration_cast<std::chrono::nanoseconds>(stamp).count());
-  if (invert_odom_tf) {
-    transform_msg.header.frame_id = from_frame;
-    transform_msg.child_frame_id = to_frame;
-    transform_msg.transform = utils::sophus_to_transform(state.pose.inverse());
-  } else {
-    transform_msg.header.frame_id = to_frame;
-    transform_msg.child_frame_id = from_frame;
-    transform_msg.transform = utils::sophus_to_transform(state.pose);
-  }
-  tf_broadcaster->sendTransform(transform_msg);
-
-  // odometry msg
+void BaseNode::publish_odometry(const core::State& state, const core::Secondsd& stamp) const {
   nav_msgs::msg::Odometry odom_msg;
   odom_msg.header.stamp = rclcpp::Time(std::chrono::duration_cast<std::chrono::nanoseconds>(stamp).count());
-  odom_msg.header.frame_id = to_frame;
-  odom_msg.child_frame_id = from_frame;
+  odom_msg.header.frame_id = odom_frame;
+  odom_msg.child_frame_id = base_frame;
   odom_msg.pose.pose = utils::sophus_to_pose(state.pose);
   utils::eigen_vector3d_to_ros_xyz(state.velocity, odom_msg.twist.twist.linear);
   utils::eigen_vector3d_to_ros_xyz(state.angular_velocity, odom_msg.twist.twist.angular);
   odom_publisher->publish(odom_msg);
 }
 
-void Node::publish_lidar_accel(const Eigen::Vector3d& acceleration, const core::Secondsd& stamp) const {
+void BaseNode::publish_tf(const Sophus::SE3d& pose, const core::Secondsd& stamp) const {
+  geometry_msgs::msg::TransformStamped transform_msg;
+  transform_msg.header.stamp = rclcpp::Time(std::chrono::duration_cast<std::chrono::nanoseconds>(stamp).count());
+  if (invert_odom_tf) {
+    transform_msg.header.frame_id = base_frame;
+    transform_msg.child_frame_id = odom_frame;
+    transform_msg.transform = utils::sophus_to_transform(pose.inverse());
+  } else {
+    transform_msg.header.frame_id = odom_frame;
+    transform_msg.child_frame_id = base_frame;
+    transform_msg.transform = utils::sophus_to_transform(pose);
+  }
+  tf_broadcaster->sendTransform(transform_msg);
+}
+
+void BaseNode::publish_lidar_accel(const Eigen::Vector3d& acceleration, const core::Secondsd& stamp) const {
   auto accel_msg = geometry_msgs::msg::AccelStamped();
   accel_msg.header.stamp = rclcpp::Time(std::chrono::duration_cast<std::chrono::nanoseconds>(stamp).count());
   accel_msg.header.frame_id = base_frame;
@@ -378,7 +284,7 @@ void Node::publish_lidar_accel(const Eigen::Vector3d& acceleration, const core::
   lidar_accel_publisher->publish(accel_msg);
 }
 
-void Node::publish_map_loop() {
+void BaseNode::publish_map_loop() {
   while (atomic_node_running) {
     std::this_thread::sleep_for(publish_map_after);
     std::unique_lock lock(local_map_mutex);
@@ -395,12 +301,11 @@ void Node::publish_map_loop() {
   }
 }
 
-Node::~Node() {
+BaseNode::~BaseNode() {
   atomic_node_running = false;
-  sync_condition_variable.notify_all();
 }
 
-void Node::dump_results_to_disk(const std::filesystem::path& results_dir, const std::string& run_name) const {
+void BaseNode::dump_results_to_disk(const std::filesystem::path& results_dir, const std::string& run_name) const {
   try {
     std::filesystem::create_directories(results_dir); // no error if exists
     int index = 0;

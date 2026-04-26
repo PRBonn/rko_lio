@@ -70,8 +70,15 @@ else()
     EXECUTABLE
     online_node)
 
+  rclcpp_components_register_node(
+    online_imu_rate_node_component
+    PLUGIN
+    "rko_lio::ros::OnlineImuRateNode"
+    EXECUTABLE
+    online_imu_rate_node)
+
   install(
-    TARGETS online_node_component offline_node
+    TARGETS online_node_component online_imu_rate_node_component offline_node
     EXPORT rko_lioTargets
     RUNTIME DESTINATION lib/${PROJECT_NAME})
 

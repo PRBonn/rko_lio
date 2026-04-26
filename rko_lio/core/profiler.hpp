@@ -34,6 +34,7 @@
  */
 #pragma once
 #include <chrono>
+#include <cmath>
 #include <iomanip>
 #include <iostream>
 #include <string>
