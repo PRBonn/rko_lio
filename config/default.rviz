@@ -155,7 +155,7 @@ Visualization Manager:
         Filter size: 10
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /rko_lio/odometry
+        Value: /rko_lio/odom
       Value: true
   Enabled: true
   Global Options:

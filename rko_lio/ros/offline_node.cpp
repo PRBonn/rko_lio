@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-#include "node.hpp"
+#include "threaded_node.hpp"
 #include "rko_lio/core/profiler.hpp"
 #include "rko_lio/ros/utils/rosbag.hpp"
 // other
@@ -62,7 +62,7 @@ void publish_bag_progress(const BagProgressPublisher::SharedPtr& publisher,
 } // namespace
 
 namespace rko_lio::ros {
-class OfflineNode : public Node {
+class OfflineNode : public ThreadedNode {
 public:
   std::unique_ptr<utils::BufferableBag> bag;
 
@@ -71,9 +71,7 @@ public:
   float total_bag_msgs = 0;
   float processed_bag_msgs = 0;
 
-  explicit OfflineNode(const rclcpp::NodeOptions& options) : Node("rko_lio_offline_node", options) {
-    // increase the lidar buffer limit because we're offline
-    max_lidar_buffer_size = 100;
+  explicit OfflineNode(const rclcpp::NodeOptions& options) : ThreadedNode("rko_lio_offline_node", options) {
     // bag reading
     const tf2::Duration skip_to_time = tf2::durationFromSec(node->declare_parameter<double>("skip_to_time", 0.0));
     bag = std::make_unique<utils::BufferableBag>(node->declare_parameter<std::string>("bag_path"),
@@ -129,8 +127,8 @@ public:
 int main(int argc, char** argv) {
   const rko_lio::core::Timer timer("RKO LIO Offline Node");
   rclcpp::init(argc, argv);
-  auto offline_node = rko_lio::ros::OfflineNode(rclcpp::NodeOptions());
-  offline_node.run();
+  auto node = rko_lio::ros::OfflineNode(rclcpp::NodeOptions());
+  node.run();
   rclcpp::shutdown();
   return 0;
 }

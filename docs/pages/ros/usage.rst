@@ -67,6 +67,17 @@ Published topics
 
   Only published if ``publish_lidar_acceleration:=true``.
 
+IMU-rate odometry
+-----------------
+
+By default the launch file publishes odometry at LiDAR rate. To additionally publish odometry at IMU rate, pass ``odom_at_imu_rate:=true`` (only supported with ``mode:=online``). The launch file then runs the sequential variant ``online_imu_rate_node`` and publishes on the topic given by ``seq.odom_at_imu_rate_topic`` (default ``rko_lio/odom_at_imu_rate``). The ``base_frame`` -> ``odom_frame`` TF is still published at LiDAR rate by default; set ``seq.tf_at_imu_rate:=true`` to shift it to IMU rate as well.
+
+Two caveats are worth mentioning:
+
+- This pipeline relies on the IMU and LiDAR streams being well synchronized. If the topics drift out of sync, the IMU-rate output will break. The standard LiDAR-rate odometry (``odom_at_imu_rate:=false``, the default) is more robust to such issues, so prefer it unless you specifically need the higher-rate output.
+
+- The IMU-rate odometry is raw IMU integration and will be jerky. For most downstream uses, you'll want to run it through a smoother — for example, the EKF in `robot_localization <https://index.ros.org/p/robot_localization/>`_. The same smoothing can also be useful even on the LiDAR-rate odometry.
+
 Offline node
 ------------
 

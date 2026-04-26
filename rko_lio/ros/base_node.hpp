@@ -27,13 +27,12 @@
 #include "rko_lio/core/process_timestamps.hpp"
 // stl
 #include <atomic>
-#include <condition_variable>
 #include <filesystem>
 #include <memory>
 #include <mutex>
-#include <queue>
 #include <string>
 #include <thread>
+#include <tuple>
 // ros
 #include <geometry_msgs/msg/accel_stamped.hpp>
 #include <geometry_msgs/msg/accel_with_covariance_stamped.hpp>
@@ -47,12 +46,10 @@
 #include <tf2_ros/transform_listener.h>
 
 namespace rko_lio::ros {
-struct LidarFrame {
-  core::Timestamps timestamps;
-  core::Vector3dVector points;
-};
+// Shared helper used by both the threaded and sequential nodes.
+core::ImuControl imu_msg_to_imu_data(const sensor_msgs::msg::Imu& imu_msg);
 
-class Node {
+class BaseNode {
 public:
   rclcpp::Node::SharedPtr node;
   std::unique_ptr<core::LIO> lio;
@@ -64,7 +61,7 @@ public:
   std::string lidar_frame = ""; // default: get from the first lidar message
   std::string base_frame;
   std::string odom_frame = "odom";
-  std::string odom_topic = "rko_lio/odometry";
+  std::string odom_topic = "rko_lio/odom";
   std::string map_topic = "rko_lio/local_map";
   std::string deskewed_scan_topic = "rko_lio/frame";
 
@@ -90,37 +87,38 @@ public:
   rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr map_publisher;
   rclcpp::Publisher<geometry_msgs::msg::AccelStamped>::SharedPtr lidar_accel_publisher;
 
-  // multithreading
+  // map publish thread
   std::jthread map_publish_thead;
   core::Secondsd publish_map_after = std::chrono::seconds(1);
   std::mutex local_map_mutex;
 
-  std::jthread registration_thread;
-  std::mutex buffer_mutex;
-  std::condition_variable sync_condition_variable;
+  // shutdown flag
   std::atomic<bool> atomic_node_running = true;
-  std::atomic<bool> atomic_can_process = false;
-  std::queue<core::ImuControl> imu_buffer;
-  std::queue<LidarFrame> lidar_buffer;
-  size_t max_lidar_buffer_size = 50;
 
-  Node() = delete;
-  Node(const std::string& node_name, const rclcpp::NodeOptions& options);
+  BaseNode() = delete;
+  BaseNode(const std::string& node_name, const rclcpp::NodeOptions& options);
 
   void parse_cli_extrinsics();
   bool check_and_set_extrinsics();
-  void imu_callback(const sensor_msgs::msg::Imu::ConstSharedPtr& imu_msg);
-  void lidar_callback(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& lidar_msg);
-  void registration_loop();
+
+  std::tuple<core::Timestamps, core::Vector3dVector>
+  process_lidar_msg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& lidar_msg) const;
+
+  core::Vector3dVector register_scan_locked(const core::Vector3dVector& scan, const core::TimestampVector& time_vector);
+
+  void publish_lidar_outputs(const core::Vector3dVector& deskewed_frame, const core::Secondsd& stamp) const;
+
   void publish_odometry(const core::State& state, const core::Secondsd& stamp) const;
+  void publish_tf(const Sophus::SE3d& pose, const core::Secondsd& stamp) const;
   void publish_lidar_accel(const Eigen::Vector3d& acceleration, const core::Secondsd& stamp) const;
   void publish_map_loop();
   void dump_results_to_disk(const std::filesystem::path& results_dir, const std::string& run_name) const;
 
-  ~Node();
-  Node(const Node&) = delete;
-  Node(Node&&) = delete;
-  Node& operator=(const Node&) = delete;
-  Node& operator=(Node&&) = delete;
+  ~BaseNode();
+  BaseNode(const BaseNode&) = delete;
+  BaseNode(BaseNode&&) = delete;
+  BaseNode& operator=(const BaseNode&) = delete;
+  BaseNode& operator=(BaseNode&&) = delete;
 };
+
 } // namespace rko_lio::ros

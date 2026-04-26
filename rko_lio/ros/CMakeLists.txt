@@ -29,11 +29,11 @@ add_library(rko_lio::ros ALIAS rko_lio.ros)
 
 compat_target_sources(
   rko_lio.ros
-  PRIVATE node.cpp
+  PRIVATE base_node.cpp threaded_node.cpp
   PUBLIC
   FILE_SET
   HEADERS
-  FILES ../../rko_lio/ros/node.hpp
+  FILES ../../rko_lio/ros/base_node.hpp ../../rko_lio/ros/threaded_node.hpp
   BASE_DIRS ../..)
 
 target_link_libraries(
@@ -66,6 +66,14 @@ set_target_properties(offline_node PROPERTIES POSITION_INDEPENDENT_CODE ON)
 add_library(online_node_component SHARED online_node.cpp)
 target_link_libraries(
   online_node_component
+  PRIVATE rko_lio::ros
+          # ros deps
+          rclcpp_components::component rclcpp_components::component_manager)
+
+# component: online_imu_rate_node_component
+add_library(online_imu_rate_node_component SHARED online_imu_rate_node.cpp)
+target_link_libraries(
+  online_imu_rate_node_component
   PRIVATE rko_lio::ros
           # ros deps
           rclcpp_components::component rclcpp_components::component_manager)
