@@ -94,13 +94,6 @@ public:
 
   // shutdown flag
   std::atomic<bool> atomic_node_running = true;
-<<<<<<< HEAD:rko_lio/ros/base_node.hpp
-=======
-  std::atomic<bool> atomic_can_process = false;
-  std::queue<core::ImuControl> imu_buffer;
-  std::queue<LidarFrame> lidar_buffer;
-  size_t max_lidar_buffer_size = 50;
->>>>>>> master:rko_lio/ros/node.hpp
 
   BaseNode() = delete;
   BaseNode(const std::string& node_name, const rclcpp::NodeOptions& options);
