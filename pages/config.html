@@ -18,7 +18,7 @@
     <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Uncategorised documentation" href="uncategorised/index.html" />
+    <link rel="next" title="Changelog" href="changelog_literal.html" />
     <link rel="prev" title="rko_lio.util module" href="../python/rko_lio.util.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -62,13 +62,12 @@
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="primer.html">Primer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ros/ros.html">ROS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="python/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ros.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Configuring rko_lio</a></li>
-<li class="toctree-l1"><a class="reference internal" href="uncategorised/index.html">Uncategorised</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog_literal.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
 </ul>
 
@@ -94,11 +93,38 @@
             
   <section id="configuring-the-odometry">
 <h1>Configuring the odometry<a class="headerlink" href="#configuring-the-odometry" title="Link to this heading">¶</a></h1>
-<p>The odometry has a set of runtime parameters that are common across both the Python bindings and the ROS interface.
-Please refer to the version specific usage documentations, <a class="reference internal" href="python/usage.html"><span class="doc">Python - Usage</span></a> and <a class="reference internal" href="ros/usage.html"><span class="doc">ROS - Usage</span></a>, for further information on that.</p>
-<p>The defaults are sane, and I’ve used the defaults with success across a number of platforms, datasets, etc.</p>
-<p>But your specific application might still benefit from or need some tuning, so I’ve given some brief description below.</p>
-<p>The physical units are always SI units.</p>
+<p>This page is a reference for runtime parameters.
+The first group – the LIO core parameters – is shared between the Python and ROS interfaces.
+The remaining groups (extrinsics, per-point timestamp handling, Python pipeline knobs, ROS launch knobs) cover the wrapper-specific bits.</p>
+<p>The defaults are sane and I’ve used them with success across a number of platforms and datasets.
+But your specific application might benefit from tuning – the descriptions below try to make clear when.</p>
+<p>Physical units are always SI.</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#lio-core-parameters" id="id1">LIO core parameters</a></p></li>
+<li><p><a class="reference internal" href="#extrinsics" id="id2">Extrinsics</a></p></li>
+<li><p><a class="reference internal" href="#lidar-per-point-timestamps" id="id3">LiDAR per-point timestamps</a></p>
+<ul>
+<li><p><a class="reference internal" href="#example-default-configuration" id="id4">Example (default configuration)</a></p></li>
+<li><p><a class="reference internal" href="#description-of-parameters" id="id5">Description of parameters</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#pipeline-parameters-python" id="id6">Pipeline parameters (Python)</a></p></li>
+<li><p><a class="reference internal" href="#launch-parameters-ros" id="id7">Launch parameters (ROS)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#mode-selection" id="id8">Mode selection</a></p></li>
+<li><p><a class="reference internal" href="#topic-and-frame-configuration" id="id9">Topic and frame configuration</a></p></li>
+<li><p><a class="reference internal" href="#publishing-toggles" id="id10">Publishing toggles</a></p></li>
+<li><p><a class="reference internal" href="#mode-specific-knobs" id="id11">Mode-specific knobs</a></p></li>
+<li><p><a class="reference internal" href="#disk-dumping-and-visualization" id="id12">Disk dumping and visualization</a></p></li>
+<li><p><a class="reference internal" href="#other" id="id13">Other</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="lio-core-parameters">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">LIO core parameters</a><a class="headerlink" href="#lio-core-parameters" title="Link to this heading">¶</a></h2>
+<p>These show up under the top level of a Python config and as ROS launch arguments with the same name.</p>
 <ul>
 <li><p><strong>deskew</strong> (<cite>bool</cite>, default <code class="docutils literal notranslate"><span class="pre">True</span></code>)</p>
 <p>Whether to apply scan deskewing before registration.</p>
@@ -186,6 +212,192 @@ The default should be fine for most cases.</p>
 </li>
 </ul>
 </section>
+<section id="extrinsics">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Extrinsics</a><a class="headerlink" href="#extrinsics" title="Link to this heading">¶</a></h2>
+<p>The extrinsic transforms between the IMU / LiDAR and the base frame are specified in YAML as <code class="docutils literal notranslate"><span class="pre">[qx,</span> <span class="pre">qy,</span> <span class="pre">qz,</span> <span class="pre">qw,</span> <span class="pre">x,</span> <span class="pre">y,</span> <span class="pre">z]</span></code> lists:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">extrinsic_imu2base_quat_xyzw_xyz</span><span class="p">:</span><span class="w">   </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span>
+<span class="nt">extrinsic_lidar2base_quat_xyzw_xyz</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.05</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>If one of the two keys is set, both must be set; pick identity for whichever frame you want to treat as the base.
+The convention is described under <a class="reference internal" href="data.html#data-extrinsics-convention"><span class="std std-ref">Extrinsics &amp; convention</span></a>.</p>
+<p>When are these required?</p>
+<ul class="simple">
+<li><p><strong>ROS</strong>: only if the TF tree isn’t well defined or topic <code class="docutils literal notranslate"><span class="pre">frame_id</span></code>s don’t match the TF tree. With a clean TF tree, the extrinsics are looked up automatically.</p></li>
+<li><p><strong>Python rosbag dataloader</strong>: only if the bag has no static TF tree. With a tree, the extrinsics are pulled from it.</p></li>
+<li><p><strong>Python raw / HeLiPR dataloaders</strong>: always required, supplied via the dataloader’s own configuration mechanism (<code class="docutils literal notranslate"><span class="pre">transforms.yaml</span></code> for raw, etc.).</p></li>
+</ul>
+<p>If you specify the extrinsics in a config but the dataloader / TF tree could also provide them, the config values take priority.</p>
+</section>
+<section id="lidar-per-point-timestamps">
+<span id="config-lidar-timestamps"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">LiDAR per-point timestamps</a><a class="headerlink" href="#lidar-per-point-timestamps" title="Link to this heading">¶</a></h2>
+<p>The C++ backend (<cite>rko_lio::core::process_timestamps</cite>) tries to automatically
+decide whether a LiDAR timestamp sequence is <strong>absolute</strong> (already aligned to
+wall-clock time) or <strong>relative</strong> (offsets that must be shifted by the message
+header time). If the data cannot be confidently classified as either, a
+<cite>std::runtime_error</cite> is thrown:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Runtime</span> <span class="n">Error</span><span class="p">:</span> <span class="n">TimestampProcessingConfig</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">cover</span> <span class="n">this</span> <span class="n">particular</span>
+<span class="k">case</span> <span class="n">of</span> <span class="n">data</span><span class="o">.</span> <span class="n">Please</span> <span class="n">investigate</span><span class="p">,</span> <span class="n">modify</span> <span class="n">the</span> <span class="n">config</span><span class="p">,</span> <span class="ow">or</span> <span class="nb">open</span> <span class="n">an</span> <span class="n">issue</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>When this error occurs, you can potentially adjust the <cite>timestamps</cite> section of your
+configuration file to fix the issue. Specifying one of <cite>force_absolute</cite> or <cite>force_relative</cite> should do the trick.</p>
+<section id="example-default-configuration">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Example (default configuration)</a><a class="headerlink" href="#example-default-configuration" title="Link to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">your other configuration keys here</span>
+<span class="l l-Scalar l-Scalar-Plain">timestamps</span><span class="p p-Indicator">:</span>
+<span class="w">  </span><span class="nt">multiplier_to_seconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">  </span><span class="nt">force_absolute</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">force_relative</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+</div>
+</section>
+<section id="description-of-parameters">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Description of parameters</a><a class="headerlink" href="#description-of-parameters" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">multiplier_to_seconds</span></code>:</p>
+<blockquote>
+<div><p>Factor applied to raw timestamp values to convert them to seconds.
+Secondsd and nanoseconds are detected automatically when this is 0.0 (default).
+Specify this for any other case.
+For example, if timestamps are in microseconds, use <code class="docutils literal notranslate"><span class="pre">1e-6</span></code>.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">force_absolute</span></code>:</p>
+<blockquote>
+<div><p>If set, timestamps are always treated as absolute, bypassing heuristics.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">force_relative</span></code>:</p>
+<blockquote>
+<div><p>If set, timestamps are always interpreted as relative to the LiDAR message header time, bypassing heuristics.</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>First, absolute timestamps are checked for. Then, relative. If the heuristics are still not satisfied, then the above described error is thrown.</p>
+</div>
+</section>
+<p>The same overrides are surfaced as ROS launch arguments under the <code class="docutils literal notranslate"><span class="pre">lidar_timestamps.*</span></code> namespace:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">lidar_timestamps.multiplier_to_seconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span><span class="w">   </span><span class="c1"># 0.0 = autodetect; e.g. 1e-6 for microseconds</span>
+<span class="nt">lidar_timestamps.force_absolute</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">lidar_timestamps.force_relative</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+</div>
+<p>(They can also be written as a nested mapping <code class="docutils literal notranslate"><span class="pre">lidar_timestamps:\n</span>&#160; <span class="pre">force_absolute:</span> <span class="pre">true</span></code> – <code class="docutils literal notranslate"><span class="pre">launch_ros</span></code> flattens nested dicts before passing them as parameter overrides, so both forms are equivalent.)</p>
+</section>
+<section id="pipeline-parameters-python">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Pipeline parameters (Python)</a><a class="headerlink" href="#pipeline-parameters-python" title="Link to this heading">¶</a></h2>
+<p>These are passed to the Python <code class="docutils literal notranslate"><span class="pre">LIOPipeline</span></code> via the same YAML config as the LIO parameters.</p>
+<p>On-disk logging is gated by the CLI flag <code class="docutils literal notranslate"><span class="pre">--log</span></code> / <code class="docutils literal notranslate"><span class="pre">-l</span></code> (<code class="docutils literal notranslate"><span class="pre">log_results</span></code>, default <code class="docutils literal notranslate"><span class="pre">True</span></code>).
+Without it, <code class="docutils literal notranslate"><span class="pre">log_dir</span></code>, <code class="docutils literal notranslate"><span class="pre">run_name</span></code>, and <code class="docutils literal notranslate"><span class="pre">dump_deskewed_scans</span></code> have no effect.</p>
+<ul>
+<li><p><strong>dump_deskewed_scans</strong> (<cite>bool</cite>, default <code class="docutils literal notranslate"><span class="pre">False</span></code>)</p>
+<p>Save each deskewed scan to disk under <code class="docutils literal notranslate"><span class="pre">log_dir</span></code> as PLY. Useful for debugging the deskewing step or for reuse downstream. Off by default since it generates a lot of data.</p>
+</li>
+<li><p><strong>log_dir</strong> (<cite>Path</cite>, default <code class="docutils literal notranslate"><span class="pre">&quot;results&quot;</span></code>)</p>
+<p>Where the trajectory file (and dumped scans, if enabled) gets written.</p>
+</li>
+<li><p><strong>run_name</strong> (<cite>str</cite>, default <code class="docutils literal notranslate"><span class="pre">&quot;rko_lio_run&quot;</span></code>)</p>
+<p>Subdirectory name under <code class="docutils literal notranslate"><span class="pre">log_dir</span></code>. The run gets an auto-incremented suffix to avoid clobbering previous runs.</p>
+</li>
+</ul>
+</section>
+<section id="launch-parameters-ros">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Launch parameters (ROS)</a><a class="headerlink" href="#launch-parameters-ros" title="Link to this heading">¶</a></h2>
+<p>These are not part of the LIO algorithm itself; they configure the ROS launch behaviour.
+For the full list with descriptions, run <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">launch</span> <span class="pre">rko_lio</span> <span class="pre">odometry.launch.py</span> <span class="pre">-s</span></code>.</p>
+<section id="mode-selection">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Mode selection</a><a class="headerlink" href="#mode-selection" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>mode</strong> (default <code class="docutils literal notranslate"><span class="pre">online</span></code>)</p>
+<p><code class="docutils literal notranslate"><span class="pre">online</span></code> subscribes to live topics. <code class="docutils literal notranslate"><span class="pre">offline</span></code> drains a rosbag at full speed (also requires <code class="docutils literal notranslate"><span class="pre">bag_path</span></code>).</p>
+</li>
+<li><p><strong>odom_at_imu_rate</strong> (<cite>bool</cite>, default <code class="docutils literal notranslate"><span class="pre">false</span></code>)</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">mode:=online</span></code>, the launch file picks <code class="docutils literal notranslate"><span class="pre">online_imu_rate_node</span></code>, which additionally publishes IMU-rate odometry. See <a class="reference internal" href="ros.html"><span class="doc">ROS -&gt; IMU-rate odometry</span></a>.</p>
+</li>
+<li><p><strong>bag_path</strong> (offline only, required)</p>
+<p>Path to the bag directory.</p>
+</li>
+<li><p><strong>skip_to_time</strong> (<cite>float</cite>, offline only, default <code class="docutils literal notranslate"><span class="pre">0.0</span></code>)</p>
+<p>Skip ahead in the bag to this absolute time (seconds) before starting registration.</p>
+</li>
+</ul>
+</section>
+<section id="topic-and-frame-configuration">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Topic and frame configuration</a><a class="headerlink" href="#topic-and-frame-configuration" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>imu_topic</strong>, <strong>lidar_topic</strong>, <strong>base_frame</strong> (required, via CLI or config)</p>
+<p>The IMU topic, the LiDAR topic, and the base frame of the robot.</p>
+</li>
+<li><p><strong>imu_frame</strong>, <strong>lidar_frame</strong> (optional)</p>
+<p>Override these only if the message <code class="docutils literal notranslate"><span class="pre">frame_id</span></code> doesn’t match the TF tree.</p>
+</li>
+<li><p><strong>odom_frame</strong> (default <code class="docutils literal notranslate"><span class="pre">odom</span></code>), <strong>odom_topic</strong> (default <code class="docutils literal notranslate"><span class="pre">rko_lio/odom</span></code>)</p>
+<p>The odom frame name and the odometry topic name.</p>
+</li>
+<li><p><strong>invert_odom_tf</strong> (<cite>bool</cite>, default <code class="docutils literal notranslate"><span class="pre">false</span></code>)</p>
+<p>Swap parent / child in the published TF if your topology requires it.</p>
+</li>
+</ul>
+</section>
+<section id="publishing-toggles">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Publishing toggles</a><a class="headerlink" href="#publishing-toggles" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>publish_local_map</strong> (<cite>bool</cite>, default <code class="docutils literal notranslate"><span class="pre">false</span></code>), <strong>map_topic</strong> (default <code class="docutils literal notranslate"><span class="pre">rko_lio/local_map</span></code>), <strong>publish_map_after</strong> (<cite>float</cite>, default <code class="docutils literal notranslate"><span class="pre">1.0</span></code>)</p>
+<p>Whether to publish the local map, the topic name, and the republish cadence in seconds.</p>
+</li>
+<li><p><strong>publish_deskewed_scan</strong> (<cite>bool</cite>, default <code class="docutils literal notranslate"><span class="pre">false</span></code>), <strong>deskewed_scan_topic</strong> (default <code class="docutils literal notranslate"><span class="pre">rko_lio/frame</span></code>)</p>
+<p>Whether to publish the deskewed scan, and the topic name.</p>
+</li>
+<li><p><strong>publish_lidar_acceleration</strong> (<cite>bool</cite>, default <code class="docutils literal notranslate"><span class="pre">false</span></code>)</p>
+<p>Publish a noisy linear acceleration estimate on <code class="docutils literal notranslate"><span class="pre">rko_lio/lidar_acceleration</span></code> (the topic name is fixed, not configurable).</p>
+</li>
+</ul>
+</section>
+<section id="mode-specific-knobs">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Mode-specific knobs</a><a class="headerlink" href="#mode-specific-knobs" title="Link to this heading">¶</a></h3>
+<p>These take effect only in the corresponding mode and otherwise warn that they are being ignored.</p>
+<ul>
+<li><p><strong>async.max_lidar_buffer_size</strong> (<cite>int</cite>, default <code class="docutils literal notranslate"><span class="pre">50</span></code>)</p>
+<p>Threaded path only. Caps the lidar buffer; older frames are dropped past this.</p>
+</li>
+<li><p><strong>seq.odom_at_imu_rate_topic</strong> (default <code class="docutils literal notranslate"><span class="pre">rko_lio/odom_at_imu_rate</span></code>)</p>
+<p>IMU-rate output topic name.</p>
+</li>
+<li><p><strong>seq.tf_at_imu_rate</strong> (<cite>bool</cite>, default <code class="docutils literal notranslate"><span class="pre">false</span></code>)</p>
+<p>Broadcast <code class="docutils literal notranslate"><span class="pre">base_frame</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">odom_frame</span></code> TF at IMU rate instead of LiDAR rate.</p>
+</li>
+</ul>
+</section>
+<section id="disk-dumping-and-visualization">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Disk dumping and visualization</a><a class="headerlink" href="#disk-dumping-and-visualization" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>dump_results</strong> (<cite>bool</cite>, default <code class="docutils literal notranslate"><span class="pre">false</span></code>)</p>
+<p>On shutdown, dump the resolved configuration and the full trajectory under <code class="docutils literal notranslate"><span class="pre">&lt;results_dir&gt;/&lt;run_name&gt;</span></code>. The folder name is auto-incremented to avoid overwrites.</p>
+</li>
+<li><p><strong>results_dir</strong> (default <code class="docutils literal notranslate"><span class="pre">results</span></code>), <strong>run_name</strong> (default <code class="docutils literal notranslate"><span class="pre">rko_lio_odometry_run</span></code>)</p>
+<p>Where the dump goes and the subdirectory name within.</p>
+</li>
+<li><p><strong>rviz</strong> (<cite>bool</cite>, default <code class="docutils literal notranslate"><span class="pre">false</span></code>), <strong>rviz_config_file</strong> (default <code class="docutils literal notranslate"><span class="pre">config/default.rviz</span></code>)</p>
+<p>Launch RViz alongside the odometry. If you leave the rviz config at the default, the launch file patches it with your <code class="docutils literal notranslate"><span class="pre">base_frame</span></code> / <code class="docutils literal notranslate"><span class="pre">odom_frame</span></code> and enables <code class="docutils literal notranslate"><span class="pre">publish_deskewed_scan</span></code> / <code class="docutils literal notranslate"><span class="pre">publish_local_map</span></code> so the visualizer has something to show.</p>
+</li>
+<li><p><strong>log_level</strong> (default <code class="docutils literal notranslate"><span class="pre">info</span></code>)</p>
+<p>ROS log level.</p>
+</li>
+</ul>
+</section>
+<section id="other">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Other</a><a class="headerlink" href="#other" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>config_file</strong></p>
+<p>Path to a YAML config that supplies any of the above. CLI values override the file.</p>
+</li>
+</ul>
+</section>
+</section>
+</section>
 
 
           </div>
@@ -198,7 +410,7 @@ The default should be fine for most cases.</p>
           <a href="../python/rko_lio.util.html" title="Previous document">rko_lio.util module</a>
         </li>
         <li>
-          <a href="uncategorised/index.html" title="Next document">Uncategorised documentation</a>
+          <a href="changelog_literal.html" title="Next document">Changelog</a>
           &rarr;
         </li>
     </ul>

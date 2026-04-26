@@ -19,8 +19,6 @@
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="LICENSE" href="__LICENSE.html" />
-    <link rel="prev" title="Timestamp Processing" href="pages/uncategorised/lidar_timestamps.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -62,19 +60,13 @@
 </search>
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="pages/primer.html">Primer</a></li>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="pages/quickstart.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pages/data.html">Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pages/ros/ros.html">ROS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pages/python/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/ros.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/python.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pages/config.html">Configuring rko_lio</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="pages/uncategorised/index.html">Uncategorised</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="pages/uncategorised/core.html">Core library</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages/uncategorised/lidar_timestamps.html">LiDAR timestamps</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">RA-L Supplementary Material</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="pages/changelog_literal.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="__LICENSE.html">License</a></li>
 </ul>
 
@@ -100,6 +92,8 @@
             
   <section id="ra-l-supplementary-material">
 <h1>RA-L Supplementary Material<a class="headerlink" href="#ra-l-supplementary-material" title="Link to this heading">¶</a></h1>
+<p>This page is the supplementary material for our RA-L submission.
+The main page of the documentation is <a class="reference external" href="index.html">here</a>.</p>
 <section id="system-pipeline">
 <h2>System Pipeline<a class="headerlink" href="#system-pipeline" title="Link to this heading">¶</a></h2>
 <figure class="align-default" id="id1">
@@ -165,6 +159,20 @@
 <p>Here we plot the full XY trajectory results from all the methods which successfully ran on the rural sequence. The trajectories have been aligned (using Umeyama alignment) to the reference trajectory, which is defined in a GPS coordinate frame. Each approach experiences significant drift on this 50 km long sequence, and as a consequence of the alignment process, the trajectories appear well-aligned near the middle of the sequence but drift at the ends. Nevertheless, we see that our approach (red) is the one that remains closest to the reference trajectory overall.</p>
 </section>
 </section>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Link to this heading">¶</a></h2>
+<p>If you use this work, please leave a star on our <a class="reference external" href="https://github.com/PRBonn/rko_lio">GitHub repository</a> and consider citing:</p>
+<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@article</span><span class="p">{</span><span class="nl">malladi2025arxiv</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="w">      </span><span class="p">=</span><span class="w"> </span><span class="s">{M.V.R. Malladi and T. Guadagnino and L. Lobefaro and C. Stachniss}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="w">       </span><span class="p">=</span><span class="w"> </span><span class="s">{A Robust Approach for LiDAR-Inertial Odometry Without Sensor-Specific Modeling}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">journal</span><span class="w">     </span><span class="p">=</span><span class="w"> </span><span class="s">{arXiv preprint}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="w">        </span><span class="p">=</span><span class="w"> </span><span class="s">{2025}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">volume</span><span class="w">      </span><span class="p">=</span><span class="w"> </span><span class="s">{arXiv:2509.06593}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">url</span><span class="w">         </span><span class="p">=</span><span class="w"> </span><span class="s">{https://arxiv.org/pdf/2509.06593}</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -173,14 +181,6 @@
                 &nbsp;
   <nav id="rellinks">
     <ul>
-        <li>
-          &larr;
-          <a href="pages/uncategorised/lidar_timestamps.html" title="Previous document">Timestamp Processing</a>
-        </li>
-        <li>
-          <a href="__LICENSE.html" title="Next document">LICENSE</a>
-          &rarr;
-        </li>
     </ul>
   </nav>
               </div>

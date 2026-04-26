@@ -19,7 +19,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="The sensor data" href="data.html" />
-    <link rel="prev" title="A short primer" href="primer.html" />
+    <link rel="prev" title="RKO-LIO - LiDAR-Inertial Odometry" href="../index.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -62,17 +62,12 @@
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="primer.html">Primer</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#python">Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ros">ROS</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ros/ros.html">ROS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="python/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ros.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="config.html">Configuring rko_lio</a></li>
-<li class="toctree-l1"><a class="reference internal" href="uncategorised/index.html">Uncategorised</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog_literal.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
 </ul>
 
@@ -100,31 +95,33 @@
 <h1>The TL;DR<a class="headerlink" href="#the-tl-dr" title="Link to this heading">¶</a></h1>
 <section id="python">
 <h2>Python<a class="headerlink" href="#python" title="Link to this heading">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>rko_lio
-rko_lio<span class="w"> </span>data_dir
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;rko_lio[all]&quot;</span>
+rko_lio<span class="w"> </span>-v<span class="w"> </span>/path/to/data
 </pre></div>
 </div>
-<p>For example, if you’re running on a ROS bag, place all split parts in one folder (with <code class="docutils literal notranslate"><span class="pre">metadata.yaml</span></code> for ROS2) and pass that folder as <code class="docutils literal notranslate"><span class="pre">data_dir</span></code>.</p>
-<p>By default, <code class="docutils literal notranslate"><span class="pre">rko_lio</span></code> tries to infer topics and TF relationships automatically, but you can override these using flags like <code class="docutils literal notranslate"><span class="pre">--lidar</span></code>, <code class="docutils literal notranslate"><span class="pre">--imu</span></code>, or <code class="docutils literal notranslate"><span class="pre">--base_frame</span></code>.
-If your bag doesn’t contain TF information, you’ll need to specify the IMU–LiDAR extrinsics via a config YAML (<code class="docutils literal notranslate"><span class="pre">rko_lio</span> <span class="pre">--dump_config</span></code> will write a default config).</p>
-<p>See <a class="reference internal" href="python/usage.html"><span class="doc">Python usage</span></a> for detailed examples and advanced options.</p>
+<p>For example, if you’re running on a ROS bag, place all split parts in one folder (with <code class="docutils literal notranslate"><span class="pre">metadata.yaml</span></code> for ROS2) and pass that folder as the data path.
+<code class="docutils literal notranslate"><span class="pre">-v</span></code> opens the rerun visualizer.</p>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">rko_lio</span></code> tries to infer topics and TF relationships automatically; override with flags like <code class="docutils literal notranslate"><span class="pre">--lidar</span></code>, <code class="docutils literal notranslate"><span class="pre">--imu</span></code>, or <code class="docutils literal notranslate"><span class="pre">--base_frame</span></code>.
+If your bag doesn’t contain TF, supply IMU–LiDAR extrinsics via a YAML config (<code class="docutils literal notranslate"><span class="pre">rko_lio</span> <span class="pre">--dump_config</span></code> writes a default one to start from).</p>
+<p>See <a class="reference internal" href="python.html"><span class="doc">Python</span></a> for detailed examples and the full CLI surface.</p>
 </section>
 <section id="ros">
 <h2>ROS<a class="headerlink" href="#ros" title="Link to this heading">¶</a></h2>
-<p>Supported distros: Humble, Jazzy, Kilted, Rolling</p>
+<p>Supported distros: Humble, Jazzy, Kilted, Rolling.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-<span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>-rko-lio
-ros2<span class="w"> </span>launch<span class="w"> </span>rko_lio<span class="w"> </span>odometry.launch.py
+ros2<span class="w"> </span>launch<span class="w"> </span>rko_lio<span class="w"> </span>odometry.launch.py<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>lidar_topic:<span class="o">=</span>/your/lidar<span class="w"> </span>imu_topic:<span class="o">=</span>/your/imu<span class="w"> </span>base_frame:<span class="o">=</span>base
 </pre></div>
 </div>
-<p>Please see <a class="reference internal" href="ros/setup.html"><span class="doc">build from source</span></a> if you want to do that instead.</p>
-<p>The launch file supports both online and offline modes via the <code class="docutils literal notranslate"><span class="pre">mode</span></code> argument and expects at least <code class="docutils literal notranslate"><span class="pre">lidar_topic</span></code>, <code class="docutils literal notranslate"><span class="pre">imu_topic</span></code>, and <code class="docutils literal notranslate"><span class="pre">base_frame</span></code>.</p>
-<p>You can override configuration parameters through CLI or a separate YAML file (e.g., <code class="docutils literal notranslate"><span class="pre">config_file:=/path/to/config</span></code>).</p>
-<p>For visualization, add <code class="docutils literal notranslate"><span class="pre">rviz:=true</span></code>.</p>
+<p>If you want to build from source instead, see <a class="reference internal" href="ros.html"><span class="doc">ROS</span></a>.</p>
+<p>The launch file supports both online and offline modes via the <code class="docutils literal notranslate"><span class="pre">mode</span></code> argument and requires at least <code class="docutils literal notranslate"><span class="pre">lidar_topic</span></code>, <code class="docutils literal notranslate"><span class="pre">imu_topic</span></code>, and <code class="docutils literal notranslate"><span class="pre">base_frame</span></code>.
+Override individual parameters on the CLI or load them from a YAML file (<code class="docutils literal notranslate"><span class="pre">config_file:=/path/to/config</span></code>).
+Add <code class="docutils literal notranslate"><span class="pre">rviz:=true</span></code> for visualization.</p>
 <p>To explore all launch parameters:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>rko_lio<span class="w"> </span>odometry.launch.py<span class="w"> </span>-s
 </pre></div>
 </div>
-<p>See <a class="reference internal" href="ros/usage.html"><span class="doc">ROS Usage</span></a> for an extended description.</p>
+<p>See <a class="reference internal" href="ros.html"><span class="doc">ROS</span></a> for an extended description.</p>
 </section>
 </section>
 
@@ -136,7 +133,7 @@ ros2<span class="w"> </span>launch<span class="w"> </span>rko_lio<span class="w"
     <ul>
         <li>
           &larr;
-          <a href="primer.html" title="Previous document">A short primer</a>
+          <a href="../index.html" title="Previous document">RKO-LIO - LiDAR-Inertial Odometry</a>
         </li>
         <li>
           <a href="data.html" title="Next document">The sensor data</a>

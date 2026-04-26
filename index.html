@@ -18,7 +18,7 @@
     <script src="_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="A short primer" href="pages/primer.html" />
+    <link rel="next" title="The TL;DR" href="pages/quickstart.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -61,13 +61,12 @@
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="pages/primer.html">Primer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pages/quickstart.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pages/data.html">Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pages/ros/ros.html">ROS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pages/python/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/ros.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/python.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pages/config.html">Configuring rko_lio</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pages/uncategorised/index.html">Uncategorised</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/changelog_literal.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="__LICENSE.html">License</a></li>
 </ul>
 
@@ -115,6 +114,16 @@ You don’t need to look up manufacturer spec sheets to provide noise specificat
 <p class="admonition-title">Note</p>
 <p>This documentation is still under construction. If you see something you can improve, I’d greatly appreciate any help. Please make an issue or a PR on <a class="reference external" href="https://github.com/PRBonn/rko_lio">GitHub</a>!</p>
 </div>
+<p>You can use RKO-LIO in two ways:</p>
+<ol class="arabic simple">
+<li><p><strong>Online</strong>, on a robot, via the <a class="reference internal" href="pages/ros.html"><span class="doc">ROS package</span></a>. This is the recommended path. The ROS wrapper handles incoming data streams more efficiently than the Python pipeline and also has an offline mode that drains a rosbag at full speed.</p></li>
+<li><p><strong>Offline</strong>, on pre-recorded data, via the <a class="reference internal" href="pages/python.html"><span class="doc">Python package</span></a>. Convenient for quick experiments and analysis.</p></li>
+</ol>
+<p>For a short demo, see this video:</p>
+<figure class="align-default">
+<a class="reference external image-reference" href="https://www.youtube.com/watch?v=NNpzXdf9XmU"><img alt="_images/odometry_video_thumbnail.png" src="_images/odometry_video_thumbnail.png" />
+</a>
+</figure>
 <section id="citation">
 <h2>Citation<a class="headerlink" href="#citation" title="Link to this heading">¶</a></h2>
 <p>If you use this work, please leave a star ⭐ on our <a class="reference external" href="https://github.com/PRBonn/rko_lio">GitHub repository</a> and consider citing:</p>
@@ -128,43 +137,16 @@ You don’t need to look up manufacturer spec sheets to provide noise specificat
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>The <a class="reference internal" href="suppl.html"><span class="doc">paper supplementary material</span></a> page collects extra figures and explanations pertaining to the RAL paper.</p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="pages/primer.html">Primer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pages/quickstart.html">Quickstart</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pages/quickstart.html#python">Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages/quickstart.html#ros">ROS</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="pages/data.html">Data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pages/data.html#extrinsics-convention">Extrinsics &amp; convention</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages/data.html#imu">IMU</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages/data.html#lidar">LiDAR</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="pages/ros/ros.html">ROS</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pages/ros/setup.html">Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages/ros/usage.html">Usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated/index.html">C++ API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="__PACKAGE.html">ROS package.xml</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages/changelog_literal.html">Changelog</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="pages/python/python.html">Python</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pages/python/setup.html">Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages/python/usage.html">Usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages/python/dataloaders.html">Dataloaders</a></li>
-<li class="toctree-l2"><a class="reference internal" href="python/modules.html">Python API</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="pages/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/ros.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pages/python.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pages/config.html">Configuring rko_lio</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pages/uncategorised/index.html">Uncategorised</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pages/uncategorised/core.html">Core library</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pages/uncategorised/lidar_timestamps.html">LiDAR timestamps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="suppl.html">RA-L Supplementary Material</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="pages/changelog_literal.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="__LICENSE.html">License</a></li>
 </ul>
 </div>
@@ -178,7 +160,7 @@ You don’t need to look up manufacturer spec sheets to provide noise specificat
   <nav id="rellinks">
     <ul>
         <li>
-          <a href="pages/primer.html" title="Next document">A short primer</a>
+          <a href="pages/quickstart.html" title="Next document">The TL;DR</a>
           &rarr;
         </li>
     </ul>

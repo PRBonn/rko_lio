@@ -31,6 +31,17 @@ All you need to provide is the extrinsic transformation between the IMU and LiDA
 .. note::
    This documentation is still under construction. If you see something you can improve, I'd greatly appreciate any help. Please make an issue or a PR on `GitHub <https://github.com/PRBonn/rko_lio>`__!
 
+You can use RKO-LIO in two ways:
+
+1. **Online**, on a robot, via the :doc:`ROS package <pages/ros>`. This is the recommended path. The ROS wrapper handles incoming data streams more efficiently than the Python pipeline and also has an offline mode that drains a rosbag at full speed.
+2. **Offline**, on pre-recorded data, via the :doc:`Python package <pages/python>`. Convenient for quick experiments and analysis.
+
+For a short demo, see this video:
+
+.. figure:: ./_static/odometry_video_thumbnail.png
+   :target: https://www.youtube.com/watch?v=NNpzXdf9XmU
+
+
 Citation
 ^^^^^^^^
 
@@ -47,15 +58,16 @@ If you use this work, please leave a star ⭐ on our `GitHub repository <https:/
     url         = {https://arxiv.org/pdf/2509.06593},
   }
 
+The :doc:`paper supplementary material <suppl>` page collects extra figures and explanations pertaining to the RAL paper.
+
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
-   Primer <pages/primer>
    Quickstart <pages/quickstart>
    Data <pages/data>
-   ROS <pages/ros/ros>
-   Python <pages/python/python>
+   ROS <pages/ros>
+   Python <pages/python>
    Configuring rko_lio <pages/config>
-   Uncategorised <pages/uncategorised/index>
+   Changelog <pages/changelog_literal>
    License <__LICENSE>

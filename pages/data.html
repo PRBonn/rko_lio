@@ -19,7 +19,7 @@
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="ROS" href="ros/ros.html" />
+    <link rel="next" title="ROS" href="ros.html" />
     <link rel="prev" title="The TL;DR" href="quickstart.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -63,18 +63,12 @@
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="primer.html">Primer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#extrinsics-convention">Extrinsics &amp; convention</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#imu">IMU</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lidar">LiDAR</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ros/ros.html">ROS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="python/python.html">Python</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ros.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="config.html">Configuring rko_lio</a></li>
-<li class="toctree-l1"><a class="reference internal" href="uncategorised/index.html">Uncategorised</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog_literal.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
 </ul>
 
@@ -100,10 +94,10 @@
             
   <section id="the-sensor-data">
 <h1>The sensor data<a class="headerlink" href="#the-sensor-data" title="Link to this heading">¶</a></h1>
-<p>RKO LIO is a LiDAR-inertial odometry system.
-Unsurprisingly, we need both IMU and LiDAR data.
-It is assumed that both sensors are time synchronized, i.e. the data timestamps refer to the same time clock and are consistent across both sensors.
-Some delay in the arrival of the data itself is fine.</p>
+<p>RKO-LIO is a LiDAR-inertial odometry system, so unsurprisingly we need both IMU and LiDAR data.
+This page describes what each stream needs to look like, what time synchronisation we expect, and the convention we use for the IMU&lt;-&gt;LiDAR extrinsic.</p>
+<p>Both sensors must be time-synchronised: the timestamps on the data refer to the same clock and are consistent across both streams.
+A bit of latency between when a measurement is sampled and when it arrives in the system is fine – ROS message buffering / Python sequencing handles that – but the timestamps themselves must be aligned.</p>
 <section id="extrinsics-convention">
 <span id="data-extrinsics-convention"></span><h2>Extrinsics &amp; convention<a class="headerlink" href="#extrinsics-convention" title="Link to this heading">¶</a></h2>
 <p>Most importantly, we need the extrinsic calibration between the IMU and LiDAR.</p>
@@ -116,24 +110,33 @@ Some delay in the arrival of the data itself is fine.</p>
 </section>
 <section id="imu">
 <h2>IMU<a class="headerlink" href="#imu" title="Link to this heading">¶</a></h2>
-<p>We only need the measurement time, the accelerometer reading, and the gyroscope reading (from a 6-axis IMU).</p>
-<p>Acceleration values should be in m/s².
-If your accelerometer outputs readings in g’s, be sure to convert them to m/s² before using the odometry.</p>
+<p>What we need: timestamp, accelerometer reading (3-axis), gyroscope reading (3-axis). A 6-axis IMU is enough; we don’t use orientation, magnetometer, or noise / bias spec sheets.</p>
+<ul class="simple">
+<li><p><strong>Acceleration</strong> in m/s². If your accelerometer reports g’s, convert before feeding it in.</p></li>
+<li><p><strong>Angular velocity</strong> in rad/s. Convert if your device uses other units.</p></li>
+</ul>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>We follow the typical ros convention for the IMU (see <a class="reference external" href="https://www.ros.org/reps/rep-0145.html">ROS REP 145</a>). If the system is at rest and in a neutral orientation, i.e., the imu and world frames are aligned, then the imu <em>z</em> axis points upwards and the accelerometer is measuring +g m/s² along +*z*.</p>
+<p>We follow the typical ROS convention for the IMU (see <a class="reference external" href="https://www.ros.org/reps/rep-0145.html">ROS REP 145</a>).
+At rest in a neutral orientation – IMU and world frames aligned – the IMU <em>z</em> axis points upwards and the accelerometer measures <strong>+g m/s² along +z</strong>.</p>
 </div>
-<p>Angular velocity values should be in rad/s; if your device uses other units, convert accordingly.</p>
 </section>
 <section id="lidar">
 <h2>LiDAR<a class="headerlink" href="#lidar" title="Link to this heading">¶</a></h2>
-<p>If your platform experiences rapid or aggressive motions, I strongly recommend enabling deskewing (motion compensation) for good odometry.
-Deskewing the LiDAR scan will account for the motion of the platform during the scan acquisition time.
-This requires per-point timestamp information.
-If these are relative time measurements, we also need either the scan recording start or end time.
-Further specifics depend on the specific format of data or the dataloader, but for ROS this translates to requiring the timestamp in the message header and a time field in the point format for a PointCloud2 message.</p>
-<p>I attempt to automatically handle the different ways timestamps may be encoded, so most sensor drivers should work out of the box.
-Check <a class="reference external" href="../cpp/rko_lio/core/process_timestamps.cpp">here</a> if you’re curious, or if you’d like to contribute a solution for a sensor I don’t handle.</p>
+<p>What we need: a point cloud per scan, plus per-point timestamps (seconds) for every point in the scan.
+Per-point timestamps are what lets us deskew the scan against the platform motion during the scan acquisition window.</p>
+<p>If your platform sees rapid or aggressive motion, deskewing matters a lot – enable it (<code class="docutils literal notranslate"><span class="pre">deskew=True</span></code>, the default).
+If you cannot supply per-point timestamps, you must disable deskewing and take the quality hit.</p>
+<p>For ROS, this translates to:</p>
+<ul class="simple">
+<li><p>A timestamp in the <code class="docutils literal notranslate"><span class="pre">PointCloud2</span></code> message header (the standard sensor driver pattern).</p></li>
+<li><p>A time field per point inside the cloud. Common field names are accepted (<code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">timestamp</span></code>, <code class="docutils literal notranslate"><span class="pre">timestamps</span></code>, <code class="docutils literal notranslate"><span class="pre">t</span></code>).</p></li>
+</ul>
+<p>I try to handle the different ways drivers encode per-point timestamps automatically – absolute (already aligned with wall-clock time) vs. relative (offsets from the message header time), seconds vs. nanoseconds, and so on.
+The heuristic is at <a class="reference external" href="https://github.com/PRBonn/rko_lio/blob/master/rko_lio/core/process_timestamps.cpp">rko_lio/core/process_timestamps.cpp</a>.</p>
+<p>If the heuristic can’t classify your data, the system throws a <code class="docutils literal notranslate"><span class="pre">Runtime</span> <span class="pre">Error:</span> <span class="pre">TimestampProcessingConfig</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">cover</span> <span class="pre">this</span> <span class="pre">particular</span> <span class="pre">case</span> <span class="pre">of</span> <span class="pre">data</span></code>.
+You can override the behaviour via the <code class="docutils literal notranslate"><span class="pre">timestamps:</span></code> block in your config (Python) or the <code class="docutils literal notranslate"><span class="pre">lidar_timestamps.*</span></code> parameters (ROS) – see <a class="reference internal" href="config.html#config-lidar-timestamps"><span class="std std-ref">Configuring -&gt; LiDAR per-point timestamps</span></a>.
+And if your sensor is different and you think the heuristic should handle it, please open an issue (or a PR).</p>
 </section>
 </section>
 
@@ -148,7 +151,7 @@ Check <a class="reference external" href="../cpp/rko_lio/core/process_timestamps
           <a href="quickstart.html" title="Previous document">The TL;DR</a>
         </li>
         <li>
-          <a href="ros/ros.html" title="Next document">ROS</a>
+          <a href="ros.html" title="Next document">ROS</a>
           &rarr;
         </li>
     </ul>
