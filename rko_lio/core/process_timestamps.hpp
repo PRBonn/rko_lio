@@ -34,6 +34,12 @@
 
 namespace rko_lio::core {
 
+struct Timestamps {
+  Secondsd min;
+  Secondsd max;
+  TimestampVector times;
+};
+
 /**
  * Configuration struct for timestamp processing.
  *

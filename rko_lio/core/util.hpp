@@ -31,7 +31,6 @@ namespace Eigen {
 using Matrix3_6d = Matrix<double, 3, 6>;
 using Vector6d = Matrix<double, 6, 1>;
 using Matrix6d = Matrix<double, 6, 6>;
-using Matrix12d = Matrix<double, 12, 12>;
 } // namespace Eigen
 
 namespace rko_lio::core {
@@ -63,17 +62,6 @@ struct ImuControl {
   Secondsd time{0};
   Eigen::Vector3d acceleration = Eigen::Vector3d::Zero();
   Eigen::Vector3d angular_velocity = Eigen::Vector3d::Zero();
-};
-
-struct Timestamps {
-  Secondsd min;
-  Secondsd max;
-  TimestampVector times;
-};
-
-struct LidarFrame {
-  Timestamps timestamps;
-  Vector3dVector points;
 };
 
 /** Accumulated IMU statistics over the interval between consecutive LiDAR scans. */
@@ -129,10 +117,4 @@ struct IntervalStats {
   }
 };
 
-/** Detail: return type for the acceleration Kalman filter containing gravity and variance estimates. */
-struct AccelInfo {
-  /** Variance of the raw imu acceleration magnitude. */
-  double accel_mag_variance;
-  Eigen::Vector3d local_gravity_estimate;
-};
 }; // namespace rko_lio::core

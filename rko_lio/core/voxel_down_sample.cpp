@@ -45,12 +45,8 @@ namespace rko_lio::core {
 std::vector<Eigen::Vector3d> voxel_down_sample(const std::vector<Eigen::Vector3d>& frame, const double voxel_size) {
   std::unordered_map<Voxel, Eigen::Vector3d> grid;
   grid.reserve(frame.size());
-  std::for_each(frame.cbegin(), frame.cend(), [&](const auto& point) {
-    const auto voxel = PointToVoxel(point, voxel_size);
-    if (!grid.contains(voxel)) {
-      grid.insert({voxel, point});
-    }
-  });
+  std::for_each(frame.cbegin(), frame.cend(),
+                [&](const auto& point) { grid.try_emplace(PointToVoxel(point, voxel_size), point); });
   std::vector<Eigen::Vector3d> frame_dowsampled;
   frame_dowsampled.reserve(grid.size());
   std::for_each(grid.cbegin(), grid.cend(),

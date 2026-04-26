@@ -299,7 +299,7 @@ void Node::registration_loop() {
       // node could have been killed after waiting on the cv
       break;
     }
-    core::LidarFrame frame = std::move(lidar_buffer.front());
+    LidarFrame frame = std::move(lidar_buffer.front());
     lidar_buffer.pop();
     const auto& [timestamps, scan] = frame;
     const auto& [start_stamp, end_stamp, time_vector] = timestamps;
