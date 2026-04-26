@@ -6,7 +6,7 @@
     <includes refid="util_8hpp" local="yes">util.hpp</includes>
     <includedby refid="lio_8cpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp</includedby>
     <includedby refid="preprocess__scan_8hpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.hpp</includedby>
-    <includedby refid="node_8hpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/ros/node.hpp</includedby>
+    <includedby refid="base__node_8hpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp</includedby>
     <incdepgraph>
       <node id="1">
         <label>/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp</label>
@@ -63,8 +63,14 @@
         <link refid="preprocess__scan_8hpp_source"/>
       </node>
       <node id="3">
-        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/node.hpp</label>
-        <link refid="node_8hpp_source"/>
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp</label>
+        <link refid="base__node_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp</label>
+        <link refid="threaded__node_8hpp_source"/>
       </node>
     </invincdepgraph>
     <innerclass refid="classrko__lio_1_1core_1_1LIO" prot="public">rko_lio::core::LIO</innerclass>
@@ -166,24 +172,22 @@
 <codeline lineno="136"><highlight class="normal"></highlight></codeline>
 <codeline lineno="138" refid="classrko__lio_1_1core_1_1LIO_1ae90f742f8a328a0ce2e119b2b8f881e1" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;std::pair&lt;Secondsd,<sp/>Sophus::SE3d&gt;&gt;<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1ae90f742f8a328a0ce2e119b2b8f881e1" kindref="member">poses_with_timestamps</ref>;</highlight></codeline>
 <codeline lineno="139"><highlight class="normal"></highlight></codeline>
-<codeline lineno="141" refid="classrko__lio_1_1core_1_1LIO_1a92ed5e0e19360ccf344af97d6d85b19d" refkind="member"><highlight class="normal"><sp/><sp/>Sophus::SO3d<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a92ed5e0e19360ccf344af97d6d85b19d" kindref="member">imu_local_rotation</ref>;</highlight></codeline>
-<codeline lineno="142"><highlight class="normal"></highlight></codeline>
-<codeline lineno="145" refid="classrko__lio_1_1core_1_1LIO_1a0730b976dcec884d5fb0744070621003" refkind="member"><highlight class="normal"><sp/><sp/>Secondsd<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a0730b976dcec884d5fb0744070621003" kindref="member">imu_local_rotation_time</ref><sp/>=<sp/>Secondsd{0.0};</highlight></codeline>
-<codeline lineno="146"><highlight class="normal"></highlight></codeline>
-<codeline lineno="147"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="152"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>initialize(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Secondsd<sp/>lidar_time);</highlight></codeline>
-<codeline lineno="153"><highlight class="normal"></highlight></codeline>
-<codeline lineno="155"><highlight class="normal"><sp/><sp/>Vector3dVector<sp/>bootstrap_first_scan(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Vector3dVector&amp;<sp/>scan,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Secondsd&amp;<sp/>current_lidar_time);</highlight></codeline>
-<codeline lineno="156"><highlight class="normal"></highlight></codeline>
-<codeline lineno="158"><highlight class="normal"><sp/><sp/>std::pair&lt;Eigen::Vector3d,<sp/>Eigen::Vector3d&gt;<sp/>motion_priors_from_imu(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Secondsd&amp;<sp/>current_lidar_time);</highlight></codeline>
-<codeline lineno="159"><highlight class="normal"></highlight></codeline>
-<codeline lineno="161"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>_initialized<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="162"><highlight class="normal"></highlight></codeline>
-<codeline lineno="164"><highlight class="normal"><sp/><sp/>Secondsd<sp/>_last_real_imu_time<sp/>=<sp/>Secondsd{0.0};</highlight></codeline>
-<codeline lineno="165"><highlight class="normal"></highlight></codeline>
-<codeline lineno="167"><highlight class="normal"><sp/><sp/>Eigen::Vector3d<sp/>_last_real_base_imu_ang_vel<sp/>=<sp/>Eigen::Vector3d::Zero();</highlight></codeline>
-<codeline lineno="168"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="169"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144" refid="classrko__lio_1_1core_1_1LIO_1a582d6fd74013b8c85784326bc45fb7c0" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1State" kindref="compound">State</ref><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a582d6fd74013b8c85784326bc45fb7c0" kindref="member">imu_state</ref>;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>initialize(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Secondsd<sp/>lidar_time);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/>Vector3dVector<sp/>bootstrap_first_scan(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Vector3dVector&amp;<sp/>scan,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Secondsd&amp;<sp/>current_lidar_time);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/>std::pair&lt;Eigen::Vector3d,<sp/>Eigen::Vector3d&gt;<sp/>motion_priors_from_imu(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Secondsd&amp;<sp/>current_lidar_time);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>_initialized<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/>Secondsd<sp/>_last_real_imu_time<sp/>=<sp/>Secondsd{0.0};</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/>Eigen::Vector3d<sp/>_last_real_base_imu_ang_vel<sp/>=<sp/>Eigen::Vector3d::Zero();</highlight></codeline>
+<codeline lineno="167"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="168"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp"/>
   </compounddef>

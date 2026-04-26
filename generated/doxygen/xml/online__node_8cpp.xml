@@ -2,72 +2,72 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="online__node_8cpp" kind="file" language="C++">
     <compoundname>online_node.cpp</compoundname>
-    <includes refid="node_8hpp" local="yes">node.hpp</includes>
+    <includes refid="threaded__node_8hpp" local="yes">threaded_node.hpp</includes>
     <includes refid="profiler_8hpp" local="yes">rko_lio/core/profiler.hpp</includes>
     <includes local="no">rclcpp_components/register_node_macro.hpp</includes>
     <incdepgraph>
-      <node id="3">
+      <node id="4">
         <label>rko_lio/core/lio.hpp</label>
         <link refid="lio_8hpp"/>
-        <childnode refid="4" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="10">
+      <node id="11">
         <label>rko_lio/core/process_timestamps.hpp</label>
         <link refid="process__timestamps_8hpp_source"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
       </node>
-      <node id="31">
+      <node id="32">
         <label>rko_lio/core/profiler.hpp</label>
         <link refid="profiler_8hpp"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="32" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="33" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="34" relation="include">
         </childnode>
         <childnode refid="35" relation="include">
         </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
       </node>
-      <node id="4">
+      <node id="5">
         <label>sparse_voxel_grid.hpp</label>
         <link refid="sparse__voxel__grid_8hpp_source"/>
-        <childnode refid="5" relation="include">
-        </childnode>
         <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
       </node>
-      <node id="8">
+      <node id="9">
         <label>util.hpp</label>
         <link refid="util_8hpp_source"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="2">
-        <label>node.hpp</label>
-        <link refid="node_8hpp_source"/>
-        <childnode refid="3" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="13" relation="include">
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>base_node.hpp</label>
+        <link refid="base__node_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
@@ -80,6 +80,8 @@
         <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
@@ -101,47 +103,68 @@
         </childnode>
         <childnode refid="29" relation="include">
         </childnode>
-        <childnode refid="30" relation="include">
-        </childnode>
       </node>
       <node id="1">
         <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp</label>
         <link refid="online__node_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>threaded_node.hpp</label>
+        <link refid="threaded__node_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
         <childnode refid="31" relation="include">
         </childnode>
-        <childnode refid="36" relation="include">
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
         </childnode>
       </node>
-      <node id="5">
+      <node id="6">
         <label>Eigen/Core</label>
       </node>
-      <node id="13">
+      <node id="14">
         <label>atomic</label>
       </node>
-      <node id="6">
+      <node id="7">
         <label>bonxai/bonxai.hpp</label>
       </node>
-      <node id="9">
+      <node id="10">
         <label>chrono</label>
       </node>
-      <node id="14">
+      <node id="33">
+        <label>cmath</label>
+      </node>
+      <node id="30">
         <label>condition_variable</label>
       </node>
       <node id="15">
         <label>filesystem</label>
       </node>
-      <node id="21">
+      <node id="20">
         <label>geometry_msgs/msg/accel_stamped.hpp</label>
       </node>
-      <node id="22">
+      <node id="21">
         <label>geometry_msgs/msg/accel_with_covariance_stamped.hpp</label>
       </node>
-      <node id="32">
+      <node id="34">
         <label>iomanip</label>
       </node>
-      <node id="33">
+      <node id="35">
         <label>iostream</label>
       </node>
       <node id="16">
@@ -150,55 +173,55 @@
       <node id="17">
         <label>mutex</label>
       </node>
-      <node id="23">
+      <node id="22">
         <label>nav_msgs/msg/odometry.hpp</label>
       </node>
-      <node id="18">
+      <node id="31">
         <label>queue</label>
       </node>
-      <node id="24">
+      <node id="23">
         <label>rclcpp/node.hpp</label>
       </node>
-      <node id="25">
+      <node id="24">
         <label>rclcpp/node_options.hpp</label>
       </node>
-      <node id="36">
+      <node id="38">
         <label>rclcpp_components/register_node_macro.hpp</label>
       </node>
-      <node id="26">
+      <node id="25">
         <label>sensor_msgs/msg/imu.hpp</label>
       </node>
-      <node id="27">
+      <node id="26">
         <label>sensor_msgs/msg/point_cloud2.hpp</label>
       </node>
-      <node id="7">
+      <node id="8">
         <label>sophus/se3.hpp</label>
       </node>
-      <node id="19">
+      <node id="18">
         <label>string</label>
       </node>
-      <node id="28">
+      <node id="27">
         <label>tf2_ros/buffer.h</label>
       </node>
-      <node id="29">
+      <node id="28">
         <label>tf2_ros/transform_broadcaster.h</label>
       </node>
-      <node id="30">
+      <node id="29">
         <label>tf2_ros/transform_listener.h</label>
       </node>
-      <node id="20">
+      <node id="19">
         <label>thread</label>
       </node>
-      <node id="11">
+      <node id="12">
         <label>tuple</label>
       </node>
-      <node id="34">
+      <node id="36">
         <label>unordered_map</label>
       </node>
-      <node id="35">
+      <node id="37">
         <label>utility</label>
       </node>
-      <node id="12">
+      <node id="13">
         <label>vector</label>
       </node>
     </incdepgraph>
@@ -234,11 +257,11 @@
 <codeline lineno="22"><highlight class="comment"><sp/>*<sp/>SOFTWARE.</highlight></codeline>
 <codeline lineno="23"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;node.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;threaded_node.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="profiler_8hpp" kindref="compound">rko_lio/core/profiler.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros<sp/>{</highlight></codeline>
-<codeline lineno="29" refid="classrko__lio_1_1ros_1_1OnlineNode" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrko__lio_1_1ros_1_1OnlineNode" kindref="compound">OnlineNode</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1ros_1_1Node" kindref="compound">Node</ref><sp/>{</highlight></codeline>
+<codeline lineno="29" refid="classrko__lio_1_1ros_1_1OnlineNode" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrko__lio_1_1ros_1_1OnlineNode" kindref="compound">OnlineNode</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref><sp/>{</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"><sp/><sp/>rclcpp::Subscription&lt;sensor_msgs::msg::Imu&gt;::SharedPtr<sp/>imu_sub;</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"><sp/><sp/>rclcpp::Subscription&lt;sensor_msgs::msg::PointCloud2&gt;::SharedPtr<sp/>lidar_sub;</highlight></codeline>
@@ -250,7 +273,7 @@
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1OnlineNode" kindref="compound">OnlineNode</ref>&amp;<sp/>operator=(<ref refid="classrko__lio_1_1ros_1_1OnlineNode" kindref="compound">OnlineNode</ref>&amp;&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
 <codeline lineno="40"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1ros_1_1OnlineNode" kindref="compound">OnlineNode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>rclcpp::NodeOptions&amp;<sp/>options)</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><ref refid="classrko__lio_1_1ros_1_1Node" kindref="compound">Node</ref>(</highlight><highlight class="stringliteral">&quot;rko_lio_online_node&quot;</highlight><highlight class="normal">,<sp/>options),<sp/>timer(</highlight><highlight class="stringliteral">&quot;RKO<sp/>LIO<sp/>Online<sp/>Node&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref>(</highlight><highlight class="stringliteral">&quot;rko_lio_online_node&quot;</highlight><highlight class="normal">,<sp/>options),<sp/>timer(</highlight><highlight class="stringliteral">&quot;RKO<sp/>LIO<sp/>Online<sp/>Node&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>qos_imu<sp/>=<sp/>rclcpp::SensorDataQoS().keep_last(100);</highlight></codeline>
 <codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>qos_lidar<sp/>=<sp/>rclcpp::SensorDataQoS().keep_last(10);</highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight></codeline>

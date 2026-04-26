@@ -18,7 +18,7 @@
     <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="File node.cpp" href="file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_node.cpp.html" />
+    <link rel="next" title="File offline_node.cpp" href="file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_offline_node.cpp.html" />
     <link rel="prev" title="File lio.hpp" href="file__home_runner_work_rko_lio_rko_lio_rko_lio_core_lio.hpp.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -190,9 +190,7 @@
 
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">Secondsd</span><span class="p">,</span><span class="w"> </span><span class="n">Sophus</span><span class="o">::</span><span class="n">SE3d</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">poses_with_timestamps</span><span class="p">;</span>
 
-<span class="w">  </span><span class="n">Sophus</span><span class="o">::</span><span class="n">SO3d</span><span class="w"> </span><span class="n">imu_local_rotation</span><span class="p">;</span>
-
-<span class="w">  </span><span class="n">Secondsd</span><span class="w"> </span><span class="n">imu_local_rotation_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Secondsd</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
+<span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="n">imu_state</span><span class="p">;</span>
 
 <span class="k">private</span><span class="o">:</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">initialize</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Secondsd</span><span class="w"> </span><span class="n">lidar_time</span><span class="p">);</span>
@@ -223,7 +221,7 @@
           <a href="file__home_runner_work_rko_lio_rko_lio_rko_lio_core_lio.hpp.html" title="Previous document">File lio.hpp</a>
         </li>
         <li>
-          <a href="file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_node.cpp.html" title="Next document">File node.cpp</a>
+          <a href="file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_offline_node.cpp.html" title="Next document">File offline_node.cpp</a>
           &rarr;
         </li>
     </ul>

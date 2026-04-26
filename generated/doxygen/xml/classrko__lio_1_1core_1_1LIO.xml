@@ -127,38 +127,21 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="138" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="138" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classrko__lio_1_1core_1_1LIO_1a92ed5e0e19360ccf344af97d6d85b19d" prot="public" static="no" mutable="no">
-        <type>Sophus::SO3d</type>
-        <definition>Sophus::SO3d rko_lio::core::LIO::imu_local_rotation</definition>
+      <memberdef kind="variable" id="classrko__lio_1_1core_1_1LIO_1a582d6fd74013b8c85784326bc45fb7c0" prot="public" static="no" mutable="no">
+        <type><ref refid="structrko__lio_1_1core_1_1State" kindref="compound">State</ref></type>
+        <definition>State rko_lio::core::LIO::imu_state</definition>
         <argsstring></argsstring>
-        <name>imu_local_rotation</name>
-        <qualifiedname>rko_lio::core::LIO::imu_local_rotation</qualifiedname>
+        <name>imu_state</name>
+        <qualifiedname>rko_lio::core::LIO::imu_state</qualifiedname>
         <briefdescription>
-<para>Latest IMU orientation used for gravity compensation. </para>
+<para>Base-frame state propagated from IMU measurements. </para>
         </briefdescription>
         <detaileddescription>
-<para>This is ahead of the rotation in the state. </para>
+<para>Runs ahead of <computeroutput>lidar_state</computeroutput> between scans; reset to the optimized lidar pose after each successful registration. Used for gravity compensation and for publishing IMU-rate odometry from the ROS wrapper. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="141" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="141" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classrko__lio_1_1core_1_1LIO_1a0730b976dcec884d5fb0744070621003" prot="public" static="no" mutable="no">
-        <type>Secondsd</type>
-        <definition>Secondsd rko_lio::core::LIO::imu_local_rotation_time</definition>
-        <argsstring></argsstring>
-        <name>imu_local_rotation_time</name>
-        <qualifiedname>rko_lio::core::LIO::imu_local_rotation_time</qualifiedname>
-        <initializer>= Secondsd{0.0}</initializer>
-        <briefdescription>
-<para>Timestamp of the latest IMU orientation. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>Once a scan is registered, this is reset to the lidar state orientation. </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="145" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="145" bodyend="145"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="144" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="144" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
@@ -176,7 +159,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="161" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="161" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="160" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="160" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1core_1_1LIO_1a6cdf1482cca66e3eeeaf4f66e9cff018" prot="private" static="no" mutable="no">
         <type>Secondsd</type>
@@ -192,7 +175,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="164" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="164" bodyend="164"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="163" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="163" bodyend="163"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1core_1_1LIO_1a8982a3577c4d1c77eb6a9fa2911c6149" prot="private" static="no" mutable="no">
         <type>Eigen::Vector3d</type>
@@ -208,7 +191,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="167" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="167" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="166" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="166" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -247,7 +230,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="106" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" bodystart="316" bodyend="353"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="106" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" bodystart="317" bodyend="360"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1core_1_1LIO_1a91736c1595c37bc5d70840538735b12a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -288,7 +271,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="114" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" bodystart="355" bodyend="397"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="114" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" bodystart="362" bodyend="404"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1core_1_1LIO_1a0e2818a3d7d3b07f77a91235b116b607" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Vector3dVector</type>
@@ -331,7 +314,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="123" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" bodystart="401" bodyend="483"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="123" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" bodystart="408" bodyend="485"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1core_1_1LIO_1a3963bf670eced93306c73ead313d867f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Vector3dVector</type>
@@ -386,7 +369,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="133" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" bodystart="485" bodyend="498"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="133" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" bodystart="487" bodyend="500"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -417,7 +400,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="152" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" bodystart="245" bodyend="277"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="151" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" bodystart="245" bodyend="278"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1core_1_1LIO_1a896c687b0c0edb14b930913100093cfc" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Vector3dVector</type>
@@ -440,7 +423,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="155" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" bodystart="279" bodyend="288"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="154" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" bodystart="280" bodyend="290"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1core_1_1LIO_1a72f44928d9d63ee2abda98f61308f366" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::pair&lt; Eigen::Vector3d, Eigen::Vector3d &gt;</type>
@@ -459,7 +442,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="158" column="13" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" bodystart="291" bodyend="308"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="157" column="13" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" bodystart="292" bodyend="309"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -486,6 +469,7 @@
           <edgelabel>map</edgelabel>
         </childnode>
         <childnode refid="4" relation="usage">
+          <edgelabel>imu_state</edgelabel>
           <edgelabel>lidar_state</edgelabel>
         </childnode>
         <childnode refid="5" relation="usage">
@@ -508,7 +492,7 @@
         <link refid="structrko__lio_1_1core_1_1State"/>
       </node>
     </collaborationgraph>
-    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="37" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="37" bodyend="168"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="37" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="37" bodyend="167"/>
     <listofallmembers>
       <member refid="classrko__lio_1_1core_1_1LIO_1aa0e98c41c711dff7bf50bb1706b2d603" prot="private" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>_initialized</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1a8982a3577c4d1c77eb6a9fa2911c6149" prot="private" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>_last_real_base_imu_ang_vel</name></member>
@@ -519,8 +503,7 @@
       <member refid="classrko__lio_1_1core_1_1LIO_1a896c687b0c0edb14b930913100093cfc" prot="private" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>bootstrap_first_scan</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>config</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1aedab30ea81941b951314113cd9d3166a" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>imu_bias</name></member>
-      <member refid="classrko__lio_1_1core_1_1LIO_1a92ed5e0e19360ccf344af97d6d85b19d" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>imu_local_rotation</name></member>
-      <member refid="classrko__lio_1_1core_1_1LIO_1a0730b976dcec884d5fb0744070621003" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>imu_local_rotation_time</name></member>
+      <member refid="classrko__lio_1_1core_1_1LIO_1a582d6fd74013b8c85784326bc45fb7c0" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>imu_state</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1ab8728d90e80d1664ce979c8db5cc2eb2" prot="private" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>initialize</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1a9b89efdfdcc0ab01ef3fd6caaadb69d2" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>interval_stats</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>lidar_state</name></member>

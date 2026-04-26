@@ -34,11 +34,11 @@ Program Listing for File online_node.cpp
     * SOFTWARE.
     */
    
-   #include "node.hpp"
+   #include "threaded_node.hpp"
    #include "rko_lio/core/profiler.hpp"
    
    namespace rko_lio::ros {
-   class OnlineNode : public Node {
+   class OnlineNode : public ThreadedNode {
    public:
      rclcpp::Subscription<sensor_msgs::msg::Imu>::SharedPtr imu_sub;
      rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr lidar_sub;
@@ -50,7 +50,7 @@ Program Listing for File online_node.cpp
      OnlineNode& operator=(OnlineNode&&) = delete;
    
      explicit OnlineNode(const rclcpp::NodeOptions& options)
-         : Node("rko_lio_online_node", options), timer("RKO LIO Online Node") {
+         : ThreadedNode("rko_lio_online_node", options), timer("RKO LIO Online Node") {
        const auto qos_imu = rclcpp::SensorDataQoS().keep_last(100);
        const auto qos_lidar = rclcpp::SensorDataQoS().keep_last(10);
    

@@ -2,15 +2,37 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespacerko__lio_1_1ros" kind="namespace" language="C++">
     <compoundname>rko_lio::ros</compoundname>
+    <innerclass refid="classrko__lio_1_1ros_1_1BaseNode" prot="public">rko_lio::ros::BaseNode</innerclass>
     <innerclass refid="structrko__lio_1_1ros_1_1LidarFrame" prot="public">rko_lio::ros::LidarFrame</innerclass>
-    <innerclass refid="classrko__lio_1_1ros_1_1Node" prot="public">rko_lio::ros::Node</innerclass>
     <innerclass refid="classrko__lio_1_1ros_1_1OfflineNode" prot="public">rko_lio::ros::OfflineNode</innerclass>
+    <innerclass refid="classrko__lio_1_1ros_1_1OnlineImuRateNode" prot="public">rko_lio::ros::OnlineImuRateNode</innerclass>
     <innerclass refid="classrko__lio_1_1ros_1_1OnlineNode" prot="public">rko_lio::ros::OnlineNode</innerclass>
+    <innerclass refid="classrko__lio_1_1ros_1_1ThreadedNode" prot="public">rko_lio::ros::ThreadedNode</innerclass>
     <innernamespace refid="namespacerko__lio_1_1ros_1_1utils">rko_lio::ros::utils</innernamespace>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="base__node_8cpp_1afae6f65417b908b3b2a34c5a6261c7d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structrko__lio_1_1core_1_1ImuControl" kindref="compound">core::ImuControl</ref></type>
+        <definition>core::ImuControl rko_lio::ros::imu_msg_to_imu_data</definition>
+        <argsstring>(const sensor_msgs::msg::Imu &amp;imu_msg)</argsstring>
+        <name>imu_msg_to_imu_data</name>
+        <qualifiedname>rko_lio::ros::imu_msg_to_imu_data</qualifiedname>
+        <param>
+          <type>const sensor_msgs::msg::Imu &amp;</type>
+          <declname>imu_msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" line="58" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="58" bodyend="64" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" declline="50" declcolumn="18"/>
+      </memberdef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/node.cpp" line="67" column="1"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" line="56" column="1"/>
   </compounddef>
 </doxygen>

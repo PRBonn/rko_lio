@@ -1,0 +1,361 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classrko__lio_1_1ros_1_1OnlineImuRateNode" kind="class" language="C++" prot="public">
+    <compoundname>rko_lio::ros::OnlineImuRateNode</compoundname>
+    <basecompoundref refid="classrko__lio_1_1ros_1_1BaseNode" prot="public" virt="non-virtual">rko_lio::ros::BaseNode</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1abeffa09542eff4f6305514a742dcd7fb" prot="public" static="no" mutable="no">
+        <type>rclcpp::Publisher&lt; nav_msgs::msg::Odometry &gt;::SharedPtr</type>
+        <definition>rclcpp::Publisher&lt;nav_msgs::msg::Odometry&gt;::SharedPtr rko_lio::ros::OnlineImuRateNode::odom_at_imu_rate_publisher</definition>
+        <argsstring></argsstring>
+        <name>odom_at_imu_rate_publisher</name>
+        <qualifiedname>rko_lio::ros::OnlineImuRateNode::odom_at_imu_rate_publisher</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="44" column="33" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1ab104123fcfce397ef90c73d49259fb0a" prot="public" static="no" mutable="no">
+        <type>rclcpp::Subscription&lt; sensor_msgs::msg::Imu &gt;::SharedPtr</type>
+        <definition>rclcpp::Subscription&lt;sensor_msgs::msg::Imu&gt;::SharedPtr rko_lio::ros::OnlineImuRateNode::imu_sub</definition>
+        <argsstring></argsstring>
+        <name>imu_sub</name>
+        <qualifiedname>rko_lio::ros::OnlineImuRateNode::imu_sub</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="45" column="36" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1ac24f2fcbd46297538dd1ce5a00af6213" prot="public" static="no" mutable="no">
+        <type>rclcpp::Subscription&lt; sensor_msgs::msg::PointCloud2 &gt;::SharedPtr</type>
+        <definition>rclcpp::Subscription&lt;sensor_msgs::msg::PointCloud2&gt;::SharedPtr rko_lio::ros::OnlineImuRateNode::lidar_sub</definition>
+        <argsstring></argsstring>
+        <name>lidar_sub</name>
+        <qualifiedname>rko_lio::ros::OnlineImuRateNode::lidar_sub</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="46" column="36" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1af7764e00398ed28619e5a60d24cd9b87" prot="public" static="no" mutable="no">
+        <type><ref refid="structrko__lio_1_1core_1_1Timer" kindref="compound">core::Timer</ref></type>
+        <definition>core::Timer rko_lio::ros::OnlineImuRateNode::timer</definition>
+        <argsstring></argsstring>
+        <name>timer</name>
+        <qualifiedname>rko_lio::ros::OnlineImuRateNode::timer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="47" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a2516e9d4986b07cc76981ab9e9c13507" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string rko_lio::ros::OnlineImuRateNode::odom_at_imu_rate_topic</definition>
+        <argsstring></argsstring>
+        <name>odom_at_imu_rate_topic</name>
+        <qualifiedname>rko_lio::ros::OnlineImuRateNode::odom_at_imu_rate_topic</qualifiedname>
+        <initializer>= &quot;rko_lio/odom_at_imu_rate&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="49" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a87bdb49e8a7652cded933697fd92a8a9" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool rko_lio::ros::OnlineImuRateNode::tf_at_imu_rate</definition>
+        <argsstring></argsstring>
+        <name>tf_at_imu_rate</name>
+        <qualifiedname>rko_lio::ros::OnlineImuRateNode::tf_at_imu_rate</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="50" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a6998f7eb857da738e15cc6fc7c40328a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::ros::OnlineImuRateNode::OnlineImuRateNode</definition>
+        <argsstring>(const OnlineImuRateNode &amp;)=delete</argsstring>
+        <name>OnlineImuRateNode</name>
+        <qualifiedname>rko_lio::ros::OnlineImuRateNode::OnlineImuRateNode</qualifiedname>
+        <param>
+          <type>const <ref refid="classrko__lio_1_1ros_1_1OnlineImuRateNode" kindref="compound">OnlineImuRateNode</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="52" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1ac50595371cec85ac2adec2feffb2af6e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::ros::OnlineImuRateNode::OnlineImuRateNode</definition>
+        <argsstring>(OnlineImuRateNode &amp;&amp;)=delete</argsstring>
+        <name>OnlineImuRateNode</name>
+        <qualifiedname>rko_lio::ros::OnlineImuRateNode::OnlineImuRateNode</qualifiedname>
+        <param>
+          <type><ref refid="classrko__lio_1_1ros_1_1OnlineImuRateNode" kindref="compound">OnlineImuRateNode</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="53" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a8197b2e03824e774b6729a2cd2099ea7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrko__lio_1_1ros_1_1OnlineImuRateNode" kindref="compound">OnlineImuRateNode</ref> &amp;</type>
+        <definition>OnlineImuRateNode &amp; rko_lio::ros::OnlineImuRateNode::operator=</definition>
+        <argsstring>(const OnlineImuRateNode &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>rko_lio::ros::OnlineImuRateNode::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classrko__lio_1_1ros_1_1OnlineImuRateNode" kindref="compound">OnlineImuRateNode</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="54" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1ab2c2972cbc683333d9a7cc1585eb358e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrko__lio_1_1ros_1_1OnlineImuRateNode" kindref="compound">OnlineImuRateNode</ref> &amp;</type>
+        <definition>OnlineImuRateNode &amp; rko_lio::ros::OnlineImuRateNode::operator=</definition>
+        <argsstring>(OnlineImuRateNode &amp;&amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>rko_lio::ros::OnlineImuRateNode::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classrko__lio_1_1ros_1_1OnlineImuRateNode" kindref="compound">OnlineImuRateNode</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="55" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a1db8ed599e3a85c2613013db63ffb78c" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::ros::OnlineImuRateNode::OnlineImuRateNode</definition>
+        <argsstring>(const rclcpp::NodeOptions &amp;options)</argsstring>
+        <name>OnlineImuRateNode</name>
+        <qualifiedname>rko_lio::ros::OnlineImuRateNode::OnlineImuRateNode</qualifiedname>
+        <param>
+          <type>const rclcpp::NodeOptions &amp;</type>
+          <declname>options</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="57" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="57" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1aed7b4e4abfc5e17a72a10dfc4fa6f317" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>rclcpp::node_interfaces::NodeBaseInterface::SharedPtr</type>
+        <definition>rclcpp::node_interfaces::NodeBaseInterface::SharedPtr rko_lio::ros::OnlineImuRateNode::get_node_base_interface</definition>
+        <argsstring>()</argsstring>
+        <name>get_node_base_interface</name>
+        <qualifiedname>rko_lio::ros::OnlineImuRateNode::get_node_base_interface</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="81" column="57" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="81" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a42d18fd474d39967f5949f3a35ee67c8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::ros::OnlineImuRateNode::imu_callback</definition>
+        <argsstring>(const sensor_msgs::msg::Imu::ConstSharedPtr &amp;imu_msg)</argsstring>
+        <name>imu_callback</name>
+        <qualifiedname>rko_lio::ros::OnlineImuRateNode::imu_callback</qualifiedname>
+        <param>
+          <type>const sensor_msgs::msg::Imu::ConstSharedPtr &amp;</type>
+          <declname>imu_msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="85" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="85" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1acbe7dea353329f09276f10fc66c1376f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::ros::OnlineImuRateNode::lidar_callback</definition>
+        <argsstring>(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &amp;lidar_msg)</argsstring>
+        <name>lidar_callback</name>
+        <qualifiedname>rko_lio::ros::OnlineImuRateNode::lidar_callback</qualifiedname>
+        <param>
+          <type>const sensor_msgs::msg::PointCloud2::ConstSharedPtr &amp;</type>
+          <declname>lidar_msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="113" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="113" bodyend="138"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a421d11614bef3b923783652021434c7d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::ros::OnlineImuRateNode::publish_imu_rate_odometry</definition>
+        <argsstring>(const core::State &amp;state) const</argsstring>
+        <name>publish_imu_rate_odometry</name>
+        <qualifiedname>rko_lio::ros::OnlineImuRateNode::publish_imu_rate_odometry</qualifiedname>
+        <param>
+          <type>const <ref refid="structrko__lio_1_1core_1_1State" kindref="compound">core::State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="140" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="140" bodyend="149"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>rko_lio::ros::BaseNode</label>
+        <link refid="classrko__lio_1_1ros_1_1BaseNode"/>
+      </node>
+      <node id="1">
+        <label>rko_lio::ros::OnlineImuRateNode</label>
+        <link refid="classrko__lio_1_1ros_1_1OnlineImuRateNode"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>rko_lio::core::Timer</label>
+        <link refid="structrko__lio_1_1core_1_1Timer"/>
+      </node>
+      <node id="3">
+        <label>rko_lio::core::TimestampProcessingConfig</label>
+        <link refid="structrko__lio_1_1core_1_1TimestampProcessingConfig"/>
+      </node>
+      <node id="2">
+        <label>rko_lio::ros::BaseNode</label>
+        <link refid="classrko__lio_1_1ros_1_1BaseNode"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>timestamp_proc_config</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>rko_lio::ros::OnlineImuRateNode</label>
+        <link refid="classrko__lio_1_1ros_1_1OnlineImuRateNode"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>timer</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="42" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="42" bodyend="150"/>
+    <listofallmembers>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a38281b7e81e2292088a68b2fd2716003" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>atomic_node_running</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1aacbece9df2087272d75480fa2137f419" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>base_frame</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1aff39f656667853f6bd7b46c26be0eeab" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>BaseNode</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1ad3fac1c1fc245199be7e5c8cb9b264f9" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>BaseNode</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a97828ac5e49b5ca71e24942d8f1b2558" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>BaseNode</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a0980b22806ae53111cf4ea96cf76d386" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>BaseNode</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a9adaaf7d3c7d0d969066754e162d38b3" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>check_and_set_extrinsics</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a8d2cfe9221c19ca3a53dd1498c0573af" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>deskewed_scan_topic</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1ab7a49a347fd805a7ce2ba91cb700671e" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>dump_results</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a48110c62e37b6784f72849ab1e5d3b1a" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>dump_results_to_disk</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a1d2ed4ef1d1722d5278b6ec49a15d42f" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>extrinsic_imu2base</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a02d2556a2570e3b1698c77413a256f5e" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>extrinsic_lidar2base</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1afbeabe15939267091aa36d19c7525c36" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>extrinsics_set</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a06912bbf34df92839933ade4c68586a0" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>frame_publisher</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1aed7b4e4abfc5e17a72a10dfc4fa6f317" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>get_node_base_interface</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a42d18fd474d39967f5949f3a35ee67c8" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>imu_callback</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a1593d0b0267fc265d9a8cc78d435c29d" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>imu_frame</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1ab104123fcfce397ef90c73d49259fb0a" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>imu_sub</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a5fa18b17bd57a3db3e4679504fe32e2e" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>imu_topic</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a032de1bdd5984d28cc6d6785b9fd89dc" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>invert_odom_tf</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1acbf1e9c305d415f4fce37874e2b4f585" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>lidar_accel_publisher</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1acbe7dea353329f09276f10fc66c1376f" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>lidar_callback</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a669856bc3970c7872c78a99d78f0bc87" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>lidar_frame</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1ac24f2fcbd46297538dd1ce5a00af6213" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>lidar_sub</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a14b98efbded9dfa784e0aa795f785bbf" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>lidar_topic</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a84e99e77440e1fab650a4358775f1a05" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>lio</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a065f035917e22a80aa1e18cb1b43a22e" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>local_map_mutex</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a29e011188c23c57979bb020cd4ddead0" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>map_publish_thead</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1aea83b9c5a547999ee0dc1ae096e92009" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>map_publisher</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a8bc20a80d8d8efcda0d1106e2aa61f30" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>map_topic</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a2ec7830c65011910f9dd7314a485bf5e" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>node</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1abeffa09542eff4f6305514a742dcd7fb" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>odom_at_imu_rate_publisher</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a2516e9d4986b07cc76981ab9e9c13507" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>odom_at_imu_rate_topic</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a17feaf7d2d4590eca24d87280f77b21a" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>odom_frame</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a7029d4798385c83320ceb7335d6628a9" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>odom_publisher</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1af065e60acdb927b346b2c9f3b68af504" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>odom_topic</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a6998f7eb857da738e15cc6fc7c40328a" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>OnlineImuRateNode</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1ac50595371cec85ac2adec2feffb2af6e" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>OnlineImuRateNode</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a1db8ed599e3a85c2613013db63ffb78c" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>OnlineImuRateNode</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a8197b2e03824e774b6729a2cd2099ea7" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>operator=</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1ab2c2972cbc683333d9a7cc1585eb358e" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>operator=</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1afc7aeb8eeeb14ef35e535ce74193db6f" prot="public" virt="non-virtual" ambiguityscope="rko_lio::ros::BaseNode::"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>operator=</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1ab7033afa34770e24f465bbe2a73444ca" prot="public" virt="non-virtual" ambiguityscope="rko_lio::ros::BaseNode::"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>operator=</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a30875a75d450b8900c08ee0dbe11e62c" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>parse_cli_extrinsics</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a23f047faed8a97a78fbbed340032317e" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>process_lidar_msg</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1af1c6cb845774b666681e470b78dafcbc" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>publish_deskewed_scan</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a421d11614bef3b923783652021434c7d" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>publish_imu_rate_odometry</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1ae44c1322a67ab3a85327ad678863cac4" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>publish_lidar_accel</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1abf4d6745652fb6e310dc507849cadaee" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>publish_lidar_acceleration</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a82dbc521bbf284342b7466eb172170e9" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>publish_lidar_outputs</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a28f3994bca8ca065b3196725c000b44a" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>publish_local_map</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1aff0e982cd31cf049769bcbfcd05b8fb4" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>publish_map_after</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1acdc4ef902102131dbbb350afea921b17" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>publish_map_loop</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a7095bb4b30016aa0eab6cc4800a7f3c5" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>publish_odometry</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a3651792dc0646bfeea16803e1f92185b" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>publish_tf</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1ab0d80b23d66dc9d5b4f7dc7f89e05d5f" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>register_scan_locked</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1adf575671c2b74582e831e5d9a8fefe36" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>results_dir</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1ac4aa545318868ed459b328398e5b39de" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>run_name</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a87bdb49e8a7652cded933697fd92a8a9" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>tf_at_imu_rate</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1af1793fd089d51bc4c418d7263d586562" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>tf_broadcaster</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a16ceefdd48a159e21f6e58ba0fef1a75" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>tf_buffer</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a11ff8ee46c5b3ca79d0fd9aecf2ce025" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>tf_listener</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1af7764e00398ed28619e5a60d24cd9b87" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>timer</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a3e6bd9beb864c2d80b789f76d0022447" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>timestamp_proc_config</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1aaa03e3f3624f707e83921ceef9487baf" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>~BaseNode</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

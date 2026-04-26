@@ -48,8 +48,14 @@
         </childnode>
       </node>
       <node id="4">
-        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/node.hpp</label>
-        <link refid="node_8hpp_source"/>
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp</label>
+        <link refid="base__node_8hpp_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp</label>
+        <link refid="threaded__node_8hpp_source"/>
       </node>
     </invincdepgraph>
     <innerclass refid="structrko__lio_1_1core_1_1SparseVoxelGrid" prot="public">rko_lio::core::SparseVoxelGrid</innerclass>

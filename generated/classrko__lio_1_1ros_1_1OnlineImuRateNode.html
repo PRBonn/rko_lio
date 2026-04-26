@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Class OnlineImuRateNode &#8212; RKO-LIO: Lidar-inertial odometry without sensor-specific modeling</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=f6a572b4" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=56c4699f" />
+    <script src="../_static/documentation_options.js?v=938c9ccc"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class OnlineNode" href="classrko__lio_1_1ros_1_1OnlineNode.html" />
+    <link rel="prev" title="Class OfflineNode" href="classrko__lio_1_1ros_1_1OfflineNode.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">RKO-LIO</a></h1>
+
+
+
+<p class="blurb">Lidar-inertial odometry</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=PRBonn&repo=rko_lio&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/primer.html">Primer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/data.html">Data</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pages/ros/ros.html">ROS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../pages/ros/setup.html">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/ros/usage.html">Usage</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../__PACKAGE.html">ROS package.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/changelog_literal.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/python/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/config.html">Configuring rko_lio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/uncategorised/index.html">Uncategorised</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://index.ros.org/p/rko_lio/">ROS Index</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/rko-lio/">PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://github.com/PRBonn/rko_lio">GitHub</a></li>
+    
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="class-onlineimuratenode">
+<span id="exhale-class-classrko-lio-1-1ros-1-1onlineimuratenode"></span><h1>Class OnlineImuRateNode<a class="headerlink" href="#class-onlineimuratenode" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_online_imu_rate_node.cpp.html#file-home-runner-work-rko-lio-rko-lio-rko-lio-ros-online-imu-rate-node-cpp"><span class="std std-ref">File online_imu_rate_node.cpp</span></a></p></li>
+</ul>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Link to this heading">¶</a></h2>
+<section id="base-type">
+<h3>Base Type<a class="headerlink" href="#base-type" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">rko_lio::ros::BaseNode</span></code> (<a class="reference internal" href="classrko__lio_1_1ros_1_1BaseNode.html#exhale-class-classrko-lio-1-1ros-1-1basenode"><span class="std std-ref">Class BaseNode</span></a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading">¶</a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros17OnlineImuRateNodeE">
+<span id="_CPPv3N7rko_lio3ros17OnlineImuRateNodeE"></span><span id="_CPPv2N7rko_lio3ros17OnlineImuRateNodeE"></span><span id="rko_lio::ros::OnlineImuRateNode"></span><span class="target" id="classrko__lio_1_1ros_1_1OnlineImuRateNode"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnlineImuRateNode</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">rko_lio</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ros</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classrko__lio_1_1ros_1_1BaseNode.html#_CPPv4N7rko_lio3ros8BaseNodeE" title="rko_lio::ros::BaseNode"><span class="n"><span class="pre">BaseNode</span></span></a><a class="headerlink" href="#_CPPv4N7rko_lio3ros17OnlineImuRateNodeE" title="Link to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros17OnlineImuRateNode17OnlineImuRateNodeERK17OnlineImuRateNode">
+<span id="_CPPv3N7rko_lio3ros17OnlineImuRateNode17OnlineImuRateNodeERK17OnlineImuRateNode"></span><span id="_CPPv2N7rko_lio3ros17OnlineImuRateNode17OnlineImuRateNodeERK17OnlineImuRateNode"></span><span id="rko_lio::ros::OnlineImuRateNode::OnlineImuRateNode__OnlineImuRateNodeCR"></span><span class="target" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a6998f7eb857da738e15cc6fc7c40328a"></span><span class="sig-name descname"><span class="n"><span class="pre">OnlineImuRateNode</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7rko_lio3ros17OnlineImuRateNode17OnlineImuRateNodeERK17OnlineImuRateNode" title="rko_lio::ros::OnlineImuRateNode::OnlineImuRateNode"><span class="n"><span class="pre">OnlineImuRateNode</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros17OnlineImuRateNode17OnlineImuRateNodeERK17OnlineImuRateNode" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros17OnlineImuRateNode17OnlineImuRateNodeERR17OnlineImuRateNode">
+<span id="_CPPv3N7rko_lio3ros17OnlineImuRateNode17OnlineImuRateNodeERR17OnlineImuRateNode"></span><span id="_CPPv2N7rko_lio3ros17OnlineImuRateNode17OnlineImuRateNodeERR17OnlineImuRateNode"></span><span id="rko_lio::ros::OnlineImuRateNode::OnlineImuRateNode__OnlineImuRateNodeRR"></span><span class="target" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1ac50595371cec85ac2adec2feffb2af6e"></span><span class="sig-name descname"><span class="n"><span class="pre">OnlineImuRateNode</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N7rko_lio3ros17OnlineImuRateNode17OnlineImuRateNodeERR17OnlineImuRateNode" title="rko_lio::ros::OnlineImuRateNode::OnlineImuRateNode"><span class="n"><span class="pre">OnlineImuRateNode</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros17OnlineImuRateNode17OnlineImuRateNodeERR17OnlineImuRateNode" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros17OnlineImuRateNodeaSERK17OnlineImuRateNode">
+<span id="_CPPv3N7rko_lio3ros17OnlineImuRateNodeaSERK17OnlineImuRateNode"></span><span id="_CPPv2N7rko_lio3ros17OnlineImuRateNodeaSERK17OnlineImuRateNode"></span><span id="rko_lio::ros::OnlineImuRateNode::assign-operator__OnlineImuRateNodeCR"></span><span class="target" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a8197b2e03824e774b6729a2cd2099ea7"></span><a class="reference internal" href="#_CPPv4N7rko_lio3ros17OnlineImuRateNodeE" title="rko_lio::ros::OnlineImuRateNode"><span class="n"><span class="pre">OnlineImuRateNode</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7rko_lio3ros17OnlineImuRateNodeE" title="rko_lio::ros::OnlineImuRateNode"><span class="n"><span class="pre">OnlineImuRateNode</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros17OnlineImuRateNodeaSERK17OnlineImuRateNode" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros17OnlineImuRateNodeaSERR17OnlineImuRateNode">
+<span id="_CPPv3N7rko_lio3ros17OnlineImuRateNodeaSERR17OnlineImuRateNode"></span><span id="_CPPv2N7rko_lio3ros17OnlineImuRateNodeaSERR17OnlineImuRateNode"></span><span id="rko_lio::ros::OnlineImuRateNode::assign-operator__OnlineImuRateNodeRR"></span><span class="target" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1ab2c2972cbc683333d9a7cc1585eb358e"></span><a class="reference internal" href="#_CPPv4N7rko_lio3ros17OnlineImuRateNodeE" title="rko_lio::ros::OnlineImuRateNode"><span class="n"><span class="pre">OnlineImuRateNode</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N7rko_lio3ros17OnlineImuRateNodeE" title="rko_lio::ros::OnlineImuRateNode"><span class="n"><span class="pre">OnlineImuRateNode</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros17OnlineImuRateNodeaSERR17OnlineImuRateNode" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros17OnlineImuRateNode17OnlineImuRateNodeERKN6rclcpp11NodeOptionsE">
+<span id="_CPPv3N7rko_lio3ros17OnlineImuRateNode17OnlineImuRateNodeERKN6rclcpp11NodeOptionsE"></span><span id="_CPPv2N7rko_lio3ros17OnlineImuRateNode17OnlineImuRateNodeERKN6rclcpp11NodeOptionsE"></span><span id="rko_lio::ros::OnlineImuRateNode::OnlineImuRateNode__rclcpp::NodeOptionsCR"></span><span class="target" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a1db8ed599e3a85c2613013db63ffb78c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OnlineImuRateNode</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeOptions</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">options</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio3ros17OnlineImuRateNode17OnlineImuRateNodeERKN6rclcpp11NodeOptionsE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros17OnlineImuRateNode23get_node_base_interfaceEv">
+<span id="_CPPv3N7rko_lio3ros17OnlineImuRateNode23get_node_base_interfaceEv"></span><span id="_CPPv2N7rko_lio3ros17OnlineImuRateNode23get_node_base_interfaceEv"></span><span id="rko_lio::ros::OnlineImuRateNode::get_node_base_interface"></span><span class="target" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1aed7b4e4abfc5e17a72a10dfc4fa6f317"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">node_interfaces</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeBaseInterface</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_node_base_interface</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio3ros17OnlineImuRateNode23get_node_base_interfaceEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros17OnlineImuRateNode12imu_callbackERKN11sensor_msgs3msg3Imu14ConstSharedPtrE">
+<span id="_CPPv3N7rko_lio3ros17OnlineImuRateNode12imu_callbackERKN11sensor_msgs3msg3Imu14ConstSharedPtrE"></span><span id="_CPPv2N7rko_lio3ros17OnlineImuRateNode12imu_callbackERKN11sensor_msgs3msg3Imu14ConstSharedPtrE"></span><span id="rko_lio::ros::OnlineImuRateNode::imu_callback__sensor_msgs::msg::Imu::ConstSharedPtrCR"></span><span class="target" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a42d18fd474d39967f5949f3a35ee67c8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">imu_callback</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Imu</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstSharedPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">imu_msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio3ros17OnlineImuRateNode12imu_callbackERKN11sensor_msgs3msg3Imu14ConstSharedPtrE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros17OnlineImuRateNode14lidar_callbackERKN11sensor_msgs3msg11PointCloud214ConstSharedPtrE">
+<span id="_CPPv3N7rko_lio3ros17OnlineImuRateNode14lidar_callbackERKN11sensor_msgs3msg11PointCloud214ConstSharedPtrE"></span><span id="_CPPv2N7rko_lio3ros17OnlineImuRateNode14lidar_callbackERKN11sensor_msgs3msg11PointCloud214ConstSharedPtrE"></span><span id="rko_lio::ros::OnlineImuRateNode::lidar_callback__sensor_msgs::msg::PointCloud2::ConstSharedPtrCR"></span><span class="target" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1acbe7dea353329f09276f10fc66c1376f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lidar_callback</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PointCloud2</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstSharedPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">lidar_msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio3ros17OnlineImuRateNode14lidar_callbackERKN11sensor_msgs3msg11PointCloud214ConstSharedPtrE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7rko_lio3ros17OnlineImuRateNode25publish_imu_rate_odometryERKN4core5StateE">
+<span id="_CPPv3NK7rko_lio3ros17OnlineImuRateNode25publish_imu_rate_odometryERKN4core5StateE"></span><span id="_CPPv2NK7rko_lio3ros17OnlineImuRateNode25publish_imu_rate_odometryERKN4core5StateE"></span><span id="rko_lio::ros::OnlineImuRateNode::publish_imu_rate_odometry__core::StateCRC"></span><span class="target" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a421d11614bef3b923783652021434c7d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">publish_imu_rate_odometry</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">core</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structrko__lio_1_1core_1_1State.html#_CPPv4N7rko_lio4core5StateE" title="rko_lio::core::State"><span class="n"><span class="pre">State</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">state</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7rko_lio3ros17OnlineImuRateNode25publish_imu_rate_odometryERKN4core5StateE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros17OnlineImuRateNode26odom_at_imu_rate_publisherE">
+<span id="_CPPv3N7rko_lio3ros17OnlineImuRateNode26odom_at_imu_rate_publisherE"></span><span id="_CPPv2N7rko_lio3ros17OnlineImuRateNode26odom_at_imu_rate_publisherE"></span><span id="rko_lio::ros::OnlineImuRateNode::odom_at_imu_rate_publisher__rclcpp::Publisher:nav_msgs::msg::Odometry:::SharedPtr"></span><span class="target" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1abeffa09542eff4f6305514a742dcd7fb"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Publisher</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">nav_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Odometry</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">odom_at_imu_rate_publisher</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros17OnlineImuRateNode26odom_at_imu_rate_publisherE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros17OnlineImuRateNode7imu_subE">
+<span id="_CPPv3N7rko_lio3ros17OnlineImuRateNode7imu_subE"></span><span id="_CPPv2N7rko_lio3ros17OnlineImuRateNode7imu_subE"></span><span id="rko_lio::ros::OnlineImuRateNode::imu_sub__rclcpp::Subscription:sensor_msgs::msg::Imu:::SharedPtr"></span><span class="target" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1ab104123fcfce397ef90c73d49259fb0a"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Subscription</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Imu</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">imu_sub</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros17OnlineImuRateNode7imu_subE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros17OnlineImuRateNode9lidar_subE">
+<span id="_CPPv3N7rko_lio3ros17OnlineImuRateNode9lidar_subE"></span><span id="_CPPv2N7rko_lio3ros17OnlineImuRateNode9lidar_subE"></span><span id="rko_lio::ros::OnlineImuRateNode::lidar_sub__rclcpp::Subscription:sensor_msgs::msg::PointCloud2:::SharedPtr"></span><span class="target" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1ac24f2fcbd46297538dd1ce5a00af6213"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Subscription</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PointCloud2</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lidar_sub</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros17OnlineImuRateNode9lidar_subE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros17OnlineImuRateNode5timerE">
+<span id="_CPPv3N7rko_lio3ros17OnlineImuRateNode5timerE"></span><span id="_CPPv2N7rko_lio3ros17OnlineImuRateNode5timerE"></span><span id="rko_lio::ros::OnlineImuRateNode::timer__core::Timer"></span><span class="target" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1af7764e00398ed28619e5a60d24cd9b87"></span><span class="n"><span class="pre">core</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structrko__lio_1_1core_1_1Timer.html#_CPPv4N7rko_lio4core5TimerE" title="rko_lio::core::Timer"><span class="n"><span class="pre">Timer</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timer</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros17OnlineImuRateNode5timerE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros17OnlineImuRateNode22odom_at_imu_rate_topicE">
+<span id="_CPPv3N7rko_lio3ros17OnlineImuRateNode22odom_at_imu_rate_topicE"></span><span id="_CPPv2N7rko_lio3ros17OnlineImuRateNode22odom_at_imu_rate_topicE"></span><span id="rko_lio::ros::OnlineImuRateNode::odom_at_imu_rate_topic__ss"></span><span class="target" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a2516e9d4986b07cc76981ab9e9c13507"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">odom_at_imu_rate_topic</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;rko_lio/odom_at_imu_rate&quot;</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros17OnlineImuRateNode22odom_at_imu_rate_topicE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros17OnlineImuRateNode14tf_at_imu_rateE">
+<span id="_CPPv3N7rko_lio3ros17OnlineImuRateNode14tf_at_imu_rateE"></span><span id="_CPPv2N7rko_lio3ros17OnlineImuRateNode14tf_at_imu_rateE"></span><span id="rko_lio::ros::OnlineImuRateNode::tf_at_imu_rate__b"></span><span class="target" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a87bdb49e8a7652cded933697fd92a8a9"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">tf_at_imu_rate</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros17OnlineImuRateNode14tf_at_imu_rateE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="classrko__lio_1_1ros_1_1OfflineNode.html" title="Previous document">Class OfflineNode</a>
+        </li>
+        <li>
+          <a href="classrko__lio_1_1ros_1_1OnlineNode.html" title="Next document">Class OnlineNode</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &#169;2026 Meher Malladi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/generated/classrko__lio_1_1ros_1_1OnlineImuRateNode.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

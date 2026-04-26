@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/node.hpp" line="51" column="20" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/node.hpp" bodystart="51" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="40" column="20" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="40" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1ros_1_1LidarFrame_1a83fbd1ab6f1efebd01bf71e7b87b7ae7" prot="public" static="no" mutable="no">
         <type>core::Vector3dVector</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/node.hpp" line="52" column="24" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/node.hpp" bodystart="52" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="41" column="24" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="41" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -49,7 +49,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/node.hpp" line="50" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/node.hpp" bodystart="50" bodyend="53"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="39" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="39" bodyend="42"/>
     <listofallmembers>
       <member refid="structrko__lio_1_1ros_1_1LidarFrame_1a83fbd1ab6f1efebd01bf71e7b87b7ae7" prot="public" virt="non-virtual"><scope>rko_lio::ros::LidarFrame</scope><name>points</name></member>
       <member refid="structrko__lio_1_1ros_1_1LidarFrame_1a91edd07c96ffb3961d6ddf18feaecd55" prot="public" virt="non-virtual"><scope>rko_lio::ros::LidarFrame</scope><name>timestamps</name></member>

@@ -1,13 +1,19 @@
-.. _exhale_class_classrko__lio_1_1ros_1_1Node:
+.. _exhale_class_classrko__lio_1_1ros_1_1ThreadedNode:
 
-Class Node
-==========
+Class ThreadedNode
+==================
 
-- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_node.hpp`
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_threaded_node.hpp`
 
 
 Inheritance Relationships
 -------------------------
+
+Base Type
+*********
+
+- ``public rko_lio::ros::BaseNode`` (:ref:`exhale_class_classrko__lio_1_1ros_1_1BaseNode`)
+
 
 Derived Types
 *************
@@ -20,7 +26,7 @@ Class Documentation
 -------------------
 
 
-.. doxygenclass:: rko_lio::ros::Node
+.. doxygenclass:: rko_lio::ros::ThreadedNode
    :project: rko_lio Doxygen Project
    :members:
    :protected-members:

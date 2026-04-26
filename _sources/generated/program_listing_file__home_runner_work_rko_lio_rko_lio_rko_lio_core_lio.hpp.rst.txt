@@ -98,9 +98,7 @@ Program Listing for File lio.hpp
    
      std::vector<std::pair<Secondsd, Sophus::SE3d>> poses_with_timestamps;
    
-     Sophus::SO3d imu_local_rotation;
-   
-     Secondsd imu_local_rotation_time = Secondsd{0.0};
+     State imu_state;
    
    private:
      void initialize(const Secondsd lidar_time);

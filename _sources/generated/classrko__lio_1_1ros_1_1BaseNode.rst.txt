@@ -1,0 +1,27 @@
+.. _exhale_class_classrko__lio_1_1ros_1_1BaseNode:
+
+Class BaseNode
+==============
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_base_node.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Types
+*************
+
+- ``public rko_lio::ros::OnlineImuRateNode`` (:ref:`exhale_class_classrko__lio_1_1ros_1_1OnlineImuRateNode`)
+- ``public rko_lio::ros::ThreadedNode`` (:ref:`exhale_class_classrko__lio_1_1ros_1_1ThreadedNode`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: rko_lio::ros::BaseNode
+   :project: rko_lio Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

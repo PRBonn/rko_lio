@@ -18,7 +18,7 @@
     <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="File online_node.cpp" href="file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_online_node.cpp.html" />
+    <link rel="next" title="File online_imu_rate_node.cpp" href="file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_online_imu_rate_node.cpp.html" />
     <link rel="prev" title="File offline_node.cpp" href="file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_offline_node.cpp.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -126,7 +126,7 @@
 <span class="cm"> * SOFTWARE.</span>
 <span class="cm"> */</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;node.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;threaded_node.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;rko_lio/core/profiler.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;rko_lio/ros/utils/rosbag.hpp&quot;</span>
 <span class="c1">// other</span>
@@ -166,7 +166,7 @@
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace</span>
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">rko_lio</span><span class="o">::</span><span class="nn">ros</span><span class="w"> </span><span class="p">{</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">OfflineNode</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="p">{</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">OfflineNode</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">ThreadedNode</span><span class="w"> </span><span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">utils</span><span class="o">::</span><span class="n">BufferableBag</span><span class="o">&gt;</span><span class="w"> </span><span class="n">bag</span><span class="p">;</span>
 
@@ -175,9 +175,7 @@
 <span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">total_bag_msgs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">processed_bag_msgs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">explicit</span><span class="w"> </span><span class="n">OfflineNode</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">NodeOptions</span><span class="o">&amp;</span><span class="w"> </span><span class="n">options</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Node</span><span class="p">(</span><span class="s">&quot;rko_lio_offline_node&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// increase the lidar buffer limit because we&#39;re offline</span>
-<span class="w">    </span><span class="n">max_lidar_buffer_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="w">  </span><span class="k">explicit</span><span class="w"> </span><span class="n">OfflineNode</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">NodeOptions</span><span class="o">&amp;</span><span class="w"> </span><span class="n">options</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ThreadedNode</span><span class="p">(</span><span class="s">&quot;rko_lio_offline_node&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// bag reading</span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">tf2</span><span class="o">::</span><span class="n">Duration</span><span class="w"> </span><span class="n">skip_to_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf2</span><span class="o">::</span><span class="n">durationFromSec</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">declare_parameter</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;skip_to_time&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">));</span>
 <span class="w">    </span><span class="n">bag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">utils</span><span class="o">::</span><span class="n">BufferableBag</span><span class="o">&gt;</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">declare_parameter</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;bag_path&quot;</span><span class="p">),</span>
@@ -233,8 +231,8 @@
 <span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">rko_lio</span><span class="o">::</span><span class="n">core</span><span class="o">::</span><span class="n">Timer</span><span class="w"> </span><span class="n">timer</span><span class="p">(</span><span class="s">&quot;RKO LIO Offline Node&quot;</span><span class="p">);</span>
 <span class="w">  </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
-<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">offline_node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rko_lio</span><span class="o">::</span><span class="n">ros</span><span class="o">::</span><span class="n">OfflineNode</span><span class="p">(</span><span class="n">rclcpp</span><span class="o">::</span><span class="n">NodeOptions</span><span class="p">());</span>
-<span class="w">  </span><span class="n">offline_node</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rko_lio</span><span class="o">::</span><span class="n">ros</span><span class="o">::</span><span class="n">OfflineNode</span><span class="p">(</span><span class="n">rclcpp</span><span class="o">::</span><span class="n">NodeOptions</span><span class="p">());</span>
+<span class="w">  </span><span class="n">node</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
 <span class="w">  </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">shutdown</span><span class="p">();</span>
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -253,7 +251,7 @@
           <a href="file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_offline_node.cpp.html" title="Previous document">File offline_node.cpp</a>
         </li>
         <li>
-          <a href="file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_online_node.cpp.html" title="Next document">File online_node.cpp</a>
+          <a href="file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_online_imu_rate_node.cpp.html" title="Next document">File online_imu_rate_node.cpp</a>
           &rarr;
         </li>
     </ul>

@@ -12,7 +12,7 @@ Inheritance Relationships
 Base Type
 *********
 
-- ``public rko_lio::ros::Node`` (:ref:`exhale_class_classrko__lio_1_1ros_1_1Node`)
+- ``public rko_lio::ros::ThreadedNode`` (:ref:`exhale_class_classrko__lio_1_1ros_1_1ThreadedNode`)
 
 
 Class Documentation

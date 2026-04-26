@@ -26,8 +26,19 @@ Classes
 
 - :ref:`exhale_struct_structrko__lio_1_1ros_1_1LidarFrame`
 
-- :ref:`exhale_class_classrko__lio_1_1ros_1_1Node`
+- :ref:`exhale_class_classrko__lio_1_1ros_1_1BaseNode`
 
 - :ref:`exhale_class_classrko__lio_1_1ros_1_1OfflineNode`
 
+- :ref:`exhale_class_classrko__lio_1_1ros_1_1OnlineImuRateNode`
+
 - :ref:`exhale_class_classrko__lio_1_1ros_1_1OnlineNode`
+
+- :ref:`exhale_class_classrko__lio_1_1ros_1_1ThreadedNode`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_base__node_8cpp_1afae6f65417b908b3b2a34c5a6261c7d1`

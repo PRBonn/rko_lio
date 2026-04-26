@@ -24,6 +24,10 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>rko_lio::ros::BaseNode</name>
+    <filename>classrko__lio_1_1ros_1_1BaseNode.html</filename>
+  </compound>
+  <compound kind="class">
     <name>rko_lio::ros::utils::BufferableBag</name>
     <filename>classrko__lio_1_1ros_1_1utils_1_1BufferableBag.html</filename>
     <class kind="struct">rko_lio::ros::utils::BufferableBag::TFBridge</class>
@@ -288,33 +292,27 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>Sophus::SO3d</type>
-      <name>imu_local_rotation</name>
+      <type>State</type>
+      <name>imu_state</name>
       <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
-      <anchor>a92ed5e0e19360ccf344af97d6d85b19d</anchor>
+      <anchor>a582d6fd74013b8c85784326bc45fb7c0</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable">
-      <type>Secondsd</type>
-      <name>imu_local_rotation_time</name>
-      <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
-      <anchor>a0730b976dcec884d5fb0744070621003</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>rko_lio::ros::Node</name>
-    <filename>classrko__lio_1_1ros_1_1Node.html</filename>
   </compound>
   <compound kind="class">
     <name>rko_lio::ros::OfflineNode</name>
     <filename>classrko__lio_1_1ros_1_1OfflineNode.html</filename>
-    <base>rko_lio::ros::Node</base>
+    <base>rko_lio::ros::ThreadedNode</base>
+  </compound>
+  <compound kind="class">
+    <name>rko_lio::ros::OnlineImuRateNode</name>
+    <filename>classrko__lio_1_1ros_1_1OnlineImuRateNode.html</filename>
+    <base>rko_lio::ros::BaseNode</base>
   </compound>
   <compound kind="class">
     <name>rko_lio::ros::OnlineNode</name>
     <filename>classrko__lio_1_1ros_1_1OnlineNode.html</filename>
-    <base>rko_lio::ros::Node</base>
+    <base>rko_lio::ros::ThreadedNode</base>
   </compound>
   <compound kind="struct">
     <name>rko_lio::core::PreprocessingResult</name>
@@ -356,6 +354,11 @@
   <compound kind="struct">
     <name>rko_lio::ros::utils::BufferableBag::TFBridge</name>
     <filename>structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>rko_lio::ros::ThreadedNode</name>
+    <filename>classrko__lio_1_1ros_1_1ThreadedNode.html</filename>
+    <base>rko_lio::ros::BaseNode</base>
   </compound>
   <compound kind="struct">
     <name>rko_lio::core::Timer</name>

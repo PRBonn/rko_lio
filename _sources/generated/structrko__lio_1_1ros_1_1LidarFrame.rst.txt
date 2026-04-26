@@ -3,7 +3,7 @@
 Struct LidarFrame
 =================
 
-- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_node.hpp`
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_threaded_node.hpp`
 
 
 Struct Documentation

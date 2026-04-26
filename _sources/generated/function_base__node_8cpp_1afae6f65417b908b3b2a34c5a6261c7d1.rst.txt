@@ -1,0 +1,14 @@
+.. _exhale_function_base__node_8cpp_1afae6f65417b908b3b2a34c5a6261c7d1:
+
+Function rko_lio::ros::imu_msg_to_imu_data
+==========================================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_base_node.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: rko_lio::ros::imu_msg_to_imu_data(const sensor_msgs::msg::Imu&)
+   :project: rko_lio Doxygen Project

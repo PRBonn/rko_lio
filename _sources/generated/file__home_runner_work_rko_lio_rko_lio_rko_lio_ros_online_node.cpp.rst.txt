@@ -30,11 +30,11 @@ Includes
 --------
 
 
-- ``node.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_node.hpp`)
-
 - ``rclcpp_components/register_node_macro.hpp``
 
 - ``rko_lio/core/profiler.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_profiler.hpp`)
+
+- ``threaded_node.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_threaded_node.hpp`)
 
 
 

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Class ThreadedNode &#8212; RKO-LIO: Lidar-inertial odometry without sensor-specific modeling</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=f6a572b4" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=56c4699f" />
+    <script src="../_static/documentation_options.js?v=938c9ccc"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class BufferableBag" href="classrko__lio_1_1ros_1_1utils_1_1BufferableBag.html" />
+    <link rel="prev" title="Class OnlineNode" href="classrko__lio_1_1ros_1_1OnlineNode.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">RKO-LIO</a></h1>
+
+
+
+<p class="blurb">Lidar-inertial odometry</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=PRBonn&repo=rko_lio&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/primer.html">Primer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/data.html">Data</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pages/ros/ros.html">ROS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../pages/ros/setup.html">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/ros/usage.html">Usage</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../__PACKAGE.html">ROS package.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/changelog_literal.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/python/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/config.html">Configuring rko_lio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/uncategorised/index.html">Uncategorised</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://index.ros.org/p/rko_lio/">ROS Index</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/rko-lio/">PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://github.com/PRBonn/rko_lio">GitHub</a></li>
+    
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="class-threadednode">
+<span id="exhale-class-classrko-lio-1-1ros-1-1threadednode"></span><h1>Class ThreadedNode<a class="headerlink" href="#class-threadednode" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_threaded_node.hpp.html#file-home-runner-work-rko-lio-rko-lio-rko-lio-ros-threaded-node-hpp"><span class="std std-ref">File threaded_node.hpp</span></a></p></li>
+</ul>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Link to this heading">¶</a></h2>
+<section id="base-type">
+<h3>Base Type<a class="headerlink" href="#base-type" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">rko_lio::ros::BaseNode</span></code> (<a class="reference internal" href="classrko__lio_1_1ros_1_1BaseNode.html#exhale-class-classrko-lio-1-1ros-1-1basenode"><span class="std std-ref">Class BaseNode</span></a>)</p></li>
+</ul>
+</section>
+<section id="derived-types">
+<h3>Derived Types<a class="headerlink" href="#derived-types" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">rko_lio::ros::OfflineNode</span></code> (<a class="reference internal" href="classrko__lio_1_1ros_1_1OfflineNode.html#exhale-class-classrko-lio-1-1ros-1-1offlinenode"><span class="std std-ref">Class OfflineNode</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">rko_lio::ros::OnlineNode</span></code> (<a class="reference internal" href="classrko__lio_1_1ros_1_1OnlineNode.html#exhale-class-classrko-lio-1-1ros-1-1onlinenode"><span class="std std-ref">Class OnlineNode</span></a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading">¶</a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros12ThreadedNodeE">
+<span id="_CPPv3N7rko_lio3ros12ThreadedNodeE"></span><span id="_CPPv2N7rko_lio3ros12ThreadedNodeE"></span><span id="rko_lio::ros::ThreadedNode"></span><span class="target" id="classrko__lio_1_1ros_1_1ThreadedNode"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ThreadedNode</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">rko_lio</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ros</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classrko__lio_1_1ros_1_1BaseNode.html#_CPPv4N7rko_lio3ros8BaseNodeE" title="rko_lio::ros::BaseNode"><span class="n"><span class="pre">BaseNode</span></span></a><a class="headerlink" href="#_CPPv4N7rko_lio3ros12ThreadedNodeE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Subclassed by <a class="reference internal" href="classrko__lio_1_1ros_1_1OfflineNode.html#classrko__lio_1_1ros_1_1OfflineNode"><span class="std std-ref">rko_lio::ros::OfflineNode</span></a>, <a class="reference internal" href="classrko__lio_1_1ros_1_1OnlineNode.html#classrko__lio_1_1ros_1_1OnlineNode"><span class="std std-ref">rko_lio::ros::OnlineNode</span></a></p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros12ThreadedNode12ThreadedNodeEv">
+<span id="_CPPv3N7rko_lio3ros12ThreadedNode12ThreadedNodeEv"></span><span id="_CPPv2N7rko_lio3ros12ThreadedNode12ThreadedNodeEv"></span><span id="rko_lio::ros::ThreadedNode::ThreadedNode"></span><span class="target" id="classrko__lio_1_1ros_1_1ThreadedNode_1ac36e66329da614bd0d6e3d2124980659"></span><span class="sig-name descname"><span class="n"><span class="pre">ThreadedNode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros12ThreadedNode12ThreadedNodeEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros12ThreadedNode12ThreadedNodeERKNSt6stringERKN6rclcpp11NodeOptionsE">
+<span id="_CPPv3N7rko_lio3ros12ThreadedNode12ThreadedNodeERKNSt6stringERKN6rclcpp11NodeOptionsE"></span><span id="_CPPv2N7rko_lio3ros12ThreadedNode12ThreadedNodeERKNSt6stringERKN6rclcpp11NodeOptionsE"></span><span id="rko_lio::ros::ThreadedNode::ThreadedNode__ssCR.rclcpp::NodeOptionsCR"></span><span class="target" id="classrko__lio_1_1ros_1_1ThreadedNode_1a63a9d24643fa02f0136de7f92df5fbbb"></span><span class="sig-name descname"><span class="n"><span class="pre">ThreadedNode</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">node_name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeOptions</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">options</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio3ros12ThreadedNode12ThreadedNodeERKNSt6stringERKN6rclcpp11NodeOptionsE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros12ThreadedNode12imu_callbackERKN11sensor_msgs3msg3Imu14ConstSharedPtrE">
+<span id="_CPPv3N7rko_lio3ros12ThreadedNode12imu_callbackERKN11sensor_msgs3msg3Imu14ConstSharedPtrE"></span><span id="_CPPv2N7rko_lio3ros12ThreadedNode12imu_callbackERKN11sensor_msgs3msg3Imu14ConstSharedPtrE"></span><span id="rko_lio::ros::ThreadedNode::imu_callback__sensor_msgs::msg::Imu::ConstSharedPtrCR"></span><span class="target" id="classrko__lio_1_1ros_1_1ThreadedNode_1afc2d3357db29442fe8df2b31d6fdd7d4"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">imu_callback</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Imu</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstSharedPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">imu_msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio3ros12ThreadedNode12imu_callbackERKN11sensor_msgs3msg3Imu14ConstSharedPtrE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros12ThreadedNode14lidar_callbackERKN11sensor_msgs3msg11PointCloud214ConstSharedPtrE">
+<span id="_CPPv3N7rko_lio3ros12ThreadedNode14lidar_callbackERKN11sensor_msgs3msg11PointCloud214ConstSharedPtrE"></span><span id="_CPPv2N7rko_lio3ros12ThreadedNode14lidar_callbackERKN11sensor_msgs3msg11PointCloud214ConstSharedPtrE"></span><span id="rko_lio::ros::ThreadedNode::lidar_callback__sensor_msgs::msg::PointCloud2::ConstSharedPtrCR"></span><span class="target" id="classrko__lio_1_1ros_1_1ThreadedNode_1a3331c991c7fc9efacfdc6d92eb343d3f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lidar_callback</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PointCloud2</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstSharedPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">lidar_msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio3ros12ThreadedNode14lidar_callbackERKN11sensor_msgs3msg11PointCloud214ConstSharedPtrE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros12ThreadedNode17registration_loopEv">
+<span id="_CPPv3N7rko_lio3ros12ThreadedNode17registration_loopEv"></span><span id="_CPPv2N7rko_lio3ros12ThreadedNode17registration_loopEv"></span><span id="rko_lio::ros::ThreadedNode::registration_loop"></span><span class="target" id="classrko__lio_1_1ros_1_1ThreadedNode_1acd61b2f9ae6de55e915313d3962c0279"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">registration_loop</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio3ros12ThreadedNode17registration_loopEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros12ThreadedNodeD0Ev">
+<span id="_CPPv3N7rko_lio3ros12ThreadedNodeD0Ev"></span><span id="_CPPv2N7rko_lio3ros12ThreadedNodeD0Ev"></span><span id="rko_lio::ros::ThreadedNode::~ThreadedNode"></span><span class="target" id="classrko__lio_1_1ros_1_1ThreadedNode_1a0713110ddc71f5ce45fd8f0f2f3703db"></span><span class="sig-name descname"><span class="n"><span class="pre">~ThreadedNode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio3ros12ThreadedNodeD0Ev" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros12ThreadedNode12ThreadedNodeERK12ThreadedNode">
+<span id="_CPPv3N7rko_lio3ros12ThreadedNode12ThreadedNodeERK12ThreadedNode"></span><span id="_CPPv2N7rko_lio3ros12ThreadedNode12ThreadedNodeERK12ThreadedNode"></span><span id="rko_lio::ros::ThreadedNode::ThreadedNode__ThreadedNodeCR"></span><span class="target" id="classrko__lio_1_1ros_1_1ThreadedNode_1ac947ed258a941261b514f245fbdeb23c"></span><span class="sig-name descname"><span class="n"><span class="pre">ThreadedNode</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7rko_lio3ros12ThreadedNode12ThreadedNodeERK12ThreadedNode" title="rko_lio::ros::ThreadedNode::ThreadedNode"><span class="n"><span class="pre">ThreadedNode</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros12ThreadedNode12ThreadedNodeERK12ThreadedNode" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros12ThreadedNode12ThreadedNodeERR12ThreadedNode">
+<span id="_CPPv3N7rko_lio3ros12ThreadedNode12ThreadedNodeERR12ThreadedNode"></span><span id="_CPPv2N7rko_lio3ros12ThreadedNode12ThreadedNodeERR12ThreadedNode"></span><span id="rko_lio::ros::ThreadedNode::ThreadedNode__ThreadedNodeRR"></span><span class="target" id="classrko__lio_1_1ros_1_1ThreadedNode_1a1a15faab364650b5cd0b2b7c465f6347"></span><span class="sig-name descname"><span class="n"><span class="pre">ThreadedNode</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N7rko_lio3ros12ThreadedNode12ThreadedNodeERR12ThreadedNode" title="rko_lio::ros::ThreadedNode::ThreadedNode"><span class="n"><span class="pre">ThreadedNode</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros12ThreadedNode12ThreadedNodeERR12ThreadedNode" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros12ThreadedNodeaSERK12ThreadedNode">
+<span id="_CPPv3N7rko_lio3ros12ThreadedNodeaSERK12ThreadedNode"></span><span id="_CPPv2N7rko_lio3ros12ThreadedNodeaSERK12ThreadedNode"></span><span id="rko_lio::ros::ThreadedNode::assign-operator__ThreadedNodeCR"></span><span class="target" id="classrko__lio_1_1ros_1_1ThreadedNode_1a0c604f7871cf2983e8b2a503b9ce6f19"></span><a class="reference internal" href="#_CPPv4N7rko_lio3ros12ThreadedNodeE" title="rko_lio::ros::ThreadedNode"><span class="n"><span class="pre">ThreadedNode</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7rko_lio3ros12ThreadedNodeE" title="rko_lio::ros::ThreadedNode"><span class="n"><span class="pre">ThreadedNode</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros12ThreadedNodeaSERK12ThreadedNode" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros12ThreadedNodeaSERR12ThreadedNode">
+<span id="_CPPv3N7rko_lio3ros12ThreadedNodeaSERR12ThreadedNode"></span><span id="_CPPv2N7rko_lio3ros12ThreadedNodeaSERR12ThreadedNode"></span><span id="rko_lio::ros::ThreadedNode::assign-operator__ThreadedNodeRR"></span><span class="target" id="classrko__lio_1_1ros_1_1ThreadedNode_1a0f32218c3a721e3c0b7e200ac75112ed"></span><a class="reference internal" href="#_CPPv4N7rko_lio3ros12ThreadedNodeE" title="rko_lio::ros::ThreadedNode"><span class="n"><span class="pre">ThreadedNode</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N7rko_lio3ros12ThreadedNodeE" title="rko_lio::ros::ThreadedNode"><span class="n"><span class="pre">ThreadedNode</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros12ThreadedNodeaSERR12ThreadedNode" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros12ThreadedNode19registration_threadE">
+<span id="_CPPv3N7rko_lio3ros12ThreadedNode19registration_threadE"></span><span id="_CPPv2N7rko_lio3ros12ThreadedNode19registration_threadE"></span><span id="rko_lio::ros::ThreadedNode::registration_thread__std::jthread"></span><span class="target" id="classrko__lio_1_1ros_1_1ThreadedNode_1a512b61e767463397837452326c17148b"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">jthread</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">registration_thread</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros12ThreadedNode19registration_threadE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros12ThreadedNode12buffer_mutexE">
+<span id="_CPPv3N7rko_lio3ros12ThreadedNode12buffer_mutexE"></span><span id="_CPPv2N7rko_lio3ros12ThreadedNode12buffer_mutexE"></span><span id="rko_lio::ros::ThreadedNode::buffer_mutex__std::mutex"></span><span class="target" id="classrko__lio_1_1ros_1_1ThreadedNode_1adf509dda81461d07b6b4c5ced261e6f8"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mutex</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">buffer_mutex</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros12ThreadedNode12buffer_mutexE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros12ThreadedNode23sync_condition_variableE">
+<span id="_CPPv3N7rko_lio3ros12ThreadedNode23sync_condition_variableE"></span><span id="_CPPv2N7rko_lio3ros12ThreadedNode23sync_condition_variableE"></span><span id="rko_lio::ros::ThreadedNode::sync_condition_variable__std::condition_variable"></span><span class="target" id="classrko__lio_1_1ros_1_1ThreadedNode_1a49a44ab8e76da2f0e3c2bfcaf3d30f43"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">condition_variable</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sync_condition_variable</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros12ThreadedNode23sync_condition_variableE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros12ThreadedNode18atomic_can_processE">
+<span id="_CPPv3N7rko_lio3ros12ThreadedNode18atomic_can_processE"></span><span id="_CPPv2N7rko_lio3ros12ThreadedNode18atomic_can_processE"></span><span id="rko_lio::ros::ThreadedNode::atomic_can_process__std::atomic:b:"></span><span class="target" id="classrko__lio_1_1ros_1_1ThreadedNode_1aa7d03cd98d1ec527ba1c880124b31f2a"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">atomic</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">bool</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">atomic_can_process</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros12ThreadedNode18atomic_can_processE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros12ThreadedNode10imu_bufferE">
+<span id="_CPPv3N7rko_lio3ros12ThreadedNode10imu_bufferE"></span><span id="_CPPv2N7rko_lio3ros12ThreadedNode10imu_bufferE"></span><span id="rko_lio::ros::ThreadedNode::imu_buffer__std::queue:core::ImuControl:"></span><span class="target" id="classrko__lio_1_1ros_1_1ThreadedNode_1a09d516903f9d9f37ffe29911bb64c1cf"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">queue</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">core</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structrko__lio_1_1core_1_1ImuControl.html#_CPPv4N7rko_lio4core10ImuControlE" title="rko_lio::core::ImuControl"><span class="n"><span class="pre">ImuControl</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">imu_buffer</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros12ThreadedNode10imu_bufferE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros12ThreadedNode12lidar_bufferE">
+<span id="_CPPv3N7rko_lio3ros12ThreadedNode12lidar_bufferE"></span><span id="_CPPv2N7rko_lio3ros12ThreadedNode12lidar_bufferE"></span><span id="rko_lio::ros::ThreadedNode::lidar_buffer__std::queue:LidarFrame:"></span><span class="target" id="classrko__lio_1_1ros_1_1ThreadedNode_1a99f21db49c0fa4e87c51e014555558c7"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">queue</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structrko__lio_1_1ros_1_1LidarFrame.html#_CPPv4N7rko_lio3ros10LidarFrameE" title="rko_lio::ros::LidarFrame"><span class="n"><span class="pre">LidarFrame</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lidar_buffer</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros12ThreadedNode12lidar_bufferE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros12ThreadedNode21max_lidar_buffer_sizeE">
+<span id="_CPPv3N7rko_lio3ros12ThreadedNode21max_lidar_buffer_sizeE"></span><span id="_CPPv2N7rko_lio3ros12ThreadedNode21max_lidar_buffer_sizeE"></span><span id="rko_lio::ros::ThreadedNode::max_lidar_buffer_size__s"></span><span class="target" id="classrko__lio_1_1ros_1_1ThreadedNode_1a92613c234c6aed7ecba316bb4fd70650"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">max_lidar_buffer_size</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">50</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros12ThreadedNode21max_lidar_buffer_sizeE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="classrko__lio_1_1ros_1_1OnlineNode.html" title="Previous document">Class OnlineNode</a>
+        </li>
+        <li>
+          <a href="classrko__lio_1_1ros_1_1utils_1_1BufferableBag.html" title="Next document">Class BufferableBag</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &#169;2026 Meher Malladi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/generated/classrko__lio_1_1ros_1_1ThreadedNode.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

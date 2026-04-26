@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Class BaseNode &#8212; RKO-LIO: Lidar-inertial odometry without sensor-specific modeling</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=f6a572b4" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=56c4699f" />
+    <script src="../_static/documentation_options.js?v=938c9ccc"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class OfflineNode" href="classrko__lio_1_1ros_1_1OfflineNode.html" />
+    <link rel="prev" title="Class ScopedProfiler::ProfilingInfoMap" href="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">RKO-LIO</a></h1>
+
+
+
+<p class="blurb">Lidar-inertial odometry</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=PRBonn&repo=rko_lio&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/primer.html">Primer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/data.html">Data</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pages/ros/ros.html">ROS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../pages/ros/setup.html">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/ros/usage.html">Usage</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">C++ API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../__PACKAGE.html">ROS package.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/changelog_literal.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/python/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/config.html">Configuring rko_lio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/uncategorised/index.html">Uncategorised</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://index.ros.org/p/rko_lio/">ROS Index</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/rko-lio/">PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://github.com/PRBonn/rko_lio">GitHub</a></li>
+    
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="class-basenode">
+<span id="exhale-class-classrko-lio-1-1ros-1-1basenode"></span><h1>Class BaseNode<a class="headerlink" href="#class-basenode" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_base_node.hpp.html#file-home-runner-work-rko-lio-rko-lio-rko-lio-ros-base-node-hpp"><span class="std std-ref">File base_node.hpp</span></a></p></li>
+</ul>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Link to this heading">¶</a></h2>
+<section id="derived-types">
+<h3>Derived Types<a class="headerlink" href="#derived-types" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">rko_lio::ros::OnlineImuRateNode</span></code> (<a class="reference internal" href="classrko__lio_1_1ros_1_1OnlineImuRateNode.html#exhale-class-classrko-lio-1-1ros-1-1onlineimuratenode"><span class="std std-ref">Class OnlineImuRateNode</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">rko_lio::ros::ThreadedNode</span></code> (<a class="reference internal" href="classrko__lio_1_1ros_1_1ThreadedNode.html#exhale-class-classrko-lio-1-1ros-1-1threadednode"><span class="std std-ref">Class ThreadedNode</span></a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading">¶</a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNodeE">
+<span id="_CPPv3N7rko_lio3ros8BaseNodeE"></span><span id="_CPPv2N7rko_lio3ros8BaseNodeE"></span><span id="rko_lio::ros::BaseNode"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BaseNode</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNodeE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Subclassed by <a class="reference internal" href="classrko__lio_1_1ros_1_1OnlineImuRateNode.html#classrko__lio_1_1ros_1_1OnlineImuRateNode"><span class="std std-ref">rko_lio::ros::OnlineImuRateNode</span></a>, <a class="reference internal" href="classrko__lio_1_1ros_1_1ThreadedNode.html#classrko__lio_1_1ros_1_1ThreadedNode"><span class="std std-ref">rko_lio::ros::ThreadedNode</span></a></p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode8BaseNodeEv">
+<span id="_CPPv3N7rko_lio3ros8BaseNode8BaseNodeEv"></span><span id="_CPPv2N7rko_lio3ros8BaseNode8BaseNodeEv"></span><span id="rko_lio::ros::BaseNode::BaseNode"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1aff39f656667853f6bd7b46c26be0eeab"></span><span class="sig-name descname"><span class="n"><span class="pre">BaseNode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode8BaseNodeEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode8BaseNodeERKNSt6stringERKN6rclcpp11NodeOptionsE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode8BaseNodeERKNSt6stringERKN6rclcpp11NodeOptionsE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode8BaseNodeERKNSt6stringERKN6rclcpp11NodeOptionsE"></span><span id="rko_lio::ros::BaseNode::BaseNode__ssCR.rclcpp::NodeOptionsCR"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1ad3fac1c1fc245199be7e5c8cb9b264f9"></span><span class="sig-name descname"><span class="n"><span class="pre">BaseNode</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">node_name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeOptions</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">options</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode8BaseNodeERKNSt6stringERKN6rclcpp11NodeOptionsE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode20parse_cli_extrinsicsEv">
+<span id="_CPPv3N7rko_lio3ros8BaseNode20parse_cli_extrinsicsEv"></span><span id="_CPPv2N7rko_lio3ros8BaseNode20parse_cli_extrinsicsEv"></span><span id="rko_lio::ros::BaseNode::parse_cli_extrinsics"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a30875a75d450b8900c08ee0dbe11e62c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">parse_cli_extrinsics</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode20parse_cli_extrinsicsEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode24check_and_set_extrinsicsEv">
+<span id="_CPPv3N7rko_lio3ros8BaseNode24check_and_set_extrinsicsEv"></span><span id="_CPPv2N7rko_lio3ros8BaseNode24check_and_set_extrinsicsEv"></span><span id="rko_lio::ros::BaseNode::check_and_set_extrinsics"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a9adaaf7d3c7d0d969066754e162d38b3"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">check_and_set_extrinsics</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode24check_and_set_extrinsicsEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7rko_lio3ros8BaseNode17process_lidar_msgERKN11sensor_msgs3msg11PointCloud214ConstSharedPtrE">
+<span id="_CPPv3NK7rko_lio3ros8BaseNode17process_lidar_msgERKN11sensor_msgs3msg11PointCloud214ConstSharedPtrE"></span><span id="_CPPv2NK7rko_lio3ros8BaseNode17process_lidar_msgERKN11sensor_msgs3msg11PointCloud214ConstSharedPtrE"></span><span id="rko_lio::ros::BaseNode::process_lidar_msg__sensor_msgs::msg::PointCloud2::ConstSharedPtrCRC"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a23f047faed8a97a78fbbed340032317e"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">tuple</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">core</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structrko__lio_1_1core_1_1Timestamps.html#_CPPv4N7rko_lio4core10TimestampsE" title="rko_lio::core::Timestamps"><span class="n"><span class="pre">Timestamps</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">core</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1a5cc9dbe312768171d6734783de18f64c.html#_CPPv4N7rko_lio4core14Vector3dVectorE" title="rko_lio::core::Vector3dVector"><span class="n"><span class="pre">Vector3dVector</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">process_lidar_msg</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PointCloud2</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstSharedPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">lidar_msg</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7rko_lio3ros8BaseNode17process_lidar_msgERKN11sensor_msgs3msg11PointCloud214ConstSharedPtrE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode20register_scan_lockedERKN4core14Vector3dVectorERKN4core15TimestampVectorE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode20register_scan_lockedERKN4core14Vector3dVectorERKN4core15TimestampVectorE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode20register_scan_lockedERKN4core14Vector3dVectorERKN4core15TimestampVectorE"></span><span id="rko_lio::ros::BaseNode::register_scan_locked__core::Vector3dVectorCR.core::TimestampVectorCR"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1ab0d80b23d66dc9d5b4f7dc7f89e05d5f"></span><span class="n"><span class="pre">core</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1a5cc9dbe312768171d6734783de18f64c.html#_CPPv4N7rko_lio4core14Vector3dVectorE" title="rko_lio::core::Vector3dVector"><span class="n"><span class="pre">Vector3dVector</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">register_scan_locked</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">core</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1a5cc9dbe312768171d6734783de18f64c.html#_CPPv4N7rko_lio4core14Vector3dVectorE" title="rko_lio::core::Vector3dVector"><span class="n"><span class="pre">Vector3dVector</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">scan</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">core</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1a50d343fe8fc3d44fdf883bc4a77b1ccf.html#_CPPv4N7rko_lio4core15TimestampVectorE" title="rko_lio::core::TimestampVector"><span class="n"><span class="pre">TimestampVector</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">time_vector</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode20register_scan_lockedERKN4core14Vector3dVectorERKN4core15TimestampVectorE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7rko_lio3ros8BaseNode21publish_lidar_outputsERKN4core14Vector3dVectorERKN4core8SecondsdE">
+<span id="_CPPv3NK7rko_lio3ros8BaseNode21publish_lidar_outputsERKN4core14Vector3dVectorERKN4core8SecondsdE"></span><span id="_CPPv2NK7rko_lio3ros8BaseNode21publish_lidar_outputsERKN4core14Vector3dVectorERKN4core8SecondsdE"></span><span id="rko_lio::ros::BaseNode::publish_lidar_outputs__core::Vector3dVectorCR.core::SecondsdCRC"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a82dbc521bbf284342b7466eb172170e9"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">publish_lidar_outputs</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">core</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1a5cc9dbe312768171d6734783de18f64c.html#_CPPv4N7rko_lio4core14Vector3dVectorE" title="rko_lio::core::Vector3dVector"><span class="n"><span class="pre">Vector3dVector</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">deskewed_frame</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">core</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1aeb6128bc63af6919453e303e7eb5613d.html#_CPPv4N7rko_lio4core8SecondsdE" title="rko_lio::core::Secondsd"><span class="n"><span class="pre">Secondsd</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">stamp</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7rko_lio3ros8BaseNode21publish_lidar_outputsERKN4core14Vector3dVectorERKN4core8SecondsdE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7rko_lio3ros8BaseNode16publish_odometryERKN4core5StateERKN4core8SecondsdE">
+<span id="_CPPv3NK7rko_lio3ros8BaseNode16publish_odometryERKN4core5StateERKN4core8SecondsdE"></span><span id="_CPPv2NK7rko_lio3ros8BaseNode16publish_odometryERKN4core5StateERKN4core8SecondsdE"></span><span id="rko_lio::ros::BaseNode::publish_odometry__core::StateCR.core::SecondsdCRC"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a7095bb4b30016aa0eab6cc4800a7f3c5"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">publish_odometry</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">core</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structrko__lio_1_1core_1_1State.html#_CPPv4N7rko_lio4core5StateE" title="rko_lio::core::State"><span class="n"><span class="pre">State</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">state</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">core</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1aeb6128bc63af6919453e303e7eb5613d.html#_CPPv4N7rko_lio4core8SecondsdE" title="rko_lio::core::Secondsd"><span class="n"><span class="pre">Secondsd</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">stamp</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7rko_lio3ros8BaseNode16publish_odometryERKN4core5StateERKN4core8SecondsdE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7rko_lio3ros8BaseNode10publish_tfERKN6Sophus4SE3dERKN4core8SecondsdE">
+<span id="_CPPv3NK7rko_lio3ros8BaseNode10publish_tfERKN6Sophus4SE3dERKN4core8SecondsdE"></span><span id="_CPPv2NK7rko_lio3ros8BaseNode10publish_tfERKN6Sophus4SE3dERKN4core8SecondsdE"></span><span id="rko_lio::ros::BaseNode::publish_tf__Sophus::SE3dCR.core::SecondsdCRC"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a3651792dc0646bfeea16803e1f92185b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">publish_tf</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Sophus</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SE3d</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">pose</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">core</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1aeb6128bc63af6919453e303e7eb5613d.html#_CPPv4N7rko_lio4core8SecondsdE" title="rko_lio::core::Secondsd"><span class="n"><span class="pre">Secondsd</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">stamp</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7rko_lio3ros8BaseNode10publish_tfERKN6Sophus4SE3dERKN4core8SecondsdE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7rko_lio3ros8BaseNode19publish_lidar_accelERKN5Eigen8Vector3dERKN4core8SecondsdE">
+<span id="_CPPv3NK7rko_lio3ros8BaseNode19publish_lidar_accelERKN5Eigen8Vector3dERKN4core8SecondsdE"></span><span id="_CPPv2NK7rko_lio3ros8BaseNode19publish_lidar_accelERKN5Eigen8Vector3dERKN4core8SecondsdE"></span><span id="rko_lio::ros::BaseNode::publish_lidar_accel__Eigen::Vector3dCR.core::SecondsdCRC"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1ae44c1322a67ab3a85327ad678863cac4"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">publish_lidar_accel</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector3d</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">acceleration</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">core</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1aeb6128bc63af6919453e303e7eb5613d.html#_CPPv4N7rko_lio4core8SecondsdE" title="rko_lio::core::Secondsd"><span class="n"><span class="pre">Secondsd</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">stamp</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7rko_lio3ros8BaseNode19publish_lidar_accelERKN5Eigen8Vector3dERKN4core8SecondsdE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode16publish_map_loopEv">
+<span id="_CPPv3N7rko_lio3ros8BaseNode16publish_map_loopEv"></span><span id="_CPPv2N7rko_lio3ros8BaseNode16publish_map_loopEv"></span><span id="rko_lio::ros::BaseNode::publish_map_loop"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1acdc4ef902102131dbbb350afea921b17"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">publish_map_loop</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode16publish_map_loopEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7rko_lio3ros8BaseNode20dump_results_to_diskERKNSt10filesystem4pathERKNSt6stringE">
+<span id="_CPPv3NK7rko_lio3ros8BaseNode20dump_results_to_diskERKNSt10filesystem4pathERKNSt6stringE"></span><span id="_CPPv2NK7rko_lio3ros8BaseNode20dump_results_to_diskERKNSt10filesystem4pathERKNSt6stringE"></span><span id="rko_lio::ros::BaseNode::dump_results_to_disk__std::filesystem::pathCR.ssCRC"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a48110c62e37b6784f72849ab1e5d3b1a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dump_results_to_disk</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">filesystem</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">path</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">results_dir</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">run_name</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7rko_lio3ros8BaseNode20dump_results_to_diskERKNSt10filesystem4pathERKNSt6stringE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNodeD0Ev">
+<span id="_CPPv3N7rko_lio3ros8BaseNodeD0Ev"></span><span id="_CPPv2N7rko_lio3ros8BaseNodeD0Ev"></span><span id="rko_lio::ros::BaseNode::~BaseNode"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1aaa03e3f3624f707e83921ceef9487baf"></span><span class="sig-name descname"><span class="n"><span class="pre">~BaseNode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNodeD0Ev" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode8BaseNodeERK8BaseNode">
+<span id="_CPPv3N7rko_lio3ros8BaseNode8BaseNodeERK8BaseNode"></span><span id="_CPPv2N7rko_lio3ros8BaseNode8BaseNodeERK8BaseNode"></span><span id="rko_lio::ros::BaseNode::BaseNode__BaseNodeCR"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a97828ac5e49b5ca71e24942d8f1b2558"></span><span class="sig-name descname"><span class="n"><span class="pre">BaseNode</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7rko_lio3ros8BaseNode8BaseNodeERK8BaseNode" title="rko_lio::ros::BaseNode::BaseNode"><span class="n"><span class="pre">BaseNode</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode8BaseNodeERK8BaseNode" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode8BaseNodeERR8BaseNode">
+<span id="_CPPv3N7rko_lio3ros8BaseNode8BaseNodeERR8BaseNode"></span><span id="_CPPv2N7rko_lio3ros8BaseNode8BaseNodeERR8BaseNode"></span><span id="rko_lio::ros::BaseNode::BaseNode__BaseNodeRR"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a0980b22806ae53111cf4ea96cf76d386"></span><span class="sig-name descname"><span class="n"><span class="pre">BaseNode</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N7rko_lio3ros8BaseNode8BaseNodeERR8BaseNode" title="rko_lio::ros::BaseNode::BaseNode"><span class="n"><span class="pre">BaseNode</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode8BaseNodeERR8BaseNode" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNodeaSERK8BaseNode">
+<span id="_CPPv3N7rko_lio3ros8BaseNodeaSERK8BaseNode"></span><span id="_CPPv2N7rko_lio3ros8BaseNodeaSERK8BaseNode"></span><span id="rko_lio::ros::BaseNode::assign-operator__BaseNodeCR"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1afc7aeb8eeeb14ef35e535ce74193db6f"></span><a class="reference internal" href="#_CPPv4N7rko_lio3ros8BaseNodeE" title="rko_lio::ros::BaseNode"><span class="n"><span class="pre">BaseNode</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7rko_lio3ros8BaseNodeE" title="rko_lio::ros::BaseNode"><span class="n"><span class="pre">BaseNode</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNodeaSERK8BaseNode" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNodeaSERR8BaseNode">
+<span id="_CPPv3N7rko_lio3ros8BaseNodeaSERR8BaseNode"></span><span id="_CPPv2N7rko_lio3ros8BaseNodeaSERR8BaseNode"></span><span id="rko_lio::ros::BaseNode::assign-operator__BaseNodeRR"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1ab7033afa34770e24f465bbe2a73444ca"></span><a class="reference internal" href="#_CPPv4N7rko_lio3ros8BaseNodeE" title="rko_lio::ros::BaseNode"><span class="n"><span class="pre">BaseNode</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N7rko_lio3ros8BaseNodeE" title="rko_lio::ros::BaseNode"><span class="n"><span class="pre">BaseNode</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNodeaSERR8BaseNode" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode4nodeE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode4nodeE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode4nodeE"></span><span id="rko_lio::ros::BaseNode::node__rclcpp::Node::SharedPtr"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a2ec7830c65011910f9dd7314a485bf5e"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Node</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">node</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode4nodeE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode3lioE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode3lioE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode3lioE"></span><span id="rko_lio::ros::BaseNode::lio__std::unique_ptr:core::LIO:"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a84e99e77440e1fab650a4358775f1a05"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unique_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">core</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classrko__lio_1_1core_1_1LIO.html#_CPPv4N7rko_lio4core3LIOE" title="rko_lio::core::LIO"><span class="n"><span class="pre">LIO</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lio</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode3lioE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode21timestamp_proc_configE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode21timestamp_proc_configE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode21timestamp_proc_configE"></span><span id="rko_lio::ros::BaseNode::timestamp_proc_config__core::TimestampProcessingConfig"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a3e6bd9beb864c2d80b789f76d0022447"></span><span class="n"><span class="pre">core</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structrko__lio_1_1core_1_1TimestampProcessingConfig.html#_CPPv4N7rko_lio4core25TimestampProcessingConfigE" title="rko_lio::core::TimestampProcessingConfig"><span class="n"><span class="pre">TimestampProcessingConfig</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timestamp_proc_config</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode21timestamp_proc_configE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode9imu_topicE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode9imu_topicE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode9imu_topicE"></span><span id="rko_lio::ros::BaseNode::imu_topic__ss"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a5fa18b17bd57a3db3e4679504fe32e2e"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">imu_topic</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode9imu_topicE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode9imu_frameE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode9imu_frameE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode9imu_frameE"></span><span id="rko_lio::ros::BaseNode::imu_frame__ss"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a1593d0b0267fc265d9a8cc78d435c29d"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">imu_frame</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;&quot;</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode9imu_frameE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode11lidar_topicE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode11lidar_topicE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode11lidar_topicE"></span><span id="rko_lio::ros::BaseNode::lidar_topic__ss"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a14b98efbded9dfa784e0aa795f785bbf"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lidar_topic</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode11lidar_topicE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode11lidar_frameE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode11lidar_frameE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode11lidar_frameE"></span><span id="rko_lio::ros::BaseNode::lidar_frame__ss"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a669856bc3970c7872c78a99d78f0bc87"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lidar_frame</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;&quot;</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode11lidar_frameE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode10base_frameE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode10base_frameE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode10base_frameE"></span><span id="rko_lio::ros::BaseNode::base_frame__ss"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1aacbece9df2087272d75480fa2137f419"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">base_frame</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode10base_frameE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode10odom_frameE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode10odom_frameE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode10odom_frameE"></span><span id="rko_lio::ros::BaseNode::odom_frame__ss"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a17feaf7d2d4590eca24d87280f77b21a"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">odom_frame</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;odom&quot;</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode10odom_frameE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode10odom_topicE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode10odom_topicE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode10odom_topicE"></span><span id="rko_lio::ros::BaseNode::odom_topic__ss"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1af065e60acdb927b346b2c9f3b68af504"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">odom_topic</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;rko_lio/odom&quot;</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode10odom_topicE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode9map_topicE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode9map_topicE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode9map_topicE"></span><span id="rko_lio::ros::BaseNode::map_topic__ss"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a8bc20a80d8d8efcda0d1106e2aa61f30"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">map_topic</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;rko_lio/local_map&quot;</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode9map_topicE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode19deskewed_scan_topicE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode19deskewed_scan_topicE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode19deskewed_scan_topicE"></span><span id="rko_lio::ros::BaseNode::deskewed_scan_topic__ss"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a8d2cfe9221c19ca3a53dd1498c0573af"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">deskewed_scan_topic</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;rko_lio/frame&quot;</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode19deskewed_scan_topicE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode12dump_resultsE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode12dump_resultsE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode12dump_resultsE"></span><span id="rko_lio::ros::BaseNode::dump_results__b"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1ab7a49a347fd805a7ce2ba91cb700671e"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dump_results</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode12dump_resultsE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode11results_dirE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode11results_dirE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode11results_dirE"></span><span id="rko_lio::ros::BaseNode::results_dir__ss"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1adf575671c2b74582e831e5d9a8fefe36"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">results_dir</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;results&quot;</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode11results_dirE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode8run_nameE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode8run_nameE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode8run_nameE"></span><span id="rko_lio::ros::BaseNode::run_name__ss"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1ac4aa545318868ed459b328398e5b39de"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">run_name</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;rko_lio_run&quot;</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode8run_nameE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode14invert_odom_tfE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode14invert_odom_tfE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode14invert_odom_tfE"></span><span id="rko_lio::ros::BaseNode::invert_odom_tf__b"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a032de1bdd5984d28cc6d6785b9fd89dc"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">invert_odom_tf</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode14invert_odom_tfE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode26publish_lidar_accelerationE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode26publish_lidar_accelerationE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode26publish_lidar_accelerationE"></span><span id="rko_lio::ros::BaseNode::publish_lidar_acceleration__b"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1abf4d6745652fb6e310dc507849cadaee"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">publish_lidar_acceleration</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode26publish_lidar_accelerationE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode21publish_deskewed_scanE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode21publish_deskewed_scanE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode21publish_deskewed_scanE"></span><span id="rko_lio::ros::BaseNode::publish_deskewed_scan__b"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1af1c6cb845774b666681e470b78dafcbc"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">publish_deskewed_scan</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode21publish_deskewed_scanE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode17publish_local_mapE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode17publish_local_mapE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode17publish_local_mapE"></span><span id="rko_lio::ros::BaseNode::publish_local_map__b"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a28f3994bca8ca065b3196725c000b44a"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">publish_local_map</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode17publish_local_mapE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode18extrinsic_imu2baseE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode18extrinsic_imu2baseE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode18extrinsic_imu2baseE"></span><span id="rko_lio::ros::BaseNode::extrinsic_imu2base__Sophus::SE3d"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a1d2ed4ef1d1722d5278b6ec49a15d42f"></span><span class="n"><span class="pre">Sophus</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SE3d</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">extrinsic_imu2base</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode18extrinsic_imu2baseE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode20extrinsic_lidar2baseE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode20extrinsic_lidar2baseE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode20extrinsic_lidar2baseE"></span><span id="rko_lio::ros::BaseNode::extrinsic_lidar2base__Sophus::SE3d"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a02d2556a2570e3b1698c77413a256f5e"></span><span class="n"><span class="pre">Sophus</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SE3d</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">extrinsic_lidar2base</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode20extrinsic_lidar2baseE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode14extrinsics_setE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode14extrinsics_setE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode14extrinsics_setE"></span><span id="rko_lio::ros::BaseNode::extrinsics_set__b"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1afbeabe15939267091aa36d19c7525c36"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">extrinsics_set</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode14extrinsics_setE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode11tf_listenerE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode11tf_listenerE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode11tf_listenerE"></span><span id="rko_lio::ros::BaseNode::tf_listener__std::shared_ptr:tf2_ros::TransformListener:"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a11ff8ee46c5b3ca79d0fd9aecf2ce025"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">tf2_ros</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">TransformListener</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">tf_listener</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode11tf_listenerE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode9tf_bufferE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode9tf_bufferE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode9tf_bufferE"></span><span id="rko_lio::ros::BaseNode::tf_buffer__std::shared_ptr:tf2_ros::Buffer:"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a16ceefdd48a159e21f6e58ba0fef1a75"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">tf2_ros</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Buffer</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">tf_buffer</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode9tf_bufferE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode14tf_broadcasterE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode14tf_broadcasterE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode14tf_broadcasterE"></span><span id="rko_lio::ros::BaseNode::tf_broadcaster__std::unique_ptr:tf2_ros::TransformBroadcaster:"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1af1793fd089d51bc4c418d7263d586562"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unique_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">tf2_ros</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">TransformBroadcaster</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">tf_broadcaster</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode14tf_broadcasterE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode14odom_publisherE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode14odom_publisherE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode14odom_publisherE"></span><span id="rko_lio::ros::BaseNode::odom_publisher__rclcpp::Publisher:nav_msgs::msg::Odometry:::SharedPtr"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a7029d4798385c83320ceb7335d6628a9"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Publisher</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">nav_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Odometry</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">odom_publisher</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode14odom_publisherE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode15frame_publisherE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode15frame_publisherE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode15frame_publisherE"></span><span id="rko_lio::ros::BaseNode::frame_publisher__rclcpp::Publisher:sensor_msgs::msg::PointCloud2:::SharedPtr"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a06912bbf34df92839933ade4c68586a0"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Publisher</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PointCloud2</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">frame_publisher</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode15frame_publisherE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode13map_publisherE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode13map_publisherE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode13map_publisherE"></span><span id="rko_lio::ros::BaseNode::map_publisher__rclcpp::Publisher:sensor_msgs::msg::PointCloud2:::SharedPtr"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1aea83b9c5a547999ee0dc1ae096e92009"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Publisher</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PointCloud2</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">map_publisher</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode13map_publisherE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode21lidar_accel_publisherE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode21lidar_accel_publisherE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode21lidar_accel_publisherE"></span><span id="rko_lio::ros::BaseNode::lidar_accel_publisher__rclcpp::Publisher:geometry_msgs::msg::AccelStamped:::SharedPtr"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1acbf1e9c305d415f4fce37874e2b4f585"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Publisher</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">geometry_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">AccelStamped</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lidar_accel_publisher</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode21lidar_accel_publisherE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode17map_publish_theadE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode17map_publish_theadE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode17map_publish_theadE"></span><span id="rko_lio::ros::BaseNode::map_publish_thead__std::jthread"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a29e011188c23c57979bb020cd4ddead0"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">jthread</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">map_publish_thead</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode17map_publish_theadE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode17publish_map_afterE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode17publish_map_afterE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode17publish_map_afterE"></span><span id="rko_lio::ros::BaseNode::publish_map_after__core::Secondsd"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1aff0e982cd31cf049769bcbfcd05b8fb4"></span><span class="n"><span class="pre">core</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1aeb6128bc63af6919453e303e7eb5613d.html#_CPPv4N7rko_lio4core8SecondsdE" title="rko_lio::core::Secondsd"><span class="n"><span class="pre">Secondsd</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">publish_map_after</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">chrono</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">seconds</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode17publish_map_afterE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode15local_map_mutexE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode15local_map_mutexE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode15local_map_mutexE"></span><span id="rko_lio::ros::BaseNode::local_map_mutex__std::mutex"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a065f035917e22a80aa1e18cb1b43a22e"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mutex</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">local_map_mutex</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode15local_map_mutexE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros8BaseNode19atomic_node_runningE">
+<span id="_CPPv3N7rko_lio3ros8BaseNode19atomic_node_runningE"></span><span id="_CPPv2N7rko_lio3ros8BaseNode19atomic_node_runningE"></span><span id="rko_lio::ros::BaseNode::atomic_node_running__std::atomic:b:"></span><span class="target" id="classrko__lio_1_1ros_1_1BaseNode_1a38281b7e81e2292088a68b2fd2716003"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">atomic</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">bool</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">atomic_node_running</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros8BaseNode19atomic_node_runningE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap.html" title="Previous document">Class ScopedProfiler::ProfilingInfoMap</a>
+        </li>
+        <li>
+          <a href="classrko__lio_1_1ros_1_1OfflineNode.html" title="Next document">Class OfflineNode</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &#169;2026 Meher Malladi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/generated/classrko__lio_1_1ros_1_1BaseNode.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

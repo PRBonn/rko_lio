@@ -1,0 +1,398 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classrko__lio_1_1ros_1_1ThreadedNode" kind="class" language="C++" prot="public">
+    <compoundname>rko_lio::ros::ThreadedNode</compoundname>
+    <basecompoundref refid="classrko__lio_1_1ros_1_1BaseNode" prot="public" virt="non-virtual">rko_lio::ros::BaseNode</basecompoundref>
+    <derivedcompoundref refid="classrko__lio_1_1ros_1_1OfflineNode" prot="public" virt="non-virtual">rko_lio::ros::OfflineNode</derivedcompoundref>
+    <derivedcompoundref refid="classrko__lio_1_1ros_1_1OnlineNode" prot="public" virt="non-virtual">rko_lio::ros::OnlineNode</derivedcompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1ThreadedNode_1a512b61e767463397837452326c17148b" prot="public" static="no" mutable="no">
+        <type>std::jthread</type>
+        <definition>std::jthread rko_lio::ros::ThreadedNode::registration_thread</definition>
+        <argsstring></argsstring>
+        <name>registration_thread</name>
+        <qualifiedname>rko_lio::ros::ThreadedNode::registration_thread</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="46" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1ThreadedNode_1adf509dda81461d07b6b4c5ced261e6f8" prot="public" static="no" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex rko_lio::ros::ThreadedNode::buffer_mutex</definition>
+        <argsstring></argsstring>
+        <name>buffer_mutex</name>
+        <qualifiedname>rko_lio::ros::ThreadedNode::buffer_mutex</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="47" column="14" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1ThreadedNode_1a49a44ab8e76da2f0e3c2bfcaf3d30f43" prot="public" static="no" mutable="no">
+        <type>std::condition_variable</type>
+        <definition>std::condition_variable rko_lio::ros::ThreadedNode::sync_condition_variable</definition>
+        <argsstring></argsstring>
+        <name>sync_condition_variable</name>
+        <qualifiedname>rko_lio::ros::ThreadedNode::sync_condition_variable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="48" column="27" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1ThreadedNode_1aa7d03cd98d1ec527ba1c880124b31f2a" prot="public" static="no" mutable="no">
+        <type>std::atomic&lt; bool &gt;</type>
+        <definition>std::atomic&lt;bool&gt; rko_lio::ros::ThreadedNode::atomic_can_process</definition>
+        <argsstring></argsstring>
+        <name>atomic_can_process</name>
+        <qualifiedname>rko_lio::ros::ThreadedNode::atomic_can_process</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="49" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1ThreadedNode_1a09d516903f9d9f37ffe29911bb64c1cf" prot="public" static="no" mutable="no">
+        <type>std::queue&lt; <ref refid="structrko__lio_1_1core_1_1ImuControl" kindref="compound">core::ImuControl</ref> &gt;</type>
+        <definition>std::queue&lt;core::ImuControl&gt; rko_lio::ros::ThreadedNode::imu_buffer</definition>
+        <argsstring></argsstring>
+        <name>imu_buffer</name>
+        <qualifiedname>rko_lio::ros::ThreadedNode::imu_buffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="50" column="14" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1ThreadedNode_1a99f21db49c0fa4e87c51e014555558c7" prot="public" static="no" mutable="no">
+        <type>std::queue&lt; <ref refid="structrko__lio_1_1ros_1_1LidarFrame" kindref="compound">LidarFrame</ref> &gt;</type>
+        <definition>std::queue&lt;LidarFrame&gt; rko_lio::ros::ThreadedNode::lidar_buffer</definition>
+        <argsstring></argsstring>
+        <name>lidar_buffer</name>
+        <qualifiedname>rko_lio::ros::ThreadedNode::lidar_buffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="51" column="14" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1ThreadedNode_1a92613c234c6aed7ecba316bb4fd70650" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t rko_lio::ros::ThreadedNode::max_lidar_buffer_size</definition>
+        <argsstring></argsstring>
+        <name>max_lidar_buffer_size</name>
+        <qualifiedname>rko_lio::ros::ThreadedNode::max_lidar_buffer_size</qualifiedname>
+        <initializer>= 50</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="52" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1ThreadedNode_1ac36e66329da614bd0d6e3d2124980659" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::ros::ThreadedNode::ThreadedNode</definition>
+        <argsstring>()=delete</argsstring>
+        <name>ThreadedNode</name>
+        <qualifiedname>rko_lio::ros::ThreadedNode::ThreadedNode</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="54" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1ThreadedNode_1a63a9d24643fa02f0136de7f92df5fbbb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::ros::ThreadedNode::ThreadedNode</definition>
+        <argsstring>(const std::string &amp;node_name, const rclcpp::NodeOptions &amp;options)</argsstring>
+        <name>ThreadedNode</name>
+        <qualifiedname>rko_lio::ros::ThreadedNode::ThreadedNode</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>node_name</declname>
+        </param>
+        <param>
+          <type>const rclcpp::NodeOptions &amp;</type>
+          <declname>options</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="55" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.cpp" bodystart="38" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1ThreadedNode_1afc2d3357db29442fe8df2b31d6fdd7d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::ros::ThreadedNode::imu_callback</definition>
+        <argsstring>(const sensor_msgs::msg::Imu::ConstSharedPtr &amp;imu_msg)</argsstring>
+        <name>imu_callback</name>
+        <qualifiedname>rko_lio::ros::ThreadedNode::imu_callback</qualifiedname>
+        <param>
+          <type>const sensor_msgs::msg::Imu::ConstSharedPtr &amp;</type>
+          <declname>imu_msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="57" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.cpp" bodystart="44" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1ThreadedNode_1a3331c991c7fc9efacfdc6d92eb343d3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::ros::ThreadedNode::lidar_callback</definition>
+        <argsstring>(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &amp;lidar_msg)</argsstring>
+        <name>lidar_callback</name>
+        <qualifiedname>rko_lio::ros::ThreadedNode::lidar_callback</qualifiedname>
+        <param>
+          <type>const sensor_msgs::msg::PointCloud2::ConstSharedPtr &amp;</type>
+          <declname>lidar_msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="58" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.cpp" bodystart="68" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1ThreadedNode_1acd61b2f9ae6de55e915313d3962c0279" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::ros::ThreadedNode::registration_loop</definition>
+        <argsstring>()</argsstring>
+        <name>registration_loop</name>
+        <qualifiedname>rko_lio::ros::ThreadedNode::registration_loop</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="59" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.cpp" bodystart="103" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1ThreadedNode_1a0713110ddc71f5ce45fd8f0f2f3703db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::ros::ThreadedNode::~ThreadedNode</definition>
+        <argsstring>()</argsstring>
+        <name>~ThreadedNode</name>
+        <qualifiedname>rko_lio::ros::ThreadedNode::~ThreadedNode</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="61" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.cpp" bodystart="139" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1ThreadedNode_1ac947ed258a941261b514f245fbdeb23c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::ros::ThreadedNode::ThreadedNode</definition>
+        <argsstring>(const ThreadedNode &amp;)=delete</argsstring>
+        <name>ThreadedNode</name>
+        <qualifiedname>rko_lio::ros::ThreadedNode::ThreadedNode</qualifiedname>
+        <param>
+          <type>const <ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="62" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1ThreadedNode_1a1a15faab364650b5cd0b2b7c465f6347" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::ros::ThreadedNode::ThreadedNode</definition>
+        <argsstring>(ThreadedNode &amp;&amp;)=delete</argsstring>
+        <name>ThreadedNode</name>
+        <qualifiedname>rko_lio::ros::ThreadedNode::ThreadedNode</qualifiedname>
+        <param>
+          <type><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="63" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1ThreadedNode_1a0c604f7871cf2983e8b2a503b9ce6f19" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref> &amp;</type>
+        <definition>ThreadedNode &amp; rko_lio::ros::ThreadedNode::operator=</definition>
+        <argsstring>(const ThreadedNode &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>rko_lio::ros::ThreadedNode::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="64" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1ThreadedNode_1a0f32218c3a721e3c0b7e200ac75112ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref> &amp;</type>
+        <definition>ThreadedNode &amp; rko_lio::ros::ThreadedNode::operator=</definition>
+        <argsstring>(ThreadedNode &amp;&amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>rko_lio::ros::ThreadedNode::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="65" column="16"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>rko_lio::ros::BaseNode</label>
+        <link refid="classrko__lio_1_1ros_1_1BaseNode"/>
+      </node>
+      <node id="3">
+        <label>rko_lio::ros::OfflineNode</label>
+        <link refid="classrko__lio_1_1ros_1_1OfflineNode"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>rko_lio::ros::OnlineNode</label>
+        <link refid="classrko__lio_1_1ros_1_1OnlineNode"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>rko_lio::ros::ThreadedNode</label>
+        <link refid="classrko__lio_1_1ros_1_1ThreadedNode"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>rko_lio::core::TimestampProcessingConfig</label>
+        <link refid="structrko__lio_1_1core_1_1TimestampProcessingConfig"/>
+      </node>
+      <node id="2">
+        <label>rko_lio::ros::BaseNode</label>
+        <link refid="classrko__lio_1_1ros_1_1BaseNode"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>timestamp_proc_config</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>rko_lio::ros::ThreadedNode</label>
+        <link refid="classrko__lio_1_1ros_1_1ThreadedNode"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="44" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="44" bodyend="66"/>
+    <listofallmembers>
+      <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1aa7d03cd98d1ec527ba1c880124b31f2a" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>atomic_can_process</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a38281b7e81e2292088a68b2fd2716003" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>atomic_node_running</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1aacbece9df2087272d75480fa2137f419" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>base_frame</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1aff39f656667853f6bd7b46c26be0eeab" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>BaseNode</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1ad3fac1c1fc245199be7e5c8cb9b264f9" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>BaseNode</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a97828ac5e49b5ca71e24942d8f1b2558" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>BaseNode</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a0980b22806ae53111cf4ea96cf76d386" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>BaseNode</name></member>
+      <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1adf509dda81461d07b6b4c5ced261e6f8" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>buffer_mutex</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a9adaaf7d3c7d0d969066754e162d38b3" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>check_and_set_extrinsics</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a8d2cfe9221c19ca3a53dd1498c0573af" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>deskewed_scan_topic</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1ab7a49a347fd805a7ce2ba91cb700671e" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>dump_results</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a48110c62e37b6784f72849ab1e5d3b1a" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>dump_results_to_disk</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a1d2ed4ef1d1722d5278b6ec49a15d42f" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>extrinsic_imu2base</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a02d2556a2570e3b1698c77413a256f5e" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>extrinsic_lidar2base</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1afbeabe15939267091aa36d19c7525c36" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>extrinsics_set</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a06912bbf34df92839933ade4c68586a0" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>frame_publisher</name></member>
+      <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a09d516903f9d9f37ffe29911bb64c1cf" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>imu_buffer</name></member>
+      <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1afc2d3357db29442fe8df2b31d6fdd7d4" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>imu_callback</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a1593d0b0267fc265d9a8cc78d435c29d" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>imu_frame</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a5fa18b17bd57a3db3e4679504fe32e2e" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>imu_topic</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a032de1bdd5984d28cc6d6785b9fd89dc" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>invert_odom_tf</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1acbf1e9c305d415f4fce37874e2b4f585" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>lidar_accel_publisher</name></member>
+      <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a99f21db49c0fa4e87c51e014555558c7" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>lidar_buffer</name></member>
+      <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a3331c991c7fc9efacfdc6d92eb343d3f" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>lidar_callback</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a669856bc3970c7872c78a99d78f0bc87" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>lidar_frame</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a14b98efbded9dfa784e0aa795f785bbf" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>lidar_topic</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a84e99e77440e1fab650a4358775f1a05" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>lio</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a065f035917e22a80aa1e18cb1b43a22e" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>local_map_mutex</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a29e011188c23c57979bb020cd4ddead0" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>map_publish_thead</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1aea83b9c5a547999ee0dc1ae096e92009" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>map_publisher</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a8bc20a80d8d8efcda0d1106e2aa61f30" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>map_topic</name></member>
+      <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a92613c234c6aed7ecba316bb4fd70650" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>max_lidar_buffer_size</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a2ec7830c65011910f9dd7314a485bf5e" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>node</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a17feaf7d2d4590eca24d87280f77b21a" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>odom_frame</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a7029d4798385c83320ceb7335d6628a9" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>odom_publisher</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1af065e60acdb927b346b2c9f3b68af504" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>odom_topic</name></member>
+      <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a0c604f7871cf2983e8b2a503b9ce6f19" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>operator=</name></member>
+      <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a0f32218c3a721e3c0b7e200ac75112ed" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>operator=</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1afc7aeb8eeeb14ef35e535ce74193db6f" prot="public" virt="non-virtual" ambiguityscope="rko_lio::ros::BaseNode::"><scope>rko_lio::ros::ThreadedNode</scope><name>operator=</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1ab7033afa34770e24f465bbe2a73444ca" prot="public" virt="non-virtual" ambiguityscope="rko_lio::ros::BaseNode::"><scope>rko_lio::ros::ThreadedNode</scope><name>operator=</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a30875a75d450b8900c08ee0dbe11e62c" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>parse_cli_extrinsics</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a23f047faed8a97a78fbbed340032317e" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>process_lidar_msg</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1af1c6cb845774b666681e470b78dafcbc" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>publish_deskewed_scan</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1ae44c1322a67ab3a85327ad678863cac4" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>publish_lidar_accel</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1abf4d6745652fb6e310dc507849cadaee" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>publish_lidar_acceleration</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a82dbc521bbf284342b7466eb172170e9" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>publish_lidar_outputs</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a28f3994bca8ca065b3196725c000b44a" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>publish_local_map</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1aff0e982cd31cf049769bcbfcd05b8fb4" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>publish_map_after</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1acdc4ef902102131dbbb350afea921b17" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>publish_map_loop</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a7095bb4b30016aa0eab6cc4800a7f3c5" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>publish_odometry</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a3651792dc0646bfeea16803e1f92185b" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>publish_tf</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1ab0d80b23d66dc9d5b4f7dc7f89e05d5f" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>register_scan_locked</name></member>
+      <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1acd61b2f9ae6de55e915313d3962c0279" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>registration_loop</name></member>
+      <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a512b61e767463397837452326c17148b" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>registration_thread</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1adf575671c2b74582e831e5d9a8fefe36" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>results_dir</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1ac4aa545318868ed459b328398e5b39de" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>run_name</name></member>
+      <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a49a44ab8e76da2f0e3c2bfcaf3d30f43" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>sync_condition_variable</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1af1793fd089d51bc4c418d7263d586562" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>tf_broadcaster</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a16ceefdd48a159e21f6e58ba0fef1a75" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>tf_buffer</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a11ff8ee46c5b3ca79d0fd9aecf2ce025" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>tf_listener</name></member>
+      <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1ac36e66329da614bd0d6e3d2124980659" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>ThreadedNode</name></member>
+      <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a63a9d24643fa02f0136de7f92df5fbbb" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>ThreadedNode</name></member>
+      <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1ac947ed258a941261b514f245fbdeb23c" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>ThreadedNode</name></member>
+      <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a1a15faab364650b5cd0b2b7c465f6347" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>ThreadedNode</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a3e6bd9beb864c2d80b789f76d0022447" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>timestamp_proc_config</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1aaa03e3f3624f707e83921ceef9487baf" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>~BaseNode</name></member>
+      <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a0713110ddc71f5ce45fd8f0f2f3703db" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>~ThreadedNode</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

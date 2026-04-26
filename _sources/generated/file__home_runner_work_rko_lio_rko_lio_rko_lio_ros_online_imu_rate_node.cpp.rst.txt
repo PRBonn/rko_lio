@@ -1,8 +1,8 @@
 
-.. _file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_node.cpp:
+.. _file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_online_imu_rate_node.cpp:
 
-File node.cpp
-=============
+File online_imu_rate_node.cpp
+=============================
 
 |exhale_lsh| :ref:`Parent directory <dir__home_runner_work_rko_lio_rko_lio_rko_lio_ros>` (``/home/runner/work/rko_lio/rko_lio/rko_lio/ros``)
 
@@ -13,14 +13,14 @@ File node.cpp
    :local:
    :backlinks: none
 
-Definition (``/home/runner/work/rko_lio/rko_lio/rko_lio/ros/node.cpp``)
------------------------------------------------------------------------
+Definition (``/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp``)
+---------------------------------------------------------------------------------------
 
 
 .. toctree::
    :maxdepth: 1
 
-   program_listing_file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_node.cpp.rst
+   program_listing_file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_online_imu_rate_node.cpp.rst
 
 
 
@@ -30,21 +30,21 @@ Includes
 --------
 
 
-- ``fstream``
+- ``base_node.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_base_node.hpp`)
 
-- ``iostream``
+- ``nav_msgs/msg/odometry.hpp``
 
-- ``nlohmann/json.hpp``
-
-- ``node.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_node.hpp`)
-
-- ``rclcpp/serialization.hpp``
+- ``rclcpp_components/register_node_macro.hpp``
 
 - ``rko_lio/core/process_timestamps.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_process_timestamps.hpp`)
 
 - ``rko_lio/core/profiler.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_profiler.hpp`)
 
 - ``rko_lio/ros/utils/utils.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_utils.hpp`)
+
+- ``sensor_msgs/msg/imu.hpp``
+
+- ``sensor_msgs/msg/point_cloud2.hpp``
 
 - ``stdexcept``
 
@@ -59,9 +59,12 @@ Namespaces
 
 - :ref:`namespace_rko_lio`
 
-- :ref:`namespace_rko_lio__core`
-
 - :ref:`namespace_rko_lio__ros`
 
-- :ref:`namespace_std__literals`
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classrko__lio_1_1ros_1_1OnlineImuRateNode`
 

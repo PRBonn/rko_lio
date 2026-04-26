@@ -146,6 +146,15 @@ Please note the parameter <code class="docutils literal notranslate"><span class
 </li>
 </ul>
 </section>
+<section id="imu-rate-odometry">
+<h2>IMU-rate odometry<a class="headerlink" href="#imu-rate-odometry" title="Link to this heading">¶</a></h2>
+<p>By default the launch file publishes odometry at LiDAR rate. To additionally publish odometry at IMU rate, pass <code class="docutils literal notranslate"><span class="pre">odom_at_imu_rate:=true</span></code> (only supported with <code class="docutils literal notranslate"><span class="pre">mode:=online</span></code>). The launch file then runs the sequential variant <code class="docutils literal notranslate"><span class="pre">online_imu_rate_node</span></code> and publishes on the topic given by <code class="docutils literal notranslate"><span class="pre">seq.odom_at_imu_rate_topic</span></code> (default <code class="docutils literal notranslate"><span class="pre">rko_lio/odom_at_imu_rate</span></code>). The <code class="docutils literal notranslate"><span class="pre">base_frame</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">odom_frame</span></code> TF is still published at LiDAR rate by default; set <code class="docutils literal notranslate"><span class="pre">seq.tf_at_imu_rate:=true</span></code> to shift it to IMU rate as well.</p>
+<p>Two caveats are worth mentioning:</p>
+<ul class="simple">
+<li><p>This pipeline relies on the IMU and LiDAR streams being well synchronized. If the topics drift out of sync, the IMU-rate output will break. The standard LiDAR-rate odometry (<code class="docutils literal notranslate"><span class="pre">odom_at_imu_rate:=false</span></code>, the default) is more robust to such issues, so prefer it unless you specifically need the higher-rate output.</p></li>
+<li><p>The IMU-rate odometry is raw IMU integration and will be jerky. For most downstream uses, you’ll want to run it through a smoother — for example, the EKF in <a class="reference external" href="https://index.ros.org/p/robot_localization/">robot_localization</a>. The same smoothing can also be useful even on the LiDAR-rate odometry.</p></li>
+</ul>
+</section>
 <section id="offline-node">
 <h2>Offline node<a class="headerlink" href="#offline-node" title="Link to this heading">¶</a></h2>
 <p>As mentioned before, you can use the offline node to read a bag directly and run the odometry on it at the same time.</p>
