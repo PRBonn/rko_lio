@@ -243,6 +243,7 @@
     <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1adf509dda81461d07b6b4c5ced261e6f8" kind="variable"><name>buffer_mutex</name></member>
     <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a49a44ab8e76da2f0e3c2bfcaf3d30f43" kind="variable"><name>sync_condition_variable</name></member>
     <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1aa7d03cd98d1ec527ba1c880124b31f2a" kind="variable"><name>atomic_can_process</name></member>
+    <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a6f35b0ecc638e5cfa6ce57f2a6c74689" kind="variable"><name>registration_busy</name></member>
     <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a09d516903f9d9f37ffe29911bb64c1cf" kind="variable"><name>imu_buffer</name></member>
     <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a99f21db49c0fa4e87c51e014555558c7" kind="variable"><name>lidar_buffer</name></member>
     <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a92613c234c6aed7ecba316bb4fd70650" kind="variable"><name>max_lidar_buffer_size</name></member>
