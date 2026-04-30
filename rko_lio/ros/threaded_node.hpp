@@ -47,6 +47,7 @@ public:
   std::mutex buffer_mutex;
   std::condition_variable sync_condition_variable;
   std::atomic<bool> atomic_can_process = false;
+  std::atomic<bool> registration_busy{false};
   std::queue<core::ImuControl> imu_buffer;
   std::queue<LidarFrame> lidar_buffer;
   size_t max_lidar_buffer_size = 50;
