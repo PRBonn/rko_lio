@@ -111,6 +111,7 @@ void ThreadedNode::registration_loop() {
     }
     LidarFrame frame = std::move(lidar_buffer.front());
     lidar_buffer.pop();
+    registration_busy = true;
     const auto& [timestamps, scan] = frame;
     const auto& [start_stamp, end_stamp, time_vector] = timestamps;
     for (; !imu_buffer.empty() && imu_buffer.front().time < end_stamp; imu_buffer.pop()) {
@@ -132,6 +133,7 @@ void ThreadedNode::registration_loop() {
     } catch (const std::invalid_argument& ex) {
       RCLCPP_ERROR_STREAM(node->get_logger(), "Encountered error, dropping frame. Error: " << ex.what());
     }
+    registration_busy = false;
   }
   atomic_node_running = false;
 }

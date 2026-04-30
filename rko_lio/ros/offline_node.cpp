@@ -114,7 +114,7 @@ public:
       {
         // wait for the registration buffer to drain - leftover IMU after the last lidar scan is harmless
         std::lock_guard<std::mutex> lock(buffer_mutex);
-        if (lidar_buffer.empty()) {
+        if (lidar_buffer.empty() && !registration_busy.load()) {
           break;
         }
       }
