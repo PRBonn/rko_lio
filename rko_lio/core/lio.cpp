@@ -121,7 +121,7 @@ Vector3dVector deskew_scan(const Vector3dVector& frame,
 using LinearSystem = std::tuple<Eigen::Matrix6d, Eigen::Vector6d, double>;
 LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose,
                                      const rko_lio::core::Vector3dVector& frame,
-                                     const rko_lio::core::SparseVoxelGrid& voxel_map,
+                                     const rko_lio::core::VoxelHashMap& voxel_map,
                                      const double& max_correspondance_distance) {
   auto linear_system_reduce = [](LinearSystem lhs, const LinearSystem& rhs) {
     auto& [lhs_H, lhs_b, lhs_chi] = lhs;
@@ -188,7 +188,7 @@ LinearSystem build_orientation_linear_system(const Sophus::SE3d& current_pose,
 }
 
 Sophus::SE3d icp(const Vector3dVector& frame,
-                 const SparseVoxelGrid& voxel_map,
+                 const VoxelHashMap& voxel_map,
                  const Sophus::SE3d& initial_guess,
                  const LIO::Config& config,
                  const std::optional<AccelInfo>& optional_accel_info) {

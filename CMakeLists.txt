@@ -35,7 +35,7 @@ include(cmake/compat_target_sources.cmake)
 find_package(Eigen3 3.4 REQUIRED CONFIG)
 find_package(Sophus REQUIRED CONFIG)
 find_package(TBB REQUIRED CONFIG)
-find_package(Bonxai REQUIRED CONFIG)
+find_package(tsl-robin-map REQUIRED CONFIG)
 
 add_subdirectory(rko_lio/core)
 

@@ -28,7 +28,7 @@
  */
 
 #pragma once
-#include "sparse_voxel_grid.hpp"
+#include "voxel_hash_map.hpp"
 #include "util.hpp"
 
 /** Core namespace containing LIO data structures and state definitions. */
@@ -81,8 +81,8 @@ public:
   /** Configuration parameters. */
   Config config;
 
-  /** Local map as sparse voxel grid (Bonxai). */
-  SparseVoxelGrid map;
+  /** Local map. */
+  VoxelHashMap map;
 
   /** Current LiDAR state estimate. */
   State lidar_state;
