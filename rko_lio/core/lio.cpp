@@ -36,6 +36,7 @@
 #include <tbb/task_arena.h>
 // stl
 #include <algorithm>
+#include <array>
 #include <functional>
 #include <iostream>
 #include <numeric>
@@ -109,11 +110,39 @@ Vector3dVector deskew_scan(const Vector3dVector& frame,
                            const TimestampVector& timestamps,
                            const Secondsd& end_time,
                            const Functor& relative_pose_at_time) {
+  // Per-point deskew via a precomputed LUT of poses, sampled at kBins steps across the scan
+  // window. kBins matches a 500 Hz IMU rate (0.2 ms / bin at a typical 100 ms scan), well below
+  // the 1 m voxel size at any realistic motion and 100x finer than the IMU period, so no
+  // measurable accuracy loss vs evaluating Sophus::SE3d::exp per point.
+  constexpr int kBins = 500;
+  // 1/500 Hz: scans spanning shorter than one IMU sample period have motion below what we can
+  // resolve from IMU control, so deskew is a no-op.
+  constexpr double kMinScanDurationSec = 1.0 / 500.0;
+
+  if (frame.empty()) {
+    return {};
+  }
+  const auto [tmin_it, tmax_it] = std::minmax_element(timestamps.cbegin(), timestamps.cend());
+  const double t_min = tmin_it->count();
+  const double dt_total = tmax_it->count() - t_min;
+  if (dt_total < kMinScanDurationSec) {
+    return frame;
+  }
+
   const Sophus::SE3d scan_to_scan_motion_inverse = relative_pose_at_time(end_time).inverse();
+  std::array<Sophus::SE3d, kBins + 1> motion_lut;
+  for (int i = 0; i <= kBins; ++i) {
+    const double frac = static_cast<double>(i) / kBins;
+    const Secondsd t{t_min + frac * dt_total};
+    motion_lut[i] = scan_to_scan_motion_inverse * relative_pose_at_time(t);
+  }
+
   Vector3dVector deskewed(frame.size());
   std::transform(frame.cbegin(), frame.cend(), timestamps.cbegin(), deskewed.begin(),
                  [&](const Eigen::Vector3d& point, const Secondsd& timestamp) {
-                   return (scan_to_scan_motion_inverse * relative_pose_at_time(timestamp)) * point;
+                   const double frac = (timestamp.count() - t_min) / dt_total;
+                   const int bin = std::clamp(static_cast<int>(frac * kBins + 0.5), 0, kBins);
+                   return motion_lut[bin] * point;
                  });
   return deskewed;
 }
