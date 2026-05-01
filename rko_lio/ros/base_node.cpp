@@ -284,11 +284,11 @@ void BaseNode::publish_map_loop() {
   while (atomic_node_running) {
     std::this_thread::sleep_for(publish_map_after);
     std::unique_lock lock(local_map_mutex);
-    if (lio->map.Empty()) {
+    if (lio->map.empty()) {
       RCLCPP_WARN_ONCE(node->get_logger(), "Local map publish thread: Local map is empty.");
       continue;
     }
-    const core::Vector3dVector map_points = lio->map.Pointcloud();
+    const core::Vector3dVector map_points = lio->map.pointcloud();
     lock.unlock(); // we don't access the local map anymore
     std_msgs::msg::Header map_header;
     map_header.stamp = node->now();

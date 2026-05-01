@@ -47,13 +47,13 @@ struct VoxelHashMap {
                         const double clipping_distance,
                         const unsigned int max_points_per_voxel);
 
-  void Clear() { map_.clear(); }
-  bool Empty() const { return map_.empty(); }
-  void Update(const std::vector<Eigen::Vector3d>& points, const Sophus::SE3d& pose);
-  void AddPoints(const std::vector<Eigen::Vector3d>& points);
-  void RemovePointsFarFromLocation(const Eigen::Vector3d& origin);
-  std::vector<Eigen::Vector3d> Pointcloud() const;
-  std::tuple<Eigen::Vector3d, double> GetClosestNeighbor(const Eigen::Vector3d& query) const;
+  void clear() { map_.clear(); }
+  bool empty() const { return map_.empty(); }
+  void update(const std::vector<Eigen::Vector3d>& points, const Sophus::SE3d& pose);
+  void add_points(const std::vector<Eigen::Vector3d>& points);
+  void remove_points_far_from_location(const Eigen::Vector3d& origin);
+  std::vector<Eigen::Vector3d> pointcloud() const;
+  std::tuple<Eigen::Vector3d, double> get_closest_neighbor(const Eigen::Vector3d& query) const;
 
   double voxel_size_;
   double inv_voxel_size_;

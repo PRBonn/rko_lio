@@ -71,7 +71,7 @@ VoxelHashMap::VoxelHashMap(const double voxel_size,
       clipping_distance_(clipping_distance),
       max_points_per_voxel_(max_points_per_voxel) {}
 
-std::tuple<Eigen::Vector3d, double> VoxelHashMap::GetClosestNeighbor(const Eigen::Vector3d& query) const {
+std::tuple<Eigen::Vector3d, double> VoxelHashMap::get_closest_neighbor(const Eigen::Vector3d& query) const {
   Eigen::Vector3d closest_neighbor = Eigen::Vector3d::Zero();
   double closest_distance = std::numeric_limits<double>::max();
   const Voxel voxel = point_to_voxel(query, inv_voxel_size_);
@@ -94,7 +94,7 @@ std::tuple<Eigen::Vector3d, double> VoxelHashMap::GetClosestNeighbor(const Eigen
   return std::make_tuple(closest_neighbor, closest_distance);
 }
 
-void VoxelHashMap::AddPoints(const std::vector<Eigen::Vector3d>& points) {
+void VoxelHashMap::add_points(const std::vector<Eigen::Vector3d>& points) {
   const double map_resolution_sq = voxel_size_ * voxel_size_ / max_points_per_voxel_;
   std::for_each(points.cbegin(), points.cend(), [&](const Eigen::Vector3d& p) {
     const Voxel voxel = point_to_voxel(p, inv_voxel_size_);
@@ -110,7 +110,7 @@ void VoxelHashMap::AddPoints(const std::vector<Eigen::Vector3d>& points) {
   });
 }
 
-void VoxelHashMap::RemovePointsFarFromLocation(const Eigen::Vector3d& origin) {
+void VoxelHashMap::remove_points_far_from_location(const Eigen::Vector3d& origin) {
   const double clipping_distance_sq = clipping_distance_ * clipping_distance_;
   for (auto it = map_.begin(); it != map_.end();) {
     const VoxelBlock& voxel_points = it->second;
@@ -122,16 +122,16 @@ void VoxelHashMap::RemovePointsFarFromLocation(const Eigen::Vector3d& origin) {
   }
 }
 
-void VoxelHashMap::Update(const std::vector<Eigen::Vector3d>& points, const Sophus::SE3d& pose) {
+void VoxelHashMap::update(const std::vector<Eigen::Vector3d>& points, const Sophus::SE3d& pose) {
   std::vector<Eigen::Vector3d> points_transformed(points.size());
   std::transform(points.cbegin(), points.cend(), points_transformed.begin(),
                  [&](const auto& point) { return pose * point; });
   const Eigen::Vector3d& origin = pose.translation();
-  AddPoints(points_transformed);
-  RemovePointsFarFromLocation(origin);
+  add_points(points_transformed);
+  remove_points_far_from_location(origin);
 }
 
-std::vector<Eigen::Vector3d> VoxelHashMap::Pointcloud() const {
+std::vector<Eigen::Vector3d> VoxelHashMap::pointcloud() const {
   std::vector<Eigen::Vector3d> point_cloud;
   point_cloud.reserve(map_.size() * max_points_per_voxel_);
   for (const auto& [_, block] : map_) {

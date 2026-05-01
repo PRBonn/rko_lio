@@ -107,12 +107,12 @@ TEST_CASE("First scan: empty map -> populated, single pose at lidar_state.time",
   const auto cloud = make_hollow_cube();
   const auto ts = linspace_timestamps(cloud.size(), 0.0, FIRST_SCAN_END);
 
-  REQUIRE(lio.map.Empty());
+  REQUIRE(lio.map.empty());
   REQUIRE(lio.poses_with_timestamps.empty());
 
   lio.register_scan(cloud, ts);
 
-  REQUIRE_FALSE(lio.map.Empty());
+  REQUIRE_FALSE(lio.map.empty());
   REQUIRE(lio.poses_with_timestamps.size() == 1);
   REQUIRE_THAT(lio.lidar_state.time.count(), WithinAbs(FIRST_SCAN_END, 1e-9));
   REQUIRE(approx_equal(lio.lidar_state.pose, Sophus::SE3d{}, 1e-12));
