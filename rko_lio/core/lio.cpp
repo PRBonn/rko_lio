@@ -37,6 +37,7 @@
 // stl
 #include <algorithm>
 #include <array>
+#include <cmath>
 #include <functional>
 #include <iostream>
 #include <numeric>
@@ -110,14 +111,10 @@ Vector3dVector deskew_scan(const Vector3dVector& frame,
                            const TimestampVector& timestamps,
                            const Secondsd& end_time,
                            const Functor& relative_pose_at_time) {
-  // Per-point deskew via a precomputed LUT of poses, sampled at kBins steps across the scan
-  // window. kBins matches a 500 Hz IMU rate (0.2 ms / bin at a typical 100 ms scan), well below
-  // the 1 m voxel size at any realistic motion and 100x finer than the IMU period, so no
-  // measurable accuracy loss vs evaluating Sophus::SE3d::exp per point.
+  // LUT of kBins+1 poses sampled across the scan window; assuming an IMU rate of 500Hz
+  // means a dt of 0.2ms per bin on a 100ms lidar duration. thats essentially continuous time
   constexpr int kBins = 500;
-  // 1/500 Hz: scans spanning shorter than one IMU sample period have motion below what we can
-  // resolve from IMU control, so deskew is a no-op.
-  constexpr double kMinScanDurationSec = 1.0 / 500.0;
+  constexpr double kMinScanDurationSec = 1.0 / kBins;
 
   if (frame.empty()) {
     return {};
@@ -126,6 +123,7 @@ Vector3dVector deskew_scan(const Vector3dVector& frame,
   const double t_min = tmin_it->count();
   const double dt_total = tmax_it->count() - t_min;
   if (dt_total < kMinScanDurationSec) {
+    // Below one assumed IMU sample period, scan span is too short to deskew meaningfully
     return frame;
   }
 
@@ -141,7 +139,7 @@ Vector3dVector deskew_scan(const Vector3dVector& frame,
   std::transform(frame.cbegin(), frame.cend(), timestamps.cbegin(), deskewed.begin(),
                  [&](const Eigen::Vector3d& point, const Secondsd& timestamp) {
                    const double frac = (timestamp.count() - t_min) / dt_total;
-                   const int bin = std::clamp(static_cast<int>(frac * kBins + 0.5), 0, kBins);
+                   const int bin = std::clamp(static_cast<int>(std::round(frac * kBins)), 0, kBins);
                    return motion_lut[bin] * point;
                  });
   return deskewed;
