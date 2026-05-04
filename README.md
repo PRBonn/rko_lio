@@ -26,6 +26,8 @@
 Assuming you have a rosbag (ros1/ros2) which contains a TF tree, you can run RKO-LIO through
 
 ```bash
+pip install "rko_lio[all]"
+# or
 pip install rko_lio rosbags "rerun-sdk<0.27"
 # data path should be a directory with *.bag files (ROS1) or a metadata.yaml (ROS2)
 rko_lio -v /path/to/data
@@ -35,6 +37,8 @@ Why `pip install` those three packages?
 - `rko_lio` -> the odometry package
 - `rosbags` -> required for the rosbag dataloader. Both ros1 and ros2 bags are supported!
 - `rerun-sdk` -> required for the optional visualizer (`-v` flag)
+
+`pip install "rko_lio[all]` fetches the other optional dependencies as well.
 
 Check further options for the CLI through `rko_lio --help`.
 
