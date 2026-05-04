@@ -55,7 +55,8 @@ target_link_libraries(
          Sophus::Sophus
          Eigen3::Eigen)
 
-set_target_properties(rko_lio.ros PROPERTIES POSITION_INDEPENDENT_CODE ON)
+set_target_properties(rko_lio.ros PROPERTIES POSITION_INDEPENDENT_CODE ON
+                                              EXPORT_NAME ros)
 
 # executable: offline_node
 add_executable(offline_node offline_node.cpp)

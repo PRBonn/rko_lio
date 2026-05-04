@@ -38,10 +38,8 @@ endif()
 
 include(${CMAKE_CURRENT_LIST_DIR}/mock_find_package.cmake)
 
-# tsl-robin-map has no rosdep rule yet, so always fetch it
-include(${CMAKE_CURRENT_LIST_DIR}/dependencies/tsl_robin/tsl_robin.cmake)
-
 if(RKO_LIO_FETCH_CONTENT_DEPS)
+  include(${CMAKE_CURRENT_LIST_DIR}/dependencies/tsl_robin/tsl_robin.cmake)
   include(${CMAKE_CURRENT_LIST_DIR}/dependencies/eigen/eigen.cmake)
   include(${CMAKE_CURRENT_LIST_DIR}/dependencies/sophus/sophus.cmake)
   include(${CMAKE_CURRENT_LIST_DIR}/dependencies/tbb/tbb.cmake)
