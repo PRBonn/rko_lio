@@ -27,7 +27,7 @@ add_library(rko_lio::core ALIAS rko_lio.core)
 compat_target_sources(
   rko_lio.core
   PRIVATE lio.cpp
-          sparse_voxel_grid.cpp
+          voxel_hash_map.cpp
           voxel_down_sample.cpp
           process_timestamps.cpp
           preprocess_scan.cpp
@@ -38,7 +38,7 @@ compat_target_sources(
         ../../rko_lio/core/preprocess_scan.hpp
         ../../rko_lio/core/process_timestamps.hpp
         ../../rko_lio/core/profiler.hpp
-        ../../rko_lio/core/sparse_voxel_grid.hpp
+        ../../rko_lio/core/voxel_hash_map.hpp
         ../../rko_lio/core/util.hpp
         ../../rko_lio/core/voxel_down_sample.hpp
   BASE_DIRS ../..)
@@ -46,13 +46,12 @@ compat_target_sources(
 target_link_libraries(
   rko_lio.core
   PRIVATE TBB::tbb
-  PUBLIC bonxai_core Sophus::Sophus Eigen3::Eigen)
+  PUBLIC tsl::robin_map Sophus::Sophus Eigen3::Eigen)
 
 target_compile_features(rko_lio.core PUBLIC cxx_std_20)
 
 set_target_properties(rko_lio.core PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
-# install is a problem because at least Bonxai is always fetch-contented, and
-# that becomes a problem for the export target set. we'd have to manually export
-# bonxai ourselves, which I would rather do as a patch or PR to upstream.
-# therefore TODO
+# install is a problem because tsl-robin-map is always fetch-contented (no
+# rosdep rule yet), and that becomes a problem for the export target set. we'd
+# have to manually export it ourselves. therefore TODO

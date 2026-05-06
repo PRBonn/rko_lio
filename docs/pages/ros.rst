@@ -32,7 +32,7 @@ Build from source
 The system dependencies are:
 
 - CMake, a ROS environment.
-- Optionally: Eigen, Sophus, nlohmann_json, TBB. Bonxai is always fetched (no system release exists).
+- Optionally: Eigen, Sophus, nlohmann_json, TBB. tsl::robin_map is always fetched (no rosdep rule yet).
 
 Clone the repository into a colcon workspace's ``src``.
 

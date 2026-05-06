@@ -121,7 +121,7 @@ Vector3dVector deskew_scan(const Vector3dVector& frame,
 using LinearSystem = std::tuple<Eigen::Matrix6d, Eigen::Vector6d, double>;
 LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose,
                                      const rko_lio::core::Vector3dVector& frame,
-                                     const rko_lio::core::SparseVoxelGrid& voxel_map,
+                                     const rko_lio::core::VoxelHashMap& voxel_map,
                                      const double& max_correspondance_distance) {
   auto linear_system_reduce = [](LinearSystem lhs, const LinearSystem& rhs) {
     auto& [lhs_H, lhs_b, lhs_chi] = lhs;
@@ -155,7 +155,7 @@ LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose,
         return std::transform_reduce(r.begin(), r.end(), J, linear_system_reduce, [&](const auto& point) {
           // Compute data association and linear system
           const Eigen::Vector3d transformed_point = current_pose * point;
-          const auto& [closest_neighbor, distance] = voxel_map.GetClosestNeighbor(transformed_point);
+          const auto& [closest_neighbor, distance] = voxel_map.get_closest_neighbor(transformed_point);
           if (distance < max_correspondance_distance) {
             correspondances_counter++;
             return linear_system_for_one_point(transformed_point, closest_neighbor);
@@ -188,7 +188,7 @@ LinearSystem build_orientation_linear_system(const Sophus::SE3d& current_pose,
 }
 
 Sophus::SE3d icp(const Vector3dVector& frame,
-                 const SparseVoxelGrid& voxel_map,
+                 const VoxelHashMap& voxel_map,
                  const Sophus::SE3d& initial_guess,
                  const LIO::Config& config,
                  const std::optional<AccelInfo>& optional_accel_info) {
@@ -282,7 +282,7 @@ Vector3dVector LIO::bootstrap_first_scan(const Vector3dVector& scan, const Secon
   imu_state = lidar_state;
   auto preproc = preprocess_scan(scan, config);
   if (!config.initialization_phase) {
-    map.Update(preproc.map_update_frame(), lidar_state.pose);
+    map.update(preproc.map_update_frame(), lidar_state.pose);
     poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
     std::cout << "[INFO] Odometry map frame initialized with first lidar scan.\n";
   }
@@ -453,7 +453,7 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
     throw std::invalid_argument(error_msg);
   }
 
-  if (!map.Empty()) {
+  if (!map.empty()) {
     SCOPED_PROFILER("ICP");
     const Sophus::SE3d optimized_pose = icp(preproc_result.keypoints, map, initial_guess, config, kf_step.info);
 
@@ -477,7 +477,7 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
   // reset imu averages
   interval_stats.reset();
 
-  map.Update(preproc_result.map_update_frame(), lidar_state.pose);
+  map.update(preproc_result.map_update_frame(), lidar_state.pose);
 
   poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
 
