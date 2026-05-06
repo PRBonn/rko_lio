@@ -306,7 +306,7 @@ class RawDataLoader:
 
             if kind == "imu":
                 return "imu", {
-                    "time": data["timestamp"] / 1e9,
+                    "time": int(data["timestamp"]),
                     "acceleration": data["accel"],
                     "angular_velocity": data["gyro"],
                 }
@@ -315,7 +315,7 @@ class RawDataLoader:
                 # Find a field for per-point timestamp
                 for attr_name in self.possible_timestamp_attribute_names:
                     if attr_name in ply.point:
-                        timestamps = ply.point[attr_name].numpy().flatten()
+                        timestamps_sec = ply.point[attr_name].numpy().flatten()
                         # TODO: use pybind.process_timestamps to handle non seconds cases
                         break
                 else:
@@ -324,11 +324,12 @@ class RawDataLoader:
                         f"No per-point timestamp attribute found in {data['filename']}. Please check the attributes."
                     )
                 points = ply.point["positions"].numpy()
+                timestamps_ns = np.round(np.asarray(timestamps_sec, dtype=np.float64) * 1e9).astype(np.int64)
                 return "lidar", {
-                    "start_time": np.min(timestamps),
-                    "end_time": np.max(timestamps),
+                    "start_time": int(timestamps_ns.min()),
+                    "end_time": int(timestamps_ns.max()),
                     "scan": points,
-                    "timestamps": timestamps,
+                    "timestamps": timestamps_ns,
                 }
 
     def __repr__(self):

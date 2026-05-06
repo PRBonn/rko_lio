@@ -31,7 +31,7 @@ from .rko_lio_pybind import (
     _LIO,
     _IntervalStats,
     _Vector3dVector,
-    _VectorDouble,
+    _VectorInt64,
 )
 
 
@@ -123,7 +123,7 @@ class LIO:
         self,
         acceleration: np.ndarray,
         angular_velocity: np.ndarray,
-        time: float,
+        time: int,
     ):
         acc = np.asarray(acceleration, dtype=np.float64)
         gyro = np.asarray(angular_velocity, dtype=np.float64)
@@ -131,14 +131,14 @@ class LIO:
             raise ValueError(f"acceleration: expected shape (3,), got {acc.shape}")
         if gyro.shape != (3,):
             raise ValueError(f"angular_velocity: expected shape (3,), got {gyro.shape}")
-        self._impl.add_imu_measurement(acc, gyro, float(time))
+        self._impl.add_imu_measurement(acc, gyro, int(time))
 
     def add_imu_measurement_with_extrinsic(
         self,
         extrinsic_imu2base: np.ndarray,
         acceleration: np.ndarray,
         angular_velocity: np.ndarray,
-        time: float,
+        time: int,
     ):
         extr = np.asarray(extrinsic_imu2base, dtype=np.float64)
         acc = np.asarray(acceleration, dtype=np.float64)
@@ -151,11 +151,11 @@ class LIO:
             raise ValueError(f"acceleration: expected shape (3,), got {acc.shape}")
         if gyro.shape != (3,):
             raise ValueError(f"angular_velocity: expected shape (3,), got {gyro.shape}")
-        self._impl.add_imu_measurement(extr, acc, gyro, float(time))
+        self._impl.add_imu_measurement(extr, acc, gyro, int(time))
 
     def register_scan(self, scan: np.ndarray, timestamps: np.ndarray):
         scan_arr = np.asarray(scan, dtype=np.float64)
-        times_arr = np.asarray(timestamps, dtype=np.float64)
+        times_arr = np.ascontiguousarray(np.asarray(timestamps), dtype=np.int64)
         if scan_arr.ndim != 2 or scan_arr.shape[1] != 3:
             raise ValueError(f"scan: expected (N,3), got {scan_arr.shape}")
         if times_arr.shape != (scan_arr.shape[0],):
@@ -163,7 +163,7 @@ class LIO:
                 f"timestamps: expected ({scan_arr.shape[0]},), got {times_arr.shape}"
             )
         scan_vec = _Vector3dVector(scan_arr)
-        time_vec = _VectorDouble(times_arr)
+        time_vec = _VectorInt64(times_arr)
         ret_scan = self._impl.register_scan(scan_vec, time_vec)
         return np.asarray(ret_scan)
 
@@ -172,7 +172,7 @@ class LIO:
     ):
         extr = np.asarray(extrinsic_lidar2base, dtype=np.float64)
         scan_arr = np.asarray(scan, dtype=np.float64)
-        times_arr = np.asarray(timestamps, dtype=np.float64)
+        times_arr = np.ascontiguousarray(np.asarray(timestamps), dtype=np.int64)
         if extr.shape != (4, 4):
             raise ValueError(
                 f"extrinsic_lidar2base: expected shape (4,4), got {extr.shape}"
@@ -184,7 +184,7 @@ class LIO:
                 f"timestamps: expected ({scan_arr.shape[0]},), got {times_arr.shape}"
             )
         scan_vec = _Vector3dVector(scan_arr)
-        time_vec = _VectorDouble(times_arr)
+        time_vec = _VectorInt64(times_arr)
         ret_scan = self._impl.register_scan(extr, scan_vec, time_vec)
         return np.asarray(ret_scan)
 

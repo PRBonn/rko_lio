@@ -98,7 +98,7 @@ public:
     const core::ImuControl imu_data = imu_msg_to_imu_data(*imu_msg);
     lio->add_imu_measurement(extrinsic_imu2base, imu_data);
 
-    if (!(lio->imu_state.time > core::Secondsd{0})) {
+    if (!(lio->imu_state.time > core::Nsec{0})) {
       // Skip publishing before the first successful registration: until then,
       // imu_state has not been seeded from a real lidar pose. add_imu_measurement
       // leaves imu_state.time at zero in that pre-init phase.
@@ -139,7 +139,7 @@ public:
 
   void publish_imu_rate_odometry(const core::State& state) const {
     nav_msgs::msg::Odometry msg;
-    msg.header.stamp = rclcpp::Time(std::chrono::duration_cast<std::chrono::nanoseconds>(state.time).count());
+    msg.header.stamp = utils::to_ros_time(state.time);
     msg.header.frame_id = odom_frame;
     msg.child_frame_id = base_frame;
     msg.pose.pose = utils::sophus_to_pose(state.pose);

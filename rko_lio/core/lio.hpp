@@ -135,7 +135,7 @@ public:
                                const TimestampVector& timestamps);
 
   /** Sequence of registered scan poses with corresponding timestamps. */
-  std::vector<std::pair<Secondsd, Sophus::SE3d>> poses_with_timestamps;
+  std::vector<std::pair<Nsec, Sophus::SE3d>> poses_with_timestamps;
 
   /** Base-frame state propagated from IMU measurements. Runs ahead of `lidar_state` between scans; reset to the
    *  optimized lidar pose after each successful registration. Used for gravity compensation and for publishing
@@ -148,19 +148,19 @@ private:
    * Initialize internal odometry state using the given lidar timestamp.
    * @param lidar_time Current lidar timestamp.
    */
-  void initialize(const Secondsd lidar_time);
+  void initialize(const Nsec lidar_time);
 
   /** First-scan path: stamps state, optionally seeds the map, logs the pose. */
-  Vector3dVector bootstrap_first_scan(const Vector3dVector& scan, const Secondsd& current_lidar_time);
+  Vector3dVector bootstrap_first_scan(const Vector3dVector& scan, const Nsec current_lidar_time);
 
   /** Average body acceleration and angular velocity over the IMU interval, with init-phase and no-IMU fallbacks. */
-  std::pair<Eigen::Vector3d, Eigen::Vector3d> motion_priors_from_imu(const Secondsd& current_lidar_time);
+  std::pair<Eigen::Vector3d, Eigen::Vector3d> motion_priors_from_imu(const Nsec current_lidar_time);
 
   /** True if odometry initialization has been completed. */
   bool _initialized = false;
 
   /** Timestamp of the most recent real IMU measurement. */
-  Secondsd _last_real_imu_time = Secondsd{0.0};
+  Nsec _last_real_imu_time{0};
 
   /** Angular velocity of last true IMU measurement expressed in base frame. */
   Eigen::Vector3d _last_real_base_imu_ang_vel = Eigen::Vector3d::Zero();

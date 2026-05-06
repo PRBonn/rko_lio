@@ -191,7 +191,7 @@ class RosbagDataLoader:
 
     def read_imu(self, data):
         header_stamp = data.header.stamp
-        timestamp = header_stamp.sec + (header_stamp.nanosec / 1e9)
+        timestamp_ns = int(header_stamp.sec) * 1_000_000_000 + int(header_stamp.nanosec)
         gyro = [
             data.angular_velocity.x,
             data.angular_velocity.y,
@@ -202,36 +202,36 @@ class RosbagDataLoader:
             data.linear_acceleration.y,
             data.linear_acceleration.z,
         ]
-        return {"time": timestamp, "acceleration": accel, "angular_velocity": gyro}
+        return {"time": timestamp_ns, "acceleration": accel, "angular_velocity": gyro}
 
     def read_point_cloud(self, data):
         header_stamp = data.header.stamp
-        header_stamp_sec = header_stamp.sec + (header_stamp.nanosec / 1e9)
+        header_stamp_ns = int(header_stamp.sec) * 1_000_000_000 + int(header_stamp.nanosec)
         points, mock_timestamps = ros_read_point_cloud(data)
         if mock_timestamps is not None and mock_timestamps.size > 0:
-            start, end, abs_timestamps = rko_lio_pybind._process_timestamps(
+            start_ns, end_ns, abs_timestamps_ns = rko_lio_pybind._process_timestamps(
                 rko_lio_pybind._VectorDouble(mock_timestamps),
-                header_stamp_sec,
+                header_stamp_ns,
                 self.timestamp_config.to_pybind(),
             )
             return {
-                "start_time": start,
-                "end_time": end,
+                "start_time": start_ns,
+                "end_time": end_ns,
                 "scan": points,
-                "timestamps": np.asarray(abs_timestamps),
+                "timestamps": np.asarray(abs_timestamps_ns, dtype=np.int64),
             }
         else:
-            mock_timestamps = np.ones(points.shape[0]) * header_stamp_sec
+            timestamps = np.full(points.shape[0], header_stamp_ns, dtype=np.int64)
             if not hasattr(self, "_printed_timestamp_warning"):
                 self._printed_timestamp_warning = True
                 warning(
                     "Could not detect timestamps in the point cloud. Odometry performance will suffer. Also please disable deskewing (enabled by default) otherwise the odometry may not work properly."
                 )
             return {
-                "start_time": header_stamp_sec,
-                "end_time": header_stamp_sec,
+                "start_time": header_stamp_ns,
+                "end_time": header_stamp_ns,
                 "scan": points,
-                "timestamps": mock_timestamps,
+                "timestamps": timestamps,
             }
 
     def check_topic(self, topic: str | None, expected_msgtype: str) -> str:

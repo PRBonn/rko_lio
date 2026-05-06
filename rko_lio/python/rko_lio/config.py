@@ -53,7 +53,7 @@ Description of parameters
 - ``multiplier_to_seconds``:
 
     Factor applied to raw timestamp values to convert them to seconds.
-    Secondsd and nanoseconds are detected automatically when this is 0.0 (default).
+    Seconds and nanoseconds are detected automatically when this is 0.0 (default).
     Specify this for any other case.
     For example, if timestamps are in microseconds, use ``1e-6``.
 

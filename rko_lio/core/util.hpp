@@ -36,17 +36,19 @@ using Matrix6d = Matrix<double, 6, 6>;
 namespace rko_lio::core {
 // aliases
 using Vector3dVector = std::vector<Eigen::Vector3d>;
-using Secondsd = std::chrono::duration<double>;
-using TimestampVector = std::vector<Secondsd>;
+using Nsec = std::chrono::nanoseconds;
+using TimestampVector = std::vector<Nsec>;
 
 // constants and util funcs
 constexpr double square(double x) { return x * x; }
 constexpr double GRAVITY_MAG = 9.8107;
 inline Eigen::Vector3d gravity() { return {0, 0, -GRAVITY_MAG}; }
 
+inline double to_seconds(const Nsec d) { return std::chrono::duration<double>(d).count(); }
+
 // data structs
 struct State {
-  Secondsd time{0};
+  Nsec time{0};
   Sophus::SE3d pose;
   Eigen::Vector3d velocity = Eigen::Vector3d::Zero();
   Eigen::Vector3d angular_velocity = Eigen::Vector3d::Zero();
@@ -59,7 +61,7 @@ struct ImuBias {
 };
 
 struct ImuControl {
-  Secondsd time{0};
+  Nsec time{0};
   Eigen::Vector3d acceleration = Eigen::Vector3d::Zero();
   Eigen::Vector3d angular_velocity = Eigen::Vector3d::Zero();
 };

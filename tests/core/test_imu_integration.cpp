@@ -26,12 +26,15 @@
 #include "synthetic_clouds.hpp"
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
+#include <cmath>
+#include <cstdint>
 
 using rko_lio::core::GRAVITY_MAG;
 using rko_lio::core::ImuControl;
 using rko_lio::core::LIO;
-using rko_lio::core::Secondsd;
+using rko_lio::core::Nsec;
 using rko_lio::core::TimestampVector;
+using rko_lio::core::to_seconds;
 using rko_lio::core::Vector3dVector;
 using rko_lio::tests::approx_equal;
 using rko_lio::tests::make_hollow_cube;
@@ -47,13 +50,15 @@ LIO::Config default_config() {
   cfg.double_downsample = true;
   return cfg;
 }
+
+inline Nsec ns_from_seconds(double s) { return Nsec(static_cast<int64_t>(std::llround(s * 1e9))); }
 } // namespace
 
 TEST_CASE("IMU before first LiDAR is silently dropped", "[imu_integration]") {
   LIO lio(default_config());
   for (int i = 0; i < 5; ++i) {
     ImuControl m;
-    m.time = Secondsd{0.01 * (i + 1)};
+    m.time = ns_from_seconds(0.01 * (i + 1));
     m.acceleration = {0.0, 0.0, GRAVITY_MAG};
     m.angular_velocity = Eigen::Vector3d::Zero();
     lio.add_imu_measurement(m);
@@ -64,12 +69,12 @@ TEST_CASE("IMU before first LiDAR is silently dropped", "[imu_integration]") {
 TEST_CASE("Static IMU at rest: gravity is compensated", "[imu_integration]") {
   LIO lio(default_config());
   // Bootstrap as if a first lidar scan had been registered.
-  lio.lidar_state.time = Secondsd{1.0};
+  lio.lidar_state.time = ns_from_seconds(1.0);
 
   constexpr int N = 50;
   for (int i = 0; i < N; ++i) {
     ImuControl m;
-    m.time = Secondsd{1.0 + 0.01 * (i + 1)};
+    m.time = ns_from_seconds(1.0 + 0.01 * (i + 1));
     m.acceleration = {0.0, 0.0, GRAVITY_MAG};
     m.angular_velocity = Eigen::Vector3d::Zero();
     lio.add_imu_measurement(m);
@@ -82,7 +87,7 @@ TEST_CASE("Static IMU at rest: gravity is compensated", "[imu_integration]") {
 
 TEST_CASE("Pure rotation: gyro integration matches exp(omega*T)", "[imu_integration]") {
   LIO lio(default_config());
-  lio.lidar_state.time = Secondsd{1.0};
+  lio.lidar_state.time = ns_from_seconds(1.0);
 
   const Eigen::Vector3d omega(0.0, 0.0, 0.5);
   constexpr int N = 100;
@@ -91,7 +96,7 @@ TEST_CASE("Pure rotation: gyro integration matches exp(omega*T)", "[imu_integrat
 
   for (int i = 0; i < N; ++i) {
     ImuControl m;
-    m.time = Secondsd{1.0 + dt * (i + 1)};
+    m.time = ns_from_seconds(1.0 + dt * (i + 1));
     m.angular_velocity = omega;
     m.acceleration = Eigen::Vector3d::Zero();
     lio.add_imu_measurement(m);
@@ -99,19 +104,19 @@ TEST_CASE("Pure rotation: gyro integration matches exp(omega*T)", "[imu_integrat
 
   const Sophus::SO3d expected = Sophus::SO3d::exp(omega * T);
   REQUIRE(approx_equal(lio.imu_state.pose.so3(), expected, 1e-9));
-  REQUIRE_THAT(lio.imu_state.time.count(), WithinAbs(1.0 + T, 1e-12));
+  REQUIRE_THAT(to_seconds(lio.imu_state.time), WithinAbs(1.0 + T, 1e-12));
 }
 
 TEST_CASE("Gyro bias is subtracted before integration", "[imu_integration]") {
   LIO lio(default_config());
-  lio.lidar_state.time = Secondsd{1.0};
+  lio.lidar_state.time = ns_from_seconds(1.0);
   lio.imu_bias.gyroscope = {0.1, -0.2, 0.05};
 
   const Eigen::Vector3d measured(0.5, 0.3, 0.1);
   constexpr int N = 50;
   for (int i = 0; i < N; ++i) {
     ImuControl m;
-    m.time = Secondsd{1.0 + 0.01 * (i + 1)};
+    m.time = ns_from_seconds(1.0 + 0.01 * (i + 1));
     m.angular_velocity = measured;
     m.acceleration = Eigen::Vector3d::Zero();
     lio.add_imu_measurement(m);
@@ -124,7 +129,7 @@ TEST_CASE("Gyro bias is subtracted before integration", "[imu_integration]") {
 
 TEST_CASE("Extrinsic overload: identity extrinsic delegates to base-frame", "[imu_integration]") {
   LIO lio(default_config());
-  lio.lidar_state.time = Secondsd{1.0};
+  lio.lidar_state.time = ns_from_seconds(1.0);
 
   const Sophus::SE3d identity_extrinsic;
   const Eigen::Vector3d omega(0.1, 0.2, 0.3);
@@ -132,7 +137,7 @@ TEST_CASE("Extrinsic overload: identity extrinsic delegates to base-frame", "[im
   constexpr int N = 10;
   for (int i = 0; i < N; ++i) {
     ImuControl m;
-    m.time = Secondsd{1.0 + 0.01 * (i + 1)};
+    m.time = ns_from_seconds(1.0 + 0.01 * (i + 1));
     m.angular_velocity = omega;
     m.acceleration = {0.0, 0.0, GRAVITY_MAG};
     lio.add_imu_measurement(identity_extrinsic, m);
@@ -147,7 +152,7 @@ TEST_CASE("Extrinsic overload: identity extrinsic delegates to base-frame", "[im
 
 TEST_CASE("Extrinsic overload: pure-rotation extrinsic transforms omega", "[imu_integration]") {
   LIO lio(default_config());
-  lio.lidar_state.time = Secondsd{1.0};
+  lio.lidar_state.time = ns_from_seconds(1.0);
 
   const Sophus::SO3d R = Sophus::SO3d::rotX(M_PI / 2.0);
   const Sophus::SE3d extrinsic_imu2base(R, Eigen::Vector3d::Zero());
@@ -159,7 +164,7 @@ TEST_CASE("Extrinsic overload: pure-rotation extrinsic transforms omega", "[imu_
   constexpr int N = 20;
   for (int i = 0; i < N + 1; ++i) {
     ImuControl m;
-    m.time = Secondsd{1.0 + 0.01 * (i + 1)};
+    m.time = ns_from_seconds(1.0 + 0.01 * (i + 1));
     m.angular_velocity = omega_imu;
     m.acceleration = Eigen::Vector3d::Zero();
     lio.add_imu_measurement(extrinsic_imu2base, m);
@@ -176,12 +181,12 @@ TEST_CASE("Static IMU at rest: imu_state translation stays zero", "[imu_integrat
   LIO lio(default_config());
   // Bootstrap as if a first lidar scan had been registered. The first add_imu_measurement
   // hits the lazy-init branch and anchors imu_state.pose = identity, velocity = 0.
-  lio.lidar_state.time = Secondsd{1.0};
+  lio.lidar_state.time = ns_from_seconds(1.0);
 
   constexpr int N = 50;
   for (int i = 0; i < N; ++i) {
     ImuControl m;
-    m.time = Secondsd{1.0 + 0.01 * (i + 1)};
+    m.time = ns_from_seconds(1.0 + 0.01 * (i + 1));
     m.acceleration = {0.0, 0.0, GRAVITY_MAG};
     m.angular_velocity = Eigen::Vector3d::Zero();
     lio.add_imu_measurement(m);
@@ -195,7 +200,7 @@ TEST_CASE("Static IMU at rest: imu_state translation stays zero", "[imu_integrat
 TEST_CASE("Constant body acceleration: position grows as 0.5 * a * t^2", "[imu_integration]") {
   LIO lio(default_config());
   // Bootstrap as if a first lidar scan had been registered with identity pose.
-  lio.lidar_state.time = Secondsd{1.0};
+  lio.lidar_state.time = ns_from_seconds(1.0);
 
   constexpr double a_x = 0.5; // m/s^2 in body x
   constexpr int N = 100;
@@ -204,7 +209,7 @@ TEST_CASE("Constant body acceleration: position grows as 0.5 * a * t^2", "[imu_i
 
   for (int i = 0; i < N; ++i) {
     ImuControl m;
-    m.time = Secondsd{1.0 + dt * (i + 1)};
+    m.time = ns_from_seconds(1.0 + dt * (i + 1));
     // Raw IMU acceleration: body accel + gravity (so compensated_accel comes out (a_x, 0, 0)).
     m.acceleration = {a_x, 0.0, GRAVITY_MAG};
     m.angular_velocity = Eigen::Vector3d::Zero();
@@ -243,7 +248,7 @@ TEST_CASE("register_scan resets imu_state to optimized pose", "[imu_integration]
     const double frac = cloud.size() == 1
                             ? 0.0
                             : static_cast<double>(i) / static_cast<double>(cloud.size() - 1);
-    ts1.emplace_back(Secondsd{FIRST_SCAN_END * frac});
+    ts1.emplace_back(ns_from_seconds(FIRST_SCAN_END * frac));
   }
   lio.register_scan(cloud, ts1);
 
@@ -253,19 +258,19 @@ TEST_CASE("register_scan resets imu_state to optimized pose", "[imu_integration]
   for (int i = 0; i < N; ++i) {
     ImuControl m;
     const double frac = static_cast<double>(i) / static_cast<double>(N - 1);
-    m.time = Secondsd{FIRST_SCAN_END + 0.05 + (DT - 0.1) * frac};
+    m.time = ns_from_seconds(FIRST_SCAN_END + 0.05 + (DT - 0.1) * frac);
     m.acceleration = {0.0, 0.0, GRAVITY_MAG};
     m.angular_velocity = Eigen::Vector3d::Zero();
     lio.add_imu_measurement(m);
   }
 
   // Single-instant timestamps for the second scan -> deskewing is identity.
-  const TimestampVector ts2(cloud.size(), Secondsd{SECOND_SCAN_END});
+  const TimestampVector ts2(cloud.size(), ns_from_seconds(SECOND_SCAN_END));
   lio.register_scan(cloud, ts2);
 
   REQUIRE(lio.poses_with_timestamps.size() == 2);
   REQUIRE(approx_equal(lio.imu_state.pose, lio.lidar_state.pose, 1e-12));
-  REQUIRE_THAT(lio.imu_state.time.count(), WithinAbs(lio.lidar_state.time.count(), 1e-12));
+  REQUIRE_THAT(to_seconds(lio.imu_state.time), WithinAbs(to_seconds(lio.lidar_state.time), 1e-12));
   REQUIRE(approx_equal(lio.imu_state.velocity, lio.lidar_state.velocity, 1e-12));
   REQUIRE(approx_equal(lio.imu_state.angular_velocity, lio.lidar_state.angular_velocity, 1e-12));
   REQUIRE(approx_equal(lio.imu_state.linear_acceleration, lio.lidar_state.linear_acceleration, 1e-12));
