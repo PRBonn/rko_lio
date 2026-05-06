@@ -26,6 +26,7 @@
 #include "rko_lio/core/process_timestamps.hpp"
 #include "stl_vector_eigen.hpp"
 #include <cmath>
+#include <cstdint>
 #include <pybind11/eigen.h>
 #include <pybind11/numpy.h>
 #include <pybind11/pybind11.h>
@@ -38,11 +39,13 @@ using namespace rko_lio::core;
 
 PYBIND11_MAKE_OPAQUE(std::vector<Eigen::Vector3d>);
 PYBIND11_MAKE_OPAQUE(std::vector<double>);
+PYBIND11_MAKE_OPAQUE(std::vector<int64_t>);
 
 PYBIND11_MODULE(rko_lio_pybind, m) {
   auto vector3dvector = pybind_eigen_vector_of_vector<Eigen::Vector3d>(
       m, "_Vector3dVector", "std::vector<Eigen::Vector3d>", py::py_array_to_vectors_double<Eigen::Vector3d>);
   py::bind_vector<std::vector<double>>(m, "_VectorDouble");
+  py::bind_vector<std::vector<int64_t>>(m, "_VectorInt64");
 
   // for introspecting IMU data
   py::class_<IntervalStats>(m, "_IntervalStats")
@@ -74,9 +77,9 @@ PYBIND11_MODULE(rko_lio_pybind, m) {
       .def(py::init<const LIO::Config&>(), "config"_a)
       .def(
           "add_imu_measurement",
-          [](LIO& self, const Eigen::Vector3d& accel, const Eigen::Vector3d& gyro, const double time) {
+          [](LIO& self, const Eigen::Vector3d& accel, const Eigen::Vector3d& gyro, const int64_t time_ns) {
             self.add_imu_measurement(ImuControl{
-                .time = Secondsd(time),
+                .time = Nsec(time_ns),
                 .acceleration = accel,
                 .angular_velocity = gyro,
             });
@@ -85,9 +88,9 @@ PYBIND11_MODULE(rko_lio_pybind, m) {
       .def(
           "add_imu_measurement",
           [](LIO& self, const Eigen::Matrix4d& extrinsic_imu2base, const Eigen::Vector3d& accel,
-             const Eigen::Vector3d& gyro, const double time) {
+             const Eigen::Vector3d& gyro, const int64_t time_ns) {
             self.add_imu_measurement(Sophus::SE3d(extrinsic_imu2base), ImuControl{
-                                                                           .time = Secondsd(time),
+                                                                           .time = Nsec(time_ns),
                                                                            .acceleration = accel,
                                                                            .angular_velocity = gyro,
                                                                        });
@@ -95,21 +98,21 @@ PYBIND11_MODULE(rko_lio_pybind, m) {
           "extrinsic_imu2base"_a, "acceleration"_a, "angular_velocity"_a, "time"_a)
       .def(
           "register_scan",
-          [](LIO& self, const std::vector<Eigen::Vector3d>& scan, const std::vector<double>& timestamps) {
-            std::vector<Secondsd> tsd(timestamps.size());
-            std::transform(timestamps.cbegin(), timestamps.cend(), tsd.begin(),
-                           [](const double t) { return Secondsd(t); });
-            return self.register_scan(scan, tsd);
+          [](LIO& self, const std::vector<Eigen::Vector3d>& scan, const std::vector<int64_t>& timestamps_ns) {
+            TimestampVector timestamps(timestamps_ns.size());
+            std::transform(timestamps_ns.cbegin(), timestamps_ns.cend(), timestamps.begin(),
+                           [](const int64_t t) { return Nsec(t); });
+            return self.register_scan(scan, timestamps);
           },
           "scan"_a, "timestamps"_a)
       .def(
           "register_scan",
           [](LIO& self, const Eigen::Matrix4d& extrinsic_lidar2base, const std::vector<Eigen::Vector3d>& scan,
-             const std::vector<double>& timestamps) {
-            std::vector<Secondsd> tsd(timestamps.size());
-            std::transform(timestamps.cbegin(), timestamps.cend(), tsd.begin(),
-                           [](const double t) { return Secondsd(t); });
-            return self.register_scan(Sophus::SE3d(extrinsic_lidar2base), scan, tsd);
+             const std::vector<int64_t>& timestamps_ns) {
+            TimestampVector timestamps(timestamps_ns.size());
+            std::transform(timestamps_ns.cbegin(), timestamps_ns.cend(), timestamps.begin(),
+                           [](const int64_t t) { return Nsec(t); });
+            return self.register_scan(Sophus::SE3d(extrinsic_lidar2base), scan, timestamps);
           },
           "extrinsic_lidar2base"_a, "scan"_a, "timestamps"_a)
       .def("map_point_cloud", [](LIO& self) { return self.map.pointcloud(); })
@@ -120,13 +123,13 @@ PYBIND11_MODULE(rko_lio_pybind, m) {
       .def("poses_with_timestamps",
            [](LIO& self) {
              const size_t n = self.poses_with_timestamps.size();
-             std::vector<double> times(n);
+             std::vector<int64_t> times_ns(n);
              pybind11::array_t<double> poses({n, static_cast<size_t>(7)});
              // https://pybind11.readthedocs.io/en/stable/advanced/pycpp/numpy.html#direct-access
              auto pose_buf = poses.mutable_unchecked<2>();
              for (size_t i = 0; i < n; ++i) {
                const auto& [time, pose] = self.poses_with_timestamps[i];
-               times[i] = time.count();
+               times_ns[i] = time.count();
                const Eigen::Vector3d& trans = pose.translation();
                const Eigen::Quaterniond& q = pose.unit_quaternion();
                pose_buf(i, 0) = trans.x();
@@ -137,7 +140,7 @@ PYBIND11_MODULE(rko_lio_pybind, m) {
                pose_buf(i, 5) = q.z();
                pose_buf(i, 6) = q.w();
              }
-             return pybind11::make_tuple(times, poses);
+             return pybind11::make_tuple(times_ns, poses);
            })
       .def_readonly("interval_stats", &LIO::interval_stats);
 
@@ -150,11 +153,11 @@ PYBIND11_MODULE(rko_lio_pybind, m) {
 
   m.def(
       "_process_timestamps",
-      [](const std::vector<double>& raw_ts, const double header_stamp, const TPConfig& config) {
-        const auto& [begin, end, abs_ts] = process_timestamps(raw_ts, Secondsd(header_stamp), config);
-        std::vector<double> abs_ts_double(abs_ts.size());
-        std::transform(abs_ts.cbegin(), abs_ts.cend(), abs_ts_double.begin(), [&](const auto& t) { return t.count(); });
-        return std::make_tuple(begin.count(), end.count(), std::move(abs_ts_double));
+      [](const std::vector<double>& raw_ts, const int64_t header_stamp_ns, const TPConfig& config) {
+        const auto& [begin, end, abs_ts] = process_timestamps(raw_ts, Nsec(header_stamp_ns), config);
+        std::vector<int64_t> abs_ts_ns(abs_ts.size());
+        std::transform(abs_ts.cbegin(), abs_ts.cend(), abs_ts_ns.begin(), [](const Nsec t) { return t.count(); });
+        return std::make_tuple(begin.count(), end.count(), std::move(abs_ts_ns));
       },
       "raw_timestamps"_a, "header_stamp"_a, "config"_a);
 }

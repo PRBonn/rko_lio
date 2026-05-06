@@ -114,12 +114,12 @@ def quat_xyzw_xyz_to_transform(quat_xyzw_xyz: np.ndarray | list | None) -> np.nd
 
 def save_scan_as_ply(
     scan: np.ndarray,
-    end_time_seconds: float,
+    end_time_ns: int,
     output_dir: Path,
 ):
     """
     dumps the scan as PLY.
-    The filename is <nanoseconds_as_int>.ply based on end_time_seconds.
+    The filename is <nanoseconds_as_int>.ply.
     """
     if scan is None or len(scan) == 0:
         return
@@ -131,7 +131,7 @@ def save_scan_as_ply(
         )
 
     output_dir.mkdir(exist_ok=True, parents=True)
-    fname = output_dir / f"{int(end_time_seconds * 1e9)}.ply"
+    fname = output_dir / f"{int(end_time_ns)}.ply"
 
     pc = open3d.geometry.PointCloud()
     pc.points = open3d.utility.Vector3dVector(scan)

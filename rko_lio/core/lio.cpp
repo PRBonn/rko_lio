@@ -69,7 +69,7 @@ struct AccelFilterStep {
 AccelFilterStep step_body_accel_filter(const BodyAccelKF& prev,
                                        const IntervalStats& stats,
                                        const Sophus::SO3d& rotation_estimate,
-                                       const Secondsd& dt,
+                                       const Nsec dt,
                                        const double max_expected_jerk) {
   if (stats.imu_count <= 1) {
     std::cerr << "[WARNING] " << stats.imu_count
@@ -83,7 +83,7 @@ AccelFilterStep step_body_accel_filter(const BodyAccelKF& prev,
   const double accel_mag_variance = stats.welford_sum_of_squares / (stats.imu_count - 1);
   const Eigen::Vector3d body_accel_measurement = avg_imu_accel + rotation_estimate.inverse() * gravity();
 
-  const double max_acceleration_change = max_expected_jerk * dt.count();
+  const double max_acceleration_change = max_expected_jerk * to_seconds(dt);
   // assume [j, -j] range for uniform dist. on jerk. variance is (2j)^2 / 12 = j^2/3. multiply by dt^2 for accel
   const Eigen::Matrix3d process_noise = square(max_acceleration_change) / 3 * Eigen::Matrix3d::Identity();
   const Eigen::Matrix3d cov_pred = prev.covariance + process_noise;
@@ -102,17 +102,17 @@ AccelFilterStep step_body_accel_filter(const BodyAccelKF& prev,
 }
 
 template <typename Functor>
-  requires requires(Functor f, Secondsd stamp) {
+  requires requires(Functor f, Nsec stamp) {
     { f(stamp) } -> std::same_as<Sophus::SE3d>;
   }
 Vector3dVector deskew_scan(const Vector3dVector& frame,
                            const TimestampVector& timestamps,
-                           const Secondsd& end_time,
+                           const Nsec end_time,
                            const Functor& relative_pose_at_time) {
   const Sophus::SE3d scan_to_scan_motion_inverse = relative_pose_at_time(end_time).inverse();
   Vector3dVector deskewed(frame.size());
   std::transform(frame.cbegin(), frame.cend(), timestamps.cbegin(), deskewed.begin(),
-                 [&](const Eigen::Vector3d& point, const Secondsd& timestamp) {
+                 [&](const Eigen::Vector3d& point, const Nsec timestamp) {
                    return (scan_to_scan_motion_inverse * relative_pose_at_time(timestamp)) * point;
                  });
   return deskewed;
@@ -242,7 +242,7 @@ namespace rko_lio::core {
 //          private
 // ==========================
 
-void LIO::initialize(const Secondsd lidar_time) {
+void LIO::initialize(const Nsec lidar_time) {
   if (interval_stats.imu_count == 0) {
     std::cerr << "[WARNING] Cannot initialize. No imu measurements received.\n";
     // lidar_state.time has the time from the previous lidar, which we didn't log if init_phase was on
@@ -277,7 +277,7 @@ void LIO::initialize(const Secondsd lidar_time) {
             << ", gyro bias: " << imu_bias.gyroscope.transpose() << "\n";
 }
 
-Vector3dVector LIO::bootstrap_first_scan(const Vector3dVector& scan, const Secondsd& current_lidar_time) {
+Vector3dVector LIO::bootstrap_first_scan(const Vector3dVector& scan, const Nsec current_lidar_time) {
   lidar_state.time = current_lidar_time;
   imu_state = lidar_state;
   auto preproc = preprocess_scan(scan, config);
@@ -289,7 +289,7 @@ Vector3dVector LIO::bootstrap_first_scan(const Vector3dVector& scan, const Secon
   return std::move(preproc.filtered_frame);
 }
 
-std::pair<Eigen::Vector3d, Eigen::Vector3d> LIO::motion_priors_from_imu(const Secondsd& current_lidar_time) {
+std::pair<Eigen::Vector3d, Eigen::Vector3d> LIO::motion_priors_from_imu(const Nsec current_lidar_time) {
   if (config.initialization_phase && !_initialized) {
     // assume static and
     initialize(current_lidar_time);
@@ -330,7 +330,7 @@ void LIO::add_imu_measurement(const ImuControl& base_imu) {
     imu_state = lidar_state;
   }
 
-  const double dt = (base_imu.time - imu_state.time).count();
+  const double dt = to_seconds(base_imu.time - imu_state.time);
 
   if (dt < 0.0) {
     // messages are out of sync. thats a problem, since we integrate gyro from last lidar time onwards
@@ -377,10 +377,10 @@ void LIO::add_imu_measurement(const Sophus::SE3d& extrinsic_imu2base, const ImuC
   base_imu.angular_velocity = extrinsic_rotation * raw_imu.angular_velocity;
 
   const Eigen::Vector3d& lever_arm = -1 * extrinsic_imu2base.translation();
-  const Secondsd dt = raw_imu.time - _last_real_imu_time;
+  const Nsec dt = raw_imu.time - _last_real_imu_time;
 
   const Eigen::Vector3d angular_acceleration = std::invoke([&]() -> Eigen::Vector3d {
-    if (std::chrono::abs(dt) < Secondsd(1.0 / 5000.0)) {
+    if (std::chrono::abs(dt) < std::chrono::microseconds(200)) {
       // if dt is less than the equivalent of a 5000 Hz imu, assuming zero ang accel,
       // causes numerical issues otherwise
       static bool warning_imu_too_close = false;
@@ -392,7 +392,7 @@ void LIO::add_imu_measurement(const Sophus::SE3d& extrinsic_imu2base, const ImuC
       return Eigen::Vector3d::Zero();
     } else {
       const Eigen::Vector3d angular_acceleration =
-          (base_imu.angular_velocity - _last_real_base_imu_ang_vel) / dt.count();
+          (base_imu.angular_velocity - _last_real_base_imu_ang_vel) / to_seconds(dt);
       return angular_acceleration;
     }
   });
@@ -407,14 +407,14 @@ void LIO::add_imu_measurement(const Sophus::SE3d& extrinsic_imu2base, const ImuC
 
 Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVector& timestamps) {
   // TODO: redundant max compute as its available after process_timestamps
-  const Secondsd current_lidar_time = *std::max_element(timestamps.cbegin(), timestamps.cend());
+  const Nsec current_lidar_time = *std::max_element(timestamps.cbegin(), timestamps.cend());
 
   if (lidar_state.time < EPSILON_TIME) {
     return bootstrap_first_scan(scan, current_lidar_time);
   }
 
-  if (std::chrono::abs(current_lidar_time - lidar_state.time).count() > 1.0) {
-    const double diff_seconds = (current_lidar_time - lidar_state.time).count();
+  if (std::chrono::abs(current_lidar_time - lidar_state.time) > std::chrono::seconds(1)) {
+    const double diff_seconds = to_seconds(current_lidar_time - lidar_state.time);
     // TODO: std::expected with tl::expected (because ros humble)
     throw std::invalid_argument("Received LiDAR scan with " + std::to_string(diff_seconds) +
                                 " seconds delta to previous scan.");
@@ -423,8 +423,8 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
   const auto [avg_body_accel, avg_ang_vel] = motion_priors_from_imu(current_lidar_time);
 
   // compute relative motion using controls
-  auto relative_pose_at_time = [&](const Secondsd& time) -> Sophus::SE3d {
-    const double dt = (time - lidar_state.time).count();
+  auto relative_pose_at_time = [&](const Nsec time) -> Sophus::SE3d {
+    const double dt = to_seconds(time - lidar_state.time);
     Eigen::Vector6d tau;
     tau.head<3>() = lidar_state.velocity * dt + (avg_body_accel * square(dt) / 2);
     tau.tail<3>() = avg_ang_vel * dt;
@@ -458,7 +458,7 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
     const Sophus::SE3d optimized_pose = icp(preproc_result.keypoints, map, initial_guess, config, kf_step.info);
 
     // estimate velocities and accelerations from the new pose
-    const double dt = (current_lidar_time - lidar_state.time).count();
+    const double dt = to_seconds(current_lidar_time - lidar_state.time);
     const Sophus::SE3d motion = lidar_state.pose.inverse() * optimized_pose;
     const Eigen::Vector6d local_velocity = motion.log() / dt;
     const Eigen::Vector3d local_linear_acceleration =

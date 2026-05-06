@@ -89,7 +89,7 @@ public:
 
   // map publish thread
   std::jthread map_publish_thead;
-  core::Secondsd publish_map_after = std::chrono::seconds(1);
+  core::Nsec publish_map_after = std::chrono::seconds(1);
   std::mutex local_map_mutex;
 
   // shutdown flag
@@ -106,11 +106,11 @@ public:
 
   core::Vector3dVector register_scan_locked(const core::Vector3dVector& scan, const core::TimestampVector& time_vector);
 
-  void publish_lidar_outputs(const core::Vector3dVector& deskewed_frame, const core::Secondsd& stamp) const;
+  void publish_lidar_outputs(const core::Vector3dVector& deskewed_frame, const core::Nsec stamp) const;
 
-  void publish_odometry(const core::State& state, const core::Secondsd& stamp) const;
-  void publish_tf(const Sophus::SE3d& pose, const core::Secondsd& stamp) const;
-  void publish_lidar_accel(const Eigen::Vector3d& acceleration, const core::Secondsd& stamp) const;
+  void publish_odometry(const core::State& state, const core::Nsec stamp) const;
+  void publish_tf(const Sophus::SE3d& pose, const core::Nsec stamp) const;
+  void publish_lidar_accel(const Eigen::Vector3d& acceleration, const core::Nsec stamp) const;
   void publish_map_loop();
   void dump_results_to_disk(const std::filesystem::path& results_dir, const std::string& run_name) const;
 

@@ -35,8 +35,8 @@
 namespace rko_lio::core {
 
 struct Timestamps {
-  Secondsd min;
-  Secondsd max;
+  Nsec min;
+  Nsec max;
   TimestampVector times;
 };
 
@@ -53,11 +53,11 @@ struct TimestampProcessingConfig {
 };
 
 /**
- * Process raw timestamps and calculates absolute timestamps in seconds.
+ * Process raw timestamps and calculates absolute timestamps in nanoseconds.
  *
  * The input timestamps can be either absolute or relative and may be in seconds or nanoseconds.
  * The function automatically detects whether the timestamps are in nanoseconds by checking the
- * duration spread and converts them to seconds accordingly.
+ * duration spread and converts them to nanoseconds accordingly.
  * Then the case of absolute or relative time is disambiguated based on how close (or away) the min or max times are to
  * the header time.
  *
@@ -68,13 +68,13 @@ struct TimestampProcessingConfig {
  * @param header_stamp Reference absolute timestamp corresponding to the scan's header time.
  * @param config timestamp specific config to use in processing.
  * @return A struct containing:
- *   - The computed scan start time (absolute, Secondsd),
- *   - The computed scan end time (absolute, Secondsd),
- *   - A vector of all processed point timestamps converted to absolute seconds (TimestampVector).
+ *   - The computed scan start time (absolute, Nsec),
+ *   - The computed scan end time (absolute, Nsec),
+ *   - A vector of all processed point timestamps converted to absolute nanoseconds (TimestampVector).
  * @throws std::runtime_error If the timestamp format or values are unrecognized or unsupported.
  */
 Timestamps process_timestamps(const std::vector<double>& raw_timestamps,
-                              const Secondsd& header_stamp,
+                              const Nsec header_stamp,
                               const TimestampProcessingConfig& config);
 
 } // namespace rko_lio::core

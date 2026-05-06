@@ -25,17 +25,24 @@
 #include "synthetic_clouds.hpp"
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
+#include <cmath>
+#include <cstdint>
 #include <random>
 
 using rko_lio::core::GRAVITY_MAG;
 using rko_lio::core::ImuControl;
 using rko_lio::core::LIO;
-using rko_lio::core::Secondsd;
+using rko_lio::core::Nsec;
 using rko_lio::core::TimestampVector;
+using rko_lio::core::to_seconds;
 using rko_lio::core::Vector3dVector;
 using rko_lio::tests::approx_equal;
 using rko_lio::tests::make_hollow_cube;
 using Catch::Matchers::WithinAbs;
+
+namespace {
+inline Nsec ns_from_seconds(double s) { return Nsec(static_cast<int64_t>(std::llround(s * 1e9))); }
+}
 
 namespace {
 // dt between consecutive scans, used to derive the IMU values that produce a
@@ -50,7 +57,7 @@ TimestampVector linspace_timestamps(size_t n, double t_start, double t_end) {
   ts.reserve(n);
   for (size_t i = 0; i < n; ++i) {
     const double frac = n == 1 ? 0.0 : static_cast<double>(i) / static_cast<double>(n - 1);
-    ts.emplace_back(Secondsd{t_start + (t_end - t_start) * frac});
+    ts.emplace_back(ns_from_seconds(t_start + (t_end - t_start) * frac));
   }
   return ts;
 }
@@ -58,7 +65,7 @@ TimestampVector linspace_timestamps(size_t n, double t_start, double t_end) {
 // Single-instant timestamps for the second scan: deskewing reduces to identity
 // when every point shares end_time.
 TimestampVector instant_timestamps(size_t n, double t) {
-  return TimestampVector(n, Secondsd{t});
+  return TimestampVector(n, ns_from_seconds(t));
 }
 
 void feed_imu(LIO& lio, double t_start, double t_end, int n,
@@ -66,7 +73,7 @@ void feed_imu(LIO& lio, double t_start, double t_end, int n,
   for (int i = 0; i < n; ++i) {
     ImuControl m;
     const double frac = n == 1 ? 0.0 : static_cast<double>(i) / static_cast<double>(n - 1);
-    m.time = Secondsd{t_start + (t_end - t_start) * frac};
+    m.time = ns_from_seconds(t_start + (t_end - t_start) * frac);
     m.acceleration = acceleration;
     m.angular_velocity = angular_velocity;
     lio.add_imu_measurement(m);
@@ -88,7 +95,7 @@ void feed_imu_noisy(LIO& lio, double t_start, double t_end, int n,
   for (int i = 0; i < n; ++i) {
     ImuControl m;
     const double frac = n == 1 ? 0.0 : static_cast<double>(i) / static_cast<double>(n - 1);
-    m.time = Secondsd{t_start + (t_end - t_start) * frac};
+    m.time = ns_from_seconds(t_start + (t_end - t_start) * frac);
     m.acceleration = acceleration + Eigen::Vector3d{a_noise(rng), a_noise(rng), a_noise(rng)};
     m.angular_velocity = angular_velocity + Eigen::Vector3d{g_noise(rng), g_noise(rng), g_noise(rng)};
     lio.add_imu_measurement(m);
@@ -114,9 +121,9 @@ TEST_CASE("First scan: empty map -> populated, single pose at lidar_state.time",
 
   REQUIRE_FALSE(lio.map.empty());
   REQUIRE(lio.poses_with_timestamps.size() == 1);
-  REQUIRE_THAT(lio.lidar_state.time.count(), WithinAbs(FIRST_SCAN_END, 1e-9));
+  REQUIRE_THAT(to_seconds(lio.lidar_state.time), WithinAbs(FIRST_SCAN_END, 1e-9));
   REQUIRE(approx_equal(lio.lidar_state.pose, Sophus::SE3d{}, 1e-12));
-  REQUIRE_THAT(lio.poses_with_timestamps[0].first.count(), WithinAbs(FIRST_SCAN_END, 1e-9));
+  REQUIRE_THAT(to_seconds(lio.poses_with_timestamps[0].first), WithinAbs(FIRST_SCAN_END, 1e-9));
 }
 
 TEST_CASE("Identity registration: same cloud twice -> pose ~= identity", "[register_scan]") {

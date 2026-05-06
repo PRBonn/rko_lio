@@ -158,13 +158,13 @@ class HeliprDataLoader:
                 return (
                     "imu",
                     {
-                        "time": data["timestamp"] / 1e9,
+                        "time": int(data["timestamp"]),
                         "acceleration": data["accel"],
                         "angular_velocity": data["gyro"],
                     },
                 )
             elif kind == "lidar":
-                header_stamp_sec = data["timestamp"] / 1e9
+                header_stamp_ns = int(data["timestamp"])
 
                 try:
                     points, raw_timestamps = read_lidar_bin(
@@ -176,18 +176,18 @@ class HeliprDataLoader:
                     continue
 
                 points_arr = np.asarray(points).reshape(-1, 3)
-                start, end, abs_timestamps = rko_lio_pybind._process_timestamps(
+                start_ns, end_ns, abs_timestamps_ns = rko_lio_pybind._process_timestamps(
                     rko_lio_pybind._VectorDouble(np.asarray(raw_timestamps)),
-                    header_stamp_sec,
+                    header_stamp_ns,
                     self.timestamp_config.to_pybind(),
                 )
                 return (
                     "lidar",
                     {
-                        "start_time": start,
-                        "end_time": end,
+                        "start_time": start_ns,
+                        "end_time": end_ns,
                         "scan": points_arr,
-                        "timestamps": np.asarray(abs_timestamps),
+                        "timestamps": np.asarray(abs_timestamps_ns, dtype=np.int64),
                     },
                 )
 

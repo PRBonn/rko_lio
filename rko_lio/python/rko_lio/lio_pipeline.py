@@ -100,7 +100,7 @@ class LIOPipeline:
 
     def add_imu(
         self,
-        time: float,
+        time: int,
         acceleration: np.ndarray,
         angular_velocity: np.ndarray,
     ):
@@ -109,8 +109,8 @@ class LIOPipeline:
 
         Parameters
         ----------
-        time : float
-            Measurement timestamp in seconds.
+        time : int
+            Measurement timestamp in nanoseconds (absolute, since the unix epoch).
         acceleration : array of float, shape (3,)
             Acceleration vector in m/s^2.
         angular_velocity : array of float, shape (3,)
@@ -129,34 +129,34 @@ class LIOPipeline:
             )
 
         if self.config.viz:
-            self.rerun.set_time("data_time", timestamp=time)
+            self.rerun.set_time("data_time", timestamp=time * 1e-9)
             log_vector(self.rerun, "imu/acceleration", acceleration)
             log_vector(self.rerun, "imu/angular_velocity", angular_velocity)
 
     @profile_func("Pipeline - Register Scan")
     def register_scan(
         self,
-        start_time: float,
-        end_time: float,
+        start_time: int,
+        end_time: int,
         scan: np.ndarray,
         timestamps: np.ndarray,
     ):
         """
         Register a lidar scan.
-        Timestamps are assumed to be absolute seconds.
+        Timestamps are assumed to be absolute nanoseconds.
         It is assumed there is sufficient IMU data added to the pipeline before triggering the registration (use the Sequencer).
 
 
         Parameters
         ----------
-        start_time: float
-            Absolute time of the scan recording start
-        end_time: float
-            Absolute time of the scan recording end
+        start_time: int
+            Absolute time of the scan recording start, in nanoseconds.
+        end_time: int
+            Absolute time of the scan recording end, in nanoseconds.
         scan : array of float, shape (N,3)
             Point cloud.
-        timestamps : array of float, shape (N,)
-            Absolute timestamps (seconds) for each point.
+        timestamps : array of int64, shape (N,)
+            Absolute per-point timestamps in nanoseconds.
 
         Returns
         -------
@@ -165,7 +165,7 @@ class LIOPipeline:
         """
         if self.config.viz:
             # needs to be logged before the pybinded register function is called
-            self.rerun.set_time("data_time", timestamp=end_time)
+            self.rerun.set_time("data_time", timestamp=end_time * 1e-9)
             stats = self.lio.interval_stats()
             self.rerun.log("imu/imu_count", self.rerun.Scalars(float(stats.imu_count)))
             log_vector(self.rerun, "imu/avg_acceleration", stats.avg_imu_accel())
@@ -205,8 +205,8 @@ class LIOPipeline:
         return deskewed_scan
 
     @profile_func("Pipeline - Visualization")
-    def _visualize_frame(self, end_time: float):
-        self.rerun.set_time("data_time", timestamp=end_time)
+    def _visualize_frame(self, end_time: int):
+        self.rerun.set_time("data_time", timestamp=end_time * 1e-9)
         pose = self.lio.pose()
         self.rerun.log(
             "world/lidar",
@@ -253,11 +253,12 @@ class LIOPipeline:
         - Configuration as YAML file.
         """
         traj_file = self.output_dir / f"{self.output_dir.name}_tum.txt"
-        timestamps, poses = self.lio.poses_with_timestamps()
+        timestamps_ns, poses = self.lio.poses_with_timestamps()
         with traj_file.open("w") as f:
-            for t, p in zip(timestamps, poses):
+            for t_ns, p in zip(timestamps_ns, poses):
                 # p: x,y,z,qx,qy,qz,qw
-                line = f"{t:.6f} {p[0]:.6f} {p[1]:.6f} {p[2]:.6f} {p[3]:.6f} {p[4]:.6f} {p[5]:.6f} {p[6]:.6f}\n"
+                t_s = t_ns * 1e-9
+                line = f"{t_s:.6f} {p[0]:.6f} {p[1]:.6f} {p[2]:.6f} {p[3]:.6f} {p[4]:.6f} {p[5]:.6f} {p[6]:.6f}\n"
                 f.write(line)
         info(f"Poses written to {traj_file.resolve()}")
 

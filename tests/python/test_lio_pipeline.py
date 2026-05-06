@@ -37,7 +37,7 @@ def pipeline(identity_extrinsics):
 
 
 def create_lidar_timestamps(n):
-    return np.linspace(0, 0.1, n).astype(np.float32)
+    return np.linspace(0, 100_000_000, n).astype(np.int64)
 
 
 def test_pipeline_creation(pipeline):
@@ -46,19 +46,19 @@ def test_pipeline_creation(pipeline):
 
 def test_add_imu(pipeline, static_imu_measurement):
     accel, gyro = static_imu_measurement
-    pipeline.add_imu(0.0, accel, gyro)
+    pipeline.add_imu(0, accel, gyro)
 
 
 def test_register_scan(pipeline, simple_point_cloud):
     cloud1 = simple_point_cloud
     timestamps1 = create_lidar_timestamps(len(cloud1))
-    min_t, max_t = np.min(timestamps1), np.max(timestamps1)
+    min_t, max_t = int(timestamps1.min()), int(timestamps1.max())
     pipeline.register_scan(min_t, max_t, cloud1, timestamps1)
 
     cloud2 = simple_point_cloud
     timestamps2 = create_lidar_timestamps(len(cloud2))
 
-    min_t, max_t = np.min(timestamps2), np.max(timestamps2)
+    min_t, max_t = int(timestamps2.min()), int(timestamps2.max())
     pipeline.register_scan(min_t, max_t, cloud2, timestamps2)
 
 
@@ -80,17 +80,17 @@ def test_identity_registration(
     accel, gyro = static_imu_measurement
     cloud = simple_point_cloud
 
-    def add_scan_with_imu(base_time):
-        timestamps = create_lidar_timestamps(len(cloud)) + base_time
-        min_t, max_t = np.min(timestamps), np.max(timestamps)
+    def add_scan_with_imu(base_time_ns):
+        timestamps = create_lidar_timestamps(len(cloud)) + int(base_time_ns)
+        min_t, max_t = int(timestamps.min()), int(timestamps.max())
         pipeline.register_scan(min_t, max_t, cloud, timestamps)
 
         # Add 10 IMU measurements after the lidar scan end time
-        start_time = timestamps[-1] + 0.01
+        start_time = int(timestamps[-1]) + 10_000_000
         for i in range(10):
-            t = start_time + i * 0.01
+            t = start_time + i * 10_000_000
             pipeline.add_imu(t, accel, gyro)
-        return timestamps[-1]
+        return int(timestamps[-1])
 
     def verify_identity_pose(scan_num):
         pose = pipeline.lio.pose()
@@ -110,13 +110,13 @@ def test_identity_registration(
         ), f"Rotation error too high at scan {scan_num}: {rotation_angle} degrees"
 
     # First scan; base_time 0
-    last_lidar_end = add_scan_with_imu(0.0)
+    last_lidar_end = add_scan_with_imu(0)
     verify_identity_pose(1)
 
     # Second scan
     last_lidar_end = add_scan_with_imu(last_lidar_end)
     pipeline.add_imu(
-        last_lidar_end + 0.01, accel, gyro
+        last_lidar_end + 10_000_000, accel, gyro
     )  # ensure the second lidar gets processed
     verify_identity_pose(2)
 

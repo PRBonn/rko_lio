@@ -24,10 +24,11 @@
 
 #pragma once
 #include <builtin_interfaces/msg/time.hpp>
+#include <chrono>
 #include <rclcpp/time.hpp>
 
 namespace rko_lio::ros::utils {
-inline std::chrono::duration<double> ros_time_to_seconds(const builtin_interfaces::msg::Time& stamp) {
-  return std::chrono::duration<double>(rclcpp::Time(stamp).nanoseconds() * 1e-9);
+inline std::chrono::nanoseconds ros_time_to_nanoseconds(const builtin_interfaces::msg::Time& stamp) {
+  return std::chrono::nanoseconds(rclcpp::Time(stamp).nanoseconds());
 }
 } // namespace rko_lio::ros::utils

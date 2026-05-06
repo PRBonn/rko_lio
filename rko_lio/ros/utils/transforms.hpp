@@ -78,29 +78,29 @@ std::optional<Sophus::SE3<Scalar>>
 get_transform(const std::shared_ptr<tf2_ros::Buffer>& tf_buffer,
               const std::string& from_frame,
               const std::string& to_frame,
-              const std::chrono::duration<double>& time,
-              const std::chrono::duration<double>& timeout = std::chrono::duration<double>(0)) {
+              const std::chrono::nanoseconds time,
+              const std::chrono::nanoseconds timeout = std::chrono::nanoseconds(0)) {
   geometry_msgs::msg::TransformStamped from_to_transform;
+  const tf2::TimePoint tf_time{time};
+  const tf2::Duration tf_timeout{timeout};
   try {
     tf_buffer->_validateFrameId("from_frame", from_frame);
     tf_buffer->_validateFrameId("to frame", to_frame);
     std::unique_ptr<std::string> error_str = std::make_unique<std::string>();
-    if (!tf_buffer->canTransform(to_frame, from_frame, tf2::TimePoint(std::chrono::duration_cast<tf2::IDuration>(time)),
-                                 std::chrono::duration_cast<tf2::Duration>(timeout), error_str.get())) {
+    if (!tf_buffer->canTransform(to_frame, from_frame, tf_time, tf_timeout, error_str.get())) {
       RCLCPP_WARN_STREAM(rclcpp::get_logger("transform lookup"),
-                         "Cannot transfrom from: " << from_frame << " -> to: " << to_frame
-                                                   << " at time: " << time.count() << " because of: " << *error_str);
+                         "Cannot transform from: " << from_frame << " -> to: " << to_frame
+                                                   << " at time: " << time.count() << "ns because of: " << *error_str);
       return std::nullopt;
     }
-    from_to_transform = tf_buffer->lookupTransform(to_frame, from_frame,
-                                                   tf2::TimePoint(std::chrono::duration_cast<tf2::Duration>(time)));
+    from_to_transform = tf_buffer->lookupTransform(to_frame, from_frame, tf_time);
     return transform_to_sophus<Scalar>(from_to_transform);
   } catch (const tf2::InvalidArgumentException& e) {
     RCLCPP_WARN_STREAM(rclcpp::get_logger("transform lookup"),
                        "TF lookup error (InvalidArgumentException): " << e.what());
     RCLCPP_WARN_STREAM(rclcpp::get_logger("transform lookup"),
                        "Arguments are, to_frame: " << to_frame << ", from_frame: " << from_frame
-                                                   << ", time: " << time.count());
+                                                   << ", time(ns): " << time.count());
   } catch (const tf2::LookupException& e) {
     RCLCPP_WARN_STREAM(rclcpp::get_logger("transform lookup"), "TF lookup error (LookupException): " << e.what());
   } catch (const tf2::TransformException& ex) {
