@@ -50,8 +50,5 @@ target_link_libraries(
 
 target_compile_features(rko_lio.core PUBLIC cxx_std_20)
 
-set_target_properties(rko_lio.core PROPERTIES POSITION_INDEPENDENT_CODE ON)
-
-# install is a problem because tsl-robin-map is always fetch-contented (no
-# rosdep rule yet), and that becomes a problem for the export target set. we'd
-# have to manually export it ourselves. therefore TODO
+set_target_properties(rko_lio.core PROPERTIES POSITION_INDEPENDENT_CODE ON
+                                              EXPORT_NAME core)

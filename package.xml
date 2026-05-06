@@ -12,6 +12,7 @@
   <depend>eigen</depend>
   <depend>sophus</depend>
   <depend>tbb</depend>
+  <depend>robin-map-dev</depend>
   <depend>nlohmann-json-dev</depend>
   <!-- ros dependencies -->
   <depend>rclcpp</depend>
