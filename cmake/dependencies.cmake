@@ -22,9 +22,6 @@
 
 include(FetchContent)
 
-option(RKO_LIO_FETCH_CONTENT_DEPS
-       "Fetch dependencies via FetchContent instead of using find_package" OFF)
-
 set(RKO_LIO_FETCHCONTENT_COMMON_FLAGS)
 if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.24")
   list(APPEND RKO_LIO_FETCHCONTENT_COMMON_FLAGS OVERRIDE_FIND_PACKAGE)

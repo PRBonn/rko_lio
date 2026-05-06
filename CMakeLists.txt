@@ -27,7 +27,10 @@ if(POLICY CMP0135)
   cmake_policy(SET CMP0135 NEW)
 endif()
 
+option(RKO_LIO_BUILD_ROS "Build the ROS wrapper for RKO LIO" ON)
 option(RKO_LIO_BUILD_TESTS "Build core C++ tests" OFF)
+option(RKO_LIO_FETCH_CONTENT_DEPS
+       "Fetch dependencies via FetchContent instead of using find_package" OFF)
 
 include(cmake/dependencies.cmake)
 include(cmake/compat_target_sources.cmake)
@@ -38,8 +41,6 @@ find_package(TBB REQUIRED CONFIG)
 find_package(tsl-robin-map REQUIRED CONFIG)
 
 add_subdirectory(rko_lio/core)
-
-option(RKO_LIO_BUILD_ROS "Build the ROS wrapper for RKO LIO" ON)
 
 if(NOT RKO_LIO_BUILD_ROS)
   message(STATUS "RKO_LIO_BUILD_ROS is OFF. Skipping ROS Build.")
@@ -77,48 +78,32 @@ else()
     EXECUTABLE
     online_imu_rate_node)
 
-  if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.23")
+  if(NOT RKO_LIO_FETCH_CONTENT_DEPS AND CMAKE_VERSION VERSION_GREATER_EQUAL "3.23")
     install(
       TARGETS rko_lio.core rko_lio.ros rko_lio.ros.utils
       EXPORT rko_lioTargets
       FILE_SET HEADERS)
-  else()
-    install(
-      TARGETS rko_lio.core rko_lio.ros rko_lio.ros.utils
-      EXPORT rko_lioTargets
-      INCLUDES
-      DESTINATION include)
-    install(
-      DIRECTORY rko_lio/core/
-      DESTINATION include/rko_lio/core
-      FILES_MATCHING
-      PATTERN "*.hpp")
-    install(
-      DIRECTORY rko_lio/ros/
-      DESTINATION include/rko_lio/ros
-      FILES_MATCHING
-      PATTERN "*.hpp")
+
+    ament_export_targets(rko_lioTargets HAS_LIBRARY_TARGET)
+    ament_export_dependencies(
+      Eigen3
+      Sophus
+      tsl-robin-map
+      rclcpp
+      std_msgs
+      tf2
+      tf2_ros
+      sensor_msgs
+      nav_msgs
+      geometry_msgs
+      rosbag2_cpp
+      rosbag2_storage)
   endif()
 
   install(TARGETS online_node_component online_imu_rate_node_component offline_node
           RUNTIME DESTINATION lib/${PROJECT_NAME})
 
   install(DIRECTORY config launch DESTINATION share/rko_lio)
-
-  ament_export_targets(rko_lioTargets HAS_LIBRARY_TARGET)
-  ament_export_dependencies(
-    Eigen3
-    Sophus
-    tsl-robin-map
-    rclcpp
-    std_msgs
-    tf2
-    tf2_ros
-    sensor_msgs
-    nav_msgs
-    geometry_msgs
-    rosbag2_cpp
-    rosbag2_storage)
 
   ament_package()
 endif()
