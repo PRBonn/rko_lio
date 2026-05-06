@@ -57,7 +57,7 @@ namespace rko_lio::ros {
 
 core::ImuControl imu_msg_to_imu_data(const sensor_msgs::msg::Imu& imu_msg) {
   core::ImuControl imu_data;
-  imu_data.time = utils::ros_time_to_nanoseconds(imu_msg.header.stamp);
+  imu_data.time = utils::to_ns(imu_msg.header.stamp);
   imu_data.angular_velocity = utils::ros_xyz_to_eigen_vector3d(imu_msg.angular_velocity);
   imu_data.acceleration = utils::ros_xyz_to_eigen_vector3d(imu_msg.linear_acceleration);
   return imu_data;
@@ -216,7 +216,7 @@ bool BaseNode::check_and_set_extrinsics() {
 
 std::tuple<core::Timestamps, core::Vector3dVector>
 BaseNode::process_lidar_msg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& lidar_msg) const {
-  const core::Nsec header_stamp = utils::ros_time_to_nanoseconds(lidar_msg->header.stamp);
+  const core::Nsec header_stamp = utils::to_ns(lidar_msg->header.stamp);
   if (lio->config.deskew) {
     const auto& [scan, raw_timestamps] = utils::point_cloud2_to_eigen_with_timestamps(lidar_msg);
     const core::Timestamps& timestamps = core::process_timestamps(raw_timestamps, header_stamp, timestamp_proc_config);
@@ -240,7 +240,7 @@ void BaseNode::publish_lidar_outputs(const core::Vector3dVector& deskewed_frame,
   if (publish_deskewed_scan) {
     std_msgs::msg::Header header;
     header.frame_id = lidar_frame;
-    header.stamp = rclcpp::Time(stamp.count());
+    header.stamp = utils::to_ros_time(stamp);
     frame_publisher->publish(utils::eigen_to_point_cloud2(deskewed_frame, header));
   }
   publish_odometry(lio->lidar_state, stamp);
@@ -251,7 +251,7 @@ void BaseNode::publish_lidar_outputs(const core::Vector3dVector& deskewed_frame,
 
 void BaseNode::publish_odometry(const core::State& state, const core::Nsec stamp) const {
   nav_msgs::msg::Odometry odom_msg;
-  odom_msg.header.stamp = rclcpp::Time(stamp.count());
+  odom_msg.header.stamp = utils::to_ros_time(stamp);
   odom_msg.header.frame_id = odom_frame;
   odom_msg.child_frame_id = base_frame;
   odom_msg.pose.pose = utils::sophus_to_pose(state.pose);
@@ -262,7 +262,7 @@ void BaseNode::publish_odometry(const core::State& state, const core::Nsec stamp
 
 void BaseNode::publish_tf(const Sophus::SE3d& pose, const core::Nsec stamp) const {
   geometry_msgs::msg::TransformStamped transform_msg;
-  transform_msg.header.stamp = rclcpp::Time(stamp.count());
+  transform_msg.header.stamp = utils::to_ros_time(stamp);
   if (invert_odom_tf) {
     transform_msg.header.frame_id = base_frame;
     transform_msg.child_frame_id = odom_frame;
@@ -277,7 +277,7 @@ void BaseNode::publish_tf(const Sophus::SE3d& pose, const core::Nsec stamp) cons
 
 void BaseNode::publish_lidar_accel(const Eigen::Vector3d& acceleration, const core::Nsec stamp) const {
   auto accel_msg = geometry_msgs::msg::AccelStamped();
-  accel_msg.header.stamp = rclcpp::Time(stamp.count());
+  accel_msg.header.stamp = utils::to_ros_time(stamp);
   accel_msg.header.frame_id = base_frame;
   utils::eigen_vector3d_to_ros_xyz(acceleration, accel_msg.accel.linear);
   lidar_accel_publisher->publish(accel_msg);

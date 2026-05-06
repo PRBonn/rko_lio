@@ -28,7 +28,15 @@
 #include <rclcpp/time.hpp>
 
 namespace rko_lio::ros::utils {
-inline std::chrono::nanoseconds ros_time_to_nanoseconds(const builtin_interfaces::msg::Time& stamp) {
+inline std::chrono::nanoseconds to_ns(const builtin_interfaces::msg::Time& stamp) {
   return std::chrono::nanoseconds(rclcpp::Time(stamp).nanoseconds());
+}
+
+inline std::chrono::nanoseconds to_ns(const rclcpp::Time& time) {
+  return std::chrono::nanoseconds(time.nanoseconds());
+}
+
+inline builtin_interfaces::msg::Time to_ros_time(std::chrono::nanoseconds time) {
+  return rclcpp::Time(time.count());
 }
 } // namespace rko_lio::ros::utils

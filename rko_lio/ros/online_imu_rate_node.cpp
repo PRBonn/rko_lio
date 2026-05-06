@@ -139,7 +139,7 @@ public:
 
   void publish_imu_rate_odometry(const core::State& state) const {
     nav_msgs::msg::Odometry msg;
-    msg.header.stamp = rclcpp::Time(state.time.count());
+    msg.header.stamp = utils::to_ros_time(state.time);
     msg.header.frame_id = odom_frame;
     msg.child_frame_id = base_frame;
     msg.pose.pose = utils::sophus_to_pose(state.pose);

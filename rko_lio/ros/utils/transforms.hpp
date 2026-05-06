@@ -36,13 +36,14 @@
 #include <tf2_ros/buffer.h>
 
 namespace rko_lio::ros::utils {
-inline geometry_msgs::msg::Pose sophus_to_pose(const Sophus::SE3d& T) {
+template <typename Scalar = double>
+inline geometry_msgs::msg::Pose sophus_to_pose(const Sophus::SE3<Scalar>& T) {
   geometry_msgs::msg::Pose t;
   t.position.x = T.translation().x();
   t.position.y = T.translation().y();
   t.position.z = T.translation().z();
 
-  Eigen::Quaterniond q(T.so3().unit_quaternion());
+  Eigen::Quaternion<Scalar> q(T.so3().unit_quaternion());
   t.orientation.x = q.x();
   t.orientation.y = q.y();
   t.orientation.z = q.z();
@@ -51,13 +52,14 @@ inline geometry_msgs::msg::Pose sophus_to_pose(const Sophus::SE3d& T) {
   return t;
 }
 
-inline geometry_msgs::msg::Transform sophus_to_transform(const Sophus::SE3d& T) {
+template <typename Scalar = double>
+inline geometry_msgs::msg::Transform sophus_to_transform(const Sophus::SE3<Scalar>& T) {
   geometry_msgs::msg::Transform t;
   t.translation.x = T.translation().x();
   t.translation.y = T.translation().y();
   t.translation.z = T.translation().z();
 
-  Eigen::Quaterniond q(T.so3().unit_quaternion());
+  Eigen::Quaternion<Scalar> q(T.so3().unit_quaternion());
   t.rotation.x = q.x();
   t.rotation.y = q.y();
   t.rotation.z = q.z();
