@@ -100,9 +100,8 @@ else()
       PATTERN "*.hpp")
   endif()
 
-  install(TARGETS online_node_component online_imu_rate_node_component)
-
-  install(TARGETS offline_node RUNTIME DESTINATION lib/${PROJECT_NAME})
+  install(TARGETS online_node_component online_imu_rate_node_component offline_node
+          RUNTIME DESTINATION lib/${PROJECT_NAME})
 
   install(DIRECTORY config launch DESTINATION share/rko_lio)
 
