@@ -104,12 +104,12 @@ The difference is this is not multi-threaded, therefore is a bit slower.</p>
 <p>Minimal sequential pipeline for LIO processing.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="rko_lio.lio_pipeline.LIOPipeline.add_imu">
-<span class="sig-name descname"><span class="pre">add_imu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acceleration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular_velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.LIOPipeline.add_imu" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">add_imu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acceleration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular_velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.LIOPipeline.add_imu" title="Link to this definition">¶</a></dt>
 <dd><p>Add IMU measurement to pipeline (will be buffered until processed by lidar).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>time</strong> (<em>float</em>) – Measurement timestamp in seconds.</p></li>
+<li><p><strong>time</strong> (<em>int</em>) – Measurement timestamp in nanoseconds (absolute, since the unix epoch).</p></li>
 <li><p><strong>acceleration</strong> (<em>array</em><em> of </em><em>float</em><em>, </em><em>shape</em><em> (</em><em>3</em><em>,</em><em>)</em>) – Acceleration vector in m/s^2.</p></li>
 <li><p><strong>angular_velocity</strong> (<em>array</em><em> of </em><em>float</em><em>, </em><em>shape</em><em> (</em><em>3</em><em>,</em><em>)</em>) – Angular velocity in rad/s.</p></li>
 </ul>

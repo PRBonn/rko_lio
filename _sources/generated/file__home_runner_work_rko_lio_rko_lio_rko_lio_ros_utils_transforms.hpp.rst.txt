@@ -76,11 +76,11 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_transforms_8hpp_1a86fa67824d17062f6dc8c767beb6b287`
+- :ref:`exhale_function_transforms_8hpp_1a03c38b07517194dc77b673b64c066652`
 
-- :ref:`exhale_function_transforms_8hpp_1a5014dc97c9b0a0f693ccfcda33df8f3f`
+- :ref:`exhale_function_transforms_8hpp_1a44cc4e22d553762bfe91648556911c32`
 
-- :ref:`exhale_function_transforms_8hpp_1a4af614ba2c6c05bda16ac0eb87023891`
+- :ref:`exhale_function_transforms_8hpp_1a3347edf777beeec8166e93ed9bd7b633`
 
 - :ref:`exhale_function_transforms_8hpp_1a30f2577c606faf43523beb7b3b8fd4c3`
 

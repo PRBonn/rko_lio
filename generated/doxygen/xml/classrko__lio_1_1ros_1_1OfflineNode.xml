@@ -193,14 +193,14 @@
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1a23f047faed8a97a78fbbed340032317e" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>process_lidar_msg</name></member>
       <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a281e32f4e836a057a2a390e83e5ace1b" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>processed_bag_msgs</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1af1c6cb845774b666681e470b78dafcbc" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>publish_deskewed_scan</name></member>
-      <member refid="classrko__lio_1_1ros_1_1BaseNode_1ae44c1322a67ab3a85327ad678863cac4" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>publish_lidar_accel</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a31023838e4c3dc168766062f5e08a16f" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>publish_lidar_accel</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1abf4d6745652fb6e310dc507849cadaee" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>publish_lidar_acceleration</name></member>
-      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a82dbc521bbf284342b7466eb172170e9" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>publish_lidar_outputs</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a4fdc5b7d130810c345188250f8b21af9" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>publish_lidar_outputs</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1a28f3994bca8ca065b3196725c000b44a" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>publish_local_map</name></member>
-      <member refid="classrko__lio_1_1ros_1_1BaseNode_1aff0e982cd31cf049769bcbfcd05b8fb4" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>publish_map_after</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a3331968d3b3174c04e5999e790dc4c4f" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>publish_map_after</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1acdc4ef902102131dbbb350afea921b17" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>publish_map_loop</name></member>
-      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a7095bb4b30016aa0eab6cc4800a7f3c5" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>publish_odometry</name></member>
-      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a3651792dc0646bfeea16803e1f92185b" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>publish_tf</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1aa058638b971a0b484b4db997becc860c" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>publish_odometry</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1aea37c7707740166c54a05fb263abe4f7" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>publish_tf</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1ab0d80b23d66dc9d5b4f7dc7f89e05d5f" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>register_scan_locked</name></member>
       <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a6f35b0ecc638e5cfa6ce57f2a6c74689" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>registration_busy</name></member>
       <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1acd61b2f9ae6de55e915313d3962c0279" prot="public" virt="non-virtual"><scope>rko_lio::ros::OfflineNode</scope><name>registration_loop</name></member>

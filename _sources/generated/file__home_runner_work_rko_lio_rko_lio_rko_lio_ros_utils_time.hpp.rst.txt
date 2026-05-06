@@ -32,6 +32,8 @@ Includes
 
 - ``builtin_interfaces/msg/time.hpp``
 
+- ``chrono``
+
 - ``rclcpp/time.hpp``
 
 
@@ -60,5 +62,9 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_time_8hpp_1a2a59e06612a3104e6a1bdd73138ce24c`
+- :ref:`exhale_function_time_8hpp_1a77db31ee58500b510902643bd9f7bc97`
+
+- :ref:`exhale_function_time_8hpp_1ac8836828d9bdda7dadc9f125f03b2154`
+
+- :ref:`exhale_function_time_8hpp_1ac0334fa598ca2d1a236b10d23db3ff0f`
 

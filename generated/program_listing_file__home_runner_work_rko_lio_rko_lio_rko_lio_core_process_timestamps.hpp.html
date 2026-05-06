@@ -126,8 +126,8 @@
 <span class="k">namespace</span><span class="w"> </span><span class="nn">rko_lio</span><span class="o">::</span><span class="nn">core</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">Timestamps</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">Secondsd</span><span class="w"> </span><span class="n">min</span><span class="p">;</span>
-<span class="w">  </span><span class="n">Secondsd</span><span class="w"> </span><span class="n">max</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Nsec</span><span class="w"> </span><span class="n">min</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Nsec</span><span class="w"> </span><span class="n">max</span><span class="p">;</span>
 <span class="w">  </span><span class="n">TimestampVector</span><span class="w"> </span><span class="n">times</span><span class="p">;</span>
 <span class="p">};</span>
 
@@ -138,7 +138,7 @@
 <span class="p">};</span>
 
 <span class="n">Timestamps</span><span class="w"> </span><span class="nf">process_timestamps</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">raw_timestamps</span><span class="p">,</span>
-<span class="w">                              </span><span class="k">const</span><span class="w"> </span><span class="n">Secondsd</span><span class="o">&amp;</span><span class="w"> </span><span class="n">header_stamp</span><span class="p">,</span>
+<span class="w">                              </span><span class="k">const</span><span class="w"> </span><span class="n">Nsec</span><span class="w"> </span><span class="n">header_stamp</span><span class="p">,</span>
 <span class="w">                              </span><span class="k">const</span><span class="w"> </span><span class="n">TimestampProcessingConfig</span><span class="o">&amp;</span><span class="w"> </span><span class="n">config</span><span class="p">);</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace rko_lio::core</span>

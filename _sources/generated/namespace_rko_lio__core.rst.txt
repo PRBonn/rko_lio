@@ -59,9 +59,11 @@ Functions
 
 - :ref:`exhale_function_namespacerko__lio_1_1core_1a3261153e7f790d6973c2b7446db233ef`
 
-- :ref:`exhale_function_namespacerko__lio_1_1core_1aa575a28bad591f19c37742684a88cf7b`
+- :ref:`exhale_function_namespacerko__lio_1_1core_1ac1fb80bf51f668bd3442bcb18044a57c`
 
 - :ref:`exhale_function_namespacerko__lio_1_1core_1aebf1f823c7fd220695665a8b3e12281e`
+
+- :ref:`exhale_function_namespacerko__lio_1_1core_1a82bfbe6dd0859af66258d81747392bd6`
 
 - :ref:`exhale_function_namespacerko__lio_1_1core_1ad33113e678270ae389705f90113e7df9`
 
@@ -70,9 +72,9 @@ Typedefs
 --------
 
 
-- :ref:`exhale_typedef_namespacerko__lio_1_1core_1aeb6128bc63af6919453e303e7eb5613d`
+- :ref:`exhale_typedef_namespacerko__lio_1_1core_1a5a3f42fcc9e49ecd569baa31d940734f`
 
-- :ref:`exhale_typedef_namespacerko__lio_1_1core_1a50d343fe8fc3d44fdf883bc4a77b1ccf`
+- :ref:`exhale_typedef_namespacerko__lio_1_1core_1ad6796ca63cae68d67a3963e198336a1e`
 
 - :ref:`exhale_typedef_namespacerko__lio_1_1core_1a5cc9dbe312768171d6734783de18f64c`
 

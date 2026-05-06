@@ -38,7 +38,7 @@ Why `pip install` those three packages?
 - `rosbags` -> required for the rosbag dataloader. Both ros1 and ros2 bags are supported!
 - `rerun-sdk` -> required for the optional visualizer (`-v` flag)
 
-`pip install "rko_lio[all]` fetches the other optional dependencies as well.
+`pip install "rko_lio[all]"` fetches the other optional dependencies as well.
 
 Check further options for the CLI through `rko_lio --help`.
 

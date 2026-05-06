@@ -1,0 +1,14 @@
+.. _exhale_typedef_namespacerko__lio_1_1core_1a5a3f42fcc9e49ecd569baa31d940734f:
+
+Typedef rko_lio::core::Nsec
+===========================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_util.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: rko_lio::core::Nsec
+   :project: rko_lio Doxygen Project

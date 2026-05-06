@@ -96,20 +96,20 @@ Program Listing for File lio.hpp
                                   const Vector3dVector& scan,
                                   const TimestampVector& timestamps);
    
-     std::vector<std::pair<Secondsd, Sophus::SE3d>> poses_with_timestamps;
+     std::vector<std::pair<Nsec, Sophus::SE3d>> poses_with_timestamps;
    
      State imu_state;
    
    private:
-     void initialize(const Secondsd lidar_time);
+     void initialize(const Nsec lidar_time);
    
-     Vector3dVector bootstrap_first_scan(const Vector3dVector& scan, const Secondsd& current_lidar_time);
+     Vector3dVector bootstrap_first_scan(const Vector3dVector& scan, const Nsec current_lidar_time);
    
-     std::pair<Eigen::Vector3d, Eigen::Vector3d> motion_priors_from_imu(const Secondsd& current_lidar_time);
+     std::pair<Eigen::Vector3d, Eigen::Vector3d> motion_priors_from_imu(const Nsec current_lidar_time);
    
      bool _initialized = false;
    
-     Secondsd _last_real_imu_time = Secondsd{0.0};
+     Nsec _last_real_imu_time{0};
    
      Eigen::Vector3d _last_real_base_imu_ang_vel = Eigen::Vector3d::Zero();
    };

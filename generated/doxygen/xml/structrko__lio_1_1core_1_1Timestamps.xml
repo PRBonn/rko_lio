@@ -3,9 +3,9 @@
   <compounddef id="structrko__lio_1_1core_1_1Timestamps" kind="struct" language="C++" prot="public">
     <compoundname>rko_lio::core::Timestamps</compoundname>
     <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="structrko__lio_1_1core_1_1Timestamps_1a35ee9e2ba868ab50384c55faa49b12b4" prot="public" static="no" mutable="no">
-        <type>Secondsd</type>
-        <definition>Secondsd rko_lio::core::Timestamps::min</definition>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1Timestamps_1ab049615468920792fdb40b2f597a75cd" prot="public" static="no" mutable="no">
+        <type>Nsec</type>
+        <definition>Nsec rko_lio::core::Timestamps::min</definition>
         <argsstring></argsstring>
         <name>min</name>
         <qualifiedname>rko_lio::core::Timestamps::min</qualifiedname>
@@ -15,11 +15,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" line="38" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" bodystart="38" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" line="38" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" bodystart="38" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structrko__lio_1_1core_1_1Timestamps_1abc99b4d2813605ed314bc6262f4dde4c" prot="public" static="no" mutable="no">
-        <type>Secondsd</type>
-        <definition>Secondsd rko_lio::core::Timestamps::max</definition>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1Timestamps_1a815937b2994206648bfe5c054b06be6d" prot="public" static="no" mutable="no">
+        <type>Nsec</type>
+        <definition>Nsec rko_lio::core::Timestamps::max</definition>
         <argsstring></argsstring>
         <name>max</name>
         <qualifiedname>rko_lio::core::Timestamps::max</qualifiedname>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" line="39" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" bodystart="39" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" line="39" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" bodystart="39" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1Timestamps_1a0090c8ed31eeb5da017dcda0c0eaa2cb" prot="public" static="no" mutable="no">
         <type>TimestampVector</type>
@@ -52,8 +52,8 @@
     </detaileddescription>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" line="37" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" bodystart="37" bodyend="41"/>
     <listofallmembers>
-      <member refid="structrko__lio_1_1core_1_1Timestamps_1abc99b4d2813605ed314bc6262f4dde4c" prot="public" virt="non-virtual"><scope>rko_lio::core::Timestamps</scope><name>max</name></member>
-      <member refid="structrko__lio_1_1core_1_1Timestamps_1a35ee9e2ba868ab50384c55faa49b12b4" prot="public" virt="non-virtual"><scope>rko_lio::core::Timestamps</scope><name>min</name></member>
+      <member refid="structrko__lio_1_1core_1_1Timestamps_1a815937b2994206648bfe5c054b06be6d" prot="public" virt="non-virtual"><scope>rko_lio::core::Timestamps</scope><name>max</name></member>
+      <member refid="structrko__lio_1_1core_1_1Timestamps_1ab049615468920792fdb40b2f597a75cd" prot="public" virt="non-virtual"><scope>rko_lio::core::Timestamps</scope><name>min</name></member>
       <member refid="structrko__lio_1_1core_1_1Timestamps_1a0090c8ed31eeb5da017dcda0c0eaa2cb" prot="public" virt="non-virtual"><scope>rko_lio::core::Timestamps</scope><name>times</name></member>
     </listofallmembers>
   </compounddef>

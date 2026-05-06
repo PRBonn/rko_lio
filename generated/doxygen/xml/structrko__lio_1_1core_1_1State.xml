@@ -3,9 +3,9 @@
   <compounddef id="structrko__lio_1_1core_1_1State" kind="struct" language="C++" prot="public">
     <compoundname>rko_lio::core::State</compoundname>
     <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="structrko__lio_1_1core_1_1State_1a7f8945ad8caf48d4fedada8b75ba5a29" prot="public" static="no" mutable="no">
-        <type>Secondsd</type>
-        <definition>Secondsd rko_lio::core::State::time</definition>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1State_1a1b0c9bd6280560c585e05430a6ada6c3" prot="public" static="no" mutable="no">
+        <type>Nsec</type>
+        <definition>Nsec rko_lio::core::State::time</definition>
         <argsstring></argsstring>
         <name>time</name>
         <qualifiedname>rko_lio::core::State::time</qualifiedname>
@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="49" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="49" bodyend="49"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="51" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="51" bodyend="51"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1State_1acf99bb3fd248ef34f6c8b78e9af98f20" prot="public" static="no" mutable="no">
         <type>Sophus::SE3d</type>
@@ -30,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="50" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="50" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="52" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="52" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1State_1a4ef9997c1ab318c8bacd9762881c4424" prot="public" static="no" mutable="no">
         <type>Eigen::Vector3d</type>
@@ -45,7 +45,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="51" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="51" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="53" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="53" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1State_1a4e4b51eb997a097ab86dbc5199722e40" prot="public" static="no" mutable="no">
         <type>Eigen::Vector3d</type>
@@ -60,7 +60,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="52" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="52" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="54" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="54" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1State_1ad7e951af4dd757e904af192e1f2b7c90" prot="public" static="no" mutable="no">
         <type>Eigen::Vector3d</type>
@@ -75,19 +75,19 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="53" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="53" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="55" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="55" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="48" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="48" bodyend="54"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="50" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="50" bodyend="56"/>
     <listofallmembers>
       <member refid="structrko__lio_1_1core_1_1State_1a4e4b51eb997a097ab86dbc5199722e40" prot="public" virt="non-virtual"><scope>rko_lio::core::State</scope><name>angular_velocity</name></member>
       <member refid="structrko__lio_1_1core_1_1State_1ad7e951af4dd757e904af192e1f2b7c90" prot="public" virt="non-virtual"><scope>rko_lio::core::State</scope><name>linear_acceleration</name></member>
       <member refid="structrko__lio_1_1core_1_1State_1acf99bb3fd248ef34f6c8b78e9af98f20" prot="public" virt="non-virtual"><scope>rko_lio::core::State</scope><name>pose</name></member>
-      <member refid="structrko__lio_1_1core_1_1State_1a7f8945ad8caf48d4fedada8b75ba5a29" prot="public" virt="non-virtual"><scope>rko_lio::core::State</scope><name>time</name></member>
+      <member refid="structrko__lio_1_1core_1_1State_1a1b0c9bd6280560c585e05430a6ada6c3" prot="public" virt="non-virtual"><scope>rko_lio::core::State</scope><name>time</name></member>
       <member refid="structrko__lio_1_1core_1_1State_1a4ef9997c1ab318c8bacd9762881c4424" prot="public" virt="non-virtual"><scope>rko_lio::core::State</scope><name>velocity</name></member>
     </listofallmembers>
   </compounddef>

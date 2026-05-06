@@ -42,8 +42,8 @@ Program Listing for File process_timestamps.hpp
    namespace rko_lio::core {
    
    struct Timestamps {
-     Secondsd min;
-     Secondsd max;
+     Nsec min;
+     Nsec max;
      TimestampVector times;
    };
    
@@ -54,7 +54,7 @@ Program Listing for File process_timestamps.hpp
    };
    
    Timestamps process_timestamps(const std::vector<double>& raw_timestamps,
-                                 const Secondsd& header_stamp,
+                                 const Nsec header_stamp,
                                  const TimestampProcessingConfig& config);
    
    } // namespace rko_lio::core

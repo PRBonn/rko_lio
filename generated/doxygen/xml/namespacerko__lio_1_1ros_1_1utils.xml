@@ -192,12 +192,12 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/ros_vectors.hpp" line="43" column="17" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/ros_vectors.hpp" bodystart="43" bodyend="45"/>
       </memberdef>
-      <memberdef kind="function" id="time_8hpp_1a2a59e06612a3104e6a1bdd73138ce24c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>std::chrono::duration&lt; double &gt;</type>
-        <definition>std::chrono::duration&lt; double &gt; rko_lio::ros::utils::ros_time_to_seconds</definition>
+      <memberdef kind="function" id="time_8hpp_1ac8836828d9bdda7dadc9f125f03b2154" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::chrono::nanoseconds</type>
+        <definition>std::chrono::nanoseconds rko_lio::ros::utils::to_ns</definition>
         <argsstring>(const builtin_interfaces::msg::Time &amp;stamp)</argsstring>
-        <name>ros_time_to_seconds</name>
-        <qualifiedname>rko_lio::ros::utils::ros_time_to_seconds</qualifiedname>
+        <name>to_ns</name>
+        <qualifiedname>rko_lio::ros::utils::to_ns</qualifiedname>
         <param>
           <type>const builtin_interfaces::msg::Time &amp;</type>
           <declname>stamp</declname>
@@ -208,16 +208,58 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/time.hpp" line="30" column="30" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/time.hpp" bodystart="30" bodyend="32"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/time.hpp" line="31" column="33" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/time.hpp" bodystart="31" bodyend="33"/>
       </memberdef>
-      <memberdef kind="function" id="transforms_8hpp_1a5014dc97c9b0a0f693ccfcda33df8f3f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="time_8hpp_1a77db31ee58500b510902643bd9f7bc97" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::chrono::nanoseconds</type>
+        <definition>std::chrono::nanoseconds rko_lio::ros::utils::to_ns</definition>
+        <argsstring>(const rclcpp::Time &amp;time)</argsstring>
+        <name>to_ns</name>
+        <qualifiedname>rko_lio::ros::utils::to_ns</qualifiedname>
+        <param>
+          <type>const rclcpp::Time &amp;</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/time.hpp" line="35" column="33" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/time.hpp" bodystart="35" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="time_8hpp_1ac0334fa598ca2d1a236b10d23db3ff0f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>builtin_interfaces::msg::Time</type>
+        <definition>builtin_interfaces::msg::Time rko_lio::ros::utils::to_ros_time</definition>
+        <argsstring>(std::chrono::nanoseconds time)</argsstring>
+        <name>to_ros_time</name>
+        <qualifiedname>rko_lio::ros::utils::to_ros_time</qualifiedname>
+        <param>
+          <type>std::chrono::nanoseconds</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/time.hpp" line="39" column="38" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/time.hpp" bodystart="39" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="transforms_8hpp_1a44cc4e22d553762bfe91648556911c32" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Scalar</type>
+            <defval>double</defval>
+          </param>
+        </templateparamlist>
         <type>geometry_msgs::msg::Pose</type>
         <definition>geometry_msgs::msg::Pose rko_lio::ros::utils::sophus_to_pose</definition>
-        <argsstring>(const Sophus::SE3d &amp;T)</argsstring>
+        <argsstring>(const Sophus::SE3&lt; Scalar &gt; &amp;T)</argsstring>
         <name>sophus_to_pose</name>
         <qualifiedname>rko_lio::ros::utils::sophus_to_pose</qualifiedname>
         <param>
-          <type>const Sophus::SE3d &amp;</type>
+          <type>const Sophus::SE3&lt; Scalar &gt; &amp;</type>
           <declname>T</declname>
         </param>
         <briefdescription>
@@ -226,16 +268,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" line="39" column="33" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" bodystart="39" bodyend="52"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" line="40" column="33" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" bodystart="40" bodyend="53"/>
       </memberdef>
-      <memberdef kind="function" id="transforms_8hpp_1a4af614ba2c6c05bda16ac0eb87023891" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="transforms_8hpp_1a3347edf777beeec8166e93ed9bd7b633" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Scalar</type>
+            <defval>double</defval>
+          </param>
+        </templateparamlist>
         <type>geometry_msgs::msg::Transform</type>
         <definition>geometry_msgs::msg::Transform rko_lio::ros::utils::sophus_to_transform</definition>
-        <argsstring>(const Sophus::SE3d &amp;T)</argsstring>
+        <argsstring>(const Sophus::SE3&lt; Scalar &gt; &amp;T)</argsstring>
         <name>sophus_to_transform</name>
         <qualifiedname>rko_lio::ros::utils::sophus_to_transform</qualifiedname>
         <param>
-          <type>const Sophus::SE3d &amp;</type>
+          <type>const Sophus::SE3&lt; Scalar &gt; &amp;</type>
           <declname>T</declname>
         </param>
         <briefdescription>
@@ -244,7 +292,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" line="54" column="38" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" bodystart="54" bodyend="67"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" line="56" column="38" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" bodystart="56" bodyend="69"/>
       </memberdef>
       <memberdef kind="function" id="transforms_8hpp_1a30f2577c606faf43523beb7b3b8fd4c3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -268,9 +316,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" line="70" column="20" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" bodystart="70" bodyend="74"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" line="72" column="20" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" bodystart="72" bodyend="76"/>
       </memberdef>
-      <memberdef kind="function" id="transforms_8hpp_1a86fa67824d17062f6dc8c767beb6b287" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="transforms_8hpp_1a03c38b07517194dc77b673b64c066652" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Scalar</type>
@@ -279,7 +327,7 @@
         </templateparamlist>
         <type>std::optional&lt; Sophus::SE3&lt; Scalar &gt; &gt;</type>
         <definition>std::optional&lt; Sophus::SE3&lt; Scalar &gt; &gt; rko_lio::ros::utils::get_transform</definition>
-        <argsstring>(const std::shared_ptr&lt; tf2_ros::Buffer &gt; &amp;tf_buffer, const std::string &amp;from_frame, const std::string &amp;to_frame, const std::chrono::duration&lt; double &gt; &amp;time, const std::chrono::duration&lt; double &gt; &amp;timeout=std::chrono::duration&lt; double &gt;(0))</argsstring>
+        <argsstring>(const std::shared_ptr&lt; tf2_ros::Buffer &gt; &amp;tf_buffer, const std::string &amp;from_frame, const std::string &amp;to_frame, const std::chrono::nanoseconds time, const std::chrono::nanoseconds timeout=std::chrono::nanoseconds(0))</argsstring>
         <name>get_transform</name>
         <qualifiedname>rko_lio::ros::utils::get_transform</qualifiedname>
         <param>
@@ -295,13 +343,13 @@
           <declname>to_frame</declname>
         </param>
         <param>
-          <type>const std::chrono::duration&lt; double &gt; &amp;</type>
+          <type>const std::chrono::nanoseconds</type>
           <declname>time</declname>
         </param>
         <param>
-          <type>const std::chrono::duration&lt; double &gt; &amp;</type>
+          <type>const std::chrono::nanoseconds</type>
           <declname>timeout</declname>
-          <defval>std::chrono::duration&lt; double &gt;(0)</defval>
+          <defval>std::chrono::nanoseconds(0)</defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -309,7 +357,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" line="78" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" bodystart="78" bodyend="111"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" line="80" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" bodystart="80" bodyend="113"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

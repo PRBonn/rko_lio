@@ -1,0 +1,14 @@
+.. _exhale_function_namespacerko__lio_1_1core_1a82bfbe6dd0859af66258d81747392bd6:
+
+Function rko_lio::core::to_seconds
+==================================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_util.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: rko_lio::core::to_seconds(const Nsec)
+   :project: rko_lio Doxygen Project

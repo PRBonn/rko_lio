@@ -34,6 +34,8 @@ Includes
 
 - ``cmath``
 
+- ``cstdint``
+
 - ``functional``
 
 - ``iomanip``
@@ -64,5 +66,5 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_namespacerko__lio_1_1core_1aa575a28bad591f19c37742684a88cf7b`
+- :ref:`exhale_function_namespacerko__lio_1_1core_1ac1fb80bf51f668bd3442bcb18044a57c`
 

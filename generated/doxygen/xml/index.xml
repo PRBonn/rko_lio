@@ -31,7 +31,7 @@
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1aea83b9c5a547999ee0dc1ae096e92009" kind="variable"><name>map_publisher</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1acbf1e9c305d415f4fce37874e2b4f585" kind="variable"><name>lidar_accel_publisher</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a29e011188c23c57979bb020cd4ddead0" kind="variable"><name>map_publish_thead</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1aff0e982cd31cf049769bcbfcd05b8fb4" kind="variable"><name>publish_map_after</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a3331968d3b3174c04e5999e790dc4c4f" kind="variable"><name>publish_map_after</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a065f035917e22a80aa1e18cb1b43a22e" kind="variable"><name>local_map_mutex</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a38281b7e81e2292088a68b2fd2716003" kind="variable"><name>atomic_node_running</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1aff39f656667853f6bd7b46c26be0eeab" kind="function"><name>BaseNode</name></member>
@@ -40,10 +40,10 @@
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a9adaaf7d3c7d0d969066754e162d38b3" kind="function"><name>check_and_set_extrinsics</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a23f047faed8a97a78fbbed340032317e" kind="function"><name>process_lidar_msg</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1ab0d80b23d66dc9d5b4f7dc7f89e05d5f" kind="function"><name>register_scan_locked</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a82dbc521bbf284342b7466eb172170e9" kind="function"><name>publish_lidar_outputs</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a7095bb4b30016aa0eab6cc4800a7f3c5" kind="function"><name>publish_odometry</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a3651792dc0646bfeea16803e1f92185b" kind="function"><name>publish_tf</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1ae44c1322a67ab3a85327ad678863cac4" kind="function"><name>publish_lidar_accel</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a4fdc5b7d130810c345188250f8b21af9" kind="function"><name>publish_lidar_outputs</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1aa058638b971a0b484b4db997becc860c" kind="function"><name>publish_odometry</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1aea37c7707740166c54a05fb263abe4f7" kind="function"><name>publish_tf</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a31023838e4c3dc168766062f5e08a16f" kind="function"><name>publish_lidar_accel</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1acdc4ef902102131dbbb350afea921b17" kind="function"><name>publish_map_loop</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a48110c62e37b6784f72849ab1e5d3b1a" kind="function"><name>dump_results_to_disk</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1aaa03e3f3624f707e83921ceef9487baf" kind="function"><name>~BaseNode</name></member>
@@ -90,7 +90,7 @@
     <member refid="structrko__lio_1_1core_1_1ImuBias_1adc5268afa5f8cb94a082949e2a085e29" kind="variable"><name>gyroscope</name></member>
   </compound>
   <compound refid="structrko__lio_1_1core_1_1ImuControl" kind="struct"><name>rko_lio::core::ImuControl</name>
-    <member refid="structrko__lio_1_1core_1_1ImuControl_1a60bc49fe22b615d01fd11b324771c071" kind="variable"><name>time</name></member>
+    <member refid="structrko__lio_1_1core_1_1ImuControl_1af0c96965e07ba0e0b9b05b77adea4479" kind="variable"><name>time</name></member>
     <member refid="structrko__lio_1_1core_1_1ImuControl_1aa3982b01ac23e8fd2f8719b3e0f60dc7" kind="variable"><name>acceleration</name></member>
     <member refid="structrko__lio_1_1core_1_1ImuControl_1a7d3579d3b3d5fb3b82262a9429c453a9" kind="variable"><name>angular_velocity</name></member>
   </compound>
@@ -116,19 +116,19 @@
     <member refid="classrko__lio_1_1core_1_1LIO_1aaec8a94ec4355ab7269bb02bee19d950" kind="variable"><name>mean_body_acceleration</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a87238efc2008594d5fa9db8344084ec2" kind="variable"><name>body_acceleration_covariance</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a9b89efdfdcc0ab01ef3fd6caaadb69d2" kind="variable"><name>interval_stats</name></member>
-    <member refid="classrko__lio_1_1core_1_1LIO_1ae90f742f8a328a0ce2e119b2b8f881e1" kind="variable"><name>poses_with_timestamps</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1af0b6eaceab67b9094531940ab4e50de6" kind="variable"><name>poses_with_timestamps</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a582d6fd74013b8c85784326bc45fb7c0" kind="variable"><name>imu_state</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1aa0e98c41c711dff7bf50bb1706b2d603" kind="variable"><name>_initialized</name></member>
-    <member refid="classrko__lio_1_1core_1_1LIO_1a6cdf1482cca66e3eeeaf4f66e9cff018" kind="variable"><name>_last_real_imu_time</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a59cd94ba392837604c1fbdca1cb0a05d" kind="variable"><name>_last_real_imu_time</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a8982a3577c4d1c77eb6a9fa2911c6149" kind="variable"><name>_last_real_base_imu_ang_vel</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a27bdff7e57866bd6429e81d8f7d74ed8" kind="function"><name>LIO</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a34139c65d35e7929125788bdafd0470c" kind="function"><name>add_imu_measurement</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a91736c1595c37bc5d70840538735b12a" kind="function"><name>add_imu_measurement</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a0e2818a3d7d3b07f77a91235b116b607" kind="function"><name>register_scan</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a3963bf670eced93306c73ead313d867f" kind="function"><name>register_scan</name></member>
-    <member refid="classrko__lio_1_1core_1_1LIO_1ab8728d90e80d1664ce979c8db5cc2eb2" kind="function"><name>initialize</name></member>
-    <member refid="classrko__lio_1_1core_1_1LIO_1a896c687b0c0edb14b930913100093cfc" kind="function"><name>bootstrap_first_scan</name></member>
-    <member refid="classrko__lio_1_1core_1_1LIO_1a72f44928d9d63ee2abda98f61308f366" kind="function"><name>motion_priors_from_imu</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a5cf6313e60eabd62f2379d40ec796295" kind="function"><name>initialize</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1ac3bdfc581c4059fbe21e1f5293ef38e7" kind="function"><name>bootstrap_first_scan</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1abfee790c3a78b93a1cbf8099168cc3c3" kind="function"><name>motion_priors_from_imu</name></member>
   </compound>
   <compound refid="classrko__lio_1_1ros_1_1OfflineNode" kind="class"><name>rko_lio::ros::OfflineNode</name>
     <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a492b765756e4d00b19d84c3cc8d5de93" kind="variable"><name>bag</name></member>
@@ -209,7 +209,7 @@
     <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1a37c572a7a20934eaa21902fe3809d44e" kind="function"><name>print_results</name></member>
   </compound>
   <compound refid="structrko__lio_1_1core_1_1State" kind="struct"><name>rko_lio::core::State</name>
-    <member refid="structrko__lio_1_1core_1_1State_1a7f8945ad8caf48d4fedada8b75ba5a29" kind="variable"><name>time</name></member>
+    <member refid="structrko__lio_1_1core_1_1State_1a1b0c9bd6280560c585e05430a6ada6c3" kind="variable"><name>time</name></member>
     <member refid="structrko__lio_1_1core_1_1State_1acf99bb3fd248ef34f6c8b78e9af98f20" kind="variable"><name>pose</name></member>
     <member refid="structrko__lio_1_1core_1_1State_1a4ef9997c1ab318c8bacd9762881c4424" kind="variable"><name>velocity</name></member>
     <member refid="structrko__lio_1_1core_1_1State_1a4e4b51eb997a097ab86dbc5199722e40" kind="variable"><name>angular_velocity</name></member>
@@ -262,8 +262,8 @@
     <member refid="structrko__lio_1_1core_1_1TimestampProcessingConfig_1a1eb1124319b0987ff5960af828dedcfe" kind="variable"><name>force_relative</name></member>
   </compound>
   <compound refid="structrko__lio_1_1core_1_1Timestamps" kind="struct"><name>rko_lio::core::Timestamps</name>
-    <member refid="structrko__lio_1_1core_1_1Timestamps_1a35ee9e2ba868ab50384c55faa49b12b4" kind="variable"><name>min</name></member>
-    <member refid="structrko__lio_1_1core_1_1Timestamps_1abc99b4d2813605ed314bc6262f4dde4c" kind="variable"><name>max</name></member>
+    <member refid="structrko__lio_1_1core_1_1Timestamps_1ab049615468920792fdb40b2f597a75cd" kind="variable"><name>min</name></member>
+    <member refid="structrko__lio_1_1core_1_1Timestamps_1a815937b2994206648bfe5c054b06be6d" kind="variable"><name>max</name></member>
     <member refid="structrko__lio_1_1core_1_1Timestamps_1a0090c8ed31eeb5da017dcda0c0eaa2cb" kind="variable"><name>times</name></member>
   </compound>
   <compound refid="structrko__lio_1_1core_1_1VoxelHashMap" kind="struct"><name>rko_lio::core::VoxelHashMap</name>
@@ -308,15 +308,16 @@
   </compound>
   <compound refid="namespacerko__lio_1_1core" kind="namespace"><name>rko_lio::core</name>
     <member refid="namespacerko__lio_1_1core_1a5cc9dbe312768171d6734783de18f64c" kind="typedef"><name>Vector3dVector</name></member>
-    <member refid="namespacerko__lio_1_1core_1aeb6128bc63af6919453e303e7eb5613d" kind="typedef"><name>Secondsd</name></member>
-    <member refid="namespacerko__lio_1_1core_1a50d343fe8fc3d44fdf883bc4a77b1ccf" kind="typedef"><name>TimestampVector</name></member>
+    <member refid="namespacerko__lio_1_1core_1a5a3f42fcc9e49ecd569baa31d940734f" kind="typedef"><name>Nsec</name></member>
+    <member refid="namespacerko__lio_1_1core_1ad6796ca63cae68d67a3963e198336a1e" kind="typedef"><name>TimestampVector</name></member>
     <member refid="namespacerko__lio_1_1core_1adbcc16d5b9b09c370ce6c889b6356bda" kind="typedef"><name>Voxel</name></member>
     <member refid="namespacerko__lio_1_1core_1aef84c95de08dd51173a6fc0d2433c24a" kind="typedef"><name>VoxelBlock</name></member>
     <member refid="namespacerko__lio_1_1core_1a1beb022f953c50f94a2a815a4d3716b5" kind="variable"><name>GRAVITY_MAG</name></member>
     <member refid="namespacerko__lio_1_1core_1a3261153e7f790d6973c2b7446db233ef" kind="function"><name>preprocess_scan</name></member>
-    <member refid="namespacerko__lio_1_1core_1aa575a28bad591f19c37742684a88cf7b" kind="function"><name>process_timestamps</name></member>
+    <member refid="namespacerko__lio_1_1core_1ac1fb80bf51f668bd3442bcb18044a57c" kind="function"><name>process_timestamps</name></member>
     <member refid="namespacerko__lio_1_1core_1aebf1f823c7fd220695665a8b3e12281e" kind="function"><name>square</name></member>
     <member refid="namespacerko__lio_1_1core_1ae12b01bb20a1a7280bc26af2de2f15dd" kind="function"><name>gravity</name></member>
+    <member refid="namespacerko__lio_1_1core_1a82bfbe6dd0859af66258d81747392bd6" kind="function"><name>to_seconds</name></member>
     <member refid="namespacerko__lio_1_1core_1ad33113e678270ae389705f90113e7df9" kind="function"><name>voxel_down_sample</name></member>
   </compound>
   <compound refid="namespacerko__lio_1_1ros" kind="namespace"><name>rko_lio::ros</name>
@@ -333,11 +334,13 @@
     <member refid="point__cloud__write_8hpp_1a972f8f407dce7b1824199bd2fe68aca5" kind="function"><name>eigen_to_point_cloud2</name></member>
     <member refid="ros__vectors_8hpp_1a89cb23044180614fae3f2f0a74ae4a4b" kind="function"><name>eigen_vector3d_to_ros_xyz</name></member>
     <member refid="ros__vectors_8hpp_1a3c96f574e69c58072d61040d978d9eb1" kind="function"><name>ros_xyz_to_eigen_vector3d</name></member>
-    <member refid="time_8hpp_1a2a59e06612a3104e6a1bdd73138ce24c" kind="function"><name>ros_time_to_seconds</name></member>
-    <member refid="transforms_8hpp_1a5014dc97c9b0a0f693ccfcda33df8f3f" kind="function"><name>sophus_to_pose</name></member>
-    <member refid="transforms_8hpp_1a4af614ba2c6c05bda16ac0eb87023891" kind="function"><name>sophus_to_transform</name></member>
+    <member refid="time_8hpp_1ac8836828d9bdda7dadc9f125f03b2154" kind="function"><name>to_ns</name></member>
+    <member refid="time_8hpp_1a77db31ee58500b510902643bd9f7bc97" kind="function"><name>to_ns</name></member>
+    <member refid="time_8hpp_1ac0334fa598ca2d1a236b10d23db3ff0f" kind="function"><name>to_ros_time</name></member>
+    <member refid="transforms_8hpp_1a44cc4e22d553762bfe91648556911c32" kind="function"><name>sophus_to_pose</name></member>
+    <member refid="transforms_8hpp_1a3347edf777beeec8166e93ed9bd7b633" kind="function"><name>sophus_to_transform</name></member>
     <member refid="transforms_8hpp_1a30f2577c606faf43523beb7b3b8fd4c3" kind="function"><name>transform_to_sophus</name></member>
-    <member refid="transforms_8hpp_1a86fa67824d17062f6dc8c767beb6b287" kind="function"><name>get_transform</name></member>
+    <member refid="transforms_8hpp_1a03c38b07517194dc77b673b64c066652" kind="function"><name>get_transform</name></member>
   </compound>
   <compound refid="namespacestd" kind="namespace"><name>std</name>
   </compound>

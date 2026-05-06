@@ -3,6 +3,7 @@
   <compounddef id="time_8hpp" kind="file" language="C++">
     <compoundname>time.hpp</compoundname>
     <includes local="no">builtin_interfaces/msg/time.hpp</includes>
+    <includes local="no">chrono</includes>
     <includes local="no">rclcpp/time.hpp</includes>
     <includedby refid="utils_8hpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/utils.hpp</includedby>
     <incdepgraph>
@@ -13,11 +14,16 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
       </node>
       <node id="2">
         <label>builtin_interfaces/msg/time.hpp</label>
       </node>
       <node id="3">
+        <label>chrono</label>
+      </node>
+      <node id="4">
         <label>rclcpp/time.hpp</label>
       </node>
     </incdepgraph>
@@ -67,13 +73,22 @@
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;builtin_interfaces/msg/time.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;rclcpp/time.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros::utils<sp/>{</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>std::chrono::duration&lt;double&gt;<sp/>ros_time_to_seconds(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>builtin_interfaces::msg::Time&amp;<sp/>stamp)<sp/>{</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::chrono::duration&lt;double&gt;(rclcpp::Time(stamp).nanoseconds()<sp/>*<sp/>1e-9);</highlight></codeline>
-<codeline lineno="32"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="33"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros::utils</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;chrono&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;rclcpp/time.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros::utils<sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>std::chrono::nanoseconds<sp/>to_ns(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>builtin_interfaces::msg::Time&amp;<sp/>stamp)<sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::chrono::nanoseconds(rclcpp::Time(stamp).nanoseconds());</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>std::chrono::nanoseconds<sp/>to_ns(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>rclcpp::Time&amp;<sp/>time)<sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::chrono::nanoseconds(time.nanoseconds());</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>builtin_interfaces::msg::Time<sp/>to_ros_time(std::chrono::nanoseconds<sp/>time)<sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>rclcpp::Time(time.count());</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros::utils</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/time.hpp"/>
   </compounddef>

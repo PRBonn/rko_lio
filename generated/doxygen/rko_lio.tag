@@ -285,10 +285,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>std::vector&lt; std::pair&lt; Secondsd, Sophus::SE3d &gt; &gt;</type>
+      <type>std::vector&lt; std::pair&lt; Nsec, Sophus::SE3d &gt; &gt;</type>
       <name>poses_with_timestamps</name>
       <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
-      <anchor>ae90f742f8a328a0ce2e119b2b8f881e1</anchor>
+      <anchor>af0b6eaceab67b9094531940ab4e50de6</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -390,8 +390,8 @@
       <type>Timestamps</type>
       <name>process_timestamps</name>
       <anchorfile>namespacerko__lio_1_1core.html</anchorfile>
-      <anchor>aa575a28bad591f19c37742684a88cf7b</anchor>
-      <arglist>(const std::vector&lt; double &gt; &amp;raw_timestamps, const Secondsd &amp;header_stamp, const TimestampProcessingConfig &amp;config)</arglist>
+      <anchor>ac1fb80bf51f668bd3442bcb18044a57c</anchor>
+      <arglist>(const std::vector&lt; double &gt; &amp;raw_timestamps, const Nsec header_stamp, const TimestampProcessingConfig &amp;config)</arglist>
     </member>
     <member kind="function">
       <type>std::vector&lt; Eigen::Vector3d &gt;</type>
