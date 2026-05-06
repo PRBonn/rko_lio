@@ -2,7 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="lio_8hpp" kind="file" language="C++">
     <compoundname>lio.hpp</compoundname>
-    <includes refid="sparse__voxel__grid_8hpp" local="yes">sparse_voxel_grid.hpp</includes>
+    <includes refid="voxel__hash__map_8hpp" local="yes">voxel_hash_map.hpp</includes>
     <includes refid="util_8hpp" local="yes">util.hpp</includes>
     <includedby refid="lio_8cpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp</includedby>
     <includedby refid="preprocess__scan_8hpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.hpp</includedby>
@@ -13,40 +13,60 @@
         <link refid="lio_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="6" relation="include">
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>util.hpp</label>
+        <link refid="util_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>voxel_down_sample.hpp</label>
+        <link refid="voxel__down__sample_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
         </childnode>
       </node>
       <node id="2">
-        <label>sparse_voxel_grid.hpp</label>
-        <link refid="sparse__voxel__grid_8hpp_source"/>
+        <label>voxel_hash_map.hpp</label>
+        <link refid="voxel__hash__map_8hpp_source"/>
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-      </node>
-      <node id="6">
-        <label>util.hpp</label>
-        <link refid="util_8hpp_source"/>
-        <childnode refid="3" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
       </node>
-      <node id="3">
+      <node id="4">
         <label>Eigen/Core</label>
       </node>
-      <node id="4">
-        <label>bonxai/bonxai.hpp</label>
-      </node>
-      <node id="7">
+      <node id="10">
         <label>chrono</label>
       </node>
       <node id="5">
         <label>sophus/se3.hpp</label>
+      </node>
+      <node id="6">
+        <label>tsl/robin_map.h</label>
+      </node>
+      <node id="7">
+        <label>tuple</label>
+      </node>
+      <node id="8">
+        <label>vector</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
@@ -109,7 +129,7 @@
 <codeline lineno="23"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;sparse_voxel_grid.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;voxel_hash_map.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;util.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacerko__lio_1_1core" kindref="compound">rko_lio::core</ref><sp/>{</highlight></codeline>
@@ -145,7 +165,7 @@
 <codeline lineno="80"><highlight class="normal"></highlight></codeline>
 <codeline lineno="82" refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config" kindref="compound">Config</ref><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" kindref="member">config</ref>;</highlight></codeline>
 <codeline lineno="83"><highlight class="normal"></highlight></codeline>
-<codeline lineno="85" refid="classrko__lio_1_1core_1_1LIO_1a004fb22ebae1428e23606e495eeea01a" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1SparseVoxelGrid" kindref="compound">SparseVoxelGrid</ref><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a004fb22ebae1428e23606e495eeea01a" kindref="member">map</ref>;</highlight></codeline>
+<codeline lineno="85" refid="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1VoxelHashMap" kindref="compound">VoxelHashMap</ref><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" kindref="member">map</ref>;</highlight></codeline>
 <codeline lineno="86"><highlight class="normal"></highlight></codeline>
 <codeline lineno="88" refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1State" kindref="compound">State</ref><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref>;</highlight></codeline>
 <codeline lineno="89"><highlight class="normal"></highlight></codeline>
@@ -158,7 +178,7 @@
 <codeline lineno="100" refid="classrko__lio_1_1core_1_1LIO_1a9b89efdfdcc0ab01ef3fd6caaadb69d2" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats" kindref="compound">IntervalStats</ref><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a9b89efdfdcc0ab01ef3fd6caaadb69d2" kindref="member">interval_stats</ref>;</highlight></codeline>
 <codeline lineno="101"><highlight class="normal"></highlight></codeline>
 <codeline lineno="102"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1core_1_1LIO" kindref="compound">LIO</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config" kindref="compound">Config</ref>&amp;<sp/>config_)</highlight></codeline>
-<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" kindref="member">config</ref>(config_),<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a004fb22ebae1428e23606e495eeea01a" kindref="member">map</ref>(config_.voxel_size,<sp/>config_.max_range,<sp/>config_.max_points_per_voxel)<sp/>{}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" kindref="member">config</ref>(config_),<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" kindref="member">map</ref>(config_.voxel_size,<sp/>config_.max_range,<sp/>config_.max_points_per_voxel)<sp/>{}</highlight></codeline>
 <codeline lineno="104"><highlight class="normal"></highlight></codeline>
 <codeline lineno="106"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a34139c65d35e7929125788bdafd0470c" kindref="member">add_imu_measurement</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1ImuControl" kindref="compound">ImuControl</ref>&amp;<sp/>base_imu);</highlight></codeline>
 <codeline lineno="107"><highlight class="normal"></highlight></codeline>

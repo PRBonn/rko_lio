@@ -23,10 +23,10 @@ Files
 - :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_process_timestamps.cpp`
 - :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_process_timestamps.hpp`
 - :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_profiler.hpp`
-- :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_sparse_voxel_grid.cpp`
-- :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_sparse_voxel_grid.hpp`
 - :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_util.hpp`
 - :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_voxel_down_sample.cpp`
 - :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_voxel_down_sample.hpp`
+- :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_voxel_hash_map.cpp`
+- :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_voxel_hash_map.hpp`
 
 

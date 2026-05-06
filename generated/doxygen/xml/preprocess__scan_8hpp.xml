@@ -14,7 +14,7 @@
         <link refid="lio_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="10" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -29,36 +29,47 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
+      <node id="12">
+        <label>util.hpp</label>
+        <link refid="util_8hpp_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>voxel_down_sample.hpp</label>
+        <link refid="voxel__down__sample_8hpp_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
       <node id="6">
-        <label>sparse_voxel_grid.hpp</label>
-        <link refid="sparse__voxel__grid_8hpp_source"/>
+        <label>voxel_hash_map.hpp</label>
+        <link refid="voxel__hash__map_8hpp_source"/>
         <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-      </node>
-      <node id="10">
-        <label>util.hpp</label>
-        <link refid="util_8hpp_source"/>
-        <childnode refid="7" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="7">
+      <node id="8">
         <label>Eigen/Core</label>
       </node>
       <node id="2">
         <label>Eigen/Dense</label>
       </node>
-      <node id="8">
-        <label>bonxai/bonxai.hpp</label>
-      </node>
-      <node id="11">
+      <node id="13">
         <label>chrono</label>
       </node>
       <node id="3">
@@ -66,6 +77,12 @@
       </node>
       <node id="9">
         <label>sophus/se3.hpp</label>
+      </node>
+      <node id="10">
+        <label>tsl/robin_map.h</label>
+      </node>
+      <node id="11">
+        <label>tuple</label>
       </node>
       <node id="4">
         <label>vector</label>

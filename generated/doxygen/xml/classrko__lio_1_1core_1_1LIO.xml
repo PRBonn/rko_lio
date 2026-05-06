@@ -20,20 +20,20 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="82" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="82" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classrko__lio_1_1core_1_1LIO_1a004fb22ebae1428e23606e495eeea01a" prot="public" static="no" mutable="no">
-        <type><ref refid="structrko__lio_1_1core_1_1SparseVoxelGrid" kindref="compound">SparseVoxelGrid</ref></type>
-        <definition>SparseVoxelGrid rko_lio::core::LIO::map</definition>
+      <memberdef kind="variable" id="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" prot="public" static="no" mutable="no">
+        <type><ref refid="structrko__lio_1_1core_1_1VoxelHashMap" kindref="compound">VoxelHashMap</ref></type>
+        <definition>VoxelHashMap rko_lio::core::LIO::map</definition>
         <argsstring></argsstring>
         <name>map</name>
         <qualifiedname>rko_lio::core::LIO::map</qualifiedname>
         <briefdescription>
-<para>Local map as sparse voxel grid (Bonxai). </para>
+<para>Local map. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="85" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="85" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="85" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="85" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" prot="public" static="no" mutable="no">
         <type><ref refid="structrko__lio_1_1core_1_1State" kindref="compound">State</ref></type>
@@ -483,13 +483,13 @@
         <label>rko_lio::core::LIO::Config</label>
         <link refid="structrko__lio_1_1core_1_1LIO_1_1Config"/>
       </node>
-      <node id="3">
-        <label>rko_lio::core::SparseVoxelGrid</label>
-        <link refid="structrko__lio_1_1core_1_1SparseVoxelGrid"/>
-      </node>
       <node id="4">
         <label>rko_lio::core::State</label>
         <link refid="structrko__lio_1_1core_1_1State"/>
+      </node>
+      <node id="3">
+        <label>rko_lio::core::VoxelHashMap</label>
+        <link refid="structrko__lio_1_1core_1_1VoxelHashMap"/>
       </node>
     </collaborationgraph>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="37" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="37" bodyend="167"/>
@@ -508,7 +508,7 @@
       <member refid="classrko__lio_1_1core_1_1LIO_1a9b89efdfdcc0ab01ef3fd6caaadb69d2" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>interval_stats</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>lidar_state</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1a27bdff7e57866bd6429e81d8f7d74ed8" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>LIO</name></member>
-      <member refid="classrko__lio_1_1core_1_1LIO_1a004fb22ebae1428e23606e495eeea01a" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>map</name></member>
+      <member refid="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>map</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1aaec8a94ec4355ab7269bb02bee19d950" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>mean_body_acceleration</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1a72f44928d9d63ee2abda98f61308f366" prot="private" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>motion_priors_from_imu</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1ae90f742f8a328a0ce2e119b2b8f881e1" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>poses_with_timestamps</name></member>

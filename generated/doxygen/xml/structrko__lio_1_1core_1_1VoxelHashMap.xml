@@ -1,0 +1,244 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structrko__lio_1_1core_1_1VoxelHashMap" kind="struct" language="C++" prot="public">
+    <compoundname>rko_lio::core::VoxelHashMap</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1VoxelHashMap_1aff7a66cc63f71eace58c5f6210f2a8d9" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double rko_lio::core::VoxelHashMap::voxel_size_</definition>
+        <argsstring></argsstring>
+        <name>voxel_size_</name>
+        <qualifiedname>rko_lio::core::VoxelHashMap::voxel_size_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" line="58" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1VoxelHashMap_1a3408fa0a08142bb378299e64fbef1367" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double rko_lio::core::VoxelHashMap::inv_voxel_size_</definition>
+        <argsstring></argsstring>
+        <name>inv_voxel_size_</name>
+        <qualifiedname>rko_lio::core::VoxelHashMap::inv_voxel_size_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" line="59" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1VoxelHashMap_1a8d6c3c7430c23ba1d220d5b9a25eaad5" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double rko_lio::core::VoxelHashMap::clipping_distance_</definition>
+        <argsstring></argsstring>
+        <name>clipping_distance_</name>
+        <qualifiedname>rko_lio::core::VoxelHashMap::clipping_distance_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" line="60" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1VoxelHashMap_1aa49f7c25925cab092cf7a9333dcdda01" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int rko_lio::core::VoxelHashMap::max_points_per_voxel_</definition>
+        <argsstring></argsstring>
+        <name>max_points_per_voxel_</name>
+        <qualifiedname>rko_lio::core::VoxelHashMap::max_points_per_voxel_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" line="61" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1VoxelHashMap_1aec638111f1996104bb0f3a05107afb24" prot="public" static="no" mutable="no">
+        <type>tsl::robin_map&lt; Voxel, VoxelBlock &gt;</type>
+        <definition>tsl::robin_map&lt;Voxel, VoxelBlock&gt; rko_lio::core::VoxelHashMap::map_</definition>
+        <argsstring></argsstring>
+        <name>map_</name>
+        <qualifiedname>rko_lio::core::VoxelHashMap::map_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" line="62" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1VoxelHashMap_1a4f31df433ccba36b7b38d4c1f669b51b" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::core::VoxelHashMap::VoxelHashMap</definition>
+        <argsstring>(const double voxel_size, const double clipping_distance, const unsigned int max_points_per_voxel)</argsstring>
+        <name>VoxelHashMap</name>
+        <qualifiedname>rko_lio::core::VoxelHashMap::VoxelHashMap</qualifiedname>
+        <param>
+          <type>const double</type>
+          <declname>voxel_size</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>clipping_distance</declname>
+        </param>
+        <param>
+          <type>const unsigned int</type>
+          <declname>max_points_per_voxel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" line="46" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.cpp" bodystart="66" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1VoxelHashMap_1ac0a85829fa563836a01b77ceff59cabe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::core::VoxelHashMap::clear</definition>
+        <argsstring>()</argsstring>
+        <name>clear</name>
+        <qualifiedname>rko_lio::core::VoxelHashMap::clear</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" line="50" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1VoxelHashMap_1acf441a271ba571fd0c44bd7742030348" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool rko_lio::core::VoxelHashMap::empty</definition>
+        <argsstring>() const</argsstring>
+        <name>empty</name>
+        <qualifiedname>rko_lio::core::VoxelHashMap::empty</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" line="51" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" bodystart="51" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1VoxelHashMap_1ab7b2aaf8c1773023df7094b7138c3aa4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::core::VoxelHashMap::update</definition>
+        <argsstring>(const std::vector&lt; Eigen::Vector3d &gt; &amp;points, const Sophus::SE3d &amp;pose)</argsstring>
+        <name>update</name>
+        <qualifiedname>rko_lio::core::VoxelHashMap::update</qualifiedname>
+        <param>
+          <type>const std::vector&lt; Eigen::Vector3d &gt; &amp;</type>
+          <declname>points</declname>
+        </param>
+        <param>
+          <type>const Sophus::SE3d &amp;</type>
+          <declname>pose</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" line="52" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.cpp" bodystart="125" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1VoxelHashMap_1a1f65b0eb57498de2b66f22deac8aa69b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::core::VoxelHashMap::add_points</definition>
+        <argsstring>(const std::vector&lt; Eigen::Vector3d &gt; &amp;points)</argsstring>
+        <name>add_points</name>
+        <qualifiedname>rko_lio::core::VoxelHashMap::add_points</qualifiedname>
+        <param>
+          <type>const std::vector&lt; Eigen::Vector3d &gt; &amp;</type>
+          <declname>points</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" line="53" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.cpp" bodystart="97" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1VoxelHashMap_1a00914479421237754cd577709bd0e1cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::core::VoxelHashMap::remove_points_far_from_location</definition>
+        <argsstring>(const Eigen::Vector3d &amp;origin)</argsstring>
+        <name>remove_points_far_from_location</name>
+        <qualifiedname>rko_lio::core::VoxelHashMap::remove_points_far_from_location</qualifiedname>
+        <param>
+          <type>const Eigen::Vector3d &amp;</type>
+          <declname>origin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" line="54" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.cpp" bodystart="113" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1VoxelHashMap_1a83f6aa36ec4960d0b122f37323cbc61e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; Eigen::Vector3d &gt;</type>
+        <definition>std::vector&lt; Eigen::Vector3d &gt; rko_lio::core::VoxelHashMap::pointcloud</definition>
+        <argsstring>() const</argsstring>
+        <name>pointcloud</name>
+        <qualifiedname>rko_lio::core::VoxelHashMap::pointcloud</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" line="55" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.cpp" bodystart="134" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1VoxelHashMap_1a2d187d4904229ebdfed12b44099b73c5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::tuple&lt; Eigen::Vector3d, double &gt;</type>
+        <definition>std::tuple&lt; Eigen::Vector3d, double &gt; rko_lio::core::VoxelHashMap::get_closest_neighbor</definition>
+        <argsstring>(const Eigen::Vector3d &amp;query) const</argsstring>
+        <name>get_closest_neighbor</name>
+        <qualifiedname>rko_lio::core::VoxelHashMap::get_closest_neighbor</qualifiedname>
+        <param>
+          <type>const Eigen::Vector3d &amp;</type>
+          <declname>query</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" line="56" column="14" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.cpp" bodystart="74" bodyend="95"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" line="45" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" bodystart="45" bodyend="63"/>
+    <listofallmembers>
+      <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a1f65b0eb57498de2b66f22deac8aa69b" prot="public" virt="non-virtual"><scope>rko_lio::core::VoxelHashMap</scope><name>add_points</name></member>
+      <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1ac0a85829fa563836a01b77ceff59cabe" prot="public" virt="non-virtual"><scope>rko_lio::core::VoxelHashMap</scope><name>clear</name></member>
+      <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a8d6c3c7430c23ba1d220d5b9a25eaad5" prot="public" virt="non-virtual"><scope>rko_lio::core::VoxelHashMap</scope><name>clipping_distance_</name></member>
+      <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1acf441a271ba571fd0c44bd7742030348" prot="public" virt="non-virtual"><scope>rko_lio::core::VoxelHashMap</scope><name>empty</name></member>
+      <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a2d187d4904229ebdfed12b44099b73c5" prot="public" virt="non-virtual"><scope>rko_lio::core::VoxelHashMap</scope><name>get_closest_neighbor</name></member>
+      <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a3408fa0a08142bb378299e64fbef1367" prot="public" virt="non-virtual"><scope>rko_lio::core::VoxelHashMap</scope><name>inv_voxel_size_</name></member>
+      <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1aec638111f1996104bb0f3a05107afb24" prot="public" virt="non-virtual"><scope>rko_lio::core::VoxelHashMap</scope><name>map_</name></member>
+      <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1aa49f7c25925cab092cf7a9333dcdda01" prot="public" virt="non-virtual"><scope>rko_lio::core::VoxelHashMap</scope><name>max_points_per_voxel_</name></member>
+      <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a83f6aa36ec4960d0b122f37323cbc61e" prot="public" virt="non-virtual"><scope>rko_lio::core::VoxelHashMap</scope><name>pointcloud</name></member>
+      <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a00914479421237754cd577709bd0e1cc" prot="public" virt="non-virtual"><scope>rko_lio::core::VoxelHashMap</scope><name>remove_points_far_from_location</name></member>
+      <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1ab7b2aaf8c1773023df7094b7138c3aa4" prot="public" virt="non-virtual"><scope>rko_lio::core::VoxelHashMap</scope><name>update</name></member>
+      <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1aff7a66cc63f71eace58c5f6210f2a8d9" prot="public" virt="non-virtual"><scope>rko_lio::core::VoxelHashMap</scope><name>voxel_size_</name></member>
+      <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a4f31df433ccba36b7b38d4c1f669b51b" prot="public" virt="non-virtual"><scope>rko_lio::core::VoxelHashMap</scope><name>VoxelHashMap</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

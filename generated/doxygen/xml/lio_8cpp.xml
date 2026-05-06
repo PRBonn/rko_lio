@@ -24,17 +24,13 @@
         <link refid="lio_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="13" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
         </childnode>
         <childnode refid="22" relation="include">
         </childnode>
@@ -46,13 +42,17 @@
         </childnode>
         <childnode refid="26" relation="include">
         </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
         <childnode refid="27" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
         <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -60,29 +60,25 @@
         <link refid="lio_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>preprocess_scan.hpp</label>
-        <link refid="preprocess__scan_8hpp_source"/>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
+      </node>
+      <node id="12">
+        <label>preprocess_scan.hpp</label>
+        <link refid="preprocess__scan_8hpp_source"/>
+        <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
         </childnode>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="13">
+      <node id="15">
         <label>profiler.hpp</label>
         <link refid="profiler_8hpp"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="16" relation="include">
         </childnode>
@@ -92,91 +88,112 @@
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>util.hpp</label>
+        <link refid="util_8hpp_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>voxel_down_sample.hpp</label>
+        <link refid="voxel__down__sample_8hpp_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
       </node>
       <node id="3">
-        <label>sparse_voxel_grid.hpp</label>
-        <link refid="sparse__voxel__grid_8hpp_source"/>
+        <label>voxel_hash_map.hpp</label>
+        <link refid="voxel__hash__map_8hpp_source"/>
         <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-      </node>
-      <node id="7">
-        <label>util.hpp</label>
-        <link refid="util_8hpp_source"/>
-        <childnode refid="4" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="6" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="4">
+      <node id="5">
         <label>Eigen/Core</label>
       </node>
-      <node id="10">
+      <node id="13">
         <label>Eigen/Dense</label>
       </node>
-      <node id="25">
+      <node id="27">
         <label>algorithm</label>
       </node>
-      <node id="5">
-        <label>bonxai/bonxai.hpp</label>
-      </node>
-      <node id="8">
+      <node id="11">
         <label>chrono</label>
       </node>
-      <node id="14">
+      <node id="16">
         <label>cmath</label>
       </node>
-      <node id="26">
+      <node id="28">
         <label>functional</label>
       </node>
-      <node id="15">
+      <node id="17">
         <label>iomanip</label>
       </node>
-      <node id="16">
+      <node id="18">
         <label>iostream</label>
       </node>
-      <node id="27">
+      <node id="29">
         <label>numeric</label>
       </node>
-      <node id="11">
+      <node id="14">
         <label>optional</label>
       </node>
       <node id="6">
         <label>sophus/se3.hpp</label>
       </node>
-      <node id="28">
+      <node id="30">
         <label>stdexcept</label>
       </node>
-      <node id="17">
+      <node id="19">
         <label>string</label>
       </node>
-      <node id="20">
+      <node id="22">
         <label>tbb/blocked_range.h</label>
       </node>
-      <node id="21">
+      <node id="23">
         <label>tbb/concurrent_vector.h</label>
       </node>
-      <node id="22">
+      <node id="24">
         <label>tbb/global_control.h</label>
       </node>
-      <node id="23">
+      <node id="25">
         <label>tbb/parallel_reduce.h</label>
       </node>
-      <node id="24">
+      <node id="26">
         <label>tbb/task_arena.h</label>
       </node>
-      <node id="18">
+      <node id="7">
+        <label>tsl/robin_map.h</label>
+      </node>
+      <node id="8">
+        <label>tuple</label>
+      </node>
+      <node id="20">
         <label>unordered_map</label>
       </node>
-      <node id="19">
+      <node id="21">
         <label>utility</label>
       </node>
-      <node id="12">
+      <node id="9">
         <label>vector</label>
       </node>
     </incdepgraph>
@@ -310,7 +327,7 @@
 <codeline lineno="121"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">LinearSystem<sp/>=<sp/>std::tuple&lt;Eigen::Matrix6d,<sp/>Eigen::Vector6d,<sp/>double&gt;;</highlight></codeline>
 <codeline lineno="122"><highlight class="normal">LinearSystem<sp/>build_icp_linear_system(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3d&amp;<sp/>current_pose,</highlight></codeline>
 <codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>rko_lio::core::Vector3dVector&amp;<sp/>frame,</highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1SparseVoxelGrid" kindref="compound">rko_lio::core::SparseVoxelGrid</ref>&amp;<sp/>voxel_map,</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1VoxelHashMap" kindref="compound">rko_lio::core::VoxelHashMap</ref>&amp;<sp/>voxel_map,</highlight></codeline>
 <codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>max_correspondance_distance)<sp/>{</highlight></codeline>
 <codeline lineno="126"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>linear_system_reduce<sp/>=<sp/>[](LinearSystem<sp/>lhs,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>LinearSystem&amp;<sp/>rhs)<sp/>{</highlight></codeline>
 <codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>[lhs_H,<sp/>lhs_b,<sp/>lhs_chi]<sp/>=<sp/>lhs;</highlight></codeline>
@@ -344,7 +361,7 @@
 <codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::transform_reduce(r.begin(),<sp/>r.end(),<sp/>J,<sp/>linear_system_reduce,<sp/>[&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>point)<sp/>{</highlight></codeline>
 <codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Compute<sp/>data<sp/>association<sp/>and<sp/>linear<sp/>system</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>Eigen::Vector3d<sp/>transformed_point<sp/>=<sp/>current_pose<sp/>*<sp/>point;</highlight></codeline>
-<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>auto&amp;<sp/>[closest_neighbor,<sp/>distance]<sp/>=<sp/>voxel_map.GetClosestNeighbor(transformed_point);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>auto&amp;<sp/>[closest_neighbor,<sp/>distance]<sp/>=<sp/>voxel_map.get_closest_neighbor(transformed_point);</highlight></codeline>
 <codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(distance<sp/>&lt;<sp/>max_correspondance_distance)<sp/>{</highlight></codeline>
 <codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>correspondances_counter++;</highlight></codeline>
 <codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>linear_system_for_one_point(transformed_point,<sp/>closest_neighbor);</highlight></codeline>
@@ -377,7 +394,7 @@
 <codeline lineno="188"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="189"><highlight class="normal"></highlight></codeline>
 <codeline lineno="190"><highlight class="normal">Sophus::SE3d<sp/>icp(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Vector3dVector&amp;<sp/>frame,</highlight></codeline>
-<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1SparseVoxelGrid" kindref="compound">SparseVoxelGrid</ref>&amp;<sp/>voxel_map,</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1VoxelHashMap" kindref="compound">VoxelHashMap</ref>&amp;<sp/>voxel_map,</highlight></codeline>
 <codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3d&amp;<sp/>initial_guess,</highlight></codeline>
 <codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config" kindref="compound">LIO::Config</ref>&amp;<sp/>config,</highlight></codeline>
 <codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::optional&lt;AccelInfo&gt;&amp;<sp/>optional_accel_info)<sp/>{</highlight></codeline>
@@ -471,7 +488,7 @@
 <codeline lineno="282"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a582d6fd74013b8c85784326bc45fb7c0" kindref="member">imu_state</ref><sp/>=<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref>;</highlight></codeline>
 <codeline lineno="283"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>preproc<sp/>=<sp/>preprocess_scan(scan,<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" kindref="member">config</ref>);</highlight></codeline>
 <codeline lineno="284"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" kindref="member">config</ref>.<ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a2d65fe516d188013b626c20f1bc583e2" kindref="member">initialization_phase</ref>)<sp/>{</highlight></codeline>
-<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a004fb22ebae1428e23606e495eeea01a" kindref="member">map</ref>.Update(preproc.map_update_frame(),<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref>.pose);</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" kindref="member">map</ref>.update(preproc.map_update_frame(),<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref>.pose);</highlight></codeline>
 <codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1ae90f742f8a328a0ce2e119b2b8f881e1" kindref="member">poses_with_timestamps</ref>.emplace_back(<ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref>.time,<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref>.pose);</highlight></codeline>
 <codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;[INFO]<sp/>Odometry<sp/>map<sp/>frame<sp/>initialized<sp/>with<sp/>first<sp/>lidar<sp/>scan.\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="288"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
@@ -642,9 +659,9 @@
 <codeline lineno="453"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(error_msg);</highlight></codeline>
 <codeline lineno="454"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="455"><highlight class="normal"></highlight></codeline>
-<codeline lineno="456"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classrko__lio_1_1core_1_1LIO_1a004fb22ebae1428e23606e495eeea01a" kindref="member">map</ref>.Empty())<sp/>{</highlight></codeline>
+<codeline lineno="456"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" kindref="member">map</ref>.empty())<sp/>{</highlight></codeline>
 <codeline lineno="457"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="profiler_8hpp_1af9e43cc52cb0d854f3588064f9f97cd2" kindref="member">SCOPED_PROFILER</ref>(</highlight><highlight class="stringliteral">&quot;ICP&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="458"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3d<sp/>optimized_pose<sp/>=<sp/>icp(preproc_result.keypoints,<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a004fb22ebae1428e23606e495eeea01a" kindref="member">map</ref>,<sp/>initial_guess,<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" kindref="member">config</ref>,<sp/>kf_step.info);</highlight></codeline>
+<codeline lineno="458"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3d<sp/>optimized_pose<sp/>=<sp/>icp(preproc_result.keypoints,<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" kindref="member">map</ref>,<sp/>initial_guess,<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" kindref="member">config</ref>,<sp/>kf_step.info);</highlight></codeline>
 <codeline lineno="459"><highlight class="normal"></highlight></codeline>
 <codeline lineno="460"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>estimate<sp/>velocities<sp/>and<sp/>accelerations<sp/>from<sp/>the<sp/>new<sp/>pose</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="461"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dt<sp/>=<sp/>(current_lidar_time<sp/>-<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref>.time).count();</highlight></codeline>
@@ -666,7 +683,7 @@
 <codeline lineno="477"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>reset<sp/>imu<sp/>averages</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="478"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a9b89efdfdcc0ab01ef3fd6caaadb69d2" kindref="member">interval_stats</ref>.<ref refid="structrko__lio_1_1core_1_1IntervalStats_1a93353da910829b6fc1525b55d99fd280" kindref="member">reset</ref>();</highlight></codeline>
 <codeline lineno="479"><highlight class="normal"></highlight></codeline>
-<codeline lineno="480"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a004fb22ebae1428e23606e495eeea01a" kindref="member">map</ref>.Update(preproc_result.map_update_frame(),<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref>.pose);</highlight></codeline>
+<codeline lineno="480"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" kindref="member">map</ref>.update(preproc_result.map_update_frame(),<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref>.pose);</highlight></codeline>
 <codeline lineno="481"><highlight class="normal"></highlight></codeline>
 <codeline lineno="482"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1ae90f742f8a328a0ce2e119b2b8f881e1" kindref="member">poses_with_timestamps</ref>.emplace_back(<ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref>.time,<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref>.pose);</highlight></codeline>
 <codeline lineno="483"><highlight class="normal"></highlight></codeline>

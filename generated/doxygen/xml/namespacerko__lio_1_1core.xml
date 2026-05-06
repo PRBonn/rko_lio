@@ -8,26 +8,12 @@
     <innerclass refid="classrko__lio_1_1core_1_1LIO" prot="public">rko_lio::core::LIO</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1PreprocessingResult" prot="public">rko_lio::core::PreprocessingResult</innerclass>
     <innerclass refid="classrko__lio_1_1core_1_1ScopedProfiler" prot="public">rko_lio::core::ScopedProfiler</innerclass>
-    <innerclass refid="structrko__lio_1_1core_1_1SparseVoxelGrid" prot="public">rko_lio::core::SparseVoxelGrid</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1State" prot="public">rko_lio::core::State</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1Timer" prot="public">rko_lio::core::Timer</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1TimestampProcessingConfig" prot="public">rko_lio::core::TimestampProcessingConfig</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1Timestamps" prot="public">rko_lio::core::Timestamps</innerclass>
+    <innerclass refid="structrko__lio_1_1core_1_1VoxelHashMap" prot="public">rko_lio::core::VoxelHashMap</innerclass>
     <sectiondef kind="typedef">
-      <memberdef kind="typedef" id="namespacerko__lio_1_1core_1aef84c95de08dd51173a6fc0d2433c24a" prot="public" static="no">
-        <type>std::vector&lt; Eigen::Vector3d &gt;</type>
-        <definition>using rko_lio::core::VoxelBlock = typedef std::vector&lt;Eigen::Vector3d&gt;</definition>
-        <argsstring></argsstring>
-        <name>VoxelBlock</name>
-        <qualifiedname>rko_lio::core::VoxelBlock</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/sparse_voxel_grid.hpp" line="31" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/sparse_voxel_grid.hpp" bodystart="31" bodyend="-1"/>
-      </memberdef>
       <memberdef kind="typedef" id="namespacerko__lio_1_1core_1a5cc9dbe312768171d6734783de18f64c" prot="public" static="no">
         <type>std::vector&lt; Eigen::Vector3d &gt;</type>
         <definition>using rko_lio::core::Vector3dVector = typedef std::vector&lt;Eigen::Vector3d&gt;</definition>
@@ -69,6 +55,34 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="40" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespacerko__lio_1_1core_1adbcc16d5b9b09c370ce6c889b6356bda" prot="public" static="no">
+        <type>Eigen::Vector3i</type>
+        <definition>using rko_lio::core::Voxel = typedef Eigen::Vector3i</definition>
+        <argsstring></argsstring>
+        <name>Voxel</name>
+        <qualifiedname>rko_lio::core::Voxel</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" line="42" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespacerko__lio_1_1core_1aef84c95de08dd51173a6fc0d2433c24a" prot="public" static="no">
+        <type>std::vector&lt; Eigen::Vector3d &gt;</type>
+        <definition>using rko_lio::core::VoxelBlock = typedef std::vector&lt;Eigen::Vector3d&gt;</definition>
+        <argsstring></argsstring>
+        <name>VoxelBlock</name>
+        <qualifiedname>rko_lio::core::VoxelBlock</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" line="43" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" bodystart="43" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="var">

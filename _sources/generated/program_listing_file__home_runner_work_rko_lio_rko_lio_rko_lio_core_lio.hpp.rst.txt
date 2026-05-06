@@ -35,7 +35,7 @@ Program Listing for File lio.hpp
     */
    
    #pragma once
-   #include "sparse_voxel_grid.hpp"
+   #include "voxel_hash_map.hpp"
    #include "util.hpp"
    
    namespace rko_lio::core {
@@ -71,7 +71,7 @@ Program Listing for File lio.hpp
    
      Config config;
    
-     SparseVoxelGrid map;
+     VoxelHashMap map;
    
      State lidar_state;
    

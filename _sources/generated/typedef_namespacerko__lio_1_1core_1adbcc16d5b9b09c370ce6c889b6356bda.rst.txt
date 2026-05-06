@@ -1,0 +1,14 @@
+.. _exhale_typedef_namespacerko__lio_1_1core_1adbcc16d5b9b09c370ce6c889b6356bda:
+
+Typedef rko_lio::core::Voxel
+============================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_voxel_hash_map.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: rko_lio::core::Voxel
+   :project: rko_lio Doxygen Project

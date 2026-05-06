@@ -9,11 +9,11 @@
     <innerfile refid="process__timestamps_8cpp">process_timestamps.cpp</innerfile>
     <innerfile refid="process__timestamps_8hpp">process_timestamps.hpp</innerfile>
     <innerfile refid="profiler_8hpp">profiler.hpp</innerfile>
-    <innerfile refid="sparse__voxel__grid_8cpp">sparse_voxel_grid.cpp</innerfile>
-    <innerfile refid="sparse__voxel__grid_8hpp">sparse_voxel_grid.hpp</innerfile>
     <innerfile refid="util_8hpp">util.hpp</innerfile>
     <innerfile refid="voxel__down__sample_8cpp">voxel_down_sample.cpp</innerfile>
     <innerfile refid="voxel__down__sample_8hpp">voxel_down_sample.hpp</innerfile>
+    <innerfile refid="voxel__hash__map_8cpp">voxel_hash_map.cpp</innerfile>
+    <innerfile refid="voxel__hash__map_8hpp">voxel_hash_map.hpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

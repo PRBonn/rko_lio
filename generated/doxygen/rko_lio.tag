@@ -243,10 +243,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>SparseVoxelGrid</type>
+      <type>VoxelHashMap</type>
       <name>map</name>
       <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
-      <anchor>a004fb22ebae1428e23606e495eeea01a</anchor>
+      <anchor>a30d4d61c9e0261e0e07bb3aff06710c8</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -344,10 +344,6 @@
     </member>
   </compound>
   <compound kind="struct">
-    <name>rko_lio::core::SparseVoxelGrid</name>
-    <filename>structrko__lio_1_1core_1_1SparseVoxelGrid.html</filename>
-  </compound>
-  <compound kind="struct">
     <name>rko_lio::core::State</name>
     <filename>structrko__lio_1_1core_1_1State.html</filename>
   </compound>
@@ -372,6 +368,10 @@
     <name>rko_lio::core::Timestamps</name>
     <filename>structrko__lio_1_1core_1_1Timestamps.html</filename>
   </compound>
+  <compound kind="struct">
+    <name>rko_lio::core::VoxelHashMap</name>
+    <filename>structrko__lio_1_1core_1_1VoxelHashMap.html</filename>
+  </compound>
   <compound kind="namespace">
     <name>rko_lio::core</name>
     <filename>namespacerko__lio_1_1core.html</filename>
@@ -381,11 +381,11 @@
     <class kind="class">rko_lio::core::LIO</class>
     <class kind="struct">rko_lio::core::PreprocessingResult</class>
     <class kind="class">rko_lio::core::ScopedProfiler</class>
-    <class kind="struct">rko_lio::core::SparseVoxelGrid</class>
     <class kind="struct">rko_lio::core::State</class>
     <class kind="struct">rko_lio::core::Timer</class>
     <class kind="struct">rko_lio::core::TimestampProcessingConfig</class>
     <class kind="struct">rko_lio::core::Timestamps</class>
+    <class kind="struct">rko_lio::core::VoxelHashMap</class>
     <member kind="function">
       <type>Timestamps</type>
       <name>process_timestamps</name>
