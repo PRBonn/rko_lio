@@ -39,11 +39,11 @@ std::vector<Eigen::Vector3d> voxel_down_sample(const std::vector<Eigen::Vector3d
   grid.reserve(frame.size());
   std::for_each(frame.cbegin(), frame.cend(),
                 [&](const auto& point) { grid.try_emplace(point_to_voxel(point, inv_voxel_size), point); });
-  std::vector<Eigen::Vector3d> frame_dowsampled;
-  frame_dowsampled.reserve(grid.size());
+  std::vector<Eigen::Vector3d> frame_downsampled;
+  frame_downsampled.reserve(grid.size());
   std::for_each(grid.cbegin(), grid.cend(),
-                [&](const auto& voxel_and_point) { frame_dowsampled.emplace_back(voxel_and_point.second); });
-  return frame_dowsampled;
+                [&](const auto& voxel_and_point) { frame_downsampled.emplace_back(voxel_and_point.second); });
+  return frame_downsampled;
 }
 
 } // namespace rko_lio::core
