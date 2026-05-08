@@ -19,13 +19,11 @@ PreprocessingResult preprocess_scan(const Vector3dVector& frame, const LIO::Conf
     Vector3dVector downsampled_frame = voxel_down_sample(clipped_frame, config.voxel_size * 0.5);
     Vector3dVector keypoints = voxel_down_sample(downsampled_frame, config.voxel_size * 1.5);
     return {.filtered_frame = std::move(clipped_frame),
-            .map_frame = std::move(downsampled_frame),
-            .keypoints = std::move(keypoints)};
+            .keypoints = std::move(keypoints),
+            .map_frame = std::move(downsampled_frame)};
   }
   Vector3dVector keypoints = voxel_down_sample(clipped_frame, config.voxel_size);
-  return {.filtered_frame = std::move(clipped_frame),
-          .map_frame = std::nullopt,
-          .keypoints = std::move(keypoints)};
+  return {.filtered_frame = std::move(clipped_frame), .keypoints = std::move(keypoints), .map_frame = {}};
 }
 
 } // namespace rko_lio::core

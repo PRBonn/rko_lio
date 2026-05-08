@@ -282,7 +282,7 @@ Vector3dVector LIO::bootstrap_first_scan(const Vector3dVector& scan, const Nsec 
   imu_state = lidar_state;
   auto preproc = preprocess_scan(scan, config);
   if (!config.initialization_phase) {
-    map.update(preproc.map_update_frame(), lidar_state.pose);
+    map.update(config.double_downsample ? preproc.map_frame : preproc.keypoints, lidar_state.pose);
     poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
     std::cout << "[INFO] Odometry map frame initialized with first lidar scan.\n";
   }
@@ -453,6 +453,8 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
     throw std::invalid_argument(error_msg);
   }
 
+  const Vector3dVector& map_input = config.double_downsample ? preproc_result.map_frame : preproc_result.keypoints;
+
   if (!map.empty()) {
     SCOPED_PROFILER("ICP");
     const Sophus::SE3d optimized_pose = icp(preproc_result.keypoints, map, initial_guess, config, kf_step.info);
@@ -477,7 +479,7 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
   // reset imu averages
   interval_stats.reset();
 
-  map.update(preproc_result.map_update_frame(), lidar_state.pose);
+  map.update(map_input, lidar_state.pose);
 
   poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
 

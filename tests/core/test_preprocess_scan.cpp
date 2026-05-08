@@ -76,10 +76,9 @@ TEST_CASE("preprocess_scan: double_downsample = false -> no map_frame", "[prepro
   }
 
   const auto result = preprocess_scan(frame, cfg);
-  REQUIRE_FALSE(result.map_frame.has_value());
+  REQUIRE(result.map_frame.empty());
   REQUIRE(result.keypoints.size() > 0);
   REQUIRE(result.filtered_frame.size() == frame.size());
-  REQUIRE(result.map_update_frame().size() == result.keypoints.size());
 }
 
 TEST_CASE("preprocess_scan: double_downsample = true -> all three populated", "[preprocess_scan]") {
@@ -94,9 +93,8 @@ TEST_CASE("preprocess_scan: double_downsample = true -> all three populated", "[
   }
 
   const auto result = preprocess_scan(frame, cfg);
-  REQUIRE(result.map_frame.has_value());
-  REQUIRE(result.map_frame->size() >= result.keypoints.size());
+  REQUIRE_FALSE(result.map_frame.empty());
+  REQUIRE(result.map_frame.size() >= result.keypoints.size());
   REQUIRE(result.filtered_frame.size() == frame.size());
-  REQUIRE(result.map_update_frame().size() == result.map_frame->size());
 }
 
