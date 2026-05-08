@@ -116,7 +116,8 @@ public:
 
   void publish_lidar_outputs(const core::Vector3dVector& deskewed_frame, const core::Nsec stamp) const;
 
-  void publish_odometry(const core::State& state, const core::Nsec stamp) const;
+  void publish_odometry(const core::State& state,
+                        const rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr& publisher) const;
   void publish_tf(const Sophus::SE3d& pose, const core::Nsec stamp) const;
   void publish_lidar_accel(const Eigen::Vector3d& acceleration, const core::Nsec stamp) const;
   void publish_map_loop();

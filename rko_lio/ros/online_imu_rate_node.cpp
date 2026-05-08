@@ -96,7 +96,7 @@ public:
       // leaves imu_state.time at zero in that pre-init phase.
       return;
     }
-    publish_imu_rate_odometry(lio->imu_state);
+    publish_odometry(lio->imu_state, odom_at_imu_rate_publisher);
     if (tf_at_imu_rate) {
       publish_tf(lio->imu_state.pose, lio->imu_state.time);
     }
@@ -121,16 +121,6 @@ public:
     }
   }
 
-  void publish_imu_rate_odometry(const core::State& state) const {
-    nav_msgs::msg::Odometry msg;
-    msg.header.stamp = utils::to_ros_time(state.time);
-    msg.header.frame_id = odom_frame;
-    msg.child_frame_id = base_frame;
-    msg.pose.pose = utils::sophus_to_pose(state.pose);
-    utils::eigen_vector3d_to_ros_xyz(state.velocity, msg.twist.twist.linear);
-    utils::eigen_vector3d_to_ros_xyz(state.angular_velocity, msg.twist.twist.angular);
-    odom_at_imu_rate_publisher->publish(msg);
-  }
 };
 
 } // namespace rko_lio::ros
