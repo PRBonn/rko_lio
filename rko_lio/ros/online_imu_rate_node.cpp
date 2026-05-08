@@ -98,7 +98,7 @@ public:
     }
     publish_odometry(lio->imu_state, odom_at_imu_rate_publisher);
     if (tf_at_imu_rate) {
-      publish_tf(lio->imu_state.pose, lio->imu_state.time);
+      publish_tf(lio->imu_state);
     }
   }
 
@@ -114,8 +114,8 @@ public:
         // first frame is skipped and an empty frame is returned. nothing to publish.
         return;
       }
-      publish_lidar_outputs(deskewed_frame, timestamps.max);
-      publish_tf(lio->lidar_state.pose, timestamps.max);
+      publish_lidar_outputs(deskewed_frame);
+      publish_tf(lio->lidar_state);
     } catch (const std::invalid_argument& ex) {
       RCLCPP_ERROR_STREAM(node->get_logger(), "Encountered error, dropping frame. Error: " << ex.what());
     }

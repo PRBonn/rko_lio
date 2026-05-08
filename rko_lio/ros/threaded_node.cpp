@@ -109,8 +109,8 @@ void ThreadedNode::registration_loop() {
       const core::Vector3dVector deskewed_frame = register_scan_locked(scan, time_vector);
       if (!deskewed_frame.empty()) {
         // TODO: first frame is skipped and an empty frame is returned. improve how we handle this
-        publish_lidar_outputs(deskewed_frame, end_stamp);
-        publish_tf(lio->lidar_state.pose, end_stamp);
+        publish_lidar_outputs(deskewed_frame);
+        publish_tf(lio->lidar_state);
       }
     } catch (const std::invalid_argument& ex) {
       RCLCPP_ERROR_STREAM(node->get_logger(), "Encountered error, dropping frame. Error: " << ex.what());

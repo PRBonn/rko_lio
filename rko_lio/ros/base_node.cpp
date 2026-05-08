@@ -251,16 +251,16 @@ core::Vector3dVector BaseNode::register_scan_locked(const core::Vector3dVector& 
   return lio->register_scan(extrinsic_lidar2base, scan, time_vector);
 }
 
-void BaseNode::publish_lidar_outputs(const core::Vector3dVector& deskewed_frame, const core::Nsec stamp) const {
+void BaseNode::publish_lidar_outputs(const core::Vector3dVector& deskewed_frame) const {
   if (publish_deskewed_scan) {
     std_msgs::msg::Header header;
     header.frame_id = lidar_frame;
-    header.stamp = utils::to_ros_time(stamp);
+    header.stamp = utils::to_ros_time(lio->lidar_state.time);
     frame_publisher->publish(utils::eigen_to_point_cloud2(deskewed_frame, header));
   }
   publish_odometry(lio->lidar_state, odom_publisher);
   if (publish_lidar_acceleration) {
-    publish_lidar_accel(lio->lidar_state.linear_acceleration, stamp);
+    publish_lidar_accel(lio->lidar_state);
   }
 }
 
@@ -276,26 +276,26 @@ void BaseNode::publish_odometry(const core::State& state,
   publisher->publish(odom_msg);
 }
 
-void BaseNode::publish_tf(const Sophus::SE3d& pose, const core::Nsec stamp) const {
+void BaseNode::publish_tf(const core::State& state) const {
   geometry_msgs::msg::TransformStamped transform_msg;
-  transform_msg.header.stamp = utils::to_ros_time(stamp);
+  transform_msg.header.stamp = utils::to_ros_time(state.time);
   if (invert_odom_tf) {
     transform_msg.header.frame_id = base_frame;
     transform_msg.child_frame_id = odom_frame;
-    transform_msg.transform = utils::sophus_to_transform(pose.inverse());
+    transform_msg.transform = utils::sophus_to_transform(state.pose.inverse());
   } else {
     transform_msg.header.frame_id = odom_frame;
     transform_msg.child_frame_id = base_frame;
-    transform_msg.transform = utils::sophus_to_transform(pose);
+    transform_msg.transform = utils::sophus_to_transform(state.pose);
   }
   tf_broadcaster->sendTransform(transform_msg);
 }
 
-void BaseNode::publish_lidar_accel(const Eigen::Vector3d& acceleration, const core::Nsec stamp) const {
+void BaseNode::publish_lidar_accel(const core::State& state) const {
   auto accel_msg = geometry_msgs::msg::AccelStamped();
-  accel_msg.header.stamp = utils::to_ros_time(stamp);
+  accel_msg.header.stamp = utils::to_ros_time(state.time);
   accel_msg.header.frame_id = base_frame;
-  utils::eigen_vector3d_to_ros_xyz(acceleration, accel_msg.accel.linear);
+  utils::eigen_vector3d_to_ros_xyz(state.linear_acceleration, accel_msg.accel.linear);
   lidar_accel_publisher->publish(accel_msg);
 }
 

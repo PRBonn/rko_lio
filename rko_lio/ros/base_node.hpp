@@ -114,12 +114,12 @@ public:
 
   core::Vector3dVector register_scan_locked(const core::Vector3dVector& scan, const core::TimestampVector& time_vector);
 
-  void publish_lidar_outputs(const core::Vector3dVector& deskewed_frame, const core::Nsec stamp) const;
+  void publish_lidar_outputs(const core::Vector3dVector& deskewed_frame) const;
 
   void publish_odometry(const core::State& state,
                         const rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr& publisher) const;
-  void publish_tf(const Sophus::SE3d& pose, const core::Nsec stamp) const;
-  void publish_lidar_accel(const Eigen::Vector3d& acceleration, const core::Nsec stamp) const;
+  void publish_tf(const core::State& state) const;
+  void publish_lidar_accel(const core::State& state) const;
   void publish_map_loop();
   void dump_results_to_disk(const std::filesystem::path& results_dir, const std::string& run_name) const;
 
