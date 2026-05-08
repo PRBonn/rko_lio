@@ -38,27 +38,6 @@ std::shared_ptr<T> deserialize_next_msg(const rclcpp::SerializedMessage& seriali
 }
 
 using BagProgressPublisher = rclcpp::Publisher<std_msgs::msg::Float32MultiArray>;
-void publish_bag_progress(const BagProgressPublisher::SharedPtr& publisher,
-                          const size_t processed_bag_msgs,
-                          const size_t total_bag_msgs) {
-  if (total_bag_msgs == 0) {
-    return;
-  }
-  static const auto start_time = std::chrono::steady_clock::now();
-  const auto now = std::chrono::steady_clock::now();
-  const float elapsed_seconds = std::chrono::duration<float>(now - start_time).count();
-
-  const float percent_complete = 100.0F * processed_bag_msgs / total_bag_msgs;
-  const float avg_time_per_msg = (processed_bag_msgs > 0) ? elapsed_seconds / processed_bag_msgs : 0.0F;
-  const float seconds_remaining = avg_time_per_msg * (total_bag_msgs - processed_bag_msgs);
-
-  std_msgs::msg::Float32MultiArray progress_msg;
-  progress_msg.data.resize(2);
-  progress_msg.data[0] = percent_complete;
-  progress_msg.data[1] = seconds_remaining;
-
-  publisher->publish(progress_msg);
-}
 } // namespace
 
 namespace rko_lio::ros {
@@ -70,8 +49,10 @@ public:
 
   float total_bag_msgs = 0;
   float processed_bag_msgs = 0;
+  std::chrono::steady_clock::time_point bag_start_time;
 
-  explicit OfflineNode(const rclcpp::NodeOptions& options) : ThreadedNode("rko_lio_offline_node", options) {
+  explicit OfflineNode(const rclcpp::NodeOptions& options)
+      : ThreadedNode("rko_lio_offline_node", options), bag_start_time(std::chrono::steady_clock::now()) {
     // bag reading
     const tf2::Duration skip_to_time = tf2::durationFromSec(node->declare_parameter<double>("skip_to_time", 0.0));
     bag = std::make_unique<utils::BufferableBag>(node->declare_parameter<std::string>("bag_path"),
@@ -79,6 +60,24 @@ public:
                                                  std::vector<std::string>{imu_topic, lidar_topic}, skip_to_time);
     total_bag_msgs = bag->message_count();
     bag_progress_publisher = node->create_publisher<std_msgs::msg::Float32MultiArray>("rko_lio/bag_progress", 10);
+  }
+
+  void publish_bag_progress() const {
+    const auto now = std::chrono::steady_clock::now();
+    const float elapsed_seconds = std::chrono::duration<float>(now - bag_start_time).count();
+
+    const float percent_complete = 100.0F * processed_bag_msgs / total_bag_msgs;
+    const float avg_time_per_msg = (processed_bag_msgs > 0) ? elapsed_seconds / processed_bag_msgs : 0.0F;
+    const float seconds_remaining = avg_time_per_msg * (total_bag_msgs - processed_bag_msgs);
+
+    std_msgs::msg::Float32MultiArray progress_msg;
+    progress_msg.layout.dim.resize(1);
+    progress_msg.layout.dim[0].label = "percent_complete,seconds_remaining";
+    progress_msg.layout.dim[0].size = 2;
+    progress_msg.layout.dim[0].stride = 2;
+    progress_msg.data = {percent_complete, seconds_remaining};
+
+    bag_progress_publisher->publish(progress_msg);
   }
 
   void run() {
@@ -108,7 +107,7 @@ public:
       }
 
       processed_bag_msgs++;
-      publish_bag_progress(bag_progress_publisher, processed_bag_msgs, total_bag_msgs);
+      publish_bag_progress();
     }
     while (rclcpp::ok()) {
       {
