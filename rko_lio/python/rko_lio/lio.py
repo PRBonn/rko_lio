@@ -99,6 +99,20 @@ class IntervalStats:
         return np.sqrt(self.accel_mag_variance())
 
 
+def _as_vec3(name: str, v: np.ndarray) -> np.ndarray:
+    arr = np.asarray(v, dtype=np.float64)
+    if arr.shape != (3,):
+        raise ValueError(f"{name}: expected shape (3,), got {arr.shape}")
+    return arr
+
+
+def _as_se3(name: str, T: np.ndarray) -> np.ndarray:
+    arr = np.asarray(T, dtype=np.float64)
+    if arr.shape != (4, 4):
+        raise ValueError(f"{name}: expected shape (4,4), got {arr.shape}")
+    return arr
+
+
 class LIO:
     def __init__(self, config: LIOConfig):
         self.config = config
@@ -126,20 +140,12 @@ class LIO:
         time: int,
         extrinsic_imu2base: np.ndarray | None = None,
     ):
-        acc = np.asarray(acceleration, dtype=np.float64)
-        gyro = np.asarray(angular_velocity, dtype=np.float64)
-        if acc.shape != (3,):
-            raise ValueError(f"acceleration: expected shape (3,), got {acc.shape}")
-        if gyro.shape != (3,):
-            raise ValueError(f"angular_velocity: expected shape (3,), got {gyro.shape}")
+        acc = _as_vec3("acceleration", acceleration)
+        gyro = _as_vec3("angular_velocity", angular_velocity)
         if extrinsic_imu2base is None:
             self._impl.add_imu_measurement(acc, gyro, int(time))
             return
-        extr = np.asarray(extrinsic_imu2base, dtype=np.float64)
-        if extr.shape != (4, 4):
-            raise ValueError(
-                f"extrinsic_imu2base: expected shape (4,4), got {extr.shape}"
-            )
+        extr = _as_se3("extrinsic_imu2base", extrinsic_imu2base)
         self._impl.add_imu_measurement(extr, acc, gyro, int(time))
 
     def register_scan(
@@ -161,11 +167,7 @@ class LIO:
         if extrinsic_lidar2base is None:
             ret_scan = self._impl.register_scan(scan_vec, time_vec)
             return np.asarray(ret_scan)
-        extr = np.asarray(extrinsic_lidar2base, dtype=np.float64)
-        if extr.shape != (4, 4):
-            raise ValueError(
-                f"extrinsic_lidar2base: expected shape (4,4), got {extr.shape}"
-            )
+        extr = _as_se3("extrinsic_lidar2base", extrinsic_lidar2base)
         ret_scan = self._impl.register_scan(extr, scan_vec, time_vec)
         return np.asarray(ret_scan)
 
