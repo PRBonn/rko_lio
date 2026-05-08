@@ -5,7 +5,7 @@
 
 <div align="center">
 
-[![arXiv](https://img.shields.io/badge/arXiv-2509.06593-b31b1b.svg)](https://arxiv.org/abs/2509.06593) [![GitHub License](https://img.shields.io/github/license/PRBonn/rko_lio)](/LICENSE) [![GitHub last commit](https://img.shields.io/github/last-commit/PRBonn/rko_lio)](/)
+[![IEEE RA-L](https://img.shields.io/badge/IEEE_RA--L-10.1109%2FLRA.2026.3685966-00629B.svg)](https://doi.org/10.1109/LRA.2026.3685966) [![arXiv](https://img.shields.io/badge/arXiv-2509.06593-b31b1b.svg)](https://arxiv.org/abs/2509.06593) [![GitHub License](https://img.shields.io/github/license/PRBonn/rko_lio)](/LICENSE) [![GitHub last commit](https://img.shields.io/github/last-commit/PRBonn/rko_lio)](/)
 
 [![PyPI - Version](https://img.shields.io/pypi/v/rko_lio?color=blue)](https://pypi.org/project/rko-lio/) [![ROS Package Index](https://img.shields.io/ros/v/humble/rko_lio?color=blue)](https://index.ros.org/p/rko_lio/#humble) [![ROS Package Index](https://img.shields.io/ros/v/jazzy/rko_lio?color=blue)](https://index.ros.org/p/rko_lio/#jazzy) [![ROS Package Index](https://img.shields.io/ros/v/kilted/rko_lio?color=blue)](https://index.ros.org/p/rko_lio/#kilted) [![ROS Package Index](https://img.shields.io/ros/v/rolling/rko_lio?color=blue)](https://index.ros.org/p/rko_lio/#rolling)
 
@@ -100,20 +100,22 @@ The same note [above about extrinsics](#extrinsics-and-convention) applies here 
 
 ## Citation
 
-If you found this work useful, please consider leaving a star :star: on this repository and citing our [paper](https://arxiv.org/abs/2509.06593):
+If you found this work useful, please consider leaving a star :star: on this repository and citing our paper ([RA-L](https://doi.org/10.1109/LRA.2026.3685966) | [arXiv](https://arxiv.org/abs/2509.06593)):
 
 ```bib
-@article{malladi2025arxiv,
+@article{malladi2026ral,
   author      = {M.V.R. Malladi and T. Guadagnino and L. Lobefaro and C. Stachniss},
   title       = {A Robust Approach for LiDAR-Inertial Odometry Without Sensor-Specific Modeling},
-  journal     = {arXiv preprint},
-  year        = {2025},
-  volume      = {arXiv:2509.06593},
-  url         = {https://arxiv.org/pdf/2509.06593},
+  journal     = {IEEE Robotics and Automation Letters},
+  year        = {2026},
+  volume      = {11},
+  number      = {6},
+  pages       = {7420--7427},
+  doi         = {10.1109/LRA.2026.3685966},
 }
 ```
 
-The [paper supplementary material](https://prbonn.github.io/rko_lio/suppl.html) page collects extra figures and explanations pertaining to the RA-L paper.
+The [paper supplementary material](https://prbonn.github.io/rko_lio/suppl.html) page collects extra figures and explanations pertaining to the same paper.
 
 ## Contributing
 

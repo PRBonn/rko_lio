@@ -3,7 +3,7 @@
 RA-L Supplementary Material
 ---------------------------
 
-This page is the supplementary material for our RA-L submission.
+This page is the supplementary material for our RA-L paper (`IEEE <https://doi.org/10.1109/LRA.2026.3685966>`_ | `arXiv <https://arxiv.org/abs/2509.06593>`_).
 The main page of the documentation is `here <index.html>`__.
 
 System Pipeline
@@ -76,15 +76,17 @@ Here we plot the full XY trajectory results from all the methods which successfu
 Citation
 ========
 
-If you use this work, please leave a star on our `GitHub repository <https://github.com/PRBonn/rko_lio>`_ and consider citing:
+If you use this work, please leave a star on our `GitHub repository <https://github.com/PRBonn/rko_lio>`_ and consider citing our paper (`RA-L <https://doi.org/10.1109/LRA.2026.3685966>`_ | `arXiv <https://arxiv.org/abs/2509.06593>`_):
 
 .. code-block:: bibtex
 
-  @article{malladi2025arxiv,
+  @article{malladi2026ral,
     author      = {M.V.R. Malladi and T. Guadagnino and L. Lobefaro and C. Stachniss},
     title       = {A Robust Approach for LiDAR-Inertial Odometry Without Sensor-Specific Modeling},
-    journal     = {arXiv preprint},
-    year        = {2025},
-    volume      = {arXiv:2509.06593},
-    url         = {https://arxiv.org/pdf/2509.06593},
+    journal     = {IEEE Robotics and Automation Letters},
+    year        = {2026},
+    volume      = {11},
+    number      = {6},
+    pages       = {7420--7427},
+    doi         = {10.1109/LRA.2026.3685966},
   }
