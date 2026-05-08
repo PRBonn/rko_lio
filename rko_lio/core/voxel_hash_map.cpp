@@ -54,11 +54,6 @@ static const std::array<Voxel, 27> shifts{
     Voxel{1, 0, -1},   Voxel{1, 0, 0},   Voxel{1, 0, 1},  //
     Voxel{1, 1, -1},   Voxel{1, 1, 0},   Voxel{1, 1, 1}};
 
-inline Voxel point_to_voxel(const Eigen::Vector3d& point, const double inv_voxel_size) {
-  return Voxel(static_cast<int>(std::floor(point.x() * inv_voxel_size)),
-               static_cast<int>(std::floor(point.y() * inv_voxel_size)),
-               static_cast<int>(std::floor(point.z() * inv_voxel_size)));
-}
 } // namespace
 
 namespace rko_lio::core {
