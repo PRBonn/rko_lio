@@ -25,7 +25,7 @@
 #include <Eigen/Core>
 #include <algorithm>
 #include <sophus/se3.hpp>
-#include <unordered_map>
+#include <tsl/robin_map.h>
 #include <vector>
 
 namespace rko_lio::core {
@@ -35,7 +35,7 @@ namespace rko_lio::core {
 
 std::vector<Eigen::Vector3d> voxel_down_sample(const std::vector<Eigen::Vector3d>& frame, const double voxel_size) {
   const double inv_voxel_size = 1.0 / voxel_size;
-  std::unordered_map<Eigen::Vector3i, Eigen::Vector3d> grid;
+  tsl::robin_map<Eigen::Vector3i, Eigen::Vector3d> grid;
   grid.reserve(frame.size());
   std::for_each(frame.cbegin(), frame.cend(),
                 [&](const auto& point) { grid.try_emplace(point_to_voxel(point, inv_voxel_size), point); });
