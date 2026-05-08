@@ -196,6 +196,21 @@ void BaseNode::parse_cli_extrinsics() {
   extrinsics_set = imu_ok && lidar_ok;
 }
 
+bool BaseNode::ensure_frame_and_extrinsics(std::string& target_frame,
+                                           const std::string& msg_frame,
+                                           std::string_view kind) {
+  if (target_frame.empty()) {
+    if (msg_frame.empty() && !extrinsics_set) {
+      throw std::runtime_error(std::string(kind) +
+                               " message header has no frame id and we need it to query TF for the extrinsics. "
+                               "Either specify the frame id or the extrinsic manually.");
+    }
+    target_frame = msg_frame;
+    RCLCPP_INFO_STREAM(node->get_logger(), "Parsed the " << kind << " frame id as: " << target_frame);
+  }
+  return check_and_set_extrinsics();
+}
+
 bool BaseNode::check_and_set_extrinsics() {
   if (extrinsics_set) {
     return true;

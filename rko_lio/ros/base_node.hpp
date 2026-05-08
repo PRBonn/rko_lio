@@ -31,6 +31,7 @@
 #include <memory>
 #include <mutex>
 #include <string>
+#include <string_view>
 #include <thread>
 #include <tuple>
 // ros
@@ -100,6 +101,13 @@ public:
 
   void parse_cli_extrinsics();
   bool check_and_set_extrinsics();
+
+  // Parse the message's frame_id into target_frame on first sight, throw if neither header nor static extrinsics
+  // are usable, and report whether extrinsics are now set. Extrinsics are assumed static; if they change, switch
+  // to querying TF inline per-message.
+  bool ensure_frame_and_extrinsics(std::string& target_frame,
+                                   const std::string& msg_frame,
+                                   std::string_view kind);
 
   std::tuple<core::Timestamps, core::Vector3dVector>
   process_lidar_msg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& lidar_msg) const;
