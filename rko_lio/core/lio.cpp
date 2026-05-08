@@ -406,6 +406,9 @@ void LIO::add_imu_measurement(const Sophus::SE3d& extrinsic_imu2base, const ImuC
 // ============================ lidar ===============================
 
 Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVector& timestamps) {
+  if (timestamps.empty()) {
+    throw std::invalid_argument("LIO::register_scan: timestamps must not be empty.");
+  }
   // TODO: redundant max compute as its available after process_timestamps
   const Nsec current_lidar_time = *std::max_element(timestamps.cbegin(), timestamps.cend());
 
