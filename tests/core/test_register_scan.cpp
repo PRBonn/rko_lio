@@ -323,8 +323,6 @@ TEST_CASE("Noisy: full SE(3) translation + rotation", "[register_scan][!mayfail]
 }
 
 TEST_CASE("register_scan: empty timestamps throws instead of UB", "[register_scan]") {
-  // Regression: previously `*std::max_element(timestamps.cbegin(), timestamps.cend())`
-  // dereferenced end() on an empty vector, which is undefined behaviour.
   LIO lio((LIO::Config{}));
   const auto cloud = make_hollow_cube();
   const TimestampVector empty_timestamps;

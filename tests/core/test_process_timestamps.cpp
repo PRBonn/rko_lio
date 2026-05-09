@@ -135,8 +135,6 @@ TEST_CASE("process_timestamps: ambiguous case throws", "[process_timestamps]") {
 }
 
 TEST_CASE("process_timestamps: empty raw_timestamps throws instead of UB", "[process_timestamps]") {
-  // Regression: previously timestamps_from_raw called std::minmax_element on an
-  // empty range and dereferenced end(), which is undefined behaviour.
   const std::vector<double> empty;
   const Nsec header = ns_from_seconds(1234.0);
   REQUIRE_THROWS_AS(process_timestamps(empty, header, {}), std::invalid_argument);
