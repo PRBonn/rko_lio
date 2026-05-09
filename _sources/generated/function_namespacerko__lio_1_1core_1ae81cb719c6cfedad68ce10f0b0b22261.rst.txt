@@ -1,0 +1,14 @@
+.. _exhale_function_namespacerko__lio_1_1core_1ae81cb719c6cfedad68ce10f0b0b22261:
+
+Function rko_lio::core::point_to_voxel
+======================================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_voxel_down_sample.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: rko_lio::core::point_to_voxel(const Eigen::Vector3d&, const double)
+   :project: rko_lio Doxygen Project

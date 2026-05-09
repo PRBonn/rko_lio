@@ -57,6 +57,8 @@ Functions
 
 - :ref:`exhale_function_namespacerko__lio_1_1core_1ae12b01bb20a1a7280bc26af2de2f15dd`
 
+- :ref:`exhale_function_namespacerko__lio_1_1core_1ae81cb719c6cfedad68ce10f0b0b22261`
+
 - :ref:`exhale_function_namespacerko__lio_1_1core_1a3261153e7f790d6973c2b7446db233ef`
 
 - :ref:`exhale_function_namespacerko__lio_1_1core_1ac1fb80bf51f668bd3442bcb18044a57c`

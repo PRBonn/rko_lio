@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="54" column="27" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="54" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="55" column="27" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="55" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1a84e99e77440e1fab650a4358775f1a05" prot="public" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="classrko__lio_1_1core_1_1LIO" kindref="compound">core::LIO</ref> &gt;</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="55" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="55" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="56" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="56" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1a3e6bd9beb864c2d80b789f76d0022447" prot="public" static="no" mutable="no">
         <type><ref refid="structrko__lio_1_1core_1_1TimestampProcessingConfig" kindref="compound">core::TimestampProcessingConfig</ref></type>
@@ -45,7 +45,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="56" column="35" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="56" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="57" column="35" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="57" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1a5fa18b17bd57a3db3e4679504fe32e2e" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -59,7 +59,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="58" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="58" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="59" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="59" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1a1593d0b0267fc265d9a8cc78d435c29d" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -74,7 +74,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="59" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="59" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="60" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="60" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1a14b98efbded9dfa784e0aa795f785bbf" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -88,7 +88,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="60" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="60" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="61" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="61" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1a669856bc3970c7872c78a99d78f0bc87" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -103,7 +103,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="61" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="61" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="62" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="62" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1aacbece9df2087272d75480fa2137f419" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -117,7 +117,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="62" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="62" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="63" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="63" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1a17feaf7d2d4590eca24d87280f77b21a" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -132,7 +132,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="63" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="63" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="64" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="64" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1af065e60acdb927b346b2c9f3b68af504" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -147,7 +147,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="64" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="64" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="65" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="65" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1a8bc20a80d8d8efcda0d1106e2aa61f30" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -162,7 +162,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="65" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="65" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="66" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="66" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1a8d2cfe9221c19ca3a53dd1498c0573af" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -177,7 +177,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="66" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="66" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="67" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="67" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1ab7a49a347fd805a7ce2ba91cb700671e" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -192,7 +192,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="68" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="68" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="69" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="69" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1adf575671c2b74582e831e5d9a8fefe36" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -207,7 +207,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="69" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="69" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="70" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="70" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1ac4aa545318868ed459b328398e5b39de" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -222,7 +222,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="70" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="70" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="71" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="71" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1a032de1bdd5984d28cc6d6785b9fd89dc" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -237,7 +237,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="72" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="72" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="73" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="73" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1abf4d6745652fb6e310dc507849cadaee" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -252,7 +252,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="73" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="73" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="74" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="74" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1af1c6cb845774b666681e470b78dafcbc" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -267,7 +267,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="74" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="74" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="75" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="75" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1a28f3994bca8ca065b3196725c000b44a" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -282,7 +282,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="75" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="75" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="76" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="76" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1a1d2ed4ef1d1722d5278b6ec49a15d42f" prot="public" static="no" mutable="no">
         <type>Sophus::SE3d</type>
@@ -296,7 +296,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="77" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="77" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="78" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="78" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1a02d2556a2570e3b1698c77413a256f5e" prot="public" static="no" mutable="no">
         <type>Sophus::SE3d</type>
@@ -310,7 +310,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="78" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="78" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="79" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="79" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1afbeabe15939267091aa36d19c7525c36" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -325,7 +325,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="79" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="79" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="80" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="80" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1a11ff8ee46c5b3ca79d0fd9aecf2ce025" prot="public" static="no" mutable="no">
         <type>std::shared_ptr&lt; tf2_ros::TransformListener &gt;</type>
@@ -339,7 +339,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="81" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="81" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="82" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="82" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1a16ceefdd48a159e21f6e58ba0fef1a75" prot="public" static="no" mutable="no">
         <type>std::shared_ptr&lt; tf2_ros::Buffer &gt;</type>
@@ -353,7 +353,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="82" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="82" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="83" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="83" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1af1793fd089d51bc4c418d7263d586562" prot="public" static="no" mutable="no">
         <type>std::unique_ptr&lt; tf2_ros::TransformBroadcaster &gt;</type>
@@ -367,7 +367,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="83" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="83" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="84" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="84" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1a7029d4798385c83320ceb7335d6628a9" prot="public" static="no" mutable="no">
         <type>rclcpp::Publisher&lt; nav_msgs::msg::Odometry &gt;::SharedPtr</type>
@@ -381,7 +381,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="85" column="33" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="85" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="86" column="33" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="86" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1a06912bbf34df92839933ade4c68586a0" prot="public" static="no" mutable="no">
         <type>rclcpp::Publisher&lt; sensor_msgs::msg::PointCloud2 &gt;::SharedPtr</type>
@@ -395,7 +395,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="86" column="33" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="86" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="87" column="33" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="87" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1aea83b9c5a547999ee0dc1ae096e92009" prot="public" static="no" mutable="no">
         <type>rclcpp::Publisher&lt; sensor_msgs::msg::PointCloud2 &gt;::SharedPtr</type>
@@ -409,7 +409,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="87" column="33" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="87" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="88" column="33" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="88" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1acbf1e9c305d415f4fce37874e2b4f585" prot="public" static="no" mutable="no">
         <type>rclcpp::Publisher&lt; geometry_msgs::msg::AccelStamped &gt;::SharedPtr</type>
@@ -423,7 +423,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="88" column="33" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="88" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="89" column="33" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="89" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1a29e011188c23c57979bb020cd4ddead0" prot="public" static="no" mutable="no">
         <type>std::jthread</type>
@@ -437,7 +437,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="91" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="91" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="92" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="92" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1a3331968d3b3174c04e5999e790dc4c4f" prot="public" static="no" mutable="no">
         <type>core::Nsec</type>
@@ -452,7 +452,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="92" column="14" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="92" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="93" column="14" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="93" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1a065f035917e22a80aa1e18cb1b43a22e" prot="public" static="no" mutable="no">
         <type>std::mutex</type>
@@ -466,7 +466,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="93" column="14" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="93" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="94" column="14" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="94" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1BaseNode_1a38281b7e81e2292088a68b2fd2716003" prot="public" static="no" mutable="no">
         <type>std::atomic&lt; bool &gt;</type>
@@ -481,7 +481,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="96" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="96" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="97" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="97" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -497,7 +497,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="98" column="3"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="99" column="3"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1BaseNode_1ad3fac1c1fc245199be7e5c8cb9b264f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -519,7 +519,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="99" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="66" bodyend="169"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="100" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="66" bodyend="169"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1BaseNode_1a30875a75d450b8900c08ee0dbe11e62c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -533,7 +533,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="101" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="171" bodyend="197"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="102" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="171" bodyend="197"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1BaseNode_1a9adaaf7d3c7d0d969066754e162d38b3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -547,7 +547,33 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="102" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="199" bodyend="215"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="103" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="214" bodyend="230"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1BaseNode_1ad7b2a2d1b22705fdadd654756ab4d32b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool rko_lio::ros::BaseNode::ensure_frame_and_extrinsics</definition>
+        <argsstring>(std::string &amp;target_frame, const std::string &amp;msg_frame, std::string_view kind)</argsstring>
+        <name>ensure_frame_and_extrinsics</name>
+        <qualifiedname>rko_lio::ros::BaseNode::ensure_frame_and_extrinsics</qualifiedname>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>target_frame</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>msg_frame</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>kind</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="108" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="199" bodyend="212"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1BaseNode_1a23f047faed8a97a78fbbed340032317e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::tuple&lt; <ref refid="structrko__lio_1_1core_1_1Timestamps" kindref="compound">core::Timestamps</ref>, core::Vector3dVector &gt;</type>
@@ -565,7 +591,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="105" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="218" bodyend="228"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="113" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="233" bodyend="243"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1BaseNode_1ab0d80b23d66dc9d5b4f7dc7f89e05d5f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>core::Vector3dVector</type>
@@ -587,21 +613,17 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="107" column="24" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="230" bodyend="237"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="115" column="24" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="245" bodyend="252"/>
       </memberdef>
-      <memberdef kind="function" id="classrko__lio_1_1ros_1_1BaseNode_1a4fdc5b7d130810c345188250f8b21af9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1BaseNode_1a9251b8b8d739c76d2b1d6130a7a90341" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void rko_lio::ros::BaseNode::publish_lidar_outputs</definition>
-        <argsstring>(const core::Vector3dVector &amp;deskewed_frame, const core::Nsec stamp) const</argsstring>
+        <argsstring>(const core::Vector3dVector &amp;deskewed_frame) const</argsstring>
         <name>publish_lidar_outputs</name>
         <qualifiedname>rko_lio::ros::BaseNode::publish_lidar_outputs</qualifiedname>
         <param>
           <type>const core::Vector3dVector &amp;</type>
           <declname>deskewed_frame</declname>
-        </param>
-        <param>
-          <type>const core::Nsec</type>
-          <declname>stamp</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -609,12 +631,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="109" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="239" bodyend="250"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="117" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="254" bodyend="265"/>
       </memberdef>
-      <memberdef kind="function" id="classrko__lio_1_1ros_1_1BaseNode_1aa058638b971a0b484b4db997becc860c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1BaseNode_1a886af9f92ef9734085f99ae5e770b1cb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void rko_lio::ros::BaseNode::publish_odometry</definition>
-        <argsstring>(const core::State &amp;state, const core::Nsec stamp) const</argsstring>
+        <argsstring>(const core::State &amp;state, const rclcpp::Publisher&lt; nav_msgs::msg::Odometry &gt;::SharedPtr &amp;publisher) const</argsstring>
         <name>publish_odometry</name>
         <qualifiedname>rko_lio::ros::BaseNode::publish_odometry</qualifiedname>
         <param>
@@ -622,8 +644,8 @@
           <declname>state</declname>
         </param>
         <param>
-          <type>const core::Nsec</type>
-          <declname>stamp</declname>
+          <type>const rclcpp::Publisher&lt; nav_msgs::msg::Odometry &gt;::SharedPtr &amp;</type>
+          <declname>publisher</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -631,21 +653,17 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="111" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="252" bodyend="261"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="119" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="267" bodyend="277"/>
       </memberdef>
-      <memberdef kind="function" id="classrko__lio_1_1ros_1_1BaseNode_1aea37c7707740166c54a05fb263abe4f7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1BaseNode_1a404fef7df2bc45e8e080323888e7089d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void rko_lio::ros::BaseNode::publish_tf</definition>
-        <argsstring>(const Sophus::SE3d &amp;pose, const core::Nsec stamp) const</argsstring>
+        <argsstring>(const core::State &amp;state) const</argsstring>
         <name>publish_tf</name>
         <qualifiedname>rko_lio::ros::BaseNode::publish_tf</qualifiedname>
         <param>
-          <type>const Sophus::SE3d &amp;</type>
-          <declname>pose</declname>
-        </param>
-        <param>
-          <type>const core::Nsec</type>
-          <declname>stamp</declname>
+          <type>const <ref refid="structrko__lio_1_1core_1_1State" kindref="compound">core::State</ref> &amp;</type>
+          <declname>state</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -653,21 +671,17 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="112" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="263" bodyend="276"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="121" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="279" bodyend="292"/>
       </memberdef>
-      <memberdef kind="function" id="classrko__lio_1_1ros_1_1BaseNode_1a31023838e4c3dc168766062f5e08a16f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1BaseNode_1a14f5fe9f25828fe882c315ca0dd4510b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void rko_lio::ros::BaseNode::publish_lidar_accel</definition>
-        <argsstring>(const Eigen::Vector3d &amp;acceleration, const core::Nsec stamp) const</argsstring>
+        <argsstring>(const core::State &amp;state) const</argsstring>
         <name>publish_lidar_accel</name>
         <qualifiedname>rko_lio::ros::BaseNode::publish_lidar_accel</qualifiedname>
         <param>
-          <type>const Eigen::Vector3d &amp;</type>
-          <declname>acceleration</declname>
-        </param>
-        <param>
-          <type>const core::Nsec</type>
-          <declname>stamp</declname>
+          <type>const <ref refid="structrko__lio_1_1core_1_1State" kindref="compound">core::State</ref> &amp;</type>
+          <declname>state</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -675,7 +689,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="113" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="278" bodyend="284"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="122" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="294" bodyend="300"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1BaseNode_1acdc4ef902102131dbbb350afea921b17" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -689,7 +703,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="114" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="286" bodyend="301"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="123" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="302" bodyend="317"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1BaseNode_1a48110c62e37b6784f72849ab1e5d3b1a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -711,7 +725,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="115" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="305" bodyend="337"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="124" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="321" bodyend="353"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1BaseNode_1aaa03e3f3624f707e83921ceef9487baf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -725,7 +739,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="117" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="303" bodyend="303"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="126" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="319" bodyend="319"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1BaseNode_1a97828ac5e49b5ca71e24942d8f1b2558" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -742,7 +756,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="118" column="3"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="127" column="3"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1BaseNode_1a0980b22806ae53111cf4ea96cf76d386" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -759,7 +773,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="119" column="3"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="128" column="3"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1BaseNode_1afc7aeb8eeeb14ef35e535ce74193db6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">BaseNode</ref> &amp;</type>
@@ -776,7 +790,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="120" column="12"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="129" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1BaseNode_1ab7033afa34770e24f465bbe2a73444ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">BaseNode</ref> &amp;</type>
@@ -793,7 +807,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="121" column="12"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="130" column="12"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -843,7 +857,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="52" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="52" bodyend="122"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="53" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="53" bodyend="131"/>
     <listofallmembers>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1a38281b7e81e2292088a68b2fd2716003" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>atomic_node_running</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1aacbece9df2087272d75480fa2137f419" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>base_frame</name></member>
@@ -855,6 +869,7 @@
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1a8d2cfe9221c19ca3a53dd1498c0573af" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>deskewed_scan_topic</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1ab7a49a347fd805a7ce2ba91cb700671e" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>dump_results</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1a48110c62e37b6784f72849ab1e5d3b1a" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>dump_results_to_disk</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1ad7b2a2d1b22705fdadd654756ab4d32b" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>ensure_frame_and_extrinsics</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1a1d2ed4ef1d1722d5278b6ec49a15d42f" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>extrinsic_imu2base</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1a02d2556a2570e3b1698c77413a256f5e" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>extrinsic_lidar2base</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1afbeabe15939267091aa36d19c7525c36" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>extrinsics_set</name></member>
@@ -879,14 +894,14 @@
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1a30875a75d450b8900c08ee0dbe11e62c" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>parse_cli_extrinsics</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1a23f047faed8a97a78fbbed340032317e" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>process_lidar_msg</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1af1c6cb845774b666681e470b78dafcbc" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>publish_deskewed_scan</name></member>
-      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a31023838e4c3dc168766062f5e08a16f" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>publish_lidar_accel</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a14f5fe9f25828fe882c315ca0dd4510b" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>publish_lidar_accel</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1abf4d6745652fb6e310dc507849cadaee" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>publish_lidar_acceleration</name></member>
-      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a4fdc5b7d130810c345188250f8b21af9" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>publish_lidar_outputs</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a9251b8b8d739c76d2b1d6130a7a90341" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>publish_lidar_outputs</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1a28f3994bca8ca065b3196725c000b44a" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>publish_local_map</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1a3331968d3b3174c04e5999e790dc4c4f" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>publish_map_after</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1acdc4ef902102131dbbb350afea921b17" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>publish_map_loop</name></member>
-      <member refid="classrko__lio_1_1ros_1_1BaseNode_1aa058638b971a0b484b4db997becc860c" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>publish_odometry</name></member>
-      <member refid="classrko__lio_1_1ros_1_1BaseNode_1aea37c7707740166c54a05fb263abe4f7" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>publish_tf</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a886af9f92ef9734085f99ae5e770b1cb" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>publish_odometry</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a404fef7df2bc45e8e080323888e7089d" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>publish_tf</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1ab0d80b23d66dc9d5b4f7dc7f89e05d5f" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>register_scan_locked</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1adf575671c2b74582e831e5d9a8fefe36" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>results_dir</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1ac4aa545318868ed459b328398e5b39de" prot="public" virt="non-virtual"><scope>rko_lio::ros::BaseNode</scope><name>run_name</name></member>

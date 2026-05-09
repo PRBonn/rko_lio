@@ -17,45 +17,45 @@
         <link refid="lio_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="13">
+      <node id="14">
         <label>rko_lio/core/process_timestamps.hpp</label>
         <link refid="process__timestamps_8hpp_source"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
       </node>
-      <node id="30">
+      <node id="32">
         <label>rko_lio/core/profiler.hpp</label>
         <link refid="profiler_8hpp"/>
-        <childnode refid="12" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="31" relation="include">
-        </childnode>
-        <childnode refid="32" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="33" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
         <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="35" relation="include">
         </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
       </node>
-      <node id="11">
+      <node id="12">
         <label>util.hpp</label>
         <link refid="util_8hpp_source"/>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
       </node>
       <node id="5">
@@ -65,6 +65,8 @@
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
       </node>
       <node id="4">
         <label>voxel_hash_map.hpp</label>
@@ -73,21 +75,19 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
         <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
       </node>
       <node id="2">
         <label>base_node.hpp</label>
         <link refid="base__node_8hpp_source"/>
         <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
@@ -101,11 +101,11 @@
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
         <childnode refid="20" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="22" relation="include">
         </childnode>
@@ -123,73 +123,75 @@
         </childnode>
         <childnode refid="29" relation="include">
         </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
       </node>
       <node id="1">
         <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp</label>
         <link refid="online__imu__rate__node_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="13" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="30" relation="include">
+        <childnode refid="32" relation="include">
         </childnode>
-        <childnode refid="36" relation="include">
+        <childnode refid="37" relation="include">
         </childnode>
-        <childnode refid="22" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
-        <childnode refid="25" relation="include">
+        <childnode refid="27" relation="include">
         </childnode>
-        <childnode refid="26" relation="include">
-        </childnode>
-        <childnode refid="52" relation="include">
+        <childnode refid="28" relation="include">
         </childnode>
         <childnode refid="53" relation="include">
         </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
       </node>
-      <node id="37">
+      <node id="38">
         <label>point_cloud_read.hpp</label>
         <link refid="point__cloud__read_8hpp_source"/>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="26" relation="include">
+        <childnode refid="28" relation="include">
         </childnode>
-        <childnode refid="38" relation="include">
+        <childnode refid="39" relation="include">
         </childnode>
       </node>
-      <node id="39">
+      <node id="40">
         <label>point_cloud_write.hpp</label>
         <link refid="point__cloud__write_8hpp_source"/>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="26" relation="include">
+        <childnode refid="28" relation="include">
         </childnode>
-        <childnode refid="10" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="40">
+      <node id="41">
         <label>ros_vectors.hpp</label>
         <link refid="ros__vectors_8hpp_source"/>
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="41">
+      <node id="42">
         <label>time.hpp</label>
         <link refid="time_8hpp_source"/>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
         <childnode refid="43" relation="include">
         </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
       </node>
-      <node id="44">
+      <node id="45">
         <label>transforms.hpp</label>
         <link refid="transforms_8hpp_source"/>
         <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
         </childnode>
         <childnode refid="46" relation="include">
         </childnode>
@@ -199,144 +201,149 @@
         </childnode>
         <childnode refid="49" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
         <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="51" relation="include">
         </childnode>
-        <childnode refid="27" relation="include">
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
         </childnode>
       </node>
-      <node id="36">
+      <node id="37">
         <label>rko_lio/ros/utils/utils.hpp</label>
         <link refid="utils_8hpp_source"/>
-        <childnode refid="37" relation="include">
-        </childnode>
-        <childnode refid="39" relation="include">
+        <childnode refid="38" relation="include">
         </childnode>
         <childnode refid="40" relation="include">
         </childnode>
         <childnode refid="41" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
         </childnode>
       </node>
       <node id="6">
         <label>Eigen/Core</label>
       </node>
-      <node id="14">
+      <node id="15">
         <label>atomic</label>
       </node>
-      <node id="42">
+      <node id="43">
         <label>builtin_interfaces/msg/time.hpp</label>
       </node>
-      <node id="12">
+      <node id="13">
         <label>chrono</label>
       </node>
-      <node id="31">
+      <node id="7">
         <label>cmath</label>
       </node>
-      <node id="15">
+      <node id="16">
         <label>filesystem</label>
       </node>
-      <node id="20">
+      <node id="22">
         <label>geometry_msgs/msg/accel_stamped.hpp</label>
       </node>
-      <node id="21">
+      <node id="23">
         <label>geometry_msgs/msg/accel_with_covariance_stamped.hpp</label>
       </node>
-      <node id="45">
+      <node id="46">
         <label>geometry_msgs/msg/pose.hpp</label>
       </node>
-      <node id="46">
+      <node id="47">
         <label>geometry_msgs/msg/transform_stamped.hpp</label>
       </node>
-      <node id="32">
+      <node id="33">
         <label>iomanip</label>
       </node>
-      <node id="33">
+      <node id="34">
         <label>iostream</label>
       </node>
-      <node id="16">
+      <node id="17">
         <label>memory</label>
       </node>
-      <node id="17">
+      <node id="18">
         <label>mutex</label>
       </node>
-      <node id="22">
+      <node id="24">
         <label>nav_msgs/msg/odometry.hpp</label>
       </node>
-      <node id="47">
+      <node id="48">
         <label>optional</label>
       </node>
-      <node id="48">
+      <node id="49">
         <label>rclcpp/logger.hpp</label>
       </node>
-      <node id="49">
+      <node id="50">
         <label>rclcpp/logging.hpp</label>
       </node>
-      <node id="23">
+      <node id="25">
         <label>rclcpp/node.hpp</label>
       </node>
-      <node id="24">
+      <node id="26">
         <label>rclcpp/node_options.hpp</label>
       </node>
-      <node id="43">
+      <node id="44">
         <label>rclcpp/time.hpp</label>
       </node>
-      <node id="53">
+      <node id="54">
         <label>rclcpp_components/register_node_macro.hpp</label>
       </node>
-      <node id="25">
+      <node id="27">
         <label>sensor_msgs/msg/imu.hpp</label>
       </node>
-      <node id="26">
+      <node id="28">
         <label>sensor_msgs/msg/point_cloud2.hpp</label>
       </node>
-      <node id="38">
+      <node id="39">
         <label>sensor_msgs/point_cloud2_iterator.hpp</label>
       </node>
-      <node id="7">
+      <node id="8">
         <label>sophus/se3.hpp</label>
       </node>
-      <node id="52">
+      <node id="53">
         <label>stdexcept</label>
       </node>
-      <node id="18">
+      <node id="19">
         <label>string</label>
       </node>
-      <node id="50">
-        <label>tf2/exceptions.hpp</label>
+      <node id="20">
+        <label>string_view</label>
       </node>
       <node id="51">
+        <label>tf2/exceptions.hpp</label>
+      </node>
+      <node id="52">
         <label>tf2/time.hpp</label>
       </node>
-      <node id="27">
+      <node id="29">
         <label>tf2_ros/buffer.h</label>
       </node>
-      <node id="28">
+      <node id="30">
         <label>tf2_ros/transform_broadcaster.h</label>
       </node>
-      <node id="29">
+      <node id="31">
         <label>tf2_ros/transform_listener.h</label>
       </node>
-      <node id="19">
+      <node id="21">
         <label>thread</label>
       </node>
-      <node id="8">
+      <node id="9">
         <label>tsl/robin_map.h</label>
       </node>
-      <node id="9">
+      <node id="10">
         <label>tuple</label>
       </node>
-      <node id="34">
+      <node id="35">
         <label>unordered_map</label>
       </node>
-      <node id="35">
+      <node id="36">
         <label>utility</label>
       </node>
-      <node id="10">
+      <node id="11">
         <label>vector</label>
       </node>
     </incdepgraph>
@@ -433,76 +440,50 @@
 <codeline lineno="83"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="84"><highlight class="normal"></highlight></codeline>
 <codeline lineno="85"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>imu_callback(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::Imu::ConstSharedPtr&amp;<sp/>imu_msg)<sp/>{</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(imu_frame.empty())<sp/>{</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(imu_msg-&gt;header.frame_id.empty()<sp/>&amp;&amp;<sp/>!extrinsics_set)<sp/>{</highlight></codeline>
-<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;IMU<sp/>message<sp/>header<sp/>has<sp/>no<sp/>frame<sp/>id<sp/>and<sp/>we<sp/>need<sp/>it<sp/>to<sp/>query<sp/>TF<sp/>for<sp/>the<sp/>extrinsics.<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Either<sp/>specify<sp/>the<sp/>frame<sp/>id<sp/>or<sp/>the<sp/>extrinsic<sp/>manually.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>imu_frame<sp/>=<sp/>imu_msg-&gt;header.frame_id;</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>RCLCPP_INFO_STREAM(node-&gt;get_logger(),<sp/></highlight><highlight class="stringliteral">&quot;Parsed<sp/>the<sp/>imu<sp/>frame<sp/>id<sp/>as:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>imu_frame);</highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!check_and_set_extrinsics())<sp/>{</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"></highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1ImuControl" kindref="compound">core::ImuControl</ref><sp/>imu_data<sp/>=<sp/>imu_msg_to_imu_data(*imu_msg);</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>lio-&gt;add_imu_measurement(extrinsic_imu2base,<sp/>imu_data);</highlight></codeline>
-<codeline lineno="100"><highlight class="normal"></highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!(lio-&gt;imu_state.time<sp/>&gt;<sp/>core::Nsec{0}))<sp/>{</highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Skip<sp/>publishing<sp/>before<sp/>the<sp/>first<sp/>successful<sp/>registration:<sp/>until<sp/>then,</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>imu_state<sp/>has<sp/>not<sp/>been<sp/>seeded<sp/>from<sp/>a<sp/>real<sp/>lidar<sp/>pose.<sp/>add_imu_measurement</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>leaves<sp/>imu_state.time<sp/>at<sp/>zero<sp/>in<sp/>that<sp/>pre-init<sp/>phase.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>publish_imu_rate_odometry(lio-&gt;imu_state);</highlight></codeline>
-<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tf_at_imu_rate)<sp/>{</highlight></codeline>
-<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>publish_tf(lio-&gt;imu_state.pose,<sp/>lio-&gt;imu_state.time);</highlight></codeline>
-<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="111"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="112"><highlight class="normal"></highlight></codeline>
-<codeline lineno="113"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>lidar_callback(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::PointCloud2::ConstSharedPtr&amp;<sp/>lidar_msg)<sp/>{</highlight></codeline>
-<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(lidar_frame.empty())<sp/>{</highlight></codeline>
-<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(lidar_msg-&gt;header.frame_id.empty()<sp/>&amp;&amp;<sp/>!extrinsics_set)<sp/>{</highlight></codeline>
-<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;LiDAR<sp/>message<sp/>header<sp/>has<sp/>no<sp/>frame<sp/>id<sp/>and<sp/>we<sp/>need<sp/>it<sp/>to<sp/>query<sp/>TF<sp/>for<sp/>the<sp/>extrinsics.<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Either<sp/>specify<sp/>the<sp/>frame<sp/>id<sp/>or<sp/>the<sp/>extrinsic<sp/>manually.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>lidar_frame<sp/>=<sp/>lidar_msg-&gt;header.frame_id;</highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>RCLCPP_INFO_STREAM(node-&gt;get_logger(),<sp/></highlight><highlight class="stringliteral">&quot;Parsed<sp/>the<sp/>lidar<sp/>frame<sp/>id<sp/>as:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>lidar_frame);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!ensure_frame_and_extrinsics(imu_frame,<sp/>imu_msg-&gt;header.frame_id,<sp/></highlight><highlight class="stringliteral">&quot;IMU&quot;</highlight><highlight class="normal">))<sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1ImuControl" kindref="compound">core::ImuControl</ref><sp/>imu_data<sp/>=<sp/>imu_msg_to_imu_data(*imu_msg);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>lio-&gt;add_imu_measurement(extrinsic_imu2base,<sp/>imu_data);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!(lio-&gt;imu_state.time<sp/>&gt;<sp/>core::Nsec{0}))<sp/>{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Skip<sp/>publishing<sp/>before<sp/>the<sp/>first<sp/>successful<sp/>registration:<sp/>until<sp/>then,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>imu_state<sp/>has<sp/>not<sp/>been<sp/>seeded<sp/>from<sp/>a<sp/>real<sp/>lidar<sp/>pose.<sp/>add_imu_measurement</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>leaves<sp/>imu_state.time<sp/>at<sp/>zero<sp/>in<sp/>that<sp/>pre-init<sp/>phase.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>publish_odometry(lio-&gt;imu_state,<sp/>odom_at_imu_rate_publisher);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tf_at_imu_rate)<sp/>{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>publish_tf(lio-&gt;imu_state);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>lidar_callback(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::PointCloud2::ConstSharedPtr&amp;<sp/>lidar_msg)<sp/>{</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!ensure_frame_and_extrinsics(lidar_frame,<sp/>lidar_msg-&gt;header.frame_id,<sp/></highlight><highlight class="stringliteral">&quot;LiDAR&quot;</highlight><highlight class="normal">))<sp/>{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>[timestamps,<sp/>scan]<sp/>=<sp/>process_lidar_msg(lidar_msg);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::Vector3dVector<sp/>deskewed_frame<sp/>=<sp/>register_scan_locked(scan,<sp/>timestamps.times);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(deskewed_frame.empty())<sp/>{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>first<sp/>frame<sp/>is<sp/>skipped<sp/>and<sp/>an<sp/>empty<sp/>frame<sp/>is<sp/>returned.<sp/>nothing<sp/>to<sp/>publish.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>publish_lidar_outputs(deskewed_frame);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>publish_tf(lio-&gt;lidar_state);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::invalid_argument&amp;<sp/>ex)<sp/>{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>RCLCPP_ERROR_STREAM(node-&gt;get_logger(),<sp/></highlight><highlight class="stringliteral">&quot;Encountered<sp/>error,<sp/>dropping<sp/>frame.<sp/>Error:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>ex.what());</highlight></codeline>
 <codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!check_and_set_extrinsics())<sp/>{</highlight></codeline>
-<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="125"><highlight class="normal"></highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>[timestamps,<sp/>scan]<sp/>=<sp/>process_lidar_msg(lidar_msg);</highlight></codeline>
-<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::Vector3dVector<sp/>deskewed_frame<sp/>=<sp/>register_scan_locked(scan,<sp/>timestamps.times);</highlight></codeline>
-<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(deskewed_frame.empty())<sp/>{</highlight></codeline>
-<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>first<sp/>frame<sp/>is<sp/>skipped<sp/>and<sp/>an<sp/>empty<sp/>frame<sp/>is<sp/>returned.<sp/>nothing<sp/>to<sp/>publish.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>publish_lidar_outputs(deskewed_frame,<sp/>timestamps.max);</highlight></codeline>
-<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>publish_tf(lio-&gt;lidar_state.pose,<sp/>timestamps.max);</highlight></codeline>
-<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::invalid_argument&amp;<sp/>ex)<sp/>{</highlight></codeline>
-<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>RCLCPP_ERROR_STREAM(node-&gt;get_logger(),<sp/></highlight><highlight class="stringliteral">&quot;Encountered<sp/>error,<sp/>dropping<sp/>frame.<sp/>Error:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>ex.what());</highlight></codeline>
-<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="138"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="139"><highlight class="normal"></highlight></codeline>
-<codeline lineno="140"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>publish_imu_rate_odometry(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1State" kindref="compound">core::State</ref>&amp;<sp/>state)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>nav_msgs::msg::Odometry<sp/>msg;</highlight></codeline>
-<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.header.stamp<sp/>=<sp/>utils::to_ros_time(state.time);</highlight></codeline>
-<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.header.frame_id<sp/>=<sp/>odom_frame;</highlight></codeline>
-<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.child_frame_id<sp/>=<sp/>base_frame;</highlight></codeline>
-<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.pose.pose<sp/>=<sp/>utils::sophus_to_pose(state.pose);</highlight></codeline>
-<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>utils::eigen_vector3d_to_ros_xyz(state.velocity,<sp/>msg.twist.twist.linear);</highlight></codeline>
-<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>utils::eigen_vector3d_to_ros_xyz(state.angular_velocity,<sp/>msg.twist.twist.angular);</highlight></codeline>
-<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>odom_at_imu_rate_publisher-&gt;publish(msg);</highlight></codeline>
-<codeline lineno="149"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="150"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="151"><highlight class="normal"></highlight></codeline>
-<codeline lineno="152"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="153"><highlight class="normal"></highlight></codeline>
-<codeline lineno="154"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;rclcpp_components/register_node_macro.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="155"><highlight class="normal">RCLCPP_COMPONENTS_REGISTER_NODE(<ref refid="classrko__lio_1_1ros_1_1OnlineImuRateNode" kindref="compound">rko_lio::ros::OnlineImuRateNode</ref>)</highlight></codeline>
+<codeline lineno="126"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;rclcpp_components/register_node_macro.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal">RCLCPP_COMPONENTS_REGISTER_NODE(<ref refid="classrko__lio_1_1ros_1_1OnlineImuRateNode" kindref="compound">rko_lio::ros::OnlineImuRateNode</ref>)</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp"/>
   </compounddef>

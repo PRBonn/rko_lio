@@ -26,7 +26,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" line="58" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="58" bodyend="64" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" declline="50" declcolumn="18"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" line="58" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="58" bodyend="64" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" declline="51" declcolumn="18"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

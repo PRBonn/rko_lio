@@ -96,7 +96,6 @@
 <p>↰ <a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_rko_lio_core_preprocess_scan.hpp.html#file-home-runner-work-rko-lio-rko-lio-rko-lio-core-preprocess-scan-hpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.hpp</span></code>)</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Eigen/Dense&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;optional&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;lio.hpp&quot;</span>
@@ -105,10 +104,8 @@
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">PreprocessingResult</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">Vector3dVector</span><span class="w"> </span><span class="n">filtered_frame</span><span class="p">;</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">Vector3dVector</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map_frame</span><span class="p">;</span>
 <span class="w">  </span><span class="n">Vector3dVector</span><span class="w"> </span><span class="n">keypoints</span><span class="p">;</span>
-
-<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">Vector3dVector</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">map_update_frame</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">map_frame</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="o">*</span><span class="n">map_frame</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">keypoints</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="n">Vector3dVector</span><span class="w"> </span><span class="n">map_frame</span><span class="p">;</span><span class="w"> </span><span class="c1">// populated only when config.double_downsample; empty otherwise</span>
 <span class="p">};</span>
 
 <span class="c1">// clip and downsample the input cloud</span>

@@ -38,12 +38,13 @@
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1ad3fac1c1fc245199be7e5c8cb9b264f9" kind="function"><name>BaseNode</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a30875a75d450b8900c08ee0dbe11e62c" kind="function"><name>parse_cli_extrinsics</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a9adaaf7d3c7d0d969066754e162d38b3" kind="function"><name>check_and_set_extrinsics</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1ad7b2a2d1b22705fdadd654756ab4d32b" kind="function"><name>ensure_frame_and_extrinsics</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a23f047faed8a97a78fbbed340032317e" kind="function"><name>process_lidar_msg</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1ab0d80b23d66dc9d5b4f7dc7f89e05d5f" kind="function"><name>register_scan_locked</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a4fdc5b7d130810c345188250f8b21af9" kind="function"><name>publish_lidar_outputs</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1aa058638b971a0b484b4db997becc860c" kind="function"><name>publish_odometry</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1aea37c7707740166c54a05fb263abe4f7" kind="function"><name>publish_tf</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a31023838e4c3dc168766062f5e08a16f" kind="function"><name>publish_lidar_accel</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a9251b8b8d739c76d2b1d6130a7a90341" kind="function"><name>publish_lidar_outputs</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a886af9f92ef9734085f99ae5e770b1cb" kind="function"><name>publish_odometry</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a404fef7df2bc45e8e080323888e7089d" kind="function"><name>publish_tf</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a14f5fe9f25828fe882c315ca0dd4510b" kind="function"><name>publish_lidar_accel</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1acdc4ef902102131dbbb350afea921b17" kind="function"><name>publish_map_loop</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a48110c62e37b6784f72849ab1e5d3b1a" kind="function"><name>dump_results_to_disk</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1aaa03e3f3624f707e83921ceef9487baf" kind="function"><name>~BaseNode</name></member>
@@ -75,7 +76,7 @@
     <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a333f16a3ff952ee91e48e0d62dc23533" kind="variable"><name>max_range</name></member>
     <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1af3ef0dac6d1484eac8aa0e91c5578f10" kind="variable"><name>min_range</name></member>
     <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1ae2991e0e372427f93255231b3249b246" kind="variable"><name>convergence_criterion</name></member>
-    <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a9c90e5e455dc7946e69df5229d3ddce0" kind="variable"><name>max_correspondance_distance</name></member>
+    <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a209b80041e522d7c654836136528d63d" kind="variable"><name>max_correspondence_distance</name></member>
     <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a5089f617d86e9ae45f524c23d322617a" kind="variable"><name>max_num_threads</name></member>
     <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a2d65fe516d188013b626c20f1bc583e2" kind="variable"><name>initialization_phase</name></member>
     <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a5f5b46b1671012993d30d61657d99714" kind="variable"><name>max_expected_jerk</name></member>
@@ -135,7 +136,9 @@
     <member refid="classrko__lio_1_1ros_1_1OfflineNode_1ad3f8b534140952b2ca4e1d3ba742147d" kind="variable"><name>bag_progress_publisher</name></member>
     <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a7a831770cf30cf103bb2a2274c1b1b70" kind="variable"><name>total_bag_msgs</name></member>
     <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a281e32f4e836a057a2a390e83e5ace1b" kind="variable"><name>processed_bag_msgs</name></member>
+    <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a76a398ffa0feadc10b782518e31760e7" kind="variable"><name>bag_start_time</name></member>
     <member refid="classrko__lio_1_1ros_1_1OfflineNode_1aba5ec197aa5c51eafb595756c4095a3f" kind="function"><name>OfflineNode</name></member>
+    <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a31edbffa8df1859ad2784370a95fd546" kind="function"><name>publish_bag_progress</name></member>
     <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a82769092823a22fb97af2d54609e0f55" kind="function"><name>run</name></member>
   </compound>
   <compound refid="classrko__lio_1_1ros_1_1OnlineImuRateNode" kind="class"><name>rko_lio::ros::OnlineImuRateNode</name>
@@ -153,7 +156,6 @@
     <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1aed7b4e4abfc5e17a72a10dfc4fa6f317" kind="function"><name>get_node_base_interface</name></member>
     <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a42d18fd474d39967f5949f3a35ee67c8" kind="function"><name>imu_callback</name></member>
     <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1acbe7dea353329f09276f10fc66c1376f" kind="function"><name>lidar_callback</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a421d11614bef3b923783652021434c7d" kind="function"><name>publish_imu_rate_odometry</name></member>
   </compound>
   <compound refid="classrko__lio_1_1ros_1_1OnlineNode" kind="class"><name>rko_lio::ros::OnlineNode</name>
     <member refid="classrko__lio_1_1ros_1_1OnlineNode_1aa5c3fb878c2dd90ee90ab2d833d046aa" kind="variable"><name>imu_sub</name></member>
@@ -168,9 +170,8 @@
   </compound>
   <compound refid="structrko__lio_1_1core_1_1PreprocessingResult" kind="struct"><name>rko_lio::core::PreprocessingResult</name>
     <member refid="structrko__lio_1_1core_1_1PreprocessingResult_1aa616e415247e87e1d2a2ba5192d33b47" kind="variable"><name>filtered_frame</name></member>
-    <member refid="structrko__lio_1_1core_1_1PreprocessingResult_1a564d0c85ba4788f9fc8f3af2c60bf3e9" kind="variable"><name>map_frame</name></member>
     <member refid="structrko__lio_1_1core_1_1PreprocessingResult_1a20720dc17b7807f18ac34ec7bbe0fa06" kind="variable"><name>keypoints</name></member>
-    <member refid="structrko__lio_1_1core_1_1PreprocessingResult_1ad543b84f67a655def66be9b5952f4959" kind="function"><name>map_update_frame</name></member>
+    <member refid="structrko__lio_1_1core_1_1PreprocessingResult_1a3907c9ff89a65310a6dfc386463c9f7f" kind="variable"><name>map_frame</name></member>
   </compound>
   <compound refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo" kind="struct"><name>rko_lio::core::ScopedProfiler::ProfilingInfo</name>
     <member refid="structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo_1a75ffb52ae11c7b81ed01727a76cb8c0a" kind="variable"><name>count</name></member>
@@ -297,8 +298,6 @@
   </compound>
   <compound refid="namespace_0d4" kind="namespace"><name>@4</name>
   </compound>
-  <compound refid="namespace_0d8" kind="namespace"><name>@8</name>
-  </compound>
   <compound refid="namespaceEigen" kind="namespace"><name>Eigen</name>
     <member refid="util_8hpp_1aeed2d0773ca5f2d8af17c424c1d38656" kind="typedef"><name>Matrix3_6d</name></member>
     <member refid="util_8hpp_1a256bc41e53605f5abb08663701978077" kind="typedef"><name>Vector6d</name></member>
@@ -319,6 +318,7 @@
     <member refid="namespacerko__lio_1_1core_1ae12b01bb20a1a7280bc26af2de2f15dd" kind="function"><name>gravity</name></member>
     <member refid="namespacerko__lio_1_1core_1a82bfbe6dd0859af66258d81747392bd6" kind="function"><name>to_seconds</name></member>
     <member refid="namespacerko__lio_1_1core_1ad33113e678270ae389705f90113e7df9" kind="function"><name>voxel_down_sample</name></member>
+    <member refid="namespacerko__lio_1_1core_1ae81cb719c6cfedad68ce10f0b0b22261" kind="function"><name>point_to_voxel</name></member>
   </compound>
   <compound refid="namespacerko__lio_1_1ros" kind="namespace"><name>rko_lio::ros</name>
     <member refid="base__node_8cpp_1afae6f65417b908b3b2a34c5a6261c7d1" kind="function"><name>imu_msg_to_imu_data</name></member>

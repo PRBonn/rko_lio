@@ -86,9 +86,9 @@
     </member>
     <member kind="variable">
       <type>double</type>
-      <name>max_correspondance_distance</name>
+      <name>max_correspondence_distance</name>
       <anchorfile>structrko__lio_1_1core_1_1LIO_1_1Config.html</anchorfile>
-      <anchor>a9c90e5e455dc7946e69df5229d3ddce0</anchor>
+      <anchor>a209b80041e522d7c654836136528d63d</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">

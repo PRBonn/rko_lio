@@ -116,12 +116,12 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="60" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="60" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a9c90e5e455dc7946e69df5229d3ddce0" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a209b80041e522d7c654836136528d63d" prot="public" static="no" mutable="no">
         <type>double</type>
-        <definition>double rko_lio::core::LIO::Config::max_correspondance_distance</definition>
+        <definition>double rko_lio::core::LIO::Config::max_correspondence_distance</definition>
         <argsstring></argsstring>
-        <name>max_correspondance_distance</name>
-        <qualifiedname>rko_lio::core::LIO::Config::max_correspondance_distance</qualifiedname>
+        <name>max_correspondence_distance</name>
+        <qualifiedname>rko_lio::core::LIO::Config::max_correspondence_distance</qualifiedname>
         <initializer>= 0.5</initializer>
         <briefdescription>
 <para>Max distance for correspondences (m). </para>
@@ -224,7 +224,7 @@
       <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a047439a48b3c8afebe95407926efbada" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>deskew</name></member>
       <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1ae87229b29b2760d18c47d3b3c67c40ba" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>double_downsample</name></member>
       <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a2d65fe516d188013b626c20f1bc583e2" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>initialization_phase</name></member>
-      <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a9c90e5e455dc7946e69df5229d3ddce0" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>max_correspondance_distance</name></member>
+      <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a209b80041e522d7c654836136528d63d" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>max_correspondence_distance</name></member>
       <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a5f5b46b1671012993d30d61657d99714" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>max_expected_jerk</name></member>
       <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a9cc9bd40427d206f8349bc330c40aa1f" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>max_iterations</name></member>
       <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a5089f617d86e9ae45f524c23d322617a" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>max_num_threads</name></member>

@@ -32,6 +32,8 @@ Includes
 
 - ``Eigen/Core``
 
+- ``cmath``
+
 - ``sophus/se3.hpp``
 
 
@@ -63,4 +65,11 @@ Classes
 
 
 - :ref:`exhale_struct_structstd_1_1hash_3_01Eigen_1_1Vector3i_01_4`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_namespacerko__lio_1_1core_1ae81cb719c6cfedad68ce10f0b0b22261`
 

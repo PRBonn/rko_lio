@@ -5,10 +5,10 @@
     <includes refid="preprocess__scan_8hpp" local="yes">preprocess_scan.hpp</includes>
     <includes refid="voxel__down__sample_8hpp" local="yes">voxel_down_sample.hpp</includes>
     <incdepgraph>
-      <node id="6">
+      <node id="5">
         <label>lio.hpp</label>
         <link refid="lio_8hpp"/>
-        <childnode refid="7" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
@@ -18,7 +18,7 @@
         <link refid="preprocess__scan_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -30,33 +30,33 @@
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
       </node>
       <node id="13">
         <label>util.hpp</label>
         <link refid="util_8hpp_source"/>
-        <childnode refid="9" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="8">
+      <node id="7">
         <label>voxel_down_sample.hpp</label>
         <link refid="voxel__down__sample_8hpp_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
         <childnode refid="9" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="7">
+      <node id="6">
         <label>voxel_hash_map.hpp</label>
         <link refid="voxel__hash__map_8hpp_source"/>
-        <childnode refid="8" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
@@ -64,10 +64,10 @@
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="9">
+      <node id="8">
         <label>Eigen/Core</label>
       </node>
       <node id="3">
@@ -76,8 +76,8 @@
       <node id="14">
         <label>chrono</label>
       </node>
-      <node id="4">
-        <label>optional</label>
+      <node id="9">
+        <label>cmath</label>
       </node>
       <node id="10">
         <label>sophus/se3.hpp</label>
@@ -88,7 +88,7 @@
       <node id="12">
         <label>tuple</label>
       </node>
-      <node id="5">
+      <node id="4">
         <label>vector</label>
       </node>
     </incdepgraph>
@@ -120,16 +120,14 @@
 <codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>Vector3dVector<sp/>downsampled_frame<sp/>=<sp/><ref refid="namespacerko__lio_1_1core_1ad33113e678270ae389705f90113e7df9" kindref="member">voxel_down_sample</ref>(clipped_frame,<sp/>config.voxel_size<sp/>*<sp/>0.5);</highlight></codeline>
 <codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>Vector3dVector<sp/>keypoints<sp/>=<sp/><ref refid="namespacerko__lio_1_1core_1ad33113e678270ae389705f90113e7df9" kindref="member">voxel_down_sample</ref>(downsampled_frame,<sp/>config.voxel_size<sp/>*<sp/>1.5);</highlight></codeline>
 <codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{.filtered_frame<sp/>=<sp/>std::move(clipped_frame),</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.map_frame<sp/>=<sp/>std::move(downsampled_frame),</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.keypoints<sp/>=<sp/>std::move(keypoints)};</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.keypoints<sp/>=<sp/>std::move(keypoints),</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.map_frame<sp/>=<sp/>std::move(downsampled_frame)};</highlight></codeline>
 <codeline lineno="24"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"><sp/><sp/>Vector3dVector<sp/>keypoints<sp/>=<sp/><ref refid="namespacerko__lio_1_1core_1ad33113e678270ae389705f90113e7df9" kindref="member">voxel_down_sample</ref>(clipped_frame,<sp/>config.voxel_size);</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{.filtered_frame<sp/>=<sp/>std::move(clipped_frame),</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.map_frame<sp/>=<sp/>std::nullopt,</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.keypoints<sp/>=<sp/>std::move(keypoints)};</highlight></codeline>
-<codeline lineno="29"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{.filtered_frame<sp/>=<sp/>std::move(clipped_frame),<sp/>.keypoints<sp/>=<sp/>std::move(keypoints),<sp/>.map_frame<sp/>=<sp/>{}};</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.cpp"/>
   </compounddef>
