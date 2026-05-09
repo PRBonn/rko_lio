@@ -28,6 +28,7 @@
 #include <cmath>
 #include <cstdint>
 #include <random>
+#include <stdexcept>
 
 using rko_lio::core::GRAVITY_MAG;
 using rko_lio::core::ImuControl;
@@ -319,4 +320,11 @@ TEST_CASE("Noisy: full SE(3) translation + rotation", "[register_scan][!mayfail]
   CAPTURE(lio.lidar_state.pose.translation().transpose(),
           lio.lidar_state.pose.so3().log().transpose());
   CHECK(approx_equal(lio.lidar_state.pose, T_expected, 1e-2));
+}
+
+TEST_CASE("register_scan: empty timestamps throws instead of UB", "[register_scan]") {
+  LIO lio((LIO::Config{}));
+  const auto cloud = make_hollow_cube();
+  const TimestampVector empty_timestamps;
+  REQUIRE_THROWS_AS(lio.register_scan(cloud, empty_timestamps), std::invalid_argument);
 }
