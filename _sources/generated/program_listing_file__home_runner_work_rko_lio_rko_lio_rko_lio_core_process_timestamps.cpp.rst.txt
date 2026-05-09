@@ -89,6 +89,9 @@ Program Listing for File process_timestamps.cpp
    Timestamps process_timestamps(const std::vector<double>& raw_timestamps,
                                  const Nsec header_stamp,
                                  const TimestampProcessingConfig& config) {
+     if (raw_timestamps.empty()) {
+       throw std::invalid_argument("process_timestamps: raw_timestamps must not be empty.");
+     }
      Timestamps timestamps = timestamps_from_raw(raw_timestamps, config.multiplier_to_seconds);
    
      const bool absolute_stamps = config.force_absolute || (std::chrono::abs(header_stamp - timestamps.min) < 1ms) ||
