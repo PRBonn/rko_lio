@@ -16,7 +16,9 @@ PreprocessingResult preprocess_scan(const Vector3dVector& frame, const LIO::Conf
   clipped_frame.shrink_to_fit();
 
   if (config.double_downsample) {
-    Vector3dVector downsampled_frame = voxel_down_sample(clipped_frame, config.voxel_size * 0.5);
+    // pass 1 feeds pass 2, and sorting (shuffling) breaks lidar scan pattern leading to improved registration
+    Vector3dVector downsampled_frame = voxel_down_sample_sorted(clipped_frame, config.voxel_size * 0.5);
+    // pass 2 feeds icp, so unsorted is fine.
     Vector3dVector keypoints = voxel_down_sample(downsampled_frame, config.voxel_size * 1.5);
     return {.filtered_frame = std::move(clipped_frame),
             .keypoints = std::move(keypoints),
