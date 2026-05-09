@@ -145,7 +145,7 @@ configurable_parameters = [
         "description": "Min valid LiDAR range (meters)",
     },
     {
-        "name": "max_correspondance_distance",
+        "name": "max_correspondence_distance",
         "default": "0.5",
         "type": "float",
         "description": "ICP correspondence distance threshold (meters)",

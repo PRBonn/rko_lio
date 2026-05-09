@@ -45,7 +45,7 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(LIO::Config,
                                    max_range,
                                    min_range,
                                    convergence_criterion,
-                                   max_correspondance_distance,
+                                   max_correspondence_distance,
                                    max_num_threads,
                                    initialization_phase,
                                    max_expected_jerk,
@@ -118,8 +118,8 @@ BaseNode::BaseNode(const std::string& node_name, const rclcpp::NodeOptions& opti
   lio_config.min_range = node->declare_parameter<double>("min_range", lio_config.min_range);
   lio_config.convergence_criterion =
       node->declare_parameter<double>("convergence_criterion", lio_config.convergence_criterion);
-  lio_config.max_correspondance_distance =
-      node->declare_parameter<double>("max_correspondance_distance", lio_config.max_correspondance_distance);
+  lio_config.max_correspondence_distance =
+      node->declare_parameter<double>("max_correspondence_distance", lio_config.max_correspondence_distance);
   lio_config.max_num_threads =
       static_cast<int>(node->declare_parameter<int>("max_num_threads", lio_config.max_num_threads));
   lio_config.initialization_phase =
@@ -196,6 +196,21 @@ void BaseNode::parse_cli_extrinsics() {
   extrinsics_set = imu_ok && lidar_ok;
 }
 
+bool BaseNode::ensure_frame_and_extrinsics(std::string& target_frame,
+                                           const std::string& msg_frame,
+                                           std::string_view kind) {
+  if (target_frame.empty()) {
+    if (msg_frame.empty() && !extrinsics_set) {
+      throw std::runtime_error(std::string(kind) +
+                               " message header has no frame id and we need it to query TF for the extrinsics. "
+                               "Either specify the frame id or the extrinsic manually.");
+    }
+    target_frame = msg_frame;
+    RCLCPP_INFO_STREAM(node->get_logger(), "Parsed the " << kind << " frame id as: " << target_frame);
+  }
+  return check_and_set_extrinsics();
+}
+
 bool BaseNode::check_and_set_extrinsics() {
   if (extrinsics_set) {
     return true;
@@ -236,50 +251,51 @@ core::Vector3dVector BaseNode::register_scan_locked(const core::Vector3dVector& 
   return lio->register_scan(extrinsic_lidar2base, scan, time_vector);
 }
 
-void BaseNode::publish_lidar_outputs(const core::Vector3dVector& deskewed_frame, const core::Nsec stamp) const {
+void BaseNode::publish_lidar_outputs(const core::Vector3dVector& deskewed_frame) const {
   if (publish_deskewed_scan) {
     std_msgs::msg::Header header;
     header.frame_id = lidar_frame;
-    header.stamp = utils::to_ros_time(stamp);
+    header.stamp = utils::to_ros_time(lio->lidar_state.time);
     frame_publisher->publish(utils::eigen_to_point_cloud2(deskewed_frame, header));
   }
-  publish_odometry(lio->lidar_state, stamp);
+  publish_odometry(lio->lidar_state, odom_publisher);
   if (publish_lidar_acceleration) {
-    publish_lidar_accel(lio->lidar_state.linear_acceleration, stamp);
+    publish_lidar_accel(lio->lidar_state);
   }
 }
 
-void BaseNode::publish_odometry(const core::State& state, const core::Nsec stamp) const {
+void BaseNode::publish_odometry(const core::State& state,
+                                const rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr& publisher) const {
   nav_msgs::msg::Odometry odom_msg;
-  odom_msg.header.stamp = utils::to_ros_time(stamp);
+  odom_msg.header.stamp = utils::to_ros_time(state.time);
   odom_msg.header.frame_id = odom_frame;
   odom_msg.child_frame_id = base_frame;
   odom_msg.pose.pose = utils::sophus_to_pose(state.pose);
   utils::eigen_vector3d_to_ros_xyz(state.velocity, odom_msg.twist.twist.linear);
   utils::eigen_vector3d_to_ros_xyz(state.angular_velocity, odom_msg.twist.twist.angular);
-  odom_publisher->publish(odom_msg);
+  publisher->publish(odom_msg);
 }
 
-void BaseNode::publish_tf(const Sophus::SE3d& pose, const core::Nsec stamp) const {
+void BaseNode::publish_tf(const core::State& state) const {
   geometry_msgs::msg::TransformStamped transform_msg;
-  transform_msg.header.stamp = utils::to_ros_time(stamp);
+  transform_msg.header.stamp = utils::to_ros_time(state.time);
   if (invert_odom_tf) {
     transform_msg.header.frame_id = base_frame;
     transform_msg.child_frame_id = odom_frame;
-    transform_msg.transform = utils::sophus_to_transform(pose.inverse());
+    transform_msg.transform = utils::sophus_to_transform(state.pose.inverse());
   } else {
     transform_msg.header.frame_id = odom_frame;
     transform_msg.child_frame_id = base_frame;
-    transform_msg.transform = utils::sophus_to_transform(pose);
+    transform_msg.transform = utils::sophus_to_transform(state.pose);
   }
   tf_broadcaster->sendTransform(transform_msg);
 }
 
-void BaseNode::publish_lidar_accel(const Eigen::Vector3d& acceleration, const core::Nsec stamp) const {
+void BaseNode::publish_lidar_accel(const core::State& state) const {
   auto accel_msg = geometry_msgs::msg::AccelStamped();
-  accel_msg.header.stamp = utils::to_ros_time(stamp);
+  accel_msg.header.stamp = utils::to_ros_time(state.time);
   accel_msg.header.frame_id = base_frame;
-  utils::eigen_vector3d_to_ros_xyz(acceleration, accel_msg.accel.linear);
+  utils::eigen_vector3d_to_ros_xyz(state.linear_acceleration, accel_msg.accel.linear);
   lidar_accel_publisher->publish(accel_msg);
 }
 

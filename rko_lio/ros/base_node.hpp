@@ -31,6 +31,7 @@
 #include <memory>
 #include <mutex>
 #include <string>
+#include <string_view>
 #include <thread>
 #include <tuple>
 // ros
@@ -101,16 +102,24 @@ public:
   void parse_cli_extrinsics();
   bool check_and_set_extrinsics();
 
+  // Parse the message's frame_id into target_frame on first sight, throw if neither header nor static extrinsics
+  // are usable, and report whether extrinsics are now set. Extrinsics are assumed static; if they change, switch
+  // to querying TF inline per-message.
+  bool ensure_frame_and_extrinsics(std::string& target_frame,
+                                   const std::string& msg_frame,
+                                   std::string_view kind);
+
   std::tuple<core::Timestamps, core::Vector3dVector>
   process_lidar_msg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& lidar_msg) const;
 
   core::Vector3dVector register_scan_locked(const core::Vector3dVector& scan, const core::TimestampVector& time_vector);
 
-  void publish_lidar_outputs(const core::Vector3dVector& deskewed_frame, const core::Nsec stamp) const;
+  void publish_lidar_outputs(const core::Vector3dVector& deskewed_frame) const;
 
-  void publish_odometry(const core::State& state, const core::Nsec stamp) const;
-  void publish_tf(const Sophus::SE3d& pose, const core::Nsec stamp) const;
-  void publish_lidar_accel(const Eigen::Vector3d& acceleration, const core::Nsec stamp) const;
+  void publish_odometry(const core::State& state,
+                        const rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr& publisher) const;
+  void publish_tf(const core::State& state) const;
+  void publish_lidar_accel(const core::State& state) const;
   void publish_map_loop();
   void dump_results_to_disk(const std::filesystem::path& results_dir, const std::string& run_name) const;
 

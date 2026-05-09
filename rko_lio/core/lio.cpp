@@ -122,7 +122,7 @@ using LinearSystem = std::tuple<Eigen::Matrix6d, Eigen::Vector6d, double>;
 LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose,
                                      const rko_lio::core::Vector3dVector& frame,
                                      const rko_lio::core::VoxelHashMap& voxel_map,
-                                     const double& max_correspondance_distance) {
+                                     const double& max_correspondence_distance) {
   auto linear_system_reduce = [](LinearSystem lhs, const LinearSystem& rhs) {
     auto& [lhs_H, lhs_b, lhs_chi] = lhs;
     const auto& [rhs_H, rhs_b, rhs_chi] = rhs;
@@ -144,7 +144,7 @@ LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose,
 
   // The only parallel part
   using points_iterator = std::vector<Eigen::Vector3d>::const_iterator;
-  std::atomic<int> correspondances_counter = 0;
+  std::atomic<int> correspondences_counter = 0;
   const auto& [H_icp, b_icp, chi_icp] = tbb::parallel_reduce(
       // Range
       tbb::blocked_range<points_iterator>{frame.cbegin(), frame.cend()},
@@ -156,8 +156,8 @@ LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose,
           // Compute data association and linear system
           const Eigen::Vector3d transformed_point = current_pose * point;
           const auto& [closest_neighbor, distance] = voxel_map.get_closest_neighbor(transformed_point);
-          if (distance < max_correspondance_distance) {
-            correspondances_counter++;
+          if (distance < max_correspondence_distance) {
+            correspondences_counter++;
             return linear_system_for_one_point(transformed_point, closest_neighbor);
           }
           // TODO (meher): additional 0 add flops, which may hurt single threaded perf slightly
@@ -167,11 +167,11 @@ LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose,
       // 2nd Lambda: Parallel reduction of the private Jacobians
       linear_system_reduce);
 
-  if (correspondances_counter == 0) {
+  if (correspondences_counter == 0) {
     throw std::runtime_error("Number of correspondences are 0.");
   }
 
-  return {H_icp / correspondances_counter, b_icp / correspondances_counter, 0.5 * chi_icp};
+  return {H_icp / correspondences_counter, b_icp / correspondences_counter, 0.5 * chi_icp};
 }
 
 LinearSystem build_orientation_linear_system(const Sophus::SE3d& current_pose,
@@ -202,7 +202,7 @@ Sophus::SE3d icp(const Vector3dVector& frame,
   for (size_t i = 0; i < config.max_iterations; ++i) {
     const auto& [H, b, chi] = std::invoke([&]() -> LinearSystem {
       const auto& [H_icp, b_icp, chi_icp] =
-          build_icp_linear_system(current_pose, frame, voxel_map, config.max_correspondance_distance);
+          build_icp_linear_system(current_pose, frame, voxel_map, config.max_correspondence_distance);
       if (beta >= 0) {
         const auto& [H_ori, b_ori, chi_ori] =
             build_orientation_linear_system(current_pose, optional_accel_info->local_gravity_estimate);
@@ -282,7 +282,7 @@ Vector3dVector LIO::bootstrap_first_scan(const Vector3dVector& scan, const Nsec 
   imu_state = lidar_state;
   auto preproc = preprocess_scan(scan, config);
   if (!config.initialization_phase) {
-    map.update(preproc.map_update_frame(), lidar_state.pose);
+    map.update(config.double_downsample ? preproc.map_frame : preproc.keypoints, lidar_state.pose);
     poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
     std::cout << "[INFO] Odometry map frame initialized with first lidar scan.\n";
   }
@@ -456,6 +456,8 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
     throw std::invalid_argument(error_msg);
   }
 
+  const Vector3dVector& map_input = config.double_downsample ? preproc_result.map_frame : preproc_result.keypoints;
+
   if (!map.empty()) {
     SCOPED_PROFILER("ICP");
     const Sophus::SE3d optimized_pose = icp(preproc_result.keypoints, map, initial_guess, config, kf_step.info);
@@ -480,7 +482,7 @@ Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVec
   // reset imu averages
   interval_stats.reset();
 
-  map.update(preproc_result.map_update_frame(), lidar_state.pose);
+  map.update(map_input, lidar_state.pose);
 
   poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
 

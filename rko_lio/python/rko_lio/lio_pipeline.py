@@ -116,17 +116,12 @@ class LIOPipeline:
         angular_velocity : array of float, shape (3,)
             Angular velocity in rad/s.
         """
-        if self.extrinsic_imu2base is not None:
-            self.lio.add_imu_measurement_with_extrinsic(
-                self.extrinsic_imu2base,
-                time=time,
-                acceleration=acceleration,
-                angular_velocity=angular_velocity,
-            )
-        else:
-            self.lio.add_imu_measurement(
-                time=time, acceleration=acceleration, angular_velocity=angular_velocity
-            )
+        self.lio.add_imu_measurement(
+            acceleration=acceleration,
+            angular_velocity=angular_velocity,
+            time=time,
+            extrinsic_imu2base=self.extrinsic_imu2base,
+        )
 
         if self.config.viz:
             self.rerun.set_time("data_time", timestamp=time * 1e-9)
@@ -173,17 +168,11 @@ class LIOPipeline:
             log_vector(self.rerun, "imu/avg_ang_velocity", stats.avg_ang_vel())
 
         try:
-            if self.extrinsic_lidar2base is not None:
-                deskewed_scan = self.lio.register_scan_with_extrinsic(
-                    self.extrinsic_lidar2base,
-                    scan,
-                    timestamps,
-                )
-            else:
-                deskewed_scan = self.lio.register_scan(
-                    scan,
-                    timestamps,
-                )
+            deskewed_scan = self.lio.register_scan(
+                scan,
+                timestamps,
+                extrinsic_lidar2base=self.extrinsic_lidar2base,
+            )
         except ValueError as e:
             print(
                 "ERROR: Dropping LiDAR frame as there was an error. Odometry might suffer. Error:",

@@ -66,7 +66,7 @@ PYBIND11_MODULE(rko_lio_pybind, m) {
       .def_readwrite("max_range", &LIO::Config::max_range)
       .def_readwrite("min_range", &LIO::Config::min_range)
       .def_readwrite("convergence_criterion", &LIO::Config::convergence_criterion)
-      .def_readwrite("max_correspondance_distance", &LIO::Config::max_correspondance_distance)
+      .def_readwrite("max_correspondence_distance", &LIO::Config::max_correspondence_distance)
       .def_readwrite("max_num_threads", &LIO::Config::max_num_threads)
       .def_readwrite("initialization_phase", &LIO::Config::initialization_phase)
       .def_readwrite("max_expected_jerk", &LIO::Config::max_expected_jerk)

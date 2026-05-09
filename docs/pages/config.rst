@@ -69,7 +69,7 @@ These show up under the top level of a Python config and as ROS launch arguments
   In case you need more runtime performance, you can reduce this.
   Odometry performance will be a bit affected, but how much depends on the environment.
 
-- **max_correspondance_distance** (`float`, default ``0.5``)
+- **max_correspondence_distance** (`float`, default ``0.5``)
 
   Maximum distance threshold (meters) for ICP data associations.
 

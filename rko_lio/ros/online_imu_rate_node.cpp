@@ -83,15 +83,7 @@ public:
   }
 
   void imu_callback(const sensor_msgs::msg::Imu::ConstSharedPtr& imu_msg) {
-    if (imu_frame.empty()) {
-      if (imu_msg->header.frame_id.empty() && !extrinsics_set) {
-        throw std::runtime_error("IMU message header has no frame id and we need it to query TF for the extrinsics. "
-                                 "Either specify the frame id or the extrinsic manually.");
-      }
-      imu_frame = imu_msg->header.frame_id;
-      RCLCPP_INFO_STREAM(node->get_logger(), "Parsed the imu frame id as: " << imu_frame);
-    }
-    if (!check_and_set_extrinsics()) {
+    if (!ensure_frame_and_extrinsics(imu_frame, imu_msg->header.frame_id, "IMU")) {
       return;
     }
 
@@ -104,22 +96,14 @@ public:
       // leaves imu_state.time at zero in that pre-init phase.
       return;
     }
-    publish_imu_rate_odometry(lio->imu_state);
+    publish_odometry(lio->imu_state, odom_at_imu_rate_publisher);
     if (tf_at_imu_rate) {
-      publish_tf(lio->imu_state.pose, lio->imu_state.time);
+      publish_tf(lio->imu_state);
     }
   }
 
   void lidar_callback(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& lidar_msg) {
-    if (lidar_frame.empty()) {
-      if (lidar_msg->header.frame_id.empty() && !extrinsics_set) {
-        throw std::runtime_error("LiDAR message header has no frame id and we need it to query TF for the extrinsics. "
-                                 "Either specify the frame id or the extrinsic manually.");
-      }
-      lidar_frame = lidar_msg->header.frame_id;
-      RCLCPP_INFO_STREAM(node->get_logger(), "Parsed the lidar frame id as: " << lidar_frame);
-    }
-    if (!check_and_set_extrinsics()) {
+    if (!ensure_frame_and_extrinsics(lidar_frame, lidar_msg->header.frame_id, "LiDAR")) {
       return;
     }
 
@@ -130,23 +114,13 @@ public:
         // first frame is skipped and an empty frame is returned. nothing to publish.
         return;
       }
-      publish_lidar_outputs(deskewed_frame, timestamps.max);
-      publish_tf(lio->lidar_state.pose, timestamps.max);
+      publish_lidar_outputs(deskewed_frame);
+      publish_tf(lio->lidar_state);
     } catch (const std::invalid_argument& ex) {
       RCLCPP_ERROR_STREAM(node->get_logger(), "Encountered error, dropping frame. Error: " << ex.what());
     }
   }
 
-  void publish_imu_rate_odometry(const core::State& state) const {
-    nav_msgs::msg::Odometry msg;
-    msg.header.stamp = utils::to_ros_time(state.time);
-    msg.header.frame_id = odom_frame;
-    msg.child_frame_id = base_frame;
-    msg.pose.pose = utils::sophus_to_pose(state.pose);
-    utils::eigen_vector3d_to_ros_xyz(state.velocity, msg.twist.twist.linear);
-    utils::eigen_vector3d_to_ros_xyz(state.angular_velocity, msg.twist.twist.angular);
-    odom_at_imu_rate_publisher->publish(msg);
-  }
 };
 
 } // namespace rko_lio::ros

@@ -287,8 +287,6 @@ def cli(
             "Fatal: Could not obtain required IMU/Lidar extrinsics. Please specify in a config or as part of your data."
         )
 
-    from .util import transform_to_quat_xyzw_xyz
-
     print("Resolved extrinsics:")
     print("  IMU to Base:", pipeline_config.extrinsic_imu2base_quat_xyzw_xyz)
     print(

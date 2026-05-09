@@ -60,7 +60,7 @@ public:
     double convergence_criterion = 1e-5;
 
     /** Max distance for correspondences (m). */
-    double max_correspondance_distance = 0.5;
+    double max_correspondence_distance = 0.5;
 
     /** Thread count for data association (0 = automatic). */
     int max_num_threads = 0;
