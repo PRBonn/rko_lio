@@ -223,24 +223,6 @@ def cli(
     Run RKO_LIO with the selected dataloader and parameters.
     """
 
-    if viz:
-        try:
-            import rerun as rr
-
-            rr.init("rko_lio")
-            rr.spawn(memory_limit="2GB")
-            if reset_viz:
-                rr.log_file_from_path(
-                    Path(__file__).parent / "rko_lio.rbl"
-                    if rbl_path is None
-                    else rbl_path
-                )
-
-        except ImportError:
-            error_and_exit(
-                "Please install rerun with `pip install rerun-sdk` to enable visualization."
-            )
-
     user_config = {}
     if config_fp:
         with open(config_fp, "r") as f:
@@ -311,6 +293,24 @@ def cli(
         "  Lidar to Base:",
         pipeline_config.extrinsic_lidar2base_quat_xyzw_xyz,
     )
+
+    if viz:
+        try:
+            import rerun as rr
+
+            rr.init("rko_lio")
+            rr.spawn(memory_limit="2GB")
+            if reset_viz:
+                rr.log_file_from_path(
+                    Path(__file__).parent / "rko_lio.rbl"
+                    if rbl_path is None
+                    else rbl_path
+                )
+
+        except ImportError:
+            error_and_exit(
+                "Please install rerun with `pip install rerun-sdk` to enable visualization."
+            )
 
     from .lio_pipeline import LIOPipeline
 

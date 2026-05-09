@@ -133,3 +133,9 @@ TEST_CASE("process_timestamps: ambiguous case throws", "[process_timestamps]") {
   const Nsec header = ns_from_seconds(1000.0);
   REQUIRE_THROWS_AS(process_timestamps(raw, header, {}), std::runtime_error);
 }
+
+TEST_CASE("process_timestamps: empty raw_timestamps throws instead of UB", "[process_timestamps]") {
+  const std::vector<double> empty;
+  const Nsec header = ns_from_seconds(1234.0);
+  REQUIRE_THROWS_AS(process_timestamps(empty, header, {}), std::invalid_argument);
+}
