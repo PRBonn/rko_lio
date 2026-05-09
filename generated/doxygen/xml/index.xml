@@ -318,6 +318,7 @@
     <member refid="namespacerko__lio_1_1core_1ae12b01bb20a1a7280bc26af2de2f15dd" kind="function"><name>gravity</name></member>
     <member refid="namespacerko__lio_1_1core_1a82bfbe6dd0859af66258d81747392bd6" kind="function"><name>to_seconds</name></member>
     <member refid="namespacerko__lio_1_1core_1ad33113e678270ae389705f90113e7df9" kind="function"><name>voxel_down_sample</name></member>
+    <member refid="namespacerko__lio_1_1core_1a27a9bf0318203f6e11f4edc735c08123" kind="function"><name>voxel_down_sample_sorted</name></member>
     <member refid="namespacerko__lio_1_1core_1ae81cb719c6cfedad68ce10f0b0b22261" kind="function"><name>point_to_voxel</name></member>
   </compound>
   <compound refid="namespacerko__lio_1_1ros" kind="namespace"><name>rko_lio::ros</name>

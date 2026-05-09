@@ -5,8 +5,10 @@
     <includes refid="voxel__down__sample_8hpp" local="yes">voxel_down_sample.hpp</includes>
     <includes local="no">Eigen/Core</includes>
     <includes local="no">algorithm</includes>
-    <includes local="no">sophus/se3.hpp</includes>
-    <includes local="no">unordered_map</includes>
+    <includes local="no">cstddef</includes>
+    <includes local="no">functional</includes>
+    <includes local="no">tsl/robin_set.h</includes>
+    <includes local="no">utility</includes>
     <includes local="no">vector</includes>
     <incdepgraph>
       <node id="1">
@@ -18,11 +20,15 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
         <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -44,13 +50,22 @@
       <node id="4">
         <label>cmath</label>
       </node>
+      <node id="7">
+        <label>cstddef</label>
+      </node>
+      <node id="8">
+        <label>functional</label>
+      </node>
       <node id="5">
         <label>sophus/se3.hpp</label>
       </node>
-      <node id="7">
-        <label>unordered_map</label>
+      <node id="9">
+        <label>tsl/robin_set.h</label>
       </node>
-      <node id="8">
+      <node id="10">
+        <label>utility</label>
+      </node>
+      <node id="11">
         <label>vector</label>
       </node>
     </incdepgraph>
@@ -87,29 +102,54 @@
 <codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;voxel_down_sample.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Eigen/Core&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sophus/se3.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unordered_map&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacerko__lio_1_1core" kindref="compound">rko_lio::core</ref><sp/>{</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>if<sp/>you<sp/>need<sp/>even<sp/>better<sp/>runtime-performance,<sp/>consider<sp/>using<sp/>Luca<sp/>Lobefaro&apos;s<sp/>version<sp/>of<sp/>one<sp/>cycle<sp/>downsampling<sp/>here:</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>https://github.com/PRBonn/kiss-icp/pull/347</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/>although<sp/>it<sp/>does<sp/>lead<sp/>to<sp/>worse<sp/>odometry<sp/>performance<sp/>in<sp/>certain<sp/>situations</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal">std::vector&lt;Eigen::Vector3d&gt;<sp/><ref refid="namespacerko__lio_1_1core_1ad33113e678270ae389705f90113e7df9" kindref="member">voxel_down_sample</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Eigen::Vector3d&gt;&amp;<sp/>frame,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>voxel_size)<sp/>{</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>inv_voxel_size<sp/>=<sp/>1.0<sp/>/<sp/>voxel_size;</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/>std::unordered_map&lt;Eigen::Vector3i,<sp/>Eigen::Vector3d&gt;<sp/>grid;</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/>grid.reserve(frame.size());</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/>std::for_each(frame.cbegin(),<sp/>frame.cend(),</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>point)<sp/>{<sp/>grid.try_emplace(point_to_voxel(point,<sp/>inv_voxel_size),<sp/>point);<sp/>});</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/>std::vector&lt;Eigen::Vector3d&gt;<sp/>frame_downsampled;</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/>frame_downsampled.reserve(grid.size());</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/>std::for_each(grid.cbegin(),<sp/>grid.cend(),</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>voxel_and_point)<sp/>{<sp/>frame_downsampled.emplace_back(voxel_and_point.second);<sp/>});</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstddef&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;functional&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tsl/robin_set.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utility&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacerko__lio_1_1core" kindref="compound">rko_lio::core</ref><sp/>{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal">std::vector&lt;Eigen::Vector3d&gt;<sp/>voxel_down_sample(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Eigen::Vector3d&gt;&amp;<sp/>frame,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>voxel_size)<sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>inv_voxel_size<sp/>=<sp/>1.0<sp/>/<sp/>voxel_size;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/>tsl::robin_set&lt;Eigen::Vector3i&gt;<sp/>seen;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/>seen.reserve(frame.size());</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/>std::vector&lt;Eigen::Vector3d&gt;<sp/>frame_downsampled;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/>frame_downsampled.reserve(frame.size());</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>point<sp/>:<sp/>frame)<sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(seen.insert(point_to_voxel(point,<sp/>inv_voxel_size)).second)<sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>frame_downsampled.emplace_back(point);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="46"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>frame_downsampled;</highlight></codeline>
 <codeline lineno="47"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"></highlight></codeline>
-<codeline lineno="49"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal">std::vector&lt;Eigen::Vector3d&gt;<sp/>voxel_down_sample_sorted(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Eigen::Vector3d&gt;&amp;<sp/>frame,</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>voxel_size)<sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>inv_voxel_size<sp/>=<sp/>1.0<sp/>/<sp/>voxel_size;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/>tsl::robin_set&lt;Eigen::Vector3i&gt;<sp/>seen;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/>seen.reserve(frame.size());</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/>std::vector&lt;std::pair&lt;std::size_t,<sp/>Eigen::Vector3d&gt;&gt;<sp/>hashed;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/>hashed.reserve(frame.size());</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::hash&lt;Eigen::Vector3i&gt;<sp/>hasher{};</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>point<sp/>:<sp/>frame)<sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>voxel<sp/>=<sp/>point_to_voxel(point,<sp/>inv_voxel_size);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(seen.insert(voxel).second)<sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>hashed.emplace_back(hasher(voxel),<sp/>point);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/>std::sort(hashed.begin(),<sp/>hashed.end(),</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>a,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>b)<sp/>{<sp/>return<sp/>a.first<sp/>&lt;<sp/>b.first;<sp/>});</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/>std::vector&lt;Eigen::Vector3d&gt;<sp/>frame_downsampled;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/>frame_downsampled.reserve(hashed.size());</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>[_,<sp/>v]<sp/>:<sp/>hashed)<sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>frame_downsampled.emplace_back(std::move(v));</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>frame_downsampled;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.cpp"/>
   </compounddef>

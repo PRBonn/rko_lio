@@ -34,9 +34,13 @@ Includes
 
 - ``algorithm``
 
-- ``sophus/se3.hpp``
+- ``cstddef``
 
-- ``unordered_map``
+- ``functional``
+
+- ``tsl/robin_set.h``
+
+- ``utility``
 
 - ``vector`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_ros_vectors.hpp`)
 
@@ -61,4 +65,6 @@ Functions
 
 
 - :ref:`exhale_function_namespacerko__lio_1_1core_1ad33113e678270ae389705f90113e7df9`
+
+- :ref:`exhale_function_namespacerko__lio_1_1core_1a27a9bf0318203f6e11f4edc735c08123`
 

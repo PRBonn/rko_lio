@@ -123,7 +123,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.cpp" line="6" column="21" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.cpp" bodystart="6" bodyend="27" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.hpp" declline="16" declcolumn="21"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.cpp" line="6" column="21" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.cpp" bodystart="6" bodyend="29" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.hpp" declline="16" declcolumn="21"/>
       </memberdef>
       <memberdef kind="function" id="namespacerko__lio_1_1core_1ac1fb80bf51f668bd3442bcb18044a57c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structrko__lio_1_1core_1_1Timestamps" kindref="compound">Timestamps</ref></type>
@@ -261,13 +261,34 @@
           <declname>voxel_size</declname>
         </param>
         <briefdescription>
-<para>Voxelize point cloud keeping the original coordinates. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.cpp" line="36" column="13" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.cpp" bodystart="36" bodyend="47" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" declline="31" declcolumn="13"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.cpp" line="35" column="13" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.cpp" bodystart="35" bodyend="47" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" declline="31" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacerko__lio_1_1core_1a27a9bf0318203f6e11f4edc735c08123" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; Eigen::Vector3d &gt;</type>
+        <definition>std::vector&lt; Eigen::Vector3d &gt; rko_lio::core::voxel_down_sample_sorted</definition>
+        <argsstring>(const std::vector&lt; Eigen::Vector3d &gt; &amp;frame, const double voxel_size)</argsstring>
+        <name>voxel_down_sample_sorted</name>
+        <qualifiedname>rko_lio::core::voxel_down_sample_sorted</qualifiedname>
+        <param>
+          <type>const std::vector&lt; Eigen::Vector3d &gt; &amp;</type>
+          <declname>frame</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>voxel_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.cpp" line="49" column="13" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.cpp" bodystart="49" bodyend="72" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" declline="37" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacerko__lio_1_1core_1ae81cb719c6cfedad68ce10f0b0b22261" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Eigen::Vector3i</type>
@@ -289,7 +310,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" line="33" column="24" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" bodystart="33" bodyend="37"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" line="40" column="24" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" bodystart="40" bodyend="44"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
