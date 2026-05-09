@@ -23,11 +23,15 @@
 #include "rko_lio/core/voxel_down_sample.hpp"
 #include <algorithm>
 #include <catch2/catch_test_macros.hpp>
+#include <cstddef>
+#include <functional>
 #include <set>
 #include <tuple>
 #include <vector>
 
+using rko_lio::core::point_to_voxel;
 using rko_lio::core::voxel_down_sample;
+using rko_lio::core::voxel_down_sample_sorted;
 
 namespace {
 std::set<std::tuple<int, int, int>> as_voxel_set(const std::vector<Eigen::Vector3d>& points, double voxel_size) {
@@ -83,4 +87,35 @@ TEST_CASE("voxel_down_sample: doubling voxel size collapses points", "[voxel_dow
   const auto large = voxel_down_sample(points, 1.0);
   REQUIRE(small.size() == 2);
   REQUIRE(large.size() == 1);
+}
+
+TEST_CASE("voxel_down_sample_sorted: empty input -> empty output", "[voxel_down_sample_sorted]") {
+  const std::vector<Eigen::Vector3d> empty;
+  const auto result = voxel_down_sample_sorted(empty, 0.5);
+  REQUIRE(result.empty());
+}
+
+TEST_CASE("voxel_down_sample_sorted: same occupied voxels as voxel_down_sample", "[voxel_down_sample_sorted]") {
+  const double voxel_size = 0.5;
+  const std::vector<Eigen::Vector3d> points = {{0.1, 0.1, 0.1}, {3.2, 1.1, 0.7}, {7.5, 4.5, 2.3},
+                                               {0.4, 0.4, 0.4}, {3.3, 1.2, 0.8}, {-2.1, 5.6, -3.4}};
+  const auto plain = voxel_down_sample(points, voxel_size);
+  const auto sorted = voxel_down_sample_sorted(points, voxel_size);
+  REQUIRE(plain.size() == sorted.size());
+  REQUIRE(as_voxel_set(plain, voxel_size) == as_voxel_set(sorted, voxel_size));
+}
+
+TEST_CASE("voxel_down_sample_sorted: output is sorted by hash(voxel)", "[voxel_down_sample_sorted]") {
+  const double voxel_size = 0.5;
+  const double inv_voxel_size = 1.0 / voxel_size;
+  // a spread of points across distinct voxels so the hash order isn't trivially monotonic in input order
+  const std::vector<Eigen::Vector3d> points = {{0.1, 0.1, 0.1},  {3.2, 1.1, 0.7},  {7.5, 4.5, 2.3}, {-2.1, 5.6, -3.4},
+                                               {1.7, -2.4, 4.0}, {-4.4, -4.4, 1.1}};
+  const auto result = voxel_down_sample_sorted(points, voxel_size);
+  REQUIRE(result.size() >= 2);
+  const std::hash<Eigen::Vector3i> hasher{};
+  for (std::size_t i = 1; i < result.size(); ++i) {
+    REQUIRE(hasher(point_to_voxel(result[i - 1], inv_voxel_size)) <=
+            hasher(point_to_voxel(result[i], inv_voxel_size)));
+  }
 }
