@@ -30,7 +30,6 @@
 #include <sophus/se3.hpp>
 // tbb
 #include <tbb/blocked_range.h>
-#include <tbb/concurrent_vector.h>
 #include <tbb/global_control.h>
 #include <tbb/parallel_reduce.h>
 #include <tbb/task_arena.h>
@@ -237,6 +236,16 @@ inline Sophus::SO3d align_accel_to_z_world(const Eigen::Vector3d& accel) {
 // ==========================
 
 namespace rko_lio::core {
+
+LIO::LIO(const Config& config_)
+    : config(config_), map(config_.voxel_size, config_.max_range, config_.max_points_per_voxel) {
+  // Pin TBB's worker pool to config.max_num_threads (0 = leave at TBB default).
+  [[maybe_unused]] static const auto tbb_thread_limit = [&] {
+    const int requested = config.max_num_threads;
+    const int threads = requested > 0 ? requested : tbb::this_task_arena::max_concurrency();
+    return tbb::global_control(tbb::global_control::max_allowed_parallelism, static_cast<size_t>(threads));
+  }();
+}
 
 // ==========================
 //          private
