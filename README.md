@@ -30,7 +30,7 @@ Assuming you have a rosbag (ros1/ros2) which contains a TF tree, you can run RKO
 ```bash
 pip install "rko_lio[all]"
 # or
-pip install rko_lio rosbags "rerun-sdk<0.27"
+pip install rko_lio rosbags "rerun-sdk>=0.31,<0.32"
 # data path should be a directory with *.bag files (ROS1) or a metadata.yaml (ROS2)
 rko_lio -v /path/to/data
 ```
