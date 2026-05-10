@@ -160,7 +160,7 @@ class LIOPipeline:
         """
         if self.config.viz:
             # needs to be logged before the pybinded register function is called
-            self.rerun.set_time("data_time", timestamp=end_time * 1e-9)
+            self.rerun.set_time("data_time", timestamp=end_time_ns * 1e-9)
             stats = self.lio.interval_stats()
             self.rerun.log("imu/imu_count", self.rerun.Scalars(float(stats.imu_count)))
             log_vector(self.rerun, "imu/avg_acceleration", stats.avg_imu_accel())
@@ -183,28 +183,25 @@ class LIOPipeline:
         if self.config.dump_deskewed_scans:
             save_scan_as_ply(
                 deskewed_scan,
-                end_time,
+                end_time_ns,
                 output_dir=self.output_dir / "deskewed_scans",
             )
 
         if self.config.viz:
-            # TODO: rerun the deskewed scan as well, but there is some flickering in the viz for some reason
-            self._visualize_frame(end_time)
+            self._visualize_frame(end_time_ns, deskewed_scan)
 
         return deskewed_scan
 
     @profile_func("Pipeline - Visualization")
-    def _visualize_frame(self, end_time: int):
-        self.rerun.set_time("data_time", timestamp=end_time * 1e-9)
-        pose = self.lio.pose()
+    def _visualize_frame(self, end_time_ns: int, deskewed_scan: np.ndarray):
+        scan_time_s = end_time_ns * 1e-9
+        self.rerun.set_time("data_time", timestamp=scan_time_s)
+        pose = self.lio.pose()  # base -> world
         self.rerun.log(
-            "world/lidar",
-            self.rerun.Transform3D(
-                translation=pose[:3, 3],
-                mat3x3=pose[:3, :3],
-                axis_length=2,
-            ),
+            "world/base",
+            self.rerun.Transform3D(translation=pose[:3, 3], mat3x3=pose[:3, :3]),
         )
+        self.rerun.log("world/base", self.rerun.TransformAxes3D(2.0))
         self.rerun.log(
             "world/view_anchor",
             self.rerun.Transform3D(translation=pose[:3, 3]),
@@ -220,8 +217,13 @@ class LIOPipeline:
         if self.viz_counter % self.config.viz_every_n_frames != 0:
             # logging the point clouds is more expensive
             # especially the local map, as we have to iterate over the entire map
-            # so we publish the lidar every n frames
+            # so we publish the lidar every n frames.
             return
+
+        # pre transform the scan ourselves, because trying to rely on rerun to transform it leads to jitter
+        T_world_lidar = pose @ self.extrinsic_lidar2base
+        scan_world = (T_world_lidar[:3, :3] @ deskewed_scan.T).T + T_world_lidar[:3, 3]
+        self.rerun.log("world/lidar_scan", self.rerun.Points3D(scan_world))
 
         local_map_points = self.lio.map_point_cloud()
         if local_map_points.size > 0:
