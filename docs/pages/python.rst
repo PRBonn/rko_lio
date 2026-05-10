@@ -34,7 +34,7 @@ For example, to use the rosbag dataloader and visualize the results:
 
 .. code-block:: bash
 
-   pip install rko_lio rosbags rerun-sdk
+   pip install rko_lio rosbags "rerun-sdk>=0.31"
 
 Or install everything at once:
 

@@ -184,8 +184,8 @@ class HeliprDataLoader:
                 return (
                     "lidar",
                     {
-                        "start_time": start_ns,
-                        "end_time": end_ns,
+                        "start_time_ns": start_ns,
+                        "end_time_ns": end_ns,
                         "scan": points_arr,
                         "timestamps": np.asarray(abs_timestamps_ns, dtype=np.int64),
                     },

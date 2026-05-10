@@ -215,8 +215,8 @@ class RosbagDataLoader:
                 self.timestamp_config.to_pybind(),
             )
             return {
-                "start_time": start_ns,
-                "end_time": end_ns,
+                "start_time_ns": start_ns,
+                "end_time_ns": end_ns,
                 "scan": points,
                 "timestamps": np.asarray(abs_timestamps_ns, dtype=np.int64),
             }
@@ -228,8 +228,8 @@ class RosbagDataLoader:
                     "Could not detect timestamps in the point cloud. Odometry performance will suffer. Also please disable deskewing (enabled by default) otherwise the odometry may not work properly."
                 )
             return {
-                "start_time": header_stamp_ns,
-                "end_time": header_stamp_ns,
+                "start_time_ns": header_stamp_ns,
+                "end_time_ns": header_stamp_ns,
                 "scan": points,
                 "timestamps": timestamps,
             }
