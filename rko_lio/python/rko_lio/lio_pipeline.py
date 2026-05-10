@@ -21,12 +21,11 @@
 # SOFTWARE.
 
 """
-Equivalent logic to the ros wrapper's message buffering.
-A convenience class to buffer IMU and LiDAR messages to ensure the core cpp implementation always
-gets the data in sync.
-The difference is this is not multi-threaded, therefore is a bit slower.
+Equivalent logic to the ros node but mostly synchronous. Only the rerun viz is multi-threaded.
 """
 
+import atexit
+import threading
 from pathlib import Path
 
 import numpy as np
@@ -52,8 +51,10 @@ class LIOPipeline:
     def __init__(
         self,
         config: PipelineConfig,
+        map_log_period_s: float = 1.0,
     ):
         self.config = config
+        self.map_log_period_s = map_log_period_s
         self.lio = LIO(config.lio)
         self.extrinsic_imu2base = quat_xyzw_xyz_to_transform(
             config.extrinsic_imu2base_quat_xyzw_xyz
@@ -68,8 +69,14 @@ class LIOPipeline:
             import rerun
 
             self.rerun = rerun
-            self.viz_counter = 0
             self.last_xyz = np.zeros(3)
+            self.cloud_box = LatestMailbox()
+            self.last_map_log_s = -float("inf")
+            self.cloud_thread = threading.Thread(
+                target=self.cloud_log_loop, daemon=True
+            )
+            self.cloud_thread.start()
+            atexit.register(self.close)
             if self.lio.config.initialization_phase:
                 self.rerun.log(
                     "world",
@@ -188,12 +195,12 @@ class LIOPipeline:
             )
 
         if self.config.viz:
-            self._visualize_frame(end_time_ns, deskewed_scan)
+            self.visualize(end_time_ns, deskewed_scan)
 
         return deskewed_scan
 
     @profile_func("Pipeline - Visualization")
-    def _visualize_frame(self, end_time_ns: int, deskewed_scan: np.ndarray):
+    def visualize(self, end_time_ns: int, deskewed_scan: np.ndarray):
         scan_time_s = end_time_ns * 1e-9
         self.rerun.set_time("data_time", timestamp=scan_time_s)
         pose = self.lio.pose()  # base -> world
@@ -213,27 +220,50 @@ class LIOPipeline:
         )
         self.last_xyz = pose[:3, 3].copy()
 
-        self.viz_counter += 1
-        if self.viz_counter % self.config.viz_every_n_frames != 0:
-            # logging the point clouds is more expensive
-            # especially the local map, as we have to iterate over the entire map
-            # so we publish the lidar every n frames.
-            return
-
-        # pre transform the scan ourselves, because trying to rely on rerun to transform it leads to jitter
+        # Hand the heavy work off to the worker thread
+        # Local map is sampled here as the next register_scan mutates it which can race
         T_lidar2world = pose @ self.extrinsic_lidar2base
-        scan_world = (T_lidar2world[:3, :3] @ deskewed_scan.T).T + T_lidar2world[:3, 3]
-        self.rerun.log("world/deskewed_scan", self.rerun.Points3D(scan_world))
+        local_map = None
+        if scan_time_s - self.last_map_log_s >= self.map_log_period_s:
+            pts = self.lio.map_point_cloud()
+            if pts.size > 0:
+                local_map = pts
+                self.last_map_log_s = scan_time_s
 
-        local_map_points = self.lio.map_point_cloud()
-        if local_map_points.size > 0:
-            self.rerun.log(
-                "world/local_map",
-                self.rerun.Points3D(
-                    local_map_points,
-                    colors=height_colors_from_points(local_map_points),
+        self.cloud_box.put((scan_time_s, deskewed_scan, T_lidar2world, local_map))
+
+    def cloud_log_loop(self):
+        # send_columns binds the timestamp to the data, so we don't race the
+        # main thread's rr.set_time() global timeline state.
+        rr = self.rerun
+        for item in iter(self.cloud_box.get, None):
+            scan_time_s, deskewed_scan, T_lidar2world, local_map = item
+            scan_world = (T_lidar2world[:3, :3] @ deskewed_scan.T).T + T_lidar2world[
+                :3, 3
+            ]
+            time_idx = [rr.TimeColumn("data_time", timestamp=[scan_time_s])]
+            rr.send_columns(
+                "world/deskewed_scan",
+                indexes=time_idx,
+                columns=rr.Points3D.columns(positions=scan_world).partition(
+                    [len(scan_world)]
                 ),
             )
+            if local_map is not None:
+                rr.send_columns(
+                    "world/local_map",
+                    indexes=time_idx,
+                    columns=rr.Points3D.columns(
+                        positions=local_map,
+                        colors=height_colors_from_points(local_map),
+                    ).partition([len(local_map)]),
+                )
+
+    def close(self):
+        if not self.config.viz:
+            return
+        self.cloud_box.close()
+        self.cloud_thread.join()
 
     def dump_results_to_disk(self):
         """
@@ -258,3 +288,31 @@ class LIOPipeline:
         with settings_file.open("w") as f:
             yaml.dump(config, f, sort_keys=False)
         info(f"Configuration written to {settings_file.resolve()}")
+
+
+class LatestMailbox:
+    """
+    Single-slot, latest-wins handoff between producer and one consumer.
+    Producer never blocks.
+    """
+
+    def __init__(self):
+        self.cv = threading.Condition()
+        self.item = None
+        self.closed = False
+
+    def put(self, item):
+        with self.cv:
+            self.item = item
+            self.cv.notify()
+
+    def get(self):
+        with self.cv:
+            self.cv.wait_for(lambda: self.item is not None or self.closed)
+            item, self.item = self.item, None
+            return item
+
+    def close(self):
+        with self.cv:
+            self.closed = True
+            self.cv.notify()

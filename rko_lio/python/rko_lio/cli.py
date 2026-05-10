@@ -113,12 +113,6 @@ def cli(
         help="Enable Rerun visualization",
         rich_help_panel="Visualisation options",
     ),
-    viz_every_n_frames: int = typer.Option(
-        20,
-        "--viz_frame_skip",
-        help="Publish (rerun) LiDAR information after specified number of frames. A low value will slow down the entire pipeline as logging LiDAR data is expensive.",
-        rich_help_panel="Visualisation options",
-    ),
     rbl_path: Path | None = typer.Option(
         None,
         "--rbl",
@@ -234,12 +228,11 @@ def cli(
     user_config["dump_deskewed_scans"] = log_results and (
         dump_deskewed_scans or user_config.get("dump_deskewed_scans", False)
     )
-    invalid_keys = ["viz", "viz_every_n_frames"]
+    invalid_keys = ["viz"]
     for key in invalid_keys:
         if key in user_config:
             warning(f"{key} specified in config will be ignored.")
     user_config["viz"] = viz
-    user_config["viz_every_n_frames"] = viz_every_n_frames
 
     from .config import PipelineConfig
 
