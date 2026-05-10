@@ -221,8 +221,8 @@ class LIOPipeline:
             return
 
         # pre transform the scan ourselves, because trying to rely on rerun to transform it leads to jitter
-        T_world_lidar = pose @ self.extrinsic_lidar2base
-        scan_world = (T_world_lidar[:3, :3] @ deskewed_scan.T).T + T_world_lidar[:3, 3]
+        T_lidar2world = pose @ self.extrinsic_lidar2base
+        scan_world = (T_lidar2world[:3, :3] @ deskewed_scan.T).T + T_lidar2world[:3, 3]
         self.rerun.log("world/deskewed_scan", self.rerun.Points3D(scan_world))
 
         local_map_points = self.lio.map_point_cloud()
