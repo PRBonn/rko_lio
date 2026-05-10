@@ -131,8 +131,8 @@ class LIOPipeline:
     @profile_func("Pipeline - Register Scan")
     def register_scan(
         self,
-        start_time: int,
-        end_time: int,
+        start_time_ns: int,
+        end_time_ns: int,
         scan: np.ndarray,
         timestamps: np.ndarray,
     ):
@@ -144,9 +144,9 @@ class LIOPipeline:
 
         Parameters
         ----------
-        start_time: int
+        start_time_ns: int
             Absolute time of the scan recording start, in nanoseconds.
-        end_time: int
+        end_time_ns: int
             Absolute time of the scan recording end, in nanoseconds.
         scan : array of float, shape (N,3)
             Point cloud.

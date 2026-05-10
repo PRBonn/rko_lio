@@ -326,8 +326,8 @@ class RawDataLoader:
                 points = ply.point["positions"].numpy()
                 timestamps_ns = np.round(np.asarray(timestamps_sec, dtype=np.float64) * 1e9).astype(np.int64)
                 return "lidar", {
-                    "start_time": int(timestamps_ns.min()),
-                    "end_time": int(timestamps_ns.max()),
+                    "start_time_ns": int(timestamps_ns.min()),
+                    "end_time_ns": int(timestamps_ns.max()),
                     "scan": points,
                     "timestamps": timestamps_ns,
                 }

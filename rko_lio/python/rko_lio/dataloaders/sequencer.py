@@ -7,11 +7,11 @@ class LidarIMUSequencer:
     """
     Wraps a dataloader and yields data in processing order:
     LiDAR frames only when sufficient IMU coverage is available (latest
-    IMU.time > LiDAR.end_time). Maintains internal buffers and returns
+    IMU.time > LiDAR.end_time_ns). Maintains internal buffers and returns
     data sequentially.
 
-    Input format: ("imu", {time, accel, gyro}) or ("lidar", {start_time, end_time, scan, timestamps})
-    Output format: same as above but sorted as per imu_time and lidar_end_time
+    Input format: ("imu", {time, accel, gyro}) or ("lidar", {start_time_ns, end_time_ns, scan, timestamps})
+    Output format: same as above but sorted as per imu_time and lidar_end_time_ns
     """
 
     def __init__(self, dataloader):
@@ -19,7 +19,7 @@ class LidarIMUSequencer:
         self.data_it = iter(dataloader)
         # Each: dict with keys 'time', 'accel', 'gyro'
         self.imu_buffer: list[dict] = []
-        # Each: dict with keys 'start_time', 'end_time', 'scan', 'timestamps'
+        # Each: dict with keys 'start_time_ns', 'end_time_ns', 'scan', 'timestamps'
         self.lidar_buffer: list[dict] = []
 
     def __len__(self):
@@ -30,7 +30,7 @@ class LidarIMUSequencer:
         return (
             self.lidar_buffer
             and self.imu_buffer
-            and self.imu_buffer[-1]["time"] > self.lidar_buffer[0]["end_time"]
+            and self.imu_buffer[-1]["time"] > self.lidar_buffer[0]["end_time_ns"]
         )
 
     def _read_next_from_wrapped_loader(self):
@@ -50,7 +50,7 @@ class LidarIMUSequencer:
             if self._buffers_ready():
                 frame = self.lidar_buffer.pop(0)
                 imus_to_process = [
-                    imu for imu in self.imu_buffer if imu["time"] < frame["end_time"]
+                    imu for imu in self.imu_buffer if imu["time"] < frame["end_time_ns"]
                 ]
                 for imu in imus_to_process:
                     yield ("imu", imu)
@@ -58,7 +58,7 @@ class LidarIMUSequencer:
                 yield ("lidar", frame)
 
                 self.imu_buffer = [
-                    imu for imu in self.imu_buffer if imu["time"] >= frame["end_time"]
+                    imu for imu in self.imu_buffer if imu["time"] >= frame["end_time_ns"]
                 ]
 
             try:
