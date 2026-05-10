@@ -99,8 +99,7 @@ public:
   /** IMU measurement statistics since last LiDAR frame. */
   IntervalStats interval_stats;
 
-  explicit LIO(const Config& config_)
-      : config(config_), map(config_.voxel_size, config_.max_range, config_.max_points_per_voxel) {}
+  explicit LIO(const Config& config_);
 
   /** Add an IMU measurement expressed in the base frame. */
   void add_imu_measurement(const ImuControl& base_imu);
