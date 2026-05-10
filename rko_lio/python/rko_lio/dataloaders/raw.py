@@ -14,10 +14,12 @@ When using the raw dataloader, arrange your dataset directory as follows:
        ├── 1662622238000000000.ply
        └── ...
 
-- ``transforms.yaml``: defines two keys (``T_imu_to_base``, ``T_lidar_to_base``), each a 4×4 matrix. See :ref:`Extrinsics and conventions <data-extrinsics-convention>`.
+- ``transforms.yaml``: defines two keys (``T_imu_to_base``, ``T_lidar_to_base``), each a 4x4 matrix. See :ref:`Extrinsics and conventions <data-extrinsics-convention>`.
 - IMU file: Only one file (CSV or TXT) is allowed. Required columns: ``timestamp, gyro_x, gyro_y, gyro_z, accel_x, accel_y, accel_z``. Extra columns are allowed. ``timestamp`` in nanoseconds, others in SI units.
 - ``lidar/``: contains scans as PLY files. Each filename is a timestamp (ns) for the scan.
   Each PLY file must have a time field (accepted names: ``time``, ``timestamp``, ``timestamps``, or ``t``) in **seconds**.
+
+Note the unit difference: filenames are in **nanoseconds**, the per-point time field inside each PLY is in **seconds**. This is intentional (filenames are easier to sort as integers) but easy to get wrong.
 """
 
 # MIT License
@@ -304,7 +306,7 @@ class RawDataLoader:
 
             if kind == "imu":
                 return "imu", {
-                    "time": data["timestamp"] / 1e9,
+                    "time": int(data["timestamp"]),
                     "acceleration": data["accel"],
                     "angular_velocity": data["gyro"],
                 }
@@ -313,7 +315,7 @@ class RawDataLoader:
                 # Find a field for per-point timestamp
                 for attr_name in self.possible_timestamp_attribute_names:
                     if attr_name in ply.point:
-                        timestamps = ply.point[attr_name].numpy().flatten()
+                        timestamps_sec = ply.point[attr_name].numpy().flatten()
                         # TODO: use pybind.process_timestamps to handle non seconds cases
                         break
                 else:
@@ -322,11 +324,12 @@ class RawDataLoader:
                         f"No per-point timestamp attribute found in {data['filename']}. Please check the attributes."
                     )
                 points = ply.point["positions"].numpy()
+                timestamps_ns = np.round(np.asarray(timestamps_sec, dtype=np.float64) * 1e9).astype(np.int64)
                 return "lidar", {
-                    "start_time": np.min(timestamps),
-                    "end_time": np.max(timestamps),
+                    "start_time": int(timestamps_ns.min()),
+                    "end_time": int(timestamps_ns.max()),
                     "scan": points,
-                    "timestamps": timestamps,
+                    "timestamps": timestamps_ns,
                 }
 
     def __repr__(self):

@@ -22,9 +22,6 @@
 
 include(FetchContent)
 
-option(RKO_LIO_FETCH_CONTENT_DEPS
-       "Fetch dependencies via FetchContent instead of using find_package" OFF)
-
 set(RKO_LIO_FETCHCONTENT_COMMON_FLAGS)
 if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.24")
   list(APPEND RKO_LIO_FETCHCONTENT_COMMON_FLAGS OVERRIDE_FIND_PACKAGE)
@@ -38,10 +35,8 @@ endif()
 
 include(${CMAKE_CURRENT_LIST_DIR}/mock_find_package.cmake)
 
-# Bonxai is a special case as upstream releases no system version
-include(${CMAKE_CURRENT_LIST_DIR}/dependencies/bonxai/bonxai.cmake)
-
 if(RKO_LIO_FETCH_CONTENT_DEPS)
+  include(${CMAKE_CURRENT_LIST_DIR}/dependencies/tsl_robin/tsl_robin.cmake)
   include(${CMAKE_CURRENT_LIST_DIR}/dependencies/eigen/eigen.cmake)
   include(${CMAKE_CURRENT_LIST_DIR}/dependencies/sophus/sophus.cmake)
   include(${CMAKE_CURRENT_LIST_DIR}/dependencies/tbb/tbb.cmake)
@@ -49,4 +44,8 @@ if(RKO_LIO_FETCH_CONTENT_DEPS)
   if(RKO_LIO_BUILD_ROS)
     include(${CMAKE_CURRENT_LIST_DIR}/dependencies/json/nlohmann_json.cmake)
   endif()
+endif()
+
+if(RKO_LIO_BUILD_TESTS)
+  include(${CMAKE_CURRENT_LIST_DIR}/dependencies/catch2/catch2.cmake)
 endif()

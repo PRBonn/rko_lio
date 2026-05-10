@@ -25,46 +25,62 @@
 #include "process_timestamps.hpp"
 #include <algorithm>
 #include <cmath>
+#include <cstdint>
 #include <functional>
 #include <iomanip>
 #include <iostream>
 #include <stdexcept>
 
 namespace {
-using rko_lio::core::Secondsd;
+using rko_lio::core::Nsec;
 using rko_lio::core::TimestampProcessingConfig;
 using rko_lio::core::Timestamps;
 using rko_lio::core::TimestampVector;
 using namespace std::chrono_literals;
 
+inline Nsec raw_to_ns(const double ts, const double multiplier_to_ns, const bool source_is_ns) {
+  if (source_is_ns) {
+    return Nsec(static_cast<int64_t>(ts));
+  }
+  return Nsec(static_cast<int64_t>(std::llround(ts * multiplier_to_ns)));
+}
+
 // The timestamps are either in seconds or in nanoseconds, otherwise the user needs to specify the multiplier
-Timestamps timestamps_in_sec_from_raw(const std::vector<double>& raw_timestamps, const double multiplier_to_seconds) {
+Timestamps timestamps_from_raw(const std::vector<double>& raw_timestamps, const double multiplier_to_seconds) {
   const auto& [min_it, max_it] = std::minmax_element(raw_timestamps.begin(), raw_timestamps.end());
   const double min_stamp = *min_it;
   const double max_stamp = *max_it;
-  double timestamp_multiplier = multiplier_to_seconds;
 
-  if (timestamp_multiplier < 1e-12) {
+  bool source_is_ns = false;
+  double multiplier_to_ns = 0.0;
+  if (multiplier_to_seconds < 1e-12) {
     const double scan_duration = std::abs(max_stamp - min_stamp);
-    const bool is_nanoseconds = (scan_duration > 100.0);
     // 100 seconds is far more than the duration of any normal scan
-    timestamp_multiplier = is_nanoseconds ? 1e-9 : 1.0;
+    source_is_ns = (scan_duration > 100.0);
+    multiplier_to_ns = source_is_ns ? 1.0 : 1e9;
+  } else {
+    multiplier_to_ns = multiplier_to_seconds * 1e9;
   }
 
-  TimestampVector times_in_seconds(raw_timestamps.size());
-  std::transform(raw_timestamps.cbegin(), raw_timestamps.cend(), times_in_seconds.begin(),
-                 [timestamp_multiplier](const double ts) { return Secondsd(ts * timestamp_multiplier); });
-  return {.min = Secondsd(min_stamp * timestamp_multiplier),
-          .max = Secondsd(max_stamp * timestamp_multiplier),
-          .times = times_in_seconds};
+  TimestampVector times_ns(raw_timestamps.size());
+  std::transform(raw_timestamps.cbegin(), raw_timestamps.cend(), times_ns.begin(),
+                 [multiplier_to_ns, source_is_ns](const double ts) {
+                   return raw_to_ns(ts, multiplier_to_ns, source_is_ns);
+                 });
+  return {.min = raw_to_ns(min_stamp, multiplier_to_ns, source_is_ns),
+          .max = raw_to_ns(max_stamp, multiplier_to_ns, source_is_ns),
+          .times = times_ns};
 }
 } // namespace
 
 namespace rko_lio::core {
 Timestamps process_timestamps(const std::vector<double>& raw_timestamps,
-                              const Secondsd& header_stamp,
+                              const Nsec header_stamp,
                               const TimestampProcessingConfig& config) {
-  Timestamps timestamps = timestamps_in_sec_from_raw(raw_timestamps, config.multiplier_to_seconds);
+  if (raw_timestamps.empty()) {
+    throw std::invalid_argument("process_timestamps: raw_timestamps must not be empty.");
+  }
+  Timestamps timestamps = timestamps_from_raw(raw_timestamps, config.multiplier_to_seconds);
 
   const bool absolute_stamps = config.force_absolute || (std::chrono::abs(header_stamp - timestamps.min) < 1ms) ||
                                (std::chrono::abs(header_stamp - timestamps.max) < 10ms);
@@ -78,7 +94,7 @@ Timestamps process_timestamps(const std::vector<double>& raw_timestamps,
 
   if (relative_stamps) {
     std::transform(timestamps.times.cbegin(), timestamps.times.cend(), timestamps.times.begin(),
-                   [&header_stamp](const Secondsd& ts) { return ts + header_stamp; });
+                   [header_stamp](const Nsec ts) { return ts + header_stamp; });
     timestamps.min += header_stamp;
     timestamps.max += header_stamp;
     return timestamps;
@@ -86,11 +102,11 @@ Timestamps process_timestamps(const std::vector<double>& raw_timestamps,
 
   // Error-out for unique/unsupported cases
   std::cout << std::setprecision(18);
-  std::cout << "is_absolute: " << relative_stamps << "\n";
+  std::cout << "is_absolute: " << absolute_stamps << "\n";
   std::cout << "is_relative: " << relative_stamps << "\n";
-  std::cout << "point times min: " << timestamps.min.count() << "\n";
-  std::cout << "point times max: " << timestamps.max.count() << "\n";
-  std::cout << "header_sec: " << header_stamp.count() << "\n";
+  std::cout << "point times min (ns): " << timestamps.min.count() << "\n";
+  std::cout << "point times max (ns): " << timestamps.max.count() << "\n";
+  std::cout << "header_stamp (ns): " << header_stamp.count() << "\n";
   std::cout << "TimestampProcessingConfig:\n"
             << "  multiplier_to_seconds: " << config.multiplier_to_seconds << "\n"
             << "  force_absolute: " << std::boolalpha << config.force_absolute << "\n"

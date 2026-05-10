@@ -137,9 +137,9 @@ def cli(
         rich_help_panel="Visualisation options",
     ),
     log_results: bool = typer.Option(
-        False,
-        "--log",
-        "-l",
+        True,
+        "--log/--no_log",
+        "-l/-L",
         help="Log trajectory results to disk at 'log_dir' on completion",
         rich_help_panel="Disk logging options",
     ),
@@ -223,24 +223,6 @@ def cli(
     Run RKO_LIO with the selected dataloader and parameters.
     """
 
-    if viz:
-        try:
-            import rerun as rr
-
-            rr.init("rko_lio")
-            rr.spawn(memory_limit="2GB")
-            if reset_viz:
-                rr.log_file_from_path(
-                    Path(__file__).parent / "rko_lio.rbl"
-                    if rbl_path is None
-                    else rbl_path
-                )
-
-        except ImportError:
-            error_and_exit(
-                "Please install rerun with `pip install rerun-sdk` to enable visualization."
-            )
-
     user_config = {}
     if config_fp:
         with open(config_fp, "r") as f:
@@ -305,14 +287,30 @@ def cli(
             "Fatal: Could not obtain required IMU/Lidar extrinsics. Please specify in a config or as part of your data."
         )
 
-    from .util import transform_to_quat_xyzw_xyz
-
     print("Resolved extrinsics:")
     print("  IMU to Base:", pipeline_config.extrinsic_imu2base_quat_xyzw_xyz)
     print(
         "  Lidar to Base:",
         pipeline_config.extrinsic_lidar2base_quat_xyzw_xyz,
     )
+
+    if viz:
+        try:
+            import rerun as rr
+
+            rr.init("rko_lio")
+            rr.spawn(memory_limit="2GB")
+            if reset_viz:
+                rr.log_file_from_path(
+                    Path(__file__).parent / "rko_lio.rbl"
+                    if rbl_path is None
+                    else rbl_path
+                )
+
+        except ImportError:
+            error_and_exit(
+                "Please install rerun with `pip install rerun-sdk` to enable visualization."
+            )
 
     from .lio_pipeline import LIOPipeline
 

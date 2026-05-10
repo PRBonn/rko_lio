@@ -6,33 +6,33 @@ Python
 
 .. code-block:: bash
 
-    pip install rko_lio
-    rko_lio data_dir
+    pip install "rko_lio[all]"
+    rko_lio -v /path/to/data
 
-For example, if you’re running on a ROS bag, place all split parts in one folder (with ``metadata.yaml`` for ROS2) and pass that folder as ``data_dir``.
+For example, if you're running on a ROS bag, place all split parts in one folder (with ``metadata.yaml`` for ROS2) and pass that folder as the data path.
+``-v`` opens the rerun visualizer.
 
-By default, ``rko_lio`` tries to infer topics and TF relationships automatically, but you can override these using flags like ``--lidar``, ``--imu``, or ``--base_frame``.
-If your bag doesn’t contain TF information, you’ll need to specify the IMU–LiDAR extrinsics via a config YAML (``rko_lio --dump_config`` will write a default config).
+By default, ``rko_lio`` tries to infer topics and TF relationships automatically; override with flags like ``--lidar``, ``--imu``, or ``--base_frame``.
+If your bag doesn't contain TF, supply IMU--LiDAR extrinsics via a YAML config (``rko_lio --dump_config`` writes a default one to start from).
 
-See :doc:`Python usage <python/usage>` for detailed examples and advanced options.
+See :doc:`Python <python>` for detailed examples and the full CLI surface.
 
 ROS
 ---
 
-Supported distros: Humble, Jazzy, Kilted, Rolling
+Supported distros: Humble, Jazzy, Kilted, Rolling.
 
 .. code-block:: bash
 
     sudo apt install ros-${ROS_DISTRO}-rko-lio
-    ros2 launch rko_lio odometry.launch.py
+    ros2 launch rko_lio odometry.launch.py \
+        lidar_topic:=/your/lidar imu_topic:=/your/imu base_frame:=base
 
-Please see :doc:`build from source <ros/setup>` if you want to do that instead.
+If you want to build from source instead, see :doc:`ROS <ros>`.
 
-The launch file supports both online and offline modes via the ``mode`` argument and expects at least ``lidar_topic``, ``imu_topic``, and ``base_frame``.
-
-You can override configuration parameters through CLI or a separate YAML file (e.g., ``config_file:=/path/to/config``).
-
-For visualization, add ``rviz:=true``.
+The launch file supports both online and offline modes via the ``mode`` argument and requires at least ``lidar_topic``, ``imu_topic``, and ``base_frame``.
+Override individual parameters on the CLI or load them from a YAML file (``config_file:=/path/to/config``).
+Add ``rviz:=true`` for visualization.
 
 To explore all launch parameters:
 
@@ -40,4 +40,4 @@ To explore all launch parameters:
 
     ros2 launch rko_lio odometry.launch.py -s
 
-See :doc:`ROS Usage <ros/usage>` for an extended description.
+See :doc:`ROS <ros>` for an extended description.

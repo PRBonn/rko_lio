@@ -35,7 +35,7 @@ compat_target_sources(
         ../../../rko_lio/ros/utils/time.hpp
         ../../../rko_lio/ros/utils/transforms.hpp
         ../../../rko_lio/ros/utils/utils.hpp
-  BASE_DIRS ../..)
+  BASE_DIRS ../../..)
 target_link_libraries(
   rko_lio.ros.utils
   PUBLIC # ros deps
@@ -50,5 +50,5 @@ target_link_libraries(
          # ros deps end
          Sophus::Sophus
          Eigen3::Eigen)
-set_target_properties(rko_lio.ros.utils PROPERTIES POSITION_INDEPENDENT_CODE ON)
-# TODO: add the ros.utils as a library export target to enable reuse
+set_target_properties(rko_lio.ros.utils PROPERTIES POSITION_INDEPENDENT_CODE ON
+                                                    EXPORT_NAME ros::utils)

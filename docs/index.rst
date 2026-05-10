@@ -5,6 +5,7 @@ RKO-LIO - LiDAR-Inertial Odometry
 
   <div>
     <p>
+      <a href="https://doi.org/10.1109/LRA.2026.3685966"><img src="https://img.shields.io/badge/IEEE_RA--L-10.1109%2FLRA.2026.3685966-00629B.svg" alt="IEEE RA-L badge" /></a>
       <a href="https://arxiv.org/abs/2509.06593"><img src="https://img.shields.io/badge/arXiv-2509.06593-b31b1b.svg" alt="arXiv badge" /></a>
       <a href="/LICENSE"><img src="https://img.shields.io/github/license/PRBonn/rko_lio" alt="GitHub License" /></a>
       <a href="/"><img src="https://img.shields.io/github/last-commit/PRBonn/rko_lio" alt="GitHub Last Commit" /></a>
@@ -31,31 +32,45 @@ All you need to provide is the extrinsic transformation between the IMU and LiDA
 .. note::
    This documentation is still under construction. If you see something you can improve, I'd greatly appreciate any help. Please make an issue or a PR on `GitHub <https://github.com/PRBonn/rko_lio>`__!
 
+You can use RKO-LIO in two ways:
+
+1. **Online**, on a robot, via the :doc:`ROS package <pages/ros>`. This is the recommended path. The ROS wrapper handles incoming data streams more efficiently than the Python pipeline and also has an offline mode that drains a rosbag at full speed.
+2. **Offline**, on pre-recorded data, via the :doc:`Python package <pages/python>`. Convenient for quick experiments and analysis.
+
+For a short demo, see this video:
+
+.. figure:: ./_static/odometry_video_thumbnail.png
+   :target: https://www.youtube.com/watch?v=NNpzXdf9XmU
+
+
 Citation
 ^^^^^^^^
 
-If you use this work, please leave a star ⭐ on our `GitHub repository <https://github.com/PRBonn/rko_lio>`_ and consider citing:
+If you use this work, please leave a star ⭐ on our `GitHub repository <https://github.com/PRBonn/rko_lio>`_ and consider citing our paper (`RA-L <https://doi.org/10.1109/LRA.2026.3685966>`_ | `arXiv <https://arxiv.org/abs/2509.06593>`_):
 
 .. code-block:: bibtex
 
-  @article{malladi2025arxiv,
+  @article{malladi2026ral,
     author      = {M.V.R. Malladi and T. Guadagnino and L. Lobefaro and C. Stachniss},
     title       = {A Robust Approach for LiDAR-Inertial Odometry Without Sensor-Specific Modeling},
-    journal     = {arXiv preprint},
-    year        = {2025},
-    volume      = {arXiv:2509.06593},
-    url         = {https://arxiv.org/pdf/2509.06593},
+    journal     = {IEEE Robotics and Automation Letters},
+    year        = {2026},
+    volume      = {11},
+    number      = {6},
+    pages       = {7420--7427},
+    doi         = {10.1109/LRA.2026.3685966},
   }
 
+The :doc:`paper supplementary material <suppl>` page collects extra figures and explanations pertaining to the same paper.
+
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
-   Primer <pages/primer>
    Quickstart <pages/quickstart>
    Data <pages/data>
-   ROS <pages/ros/ros>
-   Python <pages/python/python>
+   ROS <pages/ros>
+   Python <pages/python>
    Configuring rko_lio <pages/config>
-   Uncategorised <pages/uncategorised/index>
+   Changelog <pages/changelog_literal>
    License <__LICENSE>

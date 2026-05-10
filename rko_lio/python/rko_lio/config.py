@@ -53,7 +53,7 @@ Description of parameters
 - ``multiplier_to_seconds``:
 
     Factor applied to raw timestamp values to convert them to seconds.
-    Secondsd and nanoseconds are detected automatically when this is 0.0 (default).
+    Seconds and nanoseconds are detected automatically when this is 0.0 (default).
     Specify this for any other case.
     For example, if timestamps are in microseconds, use ``1e-6``.
 
@@ -117,7 +117,7 @@ class LIOConfig:
         Minimum usable range of lidar (meters).
     convergence_criterion : float, default 1e-5
         Convergence threshold for optimization.
-    max_correspondance_distance : float, default 0.5
+    max_correspondence_distance : float, default 0.5
         Max distance for associating points (meters).
     max_num_threads : int, default 0
         Max thread count (0 = autodetect).
@@ -138,7 +138,7 @@ class LIOConfig:
     max_range: float = 100.0
     min_range: float = 1.0
     convergence_criterion: float = 1e-5
-    max_correspondance_distance: float = 0.5
+    max_correspondence_distance: float = 0.5
     max_num_threads: int = 0
     initialization_phase: bool = False
     max_expected_jerk: float = 3.0

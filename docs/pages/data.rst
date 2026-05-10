@@ -1,10 +1,11 @@
 The sensor data
 ===============
 
-RKO LIO is a LiDAR-inertial odometry system.
-Unsurprisingly, we need both IMU and LiDAR data.
-It is assumed that both sensors are time synchronized, i.e. the data timestamps refer to the same time clock and are consistent across both sensors.
-Some delay in the arrival of the data itself is fine.
+RKO-LIO is a LiDAR-inertial odometry system, so unsurprisingly we need both IMU and LiDAR data.
+This page describes what each stream needs to look like, what time synchronisation we expect, and the convention we use for the IMU<->LiDAR extrinsic.
+
+Both sensors must be time-synchronised: the timestamps on the data refer to the same clock and are consistent across both streams.
+A bit of latency between when a measurement is sampled and when it arrives in the system is fine -- ROS message buffering / Python sequencing handles that -- but the timestamps themselves must be aligned.
 
 .. _data-extrinsics-convention:
 
@@ -27,25 +28,33 @@ The superscript on the vector indicates the frame in which the vector is express
 IMU
 ---
 
-We only need the measurement time, the accelerometer reading, and the gyroscope reading (from a 6-axis IMU).
+What we need: timestamp, accelerometer reading (3-axis), gyroscope reading (3-axis). A 6-axis IMU is enough; we don't use orientation, magnetometer, or noise / bias spec sheets.
 
-Acceleration values should be in m/s².
-If your accelerometer outputs readings in g's, be sure to convert them to m/s² before using the odometry.
+- **Acceleration** in m/s². If your accelerometer reports g's, convert before feeding it in.
+- **Angular velocity** in rad/s. Convert if your device uses other units.
 
 .. warning::
 
-  We follow the typical ros convention for the IMU (see `ROS REP 145 <https://www.ros.org/reps/rep-0145.html>`__). If the system is at rest and in a neutral orientation, i.e., the imu and world frames are aligned, then the imu *z* axis points upwards and the accelerometer is measuring +g m/s² along +*z*. 
-
-Angular velocity values should be in rad/s; if your device uses other units, convert accordingly.
+  We follow the typical ROS convention for the IMU (see `ROS REP 145 <https://www.ros.org/reps/rep-0145.html>`__).
+  At rest in a neutral orientation -- IMU and world frames aligned -- the IMU *z* axis points upwards and the accelerometer measures **+g m/s² along +z**.
 
 LiDAR
 -----
 
-If your platform experiences rapid or aggressive motions, I strongly recommend enabling deskewing (motion compensation) for good odometry.
-Deskewing the LiDAR scan will account for the motion of the platform during the scan acquisition time.
-This requires per-point timestamp information.
-If these are relative time measurements, we also need either the scan recording start or end time.
-Further specifics depend on the specific format of data or the dataloader, but for ROS this translates to requiring the timestamp in the message header and a time field in the point format for a PointCloud2 message.
+What we need: a point cloud per scan, plus per-point timestamps (seconds) for every point in the scan.
+Per-point timestamps are what lets us deskew the scan against the platform motion during the scan acquisition window.
 
-I attempt to automatically handle the different ways timestamps may be encoded, so most sensor drivers should work out of the box.
-Check `here <../cpp/rko_lio/core/process_timestamps.cpp>`__ if you're curious, or if you'd like to contribute a solution for a sensor I don't handle.
+If your platform sees rapid or aggressive motion, deskewing matters a lot -- enable it (``deskew=True``, the default).
+If you cannot supply per-point timestamps, you must disable deskewing and take the quality hit.
+
+For ROS, this translates to:
+
+- A timestamp in the ``PointCloud2`` message header (the standard sensor driver pattern).
+- A time field per point inside the cloud. Common field names are accepted (``time``, ``timestamp``, ``timestamps``, ``t``).
+
+I try to handle the different ways drivers encode per-point timestamps automatically -- absolute (already aligned with wall-clock time) vs. relative (offsets from the message header time), seconds vs. nanoseconds, and so on.
+The heuristic is at `rko_lio/core/process_timestamps.cpp <https://github.com/PRBonn/rko_lio/blob/master/rko_lio/core/process_timestamps.cpp>`_.
+
+If the heuristic can't classify your data, the system throws a ``Runtime Error: TimestampProcessingConfig does not cover this particular case of data``.
+You can override the behaviour via the ``timestamps:`` block in your config (Python) or the ``lidar_timestamps.*`` parameters (ROS) -- see :ref:`Configuring -> LiDAR per-point timestamps <config-lidar-timestamps>`.
+And if your sensor is different and you think the heuristic should handle it, please open an issue (or a PR).

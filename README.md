@@ -5,7 +5,7 @@
 
 <div align="center">
 
-[![arXiv](https://img.shields.io/badge/arXiv-2509.06593-b31b1b.svg)](https://arxiv.org/abs/2509.06593) [![GitHub License](https://img.shields.io/github/license/PRBonn/rko_lio)](/LICENSE) [![GitHub last commit](https://img.shields.io/github/last-commit/PRBonn/rko_lio)](/)
+[![IEEE RA-L](https://img.shields.io/badge/IEEE_RA--L-10.1109%2FLRA.2026.3685966-00629B.svg)](https://doi.org/10.1109/LRA.2026.3685966) [![arXiv](https://img.shields.io/badge/arXiv-2509.06593-b31b1b.svg)](https://arxiv.org/abs/2509.06593) [![GitHub License](https://img.shields.io/github/license/PRBonn/rko_lio)](/LICENSE) [![GitHub last commit](https://img.shields.io/github/last-commit/PRBonn/rko_lio)](/)
 
 [![PyPI - Version](https://img.shields.io/pypi/v/rko_lio?color=blue)](https://pypi.org/project/rko-lio/) [![ROS Package Index](https://img.shields.io/ros/v/humble/rko_lio?color=blue)](https://index.ros.org/p/rko_lio/#humble) [![ROS Package Index](https://img.shields.io/ros/v/jazzy/rko_lio?color=blue)](https://index.ros.org/p/rko_lio/#jazzy) [![ROS Package Index](https://img.shields.io/ros/v/kilted/rko_lio?color=blue)](https://index.ros.org/p/rko_lio/#kilted) [![ROS Package Index](https://img.shields.io/ros/v/rolling/rko_lio?color=blue)](https://index.ros.org/p/rko_lio/#rolling)
 
@@ -23,10 +23,14 @@
 
 <!-- [demo video here] -->
 
+Following is for the python version, see [ROS](#ros) for that.
+
 Assuming you have a rosbag (ros1/ros2) which contains a TF tree, you can run RKO-LIO through
 
 ```bash
-pip install rko_lio rosbags rerun-sdk
+pip install "rko_lio[all]"
+# or
+pip install rko_lio rosbags "rerun-sdk<0.27"
 # data path should be a directory with *.bag files (ROS1) or a metadata.yaml (ROS2)
 rko_lio -v /path/to/data
 ```
@@ -36,9 +40,13 @@ Why `pip install` those three packages?
 - `rosbags` -> required for the rosbag dataloader. Both ros1 and ros2 bags are supported!
 - `rerun-sdk` -> required for the optional visualizer (`-v` flag)
 
+`pip install "rko_lio[all]"` fetches the other optional dependencies as well.
+
 Check further options for the CLI through `rko_lio --help`.
 
-More details are available in the [Python usage docs](https://prbonn.github.io/rko_lio/pages/python/usage.html).
+To dump a default config you can edit and pass with `--config`, run `rko_lio --dump_config`.
+
+More details are available in the [Python docs](https://prbonn.github.io/rko_lio/pages/python.html).
 
 ### Extrinsics and convention
 
@@ -88,24 +96,30 @@ The three parameters `imu_topic`, `lidar_topic`, and `base_frame` are the minimu
 
 Check further launch configuration options through `ros2 launch rko_lio odometry.launch.py -s`
 
-More details are available in the [ROS usage docs](https://prbonn.github.io/rko_lio/pages/ros/usage.html).
+More details are available in the [ROS docs](https://prbonn.github.io/rko_lio/pages/ros.html).
 
 The same note [above about extrinsics](#extrinsics-and-convention) applies here as well. Though you probably have a well defined TF tree and need not concern yourself with this (I hope).
 
 ## Citation
 
-If you found this work useful, please consider leaving a star :star: on this repository and citing our [paper](https://arxiv.org/abs/2509.06593):
+If you found this work useful, please consider leaving a star :star: on this repository and citing our paper ([RA-L](https://doi.org/10.1109/LRA.2026.3685966) | [arXiv](https://arxiv.org/abs/2509.06593)):
 
 ```bib
-@article{malladi2025arxiv,
+@article{malladi2026ral,
   author      = {M.V.R. Malladi and T. Guadagnino and L. Lobefaro and C. Stachniss},
   title       = {A Robust Approach for LiDAR-Inertial Odometry Without Sensor-Specific Modeling},
-  journal     = {arXiv preprint},
-  year        = {2025},
-  volume      = {arXiv:2509.06593},
-  url         = {https://arxiv.org/pdf/2509.06593},
+  journal     = {IEEE Robotics and Automation Letters},
+  year        = {2026},
+  volume      = {11},
+  number      = {6},
+  pages       = {7420--7427},
+  doi         = {10.1109/LRA.2026.3685966},
 }
 ```
+
+The [paper supplementary material](https://prbonn.github.io/rko_lio/suppl.html) page collects extra figures and explanations pertaining to the same paper.
+
+You can check out the branch `ral_submission` for the version of the code used for submission to RA-L. Please note that that branch is meant to be an as-is reproduction of the code used during submission and is not supported. The `master` and release versions are vastly improved, supported, and are the recommended way to use this system.
 
 ## Contributing
 
@@ -128,10 +142,6 @@ Additionally, we use and rely heavily on, either in the package itself or during
 A special mention goes out to [Rerun](https://rerun.io/) for providing an extremely easy-to-use but highly performative visualization system. Without this, I probably would not have made a python interface at all.
 
 </details>
-
-### RA-L Submission
-
-You can check out the branch `ral_submission` for the version of the code used for submission to RA-L. Please note that that branch is meant to be an as-is reproduction of the code used during submission and is not supported. The `master` and release versions are vastly improved, supported, and are the recommended way to use this system.
 
 ## License
 
