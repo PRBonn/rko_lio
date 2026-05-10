@@ -93,13 +93,10 @@
             
   <section id="module-rko_lio.lio_pipeline">
 <span id="rko-lio-lio-pipeline-module"></span><h1>rko_lio.lio_pipeline module<a class="headerlink" href="#module-rko_lio.lio_pipeline" title="Link to this heading">¶</a></h1>
-<p>Equivalent logic to the ros wrapper’s message buffering.
-A convenience class to buffer IMU and LiDAR messages to ensure the core cpp implementation always
-gets the data in sync.
-The difference is this is not multi-threaded, therefore is a bit slower.</p>
+<p>Equivalent logic to the ros node but mostly synchronous. Only the rerun viz is multi-threaded.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rko_lio.lio_pipeline.LIOPipeline">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">rko_lio.lio_pipeline.</span></span><span class="sig-name descname"><span class="pre">LIOPipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.PipelineConfig" title="rko_lio.config.PipelineConfig"><span class="pre">PipelineConfig</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.LIOPipeline" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">rko_lio.lio_pipeline.</span></span><span class="sig-name descname"><span class="pre">LIOPipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.PipelineConfig" title="rko_lio.config.PipelineConfig"><span class="pre">PipelineConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_log_period_s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.LIOPipeline" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Minimal sequential pipeline for LIO processing.</p>
 <dl class="py method">
@@ -116,6 +113,16 @@ The difference is this is not multi-threaded, therefore is a bit slower.</p>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rko_lio.lio_pipeline.LIOPipeline.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.LIOPipeline.close" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rko_lio.lio_pipeline.LIOPipeline.cloud_log_loop">
+<span class="sig-name descname"><span class="pre">cloud_log_loop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.LIOPipeline.cloud_log_loop" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rko_lio.lio_pipeline.LIOPipeline.dump_results_to_disk">
@@ -137,6 +144,34 @@ Automatically bumps the index (from 0) if similar names exist, to avoid overwrit
 <dl class="py method">
 <dt class="sig sig-object py" id="rko_lio.lio_pipeline.LIOPipeline.register_scan">
 <span class="sig-name descname"><span class="pre">register_scan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.LIOPipeline.register_scan" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rko_lio.lio_pipeline.LIOPipeline.visualize">
+<span class="sig-name descname"><span class="pre">visualize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.LIOPipeline.visualize" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="rko_lio.lio_pipeline.LatestMailbox">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">rko_lio.lio_pipeline.</span></span><span class="sig-name descname"><span class="pre">LatestMailbox</span></span><a class="headerlink" href="#rko_lio.lio_pipeline.LatestMailbox" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Single-slot, latest-wins handoff between producer and one consumer.
+Producer never blocks.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rko_lio.lio_pipeline.LatestMailbox.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.LatestMailbox.close" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rko_lio.lio_pipeline.LatestMailbox.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.LatestMailbox.get" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rko_lio.lio_pipeline.LatestMailbox.put">
+<span class="sig-name descname"><span class="pre">put</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.lio_pipeline.LatestMailbox.put" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
