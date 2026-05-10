@@ -171,7 +171,6 @@ class PipelineConfig:
         Extrinsic transform from lidar frame to base frame.
     viz : bool, default False
         Enable visualization using rerun.
-    viz_every_n_frames : int, default 20
     dump_deskewed_scans : bool, default False
         Save deskewed scans to disk.
     log_dir : Path, default "results"
@@ -185,7 +184,6 @@ class PipelineConfig:
     extrinsic_imu2base_quat_xyzw_xyz: list | None = None
     extrinsic_lidar2base_quat_xyzw_xyz: list | None = None
     viz: bool = False
-    viz_every_n_frames: int = 20
     dump_deskewed_scans: bool = False
     log_dir: Path = Path("results")
     run_name: str | None = None
