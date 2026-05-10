@@ -241,8 +241,7 @@ LIO::LIO(const Config& config_)
     : config(config_), map(config_.voxel_size, config_.max_range, config_.max_points_per_voxel) {
   // Pin TBB's worker pool to config.max_num_threads (0 = leave at TBB default).
   [[maybe_unused]] static const auto tbb_thread_limit = [&] {
-    const int requested = config.max_num_threads;
-    const int threads = requested > 0 ? requested : tbb::this_task_arena::max_concurrency();
+    const int threads = config.max_num_threads > 0 ? config.max_num_threads : tbb::this_task_arena::max_concurrency();
     return tbb::global_control(tbb::global_control::max_allowed_parallelism, static_cast<size_t>(threads));
   }();
 }
