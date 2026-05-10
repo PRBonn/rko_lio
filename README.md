@@ -23,6 +23,8 @@
 
 <!-- [demo video here] -->
 
+Following is for the python version, see [ROS](#ros) for that.
+
 Assuming you have a rosbag (ros1/ros2) which contains a TF tree, you can run RKO-LIO through
 
 ```bash
@@ -117,6 +119,8 @@ If you found this work useful, please consider leaving a star :star: on this rep
 
 The [paper supplementary material](https://prbonn.github.io/rko_lio/suppl.html) page collects extra figures and explanations pertaining to the same paper.
 
+You can check out the branch `ral_submission` for the version of the code used for submission to RA-L. Please note that that branch is meant to be an as-is reproduction of the code used during submission and is not supported. The `master` and release versions are vastly improved, supported, and are the recommended way to use this system.
+
 ## Contributing
 
 My goal with this project is to have a simple LiDAR-Inertial odometry system that can work with minimal friction, in the lines of ["it just works"](https://youtu.be/nVqcxarP9J4?si=LvTfV4m0NkNC62Tf&t=6). I gladly welcome any contribution or feedback you think would help in this direction. Performance improvements or bug fixes are of course always appreciated.
@@ -138,10 +142,6 @@ Additionally, we use and rely heavily on, either in the package itself or during
 A special mention goes out to [Rerun](https://rerun.io/) for providing an extremely easy-to-use but highly performative visualization system. Without this, I probably would not have made a python interface at all.
 
 </details>
-
-### RA-L Submission
-
-You can check out the branch `ral_submission` for the version of the code used for submission to RA-L. Please note that that branch is meant to be an as-is reproduction of the code used during submission and is not supported. The `master` and release versions are vastly improved, supported, and are the recommended way to use this system.
 
 ## License
 
