@@ -42,12 +42,11 @@ inline Eigen::Vector3i point_to_voxel(const Eigen::Vector3d& point, const double
           static_cast<int>(std::floor(point.y() * inv_voxel_size)),
           static_cast<int>(std::floor(point.z() * inv_voxel_size))};
 }
-} // namespace rko_lio::core
 
-template <>
-struct std::hash<Eigen::Vector3i> {
-  std::size_t operator()(const Eigen::Vector3i& voxel) const {
-    const uint32_t* vec = reinterpret_cast<const uint32_t*>(voxel.data());
-    return (vec[0] * 73856093 ^ vec[1] * 19349669 ^ vec[2] * 83492791);
-  }
+struct VoxelHash {
+    std::size_t operator()(const Eigen::Vector3i &voxel) const {
+        const uint32_t *vec = reinterpret_cast<const uint32_t *>(voxel.data());
+        return (vec[0] * 73856093 ^ vec[1] * 19349669 ^ vec[2] * 83492791);
+    }
 };
+} // namespace rko_lio::core
