@@ -117,19 +117,17 @@
 <codeline lineno="16"><highlight class="normal"><sp/><sp/>clipped_frame.shrink_to_fit();</highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight></codeline>
 <codeline lineno="18"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(config.double_downsample)<sp/>{</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>pass<sp/>1<sp/>feeds<sp/>pass<sp/>2,<sp/>and<sp/>sorting<sp/>(shuffling)<sp/>breaks<sp/>lidar<sp/>scan<sp/>pattern<sp/>leading<sp/>to<sp/>improved<sp/>registration</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>Vector3dVector<sp/>downsampled_frame<sp/>=<sp/>voxel_down_sample_sorted(clipped_frame,<sp/>config.voxel_size<sp/>*<sp/>0.5);</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>pass<sp/>2<sp/>feeds<sp/>icp,<sp/>so<sp/>unsorted<sp/>is<sp/>fine.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>Vector3dVector<sp/>keypoints<sp/>=<sp/>voxel_down_sample(downsampled_frame,<sp/>config.voxel_size<sp/>*<sp/>1.5);</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{.filtered_frame<sp/>=<sp/>std::move(clipped_frame),</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.keypoints<sp/>=<sp/>std::move(keypoints),</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.map_frame<sp/>=<sp/>std::move(downsampled_frame)};</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/>Vector3dVector<sp/>keypoints<sp/>=<sp/>voxel_down_sample(clipped_frame,<sp/>config.voxel_size);</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{.filtered_frame<sp/>=<sp/>std::move(clipped_frame),<sp/>.keypoints<sp/>=<sp/>std::move(keypoints),<sp/>.map_frame<sp/>=<sp/>{}};</highlight></codeline>
-<codeline lineno="29"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>Vector3dVector<sp/>downsampled_frame<sp/>=<sp/><ref refid="namespacerko__lio_1_1core_1ad33113e678270ae389705f90113e7df9" kindref="member">voxel_down_sample</ref>(clipped_frame,<sp/>config.voxel_size<sp/>*<sp/>0.5);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>Vector3dVector<sp/>keypoints<sp/>=<sp/><ref refid="namespacerko__lio_1_1core_1ad33113e678270ae389705f90113e7df9" kindref="member">voxel_down_sample</ref>(downsampled_frame,<sp/>config.voxel_size<sp/>*<sp/>1.5);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{.filtered_frame<sp/>=<sp/>std::move(clipped_frame),</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.keypoints<sp/>=<sp/>std::move(keypoints),</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.map_frame<sp/>=<sp/>std::move(downsampled_frame)};</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/>Vector3dVector<sp/>keypoints<sp/>=<sp/><ref refid="namespacerko__lio_1_1core_1ad33113e678270ae389705f90113e7df9" kindref="member">voxel_down_sample</ref>(clipped_frame,<sp/>config.voxel_size);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{.filtered_frame<sp/>=<sp/>std::move(clipped_frame),<sp/>.keypoints<sp/>=<sp/>std::move(keypoints),<sp/>.map_frame<sp/>=<sp/>{}};</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.cpp"/>
   </compounddef>

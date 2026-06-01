@@ -21,14 +21,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" line="49" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" bodystart="49" bodyend="52"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" line="42" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" bodystart="42" bodyend="45"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" line="48" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" bodystart="48" bodyend="53"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" line="41" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" bodystart="41" bodyend="46"/>
     <listofallmembers>
       <member refid="structstd_1_1hash_3_01Eigen_1_1Vector3i_01_4_1a629a0f01830e2842b20a57587f917742" prot="public" virt="non-virtual"><scope>std::hash&lt; Eigen::Vector3i &gt;</scope><name>operator()</name></member>
     </listofallmembers>

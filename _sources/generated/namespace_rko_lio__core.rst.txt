@@ -69,8 +69,6 @@ Functions
 
 - :ref:`exhale_function_namespacerko__lio_1_1core_1ad33113e678270ae389705f90113e7df9`
 
-- :ref:`exhale_function_namespacerko__lio_1_1core_1a27a9bf0318203f6e11f4edc735c08123`
-
 
 Typedefs
 --------

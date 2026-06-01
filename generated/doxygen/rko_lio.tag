@@ -393,5 +393,12 @@
       <anchor>ac1fb80bf51f668bd3442bcb18044a57c</anchor>
       <arglist>(const std::vector&lt; double &gt; &amp;raw_timestamps, const Nsec header_stamp, const TimestampProcessingConfig &amp;config)</arglist>
     </member>
+    <member kind="function">
+      <type>std::vector&lt; Eigen::Vector3d &gt;</type>
+      <name>voxel_down_sample</name>
+      <anchorfile>namespacerko__lio_1_1core.html</anchorfile>
+      <anchor>ad33113e678270ae389705f90113e7df9</anchor>
+      <arglist>(const std::vector&lt; Eigen::Vector3d &gt; &amp;frame, const double voxel_size)</arglist>
+    </member>
   </compound>
 </tagfile>
