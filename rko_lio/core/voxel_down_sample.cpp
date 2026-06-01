@@ -34,7 +34,7 @@ namespace rko_lio::core {
 
 std::vector<Eigen::Vector3d> voxel_down_sample(const std::vector<Eigen::Vector3d>& frame, const double voxel_size) {
   const double inv_voxel_size = 1.0 / voxel_size;
-  tsl::robin_set<Eigen::Vector3i> seen;
+  tsl::robin_set<Eigen::Vector3i, VoxelHash> seen;
   seen.reserve(frame.size());
   std::vector<Eigen::Vector3d> frame_downsampled;
   frame_downsampled.reserve(frame.size());
@@ -49,11 +49,11 @@ std::vector<Eigen::Vector3d> voxel_down_sample(const std::vector<Eigen::Vector3d
 std::vector<Eigen::Vector3d> voxel_down_sample_sorted(const std::vector<Eigen::Vector3d>& frame,
                                                      const double voxel_size) {
   const double inv_voxel_size = 1.0 / voxel_size;
-  tsl::robin_set<Eigen::Vector3i> seen;
+  tsl::robin_set<Eigen::Vector3i, VoxelHash> seen;
   seen.reserve(frame.size());
   std::vector<std::pair<std::size_t, Eigen::Vector3d>> hashed;
   hashed.reserve(frame.size());
-  const std::hash<Eigen::Vector3i> hasher{};
+  const VoxelHash hasher{};
   for (const auto& point : frame) {
     const auto voxel = point_to_voxel(point, inv_voxel_size);
     if (seen.insert(voxel).second) {
