@@ -28,7 +28,7 @@
 // Ported to rko_lio from kiss-icp (kiss_icp/cpp/kiss_icp/core/VoxelHashMap.{hpp,cpp}).
 #pragma once
 
-// brings std::hash<Eigen::Vector3i>
+// brings VoxelHash and point_to_voxel
 #include "voxel_down_sample.hpp"
 
 #include <Eigen/Core>

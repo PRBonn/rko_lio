@@ -24,50 +24,25 @@
 #include "voxel_down_sample.hpp"
 #include <Eigen/Core>
 #include <algorithm>
-#include <cstddef>
-#include <functional>
-#include <tsl/robin_set.h>
-#include <utility>
+#include <sophus/se3.hpp>
+#include <unordered_map>
 #include <vector>
 
 namespace rko_lio::core {
+// if you need even better runtime-performance, consider using Luca Lobefaro's version of one cycle downsampling here:
+// https://github.com/PRBonn/kiss-icp/pull/347
+// although it does lead to worse odometry performance in certain situations
 
 std::vector<Eigen::Vector3d> voxel_down_sample(const std::vector<Eigen::Vector3d>& frame, const double voxel_size) {
   const double inv_voxel_size = 1.0 / voxel_size;
-  tsl::robin_set<Eigen::Vector3i, VoxelHash> seen;
-  seen.reserve(frame.size());
+  std::unordered_map<Eigen::Vector3i, Eigen::Vector3d, VoxelHash> grid;
+  grid.reserve(frame.size());
+  std::for_each(frame.cbegin(), frame.cend(),
+                [&](const auto& point) { grid.try_emplace(point_to_voxel(point, inv_voxel_size), point); });
   std::vector<Eigen::Vector3d> frame_downsampled;
-  frame_downsampled.reserve(frame.size());
-  for (const auto& point : frame) {
-    if (seen.insert(point_to_voxel(point, inv_voxel_size)).second) {
-      frame_downsampled.emplace_back(point);
-    }
-  }
-  return frame_downsampled;
-}
-
-std::vector<Eigen::Vector3d> voxel_down_sample_sorted(const std::vector<Eigen::Vector3d>& frame,
-                                                     const double voxel_size) {
-  const double inv_voxel_size = 1.0 / voxel_size;
-  tsl::robin_set<Eigen::Vector3i, VoxelHash> seen;
-  seen.reserve(frame.size());
-  std::vector<std::pair<std::size_t, Eigen::Vector3d>> hashed;
-  hashed.reserve(frame.size());
-  const VoxelHash hasher{};
-  for (const auto& point : frame) {
-    const auto voxel = point_to_voxel(point, inv_voxel_size);
-    if (seen.insert(voxel).second) {
-      hashed.emplace_back(hasher(voxel), point);
-    }
-  }
-  std::sort(hashed.begin(), hashed.end(),
-            [](const auto& a, const auto& b) { return a.first < b.first; });
-
-  std::vector<Eigen::Vector3d> frame_downsampled;
-  frame_downsampled.reserve(hashed.size());
-  for (auto& [_, v] : hashed) {
-    frame_downsampled.emplace_back(std::move(v));
-  }
+  frame_downsampled.reserve(grid.size());
+  std::for_each(grid.cbegin(), grid.cend(),
+                [&](const auto& voxel_and_point) { frame_downsampled.emplace_back(voxel_and_point.second); });
   return frame_downsampled;
 }
 
