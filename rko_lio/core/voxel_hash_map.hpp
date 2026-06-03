@@ -28,7 +28,7 @@
 // Ported to rko_lio from kiss-icp (kiss_icp/cpp/kiss_icp/core/VoxelHashMap.{hpp,cpp}).
 #pragma once
 
-// brings std::hash<Eigen::Vector3i>
+// brings VoxelHash and point_to_voxel
 #include "voxel_down_sample.hpp"
 
 #include <Eigen/Core>
@@ -59,7 +59,7 @@ struct VoxelHashMap {
   double inv_voxel_size_;
   double clipping_distance_;
   unsigned int max_points_per_voxel_;
-  tsl::robin_map<Voxel, VoxelBlock> map_;
+  tsl::robin_map<Voxel, VoxelBlock, VoxelHash> map_;
 };
 
 } // namespace rko_lio::core
