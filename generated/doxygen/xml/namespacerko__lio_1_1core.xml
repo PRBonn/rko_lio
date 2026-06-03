@@ -12,6 +12,7 @@
     <innerclass refid="structrko__lio_1_1core_1_1Timer" prot="public">rko_lio::core::Timer</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1TimestampProcessingConfig" prot="public">rko_lio::core::TimestampProcessingConfig</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1Timestamps" prot="public">rko_lio::core::Timestamps</innerclass>
+    <innerclass refid="structrko__lio_1_1core_1_1VoxelHash" prot="public">rko_lio::core::VoxelHash</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1VoxelHashMap" prot="public">rko_lio::core::VoxelHashMap</innerclass>
     <sectiondef kind="typedef">
       <memberdef kind="typedef" id="namespacerko__lio_1_1core_1a5cc9dbe312768171d6734783de18f64c" prot="public" static="no">

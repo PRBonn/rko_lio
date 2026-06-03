@@ -83,9 +83,6 @@
     <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1ae87229b29b2760d18c47d3b3c67c40ba" kind="variable"><name>double_downsample</name></member>
     <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a6121d24b6a6e7f262bb6185a407f434d" kind="variable"><name>min_beta</name></member>
   </compound>
-  <compound refid="structstd_1_1hash_3_01Eigen_1_1Vector3i_01_4" kind="struct"><name>std::hash&lt; Eigen::Vector3i &gt;</name>
-    <member refid="structstd_1_1hash_3_01Eigen_1_1Vector3i_01_4_1a629a0f01830e2842b20a57587f917742" kind="function"><name>operator()</name></member>
-  </compound>
   <compound refid="structrko__lio_1_1core_1_1ImuBias" kind="struct"><name>rko_lio::core::ImuBias</name>
     <member refid="structrko__lio_1_1core_1_1ImuBias_1aa66264417a4d07f8ee6a146ae710bddb" kind="variable"><name>accelerometer</name></member>
     <member refid="structrko__lio_1_1core_1_1ImuBias_1adc5268afa5f8cb94a082949e2a085e29" kind="variable"><name>gyroscope</name></member>
@@ -267,12 +264,15 @@
     <member refid="structrko__lio_1_1core_1_1Timestamps_1a815937b2994206648bfe5c054b06be6d" kind="variable"><name>max</name></member>
     <member refid="structrko__lio_1_1core_1_1Timestamps_1a0090c8ed31eeb5da017dcda0c0eaa2cb" kind="variable"><name>times</name></member>
   </compound>
+  <compound refid="structrko__lio_1_1core_1_1VoxelHash" kind="struct"><name>rko_lio::core::VoxelHash</name>
+    <member refid="structrko__lio_1_1core_1_1VoxelHash_1afb0b39696a21b88ce047315a95543d5a" kind="function"><name>operator()</name></member>
+  </compound>
   <compound refid="structrko__lio_1_1core_1_1VoxelHashMap" kind="struct"><name>rko_lio::core::VoxelHashMap</name>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1aff7a66cc63f71eace58c5f6210f2a8d9" kind="variable"><name>voxel_size_</name></member>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a3408fa0a08142bb378299e64fbef1367" kind="variable"><name>inv_voxel_size_</name></member>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a8d6c3c7430c23ba1d220d5b9a25eaad5" kind="variable"><name>clipping_distance_</name></member>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1aa49f7c25925cab092cf7a9333dcdda01" kind="variable"><name>max_points_per_voxel_</name></member>
-    <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1aec638111f1996104bb0f3a05107afb24" kind="variable"><name>map_</name></member>
+    <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a9f0080b6526586495a7c68d30611af10" kind="variable"><name>map_</name></member>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a4f31df433ccba36b7b38d4c1f669b51b" kind="function"><name>VoxelHashMap</name></member>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1ac0a85829fa563836a01b77ceff59cabe" kind="function"><name>clear</name></member>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1acf441a271ba571fd0c44bd7742030348" kind="function"><name>empty</name></member>
@@ -341,8 +341,6 @@
     <member refid="transforms_8hpp_1a3347edf777beeec8166e93ed9bd7b633" kind="function"><name>sophus_to_transform</name></member>
     <member refid="transforms_8hpp_1a30f2577c606faf43523beb7b3b8fd4c3" kind="function"><name>transform_to_sophus</name></member>
     <member refid="transforms_8hpp_1a03c38b07517194dc77b673b64c066652" kind="function"><name>get_transform</name></member>
-  </compound>
-  <compound refid="namespacestd" kind="namespace"><name>std</name>
   </compound>
   <compound refid="namespacestd_1_1chrono__literals" kind="namespace"><name>std::chrono_literals</name>
   </compound>

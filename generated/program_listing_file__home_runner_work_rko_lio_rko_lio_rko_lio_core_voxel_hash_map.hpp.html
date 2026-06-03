@@ -124,7 +124,7 @@
 <span class="c1">// Ported to rko_lio from kiss-icp (kiss_icp/cpp/kiss_icp/core/VoxelHashMap.{hpp,cpp}).</span>
 <span class="cp">#pragma once</span>
 
-<span class="c1">// brings std::hash&lt;Eigen::Vector3i&gt;</span>
+<span class="c1">// brings VoxelHash and point_to_voxel</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;voxel_down_sample.hpp&quot;</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Eigen/Core&gt;</span>
@@ -155,7 +155,7 @@
 <span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">inv_voxel_size_</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">clipping_distance_</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">max_points_per_voxel_</span><span class="p">;</span>
-<span class="w">  </span><span class="n">tsl</span><span class="o">::</span><span class="n">robin_map</span><span class="o">&lt;</span><span class="n">Voxel</span><span class="p">,</span><span class="w"> </span><span class="n">VoxelBlock</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">tsl</span><span class="o">::</span><span class="n">robin_map</span><span class="o">&lt;</span><span class="n">Voxel</span><span class="p">,</span><span class="w"> </span><span class="n">VoxelBlock</span><span class="p">,</span><span class="w"> </span><span class="n">VoxelHash</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map_</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace rko_lio::core</span>

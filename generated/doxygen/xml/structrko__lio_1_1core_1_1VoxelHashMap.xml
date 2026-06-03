@@ -59,9 +59,9 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" line="61" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" bodystart="61" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structrko__lio_1_1core_1_1VoxelHashMap_1aec638111f1996104bb0f3a05107afb24" prot="public" static="no" mutable="no">
-        <type>tsl::robin_map&lt; Voxel, VoxelBlock &gt;</type>
-        <definition>tsl::robin_map&lt;Voxel, VoxelBlock&gt; rko_lio::core::VoxelHashMap::map_</definition>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1VoxelHashMap_1a9f0080b6526586495a7c68d30611af10" prot="public" static="no" mutable="no">
+        <type>tsl::robin_map&lt; Voxel, VoxelBlock, <ref refid="structrko__lio_1_1core_1_1VoxelHash" kindref="compound">VoxelHash</ref> &gt;</type>
+        <definition>tsl::robin_map&lt;Voxel, VoxelBlock, VoxelHash&gt; rko_lio::core::VoxelHashMap::map_</definition>
         <argsstring></argsstring>
         <name>map_</name>
         <qualifiedname>rko_lio::core::VoxelHashMap::map_</qualifiedname>
@@ -232,7 +232,7 @@
       <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1acf441a271ba571fd0c44bd7742030348" prot="public" virt="non-virtual"><scope>rko_lio::core::VoxelHashMap</scope><name>empty</name></member>
       <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a2d187d4904229ebdfed12b44099b73c5" prot="public" virt="non-virtual"><scope>rko_lio::core::VoxelHashMap</scope><name>get_closest_neighbor</name></member>
       <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a3408fa0a08142bb378299e64fbef1367" prot="public" virt="non-virtual"><scope>rko_lio::core::VoxelHashMap</scope><name>inv_voxel_size_</name></member>
-      <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1aec638111f1996104bb0f3a05107afb24" prot="public" virt="non-virtual"><scope>rko_lio::core::VoxelHashMap</scope><name>map_</name></member>
+      <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a9f0080b6526586495a7c68d30611af10" prot="public" virt="non-virtual"><scope>rko_lio::core::VoxelHashMap</scope><name>map_</name></member>
       <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1aa49f7c25925cab092cf7a9333dcdda01" prot="public" virt="non-virtual"><scope>rko_lio::core::VoxelHashMap</scope><name>max_points_per_voxel_</name></member>
       <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a83f6aa36ec4960d0b122f37323cbc61e" prot="public" virt="non-virtual"><scope>rko_lio::core::VoxelHashMap</scope><name>pointcloud</name></member>
       <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a00914479421237754cd577709bd0e1cc" prot="public" virt="non-virtual"><scope>rko_lio::core::VoxelHashMap</scope><name>remove_points_far_from_location</name></member>

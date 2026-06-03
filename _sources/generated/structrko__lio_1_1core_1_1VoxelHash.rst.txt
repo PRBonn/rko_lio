@@ -1,7 +1,7 @@
-.. _exhale_struct_structstd_1_1hash_3_01Eigen_1_1Vector3i_01_4:
+.. _exhale_struct_structrko__lio_1_1core_1_1VoxelHash:
 
-Template Struct hash< Eigen::Vector3i >
-=======================================
+Struct VoxelHash
+================
 
 - Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_voxel_down_sample.hpp`
 
@@ -10,7 +10,7 @@ Struct Documentation
 --------------------
 
 
-.. doxygenstruct:: std::hash< Eigen::Vector3i >
+.. doxygenstruct:: rko_lio::core::VoxelHash
    :project: rko_lio Doxygen Project
    :members:
    :protected-members:

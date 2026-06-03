@@ -64,7 +64,7 @@ Classes
 -------
 
 
-- :ref:`exhale_struct_structstd_1_1hash_3_01Eigen_1_1Vector3i_01_4`
+- :ref:`exhale_struct_structrko__lio_1_1core_1_1VoxelHash`
 
 
 Functions

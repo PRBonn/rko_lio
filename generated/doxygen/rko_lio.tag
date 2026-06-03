@@ -128,10 +128,6 @@
     </member>
   </compound>
   <compound kind="struct">
-    <name>std::hash&lt; Eigen::Vector3i &gt;</name>
-    <filename>structstd_1_1hash_3_01Eigen_1_1Vector3i_01_4.html</filename>
-  </compound>
-  <compound kind="struct">
     <name>rko_lio::core::ImuBias</name>
     <filename>structrko__lio_1_1core_1_1ImuBias.html</filename>
   </compound>
@@ -369,6 +365,10 @@
     <filename>structrko__lio_1_1core_1_1Timestamps.html</filename>
   </compound>
   <compound kind="struct">
+    <name>rko_lio::core::VoxelHash</name>
+    <filename>structrko__lio_1_1core_1_1VoxelHash.html</filename>
+  </compound>
+  <compound kind="struct">
     <name>rko_lio::core::VoxelHashMap</name>
     <filename>structrko__lio_1_1core_1_1VoxelHashMap.html</filename>
   </compound>
@@ -385,6 +385,7 @@
     <class kind="struct">rko_lio::core::Timer</class>
     <class kind="struct">rko_lio::core::TimestampProcessingConfig</class>
     <class kind="struct">rko_lio::core::Timestamps</class>
+    <class kind="struct">rko_lio::core::VoxelHash</class>
     <class kind="struct">rko_lio::core::VoxelHashMap</class>
     <member kind="function">
       <type>Timestamps</type>
