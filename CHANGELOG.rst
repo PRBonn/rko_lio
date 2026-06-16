@@ -2,6 +2,57 @@
 Changelog for package rko_lio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.3.0 (2026-06-16)
+------------------
+* misc: adds testing for lyrical, fixes the current ci fails (`#142 <https://github.com/PRBonn/rko_lio/issues/142>`_)
+  * adds testing for lyrical, fixes the current ci fails, and switches to leaner images for ci
+* use VoxelHash struct to avoid ODR violations (`#140 <https://github.com/PRBonn/rko_lio/issues/140>`_)
+  Co-authored-by: Meher Malladi <rm.meher97@gmail.com>
+* core: revert voxel down sample sorted (`#141 <https://github.com/PRBonn/rko_lio/issues/141>`_)
+  not a 1-1 improvement over previous behavior
+* core: Fix tbb threading using max_num_threads (`#137 <https://github.com/PRBonn/rko_lio/issues/137>`_)
+  * core: return the thread limit which was lost in `#93 <https://github.com/PRBonn/rko_lio/issues/93>`_
+* core: improved voxel down sampling, use robin set, explicit hash sorting (`#136 <https://github.com/PRBonn/rko_lio/issues/136>`_)
+  * tests: add test cases for voxel_down_sample_sorted
+* core, python, ros: a series of simplifications (`#133 <https://github.com/PRBonn/rko_lio/issues/133>`_)
+  * core: clean up preprocessing result for double deskewing on/off
+  * ros: frame parsing simplifications
+  * ros: imu rate publishing simplify
+  * ros: unify publishers to use lio->state
+  * core: simplify point to voxel usage
+  * api: fix my embarrassing spelling mistake on correspondences
+  * ros: clean up bag progress publish in offline mode
+* core: Reject empty input vectors instead of dereferencing end() (`#135 <https://github.com/PRBonn/rko_lio/issues/135>`_)
+* ros (bug): fix shared library components not installing properly
+* core: time in nanoseconds, everywhere (`#132 <https://github.com/PRBonn/rko_lio/issues/132>`_)
+  * switch doubles to nanoseconds end-to-end
+  * ros: improve the utils slightly
+* ros (+ core): Installable and therefore reusable libs (`#131 <https://github.com/PRBonn/rko_lio/issues/131>`_)
+  * make core/ros/ros::utils libs ament-installable + exportable
+  * install only on no fetch content. and prevent install on humble
+* core: drop Bonxai for tsl::robin_map (`#130 <https://github.com/PRBonn/rko_lio/issues/130>`_)
+  * switch to tsl robin map instead of bonxai
+  * change method names to snake case for the hash map
+* chore: bump FetchContent dependencies (`#128 <https://github.com/PRBonn/rko_lio/issues/128>`_)
+* ros: offline node exits once lidar buffer has been emptied (`#127 <https://github.com/PRBonn/rko_lio/issues/127>`_)
+  * fix a potential bug that i thought i fixed on imu msgs being leftover
+  * catch the potential race with the node dying before reg exits
+* docs: overhaul (`#126 <https://github.com/PRBonn/rko_lio/issues/126>`_)
+* ros, feat: odometry at imu rate (`#125 <https://github.com/PRBonn/rko_lio/issues/125>`_)
+  * feat: publish odometry at imu freq, when running sequentially
+  * add a part for the imu rate odom to the docs
+* core: simplifications and clean up to core (`#124 <https://github.com/PRBonn/rko_lio/issues/124>`_)
+* Add Catch2 tests for core functionalities and related updates (`#123 <https://github.com/PRBonn/rko_lio/issues/123>`_)
+  * add catch2 based tests to cover important core functionalities.
+  * then related file updates
+  * consolidate workflows
+* core: error out if keypoints is too small as thats likely a data error (`#110 <https://github.com/PRBonn/rko_lio/issues/110>`_)
+* ros: add deskewed scan topic as a config, change default topic names to relative (`#108 <https://github.com/PRBonn/rko_lio/issues/108>`_)
+* core: orientation linear system simplifications. move util classes to util (`#94 <https://github.com/PRBonn/rko_lio/issues/94>`_)
+* Some code refactoring and execution time improvement. (`#93 <https://github.com/PRBonn/rko_lio/issues/93>`_)
+  Co-authored-by: Meher Malladi <rm.meher97@gmail.com>
+* Contributors: Aleksandr Kovalko, Luca Lobefaro, Meher Malladi, Saurabh Gupta, dependabot[bot], muvahhid kılıç
+
 0.2.0 (2025-12-02)
 ------------------
 * Fix (core): log proper pose for the first frame if init. phase is on (`#89 <https://github.com/PRBonn/rko_lio/issues/89>`_)
