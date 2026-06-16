@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 cmake_minimum_required(VERSION 3.22.0)
-project(rko_lio LANGUAGES CXX)
+project(rko_lio LANGUAGES CXX C)
 
 if(POLICY CMP0135)
   cmake_policy(SET CMP0135 NEW)

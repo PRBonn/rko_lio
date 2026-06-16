@@ -20,7 +20,7 @@ See :doc:`Python <python>` for detailed examples and the full CLI surface.
 ROS
 ---
 
-Supported distros: Humble, Jazzy, Kilted, Rolling.
+Supported distros: Humble, Jazzy, Kilted, Lyrical, Rolling.
 
 .. code-block:: bash
 
