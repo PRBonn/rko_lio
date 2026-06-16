@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=f6a572b4" />
     <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=adc50415" />
-    <script src="../_static/documentation_options.js?v=938c9ccc"></script>
+    <script src="../_static/documentation_options.js?v=e259d695"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
@@ -96,6 +96,57 @@
 <div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
 <span class="gh">Changelog for package rko_lio</span>
 <span class="gh">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+
+<span class="gh">0.3.0 (2026-06-16)</span>
+<span class="gh">------------------</span>
+<span class="m">*</span> misc: adds testing for lyrical, fixes the current ci fails (<span class="s">`#142 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/142&gt;</span><span class="s">`_</span>)
+  <span class="m">*</span> adds testing for lyrical, fixes the current ci fails, and switches to leaner images for ci
+<span class="m">*</span> use VoxelHash struct to avoid ODR violations (<span class="s">`#140 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/140&gt;</span><span class="s">`_</span>)
+  Co-authored-by: Meher Malladi &lt;rm.meher97@gmail.com&gt;
+<span class="m">*</span> core: revert voxel down sample sorted (<span class="s">`#141 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/141&gt;</span><span class="s">`_</span>)
+  not a 1-1 improvement over previous behavior
+<span class="m">*</span> core: Fix tbb threading using max_num_threads (<span class="s">`#137 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/137&gt;</span><span class="s">`_</span>)
+  <span class="m">*</span> core: return the thread limit which was lost in <span class="s">`#93 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/93&gt;</span><span class="s">`_</span>
+<span class="m">*</span> core: improved voxel down sampling, use robin set, explicit hash sorting (<span class="s">`#136 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/136&gt;</span><span class="s">`_</span>)
+  <span class="m">*</span> tests: add test cases for voxel_down_sample_sorted
+<span class="m">*</span> core, python, ros: a series of simplifications (<span class="s">`#133 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/133&gt;</span><span class="s">`_</span>)
+  <span class="m">*</span> core: clean up preprocessing result for double deskewing on/off
+  <span class="m">*</span> ros: frame parsing simplifications
+  <span class="m">*</span> ros: imu rate publishing simplify
+  <span class="m">*</span> ros: unify publishers to use lio-&gt;state
+  <span class="m">*</span> core: simplify point to voxel usage
+  <span class="m">*</span> api: fix my embarrassing spelling mistake on correspondences
+  <span class="m">*</span> ros: clean up bag progress publish in offline mode
+<span class="m">*</span> core: Reject empty input vectors instead of dereferencing end() (<span class="s">`#135 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/135&gt;</span><span class="s">`_</span>)
+<span class="m">*</span> ros (bug): fix shared library components not installing properly
+<span class="m">*</span> core: time in nanoseconds, everywhere (<span class="s">`#132 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/132&gt;</span><span class="s">`_</span>)
+  <span class="m">*</span> switch doubles to nanoseconds end-to-end
+  <span class="m">*</span> ros: improve the utils slightly
+<span class="m">*</span> ros (+ core): Installable and therefore reusable libs (<span class="s">`#131 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/131&gt;</span><span class="s">`_</span>)
+  <span class="m">*</span> make core/ros/ros::utils libs ament-installable + exportable
+  <span class="m">*</span> install only on no fetch content. and prevent install on humble
+<span class="m">*</span> core: drop Bonxai for tsl::robin_map (<span class="s">`#130 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/130&gt;</span><span class="s">`_</span>)
+  <span class="m">*</span> switch to tsl robin map instead of bonxai
+  <span class="m">*</span> change method names to snake case for the hash map
+<span class="m">*</span> chore: bump FetchContent dependencies (<span class="s">`#128 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/128&gt;</span><span class="s">`_</span>)
+<span class="m">*</span> ros: offline node exits once lidar buffer has been emptied (<span class="s">`#127 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/127&gt;</span><span class="s">`_</span>)
+  <span class="m">*</span> fix a potential bug that i thought i fixed on imu msgs being leftover
+  <span class="m">*</span> catch the potential race with the node dying before reg exits
+<span class="m">*</span> docs: overhaul (<span class="s">`#126 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/126&gt;</span><span class="s">`_</span>)
+<span class="m">*</span> ros, feat: odometry at imu rate (<span class="s">`#125 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/125&gt;</span><span class="s">`_</span>)
+  <span class="m">*</span> feat: publish odometry at imu freq, when running sequentially
+  <span class="m">*</span> add a part for the imu rate odom to the docs
+<span class="m">*</span> core: simplifications and clean up to core (<span class="s">`#124 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/124&gt;</span><span class="s">`_</span>)
+<span class="m">*</span> Add Catch2 tests for core functionalities and related updates (<span class="s">`#123 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/123&gt;</span><span class="s">`_</span>)
+  <span class="m">*</span> add catch2 based tests to cover important core functionalities.
+  <span class="m">*</span> then related file updates
+  <span class="m">*</span> consolidate workflows
+<span class="m">*</span> core: error out if keypoints is too small as thats likely a data error (<span class="s">`#110 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/110&gt;</span><span class="s">`_</span>)
+<span class="m">*</span> ros: add deskewed scan topic as a config, change default topic names to relative (<span class="s">`#108 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/108&gt;</span><span class="s">`_</span>)
+<span class="m">*</span> core: orientation linear system simplifications. move util classes to util (<span class="s">`#94 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/94&gt;</span><span class="s">`_</span>)
+<span class="m">*</span> Some code refactoring and execution time improvement. (<span class="s">`#93 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/93&gt;</span><span class="s">`_</span>)
+  Co-authored-by: Meher Malladi &lt;rm.meher97@gmail.com&gt;
+<span class="m">*</span> Contributors: Aleksandr Kovalko, Luca Lobefaro, Meher Malladi, Saurabh Gupta, dependabot[bot], muvahhid kılıç
 
 <span class="gh">0.2.0 (2025-12-02)</span>
 <span class="gh">------------------</span>
