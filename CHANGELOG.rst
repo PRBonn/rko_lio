@@ -7,7 +7,6 @@ Forthcoming
 * misc: adds testing for lyrical, fixes the current ci fails (`#142 <https://github.com/PRBonn/rko_lio/issues/142>`_)
   * adds testing for lyrical, fixes the current ci fails, and switches to leaner images for ci
 * use VoxelHash struct to avoid ODR violations (`#140 <https://github.com/PRBonn/rko_lio/issues/140>`_)
-  ---------
   Co-authored-by: Meher Malladi <rm.meher97@gmail.com>
 * core: revert voxel down sample sorted (`#141 <https://github.com/PRBonn/rko_lio/issues/141>`_)
   not a 1-1 improvement over previous behavior
@@ -51,7 +50,6 @@ Forthcoming
 * ros: add deskewed scan topic as a config, change default topic names to relative (`#108 <https://github.com/PRBonn/rko_lio/issues/108>`_)
 * core: orientation linear system simplifications. move util classes to util (`#94 <https://github.com/PRBonn/rko_lio/issues/94>`_)
 * Some code refactoring and execution time improvement. (`#93 <https://github.com/PRBonn/rko_lio/issues/93>`_)
-  ---------
   Co-authored-by: Meher Malladi <rm.meher97@gmail.com>
 * Contributors: Aleksandr Kovalko, Luca Lobefaro, Meher Malladi, Saurabh Gupta, dependabot[bot], muvahhid kılıç
 
