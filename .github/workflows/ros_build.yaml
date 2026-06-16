@@ -33,10 +33,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { ros_distro: humble,  container_image: "osrf/ros:humble-desktop" }
-          - { ros_distro: jazzy,   container_image: "osrf/ros:jazzy-desktop" }
-          - { ros_distro: kilted,  container_image: "osrf/ros:kilted-desktop" }
-          - { ros_distro: rolling, container_image: "osrf/ros:rolling-desktop" }
+          - {ros_distro: humble, container_image: "ros:humble-ros-base"}
+          - {ros_distro: jazzy, container_image: "ros:jazzy-ros-base"}
+          - {ros_distro: kilted, container_image: "ros:kilted-ros-base"}
+          - {ros_distro: lyrical, container_image: "ros:lyrical-ros-base",}
+          # - { ros_distro: rolling, container_image: "ros:rolling-ros-base"}
     container:
       image: ${{ matrix.container_image }}
     steps:
@@ -44,7 +45,7 @@ jobs:
       - name: Install build tools
         run: |
           apt-get update
-          apt-get install -y build-essential cmake
+          apt-get install -y build-essential cmake git
       - name: Source ROS environment, install dependencies, and build
         run: |
           . /opt/ros/${{ matrix.ros_distro }}/setup.sh
@@ -60,10 +61,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { ros_distro: humble,  container_image: "osrf/ros:humble-desktop" }
-          - { ros_distro: jazzy,   container_image: "osrf/ros:jazzy-desktop" }
-          - { ros_distro: kilted,  container_image: "osrf/ros:kilted-desktop" }
-          - { ros_distro: rolling, container_image: "osrf/ros:rolling-desktop" }
+          - {ros_distro: humble, container_image: "ros:humble-ros-base"}
+          - {ros_distro: jazzy, container_image: "ros:jazzy-ros-base"}
+          - {ros_distro: kilted, container_image: "ros:kilted-ros-base"}
+          - {ros_distro: lyrical, container_image: "ros:lyrical-ros-base"}
+          - {ros_distro: rolling, container_image: "ros:rolling-ros-base"}
     container:
       image: ${{ matrix.container_image }}
     steps:
@@ -71,7 +73,7 @@ jobs:
       - name: Install build tools
         run: |
           apt-get update
-          apt-get install -y build-essential cmake
+          apt-get install -y build-essential cmake git
       - name: Source ROS environment and build with extra CMake args
         run: |
           . /opt/ros/${{ matrix.ros_distro }}/setup.sh

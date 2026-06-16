@@ -10,7 +10,7 @@ ROS
   </p>
   </div>
 
-Supported distros: Humble, Jazzy, Kilted, Rolling.
+Supported distros: Humble, Jazzy, Kilted, Lyrical, Rolling.
 
 .. contents::
    :local:
