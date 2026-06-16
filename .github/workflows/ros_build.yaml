@@ -29,16 +29,15 @@ jobs:
     needs: check_relevant_changes
     if: needs.check_relevant_changes.outputs.continue_run == 'true'
     runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.experimental || false }}
     strategy:
       fail-fast: false
       matrix:
         include:
-          - { ros_distro: humble,  container_image: "ros:humble-ros-base" }
-          - { ros_distro: jazzy,   container_image: "ros:jazzy-ros-base" }
-          - { ros_distro: kilted,  container_image: "ros:kilted-ros-base" }
-          - { ros_distro: lyrical, container_image: "ros:lyrical-ros-base" }
-          - { ros_distro: rolling, container_image: "ros:rolling-ros-base", experimental: true }
+          - {ros_distro: humble, container_image: "ros:humble-ros-base"}
+          - {ros_distro: jazzy, container_image: "ros:jazzy-ros-base"}
+          - {ros_distro: kilted, container_image: "ros:kilted-ros-base"}
+          - {ros_distro: lyrical, container_image: "ros:lyrical-ros-base",}
+          # - { ros_distro: rolling, container_image: "ros:rolling-ros-base"}
     container:
       image: ${{ matrix.container_image }}
     steps:
@@ -62,11 +61,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { ros_distro: humble,  container_image: "ros:humble-ros-base" }
-          - { ros_distro: jazzy,   container_image: "ros:jazzy-ros-base" }
-          - { ros_distro: kilted,  container_image: "ros:kilted-ros-base" }
-          - { ros_distro: lyrical, container_image: "ros:lyrical-ros-base" }
-          - { ros_distro: rolling, container_image: "ros:rolling-ros-base" }
+          - {ros_distro: humble, container_image: "ros:humble-ros-base"}
+          - {ros_distro: jazzy, container_image: "ros:jazzy-ros-base"}
+          - {ros_distro: kilted, container_image: "ros:kilted-ros-base"}
+          - {ros_distro: lyrical, container_image: "ros:lyrical-ros-base"}
+          - {ros_distro: rolling, container_image: "ros:rolling-ros-base"}
     container:
       image: ${{ matrix.container_image }}
     steps:
