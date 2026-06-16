@@ -2,8 +2,8 @@
 Changelog for package rko_lio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.0 (2026-06-16)
+------------------
 * misc: adds testing for lyrical, fixes the current ci fails (`#142 <https://github.com/PRBonn/rko_lio/issues/142>`_)
   * adds testing for lyrical, fixes the current ci fails, and switches to leaner images for ci
 * use VoxelHash struct to avoid ODR violations (`#140 <https://github.com/PRBonn/rko_lio/issues/140>`_)
