@@ -1,27 +1,3 @@
-"""
-Raw Dataloader
---------------
-
-When using the raw dataloader, arrange your dataset directory as follows:
-
-.. code-block:: none
-
-   dataset_root/
-   ├── transforms.yaml                 # required: contains 4x4 matrices
-   ├── imu.csv / imu.txt               # must match required columns
-   └── lidar/                          # folder of point clouds
-       ├── 1662622237000000000.ply
-       ├── 1662622238000000000.ply
-       └── ...
-
-- ``transforms.yaml``: defines two keys (``T_imu_to_base``, ``T_lidar_to_base``), each a 4x4 matrix. See :ref:`Extrinsics and conventions <data-extrinsics-convention>`.
-- IMU file: Only one file (CSV or TXT) is allowed. Required columns: ``timestamp, gyro_x, gyro_y, gyro_z, accel_x, accel_y, accel_z``. Extra columns are allowed. ``timestamp`` in nanoseconds, others in SI units.
-- ``lidar/``: contains scans as PLY files. Each filename is a timestamp (ns) for the scan.
-  Each PLY file must have a time field (accepted names: ``time``, ``timestamp``, ``timestamps``, or ``t``) in **seconds**.
-
-Note the unit difference: filenames are in **nanoseconds**, the per-point time field inside each PLY is in **seconds**. This is intentional (filenames are easier to sort as integers) but easy to get wrong.
-"""
-
 # MIT License
 #
 # Copyright (c) 2025 Meher V.R. Malladi.
@@ -44,297 +20,302 @@ Note the unit difference: filenames are in **nanoseconds**, the per-point time f
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+"""
+Raw Dataloader
+--------------
+
+A file-based dataloader for datasets laid out as plain files:
+
+.. code-block:: none
+
+   dataset_root/
+   ├── transforms.yaml        # required: 4x4 extrinsics
+   ├── imu.csv                # required: one IMU file (.csv or .txt)
+   ├── lidar/                 # required: one .ply per scan, named <ns>.ply
+   │   ├── 1662622237000000000.ply
+   │   └── ...
+   └── rko_lio_settings.yaml  # optional: overrides (see below)
+
+- ``transforms.yaml`` defines ``T_imu_to_base`` and ``T_lidar_to_base``, each a
+  4x4 matrix. See :ref:`Extrinsics and conventions <data-extrinsics-convention>`.
+- The IMU CSV has a header row; default columns are ``timestamp, gyro_x, gyro_y,
+  gyro_z, accel_x, accel_y, accel_z`` (``timestamp`` in nanoseconds, rest SI).
+  Extra columns are ignored.
+- ``lidar/`` holds one ``.ply`` per scan; the filename stem is the scan
+  timestamp in **nanoseconds**. A per-point time field (``time``, ``timestamps``,
+  ``timestamp`` or ``t``) is used for deskewing when present, with units and
+  absolute/relative detected automatically; clouds without one fall back to the
+  filename stamp (disable deskewing with ``deskew: false`` in a ``-c`` config).
+
+Defaults can be overridden with an optional ``rko_lio_settings.yaml``:
+
+.. code-block:: yaml
+
+   imu:
+     path: imu.csv                            # IMU file, if not auto-detected
+     timestamp_multiplier_to_nanoseconds: 1   # e.g. 1e9 if the CSV time is in seconds
+     headers:                                 # map expected name -> your column name
+       timestamp: my_stamp_col                # gyro_x/y/z, accel_x/y/z likewise
+   lidar:
+     path: lidar                              # lidar subfolder name
+     file_suffix: .ply
+     filename_timestamp_multiplier_to_nanoseconds: 1
+"""
+
 import csv
 from pathlib import Path
 
 import numpy as np
 import yaml
 
+from .. import rko_lio_pybind
+from ..config import TimestampConfig
 from ..scoped_profiler import ScopedProfiler
 from ..util import error_and_exit, info, warning
+# recognised per-point time field names, shared with the ROS PointCloud2 reader
+from .utils.ros_read_point_cloud import __TIMESTAMP_ATTRIBUTE_NAMES__
 
 try:
-    import open3d as o3d
-
-except ImportError:
+    from plyfile import PlyData
+except ModuleNotFoundError:
     error_and_exit(
-        "Please install open3d with `pip install open3d` to use the raw dataloader."
+        'plyfile not installed for the raw dataloader, please install with "pip install -U plyfile"'
     )
+
+__DEFAULT_IMU_COLUMNS__ = {
+    "timestamp": "timestamp",
+    "gyro_x": "gyro_x",
+    "gyro_y": "gyro_y",
+    "gyro_z": "gyro_z",
+    "accel_x": "accel_x",
+    "accel_y": "accel_y",
+    "accel_z": "accel_z",
+}
+
+
+def _stamp_to_ns(value, multiplier: float) -> int:
+    """
+    Convert a timestamp string to integer nanoseconds.
+
+    For the default (already-nanoseconds) case we parse the integer directly:
+    a 19-digit ns stamp does not survive a round-trip through float64.
+    """
+    text = str(value)
+    if multiplier == 1:
+        return int(text) if text.lstrip("-").isdigit() else int(float(text))
+    return int(float(text) * multiplier)
+
+
+def read_point_cloud_file(path):
+    """
+    Read a ``.ply`` point cloud and return ``(points, times)``.
+
+    ``points`` is an ``(N, 3)`` float64 array. ``times`` is an ``(N,)`` float64
+    array of per-point times if the cloud has a recognised time field, else
+    ``None`` (units/absolute-vs-relative are left to ``_process_timestamps``).
+    """
+    path = Path(path)
+    if path.suffix.lower() != ".ply":
+        error_and_exit(f"Only .ply point clouds are supported, got '{path.suffix}': {path}")
+
+    vertex = PlyData.read(str(path))["vertex"].data
+    names = vertex.dtype.names
+    missing = [c for c in ("x", "y", "z") if c not in names]
+    if missing:
+        error_and_exit(
+            f"Point cloud {path} is missing coordinate field(s) {missing}; has {names}"
+        )
+    points = np.column_stack([vertex["x"], vertex["y"], vertex["z"]]).astype(np.float64)
+    for name in __TIMESTAMP_ATTRIBUTE_NAMES__:
+        if name in names:
+            return points, vertex[name].astype(np.float64)
+    return points, None
 
 
 class RawDataLoader:
-    def __init__(self, data_path: Path, *args, **kwargs):
+    def __init__(
+        self,
+        data_path: Path,
+        timestamp_config: TimestampConfig,
+        *args,
+        **kwargs,
+    ):
         self.data_path = Path(data_path)
+        self.timestamp_config = timestamp_config
+        self.settings = self._load_settings()
 
-        self.rko_lio_settings = None
-        if (self.data_path / "rko_lio_settings.yaml").exists():
-            with open(self.data_path / "rko_lio_settings.yaml", "r") as f:
-                self.rko_lio_settings = yaml.safe_load(f)
+        imu_data = self._load_imu(self._resolve_imu_file())
+        lidar_data = self._load_lidar(self._resolve_lidar_dir())
 
-        # Load IMU data
-        def default_imu_file():
-            imu_files = list(self.data_path.glob("*.csv")) + list(
-                self.data_path.glob("*.txt")
-            )
-            if len(imu_files) != 1:
-                error_and_exit(
-                    f"Expected exactly one IMU CSV/TXT in {self.data_path}, found: {imu_files}"
-                )
-            return imu_files[0].relative_to(self.data_path)
-
-        imu_file = self.data_path / self._get_from_settings(
-            "imu:path", default_imu_file
+        self.entries = sorted(
+            [("imu", d["timestamp"], d) for d in imu_data]
+            + [("lidar", d["timestamp"], d) for d in lidar_data],
+            key=lambda e: e[1],
         )
-        if not imu_file.exists():
-            error_and_exit(f"Imu file {imu_file} does not exist.")
-        self.imu_data = self._load_imu_data(imu_file)
-
-        # load lidar filenames
-        def default_lidar_dir():
-            lidar_dir = self.data_path / "lidar"
-            if not lidar_dir.is_dir():
-                error_and_exit(f"Expected a folder called 'lidar' in {self.data_path}")
-            return lidar_dir
-
-        lidar_dir = self.data_path / self._get_from_settings(
-            "lidar:path", default_lidar_dir
-        )
-        if (not lidar_dir.exists()) or (not lidar_dir.is_dir()):
-            error_and_exit(
-                f"Lidar dir {lidar_dir} does not exist or is not a directory."
-            )
-        self.lidar_data = self._load_lidar_data(lidar_dir)
-        self.possible_timestamp_attribute_names = [
-            "time",
-            "timestamps",
-            "timestamp",
-            "t",
-        ]
-        user_specified_timestamp_attribute = self._get_from_settings(
-            "lidar:timestamp_attribute", lambda: None
-        )
-        if user_specified_timestamp_attribute is not None:
-            self.possible_timestamp_attribute_names.append(
-                user_specified_timestamp_attribute
-            )
-
-        # Build a global, sorted list of all timestamps
-        self.entries = []
-        for imu in self.imu_data:
-            self.entries.append(("imu", imu["timestamp"], imu))
-        for lidar in self.lidar_data:
-            self.entries.append(("lidar", lidar["timestamp"], lidar))
-        self.entries.sort(key=lambda x: x[1])
 
         self.T_imu_to_base = None
         self.T_lidar_to_base = None
 
-    def __len__(self):
-        return len(self.entries)
+    def _load_settings(self) -> dict:
+        settings_file = self.data_path / "rko_lio_settings.yaml"
+        if settings_file.exists():
+            with open(settings_file, "r") as f:
+                return yaml.safe_load(f) or {}
+        return {}
 
-    def _get_from_settings(self, key: str, default_callable, _warned_keys=set()):
-        """
-        warned_keys is a trick (hack) to have a global variable to prevent repeated warnings.
-        will work as long as it remains the default value.
-        """
-        if not isinstance(self.rko_lio_settings, dict):
-            return default_callable()
-        query = key.split(":")
-        ref = self.rko_lio_settings
-        traversed = ""
-        for sub_key in query:
-            traversed += f"{sub_key}:"
-            if sub_key not in ref:
-                if key not in _warned_keys:
-                    _warned_keys.add(key)
-                    warning(
-                        f"{traversed} missing in rko_lio_settings.yaml, using default value for {key}."
-                    )
-                return default_callable()
-            ref = ref[sub_key]
-        if isinstance(ref, dict):
+    def _resolve_imu_file(self) -> Path:
+        override = (self.settings.get("imu") or {}).get("path")
+        if override:
+            imu_file = self.data_path / override
+            if not imu_file.exists():
+                error_and_exit(f"IMU file {imu_file} does not exist.")
+            return imu_file
+
+        candidates = sorted(self.data_path.glob("*.csv")) + sorted(
+            self.data_path.glob("*.txt")
+        )
+        if len(candidates) != 1:
             error_and_exit(
-                f"Final value for {key} is still a dict in rko_lio_settings.yaml, ill-formed."
+                f"Expected exactly one IMU .csv/.txt file in {self.data_path}, "
+                f"found: {[c.name for c in candidates]}. Set 'imu: {{path: ...}}' "
+                "in rko_lio_settings.yaml to disambiguate."
             )
-        return ref
+        return candidates[0]
+
+    def _resolve_lidar_dir(self) -> Path:
+        override = (self.settings.get("lidar") or {}).get("path", "lidar")
+        lidar_dir = self.data_path / override
+        if not lidar_dir.is_dir():
+            error_and_exit(f"Lidar directory {lidar_dir} does not exist.")
+        return lidar_dir
+
+    def _load_imu(self, imu_file: Path) -> list:
+        imu_cfg = self.settings.get("imu") or {}
+        columns = {**__DEFAULT_IMU_COLUMNS__, **(imu_cfg.get("headers") or {})}
+        ts_multiplier = float(imu_cfg.get("timestamp_multiplier_to_nanoseconds", 1))
+
+        info(f"Loading IMU data from {imu_file}.")
+        imu_data = []
+        with open(imu_file, "r", newline="") as f:
+            reader = csv.DictReader(f)
+            missing = [c for c in columns.values() if c not in (reader.fieldnames or [])]
+            if missing:
+                error_and_exit(
+                    f"IMU file {imu_file} is missing column(s) {missing}. "
+                    f"Found columns: {reader.fieldnames}. Override names via "
+                    "'imu: {headers: {...}}' in rko_lio_settings.yaml."
+                )
+            for row in reader:
+                imu_data.append(
+                    {
+                        "timestamp": _stamp_to_ns(row[columns["timestamp"]], ts_multiplier),
+                        "gyro": np.array(
+                            [float(row[columns[f"gyro_{a}"]]) for a in "xyz"]
+                        ),
+                        "accel": np.array(
+                            [float(row[columns[f"accel_{a}"]]) for a in "xyz"]
+                        ),
+                    }
+                )
+        return imu_data
+
+    def _load_lidar(self, lidar_dir: Path) -> list:
+        lidar_cfg = self.settings.get("lidar") or {}
+        suffix = lidar_cfg.get("file_suffix", ".ply")
+        ts_multiplier = float(
+            lidar_cfg.get("filename_timestamp_multiplier_to_nanoseconds", 1)
+        )
+        files = sorted(lidar_dir.glob(f"*{suffix}"))
+        if not files:
+            error_and_exit(f"No '*{suffix}' files found in {lidar_dir}.")
+        return [
+            {"timestamp": _stamp_to_ns(f.stem, ts_multiplier), "filename": f}
+            for f in files
+        ]
 
     @property
     def extrinsics(self):
         if self.T_imu_to_base is None or self.T_lidar_to_base is None:
             info("Trying to obtain extrinsics from the data.")
-            # load extrinsics from file
             tf_file = self.data_path / "transforms.yaml"
             if not tf_file.is_file():
                 error_and_exit(
-                    f"Querying extrinsics automatically from the raw dataloader requires a transforms.yaml file in {self.data_path}"
+                    f"The raw dataloader needs a transforms.yaml file in {self.data_path}."
                 )
-
             with open(tf_file, "r") as f:
                 tf_data = yaml.safe_load(f)
 
-            required_keys = ["T_imu_to_base", "T_lidar_to_base"]
-            for key in required_keys:
-                if not isinstance(tf_data, dict) or key not in tf_data:
-                    error_and_exit(
-                        f"Querying extrinsics automatically from the raw dataloader requires a '{key}' matrix with that (key) name in transforms.yaml inside {self.data_path}"
-                    )
-
-            self.T_imu_to_base = np.array(tf_data["T_imu_to_base"], dtype=float)
-            if not self.T_imu_to_base.shape == (4, 4):
-                error_and_exit(
-                    f"T_imu_to_base shape is {self.T_imu_to_base.shape}, expected 4x4"
-                )
-
-            self.T_lidar_to_base = np.array(tf_data["T_lidar_to_base"], dtype=float)
-            if not self.T_lidar_to_base.shape == (4, 4):
-                error_and_exit(
-                    f"T_lidar_to_base shape is {self.T_lidar_to_base.shape}, expected 4x4"
-                )
-
+            self.T_imu_to_base = self._read_transform(tf_data, "T_imu_to_base", tf_file)
+            self.T_lidar_to_base = self._read_transform(
+                tf_data, "T_lidar_to_base", tf_file
+            )
         return self.T_imu_to_base, self.T_lidar_to_base
 
-    def _load_imu_data(self, imu_file: Path):
-        # this perhaps looks a bit complicated. But really its because of the formatting and
-        # all i'm doing is to have a way to easily map whatever key the user's csv files have
-        # to an expected column name if someone can suggest a simpler alternative, I'll take it
-        imu_data = []
-        print("Loading IMU data.")
-        with open(imu_file, "r") as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                imu_data.append(
-                    {
-                        "timestamp": int(
-                            float(
-                                row[
-                                    self._get_from_settings(
-                                        "imu:headers:timestamp", lambda: "timestamp"
-                                    )
-                                ]
-                            )
-                            * float(
-                                self._get_from_settings(
-                                    "imu:timestamp_multiplier_to_nanoseconds",
-                                    1,  # default assumption is imu time is in nanoseconds
-                                )
-                            )
-                        ),
-                        "gyro": np.array(
-                            [
-                                float(
-                                    row[
-                                        self._get_from_settings(
-                                            "imu:headers:gyro_x", lambda: "gyro_x"
-                                        )
-                                    ]
-                                ),
-                                float(
-                                    row[
-                                        self._get_from_settings(
-                                            "imu:headers:gyro_y", lambda: "gyro_y"
-                                        )
-                                    ]
-                                ),
-                                float(
-                                    row[
-                                        self._get_from_settings(
-                                            "imu:headers:gyro_z", lambda: "gyro_z"
-                                        )
-                                    ]
-                                ),
-                            ]
-                        ),
-                        "accel": np.array(
-                            [
-                                float(
-                                    row[
-                                        self._get_from_settings(
-                                            "imu:headers:accel_x", lambda: "accel_x"
-                                        )
-                                    ]
-                                ),
-                                float(
-                                    row[
-                                        self._get_from_settings(
-                                            "imu:headers:accel_y", lambda: "accel_y"
-                                        )
-                                    ]
-                                ),
-                                float(
-                                    row[
-                                        self._get_from_settings(
-                                            "imu:headers:accel_z", lambda: "accel_z"
-                                        )
-                                    ]
-                                ),
-                            ]
-                        ),
-                    }
-                )
-        print("Loaded IMU data.")
-        return imu_data
+    @staticmethod
+    def _read_transform(tf_data, key: str, tf_file: Path) -> np.ndarray:
+        if not isinstance(tf_data, dict) or key not in tf_data:
+            error_and_exit(f"transforms.yaml in {tf_file} must contain a '{key}' matrix.")
+        matrix = np.array(tf_data[key], dtype=float)
+        if matrix.shape != (4, 4):
+            error_and_exit(f"{key} shape is {matrix.shape}, expected 4x4.")
+        return matrix
 
-    def _load_lidar_data(self, lidar_dir: Path):
-        file_type = self._get_from_settings(
-            "lidar:file_suffix_with_dot", lambda: ".ply"
-        )
-        lidar_files = sorted(lidar_dir.glob("*" + file_type))
-        if not len(lidar_files):
-            error_and_exit(
-                f"No files with file extension f{file_type} found in {lidar_dir}."
-            )
-        lidar_data = []
-        for lf_name in lidar_files:
-            timestamp = int(
-                float(lf_name.stem)
-                * float(
-                    self._get_from_settings(
-                        "lidar:file_timestamp_multiplier_to_nanoseconds", lambda: 1
-                    )
-                )
-            )
-            lidar_data.append({"timestamp": timestamp, "filename": lf_name})
-        return lidar_data
+    def __len__(self):
+        return len(self.entries)
 
     def __iter__(self):
         self._iter = iter(self.entries)
         return self
 
     def __next__(self):
-        with ScopedProfiler("Raw Dataloader") as data_timer:
-            kind, _, data = next(self._iter)
+        while True:
+            with ScopedProfiler("Raw Dataloader"):
+                kind, _, data = next(self._iter)
+                if kind == "imu":
+                    return "imu", {
+                        "time": int(data["timestamp"]),
+                        "acceleration": data["accel"],
+                        "angular_velocity": data["gyro"],
+                    }
+                try:
+                    return "lidar", self._read_lidar(data)
+                except RuntimeError as e:
+                    # _process_timestamps can throw; skip the frame like rosbag/helipr.
+                    warning("Error processing lidar frame.", e)
+                    continue
 
-            if kind == "imu":
-                return "imu", {
-                    "time": int(data["timestamp"]),
-                    "acceleration": data["accel"],
-                    "angular_velocity": data["gyro"],
-                }
-            elif kind == "lidar":
-                ply = o3d.t.io.read_point_cloud(str(data["filename"]))
-                # Find a field for per-point timestamp
-                for attr_name in self.possible_timestamp_attribute_names:
-                    if attr_name in ply.point:
-                        timestamps_sec = ply.point[attr_name].numpy().flatten()
-                        # TODO: use pybind.process_timestamps to handle non seconds cases
-                        break
-                else:
-                    # TODO: should not throw if deskew: false
-                    error_and_exit(
-                        f"No per-point timestamp attribute found in {data['filename']}. Please check the attributes."
-                    )
-                points = ply.point["positions"].numpy()
-                timestamps_ns = np.round(np.asarray(timestamps_sec, dtype=np.float64) * 1e9).astype(np.int64)
-                return "lidar", {
-                    "start_time_ns": int(timestamps_ns.min()),
-                    "end_time_ns": int(timestamps_ns.max()),
-                    "scan": points,
-                    "timestamps": timestamps_ns,
-                }
+    def _read_lidar(self, data: dict) -> dict:
+        header_stamp_ns = int(data["timestamp"])
+        points, per_point_time = read_point_cloud_file(data["filename"])
+
+        if per_point_time is not None and per_point_time.size > 0:
+            start_ns, end_ns, abs_timestamps_ns = rko_lio_pybind._process_timestamps(
+                rko_lio_pybind._VectorDouble(per_point_time),
+                header_stamp_ns,
+                self.timestamp_config.to_pybind(),
+            )
+            timestamps = np.asarray(abs_timestamps_ns, dtype=np.int64)
+        else:
+            if not hasattr(self, "_printed_timestamp_warning"):
+                self._printed_timestamp_warning = True
+                warning(
+                    f"No per-point timestamps in {data['filename']} (and similar). "
+                    "Odometry will suffer; disable deskewing with 'deskew: false' in a config."
+                )
+            start_ns = end_ns = header_stamp_ns
+            timestamps = np.full(points.shape[0], header_stamp_ns, dtype=np.int64)
+
+        return {
+            "start_time_ns": start_ns,
+            "end_time_ns": end_ns,
+            "scan": points,
+            "timestamps": timestamps,
+        }
 
     def __repr__(self):
-        imu_info = f"{len(self.imu_data)} IMU readings"
-        lidar_info = f"{len(self.lidar_data)} lidar frames"
-        path_info = f"path={self.data_path}"
-        entry_info = f"{len(self.entries)} total entries"
-        return f"RawDataLoader({path_info}, {imu_info}, {lidar_info}, {entry_info})"
+        n_imu = sum(1 for e in self.entries if e[0] == "imu")
+        n_lidar = sum(1 for e in self.entries if e[0] == "lidar")
+        return (
+            f"RawDataLoader(path={self.data_path}, {n_imu} IMU readings, "
+            f"{n_lidar} lidar frames)"
+        )
