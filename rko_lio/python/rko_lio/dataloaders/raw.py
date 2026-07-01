@@ -72,9 +72,17 @@ from .. import rko_lio_pybind
 from ..config import TimestampConfig
 from ..scoped_profiler import ScopedProfiler
 from ..util import error_and_exit, info, warning
-from .utils.read_point_cloud_file import read_point_cloud_file
+# recognised per-point time field names, shared with the ROS PointCloud2 reader
+from .utils.ros_read_point_cloud import __TIMESTAMP_ATTRIBUTE_NAMES__
 
-DEFAULT_IMU_COLUMNS = {
+try:
+    from plyfile import PlyData
+except ModuleNotFoundError:
+    error_and_exit(
+        'plyfile not installed for the raw dataloader, please install with "pip install -U plyfile"'
+    )
+
+__DEFAULT_IMU_COLUMNS__ = {
     "timestamp": "timestamp",
     "gyro_x": "gyro_x",
     "gyro_y": "gyro_y",
@@ -96,6 +104,32 @@ def _stamp_to_ns(value, multiplier: float) -> int:
     if multiplier == 1:
         return int(text) if text.lstrip("-").isdigit() else int(float(text))
     return int(float(text) * multiplier)
+
+
+def read_point_cloud_file(path):
+    """
+    Read a ``.ply`` point cloud and return ``(points, times)``.
+
+    ``points`` is an ``(N, 3)`` float64 array. ``times`` is an ``(N,)`` float64
+    array of per-point times if the cloud has a recognised time field, else
+    ``None`` (units/absolute-vs-relative are left to ``_process_timestamps``).
+    """
+    path = Path(path)
+    if path.suffix.lower() != ".ply":
+        error_and_exit(f"Only .ply point clouds are supported, got '{path.suffix}': {path}")
+
+    vertex = PlyData.read(str(path))["vertex"].data
+    names = vertex.dtype.names
+    missing = [c for c in ("x", "y", "z") if c not in names]
+    if missing:
+        error_and_exit(
+            f"Point cloud {path} is missing coordinate field(s) {missing}; has {names}"
+        )
+    points = np.column_stack([vertex["x"], vertex["y"], vertex["z"]]).astype(np.float64)
+    for name in __TIMESTAMP_ATTRIBUTE_NAMES__:
+        if name in names:
+            return points, vertex[name].astype(np.float64)
+    return points, None
 
 
 class RawDataLoader:
@@ -157,7 +191,7 @@ class RawDataLoader:
 
     def _load_imu(self, imu_file: Path) -> list:
         imu_cfg = self.settings.get("imu") or {}
-        columns = {**DEFAULT_IMU_COLUMNS, **(imu_cfg.get("headers") or {})}
+        columns = {**__DEFAULT_IMU_COLUMNS__, **(imu_cfg.get("headers") or {})}
         ts_multiplier = float(imu_cfg.get("timestamp_multiplier_to_nanoseconds", 1))
 
         info(f"Loading IMU data from {imu_file}.")

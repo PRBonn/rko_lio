@@ -209,17 +209,17 @@ def test_missing_imu_column_errors(tmp_path):
 
 
 def test_unsupported_point_cloud_format_raises(tmp_path):
-    from rko_lio.dataloaders.utils.read_point_cloud_file import read_point_cloud_file
+    from rko_lio.dataloaders.raw import read_point_cloud_file
 
     bogus = tmp_path / "cloud.pcd"
     bogus.write_bytes(b"not really a pcd")
-    with pytest.raises(ValueError, match="Only .ply"):
+    with pytest.raises(SystemExit):
         read_point_cloud_file(bogus)
 
 
 def test_deskewed_scan_dump_roundtrips_exactly(tmp_path):
     # Deskewed-scan dump must stay float64 (no precision loss).
-    from rko_lio.dataloaders.utils.read_point_cloud_file import read_point_cloud_file
+    from rko_lio.dataloaders.raw import read_point_cloud_file
     from rko_lio.util import save_scan_as_ply
 
     scan = (np.random.default_rng(0).standard_normal((300, 3)) * 40.0).astype(np.float64)
