@@ -218,23 +218,40 @@ rko_lio<span class="w"> </span>-v<span class="w"> </span>-c<span class="w"> </sp
 </section>
 <section id="raw-dataloader">
 <h3><a class="toc-backref" href="#id7" role="doc-backlink">Raw Dataloader</a><a class="headerlink" href="#raw-dataloader" title="Link to this heading">¶</a></h3>
-<p>When using the raw dataloader, arrange your dataset directory as follows:</p>
+<p>A file-based dataloader for datasets laid out as plain files:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dataset_root/
-├── transforms.yaml                 # required: contains 4x4 matrices
-├── imu.csv / imu.txt               # must match required columns
-└── lidar/                          # folder of point clouds
-    ├── 1662622237000000000.ply
-    ├── 1662622238000000000.ply
-    └── ...
+├── transforms.yaml        # required: 4x4 extrinsics
+├── imu.csv                # required: one IMU file (.csv or .txt)
+├── lidar/                 # required: one .ply per scan, named &lt;ns&gt;.ply
+│   ├── 1662622237000000000.ply
+│   └── ...
+└── rko_lio_settings.yaml  # optional: overrides (see below)
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">transforms.yaml</span></code>: defines two keys (<code class="docutils literal notranslate"><span class="pre">T_imu_to_base</span></code>, <code class="docutils literal notranslate"><span class="pre">T_lidar_to_base</span></code>), each a 4x4 matrix. See <a class="reference internal" href="data.html#data-extrinsics-convention"><span class="std std-ref">Extrinsics and conventions</span></a>.</p></li>
-<li><p>IMU file: Only one file (CSV or TXT) is allowed. Required columns: <code class="docutils literal notranslate"><span class="pre">timestamp,</span> <span class="pre">gyro_x,</span> <span class="pre">gyro_y,</span> <span class="pre">gyro_z,</span> <span class="pre">accel_x,</span> <span class="pre">accel_y,</span> <span class="pre">accel_z</span></code>. Extra columns are allowed. <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> in nanoseconds, others in SI units.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">lidar/</span></code>: contains scans as PLY files. Each filename is a timestamp (ns) for the scan.
-Each PLY file must have a time field (accepted names: <code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">timestamp</span></code>, <code class="docutils literal notranslate"><span class="pre">timestamps</span></code>, or <code class="docutils literal notranslate"><span class="pre">t</span></code>) in <strong>seconds</strong>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">transforms.yaml</span></code> defines <code class="docutils literal notranslate"><span class="pre">T_imu_to_base</span></code> and <code class="docutils literal notranslate"><span class="pre">T_lidar_to_base</span></code>, each a
+4x4 matrix. See <a class="reference internal" href="data.html#data-extrinsics-convention"><span class="std std-ref">Extrinsics and conventions</span></a>.</p></li>
+<li><p>The IMU CSV has a header row; default columns are <code class="docutils literal notranslate"><span class="pre">timestamp,</span> <span class="pre">gyro_x,</span> <span class="pre">gyro_y,</span>
+<span class="pre">gyro_z,</span> <span class="pre">accel_x,</span> <span class="pre">accel_y,</span> <span class="pre">accel_z</span></code> (<code class="docutils literal notranslate"><span class="pre">timestamp</span></code> in nanoseconds, rest SI).
+Extra columns are ignored.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lidar/</span></code> holds one <code class="docutils literal notranslate"><span class="pre">.ply</span></code> per scan; the filename stem is the scan
+timestamp in <strong>nanoseconds</strong>. A per-point time field (<code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">timestamps</span></code>,
+<code class="docutils literal notranslate"><span class="pre">timestamp</span></code> or <code class="docutils literal notranslate"><span class="pre">t</span></code>) is used for deskewing when present, with units and
+absolute/relative detected automatically; clouds without one fall back to the
+filename stamp (disable deskewing with <code class="docutils literal notranslate"><span class="pre">deskew:</span> <span class="pre">false</span></code> in a <code class="docutils literal notranslate"><span class="pre">-c</span></code> config).</p></li>
 </ul>
-<p>Note the unit difference: filenames are in <strong>nanoseconds</strong>, the per-point time field inside each PLY is in <strong>seconds</strong>. This is intentional (filenames are easier to sort as integers) but easy to get wrong.</p>
+<p>Defaults can be overridden with an optional <code class="docutils literal notranslate"><span class="pre">rko_lio_settings.yaml</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">imu</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">imu.csv</span><span class="w">                            </span><span class="c1"># IMU file, if not auto-detected</span>
+<span class="w">  </span><span class="nt">timestamp_multiplier_to_nanoseconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">   </span><span class="c1"># e.g. 1e9 if the CSV time is in seconds</span>
+<span class="w">  </span><span class="nt">headers</span><span class="p">:</span><span class="w">                                 </span><span class="c1"># map expected name -&gt; your column name</span>
+<span class="w">    </span><span class="nt">timestamp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my_stamp_col</span><span class="w">                </span><span class="c1"># gyro_x/y/z, accel_x/y/z likewise</span>
+<span class="nt">lidar</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lidar</span><span class="w">                              </span><span class="c1"># lidar subfolder name</span>
+<span class="w">  </span><span class="nt">file_suffix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.ply</span>
+<span class="w">  </span><span class="nt">filename_timestamp_multiplier_to_nanoseconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</pre></div>
+</div>
 </section>
 <section id="helipr-dataloader">
 <h3><a class="toc-backref" href="#id8" role="doc-backlink">HeLiPR Dataloader</a><a class="headerlink" href="#helipr-dataloader" title="Link to this heading">¶</a></h3>

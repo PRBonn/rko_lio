@@ -95,33 +95,59 @@
 <span id="rko-lio-dataloaders-raw-module"></span><h1>rko_lio.dataloaders.raw module<a class="headerlink" href="#module-rko_lio.dataloaders.raw" title="Link to this heading">¶</a></h1>
 <section id="raw-dataloader">
 <h2>Raw Dataloader<a class="headerlink" href="#raw-dataloader" title="Link to this heading">¶</a></h2>
-<p>When using the raw dataloader, arrange your dataset directory as follows:</p>
+<p>A file-based dataloader for datasets laid out as plain files:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dataset_root/
-├── transforms.yaml                 # required: contains 4x4 matrices
-├── imu.csv / imu.txt               # must match required columns
-└── lidar/                          # folder of point clouds
-    ├── 1662622237000000000.ply
-    ├── 1662622238000000000.ply
-    └── ...
+├── transforms.yaml        # required: 4x4 extrinsics
+├── imu.csv                # required: one IMU file (.csv or .txt)
+├── lidar/                 # required: one .ply per scan, named &lt;ns&gt;.ply
+│   ├── 1662622237000000000.ply
+│   └── ...
+└── rko_lio_settings.yaml  # optional: overrides (see below)
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">transforms.yaml</span></code>: defines two keys (<code class="docutils literal notranslate"><span class="pre">T_imu_to_base</span></code>, <code class="docutils literal notranslate"><span class="pre">T_lidar_to_base</span></code>), each a 4x4 matrix. See <a class="reference internal" href="../pages/data.html#data-extrinsics-convention"><span class="std std-ref">Extrinsics and conventions</span></a>.</p></li>
-<li><p>IMU file: Only one file (CSV or TXT) is allowed. Required columns: <code class="docutils literal notranslate"><span class="pre">timestamp,</span> <span class="pre">gyro_x,</span> <span class="pre">gyro_y,</span> <span class="pre">gyro_z,</span> <span class="pre">accel_x,</span> <span class="pre">accel_y,</span> <span class="pre">accel_z</span></code>. Extra columns are allowed. <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> in nanoseconds, others in SI units.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">lidar/</span></code>: contains scans as PLY files. Each filename is a timestamp (ns) for the scan.
-Each PLY file must have a time field (accepted names: <code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">timestamp</span></code>, <code class="docutils literal notranslate"><span class="pre">timestamps</span></code>, or <code class="docutils literal notranslate"><span class="pre">t</span></code>) in <strong>seconds</strong>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">transforms.yaml</span></code> defines <code class="docutils literal notranslate"><span class="pre">T_imu_to_base</span></code> and <code class="docutils literal notranslate"><span class="pre">T_lidar_to_base</span></code>, each a
+4x4 matrix. See <a class="reference internal" href="../pages/data.html#data-extrinsics-convention"><span class="std std-ref">Extrinsics and conventions</span></a>.</p></li>
+<li><p>The IMU CSV has a header row; default columns are <code class="docutils literal notranslate"><span class="pre">timestamp,</span> <span class="pre">gyro_x,</span> <span class="pre">gyro_y,</span>
+<span class="pre">gyro_z,</span> <span class="pre">accel_x,</span> <span class="pre">accel_y,</span> <span class="pre">accel_z</span></code> (<code class="docutils literal notranslate"><span class="pre">timestamp</span></code> in nanoseconds, rest SI).
+Extra columns are ignored.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lidar/</span></code> holds one <code class="docutils literal notranslate"><span class="pre">.ply</span></code> per scan; the filename stem is the scan
+timestamp in <strong>nanoseconds</strong>. A per-point time field (<code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">timestamps</span></code>,
+<code class="docutils literal notranslate"><span class="pre">timestamp</span></code> or <code class="docutils literal notranslate"><span class="pre">t</span></code>) is used for deskewing when present, with units and
+absolute/relative detected automatically; clouds without one fall back to the
+filename stamp (disable deskewing with <code class="docutils literal notranslate"><span class="pre">deskew:</span> <span class="pre">false</span></code> in a <code class="docutils literal notranslate"><span class="pre">-c</span></code> config).</p></li>
 </ul>
-<p>Note the unit difference: filenames are in <strong>nanoseconds</strong>, the per-point time field inside each PLY is in <strong>seconds</strong>. This is intentional (filenames are easier to sort as integers) but easy to get wrong.</p>
+<p>Defaults can be overridden with an optional <code class="docutils literal notranslate"><span class="pre">rko_lio_settings.yaml</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">imu</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">imu.csv</span><span class="w">                            </span><span class="c1"># IMU file, if not auto-detected</span>
+<span class="w">  </span><span class="nt">timestamp_multiplier_to_nanoseconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">   </span><span class="c1"># e.g. 1e9 if the CSV time is in seconds</span>
+<span class="w">  </span><span class="nt">headers</span><span class="p">:</span><span class="w">                                 </span><span class="c1"># map expected name -&gt; your column name</span>
+<span class="w">    </span><span class="nt">timestamp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my_stamp_col</span><span class="w">                </span><span class="c1"># gyro_x/y/z, accel_x/y/z likewise</span>
+<span class="nt">lidar</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lidar</span><span class="w">                              </span><span class="c1"># lidar subfolder name</span>
+<span class="w">  </span><span class="nt">file_suffix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.ply</span>
+<span class="w">  </span><span class="nt">filename_timestamp_multiplier_to_nanoseconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</pre></div>
+</div>
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="rko_lio.dataloaders.raw.RawDataLoader">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">rko_lio.dataloaders.raw.</span></span><span class="sig-name descname"><span class="pre">RawDataLoader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.dataloaders.raw.RawDataLoader" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">rko_lio.dataloaders.raw.</span></span><span class="sig-name descname"><span class="pre">RawDataLoader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="rko_lio.config.html#rko_lio.config.TimestampConfig" title="rko_lio.config.TimestampConfig"><span class="pre">TimestampConfig</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.dataloaders.raw.RawDataLoader" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py property">
 <dt class="sig sig-object py" id="rko_lio.dataloaders.raw.RawDataLoader.extrinsics">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">extrinsics</span></span><a class="headerlink" href="#rko_lio.dataloaders.raw.RawDataLoader.extrinsics" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rko_lio.dataloaders.raw.read_point_cloud_file">
+<span class="sig-prename descclassname"><span class="pre">rko_lio.dataloaders.raw.</span></span><span class="sig-name descname"><span class="pre">read_point_cloud_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.dataloaders.raw.read_point_cloud_file" title="Link to this definition">¶</a></dt>
+<dd><p>Read a <code class="docutils literal notranslate"><span class="pre">.ply</span></code> point cloud and return <code class="docutils literal notranslate"><span class="pre">(points,</span> <span class="pre">times)</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">points</span></code> is an <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">3)</span></code> float64 array. <code class="docutils literal notranslate"><span class="pre">times</span></code> is an <code class="docutils literal notranslate"><span class="pre">(N,)</span></code> float64
+array of per-point times if the cloud has a recognised time field, else
+<code class="docutils literal notranslate"><span class="pre">None</span></code> (units/absolute-vs-relative are left to <code class="docutils literal notranslate"><span class="pre">_process_timestamps</span></code>).</p>
 </dd></dl>
 
 </section>
