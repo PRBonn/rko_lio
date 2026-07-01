@@ -13,7 +13,7 @@ jobs:
       IGNORED_FOLDERS: "rko_lio/ros|rko_lio/python|tests/python|docs|launch|config"
       IGNORED_FILES: "colcon.pkg|package.xml|rosdoc2.yaml|CHANGELOG.rst|LICENSE|README.md|pyproject.toml"
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - id: check
@@ -42,7 +42,7 @@ jobs:
     env:
       GIT_LFS_SKIP_SMUDGE: 1
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Configure
         shell: bash
         run: |
