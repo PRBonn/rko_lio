@@ -13,7 +13,7 @@ jobs:
       IGNORED_FOLDERS: "rko_lio/python|docs|tests/python|tests/core|cmake/dependencies/catch2"
       IGNORED_FILES: "pyproject.toml|CHANGELOG.rst|LICENSE|README.md"
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - id: check
@@ -41,7 +41,7 @@ jobs:
     container:
       image: ${{ matrix.container_image }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Install build tools
         run: |
           apt-get update
@@ -69,7 +69,7 @@ jobs:
     container:
       image: ${{ matrix.container_image }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Install build tools
         run: |
           apt-get update
