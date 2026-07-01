@@ -41,7 +41,7 @@ dependencies = [
 
 [project.optional-dependencies]
 all = [
-  "open3d>=0.18,<0.20",
+  "plyfile>=1,<2",
   "rerun-sdk>=0.31,<0.34",
   "rosbags>=0.10,<0.12",
 ]

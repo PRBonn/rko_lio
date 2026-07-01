@@ -124,18 +124,19 @@ def save_scan_as_ply(
     if scan is None or len(scan) == 0:
         return
     try:
-        import open3d
+        from plyfile import PlyData, PlyElement
     except ModuleNotFoundError:
         error_and_exit(
-            'Open3d is not installed, required for dumping the deskewed scans. Please "pip install -U open3d"'
+            'plyfile is required for dumping the deskewed scans. Please `pip install "rko_lio[all]"` or `pip install plyfile`.'
         )
 
     output_dir.mkdir(exist_ok=True, parents=True)
     fname = output_dir / f"{int(end_time_ns)}.ply"
 
-    pc = open3d.geometry.PointCloud()
-    pc.points = open3d.utility.Vector3dVector(scan)
-    open3d.io.write_point_cloud(fname.as_posix(), pc)
+    points = np.asarray(scan, dtype=np.float64)
+    vertex = np.empty(len(points), dtype=[("x", "f8"), ("y", "f8"), ("z", "f8")])
+    vertex["x"], vertex["y"], vertex["z"] = points[:, 0], points[:, 1], points[:, 2]
+    PlyData([PlyElement.describe(vertex, "vertex")], text=False).write(fname.as_posix())
 
 
 def log_vector(rerun, entity_path_prefix: str, vector):
