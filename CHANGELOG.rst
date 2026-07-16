@@ -2,6 +2,12 @@
 Changelog for package rko_lio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.3.1 (2026-07-16)
+------------------
+* ros: fix rolling compat break, plus a bunch of deprecation warnings (`#149 <https://github.com/PRBonn/rko_lio/issues/149>`_)
+  add a ros nightly image based weekly ci job so i have my own signal of api changes upstream
+* py: improve raw dataloader and remove open3d as a dep (`#148 <https://github.com/PRBonn/rko_lio/issues/148>`_)
+
 0.3.0 (2026-06-16)
 ------------------
 * misc: adds testing for lyrical, fixes the current ci fails (`#142 <https://github.com/PRBonn/rko_lio/issues/142>`_)
