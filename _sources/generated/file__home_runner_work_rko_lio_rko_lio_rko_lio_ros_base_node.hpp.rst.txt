@@ -60,11 +60,11 @@ Includes
 
 - ``string_view``
 
-- ``tf2_ros/buffer.h``
+- ``tf2_ros/buffer.hpp``
 
-- ``tf2_ros/transform_broadcaster.h``
+- ``tf2_ros/transform_broadcaster.hpp``
 
-- ``tf2_ros/transform_listener.h``
+- ``tf2_ros/transform_listener.hpp``
 
 - ``thread`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_threaded_node.cpp`)
 

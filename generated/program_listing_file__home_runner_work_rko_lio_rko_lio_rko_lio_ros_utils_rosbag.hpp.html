@@ -121,8 +121,8 @@
 <span class="cp">#pragma once</span>
 <span class="c1">// tf2</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;tf2/time.hpp&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;tf2_ros/static_transform_broadcaster.h&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;tf2_ros/transform_broadcaster.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;tf2_ros/static_transform_broadcaster.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;tf2_ros/transform_broadcaster.hpp&gt;</span>
 <span class="c1">// ROS</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;rclcpp/rclcpp.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;rclcpp/serialization.hpp&gt;</span>
@@ -142,7 +142,7 @@
 <span class="k">public</span><span class="o">:</span>
 <span class="w">  </span><span class="c1">// Wrapper node to process the transforamtions present in the bagfile</span>
 <span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">TFBridge</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">TFBridge</span><span class="p">(</span><span class="n">rclcpp</span><span class="o">::</span><span class="n">Node</span><span class="o">::</span><span class="n">SharedPtr</span><span class="w"> </span><span class="n">node</span><span class="p">);</span>
+<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">TFBridge</span><span class="p">(</span><span class="n">rclcpp</span><span class="o">::</span><span class="n">Node</span><span class="o">&amp;</span><span class="w"> </span><span class="n">node</span><span class="p">);</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">ProcessTFMessage</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">rosbag2_storage</span><span class="o">::</span><span class="n">SerializedBagMessage</span><span class="o">&gt;</span><span class="w"> </span><span class="n">msg</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">tf2_ros</span><span class="o">::</span><span class="n">TransformBroadcaster</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tf_broadcaster</span><span class="p">;</span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">tf2_ros</span><span class="o">::</span><span class="n">StaticTransformBroadcaster</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tf_static_broadcaster</span><span class="p">;</span>

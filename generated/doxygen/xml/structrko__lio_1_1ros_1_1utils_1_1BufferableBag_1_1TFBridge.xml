@@ -47,14 +47,14 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
-      <memberdef kind="function" id="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1aa00e50e7312bacad27d26522536235cc" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1aa22a87a56d2b91bd6cf2135567272ca8" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
         <type></type>
         <definition>rko_lio::ros::utils::BufferableBag::TFBridge::TFBridge</definition>
-        <argsstring>(rclcpp::Node::SharedPtr node)</argsstring>
+        <argsstring>(rclcpp::Node &amp;node)</argsstring>
         <name>TFBridge</name>
         <qualifiedname>rko_lio::ros::utils::BufferableBag::TFBridge::TFBridge</qualifiedname>
         <param>
-          <type>rclcpp::Node::SharedPtr</type>
+          <type>rclcpp::Node &amp;</type>
           <declname>node</declname>
         </param>
         <briefdescription>
@@ -94,7 +94,7 @@
       <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1a6debf60fdb1f7f3ce4a492292b8d05c0" prot="public" virt="non-virtual"><scope>rko_lio::ros::utils::BufferableBag::TFBridge</scope><name>serializer</name></member>
       <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1a16269296f55efbb230771f82c1ef41b7" prot="public" virt="non-virtual"><scope>rko_lio::ros::utils::BufferableBag::TFBridge</scope><name>tf_broadcaster</name></member>
       <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1a8bb752d6cf1909fa19b31081a0825c84" prot="public" virt="non-virtual"><scope>rko_lio::ros::utils::BufferableBag::TFBridge</scope><name>tf_static_broadcaster</name></member>
-      <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1aa00e50e7312bacad27d26522536235cc" prot="public" virt="non-virtual"><scope>rko_lio::ros::utils::BufferableBag::TFBridge</scope><name>TFBridge</name></member>
+      <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1aa22a87a56d2b91bd6cf2135567272ca8" prot="public" virt="non-virtual"><scope>rko_lio::ros::utils::BufferableBag::TFBridge</scope><name>TFBridge</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -130,7 +130,7 @@
         <label>tf2/time.hpp</label>
       </node>
       <node id="22">
-        <label>tf2_ros/buffer.h</label>
+        <label>tf2_ros/buffer.hpp</label>
       </node>
       <node id="8">
         <label>vector</label>

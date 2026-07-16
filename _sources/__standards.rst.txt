@@ -5,7 +5,7 @@ Standard Documents
    :maxdepth: 1
 
    __README
-   __LICENSE
-   __CHANGELOG
    __PACKAGE
+   __CHANGELOG
+   __LICENSE
 

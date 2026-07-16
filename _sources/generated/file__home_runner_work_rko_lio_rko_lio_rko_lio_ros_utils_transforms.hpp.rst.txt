@@ -48,7 +48,7 @@ Includes
 
 - ``tf2/time.hpp``
 
-- ``tf2_ros/buffer.h``
+- ``tf2_ros/buffer.hpp``
 
 
 

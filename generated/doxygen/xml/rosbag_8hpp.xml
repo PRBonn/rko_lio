@@ -3,8 +3,8 @@
   <compounddef id="rosbag_8hpp" kind="file" language="C++">
     <compoundname>rosbag.hpp</compoundname>
     <includes local="no">tf2/time.hpp</includes>
-    <includes local="no">tf2_ros/static_transform_broadcaster.h</includes>
-    <includes local="no">tf2_ros/transform_broadcaster.h</includes>
+    <includes local="no">tf2_ros/static_transform_broadcaster.hpp</includes>
+    <includes local="no">tf2_ros/transform_broadcaster.hpp</includes>
     <includes local="no">rclcpp/rclcpp.hpp</includes>
     <includes local="no">rclcpp/serialization.hpp</includes>
     <includes local="no">rosbag2_cpp/reader.hpp</includes>
@@ -79,10 +79,10 @@
         <label>tf2/time.hpp</label>
       </node>
       <node id="3">
-        <label>tf2_ros/static_transform_broadcaster.h</label>
+        <label>tf2_ros/static_transform_broadcaster.hpp</label>
       </node>
       <node id="4">
-        <label>tf2_ros/transform_broadcaster.h</label>
+        <label>tf2_ros/transform_broadcaster.hpp</label>
       </node>
       <node id="14">
         <label>vector</label>
@@ -125,8 +125,8 @@
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>tf2</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tf2/time.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tf2_ros/static_transform_broadcaster.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tf2_ros/transform_broadcaster.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tf2_ros/static_transform_broadcaster.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tf2_ros/transform_broadcaster.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>ROS</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;rclcpp/rclcpp.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;rclcpp/serialization.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
@@ -146,7 +146,7 @@
 <codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="47"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Wrapper<sp/>node<sp/>to<sp/>process<sp/>the<sp/>transforamtions<sp/>present<sp/>in<sp/>the<sp/>bagfile</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="48" refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge" kindref="compound">TFBridge</ref><sp/>{</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge" kindref="compound">TFBridge</ref>(rclcpp::Node::SharedPtr<sp/>node);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge" kindref="compound">TFBridge</ref>(rclcpp::Node&amp;<sp/>node);</highlight></codeline>
 <codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ProcessTFMessage(std::shared_ptr&lt;rosbag2_storage::SerializedBagMessage&gt;<sp/>msg)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>std::unique_ptr&lt;tf2_ros::TransformBroadcaster&gt;<sp/>tf_broadcaster;</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>std::unique_ptr&lt;tf2_ros::StaticTransformBroadcaster&gt;<sp/>tf_static_broadcaster;</highlight></codeline>

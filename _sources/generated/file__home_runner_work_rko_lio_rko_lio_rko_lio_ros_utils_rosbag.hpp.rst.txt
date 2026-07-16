@@ -50,9 +50,9 @@ Includes
 
 - ``tf2/time.hpp``
 
-- ``tf2_ros/static_transform_broadcaster.h``
+- ``tf2_ros/static_transform_broadcaster.hpp``
 
-- ``tf2_ros/transform_broadcaster.h``
+- ``tf2_ros/transform_broadcaster.hpp``
 
 - ``vector`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_ros_vectors.hpp`)
 

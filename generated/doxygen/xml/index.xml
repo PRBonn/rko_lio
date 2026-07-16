@@ -217,7 +217,7 @@
     <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1a16269296f55efbb230771f82c1ef41b7" kind="variable"><name>tf_broadcaster</name></member>
     <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1a8bb752d6cf1909fa19b31081a0825c84" kind="variable"><name>tf_static_broadcaster</name></member>
     <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1a6debf60fdb1f7f3ce4a492292b8d05c0" kind="variable"><name>serializer</name></member>
-    <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1aa00e50e7312bacad27d26522536235cc" kind="function"><name>TFBridge</name></member>
+    <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1aa22a87a56d2b91bd6cf2135567272ca8" kind="function"><name>TFBridge</name></member>
     <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1a6dff851eea2ab6d57ac847f4bb6a18d1" kind="function"><name>ProcessTFMessage</name></member>
   </compound>
   <compound refid="classrko__lio_1_1ros_1_1ThreadedNode" kind="class"><name>rko_lio::ros::ThreadedNode</name>
