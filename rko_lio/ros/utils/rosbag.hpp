@@ -25,8 +25,8 @@
 #pragma once
 // tf2
 #include <tf2/time.hpp>
-#include <tf2_ros/static_transform_broadcaster.h>
-#include <tf2_ros/transform_broadcaster.h>
+#include <tf2_ros/static_transform_broadcaster.hpp>
+#include <tf2_ros/transform_broadcaster.hpp>
 // ROS
 #include <rclcpp/rclcpp.hpp>
 #include <rclcpp/serialization.hpp>
@@ -46,7 +46,7 @@ class BufferableBag {
 public:
   // Wrapper node to process the transforamtions present in the bagfile
   struct TFBridge {
-    explicit TFBridge(rclcpp::Node::SharedPtr node);
+    explicit TFBridge(rclcpp::Node& node);
     void ProcessTFMessage(std::shared_ptr<rosbag2_storage::SerializedBagMessage> msg) const;
     std::unique_ptr<tf2_ros::TransformBroadcaster> tf_broadcaster;
     std::unique_ptr<tf2_ros::StaticTransformBroadcaster> tf_static_broadcaster;

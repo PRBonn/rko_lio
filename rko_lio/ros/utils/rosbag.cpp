@@ -43,7 +43,7 @@ inline auto GetTimestampsFromRosbagSerializedMsg(const rosbag2_storage::Serializ
 
 namespace rko_lio::ros::utils {
 // TFBridge----------------------------------------------------------------------------------------
-BufferableBag::TFBridge::TFBridge(rclcpp::Node::SharedPtr node) {
+BufferableBag::TFBridge::TFBridge(rclcpp::Node& node) {
   tf_broadcaster = std::make_unique<tf2_ros::TransformBroadcaster>(node);
   tf_static_broadcaster = std::make_unique<tf2_ros::StaticTransformBroadcaster>(node);
   serializer = rclcpp::Serialization<tf2_msgs::msg::TFMessage>();

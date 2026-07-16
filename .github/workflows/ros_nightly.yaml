@@ -1,0 +1,23 @@
+name: ROS Nightly Job (Weekly)
+# Canary against ROS built fresh from master, which is what the ROS build farm does. If this has failed likely the build farm already has much earlier. This just lets me know for certain as sometimes the build farm fails due to their infra reasons.
+on:
+  workflow_dispatch:
+  schedule:
+    # Mondays 06:00 UTC
+    - cron: "0 6 * * 1"
+jobs:
+  ros_nightly_build:
+    runs-on: ubuntu-latest
+    container:
+      image: osrf/ros2:nightly
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install build tools
+        run: |
+          apt-get update
+          apt-get install -y build-essential cmake git
+      - name: Source ROS environment and build
+        run: |
+          . /opt/ros/rolling/setup.sh
+          colcon build --event-handlers console_direct+ \
+            --cmake-args -DRKO_LIO_FETCH_CONTENT_DEPS=ON
