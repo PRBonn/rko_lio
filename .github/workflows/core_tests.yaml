@@ -59,3 +59,18 @@ jobs:
       - name: Test
         shell: bash
         run: ctest --test-dir build/core --output-on-failure
+  core_tests_result:
+    if: always()
+    needs: [check_relevant_changes, core_tests]
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "check_relevant_changes: ${{ needs.check_relevant_changes.result }}"
+          echo "core_tests: ${{ needs.core_tests.result }}"
+          [ "${{ needs.check_relevant_changes.result }}" = success ] || exit 1
+          for result in "${{ needs.core_tests.result }}"; do
+            case "$result" in
+              success|skipped) ;;
+              *) exit 1 ;;
+            esac
+          done

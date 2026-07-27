@@ -84,3 +84,19 @@ jobs:
           . /opt/ros/${{ matrix.ros_distro }}/setup.sh
           colcon test --event-handlers console_direct+ --return-code-on-test-failure
           colcon test-result --verbose
+  ros_build_result:
+    if: always()
+    needs: [check_relevant_changes, ros_build_with_rosdep, ros_build_no_rosdep]
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "check_relevant_changes: ${{ needs.check_relevant_changes.result }}"
+          echo "ros_build_with_rosdep: ${{ needs.ros_build_with_rosdep.result }}"
+          echo "ros_build_no_rosdep: ${{ needs.ros_build_no_rosdep.result }}"
+          [ "${{ needs.check_relevant_changes.result }}" = success ] || exit 1
+          for result in "${{ needs.ros_build_with_rosdep.result }}" "${{ needs.ros_build_no_rosdep.result }}"; do
+            case "$result" in
+              success|skipped) ;;
+              *) exit 1 ;;
+            esac
+          done
