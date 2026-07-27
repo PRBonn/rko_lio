@@ -104,50 +104,9 @@
 <dd></dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="rko_lio.util.height_colors_from_points">
-<span class="sig-prename descclassname"><span class="pre">rko_lio.util.</span></span><span class="sig-name descname"><span class="pre">height_colors_from_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_map</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">numpy.array</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#rko_lio.util.height_colors_from_points" title="Link to this definition">¶</a></dt>
-<dd><p>Given Nx3 array of points, return Nx3 array of RGB colors (dtype uint8)
-mapped from the z values using the colormap.
-Default colormap is viridis.
-Colors are uint8 in range [0, 255].</p>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="rko_lio.util.info">
 <span class="sig-prename descclassname"><span class="pre">rko_lio.util.</span></span><span class="sig-name descname"><span class="pre">info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.util.info" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="rko_lio.util.log_vector">
-<span class="sig-prename descclassname"><span class="pre">rko_lio.util.</span></span><span class="sig-name descname"><span class="pre">log_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rerun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entity_path_prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.util.log_vector" title="Link to this definition">¶</a></dt>
-<dd><p>Logs a vector as three scalar time-series in rerun.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>rerun</strong> – rerun module</p></li>
-<li><p><strong>entity_path_prefix</strong> – Base path for scalar logs (e.g. “imu/avg_acceleration”)</p></li>
-<li><p><strong>vector</strong> – Iterable or np.ndarray with 3 elements (x, y, z)</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="rko_lio.util.log_vector_columns">
-<span class="sig-prename descclassname"><span class="pre">rko_lio.util.</span></span><span class="sig-name descname"><span class="pre">log_vector_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rerun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entity_path_prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">times</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vectors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rko_lio.util.log_vector_columns" title="Link to this definition">¶</a></dt>
-<dd><p>Log a batch of 3D vectors over multiple timestamps in rerun,
-sending one column batch per vector axis.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>rerun</strong> – rerun module or rerun instance.</p></li>
-<li><p><strong>entity_path_prefix</strong> – base path e.g. ‘imu/acceleration’.</p></li>
-<li><p><strong>times</strong> – 1D np.ndarray of timestamps (float64).</p></li>
-<li><p><strong>vectors</strong> – 2D np.ndarray, shape (N, 3) where columns are x,y,z.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="rko_lio.util.quat_xyzw_xyz_to_transform">

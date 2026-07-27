@@ -19,6 +19,7 @@ Submodules
    rko_lio.config
    rko_lio.lio
    rko_lio.lio_pipeline
+   rko_lio.rerun_viz
    rko_lio.scoped_profiler
    rko_lio.util
 
