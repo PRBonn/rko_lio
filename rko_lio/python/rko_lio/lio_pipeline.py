@@ -24,8 +24,6 @@
 Equivalent logic to the ros node but mostly synchronous. Only the rerun viz is multi-threaded.
 """
 
-import atexit
-import threading
 from pathlib import Path
 
 import numpy as np
@@ -33,11 +31,9 @@ import yaml
 
 from .config import PipelineConfig
 from .lio import LIO
-from .scoped_profiler import ScopedProfiler, profile_func
+from .scoped_profiler import profile_func
 from .util import (
-    height_colors_from_points,
     info,
-    log_vector,
     quat_xyzw_xyz_to_transform,
     save_scan_as_ply,
 )
@@ -52,9 +48,10 @@ class LIOPipeline:
         self,
         config: PipelineConfig,
         map_log_period_s: float = 1.0,
+        rbl_path: Path | None = None,
+        reset_viz: bool = True,
     ):
         self.config = config
-        self.map_log_period_s = map_log_period_s
         self.lio = LIO(config.lio)
         self.extrinsic_imu2base = quat_xyzw_xyz_to_transform(
             config.extrinsic_imu2base_quat_xyzw_xyz
@@ -64,25 +61,17 @@ class LIOPipeline:
         )
 
         self._output_dir = None
+        self.viz = None
 
         if self.config.viz:
-            import rerun
+            from .rerun_viz import Viz
 
-            self.rerun = rerun
-            self.last_xyz = np.zeros(3)
-            self.cloud_box = LatestMailbox()
-            self.last_map_log_s = -float("inf")
-            self.cloud_thread = threading.Thread(
-                target=self.cloud_log_loop, daemon=True
+            self.viz = Viz(
+                map_log_period_s=map_log_period_s,
+                rbl_path=rbl_path,
+                reset=reset_viz,
+                gravity_aligned=self.lio.config.initialization_phase,
             )
-            self.cloud_thread.start()
-            atexit.register(self.close)
-            if self.lio.config.initialization_phase:
-                self.rerun.log(
-                    "world",
-                    self.rerun.ViewCoordinates.RIGHT_HAND_Z_UP,
-                    static=True,
-                )
 
     @property
     def output_dir(self) -> Path:
@@ -130,10 +119,8 @@ class LIOPipeline:
             extrinsic_imu2base=self.extrinsic_imu2base,
         )
 
-        if self.config.viz:
-            self.rerun.set_time("data_time", timestamp=time * 1e-9)
-            log_vector(self.rerun, "imu/acceleration", acceleration)
-            log_vector(self.rerun, "imu/angular_velocity", angular_velocity)
+        if self.viz:
+            self.viz.log_imu(time, acceleration, angular_velocity)
 
     @profile_func("Pipeline - Register Scan")
     def register_scan(
@@ -165,14 +152,9 @@ class LIOPipeline:
         np.ndarray or None
             Deskewed scan if successful, None if registration failed
         """
-        if self.config.viz:
+        if self.viz:
             # needs to be logged before the pybinded register function is called
-            self.rerun.set_time("data_time", timestamp=end_time_ns * 1e-9)
-            stats = self.lio.interval_stats()
-            self.rerun.log("imu/imu_count", self.rerun.Scalars(float(stats.imu_count)))
-            log_vector(self.rerun, "imu/avg_acceleration", stats.avg_imu_accel())
-            log_vector(self.rerun, "imu/avg_body_acceleration", stats.avg_body_accel())
-            log_vector(self.rerun, "imu/avg_ang_velocity", stats.avg_ang_vel())
+            self.viz.log_interval_stats(end_time_ns, self.lio.interval_stats())
 
         try:
             deskewed_scan = self.lio.register_scan(
@@ -194,76 +176,26 @@ class LIOPipeline:
                 output_dir=self.output_dir / "deskewed_scans",
             )
 
-        if self.config.viz:
-            self.visualize(end_time_ns, deskewed_scan)
+        if self.viz:
+            # sampled now as the next register_scan mutates the map, which can race
+            local_map = (
+                self.lio.map_point_cloud()
+                if self.viz.wants_local_map(end_time_ns)
+                else None
+            )
+            self.viz.log_frame(
+                end_time_ns,
+                self.lio.pose(),
+                deskewed_scan,
+                self.extrinsic_lidar2base,
+                local_map,
+            )
 
         return deskewed_scan
 
-    @profile_func("Pipeline - Visualization")
-    def visualize(self, end_time_ns: int, deskewed_scan: np.ndarray):
-        scan_time_s = end_time_ns * 1e-9
-        self.rerun.set_time("data_time", timestamp=scan_time_s)
-        pose = self.lio.pose()  # base -> world
-        self.rerun.log(
-            "world/base",
-            self.rerun.Transform3D(translation=pose[:3, 3], mat3x3=pose[:3, :3]),
-        )
-        self.rerun.log("world/base", self.rerun.TransformAxes3D(2.0))
-        self.rerun.log(
-            "world/view_anchor",
-            self.rerun.Transform3D(translation=pose[:3, 3]),
-        )
-        traj_pts = np.array([self.last_xyz, pose[:3, 3]])
-        self.rerun.log(
-            "world/trajectory",
-            self.rerun.LineStrips3D([traj_pts], radii=[0.1], colors=[255, 111, 111]),
-        )
-        self.last_xyz = pose[:3, 3].copy()
-
-        # Hand the heavy work off to the worker thread
-        # Local map is sampled here as the next register_scan mutates it which can race
-        T_lidar2world = pose @ self.extrinsic_lidar2base
-        local_map = None
-        if scan_time_s - self.last_map_log_s >= self.map_log_period_s:
-            pts = self.lio.map_point_cloud()
-            if pts.size > 0:
-                local_map = pts
-                self.last_map_log_s = scan_time_s
-
-        self.cloud_box.put((scan_time_s, deskewed_scan, T_lidar2world, local_map))
-
-    def cloud_log_loop(self):
-        # send_columns binds the timestamp to the data, so we don't race the
-        # main thread's rr.set_time() global timeline state.
-        rr = self.rerun
-        for item in iter(self.cloud_box.get, None):
-            scan_time_s, deskewed_scan, T_lidar2world, local_map = item
-            scan_world = (T_lidar2world[:3, :3] @ deskewed_scan.T).T + T_lidar2world[
-                :3, 3
-            ]
-            time_idx = [rr.TimeColumn("data_time", timestamp=[scan_time_s])]
-            rr.send_columns(
-                "world/deskewed_scan",
-                indexes=time_idx,
-                columns=rr.Points3D.columns(positions=scan_world).partition(
-                    [len(scan_world)]
-                ),
-            )
-            if local_map is not None:
-                rr.send_columns(
-                    "world/local_map",
-                    indexes=time_idx,
-                    columns=rr.Points3D.columns(
-                        positions=local_map,
-                        colors=height_colors_from_points(local_map),
-                    ).partition([len(local_map)]),
-                )
-
     def close(self):
-        if not self.config.viz:
-            return
-        self.cloud_box.close()
-        self.cloud_thread.join()
+        if self.viz:
+            self.viz.close()
 
     def dump_results_to_disk(self):
         """
@@ -288,31 +220,3 @@ class LIOPipeline:
         with settings_file.open("w") as f:
             yaml.dump(config, f, sort_keys=False)
         info(f"Configuration written to {settings_file.resolve()}")
-
-
-class LatestMailbox:
-    """
-    Single-slot, latest-wins handoff between producer and one consumer.
-    Producer never blocks.
-    """
-
-    def __init__(self):
-        self.cv = threading.Condition()
-        self.item = None
-        self.closed = False
-
-    def put(self, item):
-        with self.cv:
-            self.item = item
-            self.cv.notify()
-
-    def get(self):
-        with self.cv:
-            self.cv.wait_for(lambda: self.item is not None or self.closed)
-            item, self.item = self.item, None
-            return item
-
-    def close(self):
-        with self.cv:
-            self.closed = True
-            self.cv.notify()
