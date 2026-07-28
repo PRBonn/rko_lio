@@ -315,6 +315,14 @@ configurable_parameters = [
 ] + offline_only_parameters
 
 
+def fail(*lines):
+    print("\n\n" + "=" * 40)
+    for line in lines:
+        print(line)
+    print("=" * 40 + "\n\n")
+    sys.exit(1)
+
+
 def declare_configurable_parameters(parameters):
     return [
         DeclareLaunchArgument(
@@ -364,7 +372,7 @@ def auto_cast_params(params, param_defs):
     return out
 
 
-def get_configured_cli_parameters(configurable_parameters, context):
+def get_configured_cli_parameters(context):
     "Return only CLI parameters that were explicitly set by the user"
     explicit_params = {
         arg.split(":=")[0] for arg in getattr(context, "argv", []) if ":=" in arg
@@ -393,18 +401,18 @@ def merge_parameters(cli_params: dict, file_params: dict) -> dict:
     return merged
 
 
-def validate_parameters(merged: dict, mode: str, odom_at_imu_rate: bool) -> dict:
+def validate_parameters(merged: dict, mode: str, odom_at_imu_rate: bool) -> None:
     # mode + flag determines which pipeline runs
     is_offline = mode == "offline"
     is_seq = mode == "online" and odom_at_imu_rate
-    is_async = not is_seq  # offline + online-without-flag both run async
 
+    offline_only = {p["name"] for p in offline_only_parameters}
     missing = []
     for param in configurable_parameters:
         name = param["name"]
 
         # offline-only params are required only in offline mode
-        if not is_offline and param in offline_only_parameters:
+        if not is_offline and name in offline_only:
             continue
 
         if param.get("required", False):
@@ -412,14 +420,11 @@ def validate_parameters(merged: dict, mode: str, odom_at_imu_rate: bool) -> dict
                 missing.append(name)
 
     if missing:
-        print("\n\n" + "=" * 40)
-        print("[ERROR] missing required parameter(s):")
-        print(", ".join(missing))
-        print("Please provide them via cli (param:=value) or a config file.")
-        print("=" * 40 + "\n\n")
-        import sys
-
-        sys.exit(1)
+        fail(
+            "[ERROR] missing required parameter(s):",
+            ", ".join(missing),
+            "Please provide them via cli (param:=value) or a config file.",
+        )
 
     # warn if odom_at_imu_rate=true is paired with offline (no offline seq variant)
     if is_offline and odom_at_imu_rate:
@@ -433,7 +438,7 @@ def validate_parameters(merged: dict, mode: str, odom_at_imu_rate: bool) -> dict
         leaked_seq = [p for p in merged if p.startswith("seq.")]
         if leaked_seq:
             print(f"[WARN] seq.* params ignored (not running seq pipeline): {leaked_seq}")
-    if not is_async:
+    if is_seq:
         leaked_async = [p for p in merged if p.startswith("async.")]
         if leaked_async:
             print(f"[WARN] async.* params ignored (not running async pipeline): {leaked_async}")
@@ -456,22 +461,13 @@ def validate_parameters(merged: dict, mode: str, odom_at_imu_rate: bool) -> dict
         p in merged and merged[p] not in ("", None) for p in extrinsic_params
     ]
     if any(extrinsic_set) and not all(extrinsic_set):
-        print("\n\n" + "=" * 40)
-        print("[ERROR] extrinsic parameters incomplete:")
-        print(
+        fail(
+            "[ERROR] extrinsic parameters incomplete:",
             "If one of {} is specified, both must be provided.".format(
                 ", ".join(extrinsic_params)
-            )
+            ),
+            "Please provide them via a config file. If you only need one, then explicitly set the other to identity.",
         )
-        print(
-            "Please provide them via a config file. If you only need one, then explicitly set the other to identity."
-        )
-        print("=" * 40 + "\n\n")
-        import sys
-
-        sys.exit(1)
-
-    return merged
 
 
 def prepare_rviz_config(rviz_config_file: Path, parameters: dict) -> Path:
@@ -534,7 +530,7 @@ def launch_setup(context, *args, **kwargs):
     )
 
     # Prepare parameters
-    cli_params = get_configured_cli_parameters(configurable_parameters, context=context)
+    cli_params = get_configured_cli_parameters(context)
     params_from_file = get_config_file_parameters(context)
     final_params = merge_parameters(
         cli_params=cli_params, file_params=params_from_file
@@ -557,9 +553,7 @@ def launch_setup(context, *args, **kwargs):
             timeout=float(LaunchConfiguration("autodetect_timeout").perform(context)),
         )
 
-    final_params = validate_parameters(
-        final_params, mode=mode, odom_at_imu_rate=odom_at_imu_rate
-    )
+    validate_parameters(final_params, mode=mode, odom_at_imu_rate=odom_at_imu_rate)
 
     print("\n" + "=" * 40 + "\n")
     print("Using Launch configuration:\n")
