@@ -2,6 +2,11 @@
 Changelog for package rko_lio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* ros, launch: autodetect topics and frames (`#152 <https://github.com/PRBonn/rko_lio/issues/152>`_)
+  the imu and lidar topics, the sensor frames and the base frame are filled in from the running graph, or from the bag in offline mode
+
 0.3.1 (2026-07-16)
 ------------------
 * ros: fix rolling compat break, plus a bunch of deprecation warnings (`#149 <https://github.com/PRBonn/rko_lio/issues/149>`_)
