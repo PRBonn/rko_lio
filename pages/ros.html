@@ -110,14 +110,15 @@
 </li>
 <li><p><a class="reference internal" href="#usage" id="id7">Usage</a></p>
 <ul>
-<li><p><a class="reference internal" href="#frames-and-extrinsics" id="id8">Frames and extrinsics</a></p></li>
-<li><p><a class="reference internal" href="#published-topics" id="id9">Published topics</a></p></li>
-<li><p><a class="reference internal" href="#imu-rate-odometry" id="id10">IMU-rate odometry</a></p></li>
-<li><p><a class="reference internal" href="#offline-mode" id="id11">Offline mode</a></p></li>
-<li><p><a class="reference internal" href="#if-your-lidar-per-point-timestamps-confuse-the-heuristic" id="id12">If your LiDAR per-point timestamps confuse the heuristic</a></p></li>
+<li><p><a class="reference internal" href="#launch-parameter-autodetection" id="id8">Launch parameter autodetection</a></p></li>
+<li><p><a class="reference internal" href="#frames-and-extrinsics" id="id9">Frames and extrinsics</a></p></li>
+<li><p><a class="reference internal" href="#published-topics" id="id10">Published topics</a></p></li>
+<li><p><a class="reference internal" href="#imu-rate-odometry" id="id11">IMU-rate odometry</a></p></li>
+<li><p><a class="reference internal" href="#offline-mode" id="id12">Offline mode</a></p></li>
+<li><p><a class="reference internal" href="#if-your-lidar-per-point-timestamps-confuse-the-heuristic" id="id13">If your LiDAR per-point timestamps confuse the heuristic</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#references" id="id13">References</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id14">References</a></p></li>
 </ul>
 </nav>
 <section id="setup">
@@ -191,8 +192,13 @@ cmake<span class="w"> </span>--version
 <section id="usage">
 <h2><a class="toc-backref" href="#id7" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <p>Everything is launched through <code class="docutils literal notranslate"><span class="pre">odometry.launch.py</span></code>.
-At minimum, set <code class="docutils literal notranslate"><span class="pre">lidar_topic</span></code>, <code class="docutils literal notranslate"><span class="pre">imu_topic</span></code> and <code class="docutils literal notranslate"><span class="pre">base_frame</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>rko_lio<span class="w"> </span>odometry.launch.py<span class="w"> </span><span class="se">\</span>
+The topics and frames it needs are autodetected, so this may be all you need:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>rko_lio<span class="w"> </span>odometry.launch.py
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="#autodetection"><span class="std std-ref">Launch parameter autodetection</span></a>.
+Or set everything yourself:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>rko_lio<span class="w"> </span>odometry.launch.py<span class="w"> </span>autodetect:<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>lidar_topic:<span class="o">=</span>/your/lidar<span class="w"> </span>imu_topic:<span class="o">=</span>/your/imu<span class="w"> </span>base_frame:<span class="o">=</span>base
 </pre></div>
 </div>
@@ -215,8 +221,29 @@ Pass <code class="docutils literal notranslate"><span class="pre">mode:=offline<
 <span class="w">    </span>rviz:<span class="o">=</span><span class="nb">true</span>
 </pre></div>
 </div>
+<section id="launch-parameter-autodetection">
+<span id="autodetection"></span><h3><a class="toc-backref" href="#id8" role="doc-backlink">Launch parameter autodetection</a><a class="headerlink" href="#launch-parameter-autodetection" title="Link to this heading">¶</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is experimental. Pass <code class="docutils literal notranslate"><span class="pre">autodetect:=false</span></code> and set the parameters yourself if it gets in your way.</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">imu_topic</span></code>, <code class="docutils literal notranslate"><span class="pre">lidar_topic</span></code>, <code class="docutils literal notranslate"><span class="pre">imu_frame</span></code>, <code class="docutils literal notranslate"><span class="pre">lidar_frame</span></code> and <code class="docutils literal notranslate"><span class="pre">base_frame</span></code> are filled in when you leave them unset.
+Online, from the running graph. With <code class="docutils literal notranslate"><span class="pre">mode:=offline</span></code>, from the bag at <code class="docutils literal notranslate"><span class="pre">bag_path</span></code>.</p>
+<ul class="simple">
+<li><p>The topics, if exactly one <code class="docutils literal notranslate"><span class="pre">sensor_msgs/msg/Imu</span></code> and one <code class="docutils literal notranslate"><span class="pre">sensor_msgs/msg/PointCloud2</span></code> topic exists. Otherwise you get the candidates listed and nothing is launched.</p></li>
+<li><p>The sensor frames, from the message <code class="docutils literal notranslate"><span class="pre">frame_id</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">base_frame</span></code>, as whichever of <code class="docutils literal notranslate"><span class="pre">base_link</span></code>, <code class="docutils literal notranslate"><span class="pre">base_footprint</span></code> or <code class="docutils literal notranslate"><span class="pre">base</span></code> is in the TF tree. If none is, the lidar frame is used instead and <code class="docutils literal notranslate"><span class="pre">invert_odom_tf</span></code> is turned on so the odometry TF still attaches to your tree.</p></li>
+<li><p>A check that TF actually connects the sensor frames to the base frame. Otherwise you get the known frames listed, instead of finding out once the odometry is already running.</p></li>
+</ul>
+<p>Whatever you do specify, on the CLI or in a config file, is used as is.
+So pin the topics and let it work out the frames, if you like.
+Set all five and nothing is inspected at all.</p>
+<p>Online, it waits up to <code class="docutils literal notranslate"><span class="pre">autodetect_timeout</span></code> seconds (default 10) for the data it needs.
+Raise it if your system is slow to start.</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">autodetect:=false</span></code>, <code class="docutils literal notranslate"><span class="pre">imu_topic</span></code>, <code class="docutils literal notranslate"><span class="pre">lidar_topic</span></code> and <code class="docutils literal notranslate"><span class="pre">base_frame</span></code> are required, and you are told which of them you left out.</p>
+</section>
 <section id="frames-and-extrinsics">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Frames and extrinsics</a><a class="headerlink" href="#frames-and-extrinsics" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Frames and extrinsics</a><a class="headerlink" href="#frames-and-extrinsics" title="Link to this heading">¶</a></h3>
 <p>If your TF tree is well defined – it exists, and the message <code class="docutils literal notranslate"><span class="pre">frame_id</span></code> of every topic matches a frame in the TF tree (I’ve seen both conditions fail) – the sensor frames are picked up from the topics and the extrinsics resolved via TF lookup.
 You don’t need to set anything else.</p>
 <p>Otherwise, override the frame ids with <code class="docutils literal notranslate"><span class="pre">imu_frame</span></code> / <code class="docutils literal notranslate"><span class="pre">lidar_frame</span></code>, or specify the extrinsics directly in a config file:</p>
@@ -232,7 +259,7 @@ If one of the two extrinsics is set, both must be set; pick identity for whichev
 The system uses the IMU between the first two scans to initialise roll / pitch and IMU biases, which makes a noticeable difference – especially when starting on an inclined surface.</p>
 </section>
 <section id="published-topics">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Published topics</a><a class="headerlink" href="#published-topics" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Published topics</a><a class="headerlink" href="#published-topics" title="Link to this heading">¶</a></h3>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">rko_lio/odom</span></code> – <code class="docutils literal notranslate"><span class="pre">nav_msgs/Odometry</span></code>, always published at LiDAR rate.</p>
 <p>Renamable via <code class="docutils literal notranslate"><span class="pre">odom_topic</span></code>.
@@ -262,7 +289,7 @@ Renamable via <code class="docutils literal notranslate"><span class="pre">seq.o
 </ul>
 </section>
 <section id="imu-rate-odometry">
-<span id="id1"></span><h3><a class="toc-backref" href="#id10" role="doc-backlink">IMU-rate odometry</a><a class="headerlink" href="#imu-rate-odometry" title="Link to this heading">¶</a></h3>
+<span id="id1"></span><h3><a class="toc-backref" href="#id11" role="doc-backlink">IMU-rate odometry</a><a class="headerlink" href="#imu-rate-odometry" title="Link to this heading">¶</a></h3>
 <p>By default the launch file publishes odometry at the LiDAR scan rate (typically ~10 Hz).
 To additionally publish odometry at IMU rate, pass <code class="docutils literal notranslate"><span class="pre">odom_at_imu_rate:=true</span></code> (only meaningful with <code class="docutils literal notranslate"><span class="pre">mode:=online</span></code>; the launch file warns and falls back if combined with <code class="docutils literal notranslate"><span class="pre">mode:=offline</span></code>).</p>
 <p>What it actually publishes: the core LIO maintains a full SE(3) pose plus linear velocity that is forward-integrated from the IMU on top of the latest LiDAR-aligned pose, and reset to the optimised pose after every successful scan registration.
@@ -277,7 +304,7 @@ Set <code class="docutils literal notranslate"><span class="pre">seq.tf_at_imu_r
 </ul>
 </section>
 <section id="offline-mode">
-<span id="id2"></span><h3><a class="toc-backref" href="#id11" role="doc-backlink">Offline mode</a><a class="headerlink" href="#offline-mode" title="Link to this heading">¶</a></h3>
+<span id="id2"></span><h3><a class="toc-backref" href="#id12" role="doc-backlink">Offline mode</a><a class="headerlink" href="#offline-mode" title="Link to this heading">¶</a></h3>
 <p>Set <code class="docutils literal notranslate"><span class="pre">mode:=offline</span></code> to drain a rosbag directly instead of subscribing to live topics.
 This is faster than <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">bag</span> <span class="pre">play</span></code> since it doesn’t have to honour wall-clock pacing.</p>
 <p>Pass <code class="docutils literal notranslate"><span class="pre">bag_path:=</span></code> pointing at the bag directory (with <code class="docutils literal notranslate"><span class="pre">.db3</span></code> / <code class="docutils literal notranslate"><span class="pre">.mcap</span></code> and the appropriate plugins installed).
@@ -292,13 +319,13 @@ The offline node also publishes <code class="docutils literal notranslate"><span
 </div>
 </section>
 <section id="if-your-lidar-per-point-timestamps-confuse-the-heuristic">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">If your LiDAR per-point timestamps confuse the heuristic</a><a class="headerlink" href="#if-your-lidar-per-point-timestamps-confuse-the-heuristic" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">If your LiDAR per-point timestamps confuse the heuristic</a><a class="headerlink" href="#if-your-lidar-per-point-timestamps-confuse-the-heuristic" title="Link to this heading">¶</a></h3>
 <p>If startup throws <code class="docutils literal notranslate"><span class="pre">Runtime</span> <span class="pre">Error:</span> <span class="pre">TimestampProcessingConfig</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">cover</span> <span class="pre">this</span> <span class="pre">particular</span> <span class="pre">case</span> <span class="pre">of</span> <span class="pre">data</span></code>, see <a class="reference internal" href="config.html#config-lidar-timestamps"><span class="std std-ref">Configuring -&gt; LiDAR per-point timestamps</span></a> for the override knobs.
 The ROS parameters are <code class="docutils literal notranslate"><span class="pre">lidar_timestamps.multiplier_to_seconds</span></code> / <code class="docutils literal notranslate"><span class="pre">lidar_timestamps.force_absolute</span></code> / <code class="docutils literal notranslate"><span class="pre">lidar_timestamps.force_relative</span></code>.</p>
 </section>
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id13" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="../generated/index.html"><span class="doc">C++ API</span></a> – C++ API (Doxygen).</p></li>
 <li><p><a class="reference internal" href="../__PACKAGE.html"><span class="doc">PACKAGE</span></a> – <code class="docutils literal notranslate"><span class="pre">package.xml</span></code>.</p></li>

@@ -109,12 +109,17 @@ If your bag doesn’t contain TF, supply IMU–LiDAR extrinsics via a YAML confi
 <h2>ROS<a class="headerlink" href="#ros" title="Link to this heading">¶</a></h2>
 <p>Supported distros: Humble, Jazzy, Kilted, Lyrical, Rolling.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-<span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>-rko-lio
-ros2<span class="w"> </span>launch<span class="w"> </span>rko_lio<span class="w"> </span>odometry.launch.py<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>lidar_topic:<span class="o">=</span>/your/lidar<span class="w"> </span>imu_topic:<span class="o">=</span>/your/imu<span class="w"> </span>base_frame:<span class="o">=</span>base
+ros2<span class="w"> </span>launch<span class="w"> </span>rko_lio<span class="w"> </span>odometry.launch.py
 </pre></div>
 </div>
 <p>If you want to build from source instead, see <a class="reference internal" href="ros.html"><span class="doc">ROS</span></a>.</p>
-<p>The launch file supports both online and offline modes via the <code class="docutils literal notranslate"><span class="pre">mode</span></code> argument and requires at least <code class="docutils literal notranslate"><span class="pre">lidar_topic</span></code>, <code class="docutils literal notranslate"><span class="pre">imu_topic</span></code>, and <code class="docutils literal notranslate"><span class="pre">base_frame</span></code>.
+<p>The topics and frames are autodetected, see <a class="reference internal" href="ros.html#autodetection"><span class="std std-ref">Launch parameter autodetection</span></a>.
+Turn it off with <code class="docutils literal notranslate"><span class="pre">autodetect:=false</span></code>, and then <code class="docutils literal notranslate"><span class="pre">lidar_topic</span></code>, <code class="docutils literal notranslate"><span class="pre">imu_topic</span></code> and <code class="docutils literal notranslate"><span class="pre">base_frame</span></code> are required:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>rko_lio<span class="w"> </span>odometry.launch.py<span class="w"> </span>autodetect:<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>lidar_topic:<span class="o">=</span>/your/lidar<span class="w"> </span>imu_topic:<span class="o">=</span>/your/imu<span class="w"> </span>base_frame:<span class="o">=</span>base
+</pre></div>
+</div>
+<p>The launch file supports both online and offline modes via the <code class="docutils literal notranslate"><span class="pre">mode</span></code> argument.
 Override individual parameters on the CLI or load them from a YAML file (<code class="docutils literal notranslate"><span class="pre">config_file:=/path/to/config</span></code>).
 Add <code class="docutils literal notranslate"><span class="pre">rviz:=true</span></code> for visualization.</p>
 <p>To explore all launch parameters:</p>

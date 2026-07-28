@@ -155,10 +155,15 @@ colcon<span class="w"> </span>build<span class="w"> </span>--packages-select<spa
 </pre></div>
 </div>
 <p>A launch file is provided:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>rko_lio<span class="w"> </span>odometry.launch.py<span class="w"> </span>imu_topic:<span class="o">=</span>&lt;topic&gt;<span class="w"> </span>lidar_topic:<span class="o">=</span>&lt;topic&gt;<span class="w"> </span>base_frame:<span class="o">=</span>base_link
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>rko_lio<span class="w"> </span>odometry.launch.py
 </pre></div>
 </div>
-<p>The three parameters <code class="docutils literal notranslate"><span class="pre">imu_topic</span></code>, <code class="docutils literal notranslate"><span class="pre">lidar_topic</span></code>, and <code class="docutils literal notranslate"><span class="pre">base_frame</span></code> are the minimum you need to specify for the launch file. You can specify them and other options all at once in a config file passed with <code class="docutils literal notranslate"><span class="pre">config_file:=file.yaml</span></code>.</p>
+<p>The topics and frames are autodetected (experimental). To set them yourself instead:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>rko_lio<span class="w"> </span>odometry.launch.py<span class="w"> </span>autodetect:<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>imu_topic:<span class="o">=</span>&lt;topic&gt;<span class="w"> </span>lidar_topic:<span class="o">=</span>&lt;topic&gt;<span class="w"> </span>base_frame:<span class="o">=</span>base_link
+</pre></div>
+</div>
+<p>Those three are then the minimum you need to specify. You can specify them and other options all at once in a config file passed with <code class="docutils literal notranslate"><span class="pre">config_file:=file.yaml</span></code>.</p>
 <p>Check further launch configuration options through <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">launch</span> <span class="pre">rko_lio</span> <span class="pre">odometry.launch.py</span> <span class="pre">-s</span></code></p>
 <p>More details are available in the <a class="reference external" href="https://prbonn.github.io/rko_lio/pages/ros.html">ROS docs</a>.</p>
 <p>The same note <a class="reference internal" href="#extrinsics-and-convention"><span class="xref myst">above about extrinsics</span></a> applies here as well. Though you probably have a well defined TF tree and need not concern yourself with this (I hope).</p>

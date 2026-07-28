@@ -25,12 +25,19 @@ Supported distros: Humble, Jazzy, Kilted, Lyrical, Rolling.
 .. code-block:: bash
 
     sudo apt install ros-${ROS_DISTRO}-rko-lio
-    ros2 launch rko_lio odometry.launch.py \
-        lidar_topic:=/your/lidar imu_topic:=/your/imu base_frame:=base
+    ros2 launch rko_lio odometry.launch.py
 
 If you want to build from source instead, see :doc:`ROS <ros>`.
 
-The launch file supports both online and offline modes via the ``mode`` argument and requires at least ``lidar_topic``, ``imu_topic``, and ``base_frame``.
+The topics and frames are autodetected, see :ref:`autodetection`.
+Turn it off with ``autodetect:=false``, and then ``lidar_topic``, ``imu_topic`` and ``base_frame`` are required:
+
+.. code-block:: bash
+
+    ros2 launch rko_lio odometry.launch.py autodetect:=false \
+        lidar_topic:=/your/lidar imu_topic:=/your/imu base_frame:=base
+
+The launch file supports both online and offline modes via the ``mode`` argument.
 Override individual parameters on the CLI or load them from a YAML file (``config_file:=/path/to/config``).
 Add ``rviz:=true`` for visualization.
 

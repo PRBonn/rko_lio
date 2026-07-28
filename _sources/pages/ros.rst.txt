@@ -103,11 +103,18 @@ Usage
 -----
 
 Everything is launched through ``odometry.launch.py``.
-At minimum, set ``lidar_topic``, ``imu_topic`` and ``base_frame``:
+The topics and frames it needs are autodetected, so this may be all you need:
 
 .. code-block:: bash
 
-   ros2 launch rko_lio odometry.launch.py \
+   ros2 launch rko_lio odometry.launch.py
+
+See :ref:`autodetection`.
+Or set everything yourself:
+
+.. code-block:: bash
+
+   ros2 launch rko_lio odometry.launch.py autodetect:=false \
        lidar_topic:=/your/lidar imu_topic:=/your/imu base_frame:=base
 
 To see all parameters with their descriptions:
@@ -136,6 +143,31 @@ A typical invocation:
    ros2 launch rko_lio odometry.launch.py \
        config_file:=/path/to/config/file \
        rviz:=true
+
+.. _autodetection:
+
+Launch parameter autodetection
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. warning::
+  This is experimental. Pass ``autodetect:=false`` and set the parameters yourself if it gets in your way.
+
+``imu_topic``, ``lidar_topic``, ``imu_frame``, ``lidar_frame`` and ``base_frame`` are filled in when you leave them unset.
+Online, from the running graph. With ``mode:=offline``, from the bag at ``bag_path``.
+
+- The topics, if exactly one ``sensor_msgs/msg/Imu`` and one ``sensor_msgs/msg/PointCloud2`` topic exists. Otherwise you get the candidates listed and nothing is launched.
+- The sensor frames, from the message ``frame_id``.
+- ``base_frame``, as whichever of ``base_link``, ``base_footprint`` or ``base`` is in the TF tree. If none is, the lidar frame is used instead and ``invert_odom_tf`` is turned on so the odometry TF still attaches to your tree.
+- A check that TF actually connects the sensor frames to the base frame. Otherwise you get the known frames listed, instead of finding out once the odometry is already running.
+
+Whatever you do specify, on the CLI or in a config file, is used as is.
+So pin the topics and let it work out the frames, if you like.
+Set all five and nothing is inspected at all.
+
+Online, it waits up to ``autodetect_timeout`` seconds (default 10) for the data it needs.
+Raise it if your system is slow to start.
+
+With ``autodetect:=false``, ``imu_topic``, ``lidar_topic`` and ``base_frame`` are required, and you are told which of them you left out.
 
 Frames and extrinsics
 ^^^^^^^^^^^^^^^^^^^^^

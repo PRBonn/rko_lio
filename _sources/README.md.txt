@@ -89,10 +89,17 @@ colcon build --packages-select rko_lio --cmake-args -DRKO_LIO_FETCH_CONTENT_DEPS
 A launch file is provided:
 
 ```bash
-ros2 launch rko_lio odometry.launch.py imu_topic:=<topic> lidar_topic:=<topic> base_frame:=base_link
+ros2 launch rko_lio odometry.launch.py
 ```
 
-The three parameters `imu_topic`, `lidar_topic`, and `base_frame` are the minimum you need to specify for the launch file. You can specify them and other options all at once in a config file passed with `config_file:=file.yaml`.
+The topics and frames are autodetected (experimental). To set them yourself instead:
+
+```bash
+ros2 launch rko_lio odometry.launch.py autodetect:=false \
+    imu_topic:=<topic> lidar_topic:=<topic> base_frame:=base_link
+```
+
+Those three are then the minimum you need to specify. You can specify them and other options all at once in a config file passed with `config_file:=file.yaml`.
 
 Check further launch configuration options through `ros2 launch rko_lio odometry.launch.py -s`
 

@@ -328,11 +328,17 @@ For the full list with descriptions, run <code class="docutils literal notransla
 <section id="topic-and-frame-configuration">
 <h3><a class="toc-backref" href="#id9" role="doc-backlink">Topic and frame configuration</a><a class="headerlink" href="#topic-and-frame-configuration" title="Link to this heading">¶</a></h3>
 <ul>
-<li><p><strong>imu_topic</strong>, <strong>lidar_topic</strong>, <strong>base_frame</strong> (required, via CLI or config)</p>
-<p>The IMU topic, the LiDAR topic, and the base frame of the robot.</p>
+<li><p><strong>imu_topic</strong>, <strong>lidar_topic</strong>, <strong>base_frame</strong> (via CLI or config, required with <code class="docutils literal notranslate"><span class="pre">autodetect:=false</span></code>)</p>
+<p>The IMU topic, the LiDAR topic, and the base frame of the robot.
+Autodetected when left unset. See <a class="reference internal" href="ros.html#autodetection"><span class="std std-ref">Launch parameter autodetection</span></a>.</p>
 </li>
 <li><p><strong>imu_frame</strong>, <strong>lidar_frame</strong> (optional)</p>
-<p>Override these only if the message <code class="docutils literal notranslate"><span class="pre">frame_id</span></code> doesn’t match the TF tree.</p>
+<p>Override these only if the message <code class="docutils literal notranslate"><span class="pre">frame_id</span></code> doesn’t match the TF tree.
+Also autodetected, from the message <code class="docutils literal notranslate"><span class="pre">frame_id</span></code>.</p>
+</li>
+<li><p><strong>autodetect</strong> (<cite>bool</cite>, default <code class="docutils literal notranslate"><span class="pre">true</span></code>, CLI only), <strong>autodetect_timeout</strong> (<cite>float</cite>, default <code class="docutils literal notranslate"><span class="pre">10.0</span></code>, CLI only)</p>
+<p>Fill in the topics and frames above that you left unset, and how long to wait for the data needed to do so (online only).
+See <a class="reference internal" href="ros.html#autodetection"><span class="std std-ref">Launch parameter autodetection</span></a>.</p>
 </li>
 <li><p><strong>odom_frame</strong> (default <code class="docutils literal notranslate"><span class="pre">odom</span></code>), <strong>odom_topic</strong> (default <code class="docutils literal notranslate"><span class="pre">rko_lio/odom</span></code>)</p>
 <p>The odom frame name and the odometry topic name.</p>
