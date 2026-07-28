@@ -213,13 +213,20 @@ Mode selection
 Topic and frame configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- **imu_topic**, **lidar_topic**, **base_frame** (required, via CLI or config)
+- **imu_topic**, **lidar_topic**, **base_frame** (via CLI or config, required with ``autodetect:=false``)
 
   The IMU topic, the LiDAR topic, and the base frame of the robot.
+  Autodetected when left unset. See :ref:`autodetection`.
 
 - **imu_frame**, **lidar_frame** (optional)
 
   Override these only if the message ``frame_id`` doesn't match the TF tree.
+  Also autodetected, from the message ``frame_id``.
+
+- **autodetect** (`bool`, default ``true``, CLI only), **autodetect_timeout** (`float`, default ``10.0``, CLI only)
+
+  Fill in the topics and frames above that you left unset, and how long to wait for the data needed to do so (online only).
+  See :ref:`autodetection`.
 
 - **odom_frame** (default ``odom``), **odom_topic** (default ``rko_lio/odom``)
 
