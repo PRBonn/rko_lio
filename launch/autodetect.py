@@ -195,9 +195,9 @@ def resolve(graph, params):
 
 def autodetect_or_exit(params, mode, bag_path, timeout):
     if all(params.get(name) for name in AUTODETECTED):
-        return {}
+        return params
     if mode == "offline" and not bag_path:
-        return {}
+        return params
 
     context = rclpy.Context()
     rclpy.init(context=context)
@@ -229,4 +229,4 @@ def autodetect_or_exit(params, mode, bag_path, timeout):
         print("\nAutodetected:")
         for name, value in found.items():
             print(f"    {name}: {value}")
-    return found
+    return {**params, **found}

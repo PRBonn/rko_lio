@@ -550,15 +550,11 @@ def launch_setup(context, *args, **kwargs):
         )
         print("Anything you did set is used as is. Turn this off with autodetect:=false.")
         print("=" * 40)
-        final_params.update(
-            load_sibling("autodetect").autodetect_or_exit(
-                final_params,
-                mode=mode,
-                bag_path=final_params.get("bag_path"),
-                timeout=float(
-                    LaunchConfiguration("autodetect_timeout").perform(context)
-                ),
-            )
+        final_params = load_sibling("autodetect").autodetect_or_exit(
+            final_params,
+            mode=mode,
+            bag_path=final_params.get("bag_path"),
+            timeout=float(LaunchConfiguration("autodetect_timeout").perform(context)),
         )
 
     final_params = validate_parameters(
