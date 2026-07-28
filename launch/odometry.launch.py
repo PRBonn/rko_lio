@@ -20,6 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import importlib.util
+import sys
 from pathlib import Path
 
 import launch_ros.actions
@@ -49,14 +51,28 @@ configurable_parameters = [
     {
         "name": "imu_topic",
         "default": "",
-        "description": "IMU input topic (required)",
+        "description": "IMU input topic (required, unless a single one can be autodetected)",
         "required": True,
     },
     {
         "name": "lidar_topic",
         "default": "",
-        "description": "LiDAR pointcloud topic (required)",
+        "description": "LiDAR pointcloud topic (required, unless a single one can be autodetected)",
         "required": True,
+    },
+    {
+        "launch_only": True,
+        "name": "autodetect",
+        "default": "true",
+        "type": "bool",
+        "description": "[EXPERIMENTAL] Fill in imu_topic, lidar_topic, the frames and base_frame from the running graph (online) or the bag (offline), whenever they were not given. Anything you specify is used as is.",
+    },
+    {
+        "launch_only": True,
+        "name": "autodetect_timeout",
+        "default": "10.0",
+        "type": "float",
+        "description": "[EXPERIMENTAL] Seconds to wait for the topics, messages and TF tree needed by autodetect (online mode only)",
     },
     {
         "name": "imu_frame",
@@ -71,7 +87,7 @@ configurable_parameters = [
     {
         "name": "base_frame",
         "default": "",
-        "description": "Robot base frame, or the frame of estimation for odometry (required)",
+        "description": "Robot base frame, or the frame of estimation for odometry (required, unless it can be autodetected from the TF tree)",
         "required": True,
     },
     {
@@ -243,17 +259,20 @@ configurable_parameters = [
     },
     # ros params
     {
+        "launch_only": True,
         "name": "mode",
         "default": "online",
         "description": "Launch mode: 'online' (subscribe to live topics) or 'offline' (drain a rosbag at full speed).",
     },
     {
+        "launch_only": True,
         "name": "odom_at_imu_rate",
         "default": "false",
         "type": "bool",
         "description": "When true (and mode:=online), launch the sequential variant which additionally publishes IMU-rate odometry on seq.odom_at_imu_rate_topic. Has no effect when mode:=offline.",
     },
     {
+        "launch_only": True,
         "name": "config_file",
         "default": "",
         "description": "YAML config file to load parameters from",
@@ -271,21 +290,24 @@ configurable_parameters = [
     },
     {
         "name": "run_name",
-        "default": "rko_lio_odometry_run",
+        "default": "rko_lio_run",
         "description": "Run name, used when saving results to <results_dir>. See `dump_results` which has to be true.",
     },
     {
+        "launch_only": True,
         "name": "rviz",
         "default": "false",
         "type": "bool",
         "description": "Launch RViz simultaneously",
     },
     {
+        "launch_only": True,
         "name": "rviz_config_file",
         "default": "config/default.rviz",
         "description": "RViz config file path. If it's not the default value, note that it will be passed to rviz as is.",
     },
     {
+        "launch_only": True,
         "name": "log_level",
         "default": "info",
         "description": "ROS Log level [DEBUG|INFO|WARN|ERROR|FATAL]",
@@ -293,15 +315,37 @@ configurable_parameters = [
 ] + offline_only_parameters
 
 
+def fail(*lines):
+    print("\n\n" + "=" * 40)
+    for line in lines:
+        print(line)
+    print("=" * 40 + "\n\n")
+    sys.exit(1)
+
+
 def declare_configurable_parameters(parameters):
     return [
         DeclareLaunchArgument(
             param["name"],
-            default_value=param["default"],
+            default_value=param.get("default", ""),
             description=param.get("description", ""),
         )
         for param in parameters
     ]
+
+
+def node_parameters(merged: dict) -> dict:
+    launch_only = {p["name"] for p in configurable_parameters if p.get("launch_only")}
+    return {name: value for name, value in merged.items() if name not in launch_only}
+
+
+def load_sibling(name: str):
+    spec = importlib.util.spec_from_file_location(
+        name, Path(__file__).parent / f"{name}.py"
+    )
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 def auto_cast_params(params, param_defs):
@@ -328,7 +372,7 @@ def auto_cast_params(params, param_defs):
     return out
 
 
-def get_configured_cli_parameters(configurable_parameters, context):
+def get_configured_cli_parameters(context):
     "Return only CLI parameters that were explicitly set by the user"
     explicit_params = {
         arg.split(":=")[0] for arg in getattr(context, "argv", []) if ":=" in arg
@@ -349,37 +393,26 @@ def get_config_file_parameters(context):
         return yaml.safe_load(f)
 
 
-def merge_and_validate_parameters(
-    cli_params: dict,
-    file_params: dict,
-    mode: str,
-    odom_at_imu_rate: bool,
-) -> dict:
-    """
-    Merge CLI and file parameters:
-      - CLI overrides file values only if non-empty
-      - Validate required params are provided (depending on mode)
-    """
-    merged = {}
-
-    merged.update(file_params)
-
-    # override with cli only if non-empty
+def merge_parameters(cli_params: dict, file_params: dict) -> dict:
+    merged = dict(file_params)
     for k, v in cli_params.items():
         if v not in ("", None):
             merged[k] = v
+    return merged
 
+
+def validate_parameters(merged: dict, mode: str, odom_at_imu_rate: bool) -> None:
     # mode + flag determines which pipeline runs
     is_offline = mode == "offline"
     is_seq = mode == "online" and odom_at_imu_rate
-    is_async = not is_seq  # offline + online-without-flag both run async
 
+    offline_only = {p["name"] for p in offline_only_parameters}
     missing = []
     for param in configurable_parameters:
         name = param["name"]
 
         # offline-only params are required only in offline mode
-        if not is_offline and param in offline_only_parameters:
+        if not is_offline and name in offline_only:
             continue
 
         if param.get("required", False):
@@ -387,14 +420,11 @@ def merge_and_validate_parameters(
                 missing.append(name)
 
     if missing:
-        print("\n\n" + "=" * 40)
-        print("[ERROR] missing required parameter(s):")
-        print(", ".join(missing))
-        print("Please provide them via cli (param:=value) or a config file.")
-        print("=" * 40 + "\n\n")
-        import sys
-
-        sys.exit(1)
+        fail(
+            "[ERROR] missing required parameter(s):",
+            ", ".join(missing),
+            "Please provide them via cli (param:=value) or a config file.",
+        )
 
     # warn if odom_at_imu_rate=true is paired with offline (no offline seq variant)
     if is_offline and odom_at_imu_rate:
@@ -408,7 +438,7 @@ def merge_and_validate_parameters(
         leaked_seq = [p for p in merged if p.startswith("seq.")]
         if leaked_seq:
             print(f"[WARN] seq.* params ignored (not running seq pipeline): {leaked_seq}")
-    if not is_async:
+    if is_seq:
         leaked_async = [p for p in merged if p.startswith("async.")]
         if leaked_async:
             print(f"[WARN] async.* params ignored (not running async pipeline): {leaked_async}")
@@ -431,22 +461,13 @@ def merge_and_validate_parameters(
         p in merged and merged[p] not in ("", None) for p in extrinsic_params
     ]
     if any(extrinsic_set) and not all(extrinsic_set):
-        print("\n\n" + "=" * 40)
-        print("[ERROR] extrinsic parameters incomplete:")
-        print(
+        fail(
+            "[ERROR] extrinsic parameters incomplete:",
             "If one of {} is specified, both must be provided.".format(
                 ", ".join(extrinsic_params)
-            )
+            ),
+            "Please provide them via a config file. If you only need one, then explicitly set the other to identity.",
         )
-        print(
-            "Please provide them via a config file. If you only need one, then explicitly set the other to identity."
-        )
-        print("=" * 40 + "\n\n")
-        import sys
-
-        sys.exit(1)
-
-    return merged
 
 
 def prepare_rviz_config(rviz_config_file: Path, parameters: dict) -> Path:
@@ -502,19 +523,37 @@ def prepare_rviz_config(rviz_config_file: Path, parameters: dict) -> Path:
 
 def launch_setup(context, *args, **kwargs):
     mode = LaunchConfiguration("mode").perform(context).lower()
+    if mode not in ("online", "offline"):
+        raise RuntimeError(f"Unknown mode '{mode}'. Valid: online | offline.")
     odom_at_imu_rate = (
         LaunchConfiguration("odom_at_imu_rate").perform(context).lower() == "true"
     )
 
     # Prepare parameters
-    cli_params = get_configured_cli_parameters(configurable_parameters, context=context)
+    cli_params = get_configured_cli_parameters(context)
     params_from_file = get_config_file_parameters(context)
-    final_params = merge_and_validate_parameters(
-        cli_params=cli_params,
-        file_params=params_from_file,
-        mode=mode,
-        odom_at_imu_rate=odom_at_imu_rate,
+    final_params = merge_parameters(
+        cli_params=cli_params, file_params=params_from_file
     )
+
+    if LaunchConfiguration("autodetect").perform(context).lower() == "true":
+        print("\n" + "=" * 40)
+        print("[EXPERIMENTAL] autodetect is enabled.")
+        print(
+            f"Whatever you did not set is guessed from "
+            f"{'the bag' if mode == 'offline' else 'the running graph'}: "
+            "imu_topic, lidar_topic, imu_frame, lidar_frame, base_frame."
+        )
+        print("Anything you did set is used as is. Turn this off with autodetect:=false.")
+        print("=" * 40)
+        final_params = load_sibling("autodetect").autodetect_or_exit(
+            final_params,
+            mode=mode,
+            bag_path=final_params.get("bag_path"),
+            timeout=float(LaunchConfiguration("autodetect_timeout").perform(context)),
+        )
+
+    validate_parameters(final_params, mode=mode, odom_at_imu_rate=odom_at_imu_rate)
 
     print("\n" + "=" * 40 + "\n")
     print("Using Launch configuration:\n")
@@ -539,7 +578,7 @@ def launch_setup(context, *args, **kwargs):
         launch_ros.actions.Node(
             package="rko_lio",
             executable=node_executable,
-            parameters=[final_params],
+            parameters=[node_parameters(final_params)],
             output="screen",
             arguments=[
                 "--ros-args",
