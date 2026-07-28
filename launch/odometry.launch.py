@@ -53,12 +53,14 @@ configurable_parameters = [
         "default": "",
         "description": "IMU input topic (required, unless a single one can be autodetected)",
         "required": True,
+        "autodetectable": True,
     },
     {
         "name": "lidar_topic",
         "default": "",
         "description": "LiDAR pointcloud topic (required, unless a single one can be autodetected)",
         "required": True,
+        "autodetectable": True,
     },
     {
         "launch_only": True,
@@ -89,6 +91,7 @@ configurable_parameters = [
         "default": "",
         "description": "Robot base frame, or the frame of estimation for odometry (required, unless it can be autodetected from the TF tree)",
         "required": True,
+        "autodetectable": True,
     },
     {
         "name": "odom_frame",
@@ -401,13 +404,16 @@ def merge_parameters(cli_params: dict, file_params: dict) -> dict:
     return merged
 
 
-def validate_parameters(merged: dict, mode: str, odom_at_imu_rate: bool) -> None:
+def validate_parameters(
+    merged: dict, mode: str, odom_at_imu_rate: bool, autodetect: bool = False
+) -> None:
     # mode + flag determines which pipeline runs
     is_offline = mode == "offline"
     is_seq = mode == "online" and odom_at_imu_rate
 
     offline_only = {p["name"] for p in offline_only_parameters}
     missing = []
+    autodetectable = []
     for param in configurable_parameters:
         name = param["name"]
 
@@ -417,14 +423,19 @@ def validate_parameters(merged: dict, mode: str, odom_at_imu_rate: bool) -> None
 
         if param.get("required", False):
             if name not in merged or not merged.get(name):
-                missing.append(name)
+                if autodetect and param.get("autodetectable"):
+                    autodetectable.append(name)
+                else:
+                    missing.append(name)
 
     if missing:
-        fail(
-            "[ERROR] missing required parameter(s):",
-            ", ".join(missing),
-            "Please provide them via cli (param:=value) or a config file.",
-        )
+        lines = ["[ERROR] missing required parameter(s):"]
+        lines += [f"  - {name}" for name in missing]
+        if autodetectable:
+            lines.append("Also unset, but autodetect can guess these for you:")
+            lines += [f"  - {name}" for name in autodetectable]
+        lines.append("Please provide them via cli (param:=value) or a config file.")
+        fail(*lines)
 
     # warn if odom_at_imu_rate=true is paired with offline (no offline seq variant)
     if is_offline and odom_at_imu_rate:
@@ -536,9 +547,21 @@ def launch_setup(context, *args, **kwargs):
         cli_params=cli_params, file_params=params_from_file
     )
 
-    if LaunchConfiguration("autodetect").perform(context).lower() == "true":
+    autodetect = LaunchConfiguration("autodetect").perform(context).lower() == "true"
+    validate_parameters(
+        final_params,
+        mode=mode,
+        odom_at_imu_rate=odom_at_imu_rate,
+        autodetect=autodetect,
+    )
+
+    if autodetect:
+        timeout = float(LaunchConfiguration("autodetect_timeout").perform(context))
         print("\n" + "=" * 40)
-        print("[EXPERIMENTAL] autodetect is enabled.")
+        print(
+            "[EXPERIMENTAL] autodetecting launch parameters is enabled, with "
+            f"autodetect_timeout:={timeout:g}s (online only)."
+        )
         print(
             f"Whatever you did not set is guessed from "
             f"{'the bag' if mode == 'offline' else 'the running graph'}: "
@@ -550,10 +573,8 @@ def launch_setup(context, *args, **kwargs):
             final_params,
             mode=mode,
             bag_path=final_params.get("bag_path"),
-            timeout=float(LaunchConfiguration("autodetect_timeout").perform(context)),
+            timeout=timeout,
         )
-
-    validate_parameters(final_params, mode=mode, odom_at_imu_rate=odom_at_imu_rate)
 
     print("\n" + "=" * 40 + "\n")
     print("Using Launch configuration:\n")

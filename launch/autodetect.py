@@ -21,7 +21,9 @@ TF_SCAN_WINDOW_NS = 5 * 10**9
 
 
 class AutodetectError(Exception):
-    pass
+    def __init__(self, message, param=None):
+        super().__init__(message)
+        self.param = param
 
 
 def tf_frames(buffer):
@@ -141,11 +143,14 @@ class BagGraph:
 def pick_topic(graph, msgtype, argument):
     candidates = graph.topics(msgtype)
     if not candidates:
-        raise AutodetectError(f"found no {msgtype} topic to use for {argument}")
+        raise AutodetectError(
+            f"found no {msgtype} topic to use for {argument}", argument
+        )
     if len(candidates) > 1:
         raise AutodetectError(
-            f"found several {msgtype} topics, so {argument} cannot be guessed. "
-            f"Pass one of: {', '.join(candidates)}"
+            f"found several {msgtype} topics, so {argument} cannot be guessed.\n"
+            "Pass one of:\n" + "\n".join(f"  - {c}" for c in candidates),
+            argument,
         )
     return candidates[0]
 
@@ -182,13 +187,18 @@ def resolve(graph, params):
         if not guessed and "invert_odom_tf" not in params:
             found["invert_odom_tf"] = True
 
-    for frame in {imu_frame, lidar_frame} - {base_frame}:
+    for name, frame in (("imu_frame", imu_frame), ("lidar_frame", lidar_frame)):
+        if frame == base_frame:
+            continue
         if not graph.buffer.can_transform(base_frame, frame, Time()):
             raise AutodetectError(
                 f"the TF tree has no transform between {frame} and the base frame "
-                f"{base_frame}, which the odometry needs. Known frames: "
-                f"{', '.join(sorted(known_frames)) or '<none>'}. Publish the transform, "
-                "or give the extrinsics in a config file."
+                f"{base_frame}, which the odometry needs.\n"
+                "Known frames:\n"
+                + "\n".join(f"  - {f}" for f in sorted(known_frames) or ["<none>"])
+                + f"\nPublish the transform, override {name}, or give the extrinsics "
+                "in a config file.",
+                "base_frame",
             )
     return found
 
@@ -200,7 +210,7 @@ def autodetect_or_exit(params, mode, bag_path, timeout):
         return params
 
     context = rclpy.Context()
-    rclpy.init(context=context)
+    rclpy.init(context=context, args=[])
     try:
         node = rclpy.create_node("rko_lio_autodetect", context=context)
         buffer = tf2_ros.Buffer()
@@ -217,7 +227,8 @@ def autodetect_or_exit(params, mode, bag_path, timeout):
             print("\n" + "=" * 40)
             print("[ERROR] autodetect failed:")
             print(error)
-            print("Pass the values explicitly, or set autodetect:=false.")
+            hint = f" as {error.param}:=<value>" if error.param else ""
+            print(f"Pass the values explicitly{hint}, or set autodetect:=false.")
             print("=" * 40 + "\n")
             sys.exit(1)
         finally:
