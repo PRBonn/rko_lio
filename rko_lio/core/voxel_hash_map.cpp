@@ -25,7 +25,7 @@
 // although it was heavily modifed and drastically simplified, but if you are using this module you
 // should at least acknoowledge the work from CT-ICP by giving a star on GitHub.
 //
-// Ported to rko_lio from kiss-icp (kiss_icp/cpp/kiss_icp/core/VoxelHashMap.{hpp,cpp}).
+// Modified from kiss-icp (kiss_icp/cpp/kiss_icp/core/VoxelHashMap.{hpp,cpp}).
 
 #include "voxel_hash_map.hpp"
 
@@ -41,18 +41,19 @@
 namespace {
 using rko_lio::core::Voxel;
 
+// the order of the shifts is deliberate
 static const std::array<Voxel, 27> shifts{
-    Voxel{-1, -1, -1}, Voxel{-1, -1, 0}, Voxel{-1, -1, 1}, //
-    Voxel{-1, 0, -1},  Voxel{-1, 0, 0},  Voxel{-1, 0, 1},  //
-    Voxel{-1, 1, -1},  Voxel{-1, 1, 0},  Voxel{-1, 1, 1},  //
+    Voxel{0, 0, 0}, // home
 
-    Voxel{0, -1, -1},  Voxel{0, -1, 0},  Voxel{0, -1, 1},  //
-    Voxel{0, 0, -1},   Voxel{0, 0, 0},   Voxel{0, 0, 1},   //
-    Voxel{0, 1, -1},   Voxel{0, 1, 0},   Voxel{0, 1, 1},   //
+    Voxel{-1, 0, 0},   Voxel{0, -1, 0},  Voxel{0, 0, -1}, // faces
+    Voxel{0, 0, 1},    Voxel{0, 1, 0},   Voxel{1, 0, 0},
 
-    Voxel{1, -1, -1},  Voxel{1, -1, 0},  Voxel{1, -1, 1}, //
-    Voxel{1, 0, -1},   Voxel{1, 0, 0},   Voxel{1, 0, 1},  //
-    Voxel{1, 1, -1},   Voxel{1, 1, 0},   Voxel{1, 1, 1}};
+    Voxel{-1, -1, 0},  Voxel{-1, 0, -1}, Voxel{-1, 0, 1}, // edges
+    Voxel{-1, 1, 0},   Voxel{0, -1, -1}, Voxel{0, -1, 1},  Voxel{0, 1, -1}, Voxel{0, 1, 1},
+    Voxel{1, -1, 0},   Voxel{1, 0, -1},  Voxel{1, 0, 1},   Voxel{1, 1, 0},
+
+    Voxel{-1, -1, -1}, Voxel{-1, -1, 1}, Voxel{-1, 1, -1}, // corners
+    Voxel{-1, 1, 1},   Voxel{1, -1, -1}, Voxel{1, -1, 1},  Voxel{1, 1, -1}, Voxel{1, 1, 1}};
 
 } // namespace
 
@@ -66,27 +67,43 @@ VoxelHashMap::VoxelHashMap(const double voxel_size,
       clipping_distance_(clipping_distance),
       max_points_per_voxel_(max_points_per_voxel) {}
 
-std::tuple<Eigen::Vector3d, double> VoxelHashMap::get_closest_neighbor(const Eigen::Vector3d& query) const {
-  Eigen::Vector3d closest_neighbor = Eigen::Vector3d::Zero();
-  double closest_distance = std::numeric_limits<double>::max();
+std::optional<VoxelBlock::const_iterator> VoxelHashMap::get_closest_neighbor(const Eigen::Vector3d& query,
+                                                                             const double max_distance) const {
+  double closest_distance_sq = max_distance * max_distance;
+  std::optional<VoxelBlock::const_iterator> closest;
   const Voxel voxel = point_to_voxel(query, inv_voxel_size_);
-  std::for_each(shifts.cbegin(), shifts.cend(), [&](const Voxel& voxel_shift) {
-    const Voxel query_voxel = voxel + voxel_shift;
-    const auto search = map_.find(query_voxel);
-    if (search != map_.end()) {
-      const VoxelBlock& voxel_points = search.value();
-      const Eigen::Vector3d& neighbor =
-          *std::min_element(voxel_points.cbegin(), voxel_points.cend(), [&](const auto& lhs, const auto& rhs) {
-            return (lhs - query).squaredNorm() < (rhs - query).squaredNorm();
-          });
-      double distance = (neighbor - query).norm();
-      if (distance < closest_distance) {
-        closest_neighbor = neighbor;
-        closest_distance = distance;
+
+  // lower_bounds is squared distance from the query to the near face of a neighbouring voxel, per axis.
+  // Columns are indexed by voxel shift + 1, rows are axes
+  const Eigen::Vector3d offset = query - voxel.cast<double>() * voxel_size_;
+  const Eigen::Vector3d to_far = Eigen::Vector3d::Constant(voxel_size_) - offset;
+  Eigen::Matrix3d lower_bounds;
+  lower_bounds.col(0) = offset.array().square();
+  lower_bounds.col(1).setZero();
+  lower_bounds.col(2) = to_far.array().square();
+
+  for (const Voxel& shift : shifts) {
+    // lower bound on the distance to query within this voxel + shift
+    const double lower_bound_sq =
+        lower_bounds(0, shift.x() + 1) + lower_bounds(1, shift.y() + 1) + lower_bounds(2, shift.z() + 1);
+    if (lower_bound_sq >= closest_distance_sq) {
+      continue;
+    }
+    const auto search = map_.find(voxel + shift);
+    if (search == map_.end()) {
+      continue;
+    }
+    // returning an iterator rather than a copy reduces branching (with the usual compiler caveats)
+    const VoxelBlock& voxel_points = search.value();
+    for (auto neighbor = voxel_points.cbegin(); neighbor != voxel_points.cend(); ++neighbor) {
+      const double distance_sq = (*neighbor - query).squaredNorm();
+      if (distance_sq < closest_distance_sq) {
+        closest_distance_sq = distance_sq;
+        closest = neighbor;
       }
     }
-  });
-  return std::make_tuple(closest_neighbor, closest_distance);
+  }
+  return closest;
 }
 
 void VoxelHashMap::add_points(const std::vector<Eigen::Vector3d>& points) {
