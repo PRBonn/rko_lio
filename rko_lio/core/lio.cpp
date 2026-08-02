@@ -147,12 +147,12 @@ LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose,
         auto& [H, b, chi, correspondences] = J;
         for (const Eigen::Vector3d& point : r) {
           const Eigen::Vector3d transformed_point = current_pose * point;
-          const auto& [closest_neighbor, distance] = voxel_map.get_closest_neighbor(transformed_point);
-          if (distance >= max_correspondence_distance) {
+          const auto closest_neighbor = voxel_map.get_closest_neighbor(transformed_point, max_correspondence_distance);
+          if (!closest_neighbor.has_value()) {
             continue;
           }
           const auto& [point_H, point_b, point_chi, point_n] =
-              linear_system_for_one_point(transformed_point, closest_neighbor);
+              linear_system_for_one_point(transformed_point, **closest_neighbor);
           H += point_H;
           b += point_b;
           chi += point_chi;

@@ -25,13 +25,14 @@
 // although it was heavily modifed and drastically simplified, but if you are using this module you
 // should at least acknoowledge the work from CT-ICP by giving a star on GitHub.
 //
-// Ported to rko_lio from kiss-icp (kiss_icp/cpp/kiss_icp/core/VoxelHashMap.{hpp,cpp}).
+// modified from kiss-icp (kiss_icp/cpp/kiss_icp/core/VoxelHashMap.{hpp,cpp}).
 #pragma once
 
 // brings VoxelHash and point_to_voxel
 #include "voxel_down_sample.hpp"
 
 #include <Eigen/Core>
+#include <optional>
 #include <sophus/se3.hpp>
 #include <tsl/robin_map.h>
 #include <tuple>
@@ -53,7 +54,10 @@ struct VoxelHashMap {
   void add_points(const std::vector<Eigen::Vector3d>& points, const Sophus::SE3d& pose);
   void remove_points_far_from_location(const Eigen::Vector3d& origin);
   std::vector<Eigen::Vector3d> pointcloud() const;
-  std::tuple<Eigen::Vector3d, double> get_closest_neighbor(const Eigen::Vector3d& query) const;
+
+  /// Iterator to nearest point to `query` strictly within `max_distance`, or nullopt if there is none.
+  std::optional<VoxelBlock::const_iterator> get_closest_neighbor(const Eigen::Vector3d& query,
+                                                                 const double max_distance) const;
 
   double voxel_size_;
   double inv_voxel_size_;
