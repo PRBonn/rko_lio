@@ -277,7 +277,7 @@
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1ac0a85829fa563836a01b77ceff59cabe" kind="function"><name>clear</name></member>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1acf441a271ba571fd0c44bd7742030348" kind="function"><name>empty</name></member>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1ab7b2aaf8c1773023df7094b7138c3aa4" kind="function"><name>update</name></member>
-    <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a1f65b0eb57498de2b66f22deac8aa69b" kind="function"><name>add_points</name></member>
+    <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1acab1c0a0b2967b98e9d041956432c3e5" kind="function"><name>add_points</name></member>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a00914479421237754cd577709bd0e1cc" kind="function"><name>remove_points_far_from_location</name></member>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a83f6aa36ec4960d0b122f37323cbc61e" kind="function"><name>pointcloud</name></member>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1ac99169e235467d6b2a8dd6e518ac7595" kind="function"><name>get_closest_neighbor</name></member>

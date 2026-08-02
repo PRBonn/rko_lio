@@ -134,49 +134,54 @@ Program Listing for File lio.cpp
                                         const rko_lio::core::Vector3dVector& frame,
                                         const rko_lio::core::VoxelHashMap& voxel_map,
                                         const double& max_correspondence_distance) {
-     auto linear_system_reduce = [](LinearSystem lhs, const LinearSystem& rhs) {
-       auto& [lhs_H, lhs_b, lhs_chi] = lhs;
-       const auto& [rhs_H, rhs_b, rhs_chi] = rhs;
-       lhs_H += rhs_H;
-       lhs_b += rhs_b;
-       lhs_chi += rhs_chi;
-       return lhs;
-     };
+     using IcpAccum = std::tuple<Eigen::Matrix6d, Eigen::Vector6d, double, int>;
    
      auto linear_system_for_one_point = [](const Eigen::Vector3d& source, const Eigen::Vector3d& target) {
        Eigen::Matrix3_6d J_r;
        J_r.block<3, 3>(0, 0) = Eigen::Matrix3d::Identity();
        J_r.block<3, 3>(0, 3) = -1.0 * Sophus::SO3d::hat(source);
        const Eigen::Vector3d residual = source - target;
-       return LinearSystem(J_r.transpose() * J_r,      // JTJ
-                           J_r.transpose() * residual, // JTr
-                           residual.squaredNorm());    // chi
+       return IcpAccum(J_r.transpose() * J_r,      // JTJ
+                       J_r.transpose() * residual, // JTr
+                       residual.squaredNorm(),     // chi
+                       1);                         // correspondence
      };
    
      // The only parallel part
      using points_iterator = std::vector<Eigen::Vector3d>::const_iterator;
-     std::atomic<int> correspondences_counter = 0;
-     const auto& [H_icp, b_icp, chi_icp] = tbb::parallel_reduce(
+     const auto& [H_icp, b_icp, chi_icp, correspondences_counter] = tbb::parallel_reduce(
          // Range
          tbb::blocked_range<points_iterator>{frame.cbegin(), frame.cend()},
          // Identity
-         LinearSystem(Eigen::Matrix6d::Zero(), Eigen::Vector6d::Zero(), 0.0),
+         IcpAccum(Eigen::Matrix6d::Zero(), Eigen::Vector6d::Zero(), 0.0, 0),
          // 1st Lambda: Parallel computation
-         [&](const tbb::blocked_range<points_iterator>& r, LinearSystem J) -> LinearSystem {
-           return std::transform_reduce(r.begin(), r.end(), J, linear_system_reduce, [&](const auto& point) {
-             // Compute data association and linear system
+         [&](const tbb::blocked_range<points_iterator>& r, IcpAccum J) -> IcpAccum {
+           auto& [H, b, chi, correspondences] = J;
+           for (const Eigen::Vector3d& point : r) {
              const Eigen::Vector3d transformed_point = current_pose * point;
              const auto closest_neighbor = voxel_map.get_closest_neighbor(transformed_point, max_correspondence_distance);
-             if (closest_neighbor.has_value()) {
-               correspondences_counter++;
-               return linear_system_for_one_point(transformed_point, **closest_neighbor);
+             if (!closest_neighbor.has_value()) {
+               continue;
              }
-             // TODO (meher): additional 0 add flops, which may hurt single threaded perf slightly
-             return LinearSystem(Eigen::Matrix6d::Zero(), Eigen::Vector6d::Zero(), 0.0);
-           });
+             const auto& [point_H, point_b, point_chi, point_n] =
+                 linear_system_for_one_point(transformed_point, **closest_neighbor);
+             H += point_H;
+             b += point_b;
+             chi += point_chi;
+             correspondences += point_n;
+           }
+           return J;
          },
          // 2nd Lambda: Parallel reduction of the private Jacobians
-         linear_system_reduce);
+         [](IcpAccum lhs, const IcpAccum& rhs) {
+           auto& [lhs_H, lhs_b, lhs_chi, lhs_n] = lhs;
+           const auto& [rhs_H, rhs_b, rhs_chi, rhs_n] = rhs;
+           lhs_H += rhs_H;
+           lhs_b += rhs_b;
+           lhs_chi += rhs_chi;
+           lhs_n += rhs_n;
+           return lhs;
+         });
    
      if (correspondences_counter == 0) {
        throw std::runtime_error("Number of correspondences are 0.");
