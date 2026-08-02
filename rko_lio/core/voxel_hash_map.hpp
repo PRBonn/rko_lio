@@ -51,7 +51,7 @@ struct VoxelHashMap {
   void clear() { map_.clear(); }
   bool empty() const { return map_.empty(); }
   void update(const std::vector<Eigen::Vector3d>& points, const Sophus::SE3d& pose);
-  void add_points(const std::vector<Eigen::Vector3d>& points);
+  void add_points(const std::vector<Eigen::Vector3d>& points, const Sophus::SE3d& pose);
   void remove_points_far_from_location(const Eigen::Vector3d& origin);
   std::vector<Eigen::Vector3d> pointcloud() const;
 

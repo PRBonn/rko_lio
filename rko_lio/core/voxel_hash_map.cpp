@@ -106,9 +106,10 @@ std::optional<VoxelBlock::const_iterator> VoxelHashMap::get_closest_neighbor(con
   return closest;
 }
 
-void VoxelHashMap::add_points(const std::vector<Eigen::Vector3d>& points) {
+void VoxelHashMap::add_points(const std::vector<Eigen::Vector3d>& points, const Sophus::SE3d& pose) {
   const double map_resolution_sq = voxel_size_ * voxel_size_ / max_points_per_voxel_;
-  std::for_each(points.cbegin(), points.cend(), [&](const Eigen::Vector3d& p) {
+  std::for_each(points.cbegin(), points.cend(), [&](const Eigen::Vector3d& point) {
+    const Eigen::Vector3d p = pose * point;
     const Voxel voxel = point_to_voxel(p, inv_voxel_size_);
     auto it = map_.try_emplace(voxel).first;
     VoxelBlock& voxel_points = it.value();
@@ -135,12 +136,8 @@ void VoxelHashMap::remove_points_far_from_location(const Eigen::Vector3d& origin
 }
 
 void VoxelHashMap::update(const std::vector<Eigen::Vector3d>& points, const Sophus::SE3d& pose) {
-  std::vector<Eigen::Vector3d> points_transformed(points.size());
-  std::transform(points.cbegin(), points.cend(), points_transformed.begin(),
-                 [&](const auto& point) { return pose * point; });
-  const Eigen::Vector3d& origin = pose.translation();
-  add_points(points_transformed);
-  remove_points_far_from_location(origin);
+  add_points(points, pose);
+  remove_points_far_from_location(pose.translation());
 }
 
 std::vector<Eigen::Vector3d> VoxelHashMap::pointcloud() const {
