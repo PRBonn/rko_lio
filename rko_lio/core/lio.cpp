@@ -154,10 +154,10 @@ LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose,
         return std::transform_reduce(r.begin(), r.end(), J, linear_system_reduce, [&](const auto& point) {
           // Compute data association and linear system
           const Eigen::Vector3d transformed_point = current_pose * point;
-          const auto& [closest_neighbor, distance] = voxel_map.get_closest_neighbor(transformed_point);
-          if (distance < max_correspondence_distance) {
+          const auto closest_neighbor = voxel_map.get_closest_neighbor(transformed_point, max_correspondence_distance);
+          if (closest_neighbor.has_value()) {
             correspondences_counter++;
-            return linear_system_for_one_point(transformed_point, closest_neighbor);
+            return linear_system_for_one_point(transformed_point, **closest_neighbor);
           }
           // TODO (meher): additional 0 add flops, which may hurt single threaded perf slightly
           return LinearSystem(Eigen::Matrix6d::Zero(), Eigen::Vector6d::Zero(), 0.0);
