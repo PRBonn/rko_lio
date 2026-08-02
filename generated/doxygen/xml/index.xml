@@ -280,7 +280,7 @@
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a1f65b0eb57498de2b66f22deac8aa69b" kind="function"><name>add_points</name></member>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a00914479421237754cd577709bd0e1cc" kind="function"><name>remove_points_far_from_location</name></member>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a83f6aa36ec4960d0b122f37323cbc61e" kind="function"><name>pointcloud</name></member>
-    <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a2d187d4904229ebdfed12b44099b73c5" kind="function"><name>get_closest_neighbor</name></member>
+    <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1ac99169e235467d6b2a8dd6e518ac7595" kind="function"><name>get_closest_neighbor</name></member>
   </compound>
   <compound refid="namespace_0d0" kind="namespace"><name>@0</name>
   </compound>

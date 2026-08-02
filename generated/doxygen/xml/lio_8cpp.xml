@@ -23,15 +23,13 @@
         <link refid="lio_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="13" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
         </childnode>
         <childnode refid="22" relation="include">
         </childnode>
@@ -43,11 +41,13 @@
         </childnode>
         <childnode refid="26" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
         <childnode refid="27" relation="include">
         </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
         <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="29" relation="include">
         </childnode>
@@ -57,27 +57,25 @@
         <link refid="lio_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="13">
+      <node id="14">
         <label>preprocess_scan.hpp</label>
         <link refid="preprocess__scan_8hpp_source"/>
-        <childnode refid="14" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="10" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="15">
+      <node id="16">
         <label>profiler.hpp</label>
         <link refid="profiler_8hpp"/>
-        <childnode refid="12" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
@@ -87,13 +85,15 @@
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
       </node>
-      <node id="11">
+      <node id="12">
         <label>util.hpp</label>
         <link refid="util_8hpp_source"/>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
@@ -115,43 +115,45 @@
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
         <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
       </node>
       <node id="5">
         <label>Eigen/Core</label>
       </node>
-      <node id="14">
+      <node id="15">
         <label>Eigen/Dense</label>
       </node>
-      <node id="25">
+      <node id="26">
         <label>algorithm</label>
       </node>
-      <node id="12">
+      <node id="13">
         <label>chrono</label>
       </node>
       <node id="6">
         <label>cmath</label>
       </node>
-      <node id="26">
+      <node id="27">
         <label>functional</label>
       </node>
-      <node id="16">
+      <node id="17">
         <label>iomanip</label>
       </node>
-      <node id="17">
+      <node id="18">
         <label>iostream</label>
       </node>
-      <node id="27">
+      <node id="28">
         <label>numeric</label>
       </node>
-      <node id="28">
+      <node id="8">
         <label>optional</label>
       </node>
       <node id="7">
@@ -160,34 +162,34 @@
       <node id="29">
         <label>stdexcept</label>
       </node>
-      <node id="18">
+      <node id="19">
         <label>string</label>
       </node>
-      <node id="21">
+      <node id="22">
         <label>tbb/blocked_range.h</label>
       </node>
-      <node id="22">
+      <node id="23">
         <label>tbb/global_control.h</label>
       </node>
-      <node id="23">
+      <node id="24">
         <label>tbb/parallel_reduce.h</label>
       </node>
-      <node id="24">
+      <node id="25">
         <label>tbb/task_arena.h</label>
       </node>
-      <node id="8">
+      <node id="9">
         <label>tsl/robin_map.h</label>
       </node>
-      <node id="9">
+      <node id="10">
         <label>tuple</label>
       </node>
-      <node id="19">
+      <node id="20">
         <label>unordered_map</label>
       </node>
-      <node id="20">
+      <node id="21">
         <label>utility</label>
       </node>
-      <node id="10">
+      <node id="11">
         <label>vector</label>
       </node>
     </incdepgraph>
@@ -354,10 +356,10 @@
 <codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::transform_reduce(r.begin(),<sp/>r.end(),<sp/>J,<sp/>linear_system_reduce,<sp/>[&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>point)<sp/>{</highlight></codeline>
 <codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Compute<sp/>data<sp/>association<sp/>and<sp/>linear<sp/>system</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>Eigen::Vector3d<sp/>transformed_point<sp/>=<sp/>current_pose<sp/>*<sp/>point;</highlight></codeline>
-<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>auto&amp;<sp/>[closest_neighbor,<sp/>distance]<sp/>=<sp/>voxel_map.get_closest_neighbor(transformed_point);</highlight></codeline>
-<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(distance<sp/>&lt;<sp/>max_correspondence_distance)<sp/>{</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>auto<sp/>closest_neighbor<sp/>=<sp/>voxel_map.get_closest_neighbor(transformed_point,<sp/>max_correspondence_distance);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(closest_neighbor.has_value())<sp/>{</highlight></codeline>
 <codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>correspondences_counter++;</highlight></codeline>
-<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>linear_system_for_one_point(transformed_point,<sp/>closest_neighbor);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>linear_system_for_one_point(transformed_point,<sp/>**closest_neighbor);</highlight></codeline>
 <codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO<sp/>(meher):<sp/>additional<sp/>0<sp/>add<sp/>flops,<sp/>which<sp/>may<sp/>hurt<sp/>single<sp/>threaded<sp/>perf<sp/>slightly</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>LinearSystem(Eigen::Matrix6d::Zero(),<sp/>Eigen::Vector6d::Zero(),<sp/>0.0);</highlight></codeline>

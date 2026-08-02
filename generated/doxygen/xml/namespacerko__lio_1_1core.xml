@@ -69,7 +69,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" line="42" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" bodystart="42" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" line="43" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" bodystart="43" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespacerko__lio_1_1core_1aef84c95de08dd51173a6fc0d2433c24a" prot="public" static="no">
         <type>std::vector&lt; Eigen::Vector3d &gt;</type>
@@ -83,7 +83,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" line="43" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" bodystart="43" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" line="44" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" bodystart="44" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="var">

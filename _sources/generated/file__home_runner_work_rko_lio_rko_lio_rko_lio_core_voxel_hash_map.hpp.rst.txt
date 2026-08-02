@@ -32,6 +32,8 @@ Includes
 
 - ``Eigen/Core``
 
+- ``optional``
+
 - ``sophus/se3.hpp``
 
 - ``tsl/robin_map.h``

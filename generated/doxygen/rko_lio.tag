@@ -371,6 +371,13 @@
   <compound kind="struct">
     <name>rko_lio::core::VoxelHashMap</name>
     <filename>structrko__lio_1_1core_1_1VoxelHashMap.html</filename>
+    <member kind="function">
+      <type>std::optional&lt; VoxelBlock::const_iterator &gt;</type>
+      <name>get_closest_neighbor</name>
+      <anchorfile>structrko__lio_1_1core_1_1VoxelHashMap.html</anchorfile>
+      <anchor>ac99169e235467d6b2a8dd6e518ac7595</anchor>
+      <arglist>(const Eigen::Vector3d &amp;query, const double max_distance) const</arglist>
+    </member>
   </compound>
   <compound kind="namespace">
     <name>rko_lio::core</name>

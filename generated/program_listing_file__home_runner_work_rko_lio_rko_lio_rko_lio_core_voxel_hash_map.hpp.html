@@ -121,13 +121,14 @@
 <span class="c1">// although it was heavily modifed and drastically simplified, but if you are using this module you</span>
 <span class="c1">// should at least acknoowledge the work from CT-ICP by giving a star on GitHub.</span>
 <span class="c1">//</span>
-<span class="c1">// Ported to rko_lio from kiss-icp (kiss_icp/cpp/kiss_icp/core/VoxelHashMap.{hpp,cpp}).</span>
+<span class="c1">// modified from kiss-icp (kiss_icp/cpp/kiss_icp/core/VoxelHashMap.{hpp,cpp}).</span>
 <span class="cp">#pragma once</span>
 
 <span class="c1">// brings VoxelHash and point_to_voxel</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;voxel_down_sample.hpp&quot;</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Eigen/Core&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;optional&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sophus/se3.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;tsl/robin_map.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;tuple&gt;</span>
@@ -149,7 +150,9 @@
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">add_points</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">points</span><span class="p">);</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">remove_points_far_from_location</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">origin</span><span class="p">);</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pointcloud</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_closest_neighbor</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">query</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">VoxelBlock</span><span class="o">::</span><span class="n">const_iterator</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_closest_neighbor</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">query</span><span class="p">,</span>
+<span class="w">                                                                 </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">max_distance</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 
 <span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">voxel_size_</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">inv_voxel_size_</span><span class="p">;</span>
