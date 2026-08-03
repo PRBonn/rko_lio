@@ -13,6 +13,6 @@ struct PreprocessingResult {
 };
 
 // clip and downsample the input cloud
-PreprocessingResult preprocess_scan(const Vector3dVector& frame, const LIO::Config& config);
+PreprocessingResult preprocess_scan(Vector3dVector frame, const LIO::Config& config);
 
 } // namespace rko_lio::core

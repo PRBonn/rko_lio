@@ -229,26 +229,27 @@ bool BaseNode::check_and_set_extrinsics() {
   return true;
 }
 
-std::tuple<core::Timestamps, core::Vector3dVector>
-BaseNode::process_lidar_msg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& lidar_msg) const {
+LidarFrame BaseNode::process_lidar_msg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& lidar_msg) const {
   const core::Nsec header_stamp = utils::to_ns(lidar_msg->header.stamp);
   if (lio->config.deskew) {
-    const auto& [scan, raw_timestamps] = utils::point_cloud2_to_eigen_with_timestamps(lidar_msg);
-    const core::Timestamps& timestamps = core::process_timestamps(raw_timestamps, header_stamp, timestamp_proc_config);
-    return {timestamps, scan};
+    utils::RawScan scan = utils::point_cloud2_to_eigen_with_timestamps(lidar_msg);
+    return {.timestamps = core::process_timestamps(scan.timestamps, header_stamp, timestamp_proc_config),
+            .points = std::move(scan.points)};
   }
   RCLCPP_WARN_STREAM_ONCE(node->get_logger(), "Deskewing is disabled. Populating timestamps with static header time.");
-  const core::Vector3dVector scan = utils::point_cloud2_to_eigen(lidar_msg);
-  return {{.min = header_stamp, .max = header_stamp, .times = core::TimestampVector(scan.size(), header_stamp)}, scan};
+  LidarFrame frame{.timestamps = {.min = header_stamp, .max = header_stamp},
+                   .points = utils::point_cloud2_to_eigen(lidar_msg)};
+  frame.timestamps.per_point.assign(frame.points.size(), header_stamp);
+  return frame;
 }
 
-core::Vector3dVector BaseNode::register_scan_locked(const core::Vector3dVector& scan,
+core::Vector3dVector BaseNode::register_scan_locked(core::Vector3dVector scan,
                                                     const core::TimestampVector& time_vector) {
+  std::unique_lock lock(local_map_mutex, std::defer_lock);
   if (publish_local_map) {
-    std::lock_guard lock(local_map_mutex); // map publish thread may access map simultaneously
-    return lio->register_scan(extrinsic_lidar2base, scan, time_vector);
+    lock.lock(); // map publish thread may access map simultaneously
   }
-  return lio->register_scan(extrinsic_lidar2base, scan, time_vector);
+  return lio->register_scan(extrinsic_lidar2base, std::move(scan), time_vector);
 }
 
 void BaseNode::publish_lidar_outputs(const core::Vector3dVector& deskewed_frame) const {

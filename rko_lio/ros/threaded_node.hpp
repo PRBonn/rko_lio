@@ -36,11 +36,6 @@
 
 namespace rko_lio::ros {
 
-struct LidarFrame {
-  core::Timestamps timestamps;
-  core::Vector3dVector points;
-};
-
 class ThreadedNode : public BaseNode {
 public:
   std::jthread registration_thread;

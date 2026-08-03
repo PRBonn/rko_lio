@@ -33,7 +33,6 @@
 #include <string>
 #include <string_view>
 #include <thread>
-#include <tuple>
 // ros
 #include <geometry_msgs/msg/accel_stamped.hpp>
 #include <geometry_msgs/msg/accel_with_covariance_stamped.hpp>
@@ -47,6 +46,11 @@
 #include <tf2_ros/transform_listener.hpp>
 
 namespace rko_lio::ros {
+
+struct LidarFrame {
+  core::Timestamps timestamps;
+  core::Vector3dVector points;
+};
 // Shared helper used by both the threaded and sequential nodes.
 core::ImuControl imu_msg_to_imu_data(const sensor_msgs::msg::Imu& imu_msg);
 
@@ -109,10 +113,9 @@ public:
                                    const std::string& msg_frame,
                                    std::string_view kind);
 
-  std::tuple<core::Timestamps, core::Vector3dVector>
-  process_lidar_msg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& lidar_msg) const;
+  LidarFrame process_lidar_msg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& lidar_msg) const;
 
-  core::Vector3dVector register_scan_locked(const core::Vector3dVector& scan, const core::TimestampVector& time_vector);
+  core::Vector3dVector register_scan_locked(core::Vector3dVector scan, const core::TimestampVector& time_vector);
 
   void publish_lidar_outputs(const core::Vector3dVector& deskewed_frame) const;
 

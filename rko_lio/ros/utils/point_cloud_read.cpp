@@ -46,19 +46,16 @@ Vector3dVector point_cloud2_to_eigen(const sensor_msgs::msg::PointCloud2::ConstS
   return points;
 }
 
-std::tuple<Vector3dVector, std::vector<double>>
-point_cloud2_to_eigen_with_timestamps(const PointCloud2::ConstSharedPtr& msg) {
+RawScan point_cloud2_to_eigen_with_timestamps(const PointCloud2::ConstSharedPtr& msg) {
   using sensor_msgs::PointCloud2ConstIterator;
   // getting points and time in a single cycle loop
   const size_t point_count = static_cast<size_t>(msg->height) * msg->width;
-  Vector3dVector points;
-  points.reserve(point_count);
+  RawScan scan;
+  scan.points.reserve(point_count);
+  scan.timestamps.reserve(point_count);
   PointCloud2ConstIterator<float> msg_x(*msg, "x");
   PointCloud2ConstIterator<float> msg_y(*msg, "y");
   PointCloud2ConstIterator<float> msg_z(*msg, "z");
-
-  std::vector<double> raw_timestamps;
-  raw_timestamps.reserve(point_count);
 
   const auto& timestamp_field = std::invoke([&msg]() -> PointField {
     for (const PointField& field : msg->fields) {
@@ -74,8 +71,8 @@ point_cloud2_to_eigen_with_timestamps(const PointCloud2::ConstSharedPtr& msg) {
   // templated lambda (auto) ftw
   auto extract_points_and_timestamps = [&](auto&& time_iter) {
     for (size_t i = 0; i < point_count; ++i, ++msg_x, ++msg_y, ++msg_z, ++time_iter) {
-      points.emplace_back(*msg_x, *msg_y, *msg_z);
-      raw_timestamps.emplace_back(static_cast<double>(*time_iter));
+      scan.points.emplace_back(*msg_x, *msg_y, *msg_z);
+      scan.timestamps.emplace_back(static_cast<double>(*time_iter));
     }
   };
 
@@ -99,6 +96,6 @@ point_cloud2_to_eigen_with_timestamps(const PointCloud2::ConstSharedPtr& msg) {
     throw std::invalid_argument("Unsupported timestamp field datatype. Please open an issue.");
   }
 
-  return {points, raw_timestamps};
+  return scan;
 }
 } // namespace rko_lio::ros::utils

@@ -37,7 +37,7 @@ namespace rko_lio::core {
 struct Timestamps {
   Nsec min;
   Nsec max;
-  TimestampVector times;
+  TimestampVector per_point;
 };
 
 /**

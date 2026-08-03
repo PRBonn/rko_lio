@@ -119,7 +119,7 @@ public:
    * @param timestamps Absolute timestamps corresponding to each scan point.
    * @return Deskewed and clipped point cloud.
    */
-  Vector3dVector register_scan(const Vector3dVector& scan, const TimestampVector& timestamps);
+  Vector3dVector register_scan(Vector3dVector scan, const TimestampVector& timestamps);
 
   /**
    * Register a LiDAR scan for which the extrinsic calibration from lidar to base
@@ -130,7 +130,7 @@ public:
    * @return Deskewed and clipped scan in the original lidar frame.
    */
   Vector3dVector register_scan(const Sophus::SE3d& extrinsic_lidar2base,
-                               const Vector3dVector& scan,
+                               Vector3dVector scan,
                                const TimestampVector& timestamps);
 
   /** Sequence of registered scan poses with corresponding timestamps. */
