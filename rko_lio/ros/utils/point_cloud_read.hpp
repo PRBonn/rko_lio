@@ -32,6 +32,10 @@
 namespace rko_lio::ros::utils {
 std::vector<Eigen::Vector3d> point_cloud2_to_eigen(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& msg);
 
-std::tuple<std::vector<Eigen::Vector3d>, std::vector<double>>
-point_cloud2_to_eigen_with_timestamps(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& msg);
+struct RawScan {
+  std::vector<Eigen::Vector3d> points;
+  std::vector<double> timestamps;
+};
+
+RawScan point_cloud2_to_eigen_with_timestamps(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& msg);
 }; // namespace rko_lio::ros::utils

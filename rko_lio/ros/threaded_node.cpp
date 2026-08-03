@@ -35,9 +35,10 @@ using namespace std::literals;
 
 namespace rko_lio::ros {
 
-ThreadedNode::ThreadedNode(const std::string& node_name, const rclcpp::NodeOptions& options) : BaseNode(node_name, options) {
-  max_lidar_buffer_size = static_cast<size_t>(node->declare_parameter<int>(
-      "async.max_lidar_buffer_size", static_cast<int>(max_lidar_buffer_size)));
+ThreadedNode::ThreadedNode(const std::string& node_name, const rclcpp::NodeOptions& options)
+    : BaseNode(node_name, options) {
+  max_lidar_buffer_size = static_cast<size_t>(
+      node->declare_parameter<int>("async.max_lidar_buffer_size", static_cast<int>(max_lidar_buffer_size)));
   registration_thread = std::jthread([this]() { registration_loop(); });
 }
 
@@ -68,10 +69,10 @@ void ThreadedNode::lidar_callback(const sensor_msgs::msg::PointCloud2::ConstShar
     }
   }
   try {
-    const auto [timestamps, scan] = process_lidar_msg(lidar_msg);
+    LidarFrame frame = process_lidar_msg(lidar_msg);
     {
       std::lock_guard lock(buffer_mutex);
-      lidar_buffer.emplace(timestamps, scan);
+      lidar_buffer.push(std::move(frame));
       atomic_can_process = !imu_buffer.empty() && imu_buffer.back().time > lidar_buffer.front().timestamps.max;
     }
     if (atomic_can_process) {
@@ -94,8 +95,7 @@ void ThreadedNode::registration_loop() {
     LidarFrame frame = std::move(lidar_buffer.front());
     lidar_buffer.pop();
     registration_busy = true;
-    const auto& [timestamps, scan] = frame;
-    const auto& [start_stamp, end_stamp, time_vector] = timestamps;
+    const core::Nsec end_stamp = frame.timestamps.max;
     for (; !imu_buffer.empty() && imu_buffer.front().time < end_stamp; imu_buffer.pop()) {
       const core::ImuControl& imu_data = imu_buffer.front();
       lio->add_imu_measurement(extrinsic_imu2base, imu_data);
@@ -106,7 +106,8 @@ void ThreadedNode::registration_loop() {
     buffer_lock.unlock(); // we dont touch the buffers anymore
 
     try {
-      const core::Vector3dVector deskewed_frame = register_scan_locked(scan, time_vector);
+      const core::Vector3dVector deskewed_frame =
+          register_scan_locked(std::move(frame.points), frame.timestamps.per_point);
       if (!deskewed_frame.empty()) {
         // TODO: first frame is skipped and an empty frame is returned. improve how we handle this
         publish_lidar_outputs(deskewed_frame);

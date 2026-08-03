@@ -58,9 +58,9 @@ TEST_CASE("process_timestamps: absolute seconds, header ~= min -> unchanged", "[
 
   REQUIRE_THAT(to_seconds(result.min), WithinAbs(1234.0, 1e-9));
   REQUIRE_THAT(to_seconds(result.max), WithinAbs(1234.1, 1e-9));
-  REQUIRE(result.times.size() == raw.size());
-  REQUIRE_THAT(to_seconds(result.times.front()), WithinAbs(1234.0, 1e-9));
-  REQUIRE_THAT(to_seconds(result.times.back()), WithinAbs(1234.1, 1e-9));
+  REQUIRE(result.per_point.size() == raw.size());
+  REQUIRE_THAT(to_seconds(result.per_point.front()), WithinAbs(1234.0, 1e-9));
+  REQUIRE_THAT(to_seconds(result.per_point.back()), WithinAbs(1234.1, 1e-9));
 }
 
 TEST_CASE("process_timestamps: relative seconds, min ~= 0 -> header offset added", "[process_timestamps]") {
@@ -70,8 +70,8 @@ TEST_CASE("process_timestamps: relative seconds, min ~= 0 -> header offset added
 
   REQUIRE_THAT(to_seconds(result.min), WithinAbs(1234.5, 1e-9));
   REQUIRE_THAT(to_seconds(result.max), WithinAbs(1234.6, 1e-9));
-  REQUIRE_THAT(to_seconds(result.times.front()), WithinAbs(1234.5, 1e-9));
-  REQUIRE_THAT(to_seconds(result.times.back()), WithinAbs(1234.6, 1e-9));
+  REQUIRE_THAT(to_seconds(result.per_point.front()), WithinAbs(1234.5, 1e-9));
+  REQUIRE_THAT(to_seconds(result.per_point.back()), WithinAbs(1234.6, 1e-9));
 }
 
 TEST_CASE("process_timestamps: absolute nanoseconds -> heuristic infers ns source", "[process_timestamps]") {
