@@ -29,13 +29,16 @@
 #include <cmath>
 #include <cstdint>
 
+using rko_lio::tests::TOL;
+using rko_lio::tests::LOOSE_TOL;
+using rko_lio::tests::EXACT_TOL;
 using rko_lio::core::GRAVITY_MAG;
 using rko_lio::core::ImuControl;
 using rko_lio::core::LIO;
 using rko_lio::core::Nsec;
 using rko_lio::core::TimestampVector;
 using rko_lio::core::to_seconds;
-using rko_lio::core::Vector3dVector;
+using rko_lio::core::Vector3sVector;
 using rko_lio::tests::approx_equal;
 using rko_lio::tests::make_hollow_cube;
 using Catch::Matchers::WithinAbs;
@@ -60,7 +63,7 @@ TEST_CASE("IMU before first LiDAR is silently dropped", "[imu_integration]") {
     ImuControl m;
     m.time = ns_from_seconds(0.01 * (i + 1));
     m.acceleration = {0.0, 0.0, GRAVITY_MAG};
-    m.angular_velocity = Eigen::Vector3d::Zero();
+    m.angular_velocity = Eigen::Vector3s::Zero();
     lio.add_imu_measurement(m);
   }
   REQUIRE(lio.interval_stats.imu_count == 0);
@@ -76,20 +79,20 @@ TEST_CASE("Static IMU at rest: gravity is compensated", "[imu_integration]") {
     ImuControl m;
     m.time = ns_from_seconds(1.0 + 0.01 * (i + 1));
     m.acceleration = {0.0, 0.0, GRAVITY_MAG};
-    m.angular_velocity = Eigen::Vector3d::Zero();
+    m.angular_velocity = Eigen::Vector3s::Zero();
     lio.add_imu_measurement(m);
   }
 
   REQUIRE(lio.interval_stats.imu_count == N);
-  REQUIRE(lio.interval_stats.body_acceleration_sum.norm() < 1e-9);
-  REQUIRE_THAT(lio.interval_stats.imu_acceleration_sum.z(), WithinAbs(N * GRAVITY_MAG, 1e-6));
+  REQUIRE(lio.interval_stats.body_acceleration_sum.norm() < TOL);
+  REQUIRE_THAT(lio.interval_stats.imu_acceleration_sum.z(), WithinAbs(N * GRAVITY_MAG, LOOSE_TOL));
 }
 
 TEST_CASE("Pure rotation: gyro integration matches exp(omega*T)", "[imu_integration]") {
   LIO lio(default_config());
   lio.lidar_state.time = ns_from_seconds(1.0);
 
-  const Eigen::Vector3d omega(0.0, 0.0, 0.5);
+  const Eigen::Vector3s omega(0.0, 0.0, 0.5);
   constexpr int N = 100;
   constexpr double dt = 0.01;
   const double T = N * dt;
@@ -98,12 +101,12 @@ TEST_CASE("Pure rotation: gyro integration matches exp(omega*T)", "[imu_integrat
     ImuControl m;
     m.time = ns_from_seconds(1.0 + dt * (i + 1));
     m.angular_velocity = omega;
-    m.acceleration = Eigen::Vector3d::Zero();
+    m.acceleration = Eigen::Vector3s::Zero();
     lio.add_imu_measurement(m);
   }
 
-  const Sophus::SO3d expected = Sophus::SO3d::exp(omega * T);
-  REQUIRE(approx_equal(lio.imu_state.pose.so3(), expected, 1e-9));
+  const Sophus::SO3s expected = Sophus::SO3s::exp(omega * T);
+  REQUIRE(approx_equal(lio.imu_state.pose.so3(), expected, TOL));
   REQUIRE_THAT(to_seconds(lio.imu_state.time), WithinAbs(1.0 + T, 1e-12));
 }
 
@@ -112,27 +115,27 @@ TEST_CASE("Gyro bias is subtracted before integration", "[imu_integration]") {
   lio.lidar_state.time = ns_from_seconds(1.0);
   lio.imu_bias.gyroscope = {0.1, -0.2, 0.05};
 
-  const Eigen::Vector3d measured(0.5, 0.3, 0.1);
+  const Eigen::Vector3s measured(0.5, 0.3, 0.1);
   constexpr int N = 50;
   for (int i = 0; i < N; ++i) {
     ImuControl m;
     m.time = ns_from_seconds(1.0 + 0.01 * (i + 1));
     m.angular_velocity = measured;
-    m.acceleration = Eigen::Vector3d::Zero();
+    m.acceleration = Eigen::Vector3s::Zero();
     lio.add_imu_measurement(m);
   }
 
-  const Eigen::Vector3d expected = measured - lio.imu_bias.gyroscope;
-  const Eigen::Vector3d avg = lio.interval_stats.angular_velocity_sum / lio.interval_stats.imu_count;
-  REQUIRE(approx_equal(avg, expected, 1e-12));
+  const Eigen::Vector3s expected = measured - lio.imu_bias.gyroscope;
+  const Eigen::Vector3s avg = lio.interval_stats.angular_velocity_sum / lio.interval_stats.imu_count;
+  REQUIRE(approx_equal(avg, expected, EXACT_TOL));
 }
 
 TEST_CASE("Extrinsic overload: identity extrinsic delegates to base-frame", "[imu_integration]") {
   LIO lio(default_config());
   lio.lidar_state.time = ns_from_seconds(1.0);
 
-  const Sophus::SE3d identity_extrinsic;
-  const Eigen::Vector3d omega(0.1, 0.2, 0.3);
+  const Sophus::SE3s identity_extrinsic;
+  const Eigen::Vector3s omega(0.1, 0.2, 0.3);
 
   constexpr int N = 10;
   for (int i = 0; i < N; ++i) {
@@ -146,19 +149,19 @@ TEST_CASE("Extrinsic overload: identity extrinsic delegates to base-frame", "[im
   // Identity-extrinsic short-circuits straight into the base-frame overload,
   // bypassing the extrinsic-overload's first-sample skip.
   REQUIRE(lio.interval_stats.imu_count == N);
-  const Eigen::Vector3d avg_gyro = lio.interval_stats.angular_velocity_sum / lio.interval_stats.imu_count;
-  REQUIRE(approx_equal(avg_gyro, omega, 1e-12));
+  const Eigen::Vector3s avg_gyro = lio.interval_stats.angular_velocity_sum / lio.interval_stats.imu_count;
+  REQUIRE(approx_equal(avg_gyro, omega, EXACT_TOL));
 }
 
 TEST_CASE("Extrinsic overload: pure-rotation extrinsic transforms omega", "[imu_integration]") {
   LIO lio(default_config());
   lio.lidar_state.time = ns_from_seconds(1.0);
 
-  const Sophus::SO3d R = Sophus::SO3d::rotX(M_PI / 2.0);
-  const Sophus::SE3d extrinsic_imu2base(R, Eigen::Vector3d::Zero());
+  const Sophus::SO3s R = Sophus::SO3s::rotX(M_PI / 2.0);
+  const Sophus::SE3s extrinsic_imu2base(R, Eigen::Vector3s::Zero());
 
-  const Eigen::Vector3d omega_imu(0.0, 0.0, 1.0);
-  const Eigen::Vector3d expected_base = R * omega_imu;
+  const Eigen::Vector3s omega_imu(0.0, 0.0, 1.0);
+  const Eigen::Vector3s expected_base = R * omega_imu;
 
   // First extrinsic call is dropped (primes _last_real_imu_time); feed N+1 to get N integrated.
   constexpr int N = 20;
@@ -166,13 +169,13 @@ TEST_CASE("Extrinsic overload: pure-rotation extrinsic transforms omega", "[imu_
     ImuControl m;
     m.time = ns_from_seconds(1.0 + 0.01 * (i + 1));
     m.angular_velocity = omega_imu;
-    m.acceleration = Eigen::Vector3d::Zero();
+    m.acceleration = Eigen::Vector3s::Zero();
     lio.add_imu_measurement(extrinsic_imu2base, m);
   }
 
   REQUIRE(lio.interval_stats.imu_count == N);
-  const Eigen::Vector3d avg_gyro = lio.interval_stats.angular_velocity_sum / lio.interval_stats.imu_count;
-  REQUIRE(approx_equal(avg_gyro, expected_base, 1e-9));
+  const Eigen::Vector3s avg_gyro = lio.interval_stats.angular_velocity_sum / lio.interval_stats.imu_count;
+  REQUIRE(approx_equal(avg_gyro, expected_base, TOL));
 }
 
 // TODO: lever-arm centripetal correction (omega x (omega x r)) for translational extrinsic.
@@ -188,13 +191,13 @@ TEST_CASE("Static IMU at rest: imu_state translation stays zero", "[imu_integrat
     ImuControl m;
     m.time = ns_from_seconds(1.0 + 0.01 * (i + 1));
     m.acceleration = {0.0, 0.0, GRAVITY_MAG};
-    m.angular_velocity = Eigen::Vector3d::Zero();
+    m.angular_velocity = Eigen::Vector3s::Zero();
     lio.add_imu_measurement(m);
   }
 
   REQUIRE(lio.interval_stats.imu_count == N);
-  REQUIRE(lio.imu_state.pose.translation().norm() < 1e-9);
-  REQUIRE(lio.imu_state.velocity.norm() < 1e-9);
+  REQUIRE(lio.imu_state.pose.translation().norm() < TOL);
+  REQUIRE(lio.imu_state.velocity.norm() < TOL);
 }
 
 TEST_CASE("Constant body acceleration: position grows as 0.5 * a * t^2", "[imu_integration]") {
@@ -212,7 +215,7 @@ TEST_CASE("Constant body acceleration: position grows as 0.5 * a * t^2", "[imu_i
     m.time = ns_from_seconds(1.0 + dt * (i + 1));
     // Raw IMU acceleration: body accel + gravity (so compensated_accel comes out (a_x, 0, 0)).
     m.acceleration = {a_x, 0.0, GRAVITY_MAG};
-    m.angular_velocity = Eigen::Vector3d::Zero();
+    m.angular_velocity = Eigen::Vector3s::Zero();
     lio.add_imu_measurement(m);
   }
 
@@ -220,14 +223,14 @@ TEST_CASE("Constant body acceleration: position grows as 0.5 * a * t^2", "[imu_i
   // a_x * dt^2 / 2 and the integrator effectively uses pre-step velocity, so the
   // accumulated error after N steps is ~N * dt^2 * a_x / 2 = T * dt * a_x / 2.
   const double pos_tol = N * dt * dt * a_x;
-  const double vel_tol = 1e-9;
+  const double vel_tol = TOL;
   REQUIRE(lio.interval_stats.imu_count == N);
   REQUIRE_THAT(lio.imu_state.pose.translation().x(), WithinAbs(0.5 * a_x * T * T, pos_tol));
-  REQUIRE(std::abs(lio.imu_state.pose.translation().y()) < 1e-9);
-  REQUIRE(std::abs(lio.imu_state.pose.translation().z()) < 1e-9);
+  REQUIRE(std::abs(lio.imu_state.pose.translation().y()) < TOL);
+  REQUIRE(std::abs(lio.imu_state.pose.translation().z()) < TOL);
   REQUIRE_THAT(lio.imu_state.velocity.x(), WithinAbs(a_x * T, vel_tol));
-  REQUIRE(std::abs(lio.imu_state.velocity.y()) < 1e-9);
-  REQUIRE(std::abs(lio.imu_state.velocity.z()) < 1e-9);
+  REQUIRE(std::abs(lio.imu_state.velocity.y()) < TOL);
+  REQUIRE(std::abs(lio.imu_state.velocity.z()) < TOL);
 }
 
 TEST_CASE("register_scan resets imu_state to optimized pose", "[imu_integration]") {
@@ -260,7 +263,7 @@ TEST_CASE("register_scan resets imu_state to optimized pose", "[imu_integration]
     const double frac = static_cast<double>(i) / static_cast<double>(N - 1);
     m.time = ns_from_seconds(FIRST_SCAN_END + 0.05 + (DT - 0.1) * frac);
     m.acceleration = {0.0, 0.0, GRAVITY_MAG};
-    m.angular_velocity = Eigen::Vector3d::Zero();
+    m.angular_velocity = Eigen::Vector3s::Zero();
     lio.add_imu_measurement(m);
   }
 
@@ -269,9 +272,9 @@ TEST_CASE("register_scan resets imu_state to optimized pose", "[imu_integration]
   lio.register_scan(cloud, ts2);
 
   REQUIRE(lio.poses_with_timestamps.size() == 2);
-  REQUIRE(approx_equal(lio.imu_state.pose, lio.lidar_state.pose, 1e-12));
+  REQUIRE(approx_equal(lio.imu_state.pose, lio.lidar_state.pose, EXACT_TOL));
   REQUIRE_THAT(to_seconds(lio.imu_state.time), WithinAbs(to_seconds(lio.lidar_state.time), 1e-12));
-  REQUIRE(approx_equal(lio.imu_state.velocity, lio.lidar_state.velocity, 1e-12));
-  REQUIRE(approx_equal(lio.imu_state.angular_velocity, lio.lidar_state.angular_velocity, 1e-12));
-  REQUIRE(approx_equal(lio.imu_state.linear_acceleration, lio.lidar_state.linear_acceleration, 1e-12));
+  REQUIRE(approx_equal(lio.imu_state.velocity, lio.lidar_state.velocity, EXACT_TOL));
+  REQUIRE(approx_equal(lio.imu_state.angular_velocity, lio.lidar_state.angular_velocity, EXACT_TOL));
+  REQUIRE(approx_equal(lio.imu_state.linear_acceleration, lio.lidar_state.linear_acceleration, EXACT_TOL));
 }

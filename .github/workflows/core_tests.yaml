@@ -39,6 +39,9 @@ jobs:
           - ubuntu-24.04-arm
           - macos-14
           - macos-15
+        scalar:
+          - float
+          - double
     env:
       GIT_LFS_SKIP_SMUDGE: 1
     steps:
@@ -52,7 +55,8 @@ jobs:
             -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
             -DRKO_LIO_FETCH_CONTENT_DEPS=ON \
             -DRKO_LIO_BUILD_ROS=OFF \
-            -DRKO_LIO_BUILD_TESTS=ON
+            -DRKO_LIO_BUILD_TESTS=ON \
+            -DRKO_LIO_SCALAR=${{ matrix.scalar }}
       - name: Build
         shell: bash
         run: cmake --build build/core

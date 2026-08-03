@@ -25,7 +25,7 @@
 
 using rko_lio::core::LIO;
 using rko_lio::core::preprocess_scan;
-using rko_lio::core::Vector3dVector;
+using rko_lio::core::Vector3sVector;
 
 namespace {
 LIO::Config default_config() {
@@ -44,7 +44,7 @@ TEST_CASE("preprocess_scan: clipping by min/max range", "[preprocess_scan]") {
   cfg.double_downsample = false;
   cfg.voxel_size = 0.05;
 
-  Vector3dVector frame = {
+  Vector3sVector frame = {
       {0.1, 0.0, 0.0},
       {0.4, 0.0, 0.0},
       {1.0, 0.0, 0.0},
@@ -68,7 +68,7 @@ TEST_CASE("preprocess_scan: double_downsample = false -> no map_frame", "[prepro
   LIO::Config cfg = default_config();
   cfg.double_downsample = false;
 
-  Vector3dVector frame;
+  Vector3sVector frame;
   for (int i = 0; i < 20; ++i) {
     for (int j = 0; j < 20; ++j) {
       frame.emplace_back(2.0 + 0.05 * i, 2.0 + 0.05 * j, 1.0);
@@ -85,7 +85,7 @@ TEST_CASE("preprocess_scan: double_downsample = true -> all three populated", "[
   LIO::Config cfg = default_config();
   cfg.double_downsample = true;
 
-  Vector3dVector frame;
+  Vector3sVector frame;
   for (int i = 0; i < 30; ++i) {
     for (int j = 0; j < 30; ++j) {
       frame.emplace_back(2.0 + 0.05 * i, 2.0 + 0.05 * j, 1.0);

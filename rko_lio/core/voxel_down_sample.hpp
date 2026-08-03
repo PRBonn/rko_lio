@@ -22,15 +22,17 @@
 // SOFTWARE.
 #pragma once
 
+#include "util.hpp"
+
 #include <Eigen/Core>
 #include <cmath>
 #include <sophus/se3.hpp>
 
 namespace rko_lio::core {
 /// Voxelize point cloud keeping the original coordinates
-std::vector<Eigen::Vector3d> voxel_down_sample(const std::vector<Eigen::Vector3d>& frame, const double voxel_size);
+std::vector<Eigen::Vector3s> voxel_down_sample(const std::vector<Eigen::Vector3s>& frame, const Scalar voxel_size);
 
-inline Eigen::Vector3i point_to_voxel(const Eigen::Vector3d& point, const double inv_voxel_size) {
+inline Eigen::Vector3i point_to_voxel(const Eigen::Vector3s& point, const Scalar inv_voxel_size) {
   return {static_cast<int>(std::floor(point.x() * inv_voxel_size)),
           static_cast<int>(std::floor(point.y() * inv_voxel_size)),
           static_cast<int>(std::floor(point.z() * inv_voxel_size))};

@@ -30,7 +30,7 @@ from .config import LIOConfig
 from .rko_lio_pybind import (
     _LIO,
     _IntervalStats,
-    _Vector3dVector,
+    _Vector3sVector,
     _VectorInt64,
 )
 
@@ -162,7 +162,7 @@ class LIO:
             raise ValueError(
                 f"timestamps: expected ({scan_arr.shape[0]},), got {times_arr.shape}"
             )
-        scan_vec = _Vector3dVector(scan_arr)
+        scan_vec = _Vector3sVector(scan_arr)
         time_vec = _VectorInt64(times_arr)
         if extrinsic_lidar2base is None:
             ret_scan = self._impl.register_scan(scan_vec, time_vec)

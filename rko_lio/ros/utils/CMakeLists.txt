@@ -48,6 +48,7 @@ target_link_libraries(
          tf2_ros::static_transform_broadcaster_node
          tf2_ros::tf2_ros
          # ros deps end
+         rko_lio::core
          Sophus::Sophus
          Eigen3::Eigen)
 set_target_properties(rko_lio.ros.utils PROPERTIES POSITION_INDEPENDENT_CODE ON

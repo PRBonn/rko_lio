@@ -59,32 +59,32 @@ static const std::array<Voxel, 27> shifts{
 
 namespace rko_lio::core {
 
-VoxelHashMap::VoxelHashMap(const double voxel_size,
-                           const double clipping_distance,
+VoxelHashMap::VoxelHashMap(const Scalar voxel_size,
+                           const Scalar clipping_distance,
                            const unsigned int max_points_per_voxel)
     : voxel_size_(voxel_size),
       inv_voxel_size_(1.0 / voxel_size),
       clipping_distance_(clipping_distance),
       max_points_per_voxel_(max_points_per_voxel) {}
 
-std::optional<VoxelBlock::const_iterator> VoxelHashMap::get_closest_neighbor(const Eigen::Vector3d& query,
-                                                                             const double max_distance) const {
-  double closest_distance_sq = max_distance * max_distance;
+std::optional<VoxelBlock::const_iterator> VoxelHashMap::get_closest_neighbor(const Eigen::Vector3s& query,
+                                                                             const Scalar max_distance) const {
+  Scalar closest_distance_sq = max_distance * max_distance;
   std::optional<VoxelBlock::const_iterator> closest;
   const Voxel voxel = point_to_voxel(query, inv_voxel_size_);
 
   // lower_bounds is squared distance from the query to the near face of a neighbouring voxel, per axis.
   // Columns are indexed by voxel shift + 1, rows are axes
-  const Eigen::Vector3d offset = query - voxel.cast<double>() * voxel_size_;
-  const Eigen::Vector3d to_far = Eigen::Vector3d::Constant(voxel_size_) - offset;
-  Eigen::Matrix3d lower_bounds;
+  const Eigen::Vector3s offset = query - voxel.cast<Scalar>() * voxel_size_;
+  const Eigen::Vector3s to_far = Eigen::Vector3s::Constant(voxel_size_) - offset;
+  Eigen::Matrix3s lower_bounds;
   lower_bounds.col(0) = offset.array().square();
   lower_bounds.col(1).setZero();
   lower_bounds.col(2) = to_far.array().square();
 
   for (const Voxel& shift : shifts) {
     // lower bound on the distance to query within this voxel + shift
-    const double lower_bound_sq =
+    const Scalar lower_bound_sq =
         lower_bounds(0, shift.x() + 1) + lower_bounds(1, shift.y() + 1) + lower_bounds(2, shift.z() + 1);
     if (lower_bound_sq >= closest_distance_sq) {
       continue;
@@ -96,7 +96,7 @@ std::optional<VoxelBlock::const_iterator> VoxelHashMap::get_closest_neighbor(con
     // returning an iterator rather than a copy reduces branching (with the usual compiler caveats)
     const VoxelBlock& voxel_points = search.value();
     for (auto neighbor = voxel_points.cbegin(); neighbor != voxel_points.cend(); ++neighbor) {
-      const double distance_sq = (*neighbor - query).squaredNorm();
+      const Scalar distance_sq = (*neighbor - query).squaredNorm();
       if (distance_sq < closest_distance_sq) {
         closest_distance_sq = distance_sq;
         closest = neighbor;
@@ -106,10 +106,10 @@ std::optional<VoxelBlock::const_iterator> VoxelHashMap::get_closest_neighbor(con
   return closest;
 }
 
-void VoxelHashMap::add_points(const std::vector<Eigen::Vector3d>& points, const Sophus::SE3d& pose) {
-  const double map_resolution_sq = voxel_size_ * voxel_size_ / max_points_per_voxel_;
-  std::for_each(points.cbegin(), points.cend(), [&](const Eigen::Vector3d& point) {
-    const Eigen::Vector3d p = pose * point;
+void VoxelHashMap::add_points(const std::vector<Eigen::Vector3s>& points, const Sophus::SE3s& pose) {
+  const Scalar map_resolution_sq = voxel_size_ * voxel_size_ / max_points_per_voxel_;
+  std::for_each(points.cbegin(), points.cend(), [&](const Eigen::Vector3s& point) {
+    const Eigen::Vector3s p = pose * point;
     const Voxel voxel = point_to_voxel(p, inv_voxel_size_);
     auto it = map_.try_emplace(voxel).first;
     VoxelBlock& voxel_points = it.value();
@@ -123,8 +123,8 @@ void VoxelHashMap::add_points(const std::vector<Eigen::Vector3d>& points, const 
   });
 }
 
-void VoxelHashMap::remove_points_far_from_location(const Eigen::Vector3d& origin) {
-  const double clipping_distance_sq = clipping_distance_ * clipping_distance_;
+void VoxelHashMap::remove_points_far_from_location(const Eigen::Vector3s& origin) {
+  const Scalar clipping_distance_sq = clipping_distance_ * clipping_distance_;
   for (auto it = map_.begin(); it != map_.end();) {
     const VoxelBlock& voxel_points = it->second;
     if ((voxel_points.front() - origin).squaredNorm() > clipping_distance_sq) {
@@ -135,13 +135,13 @@ void VoxelHashMap::remove_points_far_from_location(const Eigen::Vector3d& origin
   }
 }
 
-void VoxelHashMap::update(const std::vector<Eigen::Vector3d>& points, const Sophus::SE3d& pose) {
+void VoxelHashMap::update(const std::vector<Eigen::Vector3s>& points, const Sophus::SE3s& pose) {
   add_points(points, pose);
   remove_points_far_from_location(pose.translation());
 }
 
-std::vector<Eigen::Vector3d> VoxelHashMap::pointcloud() const {
-  std::vector<Eigen::Vector3d> point_cloud;
+std::vector<Eigen::Vector3s> VoxelHashMap::pointcloud() const {
+  std::vector<Eigen::Vector3s> point_cloud;
   point_cloud.reserve(map_.size() * max_points_per_voxel_);
   for (const auto& [_, block] : map_) {
     point_cloud.insert(point_cloud.end(), block.cbegin(), block.cend());

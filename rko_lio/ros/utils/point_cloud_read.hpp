@@ -23,6 +23,8 @@
  */
 
 #pragma once
+#include <rko_lio/core/util.hpp>
+
 #include <Eigen/Core>
 #include <sophus/se3.hpp>
 // ros
@@ -30,10 +32,10 @@
 #include <sensor_msgs/point_cloud2_iterator.hpp>
 
 namespace rko_lio::ros::utils {
-std::vector<Eigen::Vector3d> point_cloud2_to_eigen(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& msg);
+core::Vector3sVector point_cloud2_to_eigen(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& msg);
 
 struct RawScan {
-  std::vector<Eigen::Vector3d> points;
+  core::Vector3sVector points;
   std::vector<double> timestamps;
 };
 

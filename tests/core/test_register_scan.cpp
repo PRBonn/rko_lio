@@ -30,13 +30,14 @@
 #include <random>
 #include <stdexcept>
 
+using rko_lio::tests::EXACT_TOL;
 using rko_lio::core::GRAVITY_MAG;
 using rko_lio::core::ImuControl;
 using rko_lio::core::LIO;
 using rko_lio::core::Nsec;
 using rko_lio::core::TimestampVector;
 using rko_lio::core::to_seconds;
-using rko_lio::core::Vector3dVector;
+using rko_lio::core::Vector3sVector;
 using rko_lio::tests::approx_equal;
 using rko_lio::tests::make_hollow_cube;
 using Catch::Matchers::WithinAbs;
@@ -70,7 +71,7 @@ TimestampVector instant_timestamps(size_t n, double t) {
 }
 
 void feed_imu(LIO& lio, double t_start, double t_end, int n,
-              const Eigen::Vector3d& acceleration, const Eigen::Vector3d& angular_velocity) {
+              const Eigen::Vector3s& acceleration, const Eigen::Vector3s& angular_velocity) {
   for (int i = 0; i < n; ++i) {
     ImuControl m;
     const double frac = n == 1 ? 0.0 : static_cast<double>(i) / static_cast<double>(n - 1);
@@ -82,13 +83,13 @@ void feed_imu(LIO& lio, double t_start, double t_end, int n,
 }
 
 void feed_static_imu(LIO& lio, double t_start, double t_end, int n) {
-  feed_imu(lio, t_start, t_end, n, {0.0, 0.0, GRAVITY_MAG}, Eigen::Vector3d::Zero());
+  feed_imu(lio, t_start, t_end, n, {0.0, 0.0, GRAVITY_MAG}, Eigen::Vector3s::Zero());
 }
 
 // Same as feed_imu but with per-sample Gaussian noise added to accel and gyro.
 // Seed is fixed at the call site so the test is deterministic.
 void feed_imu_noisy(LIO& lio, double t_start, double t_end, int n,
-                    const Eigen::Vector3d& acceleration, const Eigen::Vector3d& angular_velocity,
+                    const Eigen::Vector3s& acceleration, const Eigen::Vector3s& angular_velocity,
                     double accel_stddev, double gyro_stddev, uint32_t seed) {
   std::mt19937 rng(seed);
   std::normal_distribution<double> a_noise(0.0, accel_stddev);
@@ -97,8 +98,8 @@ void feed_imu_noisy(LIO& lio, double t_start, double t_end, int n,
     ImuControl m;
     const double frac = n == 1 ? 0.0 : static_cast<double>(i) / static_cast<double>(n - 1);
     m.time = ns_from_seconds(t_start + (t_end - t_start) * frac);
-    m.acceleration = acceleration + Eigen::Vector3d{a_noise(rng), a_noise(rng), a_noise(rng)};
-    m.angular_velocity = angular_velocity + Eigen::Vector3d{g_noise(rng), g_noise(rng), g_noise(rng)};
+    m.acceleration = acceleration + Eigen::Vector3s{a_noise(rng), a_noise(rng), a_noise(rng)};
+    m.angular_velocity = angular_velocity + Eigen::Vector3s{g_noise(rng), g_noise(rng), g_noise(rng)};
     lio.add_imu_measurement(m);
   }
 }
@@ -123,7 +124,7 @@ TEST_CASE("First scan: empty map -> populated, single pose at lidar_state.time",
   REQUIRE_FALSE(lio.map.empty());
   REQUIRE(lio.poses_with_timestamps.size() == 1);
   REQUIRE_THAT(to_seconds(lio.lidar_state.time), WithinAbs(FIRST_SCAN_END, 1e-9));
-  REQUIRE(approx_equal(lio.lidar_state.pose, Sophus::SE3d{}, 1e-12));
+  REQUIRE(approx_equal(lio.lidar_state.pose, Sophus::SE3s{}, EXACT_TOL));
   REQUIRE_THAT(to_seconds(lio.poses_with_timestamps[0].first), WithinAbs(FIRST_SCAN_END, 1e-9));
 }
 
@@ -163,12 +164,12 @@ TEST_CASE("Pure translation: recover +1m in x", "[register_scan]") {
 
   // Body accel a such that a * DT^2 / 2 = 1m in x  =>  a = 2 m/s^2. Add gravity for
   // the raw IMU value so compensated body accel comes out to (a, 0, 0).
-  const Eigen::Vector3d t(1.0, 0.0, 0.0);
-  const Eigen::Vector3d a_body = 2.0 * t / (DT * DT);
-  const Eigen::Vector3d imu_accel = a_body + Eigen::Vector3d{0.0, 0.0, GRAVITY_MAG};
-  feed_imu(lio, FIRST_SCAN_END + 0.05, SECOND_SCAN_END - 0.05, 10, imu_accel, Eigen::Vector3d::Zero());
+  const Eigen::Vector3s t(1.0, 0.0, 0.0);
+  const Eigen::Vector3s a_body = 2.0 * t / (DT * DT);
+  const Eigen::Vector3s imu_accel = a_body + Eigen::Vector3s{0.0, 0.0, GRAVITY_MAG};
+  feed_imu(lio, FIRST_SCAN_END + 0.05, SECOND_SCAN_END - 0.05, 10, imu_accel, Eigen::Vector3s::Zero());
 
-  Vector3dVector cloud2;
+  Vector3sVector cloud2;
   cloud2.reserve(cloud.size());
   for (const auto& p : cloud) {
     cloud2.emplace_back(p - t);
@@ -188,7 +189,7 @@ TEST_CASE("Pure rotation: recover 5 deg yaw", "[register_scan]") {
 
   // omega * DT = yaw (5 deg) about z  =>  omega = yaw/DT rad/s.
   const double yaw = 5.0 * M_PI / 180.0;
-  const Eigen::Vector3d omega(0.0, 0.0, yaw / DT);
+  const Eigen::Vector3s omega(0.0, 0.0, yaw / DT);
   feed_imu(lio,
            FIRST_SCAN_END + 0.05,
            SECOND_SCAN_END - 0.05,
@@ -196,9 +197,9 @@ TEST_CASE("Pure rotation: recover 5 deg yaw", "[register_scan]") {
            {0.0, 0.0, GRAVITY_MAG},
            omega);
 
-  const Sophus::SO3d R = Sophus::SO3d::rotZ(yaw);
-  const Sophus::SO3d R_inv = R.inverse();
-  Vector3dVector cloud2;
+  const Sophus::SO3s R = Sophus::SO3s::rotZ(yaw);
+  const Sophus::SO3s R_inv = R.inverse();
+  Vector3sVector cloud2;
   cloud2.reserve(cloud.size());
   for (const auto& p : cloud) {
     cloud2.emplace_back(R_inv * p);
@@ -218,15 +219,15 @@ TEST_CASE("Full SE(3): translation + rotation combined", "[register_scan]") {
 
   // Combined yaw + acceleration
   const double yaw = 3.0 * M_PI / 180.0;
-  const Eigen::Vector3d t(0.5, 0.3, 0.0);
-  const Eigen::Vector3d a_body = 2.0 * t / (DT * DT);
-  const Eigen::Vector3d imu_accel = a_body + Eigen::Vector3d{0.0, 0.0, GRAVITY_MAG};
-  const Eigen::Vector3d omega(0.0, 0.0, yaw / DT);
+  const Eigen::Vector3s t(0.5, 0.3, 0.0);
+  const Eigen::Vector3s a_body = 2.0 * t / (DT * DT);
+  const Eigen::Vector3s imu_accel = a_body + Eigen::Vector3s{0.0, 0.0, GRAVITY_MAG};
+  const Eigen::Vector3s omega(0.0, 0.0, yaw / DT);
   feed_imu(lio, FIRST_SCAN_END + 0.05, SECOND_SCAN_END - 0.05, 10, imu_accel, omega);
 
-  const Sophus::SE3d T_expected(Sophus::SO3d::rotZ(yaw), t);
-  const Sophus::SE3d T_inv = T_expected.inverse();
-  Vector3dVector cloud2;
+  const Sophus::SE3s T_expected(Sophus::SO3s::rotZ(yaw), t);
+  const Sophus::SE3s T_inv = T_expected.inverse();
+  Vector3sVector cloud2;
   cloud2.reserve(cloud.size());
   for (const auto& p : cloud) {
     cloud2.emplace_back(T_inv * p);
@@ -248,13 +249,13 @@ TEST_CASE("Noisy: pure translation +1m in x", "[register_scan][!mayfail]") {
 
   lio.register_scan(cloud, linspace_timestamps(cloud.size(), 0.0, FIRST_SCAN_END));
 
-  const Eigen::Vector3d t(1.0, 0.0, 0.0);
-  const Eigen::Vector3d a_body = 2.0 * t / (DT * DT);
-  const Eigen::Vector3d imu_accel = a_body + Eigen::Vector3d{0.0, 0.0, GRAVITY_MAG};
+  const Eigen::Vector3s t(1.0, 0.0, 0.0);
+  const Eigen::Vector3s a_body = 2.0 * t / (DT * DT);
+  const Eigen::Vector3s imu_accel = a_body + Eigen::Vector3s{0.0, 0.0, GRAVITY_MAG};
   feed_imu_noisy(lio, FIRST_SCAN_END + 0.05, SECOND_SCAN_END - 0.05, 10, imu_accel,
-                 Eigen::Vector3d::Zero(), NOISY_ACCEL_STDDEV, NOISY_GYRO_STDDEV, /*seed=*/1u);
+                 Eigen::Vector3s::Zero(), NOISY_ACCEL_STDDEV, NOISY_GYRO_STDDEV, /*seed=*/1u);
 
-  Vector3dVector cloud2;
+  Vector3sVector cloud2;
   cloud2.reserve(cloud.size());
   for (const auto& p : cloud) {
     cloud2.emplace_back(p - t);
@@ -274,14 +275,14 @@ TEST_CASE("Noisy: pure rotation 5 deg yaw", "[register_scan][!mayfail]") {
   lio.register_scan(cloud, linspace_timestamps(cloud.size(), 0.0, FIRST_SCAN_END));
 
   const double yaw = 5.0 * M_PI / 180.0;
-  const Eigen::Vector3d omega(0.0, 0.0, yaw / DT);
+  const Eigen::Vector3s omega(0.0, 0.0, yaw / DT);
   feed_imu_noisy(lio, FIRST_SCAN_END + 0.05, SECOND_SCAN_END - 0.05, 10,
                  {0.0, 0.0, GRAVITY_MAG}, omega, NOISY_ACCEL_STDDEV, NOISY_GYRO_STDDEV,
                  /*seed=*/2u);
 
-  const Sophus::SO3d R = Sophus::SO3d::rotZ(yaw);
-  const Sophus::SO3d R_inv = R.inverse();
-  Vector3dVector cloud2;
+  const Sophus::SO3s R = Sophus::SO3s::rotZ(yaw);
+  const Sophus::SO3s R_inv = R.inverse();
+  Vector3sVector cloud2;
   cloud2.reserve(cloud.size());
   for (const auto& p : cloud) {
     cloud2.emplace_back(R_inv * p);
@@ -301,16 +302,16 @@ TEST_CASE("Noisy: full SE(3) translation + rotation", "[register_scan][!mayfail]
   lio.register_scan(cloud, linspace_timestamps(cloud.size(), 0.0, FIRST_SCAN_END));
 
   const double yaw = 3.0 * M_PI / 180.0;
-  const Eigen::Vector3d t(0.5, 0.3, 0.0);
-  const Eigen::Vector3d a_body = 2.0 * t / (DT * DT);
-  const Eigen::Vector3d imu_accel = a_body + Eigen::Vector3d{0.0, 0.0, GRAVITY_MAG};
-  const Eigen::Vector3d omega(0.0, 0.0, yaw / DT);
+  const Eigen::Vector3s t(0.5, 0.3, 0.0);
+  const Eigen::Vector3s a_body = 2.0 * t / (DT * DT);
+  const Eigen::Vector3s imu_accel = a_body + Eigen::Vector3s{0.0, 0.0, GRAVITY_MAG};
+  const Eigen::Vector3s omega(0.0, 0.0, yaw / DT);
   feed_imu_noisy(lio, FIRST_SCAN_END + 0.05, SECOND_SCAN_END - 0.05, 10, imu_accel, omega,
                  NOISY_ACCEL_STDDEV, NOISY_GYRO_STDDEV, /*seed=*/3u);
 
-  const Sophus::SE3d T_expected(Sophus::SO3d::rotZ(yaw), t);
-  const Sophus::SE3d T_inv = T_expected.inverse();
-  Vector3dVector cloud2;
+  const Sophus::SE3s T_expected(Sophus::SO3s::rotZ(yaw), t);
+  const Sophus::SE3s T_inv = T_expected.inverse();
+  Vector3sVector cloud2;
   cloud2.reserve(cloud.size());
   for (const auto& p : cloud) {
     cloud2.emplace_back(T_inv * p);

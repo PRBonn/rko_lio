@@ -29,13 +29,12 @@
 #include <stdexcept>
 
 namespace rko_lio::ros::utils {
-using Vector3dVector = std::vector<Eigen::Vector3d>;
 using PointCloud2 = sensor_msgs::msg::PointCloud2;
 using PointField = sensor_msgs::msg::PointField;
 
-Vector3dVector point_cloud2_to_eigen(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& msg) {
+core::Vector3sVector point_cloud2_to_eigen(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& msg) {
   const size_t point_count = static_cast<size_t>(msg->height) * msg->width;
-  Vector3dVector points;
+  core::Vector3sVector points;
   points.reserve(point_count);
   sensor_msgs::PointCloud2ConstIterator<float> msg_x(*msg, "x");
   sensor_msgs::PointCloud2ConstIterator<float> msg_y(*msg, "y");

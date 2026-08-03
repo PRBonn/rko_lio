@@ -82,7 +82,8 @@ else()
     install(
       TARGETS rko_lio.core rko_lio.ros rko_lio.ros.utils
       EXPORT rko_lioTargets
-      FILE_SET HEADERS)
+      FILE_SET HEADERS
+      FILE_SET generated_headers)
 
     ament_export_targets(rko_lioTargets HAS_LIBRARY_TARGET)
     ament_export_dependencies(
