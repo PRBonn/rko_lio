@@ -115,7 +115,7 @@
 <codeline lineno="13"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>clip<sp/>and<sp/>downsample<sp/>the<sp/>input<sp/>cloud</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1PreprocessingResult" kindref="compound">PreprocessingResult</ref><sp/>preprocess_scan(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Vector3dVector&amp;<sp/>frame,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config" kindref="compound">LIO::Config</ref>&amp;<sp/>config);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1PreprocessingResult" kindref="compound">PreprocessingResult</ref><sp/>preprocess_scan(Vector3dVector<sp/>frame,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config" kindref="compound">LIO::Config</ref>&amp;<sp/>config);</highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight></codeline>
 <codeline lineno="18"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>

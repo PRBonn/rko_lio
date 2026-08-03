@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structrko__lio_1_1ros_1_1utils_1_1RawScan" kind="struct" language="C++" prot="public">
+    <compoundname>rko_lio::ros::utils::RawScan</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrko__lio_1_1ros_1_1utils_1_1RawScan_1a4755b1d233953ba994d7dacb2e50aa2b" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; Eigen::Vector3d &gt;</type>
+        <definition>std::vector&lt;Eigen::Vector3d&gt; rko_lio::ros::utils::RawScan::points</definition>
+        <argsstring></argsstring>
+        <name>points</name>
+        <qualifiedname>rko_lio::ros::utils::RawScan::points</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" line="36" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1ros_1_1utils_1_1RawScan_1a610f1788114761e615eba5c4d571bd68" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; rko_lio::ros::utils::RawScan::timestamps</definition>
+        <argsstring></argsstring>
+        <name>timestamps</name>
+        <qualifiedname>rko_lio::ros::utils::RawScan::timestamps</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" line="37" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" line="35" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" bodystart="35" bodyend="38"/>
+    <listofallmembers>
+      <member refid="structrko__lio_1_1ros_1_1utils_1_1RawScan_1a4755b1d233953ba994d7dacb2e50aa2b" prot="public" virt="non-virtual"><scope>rko_lio::ros::utils::RawScan</scope><name>points</name></member>
+      <member refid="structrko__lio_1_1ros_1_1utils_1_1RawScan_1a610f1788114761e615eba5c4d571bd68" prot="public" virt="non-virtual"><scope>rko_lio::ros::utils::RawScan</scope><name>timestamps</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -91,8 +91,6 @@
         </childnode>
         <childnode refid="22" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
         <childnode refid="23" relation="include">
         </childnode>
         <childnode refid="24" relation="include">
@@ -216,7 +214,6 @@
         <label>vector</label>
       </node>
     </incdepgraph>
-    <innerclass refid="structrko__lio_1_1ros_1_1LidarFrame" prot="public">rko_lio::ros::LidarFrame</innerclass>
     <innerclass refid="classrko__lio_1_1ros_1_1ThreadedNode" prot="public">rko_lio::ros::ThreadedNode</innerclass>
     <innernamespace refid="namespacerko__lio">rko_lio</innernamespace>
     <innernamespace refid="namespacerko__lio_1_1ros">rko_lio::ros</innernamespace>
@@ -263,37 +260,32 @@
 <codeline lineno="36"><highlight class="normal"></highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros<sp/>{</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"></highlight></codeline>
-<codeline lineno="39" refid="structrko__lio_1_1ros_1_1LidarFrame" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1ros_1_1LidarFrame" kindref="compound">LidarFrame</ref><sp/>{</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1Timestamps" kindref="compound">core::Timestamps</ref><sp/>timestamps;</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/>core::Vector3dVector<sp/>points;</highlight></codeline>
-<codeline lineno="42"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight></codeline>
-<codeline lineno="44" refid="classrko__lio_1_1ros_1_1ThreadedNode" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">BaseNode</ref><sp/>{</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/>std::jthread<sp/>registration_thread;</highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/>std::mutex<sp/>buffer_mutex;</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/>std::condition_variable<sp/>sync_condition_variable;</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/>std::atomic&lt;bool&gt;<sp/>atomic_can_process<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/>std::atomic&lt;bool&gt;<sp/>registration_busy{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/>std::queue&lt;core::ImuControl&gt;<sp/>imu_buffer;</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/>std::queue&lt;LidarFrame&gt;<sp/>lidar_buffer;</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_lidar_buffer_size<sp/>=<sp/>50;</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"></highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref>()<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>node_name,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>rclcpp::NodeOptions&amp;<sp/>options);</highlight></codeline>
-<codeline lineno="57"><highlight class="normal"></highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>imu_callback(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::Imu::ConstSharedPtr&amp;<sp/>imu_msg);</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>lidar_callback(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::PointCloud2::ConstSharedPtr&amp;<sp/>lidar_msg);</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>registration_loop();</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"></highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">~ThreadedNode</ref>();</highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref>&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref>(<ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref>&amp;&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref>&amp;<sp/>operator=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref>&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref>&amp;<sp/>operator=(<ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref>&amp;&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="67"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"></highlight></codeline>
-<codeline lineno="69"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="classrko__lio_1_1ros_1_1ThreadedNode" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">BaseNode</ref><sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/>std::jthread<sp/>registration_thread;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/>std::mutex<sp/>buffer_mutex;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/>std::condition_variable<sp/>sync_condition_variable;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/>std::atomic&lt;bool&gt;<sp/>atomic_can_process<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/>std::atomic&lt;bool&gt;<sp/>registration_busy{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/>std::queue&lt;core::ImuControl&gt;<sp/>imu_buffer;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/>std::queue&lt;LidarFrame&gt;<sp/>lidar_buffer;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_lidar_buffer_size<sp/>=<sp/>50;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref>()<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>node_name,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>rclcpp::NodeOptions&amp;<sp/>options);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>imu_callback(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::Imu::ConstSharedPtr&amp;<sp/>imu_msg);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>lidar_callback(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::PointCloud2::ConstSharedPtr&amp;<sp/>lidar_msg);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>registration_loop();</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">~ThreadedNode</ref>();</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref>&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref>(<ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref>&amp;&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref>&amp;<sp/>operator=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref>&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref>&amp;<sp/>operator=(<ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref>&amp;&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp"/>
   </compounddef>

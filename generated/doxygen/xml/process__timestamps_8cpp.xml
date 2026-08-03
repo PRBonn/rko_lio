@@ -160,14 +160,14 @@
 <codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>multiplier_to_ns<sp/>=<sp/>multiplier_to_seconds<sp/>*<sp/>1e9;</highlight></codeline>
 <codeline lineno="63"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"></highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/>TimestampVector<sp/>times_ns(raw_timestamps.size());</highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/>std::transform(raw_timestamps.cbegin(),<sp/>raw_timestamps.cend(),<sp/>times_ns.begin(),</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[multiplier_to_ns,<sp/>source_is_ns](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ts)<sp/>{</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>raw_to_ns(ts,<sp/>multiplier_to_ns,<sp/>source_is_ns);</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{.min<sp/>=<sp/>raw_to_ns(min_stamp,<sp/>multiplier_to_ns,<sp/>source_is_ns),</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.max<sp/>=<sp/>raw_to_ns(max_stamp,<sp/>multiplier_to_ns,<sp/>source_is_ns),</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.times<sp/>=<sp/>times_ns};</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/>Timestamps<sp/>timestamps{.min<sp/>=<sp/>raw_to_ns(min_stamp,<sp/>multiplier_to_ns,<sp/>source_is_ns),</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.max<sp/>=<sp/>raw_to_ns(max_stamp,<sp/>multiplier_to_ns,<sp/>source_is_ns),</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.per_point<sp/>=<sp/>TimestampVector(raw_timestamps.size())};</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/>std::transform(raw_timestamps.cbegin(),<sp/>raw_timestamps.cend(),<sp/>timestamps.per_point.begin(),</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[multiplier_to_ns,<sp/>source_is_ns](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ts)<sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>raw_to_ns(ts,<sp/>multiplier_to_ns,<sp/>source_is_ns);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>timestamps;</highlight></codeline>
 <codeline lineno="73"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="74"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="75"><highlight class="normal"></highlight></codeline>
@@ -191,7 +191,7 @@
 <codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>config.force_relative<sp/>||<sp/>(std::chrono::abs(timestamps.min)<sp/>&lt;<sp/>1ms)<sp/>||<sp/>(std::chrono::abs(timestamps.max)<sp/>&lt;<sp/>10ms);</highlight></codeline>
 <codeline lineno="94"><highlight class="normal"></highlight></codeline>
 <codeline lineno="95"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(relative_stamps)<sp/>{</highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>std::transform(timestamps.times.cbegin(),<sp/>timestamps.times.cend(),<sp/>timestamps.times.begin(),</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>std::transform(timestamps.per_point.cbegin(),<sp/>timestamps.per_point.cend(),<sp/>timestamps.per_point.begin(),</highlight></codeline>
 <codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[header_stamp](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Nsec<sp/>ts)<sp/>{<sp/>return<sp/>ts<sp/>+<sp/>header_stamp;<sp/>});</highlight></codeline>
 <codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>timestamps.min<sp/>+=<sp/>header_stamp;</highlight></codeline>
 <codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>timestamps.max<sp/>+=<sp/>header_stamp;</highlight></codeline>

@@ -129,7 +129,6 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string_view&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;tuple&gt;</span>
 <span class="c1">// ros</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;geometry_msgs/msg/accel_stamped.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;geometry_msgs/msg/accel_with_covariance_stamped.hpp&gt;</span>
@@ -143,6 +142,11 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;tf2_ros/transform_listener.hpp&gt;</span>
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">rko_lio</span><span class="o">::</span><span class="nn">ros</span><span class="w"> </span><span class="p">{</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">LidarFrame</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">core</span><span class="o">::</span><span class="n">Timestamps</span><span class="w"> </span><span class="n">timestamps</span><span class="p">;</span>
+<span class="w">  </span><span class="n">core</span><span class="o">::</span><span class="n">Vector3dVector</span><span class="w"> </span><span class="n">points</span><span class="p">;</span>
+<span class="p">};</span>
 <span class="c1">// Shared helper used by both the threaded and sequential nodes.</span>
 <span class="n">core</span><span class="o">::</span><span class="n">ImuControl</span><span class="w"> </span><span class="nf">imu_msg_to_imu_data</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Imu</span><span class="o">&amp;</span><span class="w"> </span><span class="n">imu_msg</span><span class="p">);</span>
 
@@ -205,10 +209,9 @@
 <span class="w">                                   </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">msg_frame</span><span class="p">,</span>
 <span class="w">                                   </span><span class="n">std</span><span class="o">::</span><span class="n">string_view</span><span class="w"> </span><span class="n">kind</span><span class="p">);</span>
 
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="n">core</span><span class="o">::</span><span class="n">Timestamps</span><span class="p">,</span><span class="w"> </span><span class="n">core</span><span class="o">::</span><span class="n">Vector3dVector</span><span class="o">&gt;</span>
-<span class="w">  </span><span class="n">process_lidar_msg</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PointCloud2</span><span class="o">::</span><span class="n">ConstSharedPtr</span><span class="o">&amp;</span><span class="w"> </span><span class="n">lidar_msg</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">  </span><span class="n">LidarFrame</span><span class="w"> </span><span class="nf">process_lidar_msg</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PointCloud2</span><span class="o">::</span><span class="n">ConstSharedPtr</span><span class="o">&amp;</span><span class="w"> </span><span class="n">lidar_msg</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 
-<span class="w">  </span><span class="n">core</span><span class="o">::</span><span class="n">Vector3dVector</span><span class="w"> </span><span class="nf">register_scan_locked</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">core</span><span class="o">::</span><span class="n">Vector3dVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">scan</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">core</span><span class="o">::</span><span class="n">TimestampVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">time_vector</span><span class="p">);</span>
+<span class="w">  </span><span class="n">core</span><span class="o">::</span><span class="n">Vector3dVector</span><span class="w"> </span><span class="nf">register_scan_locked</span><span class="p">(</span><span class="n">core</span><span class="o">::</span><span class="n">Vector3dVector</span><span class="w"> </span><span class="n">scan</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">core</span><span class="o">::</span><span class="n">TimestampVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">time_vector</span><span class="p">);</span>
 
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">publish_lidar_outputs</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">core</span><span class="o">::</span><span class="n">Vector3dVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">deskewed_frame</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 

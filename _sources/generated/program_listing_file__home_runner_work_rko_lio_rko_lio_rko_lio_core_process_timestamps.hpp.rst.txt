@@ -44,7 +44,7 @@ Program Listing for File process_timestamps.hpp
    struct Timestamps {
      Nsec min;
      Nsec max;
-     TimestampVector times;
+     TimestampVector per_point;
    };
    
    struct TimestampProcessingConfig {

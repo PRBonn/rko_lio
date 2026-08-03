@@ -108,7 +108,7 @@
 <codeline lineno="37" refid="structrko__lio_1_1core_1_1Timestamps" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1Timestamps" kindref="compound">Timestamps</ref><sp/>{</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/>Nsec<sp/>min;</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"><sp/><sp/>Nsec<sp/>max;</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/>TimestampVector<sp/>times;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/>TimestampVector<sp/>per_point;</highlight></codeline>
 <codeline lineno="41"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
 <codeline lineno="49" refid="structrko__lio_1_1core_1_1TimestampProcessingConfig" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1TimestampProcessingConfig" kindref="compound">TimestampProcessingConfig</ref><sp/>{</highlight></codeline>

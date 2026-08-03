@@ -74,14 +74,14 @@ Program Listing for File process_timestamps.cpp
        multiplier_to_ns = multiplier_to_seconds * 1e9;
      }
    
-     TimestampVector times_ns(raw_timestamps.size());
-     std::transform(raw_timestamps.cbegin(), raw_timestamps.cend(), times_ns.begin(),
+     Timestamps timestamps{.min = raw_to_ns(min_stamp, multiplier_to_ns, source_is_ns),
+                           .max = raw_to_ns(max_stamp, multiplier_to_ns, source_is_ns),
+                           .per_point = TimestampVector(raw_timestamps.size())};
+     std::transform(raw_timestamps.cbegin(), raw_timestamps.cend(), timestamps.per_point.begin(),
                     [multiplier_to_ns, source_is_ns](const double ts) {
                       return raw_to_ns(ts, multiplier_to_ns, source_is_ns);
                     });
-     return {.min = raw_to_ns(min_stamp, multiplier_to_ns, source_is_ns),
-             .max = raw_to_ns(max_stamp, multiplier_to_ns, source_is_ns),
-             .times = times_ns};
+     return timestamps;
    }
    } // namespace
    
@@ -105,7 +105,7 @@ Program Listing for File process_timestamps.cpp
          config.force_relative || (std::chrono::abs(timestamps.min) < 1ms) || (std::chrono::abs(timestamps.max) < 10ms);
    
      if (relative_stamps) {
-       std::transform(timestamps.times.cbegin(), timestamps.times.cend(), timestamps.times.begin(),
+       std::transform(timestamps.per_point.cbegin(), timestamps.per_point.cend(), timestamps.per_point.begin(),
                       [header_stamp](const Nsec ts) { return ts + header_stamp; });
        timestamps.min += header_stamp;
        timestamps.max += header_stamp;

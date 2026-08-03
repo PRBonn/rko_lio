@@ -221,15 +221,15 @@
       <type>Vector3dVector</type>
       <name>register_scan</name>
       <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
-      <anchor>a0e2818a3d7d3b07f77a91235b116b607</anchor>
-      <arglist>(const Vector3dVector &amp;scan, const TimestampVector &amp;timestamps)</arglist>
+      <anchor>aebe2ef1f4bc36aef9bb72c634f38e755</anchor>
+      <arglist>(Vector3dVector scan, const TimestampVector &amp;timestamps)</arglist>
     </member>
     <member kind="function">
       <type>Vector3dVector</type>
       <name>register_scan</name>
       <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
-      <anchor>a3963bf670eced93306c73ead313d867f</anchor>
-      <arglist>(const Sophus::SE3d &amp;extrinsic_lidar2base, const Vector3dVector &amp;scan, const TimestampVector &amp;timestamps)</arglist>
+      <anchor>a951202c4901280159b4b3ef3584c5640</anchor>
+      <arglist>(const Sophus::SE3d &amp;extrinsic_lidar2base, Vector3dVector scan, const TimestampVector &amp;timestamps)</arglist>
     </member>
     <member kind="variable">
       <type>Config</type>
@@ -313,6 +313,10 @@
   <compound kind="struct">
     <name>rko_lio::core::PreprocessingResult</name>
     <filename>structrko__lio_1_1core_1_1PreprocessingResult.html</filename>
+  </compound>
+  <compound kind="struct">
+    <name>rko_lio::ros::utils::RawScan</name>
+    <filename>structrko__lio_1_1ros_1_1utils_1_1RawScan.html</filename>
   </compound>
   <compound kind="class">
     <name>rko_lio::core::ScopedProfiler</name>

@@ -39,8 +39,8 @@
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a30875a75d450b8900c08ee0dbe11e62c" kind="function"><name>parse_cli_extrinsics</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a9adaaf7d3c7d0d969066754e162d38b3" kind="function"><name>check_and_set_extrinsics</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1ad7b2a2d1b22705fdadd654756ab4d32b" kind="function"><name>ensure_frame_and_extrinsics</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a23f047faed8a97a78fbbed340032317e" kind="function"><name>process_lidar_msg</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1ab0d80b23d66dc9d5b4f7dc7f89e05d5f" kind="function"><name>register_scan_locked</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1afd87cdc8cfbad2c0fd2fe49cdce9019e" kind="function"><name>process_lidar_msg</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a003156148fb4f45d0961757e7ac1fc6f" kind="function"><name>register_scan_locked</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a9251b8b8d739c76d2b1d6130a7a90341" kind="function"><name>publish_lidar_outputs</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a886af9f92ef9734085f99ae5e770b1cb" kind="function"><name>publish_odometry</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a404fef7df2bc45e8e080323888e7089d" kind="function"><name>publish_tf</name></member>
@@ -122,8 +122,8 @@
     <member refid="classrko__lio_1_1core_1_1LIO_1a27bdff7e57866bd6429e81d8f7d74ed8" kind="function"><name>LIO</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a34139c65d35e7929125788bdafd0470c" kind="function"><name>add_imu_measurement</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a91736c1595c37bc5d70840538735b12a" kind="function"><name>add_imu_measurement</name></member>
-    <member refid="classrko__lio_1_1core_1_1LIO_1a0e2818a3d7d3b07f77a91235b116b607" kind="function"><name>register_scan</name></member>
-    <member refid="classrko__lio_1_1core_1_1LIO_1a3963bf670eced93306c73ead313d867f" kind="function"><name>register_scan</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1aebe2ef1f4bc36aef9bb72c634f38e755" kind="function"><name>register_scan</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a951202c4901280159b4b3ef3584c5640" kind="function"><name>register_scan</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a5cf6313e60eabd62f2379d40ec796295" kind="function"><name>initialize</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1ac3bdfc581c4059fbe21e1f5293ef38e7" kind="function"><name>bootstrap_first_scan</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1abfee790c3a78b93a1cbf8099168cc3c3" kind="function"><name>motion_priors_from_imu</name></member>
@@ -187,6 +187,10 @@
     <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1a823cd96430376085d903d78eb6867ca5" kind="function"><name>operator=</name></member>
     <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1a5d7778f92c462898248eb5bcb915f729" kind="function"><name>print_results</name></member>
     <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap_1aeb72d40c701f4656dce41c15c93320d7" kind="function"><name>~ProfilingInfoMap</name></member>
+  </compound>
+  <compound refid="structrko__lio_1_1ros_1_1utils_1_1RawScan" kind="struct"><name>rko_lio::ros::utils::RawScan</name>
+    <member refid="structrko__lio_1_1ros_1_1utils_1_1RawScan_1a4755b1d233953ba994d7dacb2e50aa2b" kind="variable"><name>points</name></member>
+    <member refid="structrko__lio_1_1ros_1_1utils_1_1RawScan_1a610f1788114761e615eba5c4d571bd68" kind="variable"><name>timestamps</name></member>
   </compound>
   <compound refid="classrko__lio_1_1core_1_1ScopedProfiler" kind="class"><name>rko_lio::core::ScopedProfiler</name>
     <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1a65e007b49e0b806ae940a86973be9c62" kind="typedef"><name>Clock</name></member>
@@ -262,7 +266,7 @@
   <compound refid="structrko__lio_1_1core_1_1Timestamps" kind="struct"><name>rko_lio::core::Timestamps</name>
     <member refid="structrko__lio_1_1core_1_1Timestamps_1ab049615468920792fdb40b2f597a75cd" kind="variable"><name>min</name></member>
     <member refid="structrko__lio_1_1core_1_1Timestamps_1a815937b2994206648bfe5c054b06be6d" kind="variable"><name>max</name></member>
-    <member refid="structrko__lio_1_1core_1_1Timestamps_1a0090c8ed31eeb5da017dcda0c0eaa2cb" kind="variable"><name>times</name></member>
+    <member refid="structrko__lio_1_1core_1_1Timestamps_1abfc3e14a796873bf311e1ae008b51c3c" kind="variable"><name>per_point</name></member>
   </compound>
   <compound refid="structrko__lio_1_1core_1_1VoxelHash" kind="struct"><name>rko_lio::core::VoxelHash</name>
     <member refid="structrko__lio_1_1core_1_1VoxelHash_1afb0b39696a21b88ce047315a95543d5a" kind="function"><name>operator()</name></member>
@@ -312,7 +316,7 @@
     <member refid="namespacerko__lio_1_1core_1adbcc16d5b9b09c370ce6c889b6356bda" kind="typedef"><name>Voxel</name></member>
     <member refid="namespacerko__lio_1_1core_1aef84c95de08dd51173a6fc0d2433c24a" kind="typedef"><name>VoxelBlock</name></member>
     <member refid="namespacerko__lio_1_1core_1a1beb022f953c50f94a2a815a4d3716b5" kind="variable"><name>GRAVITY_MAG</name></member>
-    <member refid="namespacerko__lio_1_1core_1a3261153e7f790d6973c2b7446db233ef" kind="function"><name>preprocess_scan</name></member>
+    <member refid="namespacerko__lio_1_1core_1a69778208c70cff1e145c84ed2f86ad8f" kind="function"><name>preprocess_scan</name></member>
     <member refid="namespacerko__lio_1_1core_1ac1fb80bf51f668bd3442bcb18044a57c" kind="function"><name>process_timestamps</name></member>
     <member refid="namespacerko__lio_1_1core_1aebf1f823c7fd220695665a8b3e12281e" kind="function"><name>square</name></member>
     <member refid="namespacerko__lio_1_1core_1ae12b01bb20a1a7280bc26af2de2f15dd" kind="function"><name>gravity</name></member>
@@ -328,8 +332,8 @@
     <member refid="point__cloud__read_8cpp_1ae6e9f928a853730fee4156c59d31b232" kind="typedef"><name>PointCloud2</name></member>
     <member refid="point__cloud__read_8cpp_1ac033ab6bd6b1f2e03682506ba229b194" kind="typedef"><name>PointField</name></member>
     <member refid="point__cloud__read_8cpp_1aabc74c0b21478cc1c3b29cecba96104f" kind="function"><name>point_cloud2_to_eigen</name></member>
-    <member refid="point__cloud__read_8cpp_1aace5b499e84699d48b9d23da41a5da43" kind="function"><name>point_cloud2_to_eigen_with_timestamps</name></member>
-    <member refid="point__cloud__read_8hpp_1ad5be96982e1e1956be221378e4c290bf" kind="function"><name>point_cloud2_to_eigen_with_timestamps</name></member>
+    <member refid="point__cloud__read_8cpp_1ac97c323cb1b6bab04e1f5a2766731cd8" kind="function"><name>point_cloud2_to_eigen_with_timestamps</name></member>
+    <member refid="point__cloud__read_8hpp_1a77d7ba00ca1501f61934151103ed9af2" kind="function"><name>point_cloud2_to_eigen_with_timestamps</name></member>
     <member refid="point__cloud__write_8cpp_1aef4df645b88181b1578767467987ad07" kind="function"><name>eigen_to_point_cloud2</name></member>
     <member refid="point__cloud__write_8hpp_1a972f8f407dce7b1824199bd2fe68aca5" kind="function"><name>eigen_to_point_cloud2</name></member>
     <member refid="ros__vectors_8hpp_1a89cb23044180614fae3f2f0a74ae4a4b" kind="function"><name>eigen_vector3d_to_ros_xyz</name></member>

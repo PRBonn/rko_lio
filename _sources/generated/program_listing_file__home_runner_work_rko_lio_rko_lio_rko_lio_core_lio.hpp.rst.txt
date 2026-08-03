@@ -89,10 +89,10 @@ Program Listing for File lio.hpp
    
      void add_imu_measurement(const Sophus::SE3d& extrinsic_imu2base, const ImuControl& raw_imu);
    
-     Vector3dVector register_scan(const Vector3dVector& scan, const TimestampVector& timestamps);
+     Vector3dVector register_scan(Vector3dVector scan, const TimestampVector& timestamps);
    
      Vector3dVector register_scan(const Sophus::SE3d& extrinsic_lidar2base,
-                                  const Vector3dVector& scan,
+                                  Vector3dVector scan,
                                   const TimestampVector& timestamps);
    
      std::vector<std::pair<Nsec, Sophus::SE3d>> poses_with_timestamps;

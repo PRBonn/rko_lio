@@ -60,7 +60,7 @@ Functions
 
 - :ref:`exhale_function_point__cloud__read_8cpp_1aabc74c0b21478cc1c3b29cecba96104f`
 
-- :ref:`exhale_function_point__cloud__read_8cpp_1aace5b499e84699d48b9d23da41a5da43`
+- :ref:`exhale_function_point__cloud__read_8cpp_1ac97c323cb1b6bab04e1f5a2766731cd8`
 
 
 Typedefs

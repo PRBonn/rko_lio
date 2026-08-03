@@ -116,17 +116,15 @@ Program Listing for File lio.cpp
      requires requires(Functor f, Nsec stamp) {
        { f(stamp) } -> std::same_as<Sophus::SE3d>;
      }
-   Vector3dVector deskew_scan(const Vector3dVector& frame,
-                              const TimestampVector& timestamps,
-                              const Nsec end_time,
-                              const Functor& relative_pose_at_time) {
+   void deskew_scan(Vector3dVector& frame,
+                    const TimestampVector& timestamps,
+                    const Nsec end_time,
+                    const Functor& relative_pose_at_time) {
      const Sophus::SE3d scan_to_scan_motion_inverse = relative_pose_at_time(end_time).inverse();
-     Vector3dVector deskewed(frame.size());
-     std::transform(frame.cbegin(), frame.cend(), timestamps.cbegin(), deskewed.begin(),
+     std::transform(frame.cbegin(), frame.cend(), timestamps.cbegin(), frame.begin(),
                     [&](const Eigen::Vector3d& point, const Nsec timestamp) {
                       return (scan_to_scan_motion_inverse * relative_pose_at_time(timestamp)) * point;
                     });
-     return deskewed;
    }
    
    using LinearSystem = std::tuple<Eigen::Matrix6d, Eigen::Vector6d, double>;
@@ -430,7 +428,7 @@ Program Listing for File lio.cpp
    
    // ============================ lidar ===============================
    
-   Vector3dVector LIO::register_scan(const Vector3dVector& scan, const TimestampVector& timestamps) {
+   Vector3dVector LIO::register_scan(Vector3dVector scan, const TimestampVector& timestamps) {
      if (timestamps.empty()) {
        throw std::invalid_argument("LIO::register_scan: timestamps must not be empty.");
      }
@@ -468,14 +466,16 @@ Program Listing for File lio.cpp
      mean_body_acceleration = kf_step.updated.mean;
      body_acceleration_covariance = kf_step.updated.covariance;
    
-     auto preproc_result =
-         config.deskew ? preprocess_scan(deskew_scan(scan, timestamps, current_lidar_time, relative_pose_at_time), config)
-                       : preprocess_scan(scan, config);
+     if (config.deskew) {
+       deskew_scan(scan, timestamps, current_lidar_time, relative_pose_at_time);
+     }
+     const std::size_t input_scan_size = scan.size();
+     auto preproc_result = preprocess_scan(std::move(scan), config);
    
      if (preproc_result.keypoints.size() < 10) {
        const std::string error_msg =
            "Keypoints for ICP registration = " + std::to_string(preproc_result.keypoints.size()) +
-           ", this is too little for ICP and likely unintended. Input scan size = " + std::to_string(scan.size()) +
+           ", this is too little for ICP and likely unintended. Input scan size = " + std::to_string(input_scan_size) +
            ". Config voxel size = " + std::to_string(config.voxel_size) +
            ". Either the input scan is corrupt (empty) or the downsampling is too aggressive.";
        throw std::invalid_argument(error_msg);
@@ -514,17 +514,13 @@ Program Listing for File lio.cpp
      return std::move(preproc_result.filtered_frame);
    }
    
-   Vector3dVector LIO::register_scan(const Sophus::SE3d& extrinsic_lidar2base,
-                                     const Vector3dVector& scan,
-                                     const TimestampVector& timestamps) {
+   Vector3dVector
+   LIO::register_scan(const Sophus::SE3d& extrinsic_lidar2base, Vector3dVector scan, const TimestampVector& timestamps) {
      if (extrinsic_lidar2base.log().norm() < EPSILON) {
-       return register_scan(scan, timestamps);
+       return register_scan(std::move(scan), timestamps);
      }
-   
-     Vector3dVector transformed_scan(scan.size());
-     std::transform(scan.cbegin(), scan.cend(), transformed_scan.begin(),
-                    [&](const Eigen::Vector3d& p) { return extrinsic_lidar2base * p; });
-     Vector3dVector frame = register_scan(transformed_scan, timestamps);
+     transform_points(extrinsic_lidar2base, scan);
+     Vector3dVector frame = register_scan(std::move(scan), timestamps);
      transform_points(extrinsic_lidar2base.inverse(), frame);
      return frame;
    }

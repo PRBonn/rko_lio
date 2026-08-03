@@ -62,9 +62,16 @@ Namespaces
 - :ref:`namespace_rko_lio__ros__utils`
 
 
+Classes
+-------
+
+
+- :ref:`exhale_struct_structrko__lio_1_1ros_1_1utils_1_1RawScan`
+
+
 Functions
 ---------
 
 
-- :ref:`exhale_function_point__cloud__read_8hpp_1ad5be96982e1e1956be221378e4c290bf`
+- :ref:`exhale_function_point__cloud__read_8hpp_1a77d7ba00ca1501f61934151103ed9af2`
 

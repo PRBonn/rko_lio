@@ -120,8 +120,9 @@ Program Listing for File online_imu_rate_node.cpp
        }
    
        try {
-         const auto [timestamps, scan] = process_lidar_msg(lidar_msg);
-         const core::Vector3dVector deskewed_frame = register_scan_locked(scan, timestamps.times);
+         LidarFrame frame = process_lidar_msg(lidar_msg);
+         const core::Vector3dVector deskewed_frame =
+             register_scan_locked(std::move(frame.points), frame.timestamps.per_point);
          if (deskewed_frame.empty()) {
            // first frame is skipped and an empty frame is returned. nothing to publish.
            return;

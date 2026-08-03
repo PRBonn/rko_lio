@@ -3,6 +3,7 @@
   <compounddef id="namespacerko__lio_1_1ros_1_1utils" kind="namespace" language="C++">
     <compoundname>rko_lio::ros::utils</compoundname>
     <innerclass refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag" prot="public">rko_lio::ros::utils::BufferableBag</innerclass>
+    <innerclass refid="structrko__lio_1_1ros_1_1utils_1_1RawScan" prot="public">rko_lio::ros::utils::RawScan</innerclass>
     <sectiondef kind="typedef">
       <memberdef kind="typedef" id="point__cloud__read_8cpp_1adc86f9a4afa9e7b04db32c33665d446f" prot="public" static="no">
         <type>std::vector&lt; Eigen::Vector3d &gt;</type>
@@ -66,9 +67,9 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" line="36" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" bodystart="36" bodyend="47" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" declline="33" declcolumn="13"/>
       </memberdef>
-      <memberdef kind="function" id="point__cloud__read_8cpp_1aace5b499e84699d48b9d23da41a5da43" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>std::tuple&lt; Vector3dVector, std::vector&lt; double &gt; &gt;</type>
-        <definition>std::tuple&lt; Vector3dVector, std::vector&lt; double &gt; &gt; rko_lio::ros::utils::point_cloud2_to_eigen_with_timestamps</definition>
+      <memberdef kind="function" id="point__cloud__read_8cpp_1ac97c323cb1b6bab04e1f5a2766731cd8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structrko__lio_1_1ros_1_1utils_1_1RawScan" kindref="compound">RawScan</ref></type>
+        <definition>RawScan rko_lio::ros::utils::point_cloud2_to_eigen_with_timestamps</definition>
         <argsstring>(const PointCloud2::ConstSharedPtr &amp;msg)</argsstring>
         <name>point_cloud2_to_eigen_with_timestamps</name>
         <qualifiedname>rko_lio::ros::utils::point_cloud2_to_eigen_with_timestamps</qualifiedname>
@@ -82,11 +83,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" line="50" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" bodystart="50" bodyend="103"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" line="49" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" bodystart="49" bodyend="100"/>
       </memberdef>
-      <memberdef kind="function" id="point__cloud__read_8hpp_1ad5be96982e1e1956be221378e4c290bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>std::tuple&lt; std::vector&lt; Eigen::Vector3d &gt;, std::vector&lt; double &gt; &gt;</type>
-        <definition>std::tuple&lt; std::vector&lt; Eigen::Vector3d &gt;, std::vector&lt; double &gt; &gt; rko_lio::ros::utils::point_cloud2_to_eigen_with_timestamps</definition>
+      <memberdef kind="function" id="point__cloud__read_8hpp_1a77d7ba00ca1501f61934151103ed9af2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structrko__lio_1_1ros_1_1utils_1_1RawScan" kindref="compound">RawScan</ref></type>
+        <definition>RawScan rko_lio::ros::utils::point_cloud2_to_eigen_with_timestamps</definition>
         <argsstring>(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &amp;msg)</argsstring>
         <name>point_cloud2_to_eigen_with_timestamps</name>
         <qualifiedname>rko_lio::ros::utils::point_cloud2_to_eigen_with_timestamps</qualifiedname>
@@ -100,7 +101,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" line="36" column="1" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" declline="36" declcolumn="1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" line="40" column="9" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" declline="40" declcolumn="9"/>
       </memberdef>
       <memberdef kind="function" id="point__cloud__write_8cpp_1aef4df645b88181b1578767467987ad07" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>PointCloud2::UniquePtr</type>
