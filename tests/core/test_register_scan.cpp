@@ -98,8 +98,8 @@ void feed_imu_noisy(LIO& lio, double t_start, double t_end, int n,
     ImuControl m;
     const double frac = n == 1 ? 0.0 : static_cast<double>(i) / static_cast<double>(n - 1);
     m.time = ns_from_seconds(t_start + (t_end - t_start) * frac);
-    m.acceleration = acceleration + Eigen::Vector3s{a_noise(rng), a_noise(rng), a_noise(rng)};
-    m.angular_velocity = angular_velocity + Eigen::Vector3s{g_noise(rng), g_noise(rng), g_noise(rng)};
+    m.acceleration = acceleration + Eigen::Vector3s(a_noise(rng), a_noise(rng), a_noise(rng));
+    m.angular_velocity = angular_velocity + Eigen::Vector3s(g_noise(rng), g_noise(rng), g_noise(rng));
     lio.add_imu_measurement(m);
   }
 }

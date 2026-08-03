@@ -41,6 +41,6 @@ void eigen_vector_to_ros_xyz(const Eigen::Vector3s& vector, auto& ros_vector)
 
 template <typename T>
 Eigen::Vector3s ros_xyz_to_eigen_vector(const T& ros_vector) {
-  return Eigen::Vector3s{ros_vector.x, ros_vector.y, ros_vector.z};
+  return Eigen::Vector3s(ros_vector.x, ros_vector.y, ros_vector.z);
 }
 }; // namespace rko_lio::ros::utils
