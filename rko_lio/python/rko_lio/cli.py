@@ -264,13 +264,9 @@ def cli(
         info("Extrinsics missing or not fully specified in config.")
         dl_ext_imu2base, dl_ext_lidar2base = dataloader.extrinsics
         if pipeline_config.extrinsic_imu2base_quat_xyzw_xyz is None:
-            pipeline_config.extrinsic_imu2base_quat_xyzw_xyz = (
-                transform_to_quat_xyzw_xyz(dl_ext_imu2base)
-            )
+            pipeline_config.extrinsic_imu2base_quat_xyzw_xyz = transform_to_quat_xyzw_xyz(dl_ext_imu2base)
         if pipeline_config.extrinsic_lidar2base_quat_xyzw_xyz is None:
-            pipeline_config.extrinsic_lidar2base_quat_xyzw_xyz = (
-                transform_to_quat_xyzw_xyz(dl_ext_lidar2base)
-            )
+            pipeline_config.extrinsic_lidar2base_quat_xyzw_xyz = transform_to_quat_xyzw_xyz(dl_ext_lidar2base)
 
     if (
         pipeline_config.extrinsic_imu2base_quat_xyzw_xyz is None

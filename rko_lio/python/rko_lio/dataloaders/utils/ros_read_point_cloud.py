@@ -49,11 +49,7 @@ def dtype_from_fields(fields: Iterable, point_step: Optional[int] = None) -> np.
         # Datatype as numpy datatype
         datatype = _DATATYPES[get_datatype_name(field)]
         # Name field
-        name = (
-            field.name
-            if getattr(field, "name", "") != ""
-            else f"{DUMMY_FIELD_PREFIX}_{i}"
-        )
+        name = field.name if getattr(field, "name", "") != "" else f"{DUMMY_FIELD_PREFIX}_{i}"
         # Handle fields with count > 1 by creating subfields with a suffix consiting
         # of "_" followed by the subfield counter [0 -> (count - 1)]
         assert field.count > 0, "Can't process fields with count = 0."
@@ -63,9 +59,7 @@ def dtype_from_fields(fields: Iterable, point_step: Optional[int] = None) -> np.
                 subfield_name = f"{name}_{a}"
             else:
                 subfield_name = name
-            assert (
-                subfield_name not in field_names
-            ), "Duplicate field names are not allowed!"
+            assert subfield_name not in field_names, "Duplicate field names are not allowed!"
             field_names.append(subfield_name)
             # Create new offset that includes subfields
             field_offsets.append(field.offset + a * datatype.itemsize)
@@ -107,9 +101,9 @@ def read_points(
 
     # Keep only the requested fields
     if field_names is not None:
-        assert all(
-            field_name in points.dtype.names for field_name in field_names
-        ), "Requests field is not in the fields of the PointCloud!"
+        assert all(field_name in points.dtype.names for field_name in field_names), (
+            "Requests field is not in the fields of the PointCloud!"
+        )
         # Mask fields
         points = points[list(field_names)]
 
@@ -149,9 +143,7 @@ def read_point_cloud(msg) -> Tuple[np.ndarray, np.ndarray | None]:
             break
 
     points_structured = read_points(msg, field_names=field_names)
-    points = np.column_stack(
-        [points_structured["x"], points_structured["y"], points_structured["z"]]
-    )
+    points = np.column_stack([points_structured["x"], points_structured["y"], points_structured["z"]])
 
     # Remove nan if any
     # TODO: need to handle the change in timestamps too

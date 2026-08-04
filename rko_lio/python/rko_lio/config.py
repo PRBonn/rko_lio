@@ -211,9 +211,7 @@ class PipelineConfig:
         lio_valid_names = [f.name for f in fields(LIOConfig)]
         for arg in args:
             if arg not in lio_valid_names:
-                error_and_exit(
-                    "Config argument", arg, "is not a valid key. Please remove."
-                )
+                error_and_exit("Config argument", arg, "is not a valid key. Please remove.")
         lio_args.update(args)
 
         return cls(

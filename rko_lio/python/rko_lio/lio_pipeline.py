@@ -53,12 +53,8 @@ class LIOPipeline:
     ):
         self.config = config
         self.lio = LIO(config.lio)
-        self.extrinsic_imu2base = quat_xyzw_xyz_to_transform(
-            config.extrinsic_imu2base_quat_xyzw_xyz
-        )
-        self.extrinsic_lidar2base = quat_xyzw_xyz_to_transform(
-            config.extrinsic_lidar2base_quat_xyzw_xyz
-        )
+        self.extrinsic_imu2base = quat_xyzw_xyz_to_transform(config.extrinsic_imu2base_quat_xyzw_xyz)
+        self.extrinsic_lidar2base = quat_xyzw_xyz_to_transform(config.extrinsic_lidar2base_quat_xyzw_xyz)
 
         self._output_dir = None
         self.viz = None
@@ -178,11 +174,7 @@ class LIOPipeline:
 
         if self.viz:
             # sampled now as the next register_scan mutates the map, which can race
-            local_map = (
-                self.lio.map_point_cloud()
-                if self.viz.wants_local_map(end_time_ns)
-                else None
-            )
+            local_map = self.lio.map_point_cloud() if self.viz.wants_local_map(end_time_ns) else None
             self.viz.log_frame(
                 end_time_ns,
                 self.lio.pose(),

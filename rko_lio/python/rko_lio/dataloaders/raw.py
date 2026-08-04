@@ -72,15 +72,14 @@ from .. import rko_lio_pybind
 from ..config import TimestampConfig
 from ..scoped_profiler import ScopedProfiler
 from ..util import error_and_exit, info, warning
+
 # recognised per-point time field names, shared with the ROS PointCloud2 reader
 from .utils.ros_read_point_cloud import __TIMESTAMP_ATTRIBUTE_NAMES__
 
 try:
     from plyfile import PlyData
 except ModuleNotFoundError:
-    error_and_exit(
-        'plyfile not installed for the raw dataloader, please install with "pip install -U plyfile"'
-    )
+    error_and_exit('plyfile not installed for the raw dataloader, please install with "pip install -U plyfile"')
 
 __DEFAULT_IMU_COLUMNS__ = {
     "timestamp": "timestamp",
@@ -122,9 +121,7 @@ def read_point_cloud_file(path):
     names = vertex.dtype.names
     missing = [c for c in ("x", "y", "z") if c not in names]
     if missing:
-        error_and_exit(
-            f"Point cloud {path} is missing coordinate field(s) {missing}; has {names}"
-        )
+        error_and_exit(f"Point cloud {path} is missing coordinate field(s) {missing}; has {names}")
     points = np.column_stack([vertex["x"], vertex["y"], vertex["z"]]).astype(np.float64)
     for name in __TIMESTAMP_ATTRIBUTE_NAMES__:
         if name in names:
@@ -148,8 +145,7 @@ class RawDataLoader:
         lidar_data = self._load_lidar(self._resolve_lidar_dir())
 
         self.entries = sorted(
-            [("imu", d["timestamp"], d) for d in imu_data]
-            + [("lidar", d["timestamp"], d) for d in lidar_data],
+            [("imu", d["timestamp"], d) for d in imu_data] + [("lidar", d["timestamp"], d) for d in lidar_data],
             key=lambda e: e[1],
         )
 
@@ -171,9 +167,7 @@ class RawDataLoader:
                 error_and_exit(f"IMU file {imu_file} does not exist.")
             return imu_file
 
-        candidates = sorted(self.data_path.glob("*.csv")) + sorted(
-            self.data_path.glob("*.txt")
-        )
+        candidates = sorted(self.data_path.glob("*.csv")) + sorted(self.data_path.glob("*.txt"))
         if len(candidates) != 1:
             error_and_exit(
                 f"Expected exactly one IMU .csv/.txt file in {self.data_path}, "
@@ -209,12 +203,8 @@ class RawDataLoader:
                 imu_data.append(
                     {
                         "timestamp": _stamp_to_ns(row[columns["timestamp"]], ts_multiplier),
-                        "gyro": np.array(
-                            [float(row[columns[f"gyro_{a}"]]) for a in "xyz"]
-                        ),
-                        "accel": np.array(
-                            [float(row[columns[f"accel_{a}"]]) for a in "xyz"]
-                        ),
+                        "gyro": np.array([float(row[columns[f"gyro_{a}"]]) for a in "xyz"]),
+                        "accel": np.array([float(row[columns[f"accel_{a}"]]) for a in "xyz"]),
                     }
                 )
         return imu_data
@@ -222,16 +212,11 @@ class RawDataLoader:
     def _load_lidar(self, lidar_dir: Path) -> list:
         lidar_cfg = self.settings.get("lidar") or {}
         suffix = lidar_cfg.get("file_suffix", ".ply")
-        ts_multiplier = float(
-            lidar_cfg.get("filename_timestamp_multiplier_to_nanoseconds", 1)
-        )
+        ts_multiplier = float(lidar_cfg.get("filename_timestamp_multiplier_to_nanoseconds", 1))
         files = sorted(lidar_dir.glob(f"*{suffix}"))
         if not files:
             error_and_exit(f"No '*{suffix}' files found in {lidar_dir}.")
-        return [
-            {"timestamp": _stamp_to_ns(f.stem, ts_multiplier), "filename": f}
-            for f in files
-        ]
+        return [{"timestamp": _stamp_to_ns(f.stem, ts_multiplier), "filename": f} for f in files]
 
     @property
     def extrinsics(self):
@@ -239,16 +224,12 @@ class RawDataLoader:
             info("Trying to obtain extrinsics from the data.")
             tf_file = self.data_path / "transforms.yaml"
             if not tf_file.is_file():
-                error_and_exit(
-                    f"The raw dataloader needs a transforms.yaml file in {self.data_path}."
-                )
+                error_and_exit(f"The raw dataloader needs a transforms.yaml file in {self.data_path}.")
             with open(tf_file, "r") as f:
                 tf_data = yaml.safe_load(f)
 
             self.T_imu_to_base = self._read_transform(tf_data, "T_imu_to_base", tf_file)
-            self.T_lidar_to_base = self._read_transform(
-                tf_data, "T_lidar_to_base", tf_file
-            )
+            self.T_lidar_to_base = self._read_transform(tf_data, "T_lidar_to_base", tf_file)
         return self.T_imu_to_base, self.T_lidar_to_base
 
     @staticmethod
@@ -315,7 +296,4 @@ class RawDataLoader:
     def __repr__(self):
         n_imu = sum(1 for e in self.entries if e[0] == "imu")
         n_lidar = sum(1 for e in self.entries if e[0] == "lidar")
-        return (
-            f"RawDataLoader(path={self.data_path}, {n_imu} IMU readings, "
-            f"{n_lidar} lidar frames)"
-        )
+        return f"RawDataLoader(path={self.data_path}, {n_imu} IMU readings, {n_lidar} lidar frames)"

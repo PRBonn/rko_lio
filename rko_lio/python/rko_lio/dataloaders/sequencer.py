@@ -28,9 +28,7 @@ class LidarIMUSequencer:
     def _buffers_ready(self):
         "if true, there's at least one valid lidar and imu data sequence"
         return (
-            self.lidar_buffer
-            and self.imu_buffer
-            and self.imu_buffer[-1]["time"] > self.lidar_buffer[0]["end_time_ns"]
+            self.lidar_buffer and self.imu_buffer and self.imu_buffer[-1]["time"] > self.lidar_buffer[0]["end_time_ns"]
         )
 
     def _read_next_from_wrapped_loader(self):
@@ -49,17 +47,13 @@ class LidarIMUSequencer:
         while True:
             if self._buffers_ready():
                 frame = self.lidar_buffer.pop(0)
-                imus_to_process = [
-                    imu for imu in self.imu_buffer if imu["time"] < frame["end_time_ns"]
-                ]
+                imus_to_process = [imu for imu in self.imu_buffer if imu["time"] < frame["end_time_ns"]]
                 for imu in imus_to_process:
                     yield ("imu", imu)
 
                 yield ("lidar", frame)
 
-                self.imu_buffer = [
-                    imu for imu in self.imu_buffer if imu["time"] >= frame["end_time_ns"]
-                ]
+                self.imu_buffer = [imu for imu in self.imu_buffer if imu["time"] >= frame["end_time_ns"]]
 
             try:
                 # buffers dont have valid data to process so

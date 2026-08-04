@@ -33,9 +33,7 @@ try:
     import rerun
     import rerun.blueprint as rrb
 except ImportError:
-    error_and_exit(
-        "Please install rerun with `pip install rerun-sdk` to enable visualization."
-    )
+    error_and_exit("Please install rerun with `pip install rerun-sdk` to enable visualization.")
 
 
 VIRIDIS = np.array(
@@ -68,9 +66,7 @@ def height_colors(points: np.ndarray, color_map: np.ndarray = VIRIDIS) -> np.nda
     idx_low = np.floor(idx).astype(int)
     idx_high = np.clip(idx_low + 1, 0, len(color_map) - 1)
     alpha = idx - idx_low
-    return (
-        (1 - alpha)[:, None] * color_map[idx_low] + alpha[:, None] * color_map[idx_high]
-    ).astype(np.uint8)
+    return ((1 - alpha)[:, None] * color_map[idx_low] + alpha[:, None] * color_map[idx_high]).astype(np.uint8)
 
 
 class LatestMailbox:
@@ -264,23 +260,17 @@ class Viz:
         else:
             local_map = None
 
-        self.cloud_box.put(
-            (scan_time_s, deskewed_scan, pose @ extrinsic_lidar2base, local_map)
-        )
+        self.cloud_box.put((scan_time_s, deskewed_scan, pose @ extrinsic_lidar2base, local_map))
 
     def cloud_log_loop(self):
         for item in iter(self.cloud_box.get, None):
             scan_time_s, deskewed_scan, T_lidar2world, local_map = item
-            scan_world = (T_lidar2world[:3, :3] @ deskewed_scan.T).T + T_lidar2world[
-                :3, 3
-            ]
+            scan_world = (T_lidar2world[:3, :3] @ deskewed_scan.T).T + T_lidar2world[:3, 3]
             time_idx = [rerun.TimeColumn("data_time", timestamp=[scan_time_s])]
             rerun.send_columns(
                 "world/deskewed_scan",
                 indexes=time_idx,
-                columns=rerun.Points3D.columns(positions=scan_world).partition(
-                    [len(scan_world)]
-                ),
+                columns=rerun.Points3D.columns(positions=scan_world).partition([len(scan_world)]),
             )
             if local_map is not None:
                 rerun.send_columns(

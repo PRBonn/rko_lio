@@ -40,9 +40,7 @@ def create_static_tf_tree(bag):
     if not "/tf_static" in bag.topics:
         return tf_tree
 
-    tf_static_connections = [
-        conn for conn in bag.connections if (conn.topic == "/tf_static")
-    ]
+    tf_static_connections = [conn for conn in bag.connections if (conn.topic == "/tf_static")]
     for _, _, rawdata in tqdm(
         bag.messages(connections=tf_static_connections),
         desc="/tf_static messages",

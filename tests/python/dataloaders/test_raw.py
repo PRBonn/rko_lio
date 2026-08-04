@@ -168,9 +168,7 @@ def test_custom_imu_columns_via_settings(tmp_path):
         writer.writerow(["t_ns", "wx", "wy", "wz", "ax", "ay", "az"])
         writer.writerow([50, 0.4, 0.5, 0.6, 7.0, 8.0, 9.0])
     with (tmp_path / "transforms.yaml").open("w") as f:
-        yaml.safe_dump(
-            {"T_imu_to_base": np.eye(4).tolist(), "T_lidar_to_base": np.eye(4).tolist()}, f
-        )
+        yaml.safe_dump({"T_imu_to_base": np.eye(4).tolist(), "T_lidar_to_base": np.eye(4).tolist()}, f)
     with (tmp_path / "rko_lio_settings.yaml").open("w") as f:
         yaml.safe_dump(
             {
@@ -178,8 +176,12 @@ def test_custom_imu_columns_via_settings(tmp_path):
                     "path": "sensors.csv",
                     "headers": {
                         "timestamp": "t_ns",
-                        "gyro_x": "wx", "gyro_y": "wy", "gyro_z": "wz",
-                        "accel_x": "ax", "accel_y": "ay", "accel_z": "az",
+                        "gyro_x": "wx",
+                        "gyro_y": "wy",
+                        "gyro_z": "wz",
+                        "accel_x": "ax",
+                        "accel_y": "ay",
+                        "accel_z": "az",
                     },
                 }
             },
@@ -201,9 +203,7 @@ def test_missing_imu_column_errors(tmp_path):
         writer.writerow(["timestamp", "gyro_x"])  # missing most columns
         writer.writerow([1, 0.0])
     with (tmp_path / "transforms.yaml").open("w") as f:
-        yaml.safe_dump(
-            {"T_imu_to_base": np.eye(4).tolist(), "T_lidar_to_base": np.eye(4).tolist()}, f
-        )
+        yaml.safe_dump({"T_imu_to_base": np.eye(4).tolist(), "T_lidar_to_base": np.eye(4).tolist()}, f)
     with pytest.raises(SystemExit):
         load(tmp_path)
 
@@ -252,9 +252,7 @@ def test_partial_header_override_keeps_defaults(tmp_path):
         writer.writerow(["ts", "gyro_x", "gyro_y", "gyro_z", "accel_x", "accel_y", "accel_z"])
         writer.writerow([7, 0.1, 0.2, 0.3, 1.0, 2.0, 3.0])
     with (tmp_path / "transforms.yaml").open("w") as f:
-        yaml.safe_dump(
-            {"T_imu_to_base": np.eye(4).tolist(), "T_lidar_to_base": np.eye(4).tolist()}, f
-        )
+        yaml.safe_dump({"T_imu_to_base": np.eye(4).tolist(), "T_lidar_to_base": np.eye(4).tolist()}, f)
     (tmp_path / "rko_lio_settings.yaml").write_text("imu:\n  headers:\n    timestamp: ts\n")
 
     (imu,) = imu_frames(load(tmp_path))

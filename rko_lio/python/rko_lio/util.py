@@ -10,16 +10,12 @@ console = Console()
 
 def error(*args):
     msg = " ".join(str(a) for a in args)
-    console.print(
-        Panel(msg, title="Error", border_style="red", expand=False, title_align="left")
-    )
+    console.print(Panel(msg, title="Error", border_style="red", expand=False, title_align="left"))
 
 
 def error_and_exit(*args):
     msg = " ".join(str(a) for a in args)
-    console.print(
-        Panel(msg, title="Error", border_style="red", expand=False, title_align="left")
-    )
+    console.print(Panel(msg, title="Error", border_style="red", expand=False, title_align="left"))
     sys.exit(1)
 
 
@@ -38,9 +34,7 @@ def warning(*args):
 
 def info(*args):
     msg = " ".join(str(a) for a in args)
-    console.print(
-        Panel(msg, title="Info", border_style="cyan", expand=False, title_align="left")
-    )
+    console.print(Panel(msg, title="Info", border_style="cyan", expand=False, title_align="left"))
 
 
 def transform_to_quat_xyzw_xyz(T: np.ndarray):
