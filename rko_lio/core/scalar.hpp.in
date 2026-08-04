@@ -1,7 +1,6 @@
 // MIT License
 //
-// Copyright (c) 2022 Ignacio Vizzo, Tiziano Guadagnino, Benedikt Mersch, Cyrill
-// Stachniss.
+// Copyright (c) 2025 Meher V.R. Malladi.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,14 +20,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+// Generated from scalar.hpp.in - do not edit. The type is fixed when the library is
+// configured, via the RKO_LIO_SCALAR cmake option.
 #pragma once
-#include <rko_lio/core/util.hpp>
+#include <concepts>
 
-#include <Eigen/Core>
-#include <sensor_msgs/msg/point_cloud2.hpp>
-#include <vector>
+namespace rko_lio::core {
 
-namespace rko_lio::ros::utils {
-std::unique_ptr<sensor_msgs::msg::PointCloud2> eigen_to_point_cloud2(const core::Vector3sVector& points,
-                                                                     const std_msgs::msg::Header& header);
-}
+template <std::floating_point T>
+using FloatingPoint = T;
+
+using Scalar = FloatingPoint<@RKO_LIO_SCALAR@>;
+
+} // namespace rko_lio::core

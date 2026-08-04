@@ -69,6 +69,7 @@ build-type = "Release"
 CMAKE_EXPORT_COMPILE_COMMANDS = "ON"
 RKO_LIO_FETCH_CONTENT_DEPS = "ON"
 RKO_LIO_BUILD_ROS = "OFF"
+RKO_LIO_SCALAR = "double"
 
 [tool.cibuildwheel]
 environment = { GIT_LFS_SKIP_SMUDGE = "1" }

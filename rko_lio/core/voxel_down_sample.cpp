@@ -33,13 +33,13 @@ namespace rko_lio::core {
 // https://github.com/PRBonn/kiss-icp/pull/347
 // although it does lead to worse odometry performance in certain situations
 
-std::vector<Eigen::Vector3d> voxel_down_sample(const std::vector<Eigen::Vector3d>& frame, const double voxel_size) {
-  const double inv_voxel_size = 1.0 / voxel_size;
-  std::unordered_map<Eigen::Vector3i, Eigen::Vector3d, VoxelHash> grid;
+std::vector<Eigen::Vector3s> voxel_down_sample(const std::vector<Eigen::Vector3s>& frame, const Scalar voxel_size) {
+  const Scalar inv_voxel_size = 1.0 / voxel_size;
+  std::unordered_map<Eigen::Vector3i, Eigen::Vector3s, VoxelHash> grid;
   grid.reserve(frame.size());
   std::for_each(frame.cbegin(), frame.cend(),
                 [&](const auto& point) { grid.try_emplace(point_to_voxel(point, inv_voxel_size), point); });
-  std::vector<Eigen::Vector3d> frame_downsampled;
+  std::vector<Eigen::Vector3s> frame_downsampled;
   frame_downsampled.reserve(grid.size());
   std::for_each(grid.cbegin(), grid.cend(),
                 [&](const auto& voxel_and_point) { frame_downsampled.emplace_back(voxel_and_point.second); });

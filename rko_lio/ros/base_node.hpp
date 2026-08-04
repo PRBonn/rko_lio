@@ -49,7 +49,7 @@ namespace rko_lio::ros {
 
 struct LidarFrame {
   core::Timestamps timestamps;
-  core::Vector3dVector points;
+  core::Vector3sVector points;
 };
 // Shared helper used by both the threaded and sequential nodes.
 core::ImuControl imu_msg_to_imu_data(const sensor_msgs::msg::Imu& imu_msg);
@@ -79,8 +79,8 @@ public:
   bool publish_deskewed_scan = false;
   bool publish_local_map = false;
 
-  Sophus::SE3d extrinsic_imu2base;
-  Sophus::SE3d extrinsic_lidar2base;
+  Sophus::SE3s extrinsic_imu2base;
+  Sophus::SE3s extrinsic_lidar2base;
   bool extrinsics_set = false;
 
   std::shared_ptr<tf2_ros::TransformListener> tf_listener;
@@ -115,9 +115,9 @@ public:
 
   LidarFrame process_lidar_msg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& lidar_msg) const;
 
-  core::Vector3dVector register_scan_locked(core::Vector3dVector scan, const core::TimestampVector& time_vector);
+  core::Vector3sVector register_scan_locked(core::Vector3sVector scan, const core::TimestampVector& time_vector);
 
-  void publish_lidar_outputs(const core::Vector3dVector& deskewed_frame) const;
+  void publish_lidar_outputs(const core::Vector3sVector& deskewed_frame) const;
 
   void publish_odometry(const core::State& state,
                         const rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr& publisher) const;

@@ -20,6 +20,16 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+set(RKO_LIO_SCALAR
+    "float"
+    CACHE STRING
+          "Floating point type used throughout rko_lio (float or double)")
+message(STATUS "rko_lio scalar type: ${RKO_LIO_SCALAR}")
+
+set(GENERATED_INCLUDE_DIR ${CMAKE_CURRENT_BINARY_DIR}/include)
+configure_file(scalar.hpp.in
+               ${GENERATED_INCLUDE_DIR}/rko_lio/core/scalar.hpp @ONLY)
+
 add_library(rko_lio.core STATIC)
 
 add_library(rko_lio::core ALIAS rko_lio.core)
@@ -42,6 +52,23 @@ compat_target_sources(
         ../../rko_lio/core/util.hpp
         ../../rko_lio/core/voxel_down_sample.hpp
   BASE_DIRS ../..)
+
+# the generated header lives in the build tree, so it needs its own base dir
+if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.23")
+  target_sources(
+    rko_lio.core
+    PUBLIC FILE_SET
+           generated_headers
+           TYPE
+           HEADERS
+           BASE_DIRS
+           ${GENERATED_INCLUDE_DIR}
+           FILES
+           ${GENERATED_INCLUDE_DIR}/rko_lio/core/scalar.hpp)
+else()
+  target_include_directories(
+    rko_lio.core PUBLIC $<BUILD_INTERFACE:${GENERATED_INCLUDE_DIR}>)
+endif()
 
 target_link_libraries(
   rko_lio.core

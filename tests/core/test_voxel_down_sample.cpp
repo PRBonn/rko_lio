@@ -30,7 +30,7 @@
 using rko_lio::core::voxel_down_sample;
 
 namespace {
-std::set<std::tuple<int, int, int>> as_voxel_set(const std::vector<Eigen::Vector3d>& points, double voxel_size) {
+std::set<std::tuple<int, int, int>> as_voxel_set(const std::vector<Eigen::Vector3s>& points, double voxel_size) {
   std::set<std::tuple<int, int, int>> out;
   for (const auto& p : points) {
     out.emplace(static_cast<int>(std::floor(p.x() / voxel_size)),
@@ -42,14 +42,14 @@ std::set<std::tuple<int, int, int>> as_voxel_set(const std::vector<Eigen::Vector
 } // namespace
 
 TEST_CASE("voxel_down_sample: empty input -> empty output", "[voxel_down_sample]") {
-  const std::vector<Eigen::Vector3d> empty;
+  const std::vector<Eigen::Vector3s> empty;
   const auto result = voxel_down_sample(empty, 0.5);
   REQUIRE(result.empty());
 }
 
 TEST_CASE("voxel_down_sample: all points within one voxel -> 1 output", "[voxel_down_sample]") {
   const double voxel_size = 1.0;
-  const std::vector<Eigen::Vector3d> points = {
+  const std::vector<Eigen::Vector3s> points = {
       {0.1, 0.1, 0.1}, {0.2, 0.3, 0.4}, {0.5, 0.5, 0.5}, {0.99, 0.99, 0.99}};
   const auto result = voxel_down_sample(points, voxel_size);
   REQUIRE(result.size() == 1);
@@ -57,7 +57,7 @@ TEST_CASE("voxel_down_sample: all points within one voxel -> 1 output", "[voxel_
 
 TEST_CASE("voxel_down_sample: N well-separated points -> N outputs", "[voxel_down_sample]") {
   const double voxel_size = 0.5;
-  const std::vector<Eigen::Vector3d> points = {
+  const std::vector<Eigen::Vector3s> points = {
       {0.0, 0.0, 0.0}, {10.0, 0.0, 0.0}, {0.0, 10.0, 0.0}, {0.0, 0.0, 10.0}, {10.0, 10.0, 10.0}};
   const auto result = voxel_down_sample(points, voxel_size);
   REQUIRE(result.size() == points.size());
@@ -65,8 +65,8 @@ TEST_CASE("voxel_down_sample: N well-separated points -> N outputs", "[voxel_dow
 
 TEST_CASE("voxel_down_sample: order independence", "[voxel_down_sample]") {
   const double voxel_size = 0.5;
-  std::vector<Eigen::Vector3d> a = {{0.1, 0.1, 0.1}, {3.2, 1.1, 0.7}, {7.5, 4.5, 2.3}, {0.4, 0.4, 0.4}};
-  std::vector<Eigen::Vector3d> b = a;
+  std::vector<Eigen::Vector3s> a = {{0.1, 0.1, 0.1}, {3.2, 1.1, 0.7}, {7.5, 4.5, 2.3}, {0.4, 0.4, 0.4}};
+  std::vector<Eigen::Vector3s> b = a;
   std::reverse(b.begin(), b.end());
 
   const auto ra = voxel_down_sample(a, voxel_size);
@@ -78,7 +78,7 @@ TEST_CASE("voxel_down_sample: order independence", "[voxel_down_sample]") {
 }
 
 TEST_CASE("voxel_down_sample: doubling voxel size collapses points", "[voxel_down_sample]") {
-  const std::vector<Eigen::Vector3d> points = {{0.1, 0.1, 0.1}, {0.7, 0.1, 0.1}};
+  const std::vector<Eigen::Vector3s> points = {{0.1, 0.1, 0.1}, {0.7, 0.1, 0.1}};
   const auto small = voxel_down_sample(points, 0.5);
   const auto large = voxel_down_sample(points, 1.0);
   REQUIRE(small.size() == 2);
