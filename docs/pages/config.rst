@@ -82,7 +82,8 @@ These show up under the top level of a Python config and as ROS launch arguments
 
 - **convergence_criterion** (`float`, default ``1e-5``)
 
-  Termination criterion for optimization.
+  Termination criterion for optimization. ICP stops once the cost changes by less than this
+  fraction of itself between two iterations.
   Lower (stricter) values will requires more ICP iterations.
 
 - **max_num_threads** (`int`, default ``0``)

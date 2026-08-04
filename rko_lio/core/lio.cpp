@@ -174,7 +174,7 @@ LinearSystem build_icp_linear_system(const Sophus::SE3s& current_pose,
     throw std::runtime_error("Number of correspondences are 0.");
   }
 
-  return {H_icp / correspondences_counter, b_icp / correspondences_counter, 0.5 * chi_icp};
+  return {H_icp / correspondences_counter, b_icp / correspondences_counter, 0.5 * chi_icp / correspondences_counter};
 }
 
 LinearSystem build_orientation_linear_system(const Sophus::SE3s& current_pose,
@@ -201,6 +201,7 @@ Sophus::SE3s icp(const Vector3sVector& frame,
                           : -1;
 
   Sophus::SE3s current_pose = initial_guess;
+  Scalar previous_chi = -1;
 
   for (size_t i = 0; i < config.max_iterations; ++i) {
     const auto& [H, b, chi] = std::invoke([&]() -> LinearSystem {
@@ -209,7 +210,9 @@ Sophus::SE3s icp(const Vector3sVector& frame,
       if (beta >= 0) {
         const auto& [H_ori, b_ori, chi_ori] =
             build_orientation_linear_system(current_pose, optional_accel_info->local_gravity_estimate);
-        return {H_icp + H_ori / beta, b_icp + b_ori / beta, chi_icp + chi_ori / beta};
+        // only chi_icp is used for convergence checks. chi_ori is typically small, fine to ignore, and problematically
+        // noisy near convergence
+        return {H_icp + H_ori / beta, b_icp + b_ori / beta, chi_icp};
       }
       return {H_icp, b_icp, chi_icp};
     });
@@ -217,7 +220,11 @@ Sophus::SE3s icp(const Vector3sVector& frame,
     const Eigen::Vector6s dx = H.ldlt().solve(-b);
     current_pose = Sophus::SE3s::exp(dx) * current_pose;
 
-    if (dx.norm() < config.convergence_criterion || i == (config.max_iterations - 1)) {
+    // Ceres function_tolerance style convergence check
+    const Scalar cost_change = std::abs(previous_chi - chi);
+    const bool converged = previous_chi > 0 && cost_change <= config.convergence_criterion * previous_chi;
+    previous_chi = chi;
+    if (converged || i == (config.max_iterations - 1)) {
       // TODO: proper debug logging
       // std::cout << "iter " << i << ", beta: " << beta << ", chi: " << chi << ", num_assoc: " <<
       // correspondences.size() << "\n";
@@ -503,9 +510,8 @@ Vector3sVector LIO::register_scan(Vector3sVector scan, const TimestampVector& ti
   return std::move(preproc_result.filtered_frame);
 }
 
-Vector3sVector LIO::register_scan(const Sophus::SE3s& extrinsic_lidar2base,
-                                  Vector3sVector scan,
-                                  const TimestampVector& timestamps) {
+Vector3sVector
+LIO::register_scan(const Sophus::SE3s& extrinsic_lidar2base, Vector3sVector scan, const TimestampVector& timestamps) {
   if (extrinsic_lidar2base.log().norm() < EPSILON) {
     return register_scan(std::move(scan), timestamps);
   }

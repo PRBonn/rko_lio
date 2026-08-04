@@ -116,7 +116,7 @@ class LIOConfig:
     min_range : float, default 1.0
         Minimum usable range of lidar (meters).
     convergence_criterion : float, default 1e-5
-        Convergence threshold for optimization.
+        Convergence threshold for optimization, on the relative change in cost per iteration.
     max_correspondence_distance : float, default 0.5
         Max distance for associating points (meters).
     max_num_threads : int, default 0
