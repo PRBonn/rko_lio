@@ -49,9 +49,10 @@ BufferableBag::TFBridge::TFBridge(rclcpp::Node& node) {
   serializer = rclcpp::Serialization<tf2_msgs::msg::TFMessage>();
 }
 
-void BufferableBag::TFBridge::ProcessTFMessage(const std::shared_ptr<rosbag2_storage::SerializedBagMessage> msg) const {
+void BufferableBag::TFBridge::ProcessTFMessage(
+    const std::shared_ptr<rosbag2_storage::SerializedBagMessage>& msg) const {
   tf2_msgs::msg::TFMessage tf_message;
-  rclcpp::SerializedMessage serialized_msg(*msg->serialized_data);
+  const rclcpp::SerializedMessage serialized_msg(*msg->serialized_data);
   serializer.deserialize_message(&serialized_msg, &tf_message);
   // Broadcast transforms to /tf and /tf_static topics
   for (auto& transform : tf_message.transforms) {
@@ -65,7 +66,7 @@ void BufferableBag::TFBridge::ProcessTFMessage(const std::shared_ptr<rosbag2_sto
 
 // BufferableBag-----------------------------------------------------------------------------------
 BufferableBag::BufferableBag(const std::string& bag_path,
-                             const std::shared_ptr<TFBridge> tf_bridge,
+                             const std::shared_ptr<TFBridge>& tf_bridge,
                              const std::vector<std::string>& topics,
                              const tf2::Duration seek,
                              const std::chrono::seconds buffer_size)
@@ -76,7 +77,7 @@ BufferableBag::BufferableBag(const std::string& bag_path,
   publish_tf_static(bag_path);
   bag_reader_->open(bag_path);
   bag_reader_->seek(seek.count());
-  bag_reader_->set_filter(rosbag2_storage::StorageFilter{topics_});
+  bag_reader_->set_filter(rosbag2_storage::StorageFilter{.topics = topics_});
   message_count_ = [&]() {
     size_t message_count = 0;
     const auto& metadata = bag_reader_->get_metadata();
@@ -99,7 +100,7 @@ void BufferableBag::publish_tf_static(const std::string& bag_path) {
   std::cout << "Opening the bag first to publish all the tf_static messages\n";
   rosbag2_cpp::Reader tf_reader;
   tf_reader.open(bag_path);
-  tf_reader.set_filter(rosbag2_storage::StorageFilter{{"/tf_static"}});
+  tf_reader.set_filter(rosbag2_storage::StorageFilter{.topics = {"/tf_static"}});
   while (tf_reader.has_next()) {
     const auto msg = tf_reader.read_next();
     tf_bridge_->ProcessTFMessage(msg);

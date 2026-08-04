@@ -56,36 +56,17 @@ core::ImuControl imu_msg_to_imu_data(const sensor_msgs::msg::Imu& imu_msg);
 
 class BaseNode {
 public:
-  rclcpp::Node::SharedPtr node;
-  std::unique_ptr<core::LIO> lio;
-  core::TimestampProcessingConfig timestamp_proc_config;
-
-  std::string imu_topic;
-  std::string imu_frame = ""; // default: get from the first imu message
-  std::string lidar_topic;
-  std::string lidar_frame = ""; // default: get from the first lidar message
-  std::string base_frame;
-  std::string odom_frame = "odom";
-  std::string odom_topic = "rko_lio/odom";
-  std::string map_topic = "rko_lio/local_map";
-  std::string deskewed_scan_topic = "rko_lio/frame";
-
-  bool dump_results = false;
-  std::string results_dir = "results";
-  std::string run_name = "rko_lio_run";
-
-  bool invert_odom_tf = false;
-  bool publish_lidar_acceleration = false;
-  bool publish_deskewed_scan = false;
-  bool publish_local_map = false;
-
+  // field order minimises padding
   Sophus::SE3s extrinsic_imu2base;
   Sophus::SE3s extrinsic_lidar2base;
-  bool extrinsics_set = false;
 
+  std::unique_ptr<core::LIO> lio;
+  std::unique_ptr<tf2_ros::TransformBroadcaster> tf_broadcaster;
+  core::Nsec publish_map_after = std::chrono::seconds(1);
+  rclcpp::Node::SharedPtr node;
+  core::TimestampProcessingConfig timestamp_proc_config;
   std::shared_ptr<tf2_ros::TransformListener> tf_listener;
   std::shared_ptr<tf2_ros::Buffer> tf_buffer;
-  std::unique_ptr<tf2_ros::TransformBroadcaster> tf_broadcaster;
 
   rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odom_publisher;
   rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr frame_publisher;
@@ -94,8 +75,27 @@ public:
 
   // map publish thread
   std::jthread map_publish_thead;
-  core::Nsec publish_map_after = std::chrono::seconds(1);
+
+  std::string imu_topic;
+  std::string imu_frame; // default: get from the first imu message
+  std::string lidar_topic;
+  std::string lidar_frame; // default: get from the first lidar message
+  std::string base_frame;
+  std::string odom_frame = "odom";
+  std::string odom_topic = "rko_lio/odom";
+  std::string map_topic = "rko_lio/local_map";
+  std::string deskewed_scan_topic = "rko_lio/frame";
+  std::string results_dir = "results";
+  std::string run_name = "rko_lio_run";
+
   std::mutex local_map_mutex;
+
+  bool dump_results = false;
+  bool invert_odom_tf = false;
+  bool publish_lidar_acceleration = false;
+  bool publish_deskewed_scan = false;
+  bool publish_local_map = false;
+  bool extrinsics_set = false;
 
   // shutdown flag
   std::atomic<bool> atomic_node_running = true;

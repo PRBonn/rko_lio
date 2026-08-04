@@ -114,7 +114,7 @@ struct IntervalStats {
     const Scalar previous_mean = imu_accel_mag_mean;
     const Scalar accel_norm = uncompensated_unbiased_accel.norm();
 
-    imu_accel_mag_mean += (accel_norm - previous_mean) / imu_count;
+    imu_accel_mag_mean += (accel_norm - previous_mean) / static_cast<Scalar>(imu_count);
     welford_sum_of_squares += (accel_norm - previous_mean) * (accel_norm - imu_accel_mag_mean);
 
     body_acceleration_sum += compensated_accel;

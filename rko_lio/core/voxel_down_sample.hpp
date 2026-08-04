@@ -25,7 +25,7 @@
 #include "util.hpp"
 
 #include <Eigen/Core>
-#include <cmath>
+#include <cstdint>
 #include <sophus/se3.hpp>
 
 namespace rko_lio::core {
@@ -33,15 +33,13 @@ namespace rko_lio::core {
 std::vector<Eigen::Vector3s> voxel_down_sample(const std::vector<Eigen::Vector3s>& frame, const Scalar voxel_size);
 
 inline Eigen::Vector3i point_to_voxel(const Eigen::Vector3s& point, const Scalar inv_voxel_size) {
-  return {static_cast<int>(std::floor(point.x() * inv_voxel_size)),
-          static_cast<int>(std::floor(point.y() * inv_voxel_size)),
-          static_cast<int>(std::floor(point.z() * inv_voxel_size))};
+  return (point * inv_voxel_size).array().floor().cast<int>();
 }
 
 struct VoxelHash {
   std::size_t operator()(const Eigen::Vector3i& voxel) const {
-    const uint32_t* vec = reinterpret_cast<const uint32_t*>(voxel.data());
-    return (vec[0] * 73856093 ^ vec[1] * 19349669 ^ vec[2] * 83492791);
+    const Eigen::Matrix<uint32_t, 3, 1> v = voxel.cast<uint32_t>();
+    return ((v.x() * 73856093) ^ (v.y() * 19349669) ^ (v.z() * 83492791));
   }
 };
 } // namespace rko_lio::core

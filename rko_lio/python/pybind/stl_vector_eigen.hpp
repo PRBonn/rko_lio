@@ -35,7 +35,6 @@
 namespace py = pybind11;
 #include <pybind11/eigen.h>
 #include <pybind11/numpy.h>
-#include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 #include <pybind11/stl_bind.h>
 
@@ -60,8 +59,8 @@ py::class_<Vector, holder_type> bind_vector_without_repr(py::module& m, std::str
 //   straight through and anything else is converted once by forcecast.
 template <typename EigenVector>
 std::vector<EigenVector>
-py_array_to_vectors(py::array_t<typename EigenVector::Scalar, py::array::c_style | py::array::forcecast> array) {
-  int64_t eigen_vector_size = EigenVector::SizeAtCompileTime;
+py_array_to_vectors(const py::array_t<typename EigenVector::Scalar, py::array::c_style | py::array::forcecast>& array) {
+  const int64_t eigen_vector_size = EigenVector::SizeAtCompileTime;
   if (array.ndim() != 2 || array.shape(1) != eigen_vector_size) {
     throw py::cast_error();
   }
@@ -88,7 +87,7 @@ py::class_<Vector, holder_type> pybind_eigen_vector_of_vector(py::module& m,
       py::bind_vector_without_repr<std::vector<EigenVector>>(m, bind_name, py::buffer_protocol(), py::module_local());
   vec.def(py::init(init_func));
   vec.def_buffer([](std::vector<EigenVector>& v) -> py::buffer_info {
-    size_t rows = EigenVector::RowsAtCompileTime;
+    const size_t rows = EigenVector::RowsAtCompileTime;
     return py::buffer_info(v.data(), sizeof(Scalar), py::format_descriptor<Scalar>::format(), 2, {v.size(), rows},
                            {sizeof(EigenVector), sizeof(Scalar)});
   });

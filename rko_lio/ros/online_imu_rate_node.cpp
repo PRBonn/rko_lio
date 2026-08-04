@@ -53,6 +53,7 @@ public:
   OnlineImuRateNode(OnlineImuRateNode&&) = delete;
   OnlineImuRateNode& operator=(const OnlineImuRateNode&) = delete;
   OnlineImuRateNode& operator=(OnlineImuRateNode&&) = delete;
+  ~OnlineImuRateNode() = default;
 
   explicit OnlineImuRateNode(const rclcpp::NodeOptions& options)
       : BaseNode("rko_lio_online_imu_rate_node", options), timer("RKO LIO Online IMU-rate Node") {

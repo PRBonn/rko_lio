@@ -70,8 +70,8 @@ inline geometry_msgs::msg::Transform sophus_to_transform(const Sophus::SE3s& T) 
 
 inline Sophus::SE3s transform_to_sophus(const geometry_msgs::msg::TransformStamped& transform) {
   const auto& t = transform.transform;
-  return {Sophus::SE3s::QuaternionType(t.rotation.w, t.rotation.x, t.rotation.y, t.rotation.z),
-          Sophus::SE3s::Point(t.translation.x, t.translation.y, t.translation.z)};
+  return {Eigen::Quaterniond(t.rotation.w, t.rotation.x, t.rotation.y, t.rotation.z).cast<core::Scalar>(),
+          Eigen::Vector3d(t.translation.x, t.translation.y, t.translation.z).cast<core::Scalar>()};
 }
 
 inline std::optional<Sophus::SE3s> get_transform(const std::shared_ptr<tf2_ros::Buffer>& tf_buffer,
@@ -85,7 +85,7 @@ inline std::optional<Sophus::SE3s> get_transform(const std::shared_ptr<tf2_ros::
   try {
     tf_buffer->_validateFrameId("from_frame", from_frame);
     tf_buffer->_validateFrameId("to frame", to_frame);
-    std::unique_ptr<std::string> error_str = std::make_unique<std::string>();
+    const std::unique_ptr<std::string> error_str = std::make_unique<std::string>();
     if (!tf_buffer->canTransform(to_frame, from_frame, tf_time, tf_timeout, error_str.get())) {
       RCLCPP_WARN_STREAM(rclcpp::get_logger("transform lookup"),
                          "Cannot transform from: " << from_frame << " -> to: " << to_frame

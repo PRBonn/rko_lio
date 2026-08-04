@@ -47,7 +47,7 @@ void ThreadedNode::imu_callback(const sensor_msgs::msg::Imu::ConstSharedPtr& imu
     return;
   }
   {
-    std::lock_guard lock(buffer_mutex);
+    const std::scoped_lock lock(buffer_mutex);
     imu_buffer.emplace(imu_msg_to_imu_data(*imu_msg));
     atomic_can_process = !lidar_buffer.empty() && imu_buffer.back().time > lidar_buffer.front().timestamps.max;
   }
@@ -61,7 +61,7 @@ void ThreadedNode::lidar_callback(const sensor_msgs::msg::PointCloud2::ConstShar
     return;
   }
   {
-    std::lock_guard lock(buffer_mutex);
+    const std::scoped_lock lock(buffer_mutex);
     if (lidar_buffer.size() >= max_lidar_buffer_size) {
       RCLCPP_WARN_STREAM(node->get_logger(), "Registration lidar buffer limit reached. Dropping frame.");
       sync_condition_variable.notify_one();
@@ -71,7 +71,7 @@ void ThreadedNode::lidar_callback(const sensor_msgs::msg::PointCloud2::ConstShar
   try {
     LidarFrame frame = process_lidar_msg(lidar_msg);
     {
-      std::lock_guard lock(buffer_mutex);
+      const std::scoped_lock lock(buffer_mutex);
       lidar_buffer.push(std::move(frame));
       atomic_can_process = !imu_buffer.empty() && imu_buffer.back().time > lidar_buffer.front().timestamps.max;
     }
