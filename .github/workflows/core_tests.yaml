@@ -1,9 +1,11 @@
 name: Core C++ Tests
 on:
-  push:
-    branches: [master]
   pull_request:
     branches: [master]
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   check_relevant_changes:
     runs-on: ubuntu-latest
@@ -20,7 +22,7 @@ jobs:
         run: |
           changed_files=$(git diff --name-only origin/master)
           echo "Changed files: $changed_files"
-          if echo "$changed_files" | grep -vE "^($IGNORED_FOLDERS)/|^($IGNORED_FILES)$" > /dev/null; then
+          if [ -n "$changed_files" ] && echo "$changed_files" | grep -vE "^($IGNORED_FOLDERS)/|^($IGNORED_FILES)$" > /dev/null; then
             echo "continue_run=true" >> $GITHUB_OUTPUT
           else
             echo "continue_run=false" >> $GITHUB_OUTPUT
