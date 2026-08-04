@@ -44,7 +44,7 @@
 namespace {
 using namespace rko_lio::core;
 
-constexpr Scalar EPSILON = 1e-8;
+constexpr Scalar NEGLIGIBLE_EXTRINSIC = 1e-6;
 constexpr auto EPSILON_TIME = std::chrono::nanoseconds(10);
 
 inline void transform_points(const Sophus::SE3s& T, Vector3sVector& points) {
@@ -379,7 +379,7 @@ void LIO::add_imu_measurement(const ImuControl& base_imu) {
 }
 
 void LIO::add_imu_measurement(const Sophus::SE3s& extrinsic_imu2base, const ImuControl& raw_imu) {
-  if (extrinsic_imu2base.log().norm() < EPSILON) {
+  if (extrinsic_imu2base.log().norm() < NEGLIGIBLE_EXTRINSIC) {
     add_imu_measurement(raw_imu);
     return;
   }
@@ -512,7 +512,7 @@ Vector3sVector LIO::register_scan(Vector3sVector scan, const TimestampVector& ti
 
 Vector3sVector
 LIO::register_scan(const Sophus::SE3s& extrinsic_lidar2base, Vector3sVector scan, const TimestampVector& timestamps) {
-  if (extrinsic_lidar2base.log().norm() < EPSILON) {
+  if (extrinsic_lidar2base.log().norm() < NEGLIGIBLE_EXTRINSIC) {
     return register_scan(std::move(scan), timestamps);
   }
 
