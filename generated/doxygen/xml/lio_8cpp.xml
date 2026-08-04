@@ -253,7 +253,7 @@
 <codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacerko__lio_1_1core" kindref="compound">rko_lio::core</ref>;</highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>Scalar<sp/>EPSILON<sp/>=<sp/>1e-8;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>Scalar<sp/>NEGLIGIBLE_EXTRINSIC<sp/>=<sp/>1e-6;</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>EPSILON_TIME<sp/>=<sp/>std::chrono::nanoseconds(10);</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
 <codeline lineno="50"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>transform_points(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3s&amp;<sp/>T,<sp/>Vector3sVector&amp;<sp/>points)<sp/>{</highlight></codeline>
@@ -588,7 +588,7 @@
 <codeline lineno="379"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="380"><highlight class="normal"></highlight></codeline>
 <codeline lineno="381"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a34139c65d35e7929125788bdafd0470c" kindref="member">LIO::add_imu_measurement</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3s&amp;<sp/>extrinsic_imu2base,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1ImuControl" kindref="compound">ImuControl</ref>&amp;<sp/>raw_imu)<sp/>{</highlight></codeline>
-<codeline lineno="382"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(extrinsic_imu2base.log().norm()<sp/>&lt;<sp/>EPSILON)<sp/>{</highlight></codeline>
+<codeline lineno="382"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(extrinsic_imu2base.log().norm()<sp/>&lt;<sp/>NEGLIGIBLE_EXTRINSIC)<sp/>{</highlight></codeline>
 <codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a34139c65d35e7929125788bdafd0470c" kindref="member">add_imu_measurement</ref>(raw_imu);</highlight></codeline>
 <codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="385"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
@@ -721,7 +721,7 @@
 <codeline lineno="512"><highlight class="normal"></highlight></codeline>
 <codeline lineno="513"><highlight class="normal">Vector3sVector</highlight></codeline>
 <codeline lineno="514"><highlight class="normal"><ref refid="classrko__lio_1_1core_1_1LIO_1aaba2cf6d3b84ffaa8506ca1401217ebc" kindref="member">LIO::register_scan</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3s&amp;<sp/>extrinsic_lidar2base,<sp/>Vector3sVector<sp/>scan,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>TimestampVector&amp;<sp/>timestamps)<sp/>{</highlight></codeline>
-<codeline lineno="515"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(extrinsic_lidar2base.log().norm()<sp/>&lt;<sp/>EPSILON)<sp/>{</highlight></codeline>
+<codeline lineno="515"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(extrinsic_lidar2base.log().norm()<sp/>&lt;<sp/>NEGLIGIBLE_EXTRINSIC)<sp/>{</highlight></codeline>
 <codeline lineno="516"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1aaba2cf6d3b84ffaa8506ca1401217ebc" kindref="member">register_scan</ref>(std::move(scan),<sp/>timestamps);</highlight></codeline>
 <codeline lineno="517"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="518"><highlight class="normal"></highlight></codeline>

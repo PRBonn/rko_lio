@@ -38,9 +38,9 @@ Functions
 
 - :ref:`exhale_function_point__cloud__read_8cpp_1a77975e01f058823f8615a43bba6396a5`
 
-- :ref:`exhale_function_point__cloud__read_8cpp_1ac97c323cb1b6bab04e1f5a2766731cd8`
-
 - :ref:`exhale_function_point__cloud__read_8hpp_1a77d7ba00ca1501f61934151103ed9af2`
+
+- :ref:`exhale_function_point__cloud__read_8cpp_1ac97c323cb1b6bab04e1f5a2766731cd8`
 
 - :ref:`exhale_function_ros__vectors_8hpp_1ae723899a59eb320ecfecaf27e4a2404b`
 
