@@ -4,6 +4,7 @@
     <compoundname>lio.hpp</compoundname>
     <includes refid="voxel__hash__map_8hpp" local="yes">voxel_hash_map.hpp</includes>
     <includes refid="util_8hpp" local="yes">util.hpp</includes>
+    <includes local="no">tbb/task_arena.h</includes>
     <includedby refid="lio_8cpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp</includedby>
     <includedby refid="preprocess__scan_8hpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.hpp</includedby>
     <includedby refid="base__node_8hpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp</includedby>
@@ -14,6 +15,8 @@
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
         </childnode>
       </node>
       <node id="4">
@@ -75,6 +78,9 @@
       </node>
       <node id="8">
         <label>sophus/se3.hpp</label>
+      </node>
+      <node id="14">
+        <label>tbb/task_arena.h</label>
       </node>
       <node id="11">
         <label>tsl/robin_map.h</label>
@@ -149,81 +155,85 @@
 <codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;voxel_hash_map.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;util.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacerko__lio_1_1core" kindref="compound">rko_lio::core</ref><sp/>{</highlight></codeline>
-<codeline lineno="37" refid="classrko__lio_1_1core_1_1LIO" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrko__lio_1_1core_1_1LIO" kindref="compound">LIO</ref><sp/>{</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="40" refid="structrko__lio_1_1core_1_1LIO_1_1Config" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config" kindref="compound">Config</ref><sp/>{</highlight></codeline>
-<codeline lineno="42" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a047439a48b3c8afebe95407926efbada" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a047439a48b3c8afebe95407926efbada" kindref="member">deskew</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight></codeline>
-<codeline lineno="45" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a9cc9bd40427d206f8349bc330c40aa1f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a9cc9bd40427d206f8349bc330c40aa1f" kindref="member">max_iterations</ref><sp/>=<sp/>100;</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"></highlight></codeline>
-<codeline lineno="48" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a67bdbe027a35535e1ead0817708bbf21" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Scalar<sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a67bdbe027a35535e1ead0817708bbf21" kindref="member">voxel_size</ref><sp/>=<sp/>1.0;</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="51" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a670b666aa92cf07b19b8537bf3e9446a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a670b666aa92cf07b19b8537bf3e9446a" kindref="member">max_points_per_voxel</ref><sp/>=<sp/>20;</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"></highlight></codeline>
-<codeline lineno="54" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a05692713c28ca65ec3a8d17101fc339d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Scalar<sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a05692713c28ca65ec3a8d17101fc339d" kindref="member">max_range</ref><sp/>=<sp/>100.0;</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"></highlight></codeline>
-<codeline lineno="57" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a68e1ae51d4a2f51ed6c056c4ded4305f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Scalar<sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a68e1ae51d4a2f51ed6c056c4ded4305f" kindref="member">min_range</ref><sp/>=<sp/>1.0;</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"></highlight></codeline>
-<codeline lineno="60" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a56d0d45436b8a84fff17bcc091db526a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Scalar<sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a56d0d45436b8a84fff17bcc091db526a" kindref="member">convergence_criterion</ref><sp/>=<sp/>1e-5;</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"></highlight></codeline>
-<codeline lineno="63" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1ae1d2e741a885898cbc5e71ad510f0b22" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Scalar<sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1ae1d2e741a885898cbc5e71ad510f0b22" kindref="member">max_correspondence_distance</ref><sp/>=<sp/>0.5;</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"></highlight></codeline>
-<codeline lineno="66" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a5089f617d86e9ae45f524c23d322617a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a5089f617d86e9ae45f524c23d322617a" kindref="member">max_num_threads</ref><sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"></highlight></codeline>
-<codeline lineno="69" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a2d65fe516d188013b626c20f1bc583e2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a2d65fe516d188013b626c20f1bc583e2" kindref="member">initialization_phase</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"></highlight></codeline>
-<codeline lineno="72" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a31eee3140c675a6232ebd602db723fa0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Scalar<sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a31eee3140c675a6232ebd602db723fa0" kindref="member">max_expected_jerk</ref><sp/>=<sp/>3;</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"></highlight></codeline>
-<codeline lineno="75" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1ae87229b29b2760d18c47d3b3c67c40ba" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1ae87229b29b2760d18c47d3b3c67c40ba" kindref="member">double_downsample</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"></highlight></codeline>
-<codeline lineno="78" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a5dda354239572c1c5ec162a8735123c0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Scalar<sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a5dda354239572c1c5ec162a8735123c0" kindref="member">min_beta</ref><sp/>=<sp/>200;</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"></highlight></codeline>
-<codeline lineno="82" refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config" kindref="compound">Config</ref><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" kindref="member">config</ref>;</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"></highlight></codeline>
-<codeline lineno="85" refid="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1VoxelHashMap" kindref="compound">VoxelHashMap</ref><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" kindref="member">map</ref>;</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"></highlight></codeline>
-<codeline lineno="88" refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1State" kindref="compound">State</ref><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref>;</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"></highlight></codeline>
-<codeline lineno="91" refid="classrko__lio_1_1core_1_1LIO_1aedab30ea81941b951314113cd9d3166a" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1ImuBias" kindref="compound">ImuBias</ref><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1aedab30ea81941b951314113cd9d3166a" kindref="member">imu_bias</ref>;</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"></highlight></codeline>
-<codeline lineno="94" refid="classrko__lio_1_1core_1_1LIO_1acaef58557031dd11624aea7cc84e0c2e" refkind="member"><highlight class="normal"><sp/><sp/>Eigen::Vector3s<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1acaef58557031dd11624aea7cc84e0c2e" kindref="member">mean_body_acceleration</ref><sp/>=<sp/>Eigen::Vector3s::Zero();</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"></highlight></codeline>
-<codeline lineno="97" refid="classrko__lio_1_1core_1_1LIO_1a81ef741f00c23279b2f1dcf08cc20e29" refkind="member"><highlight class="normal"><sp/><sp/>Eigen::Matrix3s<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a81ef741f00c23279b2f1dcf08cc20e29" kindref="member">body_acceleration_covariance</ref><sp/>=<sp/>Eigen::Matrix3s::Identity();</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"></highlight></codeline>
-<codeline lineno="100" refid="classrko__lio_1_1core_1_1LIO_1a9b89efdfdcc0ab01ef3fd6caaadb69d2" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats" kindref="compound">IntervalStats</ref><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a9b89efdfdcc0ab01ef3fd6caaadb69d2" kindref="member">interval_stats</ref>;</highlight></codeline>
-<codeline lineno="101"><highlight class="normal"></highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1core_1_1LIO" kindref="compound">LIO</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config" kindref="compound">Config</ref>&amp;<sp/>config_);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tbb/task_arena.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacerko__lio_1_1core" kindref="compound">rko_lio::core</ref><sp/>{</highlight></codeline>
+<codeline lineno="39" refid="classrko__lio_1_1core_1_1LIO" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrko__lio_1_1core_1_1LIO" kindref="compound">LIO</ref><sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="42" refid="structrko__lio_1_1core_1_1LIO_1_1Config" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config" kindref="compound">Config</ref><sp/>{</highlight></codeline>
+<codeline lineno="44" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a047439a48b3c8afebe95407926efbada" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a047439a48b3c8afebe95407926efbada" kindref="member">deskew</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a9cc9bd40427d206f8349bc330c40aa1f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a9cc9bd40427d206f8349bc330c40aa1f" kindref="member">max_iterations</ref><sp/>=<sp/>100;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a67bdbe027a35535e1ead0817708bbf21" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Scalar<sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a67bdbe027a35535e1ead0817708bbf21" kindref="member">voxel_size</ref><sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a670b666aa92cf07b19b8537bf3e9446a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a670b666aa92cf07b19b8537bf3e9446a" kindref="member">max_points_per_voxel</ref><sp/>=<sp/>20;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a05692713c28ca65ec3a8d17101fc339d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Scalar<sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a05692713c28ca65ec3a8d17101fc339d" kindref="member">max_range</ref><sp/>=<sp/>100.0;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a68e1ae51d4a2f51ed6c056c4ded4305f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Scalar<sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a68e1ae51d4a2f51ed6c056c4ded4305f" kindref="member">min_range</ref><sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a56d0d45436b8a84fff17bcc091db526a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Scalar<sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a56d0d45436b8a84fff17bcc091db526a" kindref="member">convergence_criterion</ref><sp/>=<sp/>1e-5;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1ae1d2e741a885898cbc5e71ad510f0b22" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Scalar<sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1ae1d2e741a885898cbc5e71ad510f0b22" kindref="member">max_correspondence_distance</ref><sp/>=<sp/>0.5;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a5089f617d86e9ae45f524c23d322617a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a5089f617d86e9ae45f524c23d322617a" kindref="member">max_num_threads</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a2d65fe516d188013b626c20f1bc583e2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a2d65fe516d188013b626c20f1bc583e2" kindref="member">initialization_phase</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a31eee3140c675a6232ebd602db723fa0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Scalar<sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a31eee3140c675a6232ebd602db723fa0" kindref="member">max_expected_jerk</ref><sp/>=<sp/>3;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1ae87229b29b2760d18c47d3b3c67c40ba" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1ae87229b29b2760d18c47d3b3c67c40ba" kindref="member">double_downsample</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a5dda354239572c1c5ec162a8735123c0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Scalar<sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a5dda354239572c1c5ec162a8735123c0" kindref="member">min_beta</ref><sp/>=<sp/>200;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config" kindref="compound">Config</ref><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" kindref="member">config</ref>;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1VoxelHashMap" kindref="compound">VoxelHashMap</ref><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" kindref="member">map</ref>;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="classrko__lio_1_1core_1_1LIO_1ac02d8c6dce57bab05b7e1285ee23efd5" refkind="member"><highlight class="normal"><sp/><sp/>tbb::task_arena<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1ac02d8c6dce57bab05b7e1285ee23efd5" kindref="member">arena</ref>;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1State" kindref="compound">State</ref><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref>;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="classrko__lio_1_1core_1_1LIO_1aedab30ea81941b951314113cd9d3166a" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1ImuBias" kindref="compound">ImuBias</ref><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1aedab30ea81941b951314113cd9d3166a" kindref="member">imu_bias</ref>;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99" refid="classrko__lio_1_1core_1_1LIO_1acaef58557031dd11624aea7cc84e0c2e" refkind="member"><highlight class="normal"><sp/><sp/>Eigen::Vector3s<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1acaef58557031dd11624aea7cc84e0c2e" kindref="member">mean_body_acceleration</ref><sp/>=<sp/>Eigen::Vector3s::Zero();</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102" refid="classrko__lio_1_1core_1_1LIO_1a81ef741f00c23279b2f1dcf08cc20e29" refkind="member"><highlight class="normal"><sp/><sp/>Eigen::Matrix3s<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a81ef741f00c23279b2f1dcf08cc20e29" kindref="member">body_acceleration_covariance</ref><sp/>=<sp/>Eigen::Matrix3s::Identity();</highlight></codeline>
 <codeline lineno="103"><highlight class="normal"></highlight></codeline>
-<codeline lineno="105"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a34139c65d35e7929125788bdafd0470c" kindref="member">add_imu_measurement</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1ImuControl" kindref="compound">ImuControl</ref>&amp;<sp/>base_imu);</highlight></codeline>
+<codeline lineno="105" refid="classrko__lio_1_1core_1_1LIO_1a9b89efdfdcc0ab01ef3fd6caaadb69d2" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats" kindref="compound">IntervalStats</ref><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a9b89efdfdcc0ab01ef3fd6caaadb69d2" kindref="member">interval_stats</ref>;</highlight></codeline>
 <codeline lineno="106"><highlight class="normal"></highlight></codeline>
-<codeline lineno="113"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a34139c65d35e7929125788bdafd0470c" kindref="member">add_imu_measurement</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3s&amp;<sp/>extrinsic_imu2base,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1ImuControl" kindref="compound">ImuControl</ref>&amp;<sp/>raw_imu);</highlight></codeline>
-<codeline lineno="114"><highlight class="normal"></highlight></codeline>
-<codeline lineno="122"><highlight class="normal"><sp/><sp/>Vector3sVector<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1aaba2cf6d3b84ffaa8506ca1401217ebc" kindref="member">register_scan</ref>(Vector3sVector<sp/>scan,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>TimestampVector&amp;<sp/>timestamps);</highlight></codeline>
-<codeline lineno="123"><highlight class="normal"></highlight></codeline>
-<codeline lineno="132"><highlight class="normal"><sp/><sp/>Vector3sVector<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1aaba2cf6d3b84ffaa8506ca1401217ebc" kindref="member">register_scan</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3s&amp;<sp/>extrinsic_lidar2base,</highlight></codeline>
-<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Vector3sVector<sp/>scan,</highlight></codeline>
-<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>TimestampVector&amp;<sp/>timestamps);</highlight></codeline>
-<codeline lineno="135"><highlight class="normal"></highlight></codeline>
-<codeline lineno="137" refid="classrko__lio_1_1core_1_1LIO_1abbe45d6d4a850ff4f05ee3653e55d431" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;std::pair&lt;Nsec,<sp/>Sophus::SE3s&gt;&gt;<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1abbe45d6d4a850ff4f05ee3653e55d431" kindref="member">poses_with_timestamps</ref>;</highlight></codeline>
-<codeline lineno="138"><highlight class="normal"></highlight></codeline>
-<codeline lineno="143" refid="classrko__lio_1_1core_1_1LIO_1a582d6fd74013b8c85784326bc45fb7c0" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1State" kindref="compound">State</ref><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a582d6fd74013b8c85784326bc45fb7c0" kindref="member">imu_state</ref>;</highlight></codeline>
-<codeline lineno="144"><highlight class="normal"></highlight></codeline>
-<codeline lineno="145"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="150"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>initialize(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Nsec<sp/>lidar_time);</highlight></codeline>
-<codeline lineno="151"><highlight class="normal"></highlight></codeline>
-<codeline lineno="153"><highlight class="normal"><sp/><sp/>Vector3sVector<sp/>bootstrap_first_scan(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Vector3sVector&amp;<sp/>scan,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Nsec<sp/>current_lidar_time);</highlight></codeline>
-<codeline lineno="154"><highlight class="normal"></highlight></codeline>
-<codeline lineno="156"><highlight class="normal"><sp/><sp/>std::pair&lt;Eigen::Vector3s,<sp/>Eigen::Vector3s&gt;<sp/>motion_priors_from_imu(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Nsec<sp/>current_lidar_time);</highlight></codeline>
-<codeline lineno="157"><highlight class="normal"></highlight></codeline>
-<codeline lineno="159"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>_initialized<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="160"><highlight class="normal"></highlight></codeline>
-<codeline lineno="162"><highlight class="normal"><sp/><sp/>Nsec<sp/>_last_real_imu_time{0};</highlight></codeline>
-<codeline lineno="163"><highlight class="normal"></highlight></codeline>
-<codeline lineno="165"><highlight class="normal"><sp/><sp/>Eigen::Vector3s<sp/>_last_real_base_imu_ang_vel<sp/>=<sp/>Eigen::Vector3s::Zero();</highlight></codeline>
-<codeline lineno="166"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="167"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1core_1_1LIO" kindref="compound">LIO</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config" kindref="compound">Config</ref>&amp;<sp/>config_);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a34139c65d35e7929125788bdafd0470c" kindref="member">add_imu_measurement</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1ImuControl" kindref="compound">ImuControl</ref>&amp;<sp/>base_imu);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a34139c65d35e7929125788bdafd0470c" kindref="member">add_imu_measurement</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3s&amp;<sp/>extrinsic_imu2base,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1ImuControl" kindref="compound">ImuControl</ref>&amp;<sp/>raw_imu);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/>Vector3sVector<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1aaba2cf6d3b84ffaa8506ca1401217ebc" kindref="member">register_scan</ref>(Vector3sVector<sp/>scan,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>TimestampVector&amp;<sp/>timestamps);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/>Vector3sVector<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1aaba2cf6d3b84ffaa8506ca1401217ebc" kindref="member">register_scan</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3s&amp;<sp/>extrinsic_lidar2base,</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Vector3sVector<sp/>scan,</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>TimestampVector&amp;<sp/>timestamps);</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142" refid="classrko__lio_1_1core_1_1LIO_1abbe45d6d4a850ff4f05ee3653e55d431" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;std::pair&lt;Nsec,<sp/>Sophus::SE3s&gt;&gt;<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1abbe45d6d4a850ff4f05ee3653e55d431" kindref="member">poses_with_timestamps</ref>;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148" refid="classrko__lio_1_1core_1_1LIO_1a582d6fd74013b8c85784326bc45fb7c0" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1State" kindref="compound">State</ref><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a582d6fd74013b8c85784326bc45fb7c0" kindref="member">imu_state</ref>;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>initialize(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Nsec<sp/>lidar_time);</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/>Vector3sVector<sp/>bootstrap_first_scan(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Vector3sVector&amp;<sp/>scan,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Nsec<sp/>current_lidar_time);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/>std::pair&lt;Eigen::Vector3s,<sp/>Eigen::Vector3s&gt;<sp/>motion_priors_from_imu(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Nsec<sp/>current_lidar_time);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>_initialized<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/>Nsec<sp/>_last_real_imu_time{0};</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/>Eigen::Vector3s<sp/>_last_real_base_imu_ang_vel<sp/>=<sp/>Eigen::Vector3s::Zero();</highlight></codeline>
+<codeline lineno="171"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="172"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp"/>
   </compounddef>

@@ -109,6 +109,7 @@
   <compound refid="classrko__lio_1_1core_1_1LIO" kind="class"><name>rko_lio::core::LIO</name>
     <member refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" kind="variable"><name>config</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" kind="variable"><name>map</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1ac02d8c6dce57bab05b7e1285ee23efd5" kind="variable"><name>arena</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kind="variable"><name>lidar_state</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1aedab30ea81941b951314113cd9d3166a" kind="variable"><name>imu_bias</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1acaef58557031dd11624aea7cc84e0c2e" kind="variable"><name>mean_body_acceleration</name></member>

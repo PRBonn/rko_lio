@@ -246,6 +246,13 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
+      <type>tbb::task_arena</type>
+      <name>arena</name>
+      <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
+      <anchor>ac02d8c6dce57bab05b7e1285ee23efd5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
       <type>State</type>
       <name>lidar_state</name>
       <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>

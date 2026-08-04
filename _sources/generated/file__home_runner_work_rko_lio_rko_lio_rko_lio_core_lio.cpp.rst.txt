@@ -52,8 +52,6 @@ Includes
 
 - ``tbb/blocked_range.h``
 
-- ``tbb/global_control.h``
-
 - ``tbb/parallel_reduce.h``
 
 - ``tbb/task_arena.h``

@@ -38,6 +38,8 @@ Program Listing for File lio.hpp
    #include "voxel_hash_map.hpp"
    #include "util.hpp"
    
+   #include <tbb/task_arena.h>
+   
    namespace rko_lio::core {
    class LIO {
    public:
@@ -72,6 +74,8 @@ Program Listing for File lio.hpp
      Config config;
    
      VoxelHashMap map;
+   
+     tbb::task_arena arena;
    
      State lidar_state;
    
