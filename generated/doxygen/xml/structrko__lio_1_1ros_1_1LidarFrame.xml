@@ -17,9 +17,9 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="51" column="20" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="51" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structrko__lio_1_1ros_1_1LidarFrame_1a83fbd1ab6f1efebd01bf71e7b87b7ae7" prot="public" static="no" mutable="no">
-        <type>core::Vector3dVector</type>
-        <definition>core::Vector3dVector rko_lio::ros::LidarFrame::points</definition>
+      <memberdef kind="variable" id="structrko__lio_1_1ros_1_1LidarFrame_1aad1df3cee7a8f64a08f6102915a119c6" prot="public" static="no" mutable="no">
+        <type>core::Vector3sVector</type>
+        <definition>core::Vector3sVector rko_lio::ros::LidarFrame::points</definition>
         <argsstring></argsstring>
         <name>points</name>
         <qualifiedname>rko_lio::ros::LidarFrame::points</qualifiedname>
@@ -51,7 +51,7 @@
     </collaborationgraph>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="50" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="50" bodyend="53"/>
     <listofallmembers>
-      <member refid="structrko__lio_1_1ros_1_1LidarFrame_1a83fbd1ab6f1efebd01bf71e7b87b7ae7" prot="public" virt="non-virtual"><scope>rko_lio::ros::LidarFrame</scope><name>points</name></member>
+      <member refid="structrko__lio_1_1ros_1_1LidarFrame_1aad1df3cee7a8f64a08f6102915a119c6" prot="public" virt="non-virtual"><scope>rko_lio::ros::LidarFrame</scope><name>points</name></member>
       <member refid="structrko__lio_1_1ros_1_1LidarFrame_1a91edd07c96ffb3961d6ddf18feaecd55" prot="public" virt="non-virtual"><scope>rko_lio::ros::LidarFrame</scope><name>timestamps</name></member>
     </listofallmembers>
   </compounddef>

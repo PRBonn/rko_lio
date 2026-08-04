@@ -103,13 +103,13 @@
 <span class="k">namespace</span><span class="w"> </span><span class="nn">rko_lio</span><span class="o">::</span><span class="nn">core</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">PreprocessingResult</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">Vector3dVector</span><span class="w"> </span><span class="n">filtered_frame</span><span class="p">;</span>
-<span class="w">  </span><span class="n">Vector3dVector</span><span class="w"> </span><span class="n">keypoints</span><span class="p">;</span>
-<span class="w">  </span><span class="n">Vector3dVector</span><span class="w"> </span><span class="n">map_frame</span><span class="p">;</span><span class="w"> </span><span class="c1">// populated only when config.double_downsample; empty otherwise</span>
+<span class="w">  </span><span class="n">Vector3sVector</span><span class="w"> </span><span class="n">filtered_frame</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Vector3sVector</span><span class="w"> </span><span class="n">keypoints</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Vector3sVector</span><span class="w"> </span><span class="n">map_frame</span><span class="p">;</span><span class="w"> </span><span class="c1">// populated only when config.double_downsample; empty otherwise</span>
 <span class="p">};</span>
 
 <span class="c1">// clip and downsample the input cloud</span>
-<span class="n">PreprocessingResult</span><span class="w"> </span><span class="nf">preprocess_scan</span><span class="p">(</span><span class="n">Vector3dVector</span><span class="w"> </span><span class="n">frame</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">LIO</span><span class="o">::</span><span class="n">Config</span><span class="o">&amp;</span><span class="w"> </span><span class="n">config</span><span class="p">);</span>
+<span class="n">PreprocessingResult</span><span class="w"> </span><span class="nf">preprocess_scan</span><span class="p">(</span><span class="n">Vector3sVector</span><span class="w"> </span><span class="n">frame</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">LIO</span><span class="o">::</span><span class="n">Config</span><span class="o">&amp;</span><span class="w"> </span><span class="n">config</span><span class="p">);</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace rko_lio::core</span>
 </pre></div>

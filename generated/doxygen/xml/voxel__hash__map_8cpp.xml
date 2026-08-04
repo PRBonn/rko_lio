@@ -12,14 +12,28 @@
     <includes local="no">tuple</includes>
     <includes local="no">vector</includes>
     <incdepgraph>
+      <node id="4">
+        <label>util.hpp</label>
+        <link refid="util_8hpp_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
       <node id="3">
         <label>voxel_down_sample.hpp</label>
         <link refid="voxel__down__sample_8hpp_source"/>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
         <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -27,21 +41,21 @@
         <link refid="voxel__hash__map_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
         <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="10" relation="include">
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -49,47 +63,53 @@
         <link refid="voxel__hash__map_8hpp_source"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
         <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-      </node>
-      <node id="4">
-        <label>Eigen/Core</label>
-      </node>
-      <node id="11">
-        <label>algorithm</label>
-      </node>
-      <node id="12">
-        <label>array</label>
-      </node>
-      <node id="5">
-        <label>cmath</label>
-      </node>
-      <node id="13">
-        <label>limits</label>
-      </node>
-      <node id="7">
-        <label>optional</label>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
       </node>
       <node id="6">
-        <label>sophus/se3.hpp</label>
+        <label>Eigen/Core</label>
       </node>
-      <node id="8">
-        <label>tsl/robin_map.h</label>
+      <node id="14">
+        <label>algorithm</label>
+      </node>
+      <node id="15">
+        <label>array</label>
+      </node>
+      <node id="7">
+        <label>chrono</label>
       </node>
       <node id="9">
-        <label>tuple</label>
+        <label>cmath</label>
+      </node>
+      <node id="16">
+        <label>limits</label>
       </node>
       <node id="10">
+        <label>optional</label>
+      </node>
+      <node id="5">
+        <label>rko_lio/core/scalar.hpp</label>
+      </node>
+      <node id="8">
+        <label>sophus/se3.hpp</label>
+      </node>
+      <node id="11">
+        <label>tsl/robin_map.h</label>
+      </node>
+      <node id="12">
+        <label>tuple</label>
+      </node>
+      <node id="13">
         <label>vector</label>
       </node>
     </incdepgraph>
@@ -161,32 +181,32 @@
 <codeline lineno="59"><highlight class="normal"></highlight></codeline>
 <codeline lineno="60"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacerko__lio_1_1core" kindref="compound">rko_lio::core</ref><sp/>{</highlight></codeline>
 <codeline lineno="61"><highlight class="normal"></highlight></codeline>
-<codeline lineno="62"><highlight class="normal">VoxelHashMap::VoxelHashMap(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>voxel_size,</highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>clipping_distance,</highlight></codeline>
+<codeline lineno="62"><highlight class="normal">VoxelHashMap::VoxelHashMap(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>voxel_size,</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>clipping_distance,</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>max_points_per_voxel)</highlight></codeline>
 <codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>voxel_size_(voxel_size),</highlight></codeline>
 <codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>inv_voxel_size_(1.0<sp/>/<sp/>voxel_size),</highlight></codeline>
 <codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>clipping_distance_(clipping_distance),</highlight></codeline>
 <codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>max_points_per_voxel_(max_points_per_voxel)<sp/>{}</highlight></codeline>
 <codeline lineno="69"><highlight class="normal"></highlight></codeline>
-<codeline lineno="70"><highlight class="normal">std::optional&lt;VoxelBlock::const_iterator&gt;<sp/>VoxelHashMap::get_closest_neighbor(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3d&amp;<sp/>query,</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>max_distance)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>closest_distance_sq<sp/>=<sp/>max_distance<sp/>*<sp/>max_distance;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal">std::optional&lt;VoxelBlock::const_iterator&gt;<sp/>VoxelHashMap::get_closest_neighbor(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s&amp;<sp/>query,</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>max_distance)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/>Scalar<sp/>closest_distance_sq<sp/>=<sp/>max_distance<sp/>*<sp/>max_distance;</highlight></codeline>
 <codeline lineno="73"><highlight class="normal"><sp/><sp/>std::optional&lt;VoxelBlock::const_iterator&gt;<sp/>closest;</highlight></codeline>
 <codeline lineno="74"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Voxel<sp/>voxel<sp/>=<sp/>point_to_voxel(query,<sp/>inv_voxel_size_);</highlight></codeline>
 <codeline lineno="75"><highlight class="normal"></highlight></codeline>
 <codeline lineno="76"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>lower_bounds<sp/>is<sp/>squared<sp/>distance<sp/>from<sp/>the<sp/>query<sp/>to<sp/>the<sp/>near<sp/>face<sp/>of<sp/>a<sp/>neighbouring<sp/>voxel,<sp/>per<sp/>axis.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="77"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Columns<sp/>are<sp/>indexed<sp/>by<sp/>voxel<sp/>shift<sp/>+<sp/>1,<sp/>rows<sp/>are<sp/>axes</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3d<sp/>offset<sp/>=<sp/>query<sp/>-<sp/>voxel.cast&lt;</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&gt;()<sp/>*<sp/>voxel_size_;</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3d<sp/>to_far<sp/>=<sp/>Eigen::Vector3d::Constant(voxel_size_)<sp/>-<sp/>offset;</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/>Eigen::Matrix3d<sp/>lower_bounds;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s<sp/>offset<sp/>=<sp/>query<sp/>-<sp/>voxel.cast&lt;Scalar&gt;()<sp/>*<sp/>voxel_size_;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s<sp/>to_far<sp/>=<sp/>Eigen::Vector3s::Constant(voxel_size_)<sp/>-<sp/>offset;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/>Eigen::Matrix3s<sp/>lower_bounds;</highlight></codeline>
 <codeline lineno="81"><highlight class="normal"><sp/><sp/>lower_bounds.col(0)<sp/>=<sp/>offset.array().square();</highlight></codeline>
 <codeline lineno="82"><highlight class="normal"><sp/><sp/>lower_bounds.col(1).setZero();</highlight></codeline>
 <codeline lineno="83"><highlight class="normal"><sp/><sp/>lower_bounds.col(2)<sp/>=<sp/>to_far.array().square();</highlight></codeline>
 <codeline lineno="84"><highlight class="normal"></highlight></codeline>
 <codeline lineno="85"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Voxel&amp;<sp/>shift<sp/>:<sp/>shifts)<sp/>{</highlight></codeline>
 <codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>lower<sp/>bound<sp/>on<sp/>the<sp/>distance<sp/>to<sp/>query<sp/>within<sp/>this<sp/>voxel<sp/>+<sp/>shift</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>lower_bound_sq<sp/>=</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>lower_bound_sq<sp/>=</highlight></codeline>
 <codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lower_bounds(0,<sp/>shift.x()<sp/>+<sp/>1)<sp/>+<sp/>lower_bounds(1,<sp/>shift.y()<sp/>+<sp/>1)<sp/>+<sp/>lower_bounds(2,<sp/>shift.z()<sp/>+<sp/>1);</highlight></codeline>
 <codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(lower_bound_sq<sp/>&gt;=<sp/>closest_distance_sq)<sp/>{</highlight></codeline>
 <codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
@@ -198,7 +218,7 @@
 <codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>returning<sp/>an<sp/>iterator<sp/>rather<sp/>than<sp/>a<sp/>copy<sp/>reduces<sp/>branching<sp/>(with<sp/>the<sp/>usual<sp/>compiler<sp/>caveats)</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VoxelBlock&amp;<sp/>voxel_points<sp/>=<sp/>search.value();</highlight></codeline>
 <codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>neighbor<sp/>=<sp/>voxel_points.cbegin();<sp/>neighbor<sp/>!=<sp/>voxel_points.cend();<sp/>++neighbor)<sp/>{</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>distance_sq<sp/>=<sp/>(*neighbor<sp/>-<sp/>query).squaredNorm();</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>distance_sq<sp/>=<sp/>(*neighbor<sp/>-<sp/>query).squaredNorm();</highlight></codeline>
 <codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(distance_sq<sp/>&lt;<sp/>closest_distance_sq)<sp/>{</highlight></codeline>
 <codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>closest_distance_sq<sp/>=<sp/>distance_sq;</highlight></codeline>
 <codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>closest<sp/>=<sp/>neighbor;</highlight></codeline>
@@ -208,10 +228,10 @@
 <codeline lineno="106"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>closest;</highlight></codeline>
 <codeline lineno="107"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="108"><highlight class="normal"></highlight></codeline>
-<codeline lineno="109"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>VoxelHashMap::add_points(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Eigen::Vector3d&gt;&amp;<sp/>points,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3d&amp;<sp/>pose)<sp/>{</highlight></codeline>
-<codeline lineno="110"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>map_resolution_sq<sp/>=<sp/>voxel_size_<sp/>*<sp/>voxel_size_<sp/>/<sp/>max_points_per_voxel_;</highlight></codeline>
-<codeline lineno="111"><highlight class="normal"><sp/><sp/>std::for_each(points.cbegin(),<sp/>points.cend(),<sp/>[&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3d&amp;<sp/>point)<sp/>{</highlight></codeline>
-<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>Eigen::Vector3d<sp/>p<sp/>=<sp/>pose<sp/>*<sp/>point;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>VoxelHashMap::add_points(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Eigen::Vector3s&gt;&amp;<sp/>points,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3s&amp;<sp/>pose)<sp/>{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>map_resolution_sq<sp/>=<sp/>voxel_size_<sp/>*<sp/>voxel_size_<sp/>/<sp/>max_points_per_voxel_;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/>std::for_each(points.cbegin(),<sp/>points.cend(),<sp/>[&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s&amp;<sp/>point)<sp/>{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>Eigen::Vector3s<sp/>p<sp/>=<sp/>pose<sp/>*<sp/>point;</highlight></codeline>
 <codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>Voxel<sp/>voxel<sp/>=<sp/>point_to_voxel(p,<sp/>inv_voxel_size_);</highlight></codeline>
 <codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>auto<sp/>it<sp/>=<sp/>map_.try_emplace(voxel).first;</highlight></codeline>
 <codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>VoxelBlock&amp;<sp/>voxel_points<sp/>=<sp/>it.value();</highlight></codeline>
@@ -225,8 +245,8 @@
 <codeline lineno="123"><highlight class="normal"><sp/><sp/>});</highlight></codeline>
 <codeline lineno="124"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="125"><highlight class="normal"></highlight></codeline>
-<codeline lineno="126"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>VoxelHashMap::remove_points_far_from_location(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3d&amp;<sp/>origin)<sp/>{</highlight></codeline>
-<codeline lineno="127"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>clipping_distance_sq<sp/>=<sp/>clipping_distance_<sp/>*<sp/>clipping_distance_;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>VoxelHashMap::remove_points_far_from_location(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s&amp;<sp/>origin)<sp/>{</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>clipping_distance_sq<sp/>=<sp/>clipping_distance_<sp/>*<sp/>clipping_distance_;</highlight></codeline>
 <codeline lineno="128"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>it<sp/>=<sp/>map_.begin();<sp/>it<sp/>!=<sp/>map_.end();)<sp/>{</highlight></codeline>
 <codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VoxelBlock&amp;<sp/>voxel_points<sp/>=<sp/>it-&gt;second;</highlight></codeline>
 <codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((voxel_points.front()<sp/>-<sp/>origin).squaredNorm()<sp/>&gt;<sp/>clipping_distance_sq)<sp/>{</highlight></codeline>
@@ -237,13 +257,13 @@
 <codeline lineno="135"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="136"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="137"><highlight class="normal"></highlight></codeline>
-<codeline lineno="138"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>VoxelHashMap::update(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Eigen::Vector3d&gt;&amp;<sp/>points,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3d&amp;<sp/>pose)<sp/>{</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>VoxelHashMap::update(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Eigen::Vector3s&gt;&amp;<sp/>points,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3s&amp;<sp/>pose)<sp/>{</highlight></codeline>
 <codeline lineno="139"><highlight class="normal"><sp/><sp/>add_points(points,<sp/>pose);</highlight></codeline>
 <codeline lineno="140"><highlight class="normal"><sp/><sp/>remove_points_far_from_location(pose.translation());</highlight></codeline>
 <codeline lineno="141"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="142"><highlight class="normal"></highlight></codeline>
-<codeline lineno="143"><highlight class="normal">std::vector&lt;Eigen::Vector3d&gt;<sp/>VoxelHashMap::pointcloud()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="144"><highlight class="normal"><sp/><sp/>std::vector&lt;Eigen::Vector3d&gt;<sp/>point_cloud;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal">std::vector&lt;Eigen::Vector3s&gt;<sp/>VoxelHashMap::pointcloud()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/>std::vector&lt;Eigen::Vector3s&gt;<sp/>point_cloud;</highlight></codeline>
 <codeline lineno="145"><highlight class="normal"><sp/><sp/>point_cloud.reserve(map_.size()<sp/>*<sp/>max_points_per_voxel_);</highlight></codeline>
 <codeline lineno="146"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>[_,<sp/>block]<sp/>:<sp/>map_)<sp/>{</highlight></codeline>
 <codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>point_cloud.insert(point_cloud.end(),<sp/>block.cbegin(),<sp/>block.cend());</highlight></codeline>

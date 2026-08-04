@@ -15,27 +15,29 @@
         <link refid="lio_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="13" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="15">
+      <node id="16">
         <label>rko_lio/core/process_timestamps.hpp</label>
         <link refid="process__timestamps_8hpp_source"/>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-      </node>
-      <node id="13">
-        <label>util.hpp</label>
-        <link refid="util_8hpp_source"/>
         <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>util.hpp</label>
+        <link refid="util_8hpp_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
         <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
         </childnode>
       </node>
       <node id="5">
@@ -43,9 +45,11 @@
         <link refid="voxel__down__sample_8hpp_source"/>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
         <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
         </childnode>
       </node>
       <node id="4">
@@ -53,17 +57,17 @@
         <link refid="voxel__hash__map_8hpp_source"/>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
         <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -71,11 +75,9 @@
         <link refid="base__node_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
-        <childnode refid="33" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
+        <childnode refid="34" relation="include">
         </childnode>
         <childnode refid="49" relation="include">
         </childnode>
@@ -83,13 +85,13 @@
         </childnode>
         <childnode refid="51" relation="include">
         </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
       </node>
       <node id="2">
         <label>base_node.hpp</label>
         <link refid="base__node_8hpp_source"/>
         <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
         </childnode>
         <childnode refid="16" relation="include">
         </childnode>
@@ -125,195 +127,206 @@
         </childnode>
         <childnode refid="32" relation="include">
         </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
       </node>
-      <node id="34">
+      <node id="35">
         <label>point_cloud_read.hpp</label>
         <link refid="point__cloud__read_8hpp_source"/>
         <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="29" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="35" relation="include">
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
         </childnode>
       </node>
-      <node id="36">
+      <node id="37">
         <label>point_cloud_write.hpp</label>
         <link refid="point__cloud__write_8hpp_source"/>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="29" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-      </node>
-      <node id="37">
-        <label>ros_vectors.hpp</label>
-        <link refid="ros__vectors_8hpp_source"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="38">
-        <label>time.hpp</label>
-        <link refid="time_8hpp_source"/>
-        <childnode refid="39" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="40" relation="include">
-        </childnode>
-      </node>
-      <node id="41">
-        <label>transforms.hpp</label>
-        <link refid="transforms_8hpp_source"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
-        </childnode>
         <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="46" relation="include">
-        </childnode>
-        <childnode refid="47" relation="include">
         </childnode>
         <childnode refid="30" relation="include">
         </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
       </node>
-      <node id="33">
+      <node id="38">
+        <label>ros_vectors.hpp</label>
+        <link refid="ros__vectors_8hpp_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>time.hpp</label>
+        <link refid="time_8hpp_source"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>transforms.hpp</label>
+        <link refid="transforms_8hpp_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
         <label>rko_lio/ros/utils/utils.hpp</label>
         <link refid="utils_8hpp_source"/>
-        <childnode refid="34" relation="include">
-        </childnode>
-        <childnode refid="36" relation="include">
+        <childnode refid="35" relation="include">
         </childnode>
         <childnode refid="37" relation="include">
         </childnode>
         <childnode refid="38" relation="include">
         </childnode>
-        <childnode refid="41" relation="include">
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
         </childnode>
       </node>
-      <node id="6">
+      <node id="8">
         <label>Eigen/Core</label>
       </node>
-      <node id="16">
+      <node id="17">
         <label>atomic</label>
       </node>
-      <node id="39">
+      <node id="40">
         <label>builtin_interfaces/msg/time.hpp</label>
       </node>
-      <node id="14">
+      <node id="9">
         <label>chrono</label>
       </node>
-      <node id="7">
+      <node id="11">
         <label>cmath</label>
       </node>
-      <node id="17">
+      <node id="18">
         <label>filesystem</label>
       </node>
-      <node id="48">
+      <node id="49">
         <label>fstream</label>
       </node>
-      <node id="23">
+      <node id="24">
         <label>geometry_msgs/msg/accel_stamped.hpp</label>
       </node>
-      <node id="24">
+      <node id="25">
         <label>geometry_msgs/msg/accel_with_covariance_stamped.hpp</label>
       </node>
-      <node id="42">
+      <node id="43">
         <label>geometry_msgs/msg/pose.hpp</label>
       </node>
-      <node id="43">
+      <node id="44">
         <label>geometry_msgs/msg/transform_stamped.hpp</label>
       </node>
-      <node id="49">
+      <node id="50">
         <label>iostream</label>
       </node>
-      <node id="18">
+      <node id="19">
         <label>memory</label>
       </node>
-      <node id="19">
+      <node id="20">
         <label>mutex</label>
       </node>
-      <node id="25">
+      <node id="26">
         <label>nav_msgs/msg/odometry.hpp</label>
       </node>
-      <node id="50">
+      <node id="51">
         <label>nlohmann/json.hpp</label>
       </node>
-      <node id="9">
+      <node id="12">
         <label>optional</label>
       </node>
-      <node id="44">
+      <node id="45">
         <label>rclcpp/logger.hpp</label>
       </node>
-      <node id="45">
+      <node id="46">
         <label>rclcpp/logging.hpp</label>
       </node>
-      <node id="26">
+      <node id="27">
         <label>rclcpp/node.hpp</label>
       </node>
-      <node id="27">
+      <node id="28">
         <label>rclcpp/node_options.hpp</label>
       </node>
-      <node id="40">
+      <node id="41">
         <label>rclcpp/time.hpp</label>
       </node>
-      <node id="28">
-        <label>sensor_msgs/msg/imu.hpp</label>
+      <node id="7">
+        <label>rko_lio/core/scalar.hpp</label>
       </node>
       <node id="29">
-        <label>sensor_msgs/msg/point_cloud2.hpp</label>
-      </node>
-      <node id="35">
-        <label>sensor_msgs/point_cloud2_iterator.hpp</label>
-      </node>
-      <node id="8">
-        <label>sophus/se3.hpp</label>
-      </node>
-      <node id="51">
-        <label>stdexcept</label>
-      </node>
-      <node id="20">
-        <label>string</label>
-      </node>
-      <node id="21">
-        <label>string_view</label>
-      </node>
-      <node id="46">
-        <label>tf2/exceptions.hpp</label>
-      </node>
-      <node id="47">
-        <label>tf2/time.hpp</label>
+        <label>sensor_msgs/msg/imu.hpp</label>
       </node>
       <node id="30">
-        <label>tf2_ros/buffer.hpp</label>
+        <label>sensor_msgs/msg/point_cloud2.hpp</label>
       </node>
-      <node id="31">
-        <label>tf2_ros/transform_broadcaster.hpp</label>
-      </node>
-      <node id="32">
-        <label>tf2_ros/transform_listener.hpp</label>
-      </node>
-      <node id="22">
-        <label>thread</label>
+      <node id="36">
+        <label>sensor_msgs/point_cloud2_iterator.hpp</label>
       </node>
       <node id="10">
+        <label>sophus/se3.hpp</label>
+      </node>
+      <node id="52">
+        <label>stdexcept</label>
+      </node>
+      <node id="21">
+        <label>string</label>
+      </node>
+      <node id="22">
+        <label>string_view</label>
+      </node>
+      <node id="47">
+        <label>tf2/exceptions.hpp</label>
+      </node>
+      <node id="48">
+        <label>tf2/time.hpp</label>
+      </node>
+      <node id="31">
+        <label>tf2_ros/buffer.hpp</label>
+      </node>
+      <node id="32">
+        <label>tf2_ros/transform_broadcaster.hpp</label>
+      </node>
+      <node id="33">
+        <label>tf2_ros/transform_listener.hpp</label>
+      </node>
+      <node id="23">
+        <label>thread</label>
+      </node>
+      <node id="13">
         <label>tsl/robin_map.h</label>
       </node>
-      <node id="11">
+      <node id="14">
         <label>tuple</label>
       </node>
-      <node id="12">
+      <node id="15">
         <label>vector</label>
       </node>
     </incdepgraph>
@@ -386,8 +399,8 @@
 <codeline lineno="58"><highlight class="normal">core::ImuControl<sp/>imu_msg_to_imu_data(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::Imu&amp;<sp/>imu_msg)<sp/>{</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"><sp/><sp/>core::ImuControl<sp/>imu_data;</highlight></codeline>
 <codeline lineno="60"><highlight class="normal"><sp/><sp/>imu_data.time<sp/>=<sp/>utils::to_ns(imu_msg.header.stamp);</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/>imu_data.angular_velocity<sp/>=<sp/>utils::ros_xyz_to_eigen_vector3d(imu_msg.angular_velocity);</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/>imu_data.acceleration<sp/>=<sp/>utils::ros_xyz_to_eigen_vector3d(imu_msg.linear_acceleration);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/>imu_data.angular_velocity<sp/>=<sp/>utils::ros_xyz_to_eigen_vector(imu_msg.angular_velocity);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/>imu_data.acceleration<sp/>=<sp/>utils::ros_xyz_to_eigen_vector(imu_msg.linear_acceleration);</highlight></codeline>
 <codeline lineno="63"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>imu_data;</highlight></codeline>
 <codeline lineno="64"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="65"><highlight class="normal"></highlight></codeline>
@@ -497,7 +510,7 @@
 <codeline lineno="169"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="170"><highlight class="normal"></highlight></codeline>
 <codeline lineno="171"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BaseNode::parse_cli_extrinsics()<sp/>{</highlight></codeline>
-<codeline lineno="172"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>parse_extrinsic<sp/>=<sp/>[</highlight><highlight class="keyword">this</highlight><highlight class="normal">](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>name,<sp/>Sophus::SE3d&amp;<sp/>extrinsic)<sp/>{</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>parse_extrinsic<sp/>=<sp/>[</highlight><highlight class="keyword">this</highlight><highlight class="normal">](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>name,<sp/>Sophus::SE3s&amp;<sp/>extrinsic)<sp/>{</highlight></codeline>
 <codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>param_name<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;extrinsic_&quot;</highlight><highlight class="normal"><sp/>+<sp/>name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;2base_quat_xyzw_xyz&quot;</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;<sp/>vec<sp/>=<sp/>node-&gt;declare_parameter&lt;std::vector&lt;double&gt;&gt;(param_name,<sp/>std::vector&lt;double&gt;{});</highlight></codeline>
 <codeline lineno="175"><highlight class="normal"></highlight></codeline>
@@ -511,11 +524,11 @@
 <codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Quaterniond<sp/>q(vec[3],<sp/>vec[0],<sp/>vec[1],<sp/>vec[2]);<sp/></highlight><highlight class="comment">//<sp/>qw,<sp/>qx,<sp/>qy,<sp/>qz</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Quaternions<sp/>q(vec[3],<sp/>vec[0],<sp/>vec[1],<sp/>vec[2]);<sp/></highlight><highlight class="comment">//<sp/>qw,<sp/>qx,<sp/>qy,<sp/>qz</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(q.norm()<sp/>&lt;<sp/>1e-6)<sp/>{</highlight></codeline>
 <codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>extrinsic<sp/>quaternion<sp/>has<sp/>zero<sp/>norm&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>extrinsic<sp/>=<sp/>Sophus::SE3d(q,<sp/>Eigen::Vector3d(vec[4],<sp/>vec[5],<sp/>vec[6]));</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>extrinsic<sp/>=<sp/>Sophus::SE3s(q,<sp/>Eigen::Vector3s(vec[4],<sp/>vec[5],<sp/>vec[6]));</highlight></codeline>
 <codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/>RCLCPP_INFO_STREAM(node-&gt;get_logger(),<sp/></highlight><highlight class="stringliteral">&quot;Parsed<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>name<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>extrinsic<sp/>as:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>extrinsic.log().transpose());</highlight></codeline>
 <codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="193"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
@@ -543,11 +556,11 @@
 <codeline lineno="215"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(extrinsics_set)<sp/>{</highlight></codeline>
 <codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="217"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="218"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::optional&lt;Sophus::SE3d&gt;<sp/>imu_transform<sp/>=<sp/>utils::get_transform(tf_buffer,<sp/>imu_frame,<sp/>base_frame,<sp/>0s);</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::optional&lt;Sophus::SE3s&gt;<sp/>imu_transform<sp/>=<sp/>utils::get_transform(tf_buffer,<sp/>imu_frame,<sp/>base_frame,<sp/>0s);</highlight></codeline>
 <codeline lineno="219"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!imu_transform)<sp/>{</highlight></codeline>
 <codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="221"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="222"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::optional&lt;Sophus::SE3d&gt;<sp/>lidar_transform<sp/>=<sp/>utils::get_transform(tf_buffer,<sp/>lidar_frame,<sp/>base_frame,<sp/>0s);</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::optional&lt;Sophus::SE3s&gt;<sp/>lidar_transform<sp/>=<sp/>utils::get_transform(tf_buffer,<sp/>lidar_frame,<sp/>base_frame,<sp/>0s);</highlight></codeline>
 <codeline lineno="223"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!lidar_transform)<sp/>{</highlight></codeline>
 <codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="225"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
@@ -571,7 +584,7 @@
 <codeline lineno="243"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>frame;</highlight></codeline>
 <codeline lineno="244"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="245"><highlight class="normal"></highlight></codeline>
-<codeline lineno="246"><highlight class="normal">core::Vector3dVector<sp/>BaseNode::register_scan_locked(core::Vector3dVector<sp/>scan,</highlight></codeline>
+<codeline lineno="246"><highlight class="normal">core::Vector3sVector<sp/>BaseNode::register_scan_locked(core::Vector3sVector<sp/>scan,</highlight></codeline>
 <codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::TimestampVector&amp;<sp/>time_vector)<sp/>{</highlight></codeline>
 <codeline lineno="248"><highlight class="normal"><sp/><sp/>std::unique_lock<sp/>lock(local_map_mutex,<sp/>std::defer_lock);</highlight></codeline>
 <codeline lineno="249"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(publish_local_map)<sp/>{</highlight></codeline>
@@ -580,7 +593,7 @@
 <codeline lineno="252"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>lio-&gt;register_scan(extrinsic_lidar2base,<sp/>std::move(scan),<sp/>time_vector);</highlight></codeline>
 <codeline lineno="253"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="254"><highlight class="normal"></highlight></codeline>
-<codeline lineno="255"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BaseNode::publish_lidar_outputs(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::Vector3dVector&amp;<sp/>deskewed_frame)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BaseNode::publish_lidar_outputs(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::Vector3sVector&amp;<sp/>deskewed_frame)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="256"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(publish_deskewed_scan)<sp/>{</highlight></codeline>
 <codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/>std_msgs::msg::Header<sp/>header;</highlight></codeline>
 <codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/>header.frame_id<sp/>=<sp/>lidar_frame;</highlight></codeline>
@@ -600,8 +613,8 @@
 <codeline lineno="272"><highlight class="normal"><sp/><sp/>odom_msg.header.frame_id<sp/>=<sp/>odom_frame;</highlight></codeline>
 <codeline lineno="273"><highlight class="normal"><sp/><sp/>odom_msg.child_frame_id<sp/>=<sp/>base_frame;</highlight></codeline>
 <codeline lineno="274"><highlight class="normal"><sp/><sp/>odom_msg.pose.pose<sp/>=<sp/>utils::sophus_to_pose(state.pose);</highlight></codeline>
-<codeline lineno="275"><highlight class="normal"><sp/><sp/>utils::eigen_vector3d_to_ros_xyz(state.velocity,<sp/>odom_msg.twist.twist.linear);</highlight></codeline>
-<codeline lineno="276"><highlight class="normal"><sp/><sp/>utils::eigen_vector3d_to_ros_xyz(state.angular_velocity,<sp/>odom_msg.twist.twist.angular);</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/>utils::eigen_vector_to_ros_xyz(state.velocity,<sp/>odom_msg.twist.twist.linear);</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/>utils::eigen_vector_to_ros_xyz(state.angular_velocity,<sp/>odom_msg.twist.twist.angular);</highlight></codeline>
 <codeline lineno="277"><highlight class="normal"><sp/><sp/>publisher-&gt;publish(odom_msg);</highlight></codeline>
 <codeline lineno="278"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="279"><highlight class="normal"></highlight></codeline>
@@ -624,7 +637,7 @@
 <codeline lineno="296"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>accel_msg<sp/>=<sp/>geometry_msgs::msg::AccelStamped();</highlight></codeline>
 <codeline lineno="297"><highlight class="normal"><sp/><sp/>accel_msg.header.stamp<sp/>=<sp/>utils::to_ros_time(state.time);</highlight></codeline>
 <codeline lineno="298"><highlight class="normal"><sp/><sp/>accel_msg.header.frame_id<sp/>=<sp/>base_frame;</highlight></codeline>
-<codeline lineno="299"><highlight class="normal"><sp/><sp/>utils::eigen_vector3d_to_ros_xyz(state.linear_acceleration,<sp/>accel_msg.accel.linear);</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/>utils::eigen_vector_to_ros_xyz(state.linear_acceleration,<sp/>accel_msg.accel.linear);</highlight></codeline>
 <codeline lineno="300"><highlight class="normal"><sp/><sp/>lidar_accel_publisher-&gt;publish(accel_msg);</highlight></codeline>
 <codeline lineno="301"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="302"><highlight class="normal"></highlight></codeline>
@@ -636,7 +649,7 @@
 <codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>RCLCPP_WARN_ONCE(node-&gt;get_logger(),<sp/></highlight><highlight class="stringliteral">&quot;Local<sp/>map<sp/>publish<sp/>thread:<sp/>Local<sp/>map<sp/>is<sp/>empty.&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::Vector3dVector<sp/>map_points<sp/>=<sp/>lio-&gt;map.pointcloud();</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::Vector3sVector<sp/>map_points<sp/>=<sp/>lio-&gt;map.pointcloud();</highlight></codeline>
 <codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/>lock.unlock();<sp/></highlight><highlight class="comment">//<sp/>we<sp/>don&apos;t<sp/>access<sp/>the<sp/>local<sp/>map<sp/>anymore</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/>std_msgs::msg::Header<sp/>map_header;</highlight></codeline>
 <codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/>map_header.stamp<sp/>=<sp/>node-&gt;now();</highlight></codeline>
@@ -661,8 +674,8 @@
 <codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>dump<sp/>poses</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(std::ofstream<sp/>file(output_file);<sp/>file.is_open())<sp/>{</highlight></codeline>
 <codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>[timestamp,<sp/>pose]<sp/>:<sp/>lio-&gt;poses_with_timestamps)<sp/>{</highlight></codeline>
-<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3d&amp;<sp/>translation<sp/>=<sp/>pose.translation();</highlight></codeline>
-<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Quaterniond&amp;<sp/>quaternion<sp/>=<sp/>pose.so3().unit_quaternion();</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s&amp;<sp/>translation<sp/>=<sp/>pose.translation();</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Quaternions&amp;<sp/>quaternion<sp/>=<sp/>pose.so3().unit_quaternion();</highlight></codeline>
 <codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>file<sp/>&lt;&lt;<sp/>std::fixed<sp/>&lt;&lt;<sp/>std::setprecision(6)<sp/>&lt;&lt;<sp/>core::to_seconds(timestamp)<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>translation.x()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>translation.y()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>translation.z()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>quaternion.x()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>quaternion.y()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>quaternion.z()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>quaternion.w()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>

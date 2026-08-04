@@ -54,22 +54,23 @@ Program Listing for File lio.cpp
    #include <stdexcept>
    
    namespace {
-   constexpr double EPSILON = 1e-8;
-   constexpr auto EPSILON_TIME = std::chrono::nanoseconds(10);
    using namespace rko_lio::core;
    
-   inline void transform_points(const Sophus::SE3d& T, Vector3dVector& points) {
+   constexpr Scalar EPSILON = 1e-8;
+   constexpr auto EPSILON_TIME = std::chrono::nanoseconds(10);
+   
+   inline void transform_points(const Sophus::SE3s& T, Vector3sVector& points) {
      std::transform(points.begin(), points.end(), points.begin(), [&](const auto& point) { return T * point; });
    }
    
    struct AccelInfo {
-     double accel_mag_variance;
-     Eigen::Vector3d local_gravity_estimate;
+     Scalar accel_mag_variance;
+     Eigen::Vector3s local_gravity_estimate;
    };
    
    struct BodyAccelKF {
-     Eigen::Vector3d mean;
-     Eigen::Matrix3d covariance;
+     Eigen::Vector3s mean;
+     Eigen::Matrix3s covariance;
    };
    
    struct AccelFilterStep {
@@ -79,9 +80,9 @@ Program Listing for File lio.cpp
    
    AccelFilterStep step_body_accel_filter(const BodyAccelKF& prev,
                                           const IntervalStats& stats,
-                                          const Sophus::SO3d& rotation_estimate,
+                                          const Sophus::SO3s& rotation_estimate,
                                           const Nsec dt,
-                                          const double max_expected_jerk) {
+                                          const Scalar max_expected_jerk) {
      if (stats.imu_count <= 1) {
        std::cerr << "[WARNING] " << stats.imu_count
                  << " IMU message(s) in interval between two lidar scans. Cannot compute "
@@ -90,55 +91,55 @@ Program Listing for File lio.cpp
        return {std::nullopt, prev};
      }
    
-     const Eigen::Vector3d avg_imu_accel = stats.imu_acceleration_sum / stats.imu_count;
-     const double accel_mag_variance = stats.welford_sum_of_squares / (stats.imu_count - 1);
-     const Eigen::Vector3d body_accel_measurement = avg_imu_accel + rotation_estimate.inverse() * gravity();
+     const Eigen::Vector3s avg_imu_accel = stats.imu_acceleration_sum / stats.imu_count;
+     const Scalar accel_mag_variance = stats.welford_sum_of_squares / (stats.imu_count - 1);
+     const Eigen::Vector3s body_accel_measurement = avg_imu_accel + rotation_estimate.inverse() * gravity();
    
-     const double max_acceleration_change = max_expected_jerk * to_seconds(dt);
+     const Scalar max_acceleration_change = max_expected_jerk * to_seconds(dt);
      // assume [j, -j] range for uniform dist. on jerk. variance is (2j)^2 / 12 = j^2/3. multiply by dt^2 for accel
-     const Eigen::Matrix3d process_noise = square(max_acceleration_change) / 3 * Eigen::Matrix3d::Identity();
-     const Eigen::Matrix3d cov_pred = prev.covariance + process_noise;
+     const Eigen::Matrix3s process_noise = square(max_acceleration_change) / 3 * Eigen::Matrix3s::Identity();
+     const Eigen::Matrix3s cov_pred = prev.covariance + process_noise;
    
      // isotropic accel mag variance
-     const Eigen::Matrix3d measurement_noise = accel_mag_variance / 3 * Eigen::Matrix3d::Identity();
-     const Eigen::Matrix3d S = cov_pred + measurement_noise;
-     const Eigen::Matrix3d kalman_gain = cov_pred * S.inverse();
+     const Eigen::Matrix3s measurement_noise = accel_mag_variance / 3 * Eigen::Matrix3s::Identity();
+     const Eigen::Matrix3s S = cov_pred + measurement_noise;
+     const Eigen::Matrix3s kalman_gain = cov_pred * S.inverse();
    
-     const Eigen::Vector3d new_mean = prev.mean + kalman_gain * (body_accel_measurement - prev.mean);
-     const Eigen::Matrix3d new_cov = cov_pred - kalman_gain * cov_pred;
+     const Eigen::Vector3s new_mean = prev.mean + kalman_gain * (body_accel_measurement - prev.mean);
+     const Eigen::Matrix3s new_cov = cov_pred - kalman_gain * cov_pred;
    
-     const Eigen::Vector3d local_gravity_estimate = avg_imu_accel - new_mean; // points upwards
+     const Eigen::Vector3s local_gravity_estimate = avg_imu_accel - new_mean; // points upwards
      return {AccelInfo{.accel_mag_variance = accel_mag_variance, .local_gravity_estimate = local_gravity_estimate},
              BodyAccelKF{new_mean, new_cov}};
    }
    
    template <typename Functor>
      requires requires(Functor f, Nsec stamp) {
-       { f(stamp) } -> std::same_as<Sophus::SE3d>;
+       { f(stamp) } -> std::same_as<Sophus::SE3s>;
      }
-   void deskew_scan(Vector3dVector& frame,
+   void deskew_scan(Vector3sVector& frame,
                     const TimestampVector& timestamps,
                     const Nsec end_time,
                     const Functor& relative_pose_at_time) {
-     const Sophus::SE3d scan_to_scan_motion_inverse = relative_pose_at_time(end_time).inverse();
+     const Sophus::SE3s scan_to_scan_motion_inverse = relative_pose_at_time(end_time).inverse();
      std::transform(frame.cbegin(), frame.cend(), timestamps.cbegin(), frame.begin(),
-                    [&](const Eigen::Vector3d& point, const Nsec timestamp) {
+                    [&](const Eigen::Vector3s& point, const Nsec timestamp) {
                       return (scan_to_scan_motion_inverse * relative_pose_at_time(timestamp)) * point;
                     });
    }
    
-   using LinearSystem = std::tuple<Eigen::Matrix6d, Eigen::Vector6d, double>;
-   LinearSystem build_icp_linear_system(const Sophus::SE3d& current_pose,
-                                        const rko_lio::core::Vector3dVector& frame,
+   using LinearSystem = std::tuple<Eigen::Matrix6s, Eigen::Vector6s, Scalar>;
+   LinearSystem build_icp_linear_system(const Sophus::SE3s& current_pose,
+                                        const rko_lio::core::Vector3sVector& frame,
                                         const rko_lio::core::VoxelHashMap& voxel_map,
-                                        const double& max_correspondence_distance) {
-     using IcpAccum = std::tuple<Eigen::Matrix6d, Eigen::Vector6d, double, int>;
+                                        const Scalar& max_correspondence_distance) {
+     using IcpAccum = std::tuple<Eigen::Matrix6s, Eigen::Vector6s, Scalar, int>;
    
-     auto linear_system_for_one_point = [](const Eigen::Vector3d& source, const Eigen::Vector3d& target) {
-       Eigen::Matrix3_6d J_r;
-       J_r.block<3, 3>(0, 0) = Eigen::Matrix3d::Identity();
-       J_r.block<3, 3>(0, 3) = -1.0 * Sophus::SO3d::hat(source);
-       const Eigen::Vector3d residual = source - target;
+     auto linear_system_for_one_point = [](const Eigen::Vector3s& source, const Eigen::Vector3s& target) {
+       Eigen::Matrix3_6s J_r;
+       J_r.block<3, 3>(0, 0) = Eigen::Matrix3s::Identity();
+       J_r.block<3, 3>(0, 3) = -1.0 * Sophus::SO3s::hat(source);
+       const Eigen::Vector3s residual = source - target;
        return IcpAccum(J_r.transpose() * J_r,      // JTJ
                        J_r.transpose() * residual, // JTr
                        residual.squaredNorm(),     // chi
@@ -146,17 +147,17 @@ Program Listing for File lio.cpp
      };
    
      // The only parallel part
-     using points_iterator = std::vector<Eigen::Vector3d>::const_iterator;
+     using points_iterator = std::vector<Eigen::Vector3s>::const_iterator;
      const auto& [H_icp, b_icp, chi_icp, correspondences_counter] = tbb::parallel_reduce(
          // Range
          tbb::blocked_range<points_iterator>{frame.cbegin(), frame.cend()},
          // Identity
-         IcpAccum(Eigen::Matrix6d::Zero(), Eigen::Vector6d::Zero(), 0.0, 0),
+         IcpAccum(Eigen::Matrix6s::Zero(), Eigen::Vector6s::Zero(), 0.0, 0),
          // 1st Lambda: Parallel computation
          [&](const tbb::blocked_range<points_iterator>& r, IcpAccum J) -> IcpAccum {
            auto& [H, b, chi, correspondences] = J;
-           for (const Eigen::Vector3d& point : r) {
-             const Eigen::Vector3d transformed_point = current_pose * point;
+           for (const Eigen::Vector3s& point : r) {
+             const Eigen::Vector3s transformed_point = current_pose * point;
              const auto closest_neighbor = voxel_map.get_closest_neighbor(transformed_point, max_correspondence_distance);
              if (!closest_neighbor.has_value()) {
                continue;
@@ -188,30 +189,30 @@ Program Listing for File lio.cpp
      return {H_icp / correspondences_counter, b_icp / correspondences_counter, 0.5 * chi_icp};
    }
    
-   LinearSystem build_orientation_linear_system(const Sophus::SE3d& current_pose,
-                                                const Eigen::Vector3d& local_gravity_estimate) {
-     const Sophus::SO3d& current_rotation = current_pose.so3();
-     const Eigen::Vector3d predicted_gravity =
+   LinearSystem build_orientation_linear_system(const Sophus::SE3s& current_pose,
+                                                const Eigen::Vector3s& local_gravity_estimate) {
+     const Sophus::SO3s& current_rotation = current_pose.so3();
+     const Eigen::Vector3s predicted_gravity =
          current_rotation.inverse() * (-1 * gravity()); // points upwards, same as local_gravity_estimate
-     const Eigen::Vector3d residual = predicted_gravity - local_gravity_estimate;
+     const Eigen::Vector3s residual = predicted_gravity - local_gravity_estimate;
    
-     Eigen::Matrix3_6d J_ori = Eigen::Matrix3_6d::Zero();
-     J_ori.block<3, 3>(0, 3) = current_rotation.inverse().matrix() * Sophus::SO3d::hat(-1 * gravity()).matrix();
+     Eigen::Matrix3_6s J_ori = Eigen::Matrix3_6s::Zero();
+     J_ori.block<3, 3>(0, 3) = current_rotation.inverse().matrix() * Sophus::SO3s::hat(-1 * gravity()).matrix();
    
      return LinearSystem{J_ori.transpose() * J_ori, J_ori.transpose() * residual, 0.5 * residual.squaredNorm()};
    }
    
-   Sophus::SE3d icp(const Vector3dVector& frame,
+   Sophus::SE3s icp(const Vector3sVector& frame,
                     const VoxelHashMap& voxel_map,
-                    const Sophus::SE3d& initial_guess,
+                    const Sophus::SE3s& initial_guess,
                     const LIO::Config& config,
                     const std::optional<AccelInfo>& optional_accel_info) {
      // in case config disables it, or we don't have valid IMU information for this icp loop, beta is -1
-     const double beta = (config.min_beta > 0 && optional_accel_info.has_value())
+     const Scalar beta = (config.min_beta > 0 && optional_accel_info.has_value())
                              ? (config.min_beta * (1 + optional_accel_info->accel_mag_variance))
                              : -1;
    
-     Sophus::SE3d current_pose = initial_guess;
+     Sophus::SE3s current_pose = initial_guess;
    
      for (size_t i = 0; i < config.max_iterations; ++i) {
        const auto& [H, b, chi] = std::invoke([&]() -> LinearSystem {
@@ -225,8 +226,8 @@ Program Listing for File lio.cpp
          return {H_icp, b_icp, chi_icp};
        });
    
-       const Eigen::Vector6d dx = H.ldlt().solve(-b);
-       current_pose = Sophus::SE3d::exp(dx) * current_pose;
+       const Eigen::Vector6s dx = H.ldlt().solve(-b);
+       current_pose = Sophus::SE3s::exp(dx) * current_pose;
    
        if (dx.norm() < config.convergence_criterion || i == (config.max_iterations - 1)) {
          // TODO: proper debug logging
@@ -238,11 +239,11 @@ Program Listing for File lio.cpp
      return current_pose;
    }
    
-   inline Sophus::SO3d align_accel_to_z_world(const Eigen::Vector3d& accel) {
+   inline Sophus::SO3s align_accel_to_z_world(const Eigen::Vector3s& accel) {
      //  unobservable in the gravity direction, and the z in R.log() will always be 0
-     const Eigen::Vector3d z_world = {0.0, 0.0, 1.0};
-     const Eigen::Quaterniond quat_accel = Eigen::Quaterniond::FromTwoVectors(accel, z_world);
-     return Sophus::SO3d(quat_accel);
+     const Eigen::Vector3s z_world = {0.0, 0.0, 1.0};
+     const Eigen::Quaternions quat_accel = Eigen::Quaternions::FromTwoVectors(accel, z_world);
+     return Sophus::SO3s(quat_accel);
    }
    } // namespace
    
@@ -274,10 +275,10 @@ Program Listing for File lio.cpp
        return;
      }
    
-     const Eigen::Vector3d avg_accel = interval_stats.imu_acceleration_sum / interval_stats.imu_count;
-     const Eigen::Vector3d avg_gyro = interval_stats.angular_velocity_sum / interval_stats.imu_count;
+     const Eigen::Vector3s avg_accel = interval_stats.imu_acceleration_sum / interval_stats.imu_count;
+     const Eigen::Vector3s avg_gyro = interval_stats.angular_velocity_sum / interval_stats.imu_count;
    
-     const Sophus::SO3d initial_rotation = align_accel_to_z_world(avg_accel);
+     const Sophus::SO3s initial_rotation = align_accel_to_z_world(avg_accel);
      lidar_state.pose.so3() = initial_rotation;
      imu_state = lidar_state;
    
@@ -288,7 +289,7 @@ Program Listing for File lio.cpp
      lidar_state.time = lidar_time;
      imu_state.time = lidar_time;
    
-     const Eigen::Vector3d local_gravity = imu_state.pose.so3().inverse() * gravity();
+     const Eigen::Vector3s local_gravity = imu_state.pose.so3().inverse() * gravity();
      imu_bias.accelerometer = avg_accel + local_gravity;
      imu_bias.gyroscope = avg_gyro;
    
@@ -300,7 +301,7 @@ Program Listing for File lio.cpp
                << ", gyro bias: " << imu_bias.gyroscope.transpose() << "\n";
    }
    
-   Vector3dVector LIO::bootstrap_first_scan(const Vector3dVector& scan, const Nsec current_lidar_time) {
+   Vector3sVector LIO::bootstrap_first_scan(const Vector3sVector& scan, const Nsec current_lidar_time) {
      lidar_state.time = current_lidar_time;
      imu_state = lidar_state;
      auto preproc = preprocess_scan(scan, config);
@@ -312,18 +313,18 @@ Program Listing for File lio.cpp
      return std::move(preproc.filtered_frame);
    }
    
-   std::pair<Eigen::Vector3d, Eigen::Vector3d> LIO::motion_priors_from_imu(const Nsec current_lidar_time) {
+   std::pair<Eigen::Vector3s, Eigen::Vector3s> LIO::motion_priors_from_imu(const Nsec current_lidar_time) {
      if (config.initialization_phase && !_initialized) {
        // assume static and
        initialize(current_lidar_time);
-       return {Eigen::Vector3d::Zero(), Eigen::Vector3d::Zero()};
+       return {Eigen::Vector3s::Zero(), Eigen::Vector3s::Zero()};
      }
      if (interval_stats.imu_count == 0) {
        std::cerr << "[WARNING] No Imu measurements in interval to average. Assuming constant velocity motion.\n";
-       return {Eigen::Vector3d::Zero(), lidar_state.angular_velocity};
+       return {Eigen::Vector3s::Zero(), lidar_state.angular_velocity};
      }
-     const Eigen::Vector3d avg_body_accel = interval_stats.body_acceleration_sum / interval_stats.imu_count;
-     const Eigen::Vector3d avg_ang_vel = interval_stats.angular_velocity_sum / interval_stats.imu_count;
+     const Eigen::Vector3s avg_body_accel = interval_stats.body_acceleration_sum / interval_stats.imu_count;
+     const Eigen::Vector3s avg_ang_vel = interval_stats.angular_velocity_sum / interval_stats.imu_count;
      if (avg_body_accel.norm() > 50.0) {
        std::cerr << "[WARNING] Erratic body acceleration computed, norm > 50 m/s2. Either IMU data is corrupted, or you "
                     "should report an issue.";
@@ -353,7 +354,7 @@ Program Listing for File lio.cpp
        imu_state = lidar_state;
      }
    
-     const double dt = to_seconds(base_imu.time - imu_state.time);
+     const Scalar dt = to_seconds(base_imu.time - imu_state.time);
    
      if (dt < 0.0) {
        // messages are out of sync. thats a problem, since we integrate gyro from last lidar time onwards
@@ -361,17 +362,17 @@ Program Listing for File lio.cpp
        // maybe skip this imu reading?
      }
    
-     const Eigen::Vector3d unbiased_ang_vel = base_imu.angular_velocity - imu_bias.gyroscope;
-     const Eigen::Vector3d unbiased_accel = base_imu.acceleration - imu_bias.accelerometer;
+     const Eigen::Vector3s unbiased_ang_vel = base_imu.angular_velocity - imu_bias.gyroscope;
+     const Eigen::Vector3s unbiased_accel = base_imu.acceleration - imu_bias.accelerometer;
    
-     const Eigen::Vector3d local_gravity = imu_state.pose.so3().inverse() * gravity();
-     const Eigen::Vector3d compensated_accel = unbiased_accel + local_gravity;
+     const Eigen::Vector3s local_gravity = imu_state.pose.so3().inverse() * gravity();
+     const Eigen::Vector3s compensated_accel = unbiased_accel + local_gravity;
    
      // imu state update
-     Eigen::Vector6d tau;
+     Eigen::Vector6s tau;
      tau.head<3>() = imu_state.velocity * dt + compensated_accel * square(dt) / 2;
      tau.tail<3>() = unbiased_ang_vel * dt;
-     imu_state.pose = imu_state.pose * Sophus::SE3d::exp(tau);
+     imu_state.pose = imu_state.pose * Sophus::SE3s::exp(tau);
      imu_state.velocity += compensated_accel * dt;
      imu_state.angular_velocity = unbiased_ang_vel;
      imu_state.time = base_imu.time;
@@ -382,7 +383,7 @@ Program Listing for File lio.cpp
      _last_real_base_imu_ang_vel = base_imu.angular_velocity;
    }
    
-   void LIO::add_imu_measurement(const Sophus::SE3d& extrinsic_imu2base, const ImuControl& raw_imu) {
+   void LIO::add_imu_measurement(const Sophus::SE3s& extrinsic_imu2base, const ImuControl& raw_imu) {
      if (extrinsic_imu2base.log().norm() < EPSILON) {
        add_imu_measurement(raw_imu);
        return;
@@ -396,13 +397,13 @@ Program Listing for File lio.cpp
    
      // accounting for the transport-rate
      ImuControl base_imu = raw_imu;
-     const Sophus::SO3d& extrinsic_rotation = extrinsic_imu2base.so3();
+     const Sophus::SO3s& extrinsic_rotation = extrinsic_imu2base.so3();
      base_imu.angular_velocity = extrinsic_rotation * raw_imu.angular_velocity;
    
-     const Eigen::Vector3d& lever_arm = -1 * extrinsic_imu2base.translation();
+     const Eigen::Vector3s& lever_arm = -1 * extrinsic_imu2base.translation();
      const Nsec dt = raw_imu.time - _last_real_imu_time;
    
-     const Eigen::Vector3d angular_acceleration = std::invoke([&]() -> Eigen::Vector3d {
+     const Eigen::Vector3s angular_acceleration = std::invoke([&]() -> Eigen::Vector3s {
        if (std::chrono::abs(dt) < std::chrono::microseconds(200)) {
          // if dt is less than the equivalent of a 5000 Hz imu, assuming zero ang accel,
          // causes numerical issues otherwise
@@ -412,9 +413,9 @@ Program Listing for File lio.cpp
                         "all such messages.\n";
            warning_imu_too_close = true;
          }
-         return Eigen::Vector3d::Zero();
+         return Eigen::Vector3s::Zero();
        } else {
-         const Eigen::Vector3d angular_acceleration =
+         const Eigen::Vector3s angular_acceleration =
              (base_imu.angular_velocity - _last_real_base_imu_ang_vel) / to_seconds(dt);
          return angular_acceleration;
        }
@@ -428,7 +429,7 @@ Program Listing for File lio.cpp
    
    // ============================ lidar ===============================
    
-   Vector3dVector LIO::register_scan(Vector3dVector scan, const TimestampVector& timestamps) {
+   Vector3sVector LIO::register_scan(Vector3sVector scan, const TimestampVector& timestamps) {
      if (timestamps.empty()) {
        throw std::invalid_argument("LIO::register_scan: timestamps must not be empty.");
      }
@@ -449,15 +450,15 @@ Program Listing for File lio.cpp
      const auto [avg_body_accel, avg_ang_vel] = motion_priors_from_imu(current_lidar_time);
    
      // compute relative motion using controls
-     auto relative_pose_at_time = [&](const Nsec time) -> Sophus::SE3d {
-       const double dt = to_seconds(time - lidar_state.time);
-       Eigen::Vector6d tau;
+     auto relative_pose_at_time = [&](const Nsec time) -> Sophus::SE3s {
+       const Scalar dt = to_seconds(time - lidar_state.time);
+       Eigen::Vector6s tau;
        tau.head<3>() = lidar_state.velocity * dt + (avg_body_accel * square(dt) / 2);
        tau.tail<3>() = avg_ang_vel * dt;
-       return Sophus::SE3d::exp(tau);
+       return Sophus::SE3s::exp(tau);
      };
    
-     const Sophus::SE3d initial_guess = lidar_state.pose * relative_pose_at_time(current_lidar_time);
+     const Sophus::SE3s initial_guess = lidar_state.pose * relative_pose_at_time(current_lidar_time);
    
      // body acceleration filter
      const auto kf_step =
@@ -481,17 +482,17 @@ Program Listing for File lio.cpp
        throw std::invalid_argument(error_msg);
      }
    
-     const Vector3dVector& map_input = config.double_downsample ? preproc_result.map_frame : preproc_result.keypoints;
+     const Vector3sVector& map_input = config.double_downsample ? preproc_result.map_frame : preproc_result.keypoints;
    
      if (!map.empty()) {
        SCOPED_PROFILER("ICP");
-       const Sophus::SE3d optimized_pose = icp(preproc_result.keypoints, map, initial_guess, config, kf_step.info);
+       const Sophus::SE3s optimized_pose = icp(preproc_result.keypoints, map, initial_guess, config, kf_step.info);
    
        // estimate velocities and accelerations from the new pose
-       const double dt = to_seconds(current_lidar_time - lidar_state.time);
-       const Sophus::SE3d motion = lidar_state.pose.inverse() * optimized_pose;
-       const Eigen::Vector6d local_velocity = motion.log() / dt;
-       const Eigen::Vector3d local_linear_acceleration =
+       const Scalar dt = to_seconds(current_lidar_time - lidar_state.time);
+       const Sophus::SE3s motion = lidar_state.pose.inverse() * optimized_pose;
+       const Eigen::Vector6s local_velocity = motion.log() / dt;
+       const Eigen::Vector3s local_linear_acceleration =
            (local_velocity.head<3>() - motion.so3().inverse() * lidar_state.velocity) / dt;
    
        // update
@@ -514,13 +515,15 @@ Program Listing for File lio.cpp
      return std::move(preproc_result.filtered_frame);
    }
    
-   Vector3dVector
-   LIO::register_scan(const Sophus::SE3d& extrinsic_lidar2base, Vector3dVector scan, const TimestampVector& timestamps) {
+   Vector3sVector LIO::register_scan(const Sophus::SE3s& extrinsic_lidar2base,
+                                     Vector3sVector scan,
+                                     const TimestampVector& timestamps) {
      if (extrinsic_lidar2base.log().norm() < EPSILON) {
        return register_scan(std::move(scan), timestamps);
      }
+   
      transform_points(extrinsic_lidar2base, scan);
-     Vector3dVector frame = register_scan(std::move(scan), timestamps);
+     Vector3sVector frame = register_scan(std::move(scan), timestamps);
      transform_points(extrinsic_lidar2base.inverse(), frame);
      return frame;
    }

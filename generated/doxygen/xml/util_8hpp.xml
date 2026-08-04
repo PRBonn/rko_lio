@@ -2,12 +2,17 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="util_8hpp" kind="file" language="C++">
     <compoundname>util.hpp</compoundname>
+    <includes local="yes">rko_lio/core/scalar.hpp</includes>
     <includes local="no">Eigen/Core</includes>
     <includes local="no">chrono</includes>
     <includes local="no">sophus/se3.hpp</includes>
     <includedby refid="lio_8cpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp</includedby>
     <includedby refid="lio_8hpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp</includedby>
     <includedby refid="process__timestamps_8hpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp</includedby>
+    <includedby refid="voxel__down__sample_8hpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp</includedby>
+    <includedby refid="point__cloud__read_8hpp" local="no">/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp</includedby>
+    <includedby refid="point__cloud__write_8hpp" local="no">/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_write.hpp</includedby>
+    <includedby refid="transforms_8hpp" local="no">/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp</includedby>
     <incdepgraph>
       <node id="1">
         <label>/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp</label>
@@ -18,14 +23,19 @@
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-      </node>
-      <node id="2">
-        <label>Eigen/Core</label>
+        <childnode refid="5" relation="include">
+        </childnode>
       </node>
       <node id="3">
-        <label>chrono</label>
+        <label>Eigen/Core</label>
       </node>
       <node id="4">
+        <label>chrono</label>
+      </node>
+      <node id="2">
+        <label>rko_lio/core/scalar.hpp</label>
+      </node>
+      <node id="5">
         <label>sophus/se3.hpp</label>
       </node>
     </incdepgraph>
@@ -55,6 +65,26 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp</label>
+        <link refid="voxel__down__sample_8hpp_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp</label>
+        <link refid="voxel__hash__map_8hpp_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
       </node>
       <node id="4">
         <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp</label>
@@ -66,12 +96,35 @@
         <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp</label>
         <link refid="threaded__node_8hpp_source"/>
       </node>
+      <node id="9">
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp</label>
+        <link refid="point__cloud__read_8hpp_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_write.hpp</label>
+        <link refid="point__cloud__write_8hpp_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp</label>
+        <link refid="transforms_8hpp_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/utils.hpp</label>
+        <link refid="utils_8hpp_source"/>
+      </node>
     </invincdepgraph>
     <innerclass refid="structrko__lio_1_1core_1_1State" prot="public">rko_lio::core::State</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1ImuBias" prot="public">rko_lio::core::ImuBias</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1ImuControl" prot="public">rko_lio::core::ImuControl</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1IntervalStats" prot="public">rko_lio::core::IntervalStats</innerclass>
     <innernamespace refid="namespaceEigen">Eigen</innernamespace>
+    <innernamespace refid="namespaceSophus">Sophus</innernamespace>
     <innernamespace refid="namespacerko__lio">rko_lio</innernamespace>
     <innernamespace refid="namespacerko__lio_1_1core">rko_lio::core</innernamespace>
     <briefdescription>
@@ -104,89 +157,101 @@
 <codeline lineno="23"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Eigen/Core&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;chrono&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sophus/se3.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Eigen<sp/>{</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Matrix3_6d<sp/>=<sp/>Matrix&lt;double,<sp/>3,<sp/>6&gt;;</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Vector6d<sp/>=<sp/>Matrix&lt;double,<sp/>6,<sp/>1&gt;;</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Matrix6d<sp/>=<sp/>Matrix&lt;double,<sp/>6,<sp/>6&gt;;</highlight></codeline>
-<codeline lineno="34"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>Eigen</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacerko__lio_1_1core" kindref="compound">rko_lio::core</ref><sp/>{</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>aliases</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Vector3dVector<sp/>=<sp/>std::vector&lt;Eigen::Vector3d&gt;;</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Nsec<sp/>=<sp/>std::chrono::nanoseconds;</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">TimestampVector<sp/>=<sp/>std::vector&lt;Nsec&gt;;</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"></highlight></codeline>
-<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">//<sp/>constants<sp/>and<sp/>util<sp/>funcs</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>square(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>x<sp/>*<sp/>x;<sp/>}</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>GRAVITY_MAG<sp/>=<sp/>9.8107;</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>Eigen::Vector3d<sp/>gravity()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{0,<sp/>0,<sp/>-GRAVITY_MAG};<sp/>}</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>to_seconds(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Nsec<sp/>d)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::chrono::duration&lt;double&gt;(d).count();<sp/>}</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"></highlight></codeline>
-<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">//<sp/>data<sp/>structs</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="50" refid="structrko__lio_1_1core_1_1State" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1State" kindref="compound">State</ref><sp/>{</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/>Nsec<sp/>time{0};</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/>Sophus::SE3d<sp/>pose;</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/>Eigen::Vector3d<sp/>velocity<sp/>=<sp/>Eigen::Vector3d::Zero();</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/>Eigen::Vector3d<sp/>angular_velocity<sp/>=<sp/>Eigen::Vector3d::Zero();</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/>Eigen::Vector3d<sp/>linear_acceleration<sp/>=<sp/>Eigen::Vector3d::Zero();</highlight></codeline>
-<codeline lineno="56"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="57"><highlight class="normal"></highlight></codeline>
-<codeline lineno="58" refid="structrko__lio_1_1core_1_1ImuBias" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1ImuBias" kindref="compound">ImuBias</ref><sp/>{</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/>Eigen::Vector3d<sp/>accelerometer<sp/>=<sp/>Eigen::Vector3d::Zero();</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/>Eigen::Vector3d<sp/>gyroscope<sp/>=<sp/>Eigen::Vector3d::Zero();</highlight></codeline>
-<codeline lineno="61"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"></highlight></codeline>
-<codeline lineno="63" refid="structrko__lio_1_1core_1_1ImuControl" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1ImuControl" kindref="compound">ImuControl</ref><sp/>{</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/>Nsec<sp/>time{0};</highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/>Eigen::Vector3d<sp/>acceleration<sp/>=<sp/>Eigen::Vector3d::Zero();</highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/>Eigen::Vector3d<sp/>angular_velocity<sp/>=<sp/>Eigen::Vector3d::Zero();</highlight></codeline>
-<codeline lineno="67"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"></highlight></codeline>
-<codeline lineno="70" refid="structrko__lio_1_1core_1_1IntervalStats" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1IntervalStats" kindref="compound">IntervalStats</ref><sp/>{</highlight></codeline>
-<codeline lineno="72" refid="structrko__lio_1_1core_1_1IntervalStats_1ad03a2f9676e4eb163dc180dd707fd26c" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1ad03a2f9676e4eb163dc180dd707fd26c" kindref="member">imu_count</ref><sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"></highlight></codeline>
-<codeline lineno="75" refid="structrko__lio_1_1core_1_1IntervalStats_1a682cba2042c0f98cd5b17004dd52d8ea" refkind="member"><highlight class="normal"><sp/><sp/>Eigen::Vector3d<sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a682cba2042c0f98cd5b17004dd52d8ea" kindref="member">angular_velocity_sum</ref><sp/>=<sp/>Eigen::Vector3d::Zero();</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"></highlight></codeline>
-<codeline lineno="78" refid="structrko__lio_1_1core_1_1IntervalStats_1a23ee5f222348a6a395d4ace02cdf33d9" refkind="member"><highlight class="normal"><sp/><sp/>Eigen::Vector3d<sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a23ee5f222348a6a395d4ace02cdf33d9" kindref="member">body_acceleration_sum</ref><sp/>=<sp/>Eigen::Vector3d::Zero();</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"></highlight></codeline>
-<codeline lineno="81" refid="structrko__lio_1_1core_1_1IntervalStats_1aec10e58e32b447b90cd6b8bc8c5a975f" refkind="member"><highlight class="normal"><sp/><sp/>Eigen::Vector3d<sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1aec10e58e32b447b90cd6b8bc8c5a975f" kindref="member">imu_acceleration_sum</ref><sp/>=<sp/>Eigen::Vector3d::Zero();</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"></highlight></codeline>
-<codeline lineno="84" refid="structrko__lio_1_1core_1_1IntervalStats_1ab34ab6019a0695a87893f2c100071f32" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1ab34ab6019a0695a87893f2c100071f32" kindref="member">imu_accel_mag_mean</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;rko_lio/core/scalar.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Eigen/Core&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;chrono&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sophus/se3.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Scalar<sp/>is<sp/>either<sp/>float<sp/>or<sp/>double,<sp/>as<sp/>configured</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Eigen<sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Vector3s<sp/>=<sp/>Vector3&lt;rko_lio::core::Scalar&gt;;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Vector4s<sp/>=<sp/>Vector4&lt;rko_lio::core::Scalar&gt;;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Matrix3s<sp/>=<sp/>Matrix3&lt;rko_lio::core::Scalar&gt;;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Matrix4s<sp/>=<sp/>Matrix4&lt;rko_lio::core::Scalar&gt;;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Matrix3_6s<sp/>=<sp/>Matrix&lt;rko_lio::core::Scalar,<sp/>3,<sp/>6&gt;;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Vector6s<sp/>=<sp/>Matrix&lt;rko_lio::core::Scalar,<sp/>6,<sp/>1&gt;;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Matrix6s<sp/>=<sp/>Matrix&lt;rko_lio::core::Scalar,<sp/>6,<sp/>6&gt;;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Quaternions<sp/>=<sp/>Quaternion&lt;rko_lio::core::Scalar&gt;;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>Eigen</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Sophus<sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">SE3s<sp/>=<sp/>SE3&lt;rko_lio::core::Scalar&gt;;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">SO3s<sp/>=<sp/>SO3&lt;rko_lio::core::Scalar&gt;;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>Sophus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacerko__lio_1_1core" kindref="compound">rko_lio::core</ref><sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Vector3sVector<sp/>=<sp/>std::vector&lt;Eigen::Vector3s&gt;;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Nsec<sp/>=<sp/>std::chrono::nanoseconds;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">TimestampVector<sp/>=<sp/>std::vector&lt;Nsec&gt;;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">//<sp/>constants<sp/>and<sp/>util<sp/>funcs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>Scalar<sp/>square(Scalar<sp/>x)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>x<sp/>*<sp/>x;<sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>Scalar<sp/>GRAVITY_MAG<sp/>=<sp/>9.8107;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>Eigen::Vector3s<sp/>gravity()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{0,<sp/>0,<sp/>-GRAVITY_MAG};<sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>to_seconds(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Nsec<sp/>d)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::chrono::duration&lt;double&gt;(d).count();<sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="comment">//<sp/>data<sp/>structs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62" refid="structrko__lio_1_1core_1_1State" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1State" kindref="compound">State</ref><sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/>Nsec<sp/>time{0};</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/>Sophus::SE3s<sp/>pose;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/>Eigen::Vector3s<sp/>velocity<sp/>=<sp/>Eigen::Vector3s::Zero();</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/>Eigen::Vector3s<sp/>angular_velocity<sp/>=<sp/>Eigen::Vector3s::Zero();</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/>Eigen::Vector3s<sp/>linear_acceleration<sp/>=<sp/>Eigen::Vector3s::Zero();</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="structrko__lio_1_1core_1_1ImuBias" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1ImuBias" kindref="compound">ImuBias</ref><sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/>Eigen::Vector3s<sp/>accelerometer<sp/>=<sp/>Eigen::Vector3s::Zero();</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/>Eigen::Vector3s<sp/>gyroscope<sp/>=<sp/>Eigen::Vector3s::Zero();</highlight></codeline>
+<codeline lineno="73"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75" refid="structrko__lio_1_1core_1_1ImuControl" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1ImuControl" kindref="compound">ImuControl</ref><sp/>{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/>Nsec<sp/>time{0};</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/>Eigen::Vector3s<sp/>acceleration<sp/>=<sp/>Eigen::Vector3s::Zero();</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/>Eigen::Vector3s<sp/>angular_velocity<sp/>=<sp/>Eigen::Vector3s::Zero();</highlight></codeline>
+<codeline lineno="79"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82" refid="structrko__lio_1_1core_1_1IntervalStats" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1IntervalStats" kindref="compound">IntervalStats</ref><sp/>{</highlight></codeline>
+<codeline lineno="84" refid="structrko__lio_1_1core_1_1IntervalStats_1ad03a2f9676e4eb163dc180dd707fd26c" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1ad03a2f9676e4eb163dc180dd707fd26c" kindref="member">imu_count</ref><sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="85"><highlight class="normal"></highlight></codeline>
-<codeline lineno="87" refid="structrko__lio_1_1core_1_1IntervalStats_1a47b5be39a7d1a13c64fdd8e4054702b2" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a47b5be39a7d1a13c64fdd8e4054702b2" kindref="member">welford_sum_of_squares</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="87" refid="structrko__lio_1_1core_1_1IntervalStats_1a4e2966e0e84a6b5824b24f3b7a63fc02" refkind="member"><highlight class="normal"><sp/><sp/>Eigen::Vector3s<sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a4e2966e0e84a6b5824b24f3b7a63fc02" kindref="member">angular_velocity_sum</ref><sp/>=<sp/>Eigen::Vector3s::Zero();</highlight></codeline>
 <codeline lineno="88"><highlight class="normal"></highlight></codeline>
-<codeline lineno="95" refid="structrko__lio_1_1core_1_1IntervalStats_1a50a0e46cf910ee6928aec0fc93a1772b" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a50a0e46cf910ee6928aec0fc93a1772b" kindref="member">update</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3d&amp;<sp/>unbiased_ang_vel,</highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3d&amp;<sp/>uncompensated_unbiased_accel,</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3d&amp;<sp/>compensated_accel)<sp/>{</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>++<ref refid="structrko__lio_1_1core_1_1IntervalStats_1ad03a2f9676e4eb163dc180dd707fd26c" kindref="member">imu_count</ref>;</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a682cba2042c0f98cd5b17004dd52d8ea" kindref="member">angular_velocity_sum</ref><sp/>+=<sp/>unbiased_ang_vel;</highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1aec10e58e32b447b90cd6b8bc8c5a975f" kindref="member">imu_acceleration_sum</ref><sp/>+=<sp/>uncompensated_unbiased_accel;</highlight></codeline>
-<codeline lineno="101"><highlight class="normal"></highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>previous_mean<sp/>=<sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1ab34ab6019a0695a87893f2c100071f32" kindref="member">imu_accel_mag_mean</ref>;</highlight></codeline>
-<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>accel_norm<sp/>=<sp/>uncompensated_unbiased_accel.norm();</highlight></codeline>
-<codeline lineno="104"><highlight class="normal"></highlight></codeline>
-<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1ab34ab6019a0695a87893f2c100071f32" kindref="member">imu_accel_mag_mean</ref><sp/>+=<sp/>(accel_norm<sp/>-<sp/>previous_mean)<sp/>/<sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1ad03a2f9676e4eb163dc180dd707fd26c" kindref="member">imu_count</ref>;</highlight></codeline>
-<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a47b5be39a7d1a13c64fdd8e4054702b2" kindref="member">welford_sum_of_squares</ref><sp/>+=<sp/>(accel_norm<sp/>-<sp/>previous_mean)<sp/>*<sp/>(accel_norm<sp/>-<sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1ab34ab6019a0695a87893f2c100071f32" kindref="member">imu_accel_mag_mean</ref>);</highlight></codeline>
-<codeline lineno="107"><highlight class="normal"></highlight></codeline>
-<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a23ee5f222348a6a395d4ace02cdf33d9" kindref="member">body_acceleration_sum</ref><sp/>+=<sp/>compensated_accel;</highlight></codeline>
-<codeline lineno="109"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="110"><highlight class="normal"></highlight></codeline>
-<codeline lineno="112" refid="structrko__lio_1_1core_1_1IntervalStats_1a93353da910829b6fc1525b55d99fd280" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a93353da910829b6fc1525b55d99fd280" kindref="member">reset</ref>()<sp/>{</highlight></codeline>
-<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1ad03a2f9676e4eb163dc180dd707fd26c" kindref="member">imu_count</ref><sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a682cba2042c0f98cd5b17004dd52d8ea" kindref="member">angular_velocity_sum</ref>.setZero();</highlight></codeline>
-<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a23ee5f222348a6a395d4ace02cdf33d9" kindref="member">body_acceleration_sum</ref>.setZero();</highlight></codeline>
-<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1aec10e58e32b447b90cd6b8bc8c5a975f" kindref="member">imu_acceleration_sum</ref>.setZero();</highlight></codeline>
-<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1ab34ab6019a0695a87893f2c100071f32" kindref="member">imu_accel_mag_mean</ref><sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a47b5be39a7d1a13c64fdd8e4054702b2" kindref="member">welford_sum_of_squares</ref><sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="119"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="120"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="121"><highlight class="normal"></highlight></codeline>
-<codeline lineno="122"><highlight class="normal">};<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="structrko__lio_1_1core_1_1IntervalStats_1a5edfca29450269f3f4bce4670948d6b0" refkind="member"><highlight class="normal"><sp/><sp/>Eigen::Vector3s<sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a5edfca29450269f3f4bce4670948d6b0" kindref="member">body_acceleration_sum</ref><sp/>=<sp/>Eigen::Vector3s::Zero();</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="structrko__lio_1_1core_1_1IntervalStats_1af96d42b3db00350ec398257e78606fbf" refkind="member"><highlight class="normal"><sp/><sp/>Eigen::Vector3s<sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1af96d42b3db00350ec398257e78606fbf" kindref="member">imu_acceleration_sum</ref><sp/>=<sp/>Eigen::Vector3s::Zero();</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="structrko__lio_1_1core_1_1IntervalStats_1af1abe33ec46d8cedfad2bc74479a2c46" refkind="member"><highlight class="normal"><sp/><sp/>Scalar<sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1af1abe33ec46d8cedfad2bc74479a2c46" kindref="member">imu_accel_mag_mean</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99" refid="structrko__lio_1_1core_1_1IntervalStats_1af66327f9f7b18f90a4bb6d1a7be904f0" refkind="member"><highlight class="normal"><sp/><sp/>Scalar<sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1af66327f9f7b18f90a4bb6d1a7be904f0" kindref="member">welford_sum_of_squares</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107" refid="structrko__lio_1_1core_1_1IntervalStats_1aa21405300771c69fea6e8393362d4903" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1aa21405300771c69fea6e8393362d4903" kindref="member">update</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s&amp;<sp/>unbiased_ang_vel,</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s&amp;<sp/>uncompensated_unbiased_accel,</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s&amp;<sp/>compensated_accel)<sp/>{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>++<ref refid="structrko__lio_1_1core_1_1IntervalStats_1ad03a2f9676e4eb163dc180dd707fd26c" kindref="member">imu_count</ref>;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a4e2966e0e84a6b5824b24f3b7a63fc02" kindref="member">angular_velocity_sum</ref><sp/>+=<sp/>unbiased_ang_vel;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1af96d42b3db00350ec398257e78606fbf" kindref="member">imu_acceleration_sum</ref><sp/>+=<sp/>uncompensated_unbiased_accel;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>previous_mean<sp/>=<sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1af1abe33ec46d8cedfad2bc74479a2c46" kindref="member">imu_accel_mag_mean</ref>;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>accel_norm<sp/>=<sp/>uncompensated_unbiased_accel.norm();</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1af1abe33ec46d8cedfad2bc74479a2c46" kindref="member">imu_accel_mag_mean</ref><sp/>+=<sp/>(accel_norm<sp/>-<sp/>previous_mean)<sp/>/<sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1ad03a2f9676e4eb163dc180dd707fd26c" kindref="member">imu_count</ref>;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1af66327f9f7b18f90a4bb6d1a7be904f0" kindref="member">welford_sum_of_squares</ref><sp/>+=<sp/>(accel_norm<sp/>-<sp/>previous_mean)<sp/>*<sp/>(accel_norm<sp/>-<sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1af1abe33ec46d8cedfad2bc74479a2c46" kindref="member">imu_accel_mag_mean</ref>);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a5edfca29450269f3f4bce4670948d6b0" kindref="member">body_acceleration_sum</ref><sp/>+=<sp/>compensated_accel;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124" refid="structrko__lio_1_1core_1_1IntervalStats_1a93353da910829b6fc1525b55d99fd280" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a93353da910829b6fc1525b55d99fd280" kindref="member">reset</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1ad03a2f9676e4eb163dc180dd707fd26c" kindref="member">imu_count</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a4e2966e0e84a6b5824b24f3b7a63fc02" kindref="member">angular_velocity_sum</ref>.setZero();</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1a5edfca29450269f3f4bce4670948d6b0" kindref="member">body_acceleration_sum</ref>.setZero();</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1af96d42b3db00350ec398257e78606fbf" kindref="member">imu_acceleration_sum</ref>.setZero();</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1af1abe33ec46d8cedfad2bc74479a2c46" kindref="member">imu_accel_mag_mean</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrko__lio_1_1core_1_1IntervalStats_1af66327f9f7b18f90a4bb6d1a7be904f0" kindref="member">welford_sum_of_squares</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal">};<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp"/>
   </compounddef>

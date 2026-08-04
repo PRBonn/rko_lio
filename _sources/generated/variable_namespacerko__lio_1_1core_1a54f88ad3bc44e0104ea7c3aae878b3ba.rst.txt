@@ -1,0 +1,14 @@
+.. _exhale_variable_namespacerko__lio_1_1core_1a54f88ad3bc44e0104ea7c3aae878b3ba:
+
+Variable rko_lio::core::GRAVITY_MAG
+===================================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_util.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: rko_lio::core::GRAVITY_MAG
+   :project: rko_lio Doxygen Project

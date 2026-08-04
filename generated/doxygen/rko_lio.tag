@@ -50,10 +50,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>double</type>
+      <type>Scalar</type>
       <name>voxel_size</name>
       <anchorfile>structrko__lio_1_1core_1_1LIO_1_1Config.html</anchorfile>
-      <anchor>a0cf92444005352d71aca931390a9ead0</anchor>
+      <anchor>a67bdbe027a35535e1ead0817708bbf21</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -64,31 +64,31 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>double</type>
+      <type>Scalar</type>
       <name>max_range</name>
       <anchorfile>structrko__lio_1_1core_1_1LIO_1_1Config.html</anchorfile>
-      <anchor>a333f16a3ff952ee91e48e0d62dc23533</anchor>
+      <anchor>a05692713c28ca65ec3a8d17101fc339d</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>double</type>
+      <type>Scalar</type>
       <name>min_range</name>
       <anchorfile>structrko__lio_1_1core_1_1LIO_1_1Config.html</anchorfile>
-      <anchor>af3ef0dac6d1484eac8aa0e91c5578f10</anchor>
+      <anchor>a68e1ae51d4a2f51ed6c056c4ded4305f</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>double</type>
+      <type>Scalar</type>
       <name>convergence_criterion</name>
       <anchorfile>structrko__lio_1_1core_1_1LIO_1_1Config.html</anchorfile>
-      <anchor>ae2991e0e372427f93255231b3249b246</anchor>
+      <anchor>a56d0d45436b8a84fff17bcc091db526a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>double</type>
+      <type>Scalar</type>
       <name>max_correspondence_distance</name>
       <anchorfile>structrko__lio_1_1core_1_1LIO_1_1Config.html</anchorfile>
-      <anchor>a209b80041e522d7c654836136528d63d</anchor>
+      <anchor>ae1d2e741a885898cbc5e71ad510f0b22</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -106,10 +106,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>double</type>
+      <type>Scalar</type>
       <name>max_expected_jerk</name>
       <anchorfile>structrko__lio_1_1core_1_1LIO_1_1Config.html</anchorfile>
-      <anchor>a5f5b46b1671012993d30d61657d99714</anchor>
+      <anchor>a31eee3140c675a6232ebd602db723fa0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -120,10 +120,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>double</type>
+      <type>Scalar</type>
       <name>min_beta</name>
       <anchorfile>structrko__lio_1_1core_1_1LIO_1_1Config.html</anchorfile>
-      <anchor>a6121d24b6a6e7f262bb6185a407f434d</anchor>
+      <anchor>a5dda354239572c1c5ec162a8735123c0</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -142,8 +142,8 @@
       <type>void</type>
       <name>update</name>
       <anchorfile>structrko__lio_1_1core_1_1IntervalStats.html</anchorfile>
-      <anchor>a50a0e46cf910ee6928aec0fc93a1772b</anchor>
-      <arglist>(const Eigen::Vector3d &amp;unbiased_ang_vel, const Eigen::Vector3d &amp;uncompensated_unbiased_accel, const Eigen::Vector3d &amp;compensated_accel)</arglist>
+      <anchor>aa21405300771c69fea6e8393362d4903</anchor>
+      <arglist>(const Eigen::Vector3s &amp;unbiased_ang_vel, const Eigen::Vector3s &amp;uncompensated_unbiased_accel, const Eigen::Vector3s &amp;compensated_accel)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -160,38 +160,38 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>Eigen::Vector3d</type>
+      <type>Eigen::Vector3s</type>
       <name>angular_velocity_sum</name>
       <anchorfile>structrko__lio_1_1core_1_1IntervalStats.html</anchorfile>
-      <anchor>a682cba2042c0f98cd5b17004dd52d8ea</anchor>
+      <anchor>a4e2966e0e84a6b5824b24f3b7a63fc02</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>Eigen::Vector3d</type>
+      <type>Eigen::Vector3s</type>
       <name>body_acceleration_sum</name>
       <anchorfile>structrko__lio_1_1core_1_1IntervalStats.html</anchorfile>
-      <anchor>a23ee5f222348a6a395d4ace02cdf33d9</anchor>
+      <anchor>a5edfca29450269f3f4bce4670948d6b0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>Eigen::Vector3d</type>
+      <type>Eigen::Vector3s</type>
       <name>imu_acceleration_sum</name>
       <anchorfile>structrko__lio_1_1core_1_1IntervalStats.html</anchorfile>
-      <anchor>aec10e58e32b447b90cd6b8bc8c5a975f</anchor>
+      <anchor>af96d42b3db00350ec398257e78606fbf</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>double</type>
+      <type>Scalar</type>
       <name>imu_accel_mag_mean</name>
       <anchorfile>structrko__lio_1_1core_1_1IntervalStats.html</anchorfile>
-      <anchor>ab34ab6019a0695a87893f2c100071f32</anchor>
+      <anchor>af1abe33ec46d8cedfad2bc74479a2c46</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>double</type>
+      <type>Scalar</type>
       <name>welford_sum_of_squares</name>
       <anchorfile>structrko__lio_1_1core_1_1IntervalStats.html</anchorfile>
-      <anchor>a47b5be39a7d1a13c64fdd8e4054702b2</anchor>
+      <anchor>af66327f9f7b18f90a4bb6d1a7be904f0</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -214,22 +214,22 @@
       <type>void</type>
       <name>add_imu_measurement</name>
       <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
-      <anchor>a91736c1595c37bc5d70840538735b12a</anchor>
-      <arglist>(const Sophus::SE3d &amp;extrinsic_imu2base, const ImuControl &amp;raw_imu)</arglist>
+      <anchor>a38d1f2b9d7de4981b3d14bfee77f5c06</anchor>
+      <arglist>(const Sophus::SE3s &amp;extrinsic_imu2base, const ImuControl &amp;raw_imu)</arglist>
     </member>
     <member kind="function">
-      <type>Vector3dVector</type>
+      <type>Vector3sVector</type>
       <name>register_scan</name>
       <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
-      <anchor>aebe2ef1f4bc36aef9bb72c634f38e755</anchor>
-      <arglist>(Vector3dVector scan, const TimestampVector &amp;timestamps)</arglist>
+      <anchor>aaba2cf6d3b84ffaa8506ca1401217ebc</anchor>
+      <arglist>(Vector3sVector scan, const TimestampVector &amp;timestamps)</arglist>
     </member>
     <member kind="function">
-      <type>Vector3dVector</type>
+      <type>Vector3sVector</type>
       <name>register_scan</name>
       <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
-      <anchor>a951202c4901280159b4b3ef3584c5640</anchor>
-      <arglist>(const Sophus::SE3d &amp;extrinsic_lidar2base, Vector3dVector scan, const TimestampVector &amp;timestamps)</arglist>
+      <anchor>acbef1dddc03a92627600364fa79217ac</anchor>
+      <arglist>(const Sophus::SE3s &amp;extrinsic_lidar2base, Vector3sVector scan, const TimestampVector &amp;timestamps)</arglist>
     </member>
     <member kind="variable">
       <type>Config</type>
@@ -260,17 +260,17 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>Eigen::Vector3d</type>
+      <type>Eigen::Vector3s</type>
       <name>mean_body_acceleration</name>
       <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
-      <anchor>aaec8a94ec4355ab7269bb02bee19d950</anchor>
+      <anchor>acaef58557031dd11624aea7cc84e0c2e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>Eigen::Matrix3d</type>
+      <type>Eigen::Matrix3s</type>
       <name>body_acceleration_covariance</name>
       <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
-      <anchor>a87238efc2008594d5fa9db8344084ec2</anchor>
+      <anchor>a81ef741f00c23279b2f1dcf08cc20e29</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -281,10 +281,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>std::vector&lt; std::pair&lt; Nsec, Sophus::SE3d &gt; &gt;</type>
+      <type>std::vector&lt; std::pair&lt; Nsec, Sophus::SE3s &gt; &gt;</type>
       <name>poses_with_timestamps</name>
       <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
-      <anchor>af0b6eaceab67b9094531940ab4e50de6</anchor>
+      <anchor>abbe45d6d4a850ff4f05ee3653e55d431</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -379,8 +379,8 @@
       <type>std::optional&lt; VoxelBlock::const_iterator &gt;</type>
       <name>get_closest_neighbor</name>
       <anchorfile>structrko__lio_1_1core_1_1VoxelHashMap.html</anchorfile>
-      <anchor>ac99169e235467d6b2a8dd6e518ac7595</anchor>
-      <arglist>(const Eigen::Vector3d &amp;query, const double max_distance) const</arglist>
+      <anchor>a0a6ccb87f261212ff773694df66f373a</anchor>
+      <arglist>(const Eigen::Vector3s &amp;query, const Scalar max_distance) const</arglist>
     </member>
   </compound>
   <compound kind="namespace">
@@ -406,11 +406,11 @@
       <arglist>(const std::vector&lt; double &gt; &amp;raw_timestamps, const Nsec header_stamp, const TimestampProcessingConfig &amp;config)</arglist>
     </member>
     <member kind="function">
-      <type>std::vector&lt; Eigen::Vector3d &gt;</type>
+      <type>std::vector&lt; Eigen::Vector3s &gt;</type>
       <name>voxel_down_sample</name>
       <anchorfile>namespacerko__lio_1_1core.html</anchorfile>
-      <anchor>ad33113e678270ae389705f90113e7df9</anchor>
-      <arglist>(const std::vector&lt; Eigen::Vector3d &gt; &amp;frame, const double voxel_size)</arglist>
+      <anchor>af72280698a29ae2aa7a2e256c3228560</anchor>
+      <arglist>(const std::vector&lt; Eigen::Vector3s &gt; &amp;frame, const Scalar voxel_size)</arglist>
     </member>
   </compound>
 </tagfile>

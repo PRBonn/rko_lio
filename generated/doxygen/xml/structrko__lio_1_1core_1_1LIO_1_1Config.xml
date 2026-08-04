@@ -36,9 +36,9 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="45" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="45" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a0cf92444005352d71aca931390a9ead0" prot="public" static="no" mutable="no">
-        <type>double</type>
-        <definition>double rko_lio::core::LIO::Config::voxel_size</definition>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a67bdbe027a35535e1ead0817708bbf21" prot="public" static="no" mutable="no">
+        <type>Scalar</type>
+        <definition>Scalar rko_lio::core::LIO::Config::voxel_size</definition>
         <argsstring></argsstring>
         <name>voxel_size</name>
         <qualifiedname>rko_lio::core::LIO::Config::voxel_size</qualifiedname>
@@ -68,9 +68,9 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="51" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="51" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a333f16a3ff952ee91e48e0d62dc23533" prot="public" static="no" mutable="no">
-        <type>double</type>
-        <definition>double rko_lio::core::LIO::Config::max_range</definition>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a05692713c28ca65ec3a8d17101fc339d" prot="public" static="no" mutable="no">
+        <type>Scalar</type>
+        <definition>Scalar rko_lio::core::LIO::Config::max_range</definition>
         <argsstring></argsstring>
         <name>max_range</name>
         <qualifiedname>rko_lio::core::LIO::Config::max_range</qualifiedname>
@@ -84,9 +84,9 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="54" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="54" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1af3ef0dac6d1484eac8aa0e91c5578f10" prot="public" static="no" mutable="no">
-        <type>double</type>
-        <definition>double rko_lio::core::LIO::Config::min_range</definition>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a68e1ae51d4a2f51ed6c056c4ded4305f" prot="public" static="no" mutable="no">
+        <type>Scalar</type>
+        <definition>Scalar rko_lio::core::LIO::Config::min_range</definition>
         <argsstring></argsstring>
         <name>min_range</name>
         <qualifiedname>rko_lio::core::LIO::Config::min_range</qualifiedname>
@@ -100,9 +100,9 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="57" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="57" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1ae2991e0e372427f93255231b3249b246" prot="public" static="no" mutable="no">
-        <type>double</type>
-        <definition>double rko_lio::core::LIO::Config::convergence_criterion</definition>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a56d0d45436b8a84fff17bcc091db526a" prot="public" static="no" mutable="no">
+        <type>Scalar</type>
+        <definition>Scalar rko_lio::core::LIO::Config::convergence_criterion</definition>
         <argsstring></argsstring>
         <name>convergence_criterion</name>
         <qualifiedname>rko_lio::core::LIO::Config::convergence_criterion</qualifiedname>
@@ -116,9 +116,9 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="60" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="60" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a209b80041e522d7c654836136528d63d" prot="public" static="no" mutable="no">
-        <type>double</type>
-        <definition>double rko_lio::core::LIO::Config::max_correspondence_distance</definition>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1ae1d2e741a885898cbc5e71ad510f0b22" prot="public" static="no" mutable="no">
+        <type>Scalar</type>
+        <definition>Scalar rko_lio::core::LIO::Config::max_correspondence_distance</definition>
         <argsstring></argsstring>
         <name>max_correspondence_distance</name>
         <qualifiedname>rko_lio::core::LIO::Config::max_correspondence_distance</qualifiedname>
@@ -164,9 +164,9 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="69" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="69" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a5f5b46b1671012993d30d61657d99714" prot="public" static="no" mutable="no">
-        <type>double</type>
-        <definition>double rko_lio::core::LIO::Config::max_expected_jerk</definition>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a31eee3140c675a6232ebd602db723fa0" prot="public" static="no" mutable="no">
+        <type>Scalar</type>
+        <definition>Scalar rko_lio::core::LIO::Config::max_expected_jerk</definition>
         <argsstring></argsstring>
         <name>max_expected_jerk</name>
         <qualifiedname>rko_lio::core::LIO::Config::max_expected_jerk</qualifiedname>
@@ -196,9 +196,9 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="75" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="75" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a6121d24b6a6e7f262bb6185a407f434d" prot="public" static="no" mutable="no">
-        <type>double</type>
-        <definition>double rko_lio::core::LIO::Config::min_beta</definition>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1LIO_1_1Config_1a5dda354239572c1c5ec162a8735123c0" prot="public" static="no" mutable="no">
+        <type>Scalar</type>
+        <definition>Scalar rko_lio::core::LIO::Config::min_beta</definition>
         <argsstring></argsstring>
         <name>min_beta</name>
         <qualifiedname>rko_lio::core::LIO::Config::min_beta</qualifiedname>
@@ -220,19 +220,19 @@
     </detaileddescription>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="40" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="40" bodyend="79"/>
     <listofallmembers>
-      <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1ae2991e0e372427f93255231b3249b246" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>convergence_criterion</name></member>
+      <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a56d0d45436b8a84fff17bcc091db526a" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>convergence_criterion</name></member>
       <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a047439a48b3c8afebe95407926efbada" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>deskew</name></member>
       <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1ae87229b29b2760d18c47d3b3c67c40ba" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>double_downsample</name></member>
       <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a2d65fe516d188013b626c20f1bc583e2" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>initialization_phase</name></member>
-      <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a209b80041e522d7c654836136528d63d" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>max_correspondence_distance</name></member>
-      <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a5f5b46b1671012993d30d61657d99714" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>max_expected_jerk</name></member>
+      <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1ae1d2e741a885898cbc5e71ad510f0b22" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>max_correspondence_distance</name></member>
+      <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a31eee3140c675a6232ebd602db723fa0" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>max_expected_jerk</name></member>
       <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a9cc9bd40427d206f8349bc330c40aa1f" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>max_iterations</name></member>
       <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a5089f617d86e9ae45f524c23d322617a" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>max_num_threads</name></member>
       <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a670b666aa92cf07b19b8537bf3e9446a" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>max_points_per_voxel</name></member>
-      <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a333f16a3ff952ee91e48e0d62dc23533" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>max_range</name></member>
-      <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a6121d24b6a6e7f262bb6185a407f434d" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>min_beta</name></member>
-      <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1af3ef0dac6d1484eac8aa0e91c5578f10" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>min_range</name></member>
-      <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a0cf92444005352d71aca931390a9ead0" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>voxel_size</name></member>
+      <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a05692713c28ca65ec3a8d17101fc339d" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>max_range</name></member>
+      <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a5dda354239572c1c5ec162a8735123c0" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>min_beta</name></member>
+      <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a68e1ae51d4a2f51ed6c056c4ded4305f" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>min_range</name></member>
+      <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a67bdbe027a35535e1ead0817708bbf21" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>voxel_size</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -13,7 +13,7 @@
         <link refid="lio_8hpp"/>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="13" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -26,14 +26,16 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="13">
+      <node id="7">
         <label>util.hpp</label>
         <link refid="util_8hpp_source"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
         </childnode>
       </node>
       <node id="6">
@@ -41,9 +43,11 @@
         <link refid="voxel__down__sample_8hpp_source"/>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
         <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
         </childnode>
       </node>
       <node id="5">
@@ -51,41 +55,44 @@
         <link refid="voxel__hash__map_8hpp_source"/>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
         <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="7">
+      <node id="9">
         <label>Eigen/Core</label>
       </node>
       <node id="2">
         <label>Eigen/Dense</label>
       </node>
-      <node id="14">
+      <node id="10">
         <label>chrono</label>
       </node>
-      <node id="8">
+      <node id="12">
         <label>cmath</label>
       </node>
-      <node id="10">
+      <node id="13">
         <label>optional</label>
       </node>
-      <node id="9">
-        <label>sophus/se3.hpp</label>
+      <node id="8">
+        <label>rko_lio/core/scalar.hpp</label>
       </node>
       <node id="11">
+        <label>sophus/se3.hpp</label>
+      </node>
+      <node id="14">
         <label>tsl/robin_map.h</label>
       </node>
-      <node id="12">
+      <node id="15">
         <label>tuple</label>
       </node>
       <node id="3">
@@ -109,13 +116,13 @@
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacerko__lio_1_1core" kindref="compound">rko_lio::core</ref><sp/>{</highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight></codeline>
 <codeline lineno="9" refid="structrko__lio_1_1core_1_1PreprocessingResult" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1PreprocessingResult" kindref="compound">PreprocessingResult</ref><sp/>{</highlight></codeline>
-<codeline lineno="10"><highlight class="normal"><sp/><sp/>Vector3dVector<sp/>filtered_frame;</highlight></codeline>
-<codeline lineno="11"><highlight class="normal"><sp/><sp/>Vector3dVector<sp/>keypoints;</highlight></codeline>
-<codeline lineno="12"><highlight class="normal"><sp/><sp/>Vector3dVector<sp/>map_frame;<sp/></highlight><highlight class="comment">//<sp/>populated<sp/>only<sp/>when<sp/>config.double_downsample;<sp/>empty<sp/>otherwise</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/>Vector3sVector<sp/>filtered_frame;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/>Vector3sVector<sp/>keypoints;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/>Vector3sVector<sp/>map_frame;<sp/></highlight><highlight class="comment">//<sp/>populated<sp/>only<sp/>when<sp/>config.double_downsample;<sp/>empty<sp/>otherwise</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>clip<sp/>and<sp/>downsample<sp/>the<sp/>input<sp/>cloud</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1PreprocessingResult" kindref="compound">PreprocessingResult</ref><sp/>preprocess_scan(Vector3dVector<sp/>frame,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config" kindref="compound">LIO::Config</ref>&amp;<sp/>config);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1PreprocessingResult" kindref="compound">PreprocessingResult</ref><sp/>preprocess_scan(Vector3sVector<sp/>frame,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config" kindref="compound">LIO::Config</ref>&amp;<sp/>config);</highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight></codeline>
 <codeline lineno="18"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>

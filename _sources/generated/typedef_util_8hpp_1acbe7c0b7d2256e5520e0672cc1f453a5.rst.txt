@@ -1,0 +1,14 @@
+.. _exhale_typedef_util_8hpp_1acbe7c0b7d2256e5520e0672cc1f453a5:
+
+Typedef Eigen::Vector3s
+=======================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_util.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: Eigen::Vector3s
+   :project: rko_lio Doxygen Project

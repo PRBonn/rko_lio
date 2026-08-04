@@ -30,27 +30,29 @@
         <link refid="lio_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="14">
+      <node id="15">
         <label>rko_lio/core/process_timestamps.hpp</label>
         <link refid="process__timestamps_8hpp_source"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-      </node>
-      <node id="12">
-        <label>util.hpp</label>
-        <link refid="util_8hpp_source"/>
         <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>util.hpp</label>
+        <link refid="util_8hpp_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
         <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
         </childnode>
       </node>
       <node id="4">
@@ -58,9 +60,11 @@
         <link refid="voxel__down__sample_8hpp_source"/>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
         <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
         </childnode>
       </node>
       <node id="3">
@@ -68,25 +72,23 @@
         <link refid="voxel__hash__map_8hpp_source"/>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
         <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="10" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
         </childnode>
       </node>
       <node id="1">
         <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp</label>
         <link refid="base__node_8hpp"/>
         <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
@@ -122,80 +124,85 @@
         </childnode>
         <childnode refid="31" relation="include">
         </childnode>
-      </node>
-      <node id="5">
-        <label>Eigen/Core</label>
-      </node>
-      <node id="15">
-        <label>atomic</label>
-      </node>
-      <node id="13">
-        <label>chrono</label>
-      </node>
-      <node id="6">
-        <label>cmath</label>
-      </node>
-      <node id="16">
-        <label>filesystem</label>
-      </node>
-      <node id="22">
-        <label>geometry_msgs/msg/accel_stamped.hpp</label>
-      </node>
-      <node id="23">
-        <label>geometry_msgs/msg/accel_with_covariance_stamped.hpp</label>
-      </node>
-      <node id="17">
-        <label>memory</label>
-      </node>
-      <node id="18">
-        <label>mutex</label>
-      </node>
-      <node id="24">
-        <label>nav_msgs/msg/odometry.hpp</label>
-      </node>
-      <node id="8">
-        <label>optional</label>
-      </node>
-      <node id="25">
-        <label>rclcpp/node.hpp</label>
-      </node>
-      <node id="26">
-        <label>rclcpp/node_options.hpp</label>
-      </node>
-      <node id="27">
-        <label>sensor_msgs/msg/imu.hpp</label>
-      </node>
-      <node id="28">
-        <label>sensor_msgs/msg/point_cloud2.hpp</label>
+        <childnode refid="32" relation="include">
+        </childnode>
       </node>
       <node id="7">
-        <label>sophus/se3.hpp</label>
+        <label>Eigen/Core</label>
       </node>
-      <node id="19">
-        <label>string</label>
+      <node id="16">
+        <label>atomic</label>
       </node>
-      <node id="20">
-        <label>string_view</label>
-      </node>
-      <node id="29">
-        <label>tf2_ros/buffer.hpp</label>
-      </node>
-      <node id="30">
-        <label>tf2_ros/transform_broadcaster.hpp</label>
-      </node>
-      <node id="31">
-        <label>tf2_ros/transform_listener.hpp</label>
-      </node>
-      <node id="21">
-        <label>thread</label>
-      </node>
-      <node id="9">
-        <label>tsl/robin_map.h</label>
+      <node id="8">
+        <label>chrono</label>
       </node>
       <node id="10">
-        <label>tuple</label>
+        <label>cmath</label>
+      </node>
+      <node id="17">
+        <label>filesystem</label>
+      </node>
+      <node id="23">
+        <label>geometry_msgs/msg/accel_stamped.hpp</label>
+      </node>
+      <node id="24">
+        <label>geometry_msgs/msg/accel_with_covariance_stamped.hpp</label>
+      </node>
+      <node id="18">
+        <label>memory</label>
+      </node>
+      <node id="19">
+        <label>mutex</label>
+      </node>
+      <node id="25">
+        <label>nav_msgs/msg/odometry.hpp</label>
       </node>
       <node id="11">
+        <label>optional</label>
+      </node>
+      <node id="26">
+        <label>rclcpp/node.hpp</label>
+      </node>
+      <node id="27">
+        <label>rclcpp/node_options.hpp</label>
+      </node>
+      <node id="6">
+        <label>rko_lio/core/scalar.hpp</label>
+      </node>
+      <node id="28">
+        <label>sensor_msgs/msg/imu.hpp</label>
+      </node>
+      <node id="29">
+        <label>sensor_msgs/msg/point_cloud2.hpp</label>
+      </node>
+      <node id="9">
+        <label>sophus/se3.hpp</label>
+      </node>
+      <node id="20">
+        <label>string</label>
+      </node>
+      <node id="21">
+        <label>string_view</label>
+      </node>
+      <node id="30">
+        <label>tf2_ros/buffer.hpp</label>
+      </node>
+      <node id="31">
+        <label>tf2_ros/transform_broadcaster.hpp</label>
+      </node>
+      <node id="32">
+        <label>tf2_ros/transform_listener.hpp</label>
+      </node>
+      <node id="22">
+        <label>thread</label>
+      </node>
+      <node id="12">
+        <label>tsl/robin_map.h</label>
+      </node>
+      <node id="13">
+        <label>tuple</label>
+      </node>
+      <node id="14">
         <label>vector</label>
       </node>
     </incdepgraph>
@@ -271,7 +278,7 @@
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
 <codeline lineno="50" refid="structrko__lio_1_1ros_1_1LidarFrame" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1ros_1_1LidarFrame" kindref="compound">LidarFrame</ref><sp/>{</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1Timestamps" kindref="compound">core::Timestamps</ref><sp/>timestamps;</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/>core::Vector3dVector<sp/>points;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/>core::Vector3sVector<sp/>points;</highlight></codeline>
 <codeline lineno="53"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Shared<sp/>helper<sp/>used<sp/>by<sp/>both<sp/>the<sp/>threaded<sp/>and<sp/>sequential<sp/>nodes.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="55"><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1ImuControl" kindref="compound">core::ImuControl</ref><sp/>imu_msg_to_imu_data(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::Imu&amp;<sp/>imu_msg);</highlight></codeline>
@@ -301,8 +308,8 @@
 <codeline lineno="79"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>publish_deskewed_scan<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="80"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>publish_local_map<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="81"><highlight class="normal"></highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/>Sophus::SE3d<sp/>extrinsic_imu2base;</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/>Sophus::SE3d<sp/>extrinsic_lidar2base;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/>Sophus::SE3s<sp/>extrinsic_imu2base;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/>Sophus::SE3s<sp/>extrinsic_lidar2base;</highlight></codeline>
 <codeline lineno="84"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>extrinsics_set<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="85"><highlight class="normal"></highlight></codeline>
 <codeline lineno="86"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;tf2_ros::TransformListener&gt;<sp/>tf_listener;</highlight></codeline>
@@ -337,9 +344,9 @@
 <codeline lineno="115"><highlight class="normal"></highlight></codeline>
 <codeline lineno="116"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1ros_1_1LidarFrame" kindref="compound">LidarFrame</ref><sp/>process_lidar_msg(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::PointCloud2::ConstSharedPtr&amp;<sp/>lidar_msg)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="117"><highlight class="normal"></highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><sp/><sp/>core::Vector3dVector<sp/>register_scan_locked(core::Vector3dVector<sp/>scan,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::TimestampVector&amp;<sp/>time_vector);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/>core::Vector3sVector<sp/>register_scan_locked(core::Vector3sVector<sp/>scan,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::TimestampVector&amp;<sp/>time_vector);</highlight></codeline>
 <codeline lineno="119"><highlight class="normal"></highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>publish_lidar_outputs(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::Vector3dVector&amp;<sp/>deskewed_frame)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>publish_lidar_outputs(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::Vector3sVector&amp;<sp/>deskewed_frame)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="121"><highlight class="normal"></highlight></codeline>
 <codeline lineno="122"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>publish_odometry(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1State" kindref="compound">core::State</ref>&amp;<sp/>state,</highlight></codeline>
 <codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>rclcpp::Publisher&lt;nav_msgs::msg::Odometry&gt;::SharedPtr&amp;<sp/>publisher)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>

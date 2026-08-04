@@ -1,0 +1,14 @@
+.. _exhale_typedef_util_8hpp_1a0420b6f93947a4b915651820beb39357:
+
+Typedef Eigen::Matrix3s
+=======================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_util.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: Eigen::Matrix3s
+   :project: rko_lio Doxygen Project

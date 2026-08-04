@@ -118,12 +118,14 @@
 <span class="c1">// SOFTWARE.</span>
 
 <span class="cp">#pragma once</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;rko_lio/core/util.hpp&gt;</span>
+
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Eigen/Core&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">rko_lio</span><span class="o">::</span><span class="nn">ros</span><span class="o">::</span><span class="nn">utils</span><span class="w"> </span><span class="p">{</span>
-<span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PointCloud2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">eigen_to_point_cloud2</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">points</span><span class="p">,</span>
+<span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PointCloud2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">eigen_to_point_cloud2</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">core</span><span class="o">::</span><span class="n">Vector3sVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">points</span><span class="p">,</span>
 <span class="w">                                                                     </span><span class="k">const</span><span class="w"> </span><span class="n">std_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Header</span><span class="o">&amp;</span><span class="w"> </span><span class="n">header</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>

@@ -46,27 +46,27 @@ Program Listing for File lio.hpp
    
        size_t max_iterations = 100;
    
-       double voxel_size = 1.0;
+       Scalar voxel_size = 1.0;
    
        int max_points_per_voxel = 20;
    
-       double max_range = 100.0;
+       Scalar max_range = 100.0;
    
-       double min_range = 1.0;
+       Scalar min_range = 1.0;
    
-       double convergence_criterion = 1e-5;
+       Scalar convergence_criterion = 1e-5;
    
-       double max_correspondence_distance = 0.5;
+       Scalar max_correspondence_distance = 0.5;
    
        int max_num_threads = 0;
    
        bool initialization_phase = false;
    
-       double max_expected_jerk = 3;
+       Scalar max_expected_jerk = 3;
    
        bool double_downsample = true;
    
-       double min_beta = 200;
+       Scalar min_beta = 200;
      };
    
      Config config;
@@ -77,9 +77,9 @@ Program Listing for File lio.hpp
    
      ImuBias imu_bias;
    
-     Eigen::Vector3d mean_body_acceleration = Eigen::Vector3d::Zero();
+     Eigen::Vector3s mean_body_acceleration = Eigen::Vector3s::Zero();
    
-     Eigen::Matrix3d body_acceleration_covariance = Eigen::Matrix3d::Identity();
+     Eigen::Matrix3s body_acceleration_covariance = Eigen::Matrix3s::Identity();
    
      IntervalStats interval_stats;
    
@@ -87,29 +87,29 @@ Program Listing for File lio.hpp
    
      void add_imu_measurement(const ImuControl& base_imu);
    
-     void add_imu_measurement(const Sophus::SE3d& extrinsic_imu2base, const ImuControl& raw_imu);
+     void add_imu_measurement(const Sophus::SE3s& extrinsic_imu2base, const ImuControl& raw_imu);
    
-     Vector3dVector register_scan(Vector3dVector scan, const TimestampVector& timestamps);
+     Vector3sVector register_scan(Vector3sVector scan, const TimestampVector& timestamps);
    
-     Vector3dVector register_scan(const Sophus::SE3d& extrinsic_lidar2base,
-                                  Vector3dVector scan,
+     Vector3sVector register_scan(const Sophus::SE3s& extrinsic_lidar2base,
+                                  Vector3sVector scan,
                                   const TimestampVector& timestamps);
    
-     std::vector<std::pair<Nsec, Sophus::SE3d>> poses_with_timestamps;
+     std::vector<std::pair<Nsec, Sophus::SE3s>> poses_with_timestamps;
    
      State imu_state;
    
    private:
      void initialize(const Nsec lidar_time);
    
-     Vector3dVector bootstrap_first_scan(const Vector3dVector& scan, const Nsec current_lidar_time);
+     Vector3sVector bootstrap_first_scan(const Vector3sVector& scan, const Nsec current_lidar_time);
    
-     std::pair<Eigen::Vector3d, Eigen::Vector3d> motion_priors_from_imu(const Nsec current_lidar_time);
+     std::pair<Eigen::Vector3s, Eigen::Vector3s> motion_priors_from_imu(const Nsec current_lidar_time);
    
      bool _initialized = false;
    
      Nsec _last_real_imu_time{0};
    
-     Eigen::Vector3d _last_real_base_imu_ang_vel = Eigen::Vector3d::Zero();
+     Eigen::Vector3s _last_real_base_imu_ang_vel = Eigen::Vector3s::Zero();
    };
    } // namespace rko_lio::core

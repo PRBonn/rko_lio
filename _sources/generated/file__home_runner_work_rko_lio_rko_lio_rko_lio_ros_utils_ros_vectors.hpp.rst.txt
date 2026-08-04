@@ -58,7 +58,7 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_ros__vectors_8hpp_1a89cb23044180614fae3f2f0a74ae4a4b`
+- :ref:`exhale_function_ros__vectors_8hpp_1a1ec41d7121199c6a747035f9b7ac87b6`
 
-- :ref:`exhale_function_ros__vectors_8hpp_1a3c96f574e69c58072d61040d978d9eb1`
+- :ref:`exhale_function_ros__vectors_8hpp_1ae723899a59eb320ecfecaf27e4a2404b`
 

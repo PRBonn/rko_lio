@@ -42,6 +42,8 @@ Includes
 
 - ``rclcpp/logging.hpp``
 
+- ``rko_lio/core/util.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_util.hpp`)
+
 - ``sophus/se3.hpp``
 
 - ``tf2/exceptions.hpp``
@@ -76,11 +78,11 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_transforms_8hpp_1a03c38b07517194dc77b673b64c066652`
+- :ref:`exhale_function_transforms_8hpp_1ad4bae1c0f70b136663501a218e0095e2`
 
-- :ref:`exhale_function_transforms_8hpp_1a44cc4e22d553762bfe91648556911c32`
+- :ref:`exhale_function_transforms_8hpp_1ad40c8be2cfc0464444d314d94088e723`
 
-- :ref:`exhale_function_transforms_8hpp_1a3347edf777beeec8166e93ed9bd7b633`
+- :ref:`exhale_function_transforms_8hpp_1ad3812e51b74a4b693e5a2f02c01b9bdb`
 
-- :ref:`exhale_function_transforms_8hpp_1a30f2577c606faf43523beb7b3b8fd4c3`
+- :ref:`exhale_function_transforms_8hpp_1a58cdd22e9dad87455b7bc02f654031c3`
 

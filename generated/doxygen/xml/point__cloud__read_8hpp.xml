@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="point__cloud__read_8hpp" kind="file" language="C++">
     <compoundname>point_cloud_read.hpp</compoundname>
+    <includes refid="util_8hpp" local="no">rko_lio/core/util.hpp</includes>
     <includes local="no">Eigen/Core</includes>
     <includes local="no">sophus/se3.hpp</includes>
     <includes local="no">sensor_msgs/msg/point_cloud2.hpp</includes>
@@ -9,28 +10,48 @@
     <includedby refid="point__cloud__read_8cpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp</includedby>
     <includedby refid="utils_8hpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/utils.hpp</includedby>
     <incdepgraph>
-      <node id="1">
-        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp</label>
-        <link refid="point__cloud__read_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
+      <node id="2">
+        <label>rko_lio/core/util.hpp</label>
+        <link refid="util_8hpp_source"/>
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
       </node>
-      <node id="2">
-        <label>Eigen/Core</label>
+      <node id="1">
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp</label>
+        <link refid="point__cloud__read_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
       </node>
       <node id="4">
-        <label>sensor_msgs/msg/point_cloud2.hpp</label>
+        <label>Eigen/Core</label>
       </node>
       <node id="5">
-        <label>sensor_msgs/point_cloud2_iterator.hpp</label>
+        <label>chrono</label>
       </node>
       <node id="3">
+        <label>rko_lio/core/scalar.hpp</label>
+      </node>
+      <node id="7">
+        <label>sensor_msgs/msg/point_cloud2.hpp</label>
+      </node>
+      <node id="8">
+        <label>sensor_msgs/point_cloud2_iterator.hpp</label>
+      </node>
+      <node id="6">
         <label>sophus/se3.hpp</label>
       </node>
     </incdepgraph>
@@ -80,22 +101,24 @@
 <codeline lineno="23"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Eigen/Core&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sophus/se3.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>ros</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sensor_msgs/point_cloud2_iterator.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros::utils<sp/>{</highlight></codeline>
-<codeline lineno="33"><highlight class="normal">std::vector&lt;Eigen::Vector3d&gt;<sp/>point_cloud2_to_eigen(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::PointCloud2::ConstSharedPtr&amp;<sp/>msg);</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="35" refid="structrko__lio_1_1ros_1_1utils_1_1RawScan" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1ros_1_1utils_1_1RawScan" kindref="compound">RawScan</ref><sp/>{</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/>std::vector&lt;Eigen::Vector3d&gt;<sp/>points;</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/>std::vector&lt;double&gt;<sp/>timestamps;</highlight></codeline>
-<codeline lineno="38"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><ref refid="structrko__lio_1_1ros_1_1utils_1_1RawScan" kindref="compound">RawScan</ref><sp/>point_cloud2_to_eigen_with_timestamps(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::PointCloud2::ConstSharedPtr&amp;<sp/>msg);</highlight></codeline>
-<codeline lineno="41"><highlight class="normal">};<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros::utils</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;rko_lio/core/util.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Eigen/Core&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sophus/se3.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>ros</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sensor_msgs/point_cloud2_iterator.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros::utils<sp/>{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">core::Vector3sVector<sp/>point_cloud2_to_eigen(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::PointCloud2::ConstSharedPtr&amp;<sp/>msg);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="structrko__lio_1_1ros_1_1utils_1_1RawScan" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1ros_1_1utils_1_1RawScan" kindref="compound">RawScan</ref><sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/>core::Vector3sVector<sp/>points;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/>std::vector&lt;double&gt;<sp/>timestamps;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><ref refid="structrko__lio_1_1ros_1_1utils_1_1RawScan" kindref="compound">RawScan</ref><sp/>point_cloud2_to_eigen_with_timestamps(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::PointCloud2::ConstSharedPtr&amp;<sp/>msg);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">};<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros::utils</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp"/>
   </compounddef>

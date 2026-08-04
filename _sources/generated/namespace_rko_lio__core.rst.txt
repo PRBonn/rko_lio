@@ -57,19 +57,19 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_namespacerko__lio_1_1core_1ae12b01bb20a1a7280bc26af2de2f15dd`
+- :ref:`exhale_function_namespacerko__lio_1_1core_1aadd9f1f2b2b1bc30166c6e4e6228841c`
 
-- :ref:`exhale_function_namespacerko__lio_1_1core_1ae81cb719c6cfedad68ce10f0b0b22261`
+- :ref:`exhale_function_namespacerko__lio_1_1core_1a20e41beba0ec902b7c78dcdb29899f33`
 
-- :ref:`exhale_function_namespacerko__lio_1_1core_1a69778208c70cff1e145c84ed2f86ad8f`
+- :ref:`exhale_function_namespacerko__lio_1_1core_1a1430bb1204c834d1c05fc142822002d5`
 
 - :ref:`exhale_function_namespacerko__lio_1_1core_1ac1fb80bf51f668bd3442bcb18044a57c`
 
-- :ref:`exhale_function_namespacerko__lio_1_1core_1aebf1f823c7fd220695665a8b3e12281e`
+- :ref:`exhale_function_namespacerko__lio_1_1core_1a1606d7b4fe5b32a257501d8079c968ca`
 
 - :ref:`exhale_function_namespacerko__lio_1_1core_1a82bfbe6dd0859af66258d81747392bd6`
 
-- :ref:`exhale_function_namespacerko__lio_1_1core_1ad33113e678270ae389705f90113e7df9`
+- :ref:`exhale_function_namespacerko__lio_1_1core_1af72280698a29ae2aa7a2e256c3228560`
 
 
 Typedefs
@@ -80,15 +80,15 @@ Typedefs
 
 - :ref:`exhale_typedef_namespacerko__lio_1_1core_1ad6796ca63cae68d67a3963e198336a1e`
 
-- :ref:`exhale_typedef_namespacerko__lio_1_1core_1a5cc9dbe312768171d6734783de18f64c`
+- :ref:`exhale_typedef_namespacerko__lio_1_1core_1ae207837473ce1623f13104a2b12fae3d`
 
 - :ref:`exhale_typedef_namespacerko__lio_1_1core_1adbcc16d5b9b09c370ce6c889b6356bda`
 
-- :ref:`exhale_typedef_namespacerko__lio_1_1core_1aef84c95de08dd51173a6fc0d2433c24a`
+- :ref:`exhale_typedef_namespacerko__lio_1_1core_1a4a7466a65783f3cf5619faa3cd164de5`
 
 
 Variables
 ---------
 
 
-- :ref:`exhale_variable_namespacerko__lio_1_1core_1a1beb022f953c50f94a2a815a4d3716b5`
+- :ref:`exhale_variable_namespacerko__lio_1_1core_1a54f88ad3bc44e0104ea7c3aae878b3ba`

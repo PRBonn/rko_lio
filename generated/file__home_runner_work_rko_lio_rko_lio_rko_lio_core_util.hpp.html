@@ -120,6 +120,7 @@
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Eigen/Core</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">chrono</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rko_lio/core/scalar.hpp</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">sophus/se3.hpp</span></code></p></li>
 </ul>
 </section>
@@ -129,6 +130,10 @@
 <li><p><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_rko_lio_core_lio.cpp.html#file-home-runner-work-rko-lio-rko-lio-rko-lio-core-lio-cpp"><span class="std std-ref">File lio.cpp</span></a></p></li>
 <li><p><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_rko_lio_core_lio.hpp.html#file-home-runner-work-rko-lio-rko-lio-rko-lio-core-lio-hpp"><span class="std std-ref">File lio.hpp</span></a></p></li>
 <li><p><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_rko_lio_core_process_timestamps.hpp.html#file-home-runner-work-rko-lio-rko-lio-rko-lio-core-process-timestamps-hpp"><span class="std std-ref">File process_timestamps.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_rko_lio_core_voxel_down_sample.hpp.html#file-home-runner-work-rko-lio-rko-lio-rko-lio-core-voxel-down-sample-hpp"><span class="std std-ref">File voxel_down_sample.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_point_cloud_read.hpp.html#file-home-runner-work-rko-lio-rko-lio-rko-lio-ros-utils-point-cloud-read-hpp"><span class="std std-ref">File point_cloud_read.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_point_cloud_write.hpp.html#file-home-runner-work-rko-lio-rko-lio-rko-lio-ros-utils-point-cloud-write-hpp"><span class="std std-ref">File point_cloud_write.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_transforms.hpp.html#file-home-runner-work-rko-lio-rko-lio-rko-lio-ros-utils-transforms-hpp"><span class="std std-ref">File transforms.hpp</span></a></p></li>
 </ul>
 </section>
 <section id="namespaces">
@@ -137,6 +142,7 @@
 <li><p><a class="reference internal" href="namespace_Eigen.html#namespace-eigen"><span class="std std-ref">Namespace Eigen</span></a></p></li>
 <li><p><a class="reference internal" href="namespace_rko_lio.html#namespace-rko-lio"><span class="std std-ref">Namespace rko_lio</span></a></p></li>
 <li><p><a class="reference internal" href="namespace_rko_lio__core.html#namespace-rko-lio-core"><span class="std std-ref">Namespace rko_lio::core</span></a></p></li>
+<li><p><a class="reference internal" href="namespace_Sophus.html#namespace-sophus"><span class="std std-ref">Namespace Sophus</span></a></p></li>
 </ul>
 </section>
 <section id="classes">
@@ -151,26 +157,33 @@
 <section id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="function_namespacerko__lio_1_1core_1ae12b01bb20a1a7280bc26af2de2f15dd.html#exhale-function-namespacerko-lio-1-1core-1ae12b01bb20a1a7280bc26af2de2f15dd"><span class="std std-ref">Function rko_lio::core::gravity</span></a></p></li>
-<li><p><a class="reference internal" href="function_namespacerko__lio_1_1core_1aebf1f823c7fd220695665a8b3e12281e.html#exhale-function-namespacerko-lio-1-1core-1aebf1f823c7fd220695665a8b3e12281e"><span class="std std-ref">Function rko_lio::core::square</span></a></p></li>
+<li><p><a class="reference internal" href="function_namespacerko__lio_1_1core_1aadd9f1f2b2b1bc30166c6e4e6228841c.html#exhale-function-namespacerko-lio-1-1core-1aadd9f1f2b2b1bc30166c6e4e6228841c"><span class="std std-ref">Function rko_lio::core::gravity</span></a></p></li>
+<li><p><a class="reference internal" href="function_namespacerko__lio_1_1core_1a1606d7b4fe5b32a257501d8079c968ca.html#exhale-function-namespacerko-lio-1-1core-1a1606d7b4fe5b32a257501d8079c968ca"><span class="std std-ref">Function rko_lio::core::square</span></a></p></li>
 <li><p><a class="reference internal" href="function_namespacerko__lio_1_1core_1a82bfbe6dd0859af66258d81747392bd6.html#exhale-function-namespacerko-lio-1-1core-1a82bfbe6dd0859af66258d81747392bd6"><span class="std std-ref">Function rko_lio::core::to_seconds</span></a></p></li>
 </ul>
 </section>
 <section id="typedefs">
 <h2>Typedefs<a class="headerlink" href="#typedefs" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="typedef_util_8hpp_1aeed2d0773ca5f2d8af17c424c1d38656.html#exhale-typedef-util-8hpp-1aeed2d0773ca5f2d8af17c424c1d38656"><span class="std std-ref">Typedef Eigen::Matrix3_6d</span></a></p></li>
-<li><p><a class="reference internal" href="typedef_util_8hpp_1ac472a7c3ac8e9babc4efd3f3286e4b16.html#exhale-typedef-util-8hpp-1ac472a7c3ac8e9babc4efd3f3286e4b16"><span class="std std-ref">Typedef Eigen::Matrix6d</span></a></p></li>
-<li><p><a class="reference internal" href="typedef_util_8hpp_1a256bc41e53605f5abb08663701978077.html#exhale-typedef-util-8hpp-1a256bc41e53605f5abb08663701978077"><span class="std std-ref">Typedef Eigen::Vector6d</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_util_8hpp_1a8ff6bd9d4657f08d14ce6ffbaa5e459d.html#exhale-typedef-util-8hpp-1a8ff6bd9d4657f08d14ce6ffbaa5e459d"><span class="std std-ref">Typedef Eigen::Matrix3_6s</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_util_8hpp_1a0420b6f93947a4b915651820beb39357.html#exhale-typedef-util-8hpp-1a0420b6f93947a4b915651820beb39357"><span class="std std-ref">Typedef Eigen::Matrix3s</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_util_8hpp_1a7e2f820d8f1353a1bf9bdf5f144b5864.html#exhale-typedef-util-8hpp-1a7e2f820d8f1353a1bf9bdf5f144b5864"><span class="std std-ref">Typedef Eigen::Matrix4s</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_util_8hpp_1ad4ddf471463f5bd25184c71e490b4ada.html#exhale-typedef-util-8hpp-1ad4ddf471463f5bd25184c71e490b4ada"><span class="std std-ref">Typedef Eigen::Matrix6s</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_util_8hpp_1a7e8c6a6baaf32a4e56f0a95ee9e288b3.html#exhale-typedef-util-8hpp-1a7e8c6a6baaf32a4e56f0a95ee9e288b3"><span class="std std-ref">Typedef Eigen::Quaternions</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_util_8hpp_1acbe7c0b7d2256e5520e0672cc1f453a5.html#exhale-typedef-util-8hpp-1acbe7c0b7d2256e5520e0672cc1f453a5"><span class="std std-ref">Typedef Eigen::Vector3s</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_util_8hpp_1a352b146ace6235f1f17b8a7c63bc8676.html#exhale-typedef-util-8hpp-1a352b146ace6235f1f17b8a7c63bc8676"><span class="std std-ref">Typedef Eigen::Vector4s</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_util_8hpp_1ae00c895351e2248eb4d074825b8e6d85.html#exhale-typedef-util-8hpp-1ae00c895351e2248eb4d074825b8e6d85"><span class="std std-ref">Typedef Eigen::Vector6s</span></a></p></li>
 <li><p><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1a5a3f42fcc9e49ecd569baa31d940734f.html#exhale-typedef-namespacerko-lio-1-1core-1a5a3f42fcc9e49ecd569baa31d940734f"><span class="std std-ref">Typedef rko_lio::core::Nsec</span></a></p></li>
 <li><p><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1ad6796ca63cae68d67a3963e198336a1e.html#exhale-typedef-namespacerko-lio-1-1core-1ad6796ca63cae68d67a3963e198336a1e"><span class="std std-ref">Typedef rko_lio::core::TimestampVector</span></a></p></li>
-<li><p><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1a5cc9dbe312768171d6734783de18f64c.html#exhale-typedef-namespacerko-lio-1-1core-1a5cc9dbe312768171d6734783de18f64c"><span class="std std-ref">Typedef rko_lio::core::Vector3dVector</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_namespacerko__lio_1_1core_1ae207837473ce1623f13104a2b12fae3d.html#exhale-typedef-namespacerko-lio-1-1core-1ae207837473ce1623f13104a2b12fae3d"><span class="std std-ref">Typedef rko_lio::core::Vector3sVector</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_util_8hpp_1aeff68517fe50f9fd3ebbc4ea4b54c52a.html#exhale-typedef-util-8hpp-1aeff68517fe50f9fd3ebbc4ea4b54c52a"><span class="std std-ref">Typedef Sophus::SE3s</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_util_8hpp_1aa20d225c07e7352bad174ebddb76c4fc.html#exhale-typedef-util-8hpp-1aa20d225c07e7352bad174ebddb76c4fc"><span class="std std-ref">Typedef Sophus::SO3s</span></a></p></li>
 </ul>
 </section>
 <section id="variables">
 <h2>Variables<a class="headerlink" href="#variables" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="variable_namespacerko__lio_1_1core_1a1beb022f953c50f94a2a815a4d3716b5.html#exhale-variable-namespacerko-lio-1-1core-1a1beb022f953c50f94a2a815a4d3716b5"><span class="std std-ref">Variable rko_lio::core::GRAVITY_MAG</span></a></p></li>
+<li><p><a class="reference internal" href="variable_namespacerko__lio_1_1core_1a54f88ad3bc44e0104ea7c3aae878b3ba.html#exhale-variable-namespacerko-lio-1-1core-1a54f88ad3bc44e0104ea7c3aae878b3ba"><span class="std std-ref">Variable rko_lio::core::GRAVITY_MAG</span></a></p></li>
 </ul>
 </section>
 </section>

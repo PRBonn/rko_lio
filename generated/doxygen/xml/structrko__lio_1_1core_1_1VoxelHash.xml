@@ -19,14 +19,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" line="40" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" bodystart="40" bodyend="43"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" line="42" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" bodystart="42" bodyend="45"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" line="39" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" bodystart="39" bodyend="44"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" line="41" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" bodystart="41" bodyend="46"/>
     <listofallmembers>
       <member refid="structrko__lio_1_1core_1_1VoxelHash_1afb0b39696a21b88ce047315a95543d5a" prot="public" virt="non-virtual"><scope>rko_lio::core::VoxelHash</scope><name>operator()</name></member>
     </listofallmembers>

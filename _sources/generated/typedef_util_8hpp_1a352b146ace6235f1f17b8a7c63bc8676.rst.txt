@@ -1,0 +1,14 @@
+.. _exhale_typedef_util_8hpp_1a352b146ace6235f1f17b8a7c63bc8676:
+
+Typedef Eigen::Vector4s
+=======================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_util.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: Eigen::Vector4s
+   :project: rko_lio Doxygen Project

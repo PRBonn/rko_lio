@@ -32,6 +32,8 @@ Includes
 
 - ``Eigen/Core``
 
+- ``rko_lio/core/util.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_util.hpp`)
+
 - ``sensor_msgs/msg/point_cloud2.hpp``
 
 - ``sensor_msgs/point_cloud2_iterator.hpp``

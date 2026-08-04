@@ -1,0 +1,14 @@
+.. _exhale_typedef_namespacerko__lio_1_1core_1a4a7466a65783f3cf5619faa3cd164de5:
+
+Typedef rko_lio::core::VoxelBlock
+=================================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_voxel_hash_map.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: rko_lio::core::VoxelBlock
+   :project: rko_lio Doxygen Project

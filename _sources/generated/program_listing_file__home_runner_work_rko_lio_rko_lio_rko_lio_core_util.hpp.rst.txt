@@ -35,71 +35,83 @@ Program Listing for File util.hpp
     */
    
    #pragma once
+   #include "rko_lio/core/scalar.hpp"
    #include <Eigen/Core>
    #include <chrono>
    #include <sophus/se3.hpp>
    
+   // Scalar is either float or double, as configured
    namespace Eigen {
-   using Matrix3_6d = Matrix<double, 3, 6>;
-   using Vector6d = Matrix<double, 6, 1>;
-   using Matrix6d = Matrix<double, 6, 6>;
+   using Vector3s = Vector3<rko_lio::core::Scalar>;
+   using Vector4s = Vector4<rko_lio::core::Scalar>;
+   using Matrix3s = Matrix3<rko_lio::core::Scalar>;
+   using Matrix4s = Matrix4<rko_lio::core::Scalar>;
+   using Matrix3_6s = Matrix<rko_lio::core::Scalar, 3, 6>;
+   using Vector6s = Matrix<rko_lio::core::Scalar, 6, 1>;
+   using Matrix6s = Matrix<rko_lio::core::Scalar, 6, 6>;
+   using Quaternions = Quaternion<rko_lio::core::Scalar>;
    } // namespace Eigen
    
+   namespace Sophus {
+   using SE3s = SE3<rko_lio::core::Scalar>;
+   using SO3s = SO3<rko_lio::core::Scalar>;
+   } // namespace Sophus
+   
    namespace rko_lio::core {
-   // aliases
-   using Vector3dVector = std::vector<Eigen::Vector3d>;
+   using Vector3sVector = std::vector<Eigen::Vector3s>;
+   
    using Nsec = std::chrono::nanoseconds;
    using TimestampVector = std::vector<Nsec>;
    
    // constants and util funcs
-   constexpr double square(double x) { return x * x; }
-   constexpr double GRAVITY_MAG = 9.8107;
-   inline Eigen::Vector3d gravity() { return {0, 0, -GRAVITY_MAG}; }
+   constexpr Scalar square(Scalar x) { return x * x; }
+   constexpr Scalar GRAVITY_MAG = 9.8107;
+   inline Eigen::Vector3s gravity() { return {0, 0, -GRAVITY_MAG}; }
    
    inline double to_seconds(const Nsec d) { return std::chrono::duration<double>(d).count(); }
    
    // data structs
    struct State {
      Nsec time{0};
-     Sophus::SE3d pose;
-     Eigen::Vector3d velocity = Eigen::Vector3d::Zero();
-     Eigen::Vector3d angular_velocity = Eigen::Vector3d::Zero();
-     Eigen::Vector3d linear_acceleration = Eigen::Vector3d::Zero();
+     Sophus::SE3s pose;
+     Eigen::Vector3s velocity = Eigen::Vector3s::Zero();
+     Eigen::Vector3s angular_velocity = Eigen::Vector3s::Zero();
+     Eigen::Vector3s linear_acceleration = Eigen::Vector3s::Zero();
    };
    
    struct ImuBias {
-     Eigen::Vector3d accelerometer = Eigen::Vector3d::Zero();
-     Eigen::Vector3d gyroscope = Eigen::Vector3d::Zero();
+     Eigen::Vector3s accelerometer = Eigen::Vector3s::Zero();
+     Eigen::Vector3s gyroscope = Eigen::Vector3s::Zero();
    };
    
    struct ImuControl {
      Nsec time{0};
-     Eigen::Vector3d acceleration = Eigen::Vector3d::Zero();
-     Eigen::Vector3d angular_velocity = Eigen::Vector3d::Zero();
+     Eigen::Vector3s acceleration = Eigen::Vector3s::Zero();
+     Eigen::Vector3s angular_velocity = Eigen::Vector3s::Zero();
    };
    
    struct IntervalStats {
      int imu_count = 0;
    
-     Eigen::Vector3d angular_velocity_sum = Eigen::Vector3d::Zero();
+     Eigen::Vector3s angular_velocity_sum = Eigen::Vector3s::Zero();
    
-     Eigen::Vector3d body_acceleration_sum = Eigen::Vector3d::Zero();
+     Eigen::Vector3s body_acceleration_sum = Eigen::Vector3s::Zero();
    
-     Eigen::Vector3d imu_acceleration_sum = Eigen::Vector3d::Zero();
+     Eigen::Vector3s imu_acceleration_sum = Eigen::Vector3s::Zero();
    
-     double imu_accel_mag_mean = 0;
+     Scalar imu_accel_mag_mean = 0;
    
-     double welford_sum_of_squares = 0;
+     Scalar welford_sum_of_squares = 0;
    
-     void update(const Eigen::Vector3d& unbiased_ang_vel,
-                 const Eigen::Vector3d& uncompensated_unbiased_accel,
-                 const Eigen::Vector3d& compensated_accel) {
+     void update(const Eigen::Vector3s& unbiased_ang_vel,
+                 const Eigen::Vector3s& uncompensated_unbiased_accel,
+                 const Eigen::Vector3s& compensated_accel) {
        ++imu_count;
        angular_velocity_sum += unbiased_ang_vel;
        imu_acceleration_sum += uncompensated_unbiased_accel;
    
-       const double previous_mean = imu_accel_mag_mean;
-       const double accel_norm = uncompensated_unbiased_accel.norm();
+       const Scalar previous_mean = imu_accel_mag_mean;
+       const Scalar accel_norm = uncompensated_unbiased_accel.norm();
    
        imu_accel_mag_mean += (accel_norm - previous_mean) / imu_count;
        welford_sum_of_squares += (accel_norm - previous_mean) * (accel_norm - imu_accel_mag_mean);

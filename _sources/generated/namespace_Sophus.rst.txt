@@ -1,0 +1,22 @@
+
+.. _namespace_Sophus:
+
+Namespace Sophus
+================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_util_8hpp_1aeff68517fe50f9fd3ebbc4ea4b54c52a`
+
+- :ref:`exhale_typedef_util_8hpp_1aa20d225c07e7352bad174ebddb76c4fc`

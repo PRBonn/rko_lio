@@ -8,18 +8,30 @@
     <includes local="no">sensor_msgs/msg/point_field.hpp</includes>
     <includes local="no">sensor_msgs/point_cloud2_iterator.hpp</includes>
     <incdepgraph>
+      <node id="3">
+        <label>rko_lio/core/util.hpp</label>
+        <link refid="util_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
       <node id="1">
         <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_write.cpp</label>
         <link refid="point__cloud__write_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -27,27 +39,38 @@
         <link refid="point__cloud__write_8hpp_source"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
         <childnode refid="5" relation="include">
         </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
       </node>
-      <node id="3">
+      <node id="5">
         <label>Eigen/Core</label>
       </node>
       <node id="6">
+        <label>chrono</label>
+      </node>
+      <node id="10">
         <label>regex</label>
       </node>
       <node id="4">
-        <label>sensor_msgs/msg/point_cloud2.hpp</label>
-      </node>
-      <node id="7">
-        <label>sensor_msgs/msg/point_field.hpp</label>
+        <label>rko_lio/core/scalar.hpp</label>
       </node>
       <node id="8">
+        <label>sensor_msgs/msg/point_cloud2.hpp</label>
+      </node>
+      <node id="11">
+        <label>sensor_msgs/msg/point_field.hpp</label>
+      </node>
+      <node id="12">
         <label>sensor_msgs/point_cloud2_iterator.hpp</label>
       </node>
-      <node id="5">
+      <node id="7">
+        <label>sophus/se3.hpp</label>
+      </node>
+      <node id="9">
         <label>vector</label>
       </node>
     </incdepgraph>
@@ -121,12 +144,12 @@
 <codeline lineno="60"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>cloud_msg;</highlight></codeline>
 <codeline lineno="61"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="62"><highlight class="normal"></highlight></codeline>
-<codeline lineno="63"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>fill_point_cloud2_xyz(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Eigen::Vector3d&gt;&amp;<sp/>points,<sp/>PointCloud2&amp;<sp/>msg)<sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>fill_point_cloud2_xyz(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>rko_lio::core::Vector3sVector&amp;<sp/>points,<sp/>PointCloud2&amp;<sp/>msg)<sp/>{</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"><sp/><sp/>sensor_msgs::PointCloud2Iterator&lt;float&gt;<sp/>msg_x(msg,<sp/></highlight><highlight class="stringliteral">&quot;x&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="65"><highlight class="normal"><sp/><sp/>sensor_msgs::PointCloud2Iterator&lt;float&gt;<sp/>msg_y(msg,<sp/></highlight><highlight class="stringliteral">&quot;y&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="66"><highlight class="normal"><sp/><sp/>sensor_msgs::PointCloud2Iterator&lt;float&gt;<sp/>msg_z(msg,<sp/></highlight><highlight class="stringliteral">&quot;z&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="67"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>points.size();<sp/>i++,<sp/>++msg_x,<sp/>++msg_y,<sp/>++msg_z)<sp/>{</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3d&amp;<sp/>point<sp/>=<sp/>points[i];</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s&amp;<sp/>point<sp/>=<sp/>points[i];</highlight></codeline>
 <codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>*msg_x<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">float</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(point.x());</highlight></codeline>
 <codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>*msg_y<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">float</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(point.y());</highlight></codeline>
 <codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>*msg_z<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">float</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(point.z());</highlight></codeline>
@@ -135,7 +158,7 @@
 <codeline lineno="74"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="75"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros::utils<sp/>{</highlight></codeline>
 <codeline lineno="76"><highlight class="normal"></highlight></codeline>
-<codeline lineno="77"><highlight class="normal">PointCloud2::UniquePtr<sp/>eigen_to_point_cloud2(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Eigen::Vector3d&gt;&amp;<sp/>points,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Header&amp;<sp/>header)<sp/>{</highlight></codeline>
+<codeline lineno="77"><highlight class="normal">PointCloud2::UniquePtr<sp/>eigen_to_point_cloud2(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>rko_lio::core::Vector3sVector&amp;<sp/>points,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Header&amp;<sp/>header)<sp/>{</highlight></codeline>
 <codeline lineno="78"><highlight class="normal"><sp/><sp/>PointCloud2::UniquePtr<sp/>msg<sp/>=<sp/>create_point_cloud2_msg(points.size(),<sp/>header);</highlight></codeline>
 <codeline lineno="79"><highlight class="normal"><sp/><sp/>fill_point_cloud2_xyz(points,<sp/>*msg);</highlight></codeline>
 <codeline lineno="80"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>msg;</highlight></codeline>

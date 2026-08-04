@@ -1,0 +1,14 @@
+.. _exhale_typedef_util_8hpp_1aa20d225c07e7352bad174ebddb76c4fc:
+
+Typedef Sophus::SO3s
+====================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_util.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: Sophus::SO3s
+   :project: rko_lio Doxygen Project
