@@ -1,6 +1,3 @@
-import pytest
-
-
 def test_package_importable():
     import rko_lio
 

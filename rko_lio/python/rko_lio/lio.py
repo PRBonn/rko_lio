@@ -119,7 +119,7 @@ class LIO:
         self._impl = _LIO(config.to_pybind())
 
     def __repr__(self):
-        return f"LIO with config: {repr(self.config)}"
+        return f"LIO with config: {self.config!r}"
 
     def interval_stats(self):
         """Can be useful for introspecting some IMU details."""

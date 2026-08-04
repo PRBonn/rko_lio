@@ -27,10 +27,10 @@ from pathlib import Path
 import launch_ros.actions
 import yaml
 from ament_index_python.packages import get_package_share_directory
-
-from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, OpaqueFunction
 from launch.substitutions import LaunchConfiguration
+
+from launch import LaunchDescription
 
 offline_only_parameters = [
     {
@@ -315,7 +315,8 @@ configurable_parameters = [
         "default": "info",
         "description": "ROS Log level [DEBUG|INFO|WARN|ERROR|FATAL]",
     },
-] + offline_only_parameters
+    *offline_only_parameters,
+]
 
 
 def fail(*lines):
@@ -388,7 +389,7 @@ def get_config_file_parameters(context):
     config_file = LaunchConfiguration("config_file").perform(context)
     if config_file == "":
         return {}
-    with open(config_file, "r") as f:
+    with open(config_file) as f:
         return yaml.safe_load(f)
 
 
@@ -415,12 +416,11 @@ def validate_parameters(merged: dict, mode: str, odom_at_imu_rate: bool, autodet
         if not is_offline and name in offline_only:
             continue
 
-        if param.get("required", False):
-            if name not in merged or not merged.get(name):
-                if autodetect and param.get("autodetectable"):
-                    autodetectable.append(name)
-                else:
-                    missing.append(name)
+        if param.get("required", False) and (name not in merged or not merged.get(name)):
+            if autodetect and param.get("autodetectable"):
+                autodetectable.append(name)
+            else:
+                missing.append(name)
 
     if missing:
         lines = ["[ERROR] missing required parameter(s):"]
@@ -488,7 +488,7 @@ def prepare_rviz_config(rviz_config_file: Path, parameters: dict) -> Path:
         return rviz_config_file  # no override needed
 
     # Load default config
-    with open(rviz_config_file, "r") as f:
+    with open(rviz_config_file) as f:
         rviz_cfg = yaml.safe_load(f)
 
     try:
@@ -500,12 +500,13 @@ def prepare_rviz_config(rviz_config_file: Path, parameters: dict) -> Path:
     except Exception as e:
         raise RuntimeError(
             f"Could not patch RViz config with frames (base_frame={base_frame}, odom_frame={odom_frame}): {e}"
-        )
+        ) from e
 
     # Write to a temp file
     import tempfile
 
-    tmp = tempfile.NamedTemporaryFile(mode="w", suffix=".rviz", delete=False)
+    # not a context manager on purpose, rviz reads the file after this function returns
+    tmp = tempfile.NamedTemporaryFile(mode="w", suffix=".rviz", delete=False)  # noqa: SIM115
     yaml.safe_dump(rviz_cfg, tmp)
     tmp.flush()
     # since its the default rviz config file, we also want to viz the deskewed scan and local map
@@ -605,5 +606,5 @@ def launch_setup(context, *args, **kwargs):
 
 def generate_launch_description():
     return LaunchDescription(
-        declare_configurable_parameters(configurable_parameters) + [OpaqueFunction(function=launch_setup)]
+        [*declare_configurable_parameters(configurable_parameters), OpaqueFunction(function=launch_setup)]
     )

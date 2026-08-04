@@ -20,7 +20,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import sys
 from pathlib import Path
 
 
@@ -30,7 +29,7 @@ def available_dataloaders():
 
 def dataloader_factory(name: str | None, data_path: Path, *args, **kwargs):
     if name is None:
-        return guess_dataloader(data_path=data_path, *args, **kwargs)
+        return guess_dataloader(data_path, *args, **kwargs)
 
     elif name == "rosbag":
         from .rosbag import RosbagDataLoader

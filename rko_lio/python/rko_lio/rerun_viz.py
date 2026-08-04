@@ -57,10 +57,7 @@ def height_colors(points: np.ndarray, color_map: np.ndarray = VIRIDIS) -> np.nda
     z_min, z_max = np.percentile(z, 1), np.percentile(z, 99)
     z_clipped = np.clip(z, z_min, z_max)
 
-    if z_max == z_min:
-        norm_z = np.zeros_like(z)
-    else:
-        norm_z = (z_clipped - z_min) / (z_max - z_min)
+    norm_z = np.zeros_like(z) if z_max == z_min else (z_clipped - z_min) / (z_max - z_min)
 
     idx = norm_z * (len(color_map) - 1)
     idx_low = np.floor(idx).astype(int)

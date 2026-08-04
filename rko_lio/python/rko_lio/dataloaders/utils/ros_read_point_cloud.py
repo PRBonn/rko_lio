@@ -4,7 +4,7 @@ All rights reserved to the original authors: Tim Field and Florian Vahl.
 """
 
 import sys
-from typing import Iterable, List, Optional, Tuple
+from collections.abc import Iterable
 
 import numpy as np
 
@@ -32,7 +32,7 @@ def get_datatype_name(field) -> str:
     raise ValueError(f"Unknown datatype code {field.datatype} for field {vars(field)}")
 
 
-def dtype_from_fields(fields: Iterable, point_step: Optional[int] = None) -> np.dtype:
+def dtype_from_fields(fields: Iterable, point_step: int | None = None) -> np.dtype:
     """
     Convert a Iterable of sensor_msgs.msg.PointField messages to a np.dtype.
     :param fields: The point cloud fields.
@@ -55,10 +55,7 @@ def dtype_from_fields(fields: Iterable, point_step: Optional[int] = None) -> np.
         assert field.count > 0, "Can't process fields with count = 0."
         for a in range(field.count):
             # Add suffix if we have multiple subfields
-            if field.count > 1:
-                subfield_name = f"{name}_{a}"
-            else:
-                subfield_name = name
+            subfield_name = f"{name}_{a}" if field.count > 1 else name
             assert subfield_name not in field_names, "Duplicate field names are not allowed!"
             field_names.append(subfield_name)
             # Create new offset that includes subfields
@@ -78,8 +75,8 @@ def dtype_from_fields(fields: Iterable, point_step: Optional[int] = None) -> np.
 
 def read_points(
     cloud,
-    field_names: Optional[List[str]] = None,
-    uvs: Optional[Iterable] = None,
+    field_names: list[str] | None = None,
+    uvs: Iterable | None = None,
     reshape_organized_cloud: bool = False,
 ) -> np.ndarray:
     """
@@ -126,7 +123,7 @@ def read_points(
     return points
 
 
-def read_point_cloud(msg) -> Tuple[np.ndarray, np.ndarray | None]:
+def read_point_cloud(msg) -> tuple[np.ndarray, np.ndarray | None]:
     """
     Extract points and timestamps from a PointCloud2 message.
 

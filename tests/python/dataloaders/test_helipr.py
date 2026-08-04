@@ -1,6 +1,3 @@
-import pytest
-
-
 def test_helipr_pybind_import():
     from rko_lio.dataloaders import helipr_file_reader_pybind
 

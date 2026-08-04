@@ -85,7 +85,7 @@ class RosbagDataLoader:
     ):
         assert data_path.is_dir(), "Pass a directory to data_path with ros1 or ros2 bag files"
 
-        ros1_bagfiles = sorted(list(data_path.glob("*.bag")))
+        ros1_bagfiles = sorted(data_path.glob("*.bag"))
         bagfiles = None
         if ros1_bagfiles:
             self.bag_type = "ROS1"  # for logging
@@ -114,7 +114,7 @@ class RosbagDataLoader:
         self.lidar_frame_id = lidar_frame_id or self._read_first_frame_id(self.lidar_topic)
         self.base_frame_id = base_frame_id or self.lidar_frame_id
         if self.base_frame_id is None:
-            error_and_exit(f"Could not automatically determine a base frame id. Please pass it with --base_frame.")
+            error_and_exit("Could not automatically determine a base frame id. Please pass it with --base_frame.")
 
         self.T_imu_to_base = None
         self.T_lidar_to_base = None
@@ -157,7 +157,7 @@ class RosbagDataLoader:
 
     def __next__(self):
         while True:
-            with ScopedProfiler("Rosbag Dataloader") as data_timer:
+            with ScopedProfiler("Rosbag Dataloader"):
                 connection, _, rawdata = next(self.msgs)
                 deserialized_data = self.bag.deserialize(rawdata, connection.msgtype)
                 if connection.topic == self.imu_topic:

@@ -36,7 +36,7 @@ import numpy as np
 
 from .. import rko_lio_pybind
 from ..config import TimestampConfig
-from ..scoped_profiler import ScopedProfiler, profile_func
+from ..scoped_profiler import profile_func
 from ..util import error_and_exit, info, warning
 from .helipr_file_reader_pybind import read_lidar_bin
 
@@ -109,7 +109,7 @@ class HeliprDataLoader:
         imu_file = self.data_path / "Inertial_data" / "xsens_imu.csv"
         assert imu_file.exists(), "{imu_file} does not exist for data path {data_path}"
         imu_data = []
-        with open(imu_file, "r") as f:
+        with open(imu_file) as f:
             reader = csv.reader(f)
             for row in reader:
                 ts = int(row[0])

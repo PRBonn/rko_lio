@@ -37,7 +37,7 @@ def create_static_tf_tree(bag):
         dict: { child_frame_id: (parent_frame_id, transform) }
     """
     tf_tree = {}
-    if not "/tf_static" in bag.topics:
+    if "/tf_static" not in bag.topics:
         return tf_tree
 
     tf_static_connections = [conn for conn in bag.connections if (conn.topic == "/tf_static")]

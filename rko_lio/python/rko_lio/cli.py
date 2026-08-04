@@ -53,7 +53,7 @@ def dump_config_callback(value: bool):
         with open("config.yaml", "w") as f:
             yaml.dump(PipelineConfig().to_dict(), f, default_flow_style=False)
         info(
-            "Default config dumped to config.yaml. Note that the extrinsics are left as an empty list. If you need them, you need to specify them as \[qx, qy, qz, qw, x, y, z]. Delete all the keys you don't need."
+            r"Default config dumped to config.yaml. Note that the extrinsics are left as an empty list. If you need them, you need to specify them as \[qx, qy, qz, qw, x, y, z]. Delete all the keys you don't need."
         )
         raise typer.Exit(0)
 
@@ -219,7 +219,7 @@ def cli(
 
     user_config = {}
     if config_fp:
-        with open(config_fp, "r") as f:
+        with open(config_fp) as f:
             import yaml
 
             user_config.update(yaml.safe_load(f))

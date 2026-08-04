@@ -90,7 +90,7 @@ class BagGraph:
                 rosbag2_py.ConverterOptions("", ""),
             )
         except Exception as error:
-            raise AutodetectError(f"could not read the bag at {bag_path}: {error}")
+            raise AutodetectError(f"could not read the bag at {bag_path}: {error}") from error
         self.types = {t.name: t.type for t in reader.get_all_topics_and_types()}
         self.buffer = buffer
         self.frame_of = {}
@@ -202,7 +202,8 @@ def autodetect_or_exit(params, mode, bag_path, timeout):
                 executor = SingleThreadedExecutor(context=context)
                 executor.add_node(node)
                 graph = LiveGraph(node, buffer, executor, timeout)
-                listener = tf2_ros.TransformListener(buffer, node, spin_thread=False)
+                # held only to keep the listener alive, it stops filling the buffer if collected
+                _listener = tf2_ros.TransformListener(buffer, node, spin_thread=False)
             found = resolve(graph, params)
         except AutodetectError as error:
             print("\n" + "=" * 40)

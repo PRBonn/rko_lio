@@ -24,10 +24,11 @@
 import atexit
 import time
 from collections import defaultdict
+from typing import ClassVar
 
 
 class ScopedProfiler:
-    _profile_data = defaultdict(lambda: {"count": 0, "total": 0.0, "max_time": 0.0})
+    _profile_data: ClassVar = defaultdict(lambda: {"count": 0, "total": 0.0, "max_time": 0.0})
 
     def __init__(self, name):
         self.name = name

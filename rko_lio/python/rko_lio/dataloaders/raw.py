@@ -155,7 +155,7 @@ class RawDataLoader:
     def _load_settings(self) -> dict:
         settings_file = self.data_path / "rko_lio_settings.yaml"
         if settings_file.exists():
-            with open(settings_file, "r") as f:
+            with open(settings_file) as f:
                 return yaml.safe_load(f) or {}
         return {}
 
@@ -190,7 +190,7 @@ class RawDataLoader:
 
         info(f"Loading IMU data from {imu_file}.")
         imu_data = []
-        with open(imu_file, "r", newline="") as f:
+        with open(imu_file, newline="") as f:
             reader = csv.DictReader(f)
             missing = [c for c in columns.values() if c not in (reader.fieldnames or [])]
             if missing:
@@ -225,7 +225,7 @@ class RawDataLoader:
             tf_file = self.data_path / "transforms.yaml"
             if not tf_file.is_file():
                 error_and_exit(f"The raw dataloader needs a transforms.yaml file in {self.data_path}.")
-            with open(tf_file, "r") as f:
+            with open(tf_file) as f:
                 tf_data = yaml.safe_load(f)
 
             self.T_imu_to_base = self._read_transform(tf_data, "T_imu_to_base", tf_file)
