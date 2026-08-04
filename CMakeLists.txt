@@ -2,23 +2,18 @@
 #
 # Copyright (c) 2025 Meher V.R. Malladi.
 #
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
+# Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+# documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+# persons to whom the Software is furnished to do so, subject to the following conditions:
 #
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
+# The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+# Software.
 #
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+# WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+# OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 cmake_minimum_required(VERSION 3.22.0)
 project(rko_lio LANGUAGES CXX C)
@@ -29,8 +24,7 @@ endif()
 
 option(RKO_LIO_BUILD_ROS "Build the ROS wrapper for RKO LIO" ON)
 option(RKO_LIO_BUILD_TESTS "Build core C++ tests" OFF)
-option(RKO_LIO_FETCH_CONTENT_DEPS
-       "Fetch dependencies via FetchContent instead of using find_package" OFF)
+option(RKO_LIO_FETCH_CONTENT_DEPS "Fetch dependencies via FetchContent instead of using find_package" OFF)
 
 include(cmake/dependencies.cmake)
 include(cmake/compat_target_sources.cmake)
@@ -82,8 +76,7 @@ else()
     install(
       TARGETS rko_lio.core rko_lio.ros rko_lio.ros.utils
       EXPORT rko_lioTargets
-      FILE_SET HEADERS
-      FILE_SET generated_headers)
+      FILE_SET HEADERS FILE_SET generated_headers)
 
     ament_export_targets(rko_lioTargets HAS_LIBRARY_TARGET)
     ament_export_dependencies(
@@ -101,9 +94,10 @@ else()
       rosbag2_storage)
   endif()
 
-  install(TARGETS online_node_component online_imu_rate_node_component offline_node
-          LIBRARY DESTINATION lib
-          RUNTIME DESTINATION lib/${PROJECT_NAME})
+  install(
+    TARGETS online_node_component online_imu_rate_node_component offline_node
+    LIBRARY DESTINATION lib
+    RUNTIME DESTINATION lib/${PROJECT_NAME})
 
   install(DIRECTORY config launch DESTINATION share/rko_lio)
 

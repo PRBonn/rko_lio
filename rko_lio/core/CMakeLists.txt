@@ -2,33 +2,26 @@
 #
 # Copyright (c) 2025 Meher V.R. Malladi.
 #
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
+# Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+# documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+# persons to whom the Software is furnished to do so, subject to the following conditions:
 #
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
+# The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+# Software.
 #
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+# WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+# OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 set(RKO_LIO_SCALAR
     "float"
-    CACHE STRING
-          "Floating point type used throughout rko_lio (float or double)")
+    CACHE STRING "Floating point type used throughout rko_lio (float or double)")
 message(STATUS "rko_lio scalar type: ${RKO_LIO_SCALAR}")
 
 set(GENERATED_INCLUDE_DIR ${CMAKE_CURRENT_BINARY_DIR}/include)
-configure_file(scalar.hpp.in
-               ${GENERATED_INCLUDE_DIR}/rko_lio/core/scalar.hpp @ONLY)
+configure_file(scalar.hpp.in ${GENERATED_INCLUDE_DIR}/rko_lio/core/scalar.hpp @ONLY)
 
 add_library(rko_lio.core STATIC)
 
@@ -66,14 +59,11 @@ if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.23")
            FILES
            ${GENERATED_INCLUDE_DIR}/rko_lio/core/scalar.hpp)
 else()
-  target_include_directories(
-    rko_lio.core PUBLIC $<BUILD_INTERFACE:${GENERATED_INCLUDE_DIR}>)
+  target_include_directories(rko_lio.core PUBLIC $<BUILD_INTERFACE:${GENERATED_INCLUDE_DIR}>)
 endif()
 
-target_link_libraries(rko_lio.core PUBLIC TBB::tbb tsl::robin_map Sophus::Sophus
-                                          Eigen3::Eigen)
+target_link_libraries(rko_lio.core PUBLIC TBB::tbb tsl::robin_map Sophus::Sophus Eigen3::Eigen)
 
 target_compile_features(rko_lio.core PUBLIC cxx_std_20)
 
-set_target_properties(rko_lio.core PROPERTIES POSITION_INDEPENDENT_CODE ON
-                                              EXPORT_NAME core)
+set_target_properties(rko_lio.core PROPERTIES POSITION_INDEPENDENT_CODE ON EXPORT_NAME core)

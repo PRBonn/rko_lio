@@ -17,10 +17,8 @@ else()
   set(SOPHUS_VERSION "1.24.6")
 endif()
 
-FetchContent_Declare(
-  Sophus
-  URL https://github.com/strasdat/Sophus/archive/refs/tags/${SOPHUS_VERSION}.tar.gz
-      ${RKO_LIO_FETCHCONTENT_COMMON_FLAGS})
+FetchContent_Declare(Sophus URL https://github.com/strasdat/Sophus/archive/refs/tags/${SOPHUS_VERSION}.tar.gz
+                                ${RKO_LIO_FETCHCONTENT_COMMON_FLAGS})
 FetchContent_MakeAvailable(Sophus)
 
 mock_find_package_for_older_cmake(Sophus)
