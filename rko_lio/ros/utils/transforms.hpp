@@ -74,12 +74,11 @@ inline Sophus::SE3s transform_to_sophus(const geometry_msgs::msg::TransformStamp
           Sophus::SE3s::Point(t.translation.x, t.translation.y, t.translation.z)};
 }
 
-inline std::optional<Sophus::SE3s>
-get_transform(const std::shared_ptr<tf2_ros::Buffer>& tf_buffer,
-              const std::string& from_frame,
-              const std::string& to_frame,
-              const std::chrono::nanoseconds time,
-              const std::chrono::nanoseconds timeout = std::chrono::nanoseconds(0)) {
+inline std::optional<Sophus::SE3s> get_transform(const std::shared_ptr<tf2_ros::Buffer>& tf_buffer,
+                                                 const std::string& from_frame,
+                                                 const std::string& to_frame,
+                                                 const std::chrono::nanoseconds time,
+                                                 const std::chrono::nanoseconds timeout = std::chrono::nanoseconds(0)) {
   geometry_msgs::msg::TransformStamped from_to_transform;
   const tf2::TimePoint tf_time{time};
   const tf2::Duration tf_timeout{timeout};

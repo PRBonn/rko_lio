@@ -23,13 +23,8 @@ TEST_CASE("preprocess_scan: clipping by min/max range", "[preprocess_scan]") {
   cfg.voxel_size = 0.05;
 
   Vector3sVector frame = {
-      {0.1, 0.0, 0.0},
-      {0.4, 0.0, 0.0},
-      {1.0, 0.0, 0.0},
-      {2.0, 0.0, 0.0},
-      {49.0, 0.0, 0.0},
-      {60.0, 0.0, 0.0},
-      {100.0, 0.0, 0.0},
+      {0.1, 0.0, 0.0},  {0.4, 0.0, 0.0},  {1.0, 0.0, 0.0},   {2.0, 0.0, 0.0},
+      {49.0, 0.0, 0.0}, {60.0, 0.0, 0.0}, {100.0, 0.0, 0.0},
   };
 
   const auto result = preprocess_scan(frame, cfg);
@@ -75,4 +70,3 @@ TEST_CASE("preprocess_scan: double_downsample = true -> all three populated", "[
   REQUIRE(result.map_frame.size() >= result.keypoints.size());
   REQUIRE(result.filtered_frame.size() == frame.size());
 }
-

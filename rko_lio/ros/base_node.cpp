@@ -100,8 +100,8 @@ BaseNode::BaseNode(const std::string& node_name, const rclcpp::NodeOptions& opti
     map_topic = node->declare_parameter<std::string>("map_topic", map_topic);
     const double publish_map_after_seconds =
         node->declare_parameter<double>("publish_map_after", core::to_seconds(publish_map_after));
-    publish_map_after = std::chrono::duration_cast<std::chrono::nanoseconds>(
-        std::chrono::duration<double>(publish_map_after_seconds));
+    publish_map_after =
+        std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::duration<double>(publish_map_after_seconds));
     map_publisher = node->create_publisher<sensor_msgs::msg::PointCloud2>(map_topic, publisher_qos);
     map_publish_thead = std::jthread([this]() { publish_map_loop(); });
   }

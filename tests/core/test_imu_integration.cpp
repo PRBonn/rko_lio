@@ -7,9 +7,7 @@
 #include <cmath>
 #include <cstdint>
 
-using rko_lio::tests::TOL;
-using rko_lio::tests::LOOSE_TOL;
-using rko_lio::tests::EXACT_TOL;
+using Catch::Matchers::WithinAbs;
 using rko_lio::core::GRAVITY_MAG;
 using rko_lio::core::ImuControl;
 using rko_lio::core::LIO;
@@ -18,8 +16,10 @@ using rko_lio::core::TimestampVector;
 using rko_lio::core::to_seconds;
 using rko_lio::core::Vector3sVector;
 using rko_lio::tests::approx_equal;
+using rko_lio::tests::EXACT_TOL;
+using rko_lio::tests::LOOSE_TOL;
 using rko_lio::tests::make_hollow_cube;
-using Catch::Matchers::WithinAbs;
+using rko_lio::tests::TOL;
 
 namespace {
 LIO::Config default_config() {
@@ -226,9 +226,7 @@ TEST_CASE("register_scan resets imu_state to optimized pose", "[imu_integration]
   TimestampVector ts1;
   ts1.reserve(cloud.size());
   for (size_t i = 0; i < cloud.size(); ++i) {
-    const double frac = cloud.size() == 1
-                            ? 0.0
-                            : static_cast<double>(i) / static_cast<double>(cloud.size() - 1);
+    const double frac = cloud.size() == 1 ? 0.0 : static_cast<double>(i) / static_cast<double>(cloud.size() - 1);
     ts1.emplace_back(ns_from_seconds(FIRST_SCAN_END * frac));
   }
   lio.register_scan(cloud, ts1);

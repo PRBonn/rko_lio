@@ -6,10 +6,10 @@
 #include <numeric>
 #include <vector>
 
-using rko_lio::tests::TOL;
-using rko_lio::tests::EXACT_TOL;
-using rko_lio::core::IntervalStats;
 using Catch::Matchers::WithinAbs;
+using rko_lio::core::IntervalStats;
+using rko_lio::tests::EXACT_TOL;
+using rko_lio::tests::TOL;
 
 TEST_CASE("IntervalStats: default-constructed state is zero", "[interval_stats]") {
   IntervalStats stats;

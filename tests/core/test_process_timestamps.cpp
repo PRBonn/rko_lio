@@ -6,11 +6,11 @@
 #include <cstdint>
 #include <stdexcept>
 
+using Catch::Matchers::WithinAbs;
 using rko_lio::core::Nsec;
 using rko_lio::core::process_timestamps;
-using rko_lio::core::to_seconds;
 using rko_lio::core::TimestampProcessingConfig;
-using Catch::Matchers::WithinAbs;
+using rko_lio::core::to_seconds;
 
 namespace {
 std::vector<double> linspace(double start, double end, size_t n) {

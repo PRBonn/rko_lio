@@ -476,8 +476,8 @@ Vector3sVector LIO::register_scan(Vector3sVector scan, const TimestampVector& ti
 
   if (!map.empty()) {
     SCOPED_PROFILER("ICP");
-    const Sophus::SE3s optimized_pose = arena.execute(
-        [&] { return icp(preproc_result.keypoints, map, initial_guess, config, kf_step.info); });
+    const Sophus::SE3s optimized_pose =
+        arena.execute([&] { return icp(preproc_result.keypoints, map, initial_guess, config, kf_step.info); });
 
     // estimate velocities and accelerations from the new pose
     const Scalar dt = to_seconds(current_lidar_time - lidar_state.time);

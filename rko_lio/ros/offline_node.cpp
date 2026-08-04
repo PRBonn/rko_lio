@@ -22,9 +22,9 @@
  * SOFTWARE.
  */
 
-#include "threaded_node.hpp"
 #include "rko_lio/core/profiler.hpp"
 #include "rko_lio/ros/utils/rosbag.hpp"
+#include "threaded_node.hpp"
 // other
 #include <std_msgs/msg/float32_multi_array.hpp>
 

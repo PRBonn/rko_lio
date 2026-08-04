@@ -22,8 +22,8 @@
  * SOFTWARE.
  */
 
-#include "threaded_node.hpp"
 #include "rko_lio/core/profiler.hpp"
+#include "threaded_node.hpp"
 
 namespace rko_lio::ros {
 class OnlineNode : public ThreadedNode {
