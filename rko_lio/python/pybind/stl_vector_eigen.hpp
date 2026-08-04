@@ -55,7 +55,7 @@ py::class_<Vector, holder_type> bind_vector_without_repr(py::module& m, std::str
 
 // - This function is used by Pybind for std::vector<SomeEigenType> constructor.
 //   This optional constructor is added to avoid too many Python <-> C++ API
-//   calls when the vector size is large using the default biding method.
+//   calls when the vector size is large using the default binding method.
 // - The numpy dtype follows the eigen vector's scalar, so a matching array is taken
 //   straight through and anything else is converted once by forcecast.
 template <typename EigenVector>

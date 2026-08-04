@@ -202,7 +202,7 @@ def cli(
         help="Print the current version of RKO_LIO and exit",
         callback=version_callback,
         is_eager=True,
-        rich_help_panel="Auxilary commands",
+        rich_help_panel="Auxiliary commands",
     ),
     dump_config: bool | None = typer.Option(
         None,
@@ -210,7 +210,7 @@ def cli(
         help="Dump the default config to config.yaml and exit",
         callback=dump_config_callback,
         is_eager=True,
-        rich_help_panel="Auxilary commands",
+        rich_help_panel="Auxiliary commands",
     ),
 ):
     """

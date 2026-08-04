@@ -22,7 +22,7 @@
 // SOFTWARE.
 //
 // NOTE: This implementation is heavily inspired in the original CT-ICP VoxelHashMap implementation,
-// although it was heavily modifed and drastically simplified, but if you are using this module you
+// although it was heavily modified and drastically simplified, but if you are using this module you
 // should at least acknoowledge the work from CT-ICP by giving a star on GitHub.
 //
 // Modified from kiss-icp (kiss_icp/cpp/kiss_icp/core/VoxelHashMap.{hpp,cpp}).

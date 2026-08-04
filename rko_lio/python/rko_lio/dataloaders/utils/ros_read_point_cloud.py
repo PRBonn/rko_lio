@@ -50,7 +50,7 @@ def dtype_from_fields(fields: Iterable, point_step: Optional[int] = None) -> np.
         datatype = _DATATYPES[get_datatype_name(field)]
         # Name field
         name = field.name if getattr(field, "name", "") != "" else f"{DUMMY_FIELD_PREFIX}_{i}"
-        # Handle fields with count > 1 by creating subfields with a suffix consiting
+        # Handle fields with count > 1 by creating subfields with a suffix consisting
         # of "_" followed by the subfield counter [0 -> (count - 1)]
         assert field.count > 0, "Can't process fields with count = 0."
         for a in range(field.count):
@@ -128,7 +128,7 @@ def read_points(
 
 def read_point_cloud(msg) -> Tuple[np.ndarray, np.ndarray | None]:
     """
-    Extract poitns and timestamps from a PointCloud2 message.
+    Extract points and timestamps from a PointCloud2 message.
 
     :return: Tuple of [points, timestamps]
         points: array of x, y z points, shape: (N, 3)

@@ -53,7 +53,7 @@ void BufferableBag::TFBridge::ProcessTFMessage(const std::shared_ptr<rosbag2_sto
   tf2_msgs::msg::TFMessage tf_message;
   rclcpp::SerializedMessage serialized_msg(*msg->serialized_data);
   serializer.deserialize_message(&serialized_msg, &tf_message);
-  // Broadcast tranforms to /tf and /tf_static topics
+  // Broadcast transforms to /tf and /tf_static topics
   for (auto& transform : tf_message.transforms) {
     if (msg->topic_name == "/tf_static") {
       tf_static_broadcaster->sendTransform(transform);
