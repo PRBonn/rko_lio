@@ -31,6 +31,8 @@
 #include "voxel_hash_map.hpp"
 #include "util.hpp"
 
+#include <tbb/task_arena.h>
+
 /** Core namespace containing LIO data structures and state definitions. */
 namespace rko_lio::core {
 /** Core LiDAR-inertial odometry algorithm class. */
@@ -83,6 +85,9 @@ public:
 
   /** Local map. */
   VoxelHashMap map;
+
+  /** Bounds ICP parallelism to max_num_threads without touching any other TBB user in the process. */
+  tbb::task_arena arena;
 
   /** Current LiDAR state estimate. */
   State lidar_state;
