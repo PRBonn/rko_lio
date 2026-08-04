@@ -174,7 +174,8 @@ Odometry performance will be a bit affected, but how much depends on the environ
 Typically the convergence criterion is satisfied much earlier anyways.</p>
 </li>
 <li><p><strong>convergence_criterion</strong> (<cite>float</cite>, default <code class="docutils literal notranslate"><span class="pre">1e-5</span></code>)</p>
-<p>Termination criterion for optimization.
+<p>Termination criterion for optimization. ICP stops once the cost changes by less than this
+fraction of itself between two iterations.
 Lower (stricter) values will requires more ICP iterations.</p>
 </li>
 <li><p><strong>max_num_threads</strong> (<cite>int</cite>, default <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p>

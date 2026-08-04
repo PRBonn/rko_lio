@@ -155,7 +155,7 @@ For example, if timestamps are in microseconds, use <code class="docutils litera
 <li><p><strong>max_points_per_voxel</strong> (<em>int</em><em>, </em><em>default 20</em>) – Maximum points stored per voxel.</p></li>
 <li><p><strong>max_range</strong> (<em>float</em><em>, </em><em>default 100.0</em>) – Max usable range of lidar (meters).</p></li>
 <li><p><strong>min_range</strong> (<em>float</em><em>, </em><em>default 1.0</em>) – Minimum usable range of lidar (meters).</p></li>
-<li><p><strong>convergence_criterion</strong> (<em>float</em><em>, </em><em>default 1e-5</em>) – Convergence threshold for optimization.</p></li>
+<li><p><strong>convergence_criterion</strong> (<em>float</em><em>, </em><em>default 1e-5</em>) – Convergence threshold for optimization, on the relative change in cost per iteration.</p></li>
 <li><p><strong>max_correspondence_distance</strong> (<em>float</em><em>, </em><em>default 0.5</em>) – Max distance for associating points (meters).</p></li>
 <li><p><strong>max_num_threads</strong> (<em>int</em><em>, </em><em>default 0</em>) – Max thread count (0 = autodetect).</p></li>
 <li><p><strong>initialization_phase</strong> (<em>bool</em><em>, </em><em>default False</em>) – Whether to initialize on the first two lidar message.</p></li>
