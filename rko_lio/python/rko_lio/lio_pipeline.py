@@ -53,12 +53,8 @@ class LIOPipeline:
     ):
         self.config = config
         self.lio = LIO(config.lio)
-        self.extrinsic_imu2base = quat_xyzw_xyz_to_transform(
-            config.extrinsic_imu2base_quat_xyzw_xyz
-        )
-        self.extrinsic_lidar2base = quat_xyzw_xyz_to_transform(
-            config.extrinsic_lidar2base_quat_xyzw_xyz
-        )
+        self.extrinsic_imu2base = quat_xyzw_xyz_to_transform(config.extrinsic_imu2base_quat_xyzw_xyz)
+        self.extrinsic_lidar2base = quat_xyzw_xyz_to_transform(config.extrinsic_lidar2base_quat_xyzw_xyz)
 
         self._output_dir = None
         self.viz = None
@@ -178,11 +174,7 @@ class LIOPipeline:
 
         if self.viz:
             # sampled now as the next register_scan mutates the map, which can race
-            local_map = (
-                self.lio.map_point_cloud()
-                if self.viz.wants_local_map(end_time_ns)
-                else None
-            )
+            local_map = self.lio.map_point_cloud() if self.viz.wants_local_map(end_time_ns) else None
             self.viz.log_frame(
                 end_time_ns,
                 self.lio.pose(),
@@ -208,7 +200,7 @@ class LIOPipeline:
         traj_file = self.output_dir / f"{self.output_dir.name}_tum.txt"
         timestamps_ns, poses = self.lio.poses_with_timestamps()
         with traj_file.open("w") as f:
-            for t_ns, p in zip(timestamps_ns, poses):
+            for t_ns, p in zip(timestamps_ns, poses, strict=True):
                 # p: x,y,z,qx,qy,qz,qw
                 t_s = t_ns * 1e-9
                 line = f"{t_s:.6f} {p[0]:.6f} {p[1]:.6f} {p[2]:.6f} {p[3]:.6f} {p[4]:.6f} {p[5]:.6f} {p[6]:.6f}\n"

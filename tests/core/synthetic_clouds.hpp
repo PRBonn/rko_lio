@@ -5,7 +5,7 @@
 namespace rko_lio::tests {
 
 // Hollow cube of side 2*half_extent centered at the origin, six faces sampled at
-// `spacing`. 
+// `spacing`.
 inline std::vector<Eigen::Vector3s> make_hollow_cube(double spacing = 0.5, double half_extent = 5.0) {
   std::vector<Eigen::Vector3s> points;
   const int n = static_cast<int>(2 * half_extent / spacing) + 1;

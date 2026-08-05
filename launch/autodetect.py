@@ -28,11 +28,7 @@ class AutodetectError(Exception):
 
 def tf_frames(buffer):
     tree = yaml.safe_load(buffer.all_frames_as_yaml()) or {}
-    return set(tree) | {
-        entry["parent"]
-        for entry in tree.values()
-        if isinstance(entry, dict) and entry.get("parent")
-    }
+    return set(tree) | {entry["parent"] for entry in tree.values() if isinstance(entry, dict) and entry.get("parent")}
 
 
 class LiveGraph:
@@ -59,8 +55,7 @@ class LiveGraph:
             lambda: sorted(
                 name
                 for name, types in self.node.get_topic_names_and_types()
-                if msgtype in types
-                and not any(part.startswith("_") for part in name.split("/"))
+                if msgtype in types and not any(part.startswith("_") for part in name.split("/"))
             ),
             f"a {msgtype} publisher",
         )
@@ -78,9 +73,7 @@ class LiveGraph:
             ),
         )
         try:
-            return self.spin_until(
-                lambda: received[0] if received else None, f"a message on {topic}"
-            )
+            return self.spin_until(lambda: received[0] if received else None, f"a message on {topic}")
         finally:
             self.node.destroy_subscription(subscription)
 
@@ -97,21 +90,13 @@ class BagGraph:
                 rosbag2_py.ConverterOptions("", ""),
             )
         except Exception as error:
-            raise AutodetectError(f"could not read the bag at {bag_path}: {error}")
+            raise AutodetectError(f"could not read the bag at {bag_path}: {error}") from error
         self.types = {t.name: t.type for t in reader.get_all_topics_and_types()}
         self.buffer = buffer
         self.frame_of = {}
 
-        wanted = {
-            topic
-            for topic, type_ in self.types.items()
-            if type_ in (IMU_TYPE, LIDAR_TYPE)
-        }
-        tf_topics = {
-            topic
-            for topic, type_ in self.types.items()
-            if type_ == "tf2_msgs/msg/TFMessage"
-        }
+        wanted = {topic for topic, type_ in self.types.items() if type_ in (IMU_TYPE, LIDAR_TYPE)}
+        tf_topics = {topic for topic, type_ in self.types.items() if type_ == "tf2_msgs/msg/TFMessage"}
         start = None
         while reader.has_next() and (wanted or tf_topics):
             topic, data, stamp = reader.read_next()
@@ -119,9 +104,7 @@ class BagGraph:
             if stamp - start > TF_SCAN_WINDOW_NS:
                 tf_topics.clear()
             if topic in tf_topics:
-                for transform in deserialize_message(
-                    data, get_message(self.types[topic])
-                ).transforms:
+                for transform in deserialize_message(data, get_message(self.types[topic])).transforms:
                     self.buffer.set_transform_static(transform, "rko_lio_autodetect")
             elif topic in wanted:
                 message = deserialize_message(data, get_message(self.types[topic]))
@@ -143,9 +126,7 @@ class BagGraph:
 def pick_topic(graph, msgtype, argument):
     candidates = graph.topics(msgtype)
     if not candidates:
-        raise AutodetectError(
-            f"found no {msgtype} topic to use for {argument}", argument
-        )
+        raise AutodetectError(f"found no {msgtype} topic to use for {argument}", argument)
     if len(candidates) > 1:
         raise AutodetectError(
             f"found several {msgtype} topics, so {argument} cannot be guessed.\n"
@@ -221,7 +202,8 @@ def autodetect_or_exit(params, mode, bag_path, timeout):
                 executor = SingleThreadedExecutor(context=context)
                 executor.add_node(node)
                 graph = LiveGraph(node, buffer, executor, timeout)
-                listener = tf2_ros.TransformListener(buffer, node, spin_thread=False)
+                # held only to keep the listener alive, it stops filling the buffer if collected
+                _listener = tf2_ros.TransformListener(buffer, node, spin_thread=False)
             found = resolve(graph, params)
         except AutodetectError as error:
             print("\n" + "=" * 40)

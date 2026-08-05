@@ -27,10 +27,10 @@ from pathlib import Path
 import launch_ros.actions
 import yaml
 from ament_index_python.packages import get_package_share_directory
-
-from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, OpaqueFunction
 from launch.substitutions import LaunchConfiguration
+
+from launch import LaunchDescription
 
 offline_only_parameters = [
     {
@@ -315,7 +315,8 @@ configurable_parameters = [
         "default": "info",
         "description": "ROS Log level [DEBUG|INFO|WARN|ERROR|FATAL]",
     },
-] + offline_only_parameters
+    *offline_only_parameters,
+]
 
 
 def fail(*lines):
@@ -343,9 +344,7 @@ def node_parameters(merged: dict) -> dict:
 
 
 def load_sibling(name: str):
-    spec = importlib.util.spec_from_file_location(
-        name, Path(__file__).parent / f"{name}.py"
-    )
+    spec = importlib.util.spec_from_file_location(name, Path(__file__).parent / f"{name}.py")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
@@ -377,9 +376,7 @@ def auto_cast_params(params, param_defs):
 
 def get_configured_cli_parameters(context):
     "Return only CLI parameters that were explicitly set by the user"
-    explicit_params = {
-        arg.split(":=")[0] for arg in getattr(context, "argv", []) if ":=" in arg
-    }
+    explicit_params = {arg.split(":=")[0] for arg in getattr(context, "argv", []) if ":=" in arg}
     cli_params = {}
     for param in configurable_parameters:
         name = param["name"]
@@ -392,7 +389,7 @@ def get_config_file_parameters(context):
     config_file = LaunchConfiguration("config_file").perform(context)
     if config_file == "":
         return {}
-    with open(config_file, "r") as f:
+    with open(config_file) as f:
         return yaml.safe_load(f)
 
 
@@ -404,9 +401,7 @@ def merge_parameters(cli_params: dict, file_params: dict) -> dict:
     return merged
 
 
-def validate_parameters(
-    merged: dict, mode: str, odom_at_imu_rate: bool, autodetect: bool = False
-) -> None:
+def validate_parameters(merged: dict, mode: str, odom_at_imu_rate: bool, autodetect: bool = False) -> None:
     # mode + flag determines which pipeline runs
     is_offline = mode == "offline"
     is_seq = mode == "online" and odom_at_imu_rate
@@ -421,12 +416,11 @@ def validate_parameters(
         if not is_offline and name in offline_only:
             continue
 
-        if param.get("required", False):
-            if name not in merged or not merged.get(name):
-                if autodetect and param.get("autodetectable"):
-                    autodetectable.append(name)
-                else:
-                    missing.append(name)
+        if param.get("required", False) and (name not in merged or not merged.get(name)):
+            if autodetect and param.get("autodetectable"):
+                autodetectable.append(name)
+            else:
+                missing.append(name)
 
     if missing:
         lines = ["[ERROR] missing required parameter(s):"]
@@ -439,10 +433,7 @@ def validate_parameters(
 
     # warn if odom_at_imu_rate=true is paired with offline (no offline seq variant)
     if is_offline and odom_at_imu_rate:
-        print(
-            "[WARN] odom_at_imu_rate:=true has no effect with mode:=offline; "
-            "running the async offline pipeline."
-        )
+        print("[WARN] odom_at_imu_rate:=true has no effect with mode:=offline; running the async offline pipeline.")
 
     # warn about parameters that won't take effect for the chosen pipeline
     if not is_seq:
@@ -468,15 +459,11 @@ def validate_parameters(
         "extrinsic_lidar2base_quat_xyzw_xyz",
         "extrinsic_imu2base_quat_xyzw_xyz",
     ]
-    extrinsic_set = [
-        p in merged and merged[p] not in ("", None) for p in extrinsic_params
-    ]
+    extrinsic_set = [p in merged and merged[p] not in ("", None) for p in extrinsic_params]
     if any(extrinsic_set) and not all(extrinsic_set):
         fail(
             "[ERROR] extrinsic parameters incomplete:",
-            "If one of {} is specified, both must be provided.".format(
-                ", ".join(extrinsic_params)
-            ),
+            "If one of {} is specified, both must be provided.".format(", ".join(extrinsic_params)),
             "Please provide them via a config file. If you only need one, then explicitly set the other to identity.",
         )
 
@@ -501,28 +488,25 @@ def prepare_rviz_config(rviz_config_file: Path, parameters: dict) -> Path:
         return rviz_config_file  # no override needed
 
     # Load default config
-    with open(rviz_config_file, "r") as f:
+    with open(rviz_config_file) as f:
         rviz_cfg = yaml.safe_load(f)
 
     try:
         # Patch whichever frame is specified
         if base_frame:
-            rviz_cfg["Visualization Manager"]["Views"]["Current"][
-                "Target Frame"
-            ] = base_frame
+            rviz_cfg["Visualization Manager"]["Views"]["Current"]["Target Frame"] = base_frame
         if odom_frame:
-            rviz_cfg["Visualization Manager"]["Global Options"][
-                "Fixed Frame"
-            ] = odom_frame
+            rviz_cfg["Visualization Manager"]["Global Options"]["Fixed Frame"] = odom_frame
     except Exception as e:
         raise RuntimeError(
             f"Could not patch RViz config with frames (base_frame={base_frame}, odom_frame={odom_frame}): {e}"
-        )
+        ) from e
 
     # Write to a temp file
     import tempfile
 
-    tmp = tempfile.NamedTemporaryFile(mode="w", suffix=".rviz", delete=False)
+    # not a context manager on purpose, rviz reads the file after this function returns
+    tmp = tempfile.NamedTemporaryFile(mode="w", suffix=".rviz", delete=False)  # noqa: SIM115
     yaml.safe_dump(rviz_cfg, tmp)
     tmp.flush()
     # since its the default rviz config file, we also want to viz the deskewed scan and local map
@@ -536,16 +520,12 @@ def launch_setup(context, *args, **kwargs):
     mode = LaunchConfiguration("mode").perform(context).lower()
     if mode not in ("online", "offline"):
         raise RuntimeError(f"Unknown mode '{mode}'. Valid: online | offline.")
-    odom_at_imu_rate = (
-        LaunchConfiguration("odom_at_imu_rate").perform(context).lower() == "true"
-    )
+    odom_at_imu_rate = LaunchConfiguration("odom_at_imu_rate").perform(context).lower() == "true"
 
     # Prepare parameters
     cli_params = get_configured_cli_parameters(context)
     params_from_file = get_config_file_parameters(context)
-    final_params = merge_parameters(
-        cli_params=cli_params, file_params=params_from_file
-    )
+    final_params = merge_parameters(cli_params=cli_params, file_params=params_from_file)
 
     autodetect = LaunchConfiguration("autodetect").perform(context).lower() == "true"
     validate_parameters(
@@ -626,6 +606,5 @@ def launch_setup(context, *args, **kwargs):
 
 def generate_launch_description():
     return LaunchDescription(
-        declare_configurable_parameters(configurable_parameters)
-        + [OpaqueFunction(function=launch_setup)]
+        [*declare_configurable_parameters(configurable_parameters), OpaqueFunction(function=launch_setup)]
     )

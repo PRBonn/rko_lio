@@ -102,12 +102,8 @@ def test_identity_registration(
         rotation_angle = np.degrees(np.arccos((trace_val - 1) / 2))
 
         # TODO: windows for whatever reason gives a 0.111m error on this where every other platform passes with less than a 1mm error. a problem for future me
-        assert (
-            translation_error <= 0.2
-        ), f"Translation error too high at scan {scan_num}: {translation_error} m"
-        assert (
-            rotation_angle <= 1e-3
-        ), f"Rotation error too high at scan {scan_num}: {rotation_angle} degrees"
+        assert translation_error <= 0.2, f"Translation error too high at scan {scan_num}: {translation_error} m"
+        assert rotation_angle <= 1e-3, f"Rotation error too high at scan {scan_num}: {rotation_angle} degrees"
 
     # First scan; base_time 0
     last_lidar_end = add_scan_with_imu(0)
@@ -115,9 +111,7 @@ def test_identity_registration(
 
     # Second scan
     last_lidar_end = add_scan_with_imu(last_lidar_end)
-    pipeline.add_imu(
-        last_lidar_end + 10_000_000, accel, gyro
-    )  # ensure the second lidar gets processed
+    pipeline.add_imu(last_lidar_end + 10_000_000, accel, gyro)  # ensure the second lidar gets processed
     verify_identity_pose(2)
 
     # TODO: ARM builds break on the third scan with more than a 1mm error, and only the ARM builds. i dont know why. same as above. problem for future me

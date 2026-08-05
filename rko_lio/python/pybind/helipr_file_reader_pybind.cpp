@@ -24,8 +24,10 @@
 
 // based on
 // https://github.com/minwoo0611/HeLiPR-File-Player/blob/e8d95e390454ece1415ae9deb51515f63730c10a/src/ROSThread.cpp#L411
+#include <cstdint>
 #include <filesystem>
 #include <fstream>
+#include <ios>
 #include <numeric>
 #include <pybind11/numpy.h>
 #include <pybind11/pybind11.h>
@@ -41,11 +43,11 @@ namespace {
 // Helper for aeva: get file stem as int64_t
 int64_t bin_file_stem(const std::string& filename) {
   namespace fs = std::filesystem;
-  fs::path p(filename);
+  const fs::path p(filename);
   return std::stoll(p.stem().string());
 }
 
-enum class SensorType { Velodyne, Ouster, Avia, AevaOld, AevaNew };
+enum class SensorType : std::uint8_t { Velodyne, Ouster, Avia, AevaOld, AevaNew };
 
 SensorType parse_sensor_type_and_variant(const std::string& sensor, const std::string& filename) {
   if (sensor == "Velodyne") {
@@ -73,47 +75,47 @@ SensorType parse_sensor_type_and_variant(const std::string& sensor, const std::s
 // that much i get, but what do the msvc macros mean? i dont know man
 // but really this is incredibly ugly, and i dont want to maintain it, helipr goes away in the first major release
 #ifdef __GNUC__
-#define PACK__
-#define __PACK __attribute__((__packed__))
+#define RKO_PACK_BEGIN
+#define RKO_PACK_END __attribute__((__packed__))
 #endif
 
 #ifdef _MSC_VER
-#define PACK__ __pragma(pack(push, 1))
-#define __PACK __pragma(pack(pop))
+#define RKO_PACK_BEGIN __pragma(pack(push, 1))
+#define RKO_PACK_END __pragma(pack(pop))
 #endif
 
-PACK__ struct HeLiPR_velodyne {
+RKO_PACK_BEGIN struct HeLiPR_velodyne {
   float x, y, z, intensity;
   uint16_t ring;
   float time;
-} __PACK;
+} RKO_PACK_END;
 
-PACK__ struct HeLiPR_ouster {
+RKO_PACK_BEGIN struct HeLiPR_ouster {
   float x, y, z, intensity;
   uint32_t t;
   uint16_t reflectivity;
   uint16_t ring;
   uint16_t ambient;
-} __PACK;
+} RKO_PACK_END;
 
-PACK__ struct HeLiPR_avia {
+RKO_PACK_BEGIN struct HeLiPR_avia {
   float x, y, z;
   uint8_t reflectivity, tag, line;
   uint32_t offset_time;
-} __PACK;
+} RKO_PACK_END;
 
-PACK__ struct HeLiPR_aeva {
+RKO_PACK_BEGIN struct HeLiPR_aeva {
   float x, y, z, reflectivity, velocity;
   int32_t time_offset_ns;
   uint8_t line_index;
-} __PACK;
+} RKO_PACK_END;
 
-PACK__ struct HeLiPR_aeva_new {
+RKO_PACK_BEGIN struct HeLiPR_aeva_new {
   float x, y, z, reflectivity, velocity;
   int32_t time_offset_ns;
   uint8_t line_index;
   float intensity;
-} __PACK;
+} RKO_PACK_END;
 
 // makes a few things easier through templating
 template <SensorType sensor_type>
@@ -172,7 +174,8 @@ PointsAndTime read_helipr_data(const std::string& filename) {
   std::vector<Record> records(record_count);
 
   // read the entire file at once
-  file.read(reinterpret_cast<char*>(records.data()), file_size_bytes);
+  // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast) istream::read only takes char*
+  file.read(reinterpret_cast<char*>(records.data()), static_cast<std::streamsize>(file_size_bytes));
   if (!file) {
     throw std::runtime_error("Error reading file, possibly truncated: " + filename);
   }
@@ -187,8 +190,8 @@ PointsAndTime read_helipr_data(const std::string& filename) {
   std::for_each(indices.cbegin(), indices.cend(), [&](const size_t i) {
     const auto& rec = records[i];
     points[3 * i] = rec.x;
-    points[3 * i + 1] = rec.y;
-    points[3 * i + 2] = rec.z;
+    points[(3 * i) + 1] = rec.y;
+    points[(3 * i) + 2] = rec.z;
     times[i] = Traits::get_time(rec);
   });
 

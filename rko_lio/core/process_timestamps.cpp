@@ -65,10 +65,9 @@ Timestamps timestamps_from_raw(const std::vector<double>& raw_timestamps, const 
   Timestamps timestamps{.min = raw_to_ns(min_stamp, multiplier_to_ns, source_is_ns),
                         .max = raw_to_ns(max_stamp, multiplier_to_ns, source_is_ns),
                         .per_point = TimestampVector(raw_timestamps.size())};
-  std::transform(raw_timestamps.cbegin(), raw_timestamps.cend(), timestamps.per_point.begin(),
-                 [multiplier_to_ns, source_is_ns](const double ts) {
-                   return raw_to_ns(ts, multiplier_to_ns, source_is_ns);
-                 });
+  std::transform(
+      raw_timestamps.cbegin(), raw_timestamps.cend(), timestamps.per_point.begin(),
+      [multiplier_to_ns, source_is_ns](const double ts) { return raw_to_ns(ts, multiplier_to_ns, source_is_ns); });
   return timestamps;
 }
 } // namespace

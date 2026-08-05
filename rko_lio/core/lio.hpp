@@ -28,8 +28,8 @@
  */
 
 #pragma once
-#include "voxel_hash_map.hpp"
 #include "util.hpp"
+#include "voxel_hash_map.hpp"
 
 #include <tbb/task_arena.h>
 
@@ -134,9 +134,8 @@ public:
    * @param timestamps Absolute timestamps corresponding to each scan point.
    * @return Deskewed and clipped scan in the original lidar frame.
    */
-  Vector3sVector register_scan(const Sophus::SE3s& extrinsic_lidar2base,
-                               Vector3sVector scan,
-                               const TimestampVector& timestamps);
+  Vector3sVector
+  register_scan(const Sophus::SE3s& extrinsic_lidar2base, Vector3sVector scan, const TimestampVector& timestamps);
 
   /** Sequence of registered scan poses with corresponding timestamps. */
   std::vector<std::pair<Nsec, Sophus::SE3s>> poses_with_timestamps;

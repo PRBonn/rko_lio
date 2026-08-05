@@ -32,11 +32,7 @@ inline std::chrono::nanoseconds to_ns(const builtin_interfaces::msg::Time& stamp
   return std::chrono::nanoseconds(rclcpp::Time(stamp).nanoseconds());
 }
 
-inline std::chrono::nanoseconds to_ns(const rclcpp::Time& time) {
-  return std::chrono::nanoseconds(time.nanoseconds());
-}
+inline std::chrono::nanoseconds to_ns(const rclcpp::Time& time) { return std::chrono::nanoseconds(time.nanoseconds()); }
 
-inline builtin_interfaces::msg::Time to_ros_time(std::chrono::nanoseconds time) {
-  return rclcpp::Time(time.count());
-}
+inline builtin_interfaces::msg::Time to_ros_time(std::chrono::nanoseconds time) { return rclcpp::Time(time.count()); }
 } // namespace rko_lio::ros::utils

@@ -1,0 +1,51 @@
+name: Lint
+on:
+  pull_request:
+    branches: [master]
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pre_commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+      - uses: pre-commit/action@v3.0.1
+
+  clang_tidy:
+    # minutes per translation unit, so it lives here rather than in pre-commit
+    runs-on: ubuntu-latest
+    container:
+      image: ros:lyrical-ros-base
+    env:
+      GIT_LFS_SKIP_SMUDGE: 1
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install build tools
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends cmake ninja-build clang-tidy python3-pybind11 python3-dev
+          rosdep update
+          rosdep install --from-paths . --ignore-src -r -y
+      # the pybind sources are a separate cmake project, so they need their own compile database
+      - name: Configure
+        run: |
+          . /opt/ros/lyrical/setup.sh
+          cmake -G Ninja -S . -B build/ros \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+            -DRKO_LIO_FETCH_CONTENT_DEPS=OFF \
+            -DRKO_LIO_BUILD_ROS=ON
+          cmake -G Ninja -S rko_lio/python/pybind -B build/python \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+            -DCMAKE_CXX_SCAN_FOR_MODULES=OFF \
+            -DRKO_LIO_FETCH_CONTENT_DEPS=ON \
+            -DRKO_LIO_BUILD_ROS=OFF
+      - name: Run clang-tidy
+        run: |
+          for db in build/ros build/python; do
+            run-clang-tidy -p "$db" -j "$(nproc)" -quiet -warnings-as-errors='*' "$PWD/rko_lio/.*\.cpp$"
+          done

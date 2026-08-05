@@ -4,7 +4,7 @@ All rights reserved to the original authors: Tim Field and Florian Vahl.
 """
 
 import sys
-from typing import Iterable, List, Optional, Tuple
+from collections.abc import Iterable
 
 import numpy as np
 
@@ -32,7 +32,7 @@ def get_datatype_name(field) -> str:
     raise ValueError(f"Unknown datatype code {field.datatype} for field {vars(field)}")
 
 
-def dtype_from_fields(fields: Iterable, point_step: Optional[int] = None) -> np.dtype:
+def dtype_from_fields(fields: Iterable, point_step: int | None = None) -> np.dtype:
     """
     Convert a Iterable of sensor_msgs.msg.PointField messages to a np.dtype.
     :param fields: The point cloud fields.
@@ -49,23 +49,14 @@ def dtype_from_fields(fields: Iterable, point_step: Optional[int] = None) -> np.
         # Datatype as numpy datatype
         datatype = _DATATYPES[get_datatype_name(field)]
         # Name field
-        name = (
-            field.name
-            if getattr(field, "name", "") != ""
-            else f"{DUMMY_FIELD_PREFIX}_{i}"
-        )
-        # Handle fields with count > 1 by creating subfields with a suffix consiting
+        name = field.name if getattr(field, "name", "") != "" else f"{DUMMY_FIELD_PREFIX}_{i}"
+        # Handle fields with count > 1 by creating subfields with a suffix consisting
         # of "_" followed by the subfield counter [0 -> (count - 1)]
         assert field.count > 0, "Can't process fields with count = 0."
         for a in range(field.count):
             # Add suffix if we have multiple subfields
-            if field.count > 1:
-                subfield_name = f"{name}_{a}"
-            else:
-                subfield_name = name
-            assert (
-                subfield_name not in field_names
-            ), "Duplicate field names are not allowed!"
+            subfield_name = f"{name}_{a}" if field.count > 1 else name
+            assert subfield_name not in field_names, "Duplicate field names are not allowed!"
             field_names.append(subfield_name)
             # Create new offset that includes subfields
             field_offsets.append(field.offset + a * datatype.itemsize)
@@ -84,8 +75,8 @@ def dtype_from_fields(fields: Iterable, point_step: Optional[int] = None) -> np.
 
 def read_points(
     cloud,
-    field_names: Optional[List[str]] = None,
-    uvs: Optional[Iterable] = None,
+    field_names: list[str] | None = None,
+    uvs: Iterable | None = None,
     reshape_organized_cloud: bool = False,
 ) -> np.ndarray:
     """
@@ -107,9 +98,9 @@ def read_points(
 
     # Keep only the requested fields
     if field_names is not None:
-        assert all(
-            field_name in points.dtype.names for field_name in field_names
-        ), "Requests field is not in the fields of the PointCloud!"
+        assert all(field_name in points.dtype.names for field_name in field_names), (
+            "Requests field is not in the fields of the PointCloud!"
+        )
         # Mask fields
         points = points[list(field_names)]
 
@@ -132,9 +123,9 @@ def read_points(
     return points
 
 
-def read_point_cloud(msg) -> Tuple[np.ndarray, np.ndarray | None]:
+def read_point_cloud(msg) -> tuple[np.ndarray, np.ndarray | None]:
     """
-    Extract poitns and timestamps from a PointCloud2 message.
+    Extract points and timestamps from a PointCloud2 message.
 
     :return: Tuple of [points, timestamps]
         points: array of x, y z points, shape: (N, 3)
@@ -149,9 +140,7 @@ def read_point_cloud(msg) -> Tuple[np.ndarray, np.ndarray | None]:
             break
 
     points_structured = read_points(msg, field_names=field_names)
-    points = np.column_stack(
-        [points_structured["x"], points_structured["y"], points_structured["z"]]
-    )
+    points = np.column_stack([points_structured["x"], points_structured["y"], points_structured["z"]])
 
     # Remove nan if any
     # TODO: need to handle the change in timestamps too

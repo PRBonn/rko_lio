@@ -34,7 +34,7 @@ namespace rko_lio::core {
 // although it does lead to worse odometry performance in certain situations
 
 std::vector<Eigen::Vector3s> voxel_down_sample(const std::vector<Eigen::Vector3s>& frame, const Scalar voxel_size) {
-  const Scalar inv_voxel_size = 1.0 / voxel_size;
+  const auto inv_voxel_size = static_cast<Scalar>(1.0 / voxel_size);
   std::unordered_map<Eigen::Vector3i, Eigen::Vector3s, VoxelHash> grid;
   grid.reserve(frame.size());
   std::for_each(frame.cbegin(), frame.cend(),

@@ -83,11 +83,9 @@ class RosbagDataLoader:
         *args,
         **kwargs,
     ):
-        assert (
-            data_path.is_dir()
-        ), "Pass a directory to data_path with ros1 or ros2 bag files"
+        assert data_path.is_dir(), "Pass a directory to data_path with ros1 or ros2 bag files"
 
-        ros1_bagfiles = sorted(list(data_path.glob("*.bag")))
+        ros1_bagfiles = sorted(data_path.glob("*.bag"))
         bagfiles = None
         if ros1_bagfiles:
             self.bag_type = "ROS1"  # for logging
@@ -105,28 +103,18 @@ class RosbagDataLoader:
             print("\n".join(sorted([path.name for path in bagfiles])))
         self.bag.open()
 
-        self.lidar_topic = self.check_topic(
-            lidar_topic, expected_msgtype="sensor_msgs/msg/PointCloud2"
-        )
-        self.imu_topic = self.check_topic(
-            imu_topic, expected_msgtype="sensor_msgs/msg/Imu"
-        )
+        self.lidar_topic = self.check_topic(lidar_topic, expected_msgtype="sensor_msgs/msg/PointCloud2")
+        self.imu_topic = self.check_topic(imu_topic, expected_msgtype="sensor_msgs/msg/Imu")
 
         self.connections = [
-            x
-            for x in self.bag.connections
-            if (x.topic == self.imu_topic or x.topic == self.lidar_topic)
+            x for x in self.bag.connections if (x.topic == self.imu_topic or x.topic == self.lidar_topic)
         ]
 
         self.imu_frame_id = imu_frame_id or self._read_first_frame_id(self.imu_topic)
-        self.lidar_frame_id = lidar_frame_id or self._read_first_frame_id(
-            self.lidar_topic
-        )
+        self.lidar_frame_id = lidar_frame_id or self._read_first_frame_id(self.lidar_topic)
         self.base_frame_id = base_frame_id or self.lidar_frame_id
         if self.base_frame_id is None:
-            error_and_exit(
-                f"Could not automatically determine a base frame id. Please pass it with --base_frame."
-            )
+            error_and_exit("Could not automatically determine a base frame id. Please pass it with --base_frame.")
 
         self.T_imu_to_base = None
         self.T_lidar_to_base = None
@@ -136,10 +124,7 @@ class RosbagDataLoader:
         self.timestamp_config = timestamp_config
 
     def __len__(self):
-        return (
-            self.bag.topics[self.imu_topic].msgcount
-            + self.bag.topics[self.lidar_topic].msgcount
-        )
+        return self.bag.topics[self.imu_topic].msgcount + self.bag.topics[self.lidar_topic].msgcount
 
     def _read_first_frame_id(self, topic_name):
         """Read the frame_id from the first message of the given topic."""
@@ -162,13 +147,9 @@ class RosbagDataLoader:
                 )
 
             print("Querying TF tree for imu to base extrinsic.")
-            self.T_imu_to_base = query_static_tf(
-                static_tf_tree, self.imu_frame_id, self.base_frame_id
-            )
+            self.T_imu_to_base = query_static_tf(static_tf_tree, self.imu_frame_id, self.base_frame_id)
             print("Querying TF tree for lidar to base extrinsic.")
-            self.T_lidar_to_base = query_static_tf(
-                static_tf_tree, self.lidar_frame_id, self.base_frame_id
-            )
+            self.T_lidar_to_base = query_static_tf(static_tf_tree, self.lidar_frame_id, self.base_frame_id)
         return self.T_imu_to_base, self.T_lidar_to_base
 
     def __iter__(self):
@@ -176,7 +157,7 @@ class RosbagDataLoader:
 
     def __next__(self):
         while True:
-            with ScopedProfiler("Rosbag Dataloader") as data_timer:
+            with ScopedProfiler("Rosbag Dataloader"):
                 connection, _, rawdata = next(self.msgs)
                 deserialized_data = self.bag.deserialize(rawdata, connection.msgtype)
                 if connection.topic == self.imu_topic:
@@ -236,9 +217,7 @@ class RosbagDataLoader:
 
     def check_topic(self, topic: str | None, expected_msgtype: str) -> str:
         topics_of_type = [
-            topic_name
-            for topic_name, info in self.bag.topics.items()
-            if info.msgtype == expected_msgtype
+            topic_name for topic_name, info in self.bag.topics.items() if info.msgtype == expected_msgtype
         ]
 
         def print_available_topics_and_exit():
@@ -266,9 +245,7 @@ class RosbagDataLoader:
             )
             print_available_topics_and_exit()
         if len(topics_of_type) == 0:
-            error_and_exit(
-                "Your rosbag does not contain any", expected_msgtype, "topic."
-            )
+            error_and_exit("Your rosbag does not contain any", expected_msgtype, "topic.")
         return topics_of_type[0]
 
     def __repr__(self):

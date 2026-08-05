@@ -15,8 +15,7 @@ compat_target_sources(
   FILES eigen_approx.hpp synthetic_clouds.hpp
   BASE_DIRS .)
 
-target_link_libraries(rko_lio_core_tests PRIVATE rko_lio::core
-                                                 Catch2::Catch2WithMain)
+target_link_libraries(rko_lio_core_tests PRIVATE rko_lio::core Catch2::Catch2WithMain)
 
 target_compile_features(rko_lio_core_tests PRIVATE cxx_std_20)
 

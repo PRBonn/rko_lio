@@ -15,3 +15,10 @@ updates:
     labels:
       - "dependencies"
       - "python"
+  - package-ecosystem: "pre-commit"
+    directory: "/"
+    schedule:
+      interval: "quarterly"
+    labels:
+      - "dependencies"
+      - "pre-commit"

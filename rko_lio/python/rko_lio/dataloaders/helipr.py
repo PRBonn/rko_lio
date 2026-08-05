@@ -36,7 +36,7 @@ import numpy as np
 
 from .. import rko_lio_pybind
 from ..config import TimestampConfig
-from ..scoped_profiler import ScopedProfiler, profile_func
+from ..scoped_profiler import profile_func
 from ..util import error_and_exit, info, warning
 from .helipr_file_reader_pybind import read_lidar_bin
 
@@ -109,16 +109,12 @@ class HeliprDataLoader:
         imu_file = self.data_path / "Inertial_data" / "xsens_imu.csv"
         assert imu_file.exists(), "{imu_file} does not exist for data path {data_path}"
         imu_data = []
-        with open(imu_file, "r") as f:
+        with open(imu_file) as f:
             reader = csv.reader(f)
             for row in reader:
                 ts = int(row[0])
-                gyro = np.array(
-                    [float(row[8]), float(row[9]), float(row[10])], dtype=np.float32
-                )
-                accel = np.array(
-                    [float(row[11]), float(row[12]), float(row[13])], dtype=np.float32
-                )
+                gyro = np.array([float(row[8]), float(row[9]), float(row[10])], dtype=np.float32)
+                accel = np.array([float(row[11]), float(row[12]), float(row[13])], dtype=np.float32)
                 imu_data.append({"timestamp": ts, "gyro": gyro, "accel": accel})
         return imu_data
 
@@ -167,9 +163,7 @@ class HeliprDataLoader:
                 header_stamp_ns = int(data["timestamp"])
 
                 try:
-                    points, raw_timestamps = read_lidar_bin(
-                        str(data["filename"]), self.sensor
-                    )
+                    points, raw_timestamps = read_lidar_bin(str(data["filename"]), self.sensor)
                 except RuntimeError as e:
                     # pybinded cpp side can throw
                     warning("Error processing lidar frame.", e)
@@ -206,12 +200,8 @@ def parse_extrinsic_txt(path: Path) -> np.ndarray:
     text = path.read_text()
 
     # Case-insensitive, allow newlines within brackets
-    rot_match = re.search(
-        r"rotation\s*:\s*\[([^\]]+)\]", text, re.IGNORECASE | re.DOTALL
-    )
-    trans_match = re.search(
-        r"translation\s*:\s*\[([^\]]+)\]", text, re.IGNORECASE | re.DOTALL
-    )
+    rot_match = re.search(r"rotation\s*:\s*\[([^\]]+)\]", text, re.IGNORECASE | re.DOTALL)
+    trans_match = re.search(r"translation\s*:\s*\[([^\]]+)\]", text, re.IGNORECASE | re.DOTALL)
 
     if not rot_match:
         error_and_exit(f"No rotation block found in {path}")
@@ -224,9 +214,7 @@ def parse_extrinsic_txt(path: Path) -> np.ndarray:
     if len(rot_vals) != 9:
         error_and_exit(f"Expected 9 rotation values in {path}, got {len(rot_vals)}")
     if len(trans_vals) != 3:
-        error_and_exit(
-            f"Expected 3 translation values in {path}, got {len(trans_vals)}"
-        )
+        error_and_exit(f"Expected 3 translation values in {path}, got {len(trans_vals)}")
 
     R_mat = np.array(rot_vals, dtype=float).reshape(3, 3)
     t_vec = np.array(trans_vals, dtype=float)
@@ -268,33 +256,21 @@ def parse_lidar_extrinsic(path: Path, target_sensor: str) -> np.ndarray:
     block_text = match.group(1)
 
     # Extract rotation block
-    rot_match = re.search(
-        r"rotation\s*:\s*\[([^\]]+)\]", block_text, re.IGNORECASE | re.DOTALL
-    )
-    trans_match = re.search(
-        r"translation\s*:\s*\[([^\]]+)\]", block_text, re.IGNORECASE | re.DOTALL
-    )
+    rot_match = re.search(r"rotation\s*:\s*\[([^\]]+)\]", block_text, re.IGNORECASE | re.DOTALL)
+    trans_match = re.search(r"translation\s*:\s*\[([^\]]+)\]", block_text, re.IGNORECASE | re.DOTALL)
 
     if not rot_match:
-        error_and_exit(
-            f"No rotation block found for Ouster - {target_sensor} in {path}"
-        )
+        error_and_exit(f"No rotation block found for Ouster - {target_sensor} in {path}")
     if not trans_match:
-        error_and_exit(
-            f"No translation block found for Ouster - {target_sensor} in {path}"
-        )
+        error_and_exit(f"No translation block found for Ouster - {target_sensor} in {path}")
 
     rot_vals = [float(x) for x in rot_match.group(1).split()]
     trans_vals = [float(x) for x in trans_match.group(1).split()]
 
     if len(rot_vals) != 9:
-        error_and_exit(
-            f"Expected 9 rotation values for Ouster - {target_sensor} in {path}, got {len(rot_vals)}"
-        )
+        error_and_exit(f"Expected 9 rotation values for Ouster - {target_sensor} in {path}, got {len(rot_vals)}")
     if len(trans_vals) != 3:
-        error_and_exit(
-            f"Expected 3 translation values for Ouster - {target_sensor} in {path}, got {len(trans_vals)}"
-        )
+        error_and_exit(f"Expected 3 translation values for Ouster - {target_sensor} in {path}, got {len(trans_vals)}")
 
     R_mat = np.array(rot_vals, dtype=float).reshape(3, 3)
     t_vec = np.array(trans_vals, dtype=float)

@@ -70,7 +70,7 @@ public:
 
       // Update Welford's online algorithm for variance
       const double delta = (elapsed - entry.mean).count();
-      entry.mean += MilliSeconds{delta / entry.count};
+      entry.mean += MilliSeconds{delta / static_cast<double>(entry.count)};
       entry.M2 += delta * (elapsed - entry.mean).count();
 
       if (elapsed > entry.max_time) {
@@ -106,7 +106,7 @@ private:
       if (count < 2) {
         return MilliSeconds{0.0};
       }
-      return MilliSeconds{std::sqrt(M2 / (count - 1))};
+      return MilliSeconds{std::sqrt(M2 / static_cast<double>(count - 1))};
     }
   };
 
@@ -147,14 +147,14 @@ struct Timer {
   using Duration = std::chrono::duration<double>;
 
   Timer() : label("Execution"), start_time(Clock::now()) {}
-  explicit Timer(const std::string& label) : label(label), start_time(Clock::now()) {}
+  explicit Timer(std::string label) : label(std::move(label)), start_time(Clock::now()) {}
   Timer(const Timer&) = default;
   Timer(Timer&&) = default;
   Timer& operator=(const Timer&) = default;
   Timer& operator=(Timer&&) = default;
   ~Timer() {
-    auto end_time = Clock::now();
-    Duration duration = end_time - start_time;
+    const auto end_time = Clock::now();
+    const Duration duration = end_time - start_time;
     std::cout << label << " took " << duration.count() << " seconds.\n";
   }
   std::string label;
@@ -163,7 +163,10 @@ struct Timer {
 
 } // namespace rko_lio::core
 
+// __LINE__ pasting cannot be a function
+// NOLINTNEXTLINE(cppcoreguidelines-macro-usage)
 #define CONCAT_IMPL(x, y) x##y
+// NOLINTNEXTLINE(cppcoreguidelines-macro-usage)
 #define CONCAT(x, y) CONCAT_IMPL(x, y)
 /**
  * @def SCOPED_PROFILER(name)
@@ -174,4 +177,5 @@ struct Timer {
  *
  * @note This macro and the associated ScopedProfiler class are planned for deprecation.
  */
-#define SCOPED_PROFILER(name) rko_lio::core::ScopedProfiler CONCAT(profiler_, __LINE__)(name)
+// NOLINTNEXTLINE(cppcoreguidelines-macro-usage)
+#define SCOPED_PROFILER(name) const rko_lio::core::ScopedProfiler CONCAT(profiler_, __LINE__)(name)

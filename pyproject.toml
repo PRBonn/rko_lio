@@ -70,6 +70,8 @@ CMAKE_EXPORT_COMPILE_COMMANDS = "ON"
 RKO_LIO_FETCH_CONTENT_DEPS = "ON"
 RKO_LIO_BUILD_ROS = "OFF"
 RKO_LIO_SCALAR = "double"
+# TODO: inherited from kiss-icp, need unverified. oneTBB calls static builds unsupported
+BUILD_SHARED_LIBS = "OFF"
 
 [tool.cibuildwheel]
 environment = { GIT_LFS_SKIP_SMUDGE = "1" }
@@ -87,3 +89,23 @@ addopts = ["-v"]
 testpaths = [
   "tests/python"
 ]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+extend-exclude = [
+  ".cmake-format.py",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "C4", "SIM", "RUF"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+# re-exports
+"__init__.py" = ["F401"]
+"docs/conf.py" = ["E402"]
+
+[tool.ruff.lint.flake8-bugbear]
+# typer puts CLI metadata in argument defaults
+extend-immutable-calls = ["typer.Argument", "typer.Option"]

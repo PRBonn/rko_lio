@@ -92,5 +92,5 @@ def test_empty_input(dtype):
 
 @pytest.mark.parametrize("shape", [(4,), (4, 2), (4, 4), (2, 3, 3)])
 def test_wrong_shape_is_rejected(shape):
-    with pytest.raises(Exception):
+    with pytest.raises((TypeError, ValueError, RuntimeError)):
         pybind._Vector3sVector(np.zeros(shape, dtype=np.float64))

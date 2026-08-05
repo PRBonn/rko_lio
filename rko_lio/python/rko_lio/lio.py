@@ -119,7 +119,7 @@ class LIO:
         self._impl = _LIO(config.to_pybind())
 
     def __repr__(self):
-        return f"LIO with config: {repr(self.config)}"
+        return f"LIO with config: {self.config!r}"
 
     def interval_stats(self):
         """Can be useful for introspecting some IMU details."""
@@ -159,9 +159,7 @@ class LIO:
         if scan_arr.ndim != 2 or scan_arr.shape[1] != 3:
             raise ValueError(f"scan: expected (N,3), got {scan_arr.shape}")
         if times_arr.shape != (scan_arr.shape[0],):
-            raise ValueError(
-                f"timestamps: expected ({scan_arr.shape[0]},), got {times_arr.shape}"
-            )
+            raise ValueError(f"timestamps: expected ({scan_arr.shape[0]},), got {times_arr.shape}")
         scan_vec = _Vector3sVector(scan_arr)
         time_vec = _VectorInt64(times_arr)
         if extrinsic_lidar2base is None:

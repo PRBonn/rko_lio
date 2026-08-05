@@ -1,18 +1,19 @@
 #include "preprocess_scan.hpp"
 #include "voxel_down_sample.hpp"
 
+#include <cmath>
+
 namespace rko_lio::core {
 
 PreprocessingResult preprocess_scan(Vector3sVector frame, const LIO::Config& config) {
   std::erase_if(frame, [&](const auto& point) {
     const Scalar point_range = point.norm();
-    // negation handles nans as well
-    return !(point_range > config.min_range && point_range < config.max_range);
+    return !std::isfinite(point_range) || point_range <= config.min_range || point_range >= config.max_range;
   });
 
   if (config.double_downsample) {
-    Vector3sVector downsampled_frame = voxel_down_sample(frame, config.voxel_size * 0.5);
-    Vector3sVector keypoints = voxel_down_sample(downsampled_frame, config.voxel_size * 1.5);
+    Vector3sVector downsampled_frame = voxel_down_sample(frame, config.voxel_size * Scalar(0.5));
+    Vector3sVector keypoints = voxel_down_sample(downsampled_frame, config.voxel_size * Scalar(1.5));
     return {.filtered_frame = std::move(frame),
             .keypoints = std::move(keypoints),
             .map_frame = std::move(downsampled_frame)};

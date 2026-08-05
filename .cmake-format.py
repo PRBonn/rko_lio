@@ -21,6 +21,7 @@
 # SOFTWARE.
 
 with section("format"):
+    line_width = 120
     # If an argument group contains more than this many sub-groups (parg or kwarg
     # groups) then force it to a vertical layout.
     max_subgroups_hwrap = 2

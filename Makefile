@@ -25,5 +25,3 @@ core-test: core
 .PHONY: clean
 clean:
 	rm -rf build
-
-

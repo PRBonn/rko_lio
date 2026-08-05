@@ -35,9 +35,10 @@ using namespace std::literals;
 
 namespace rko_lio::ros {
 
-ThreadedNode::ThreadedNode(const std::string& node_name, const rclcpp::NodeOptions& options) : BaseNode(node_name, options) {
-  max_lidar_buffer_size = static_cast<size_t>(node->declare_parameter<int>(
-      "async.max_lidar_buffer_size", static_cast<int>(max_lidar_buffer_size)));
+ThreadedNode::ThreadedNode(const std::string& node_name, const rclcpp::NodeOptions& options)
+    : BaseNode(node_name, options) {
+  max_lidar_buffer_size = static_cast<size_t>(
+      node->declare_parameter<int>("async.max_lidar_buffer_size", static_cast<int>(max_lidar_buffer_size)));
   registration_thread = std::jthread([this]() { registration_loop(); });
 }
 
@@ -46,7 +47,7 @@ void ThreadedNode::imu_callback(const sensor_msgs::msg::Imu::ConstSharedPtr& imu
     return;
   }
   {
-    std::lock_guard lock(buffer_mutex);
+    const std::scoped_lock lock(buffer_mutex);
     imu_buffer.emplace(imu_msg_to_imu_data(*imu_msg));
     atomic_can_process = !lidar_buffer.empty() && imu_buffer.back().time > lidar_buffer.front().timestamps.max;
   }
@@ -60,7 +61,7 @@ void ThreadedNode::lidar_callback(const sensor_msgs::msg::PointCloud2::ConstShar
     return;
   }
   {
-    std::lock_guard lock(buffer_mutex);
+    const std::scoped_lock lock(buffer_mutex);
     if (lidar_buffer.size() >= max_lidar_buffer_size) {
       RCLCPP_WARN_STREAM(node->get_logger(), "Registration lidar buffer limit reached. Dropping frame.");
       sync_condition_variable.notify_one();
@@ -70,7 +71,7 @@ void ThreadedNode::lidar_callback(const sensor_msgs::msg::PointCloud2::ConstShar
   try {
     LidarFrame frame = process_lidar_msg(lidar_msg);
     {
-      std::lock_guard lock(buffer_mutex);
+      const std::scoped_lock lock(buffer_mutex);
       lidar_buffer.push(std::move(frame));
       atomic_can_process = !imu_buffer.empty() && imu_buffer.back().time > lidar_buffer.front().timestamps.max;
     }
@@ -105,7 +106,8 @@ void ThreadedNode::registration_loop() {
     buffer_lock.unlock(); // we dont touch the buffers anymore
 
     try {
-      const core::Vector3sVector deskewed_frame = register_scan_locked(std::move(frame.points), frame.timestamps.per_point);
+      const core::Vector3sVector deskewed_frame =
+          register_scan_locked(std::move(frame.points), frame.timestamps.per_point);
       if (!deskewed_frame.empty()) {
         // TODO: first frame is skipped and an empty frame is returned. improve how we handle this
         publish_lidar_outputs(deskewed_frame);

@@ -47,14 +47,14 @@ public:
   // Wrapper node to process the transforamtions present in the bagfile
   struct TFBridge {
     explicit TFBridge(rclcpp::Node& node);
-    void ProcessTFMessage(std::shared_ptr<rosbag2_storage::SerializedBagMessage> msg) const;
+    void ProcessTFMessage(const std::shared_ptr<rosbag2_storage::SerializedBagMessage>& msg) const;
     std::unique_ptr<tf2_ros::TransformBroadcaster> tf_broadcaster;
     std::unique_ptr<tf2_ros::StaticTransformBroadcaster> tf_static_broadcaster;
     rclcpp::Serialization<tf2_msgs::msg::TFMessage> serializer;
   };
 
   BufferableBag(const std::string& bag_path,
-                const std::shared_ptr<TFBridge> tf_bridge,
+                const std::shared_ptr<TFBridge>& tf_bridge,
                 const std::vector<std::string>& topics,
                 const tf2::Duration seek = tf2::durationFromSec(0.0),
                 const std::chrono::seconds buffer_size = std::chrono::seconds(1));

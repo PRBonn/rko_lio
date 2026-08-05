@@ -53,6 +53,7 @@ public:
   OnlineImuRateNode(OnlineImuRateNode&&) = delete;
   OnlineImuRateNode& operator=(const OnlineImuRateNode&) = delete;
   OnlineImuRateNode& operator=(OnlineImuRateNode&&) = delete;
+  ~OnlineImuRateNode() = default;
 
   explicit OnlineImuRateNode(const rclcpp::NodeOptions& options)
       : BaseNode("rko_lio_online_imu_rate_node", options), timer("RKO LIO Online IMU-rate Node") {
@@ -60,12 +61,11 @@ public:
     tf_at_imu_rate = node->declare_parameter<bool>("seq.tf_at_imu_rate", tf_at_imu_rate);
 
     const rclcpp::QoS publisher_qos((rclcpp::SystemDefaultsQoS().keep_last(1).durability_volatile()));
-    odom_at_imu_rate_publisher =
-        node->create_publisher<nav_msgs::msg::Odometry>(odom_at_imu_rate_topic, publisher_qos);
+    odom_at_imu_rate_publisher = node->create_publisher<nav_msgs::msg::Odometry>(odom_at_imu_rate_topic, publisher_qos);
 
-    RCLCPP_INFO_STREAM(node->get_logger(),
-                       "OnlineImuRateNode publishing IMU-rate odometry to "
-                           << odom_at_imu_rate_topic << ", TF rate: " << (tf_at_imu_rate ? "imu" : "lidar"));
+    RCLCPP_INFO_STREAM(node->get_logger(), "OnlineImuRateNode publishing IMU-rate odometry to "
+                                               << odom_at_imu_rate_topic
+                                               << ", TF rate: " << (tf_at_imu_rate ? "imu" : "lidar"));
 
     const auto qos_imu = rclcpp::SensorDataQoS().keep_last(100);
     const auto qos_lidar = rclcpp::SensorDataQoS().keep_last(10);
@@ -121,7 +121,6 @@ public:
       RCLCPP_ERROR_STREAM(node->get_logger(), "Encountered error, dropping frame. Error: " << ex.what());
     }
   }
-
 };
 
 } // namespace rko_lio::ros

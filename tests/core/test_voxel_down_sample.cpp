@@ -11,8 +11,7 @@ namespace {
 std::set<std::tuple<int, int, int>> as_voxel_set(const std::vector<Eigen::Vector3s>& points, double voxel_size) {
   std::set<std::tuple<int, int, int>> out;
   for (const auto& p : points) {
-    out.emplace(static_cast<int>(std::floor(p.x() / voxel_size)),
-                static_cast<int>(std::floor(p.y() / voxel_size)),
+    out.emplace(static_cast<int>(std::floor(p.x() / voxel_size)), static_cast<int>(std::floor(p.y() / voxel_size)),
                 static_cast<int>(std::floor(p.z() / voxel_size)));
   }
   return out;
@@ -27,8 +26,7 @@ TEST_CASE("voxel_down_sample: empty input -> empty output", "[voxel_down_sample]
 
 TEST_CASE("voxel_down_sample: all points within one voxel -> 1 output", "[voxel_down_sample]") {
   const double voxel_size = 1.0;
-  const std::vector<Eigen::Vector3s> points = {
-      {0.1, 0.1, 0.1}, {0.2, 0.3, 0.4}, {0.5, 0.5, 0.5}, {0.99, 0.99, 0.99}};
+  const std::vector<Eigen::Vector3s> points = {{0.1, 0.1, 0.1}, {0.2, 0.3, 0.4}, {0.5, 0.5, 0.5}, {0.99, 0.99, 0.99}};
   const auto result = voxel_down_sample(points, voxel_size);
   REQUIRE(result.size() == 1);
 }

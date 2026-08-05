@@ -22,7 +22,7 @@
 // SOFTWARE.
 //
 // NOTE: This implementation is heavily inspired in the original CT-ICP VoxelHashMap implementation,
-// although it was heavily modifed and drastically simplified, but if you are using this module you
+// although it was heavily modified and drastically simplified, but if you are using this module you
 // should at least acknoowledge the work from CT-ICP by giving a star on GitHub.
 //
 // Modified from kiss-icp (kiss_icp/cpp/kiss_icp/core/VoxelHashMap.{hpp,cpp}).
@@ -42,7 +42,7 @@ namespace {
 using rko_lio::core::Voxel;
 
 // the order of the shifts is deliberate
-static const std::array<Voxel, 27> shifts{
+const std::array<Voxel, 27> shifts{
     Voxel{0, 0, 0}, // home
 
     Voxel{-1, 0, 0},   Voxel{0, -1, 0},  Voxel{0, 0, -1}, // faces
@@ -63,7 +63,7 @@ VoxelHashMap::VoxelHashMap(const Scalar voxel_size,
                            const Scalar clipping_distance,
                            const unsigned int max_points_per_voxel)
     : voxel_size_(voxel_size),
-      inv_voxel_size_(1.0 / voxel_size),
+      inv_voxel_size_(static_cast<Scalar>(1.0 / voxel_size)),
       clipping_distance_(clipping_distance),
       max_points_per_voxel_(max_points_per_voxel) {}
 
@@ -107,7 +107,7 @@ std::optional<VoxelBlock::const_iterator> VoxelHashMap::get_closest_neighbor(con
 }
 
 void VoxelHashMap::add_points(const std::vector<Eigen::Vector3s>& points, const Sophus::SE3s& pose) {
-  const Scalar map_resolution_sq = voxel_size_ * voxel_size_ / max_points_per_voxel_;
+  const Scalar map_resolution_sq = voxel_size_ * voxel_size_ / static_cast<Scalar>(max_points_per_voxel_);
   std::for_each(points.cbegin(), points.cend(), [&](const Eigen::Vector3s& point) {
     const Eigen::Vector3s p = pose * point;
     const Voxel voxel = point_to_voxel(p, inv_voxel_size_);

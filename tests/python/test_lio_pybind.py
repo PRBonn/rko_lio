@@ -1,5 +1,3 @@
-import pytest
-
 from rko_lio.lio import LIO, LIOConfig
 
 

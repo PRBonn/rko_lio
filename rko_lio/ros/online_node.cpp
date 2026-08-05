@@ -22,8 +22,8 @@
  * SOFTWARE.
  */
 
-#include "threaded_node.hpp"
 #include "rko_lio/core/profiler.hpp"
+#include "threaded_node.hpp"
 
 namespace rko_lio::ros {
 class OnlineNode : public ThreadedNode {
@@ -36,6 +36,7 @@ public:
   OnlineNode(OnlineNode&&) = delete;
   OnlineNode& operator=(const OnlineNode&) = delete;
   OnlineNode& operator=(OnlineNode&&) = delete;
+  ~OnlineNode() = default;
 
   explicit OnlineNode(const rclcpp::NodeOptions& options)
       : ThreadedNode("rko_lio_online_node", options), timer("RKO LIO Online Node") {

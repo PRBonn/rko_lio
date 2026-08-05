@@ -20,7 +20,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import sys
 from pathlib import Path
 
 
@@ -30,7 +29,7 @@ def available_dataloaders():
 
 def dataloader_factory(name: str | None, data_path: Path, *args, **kwargs):
     if name is None:
-        return guess_dataloader(data_path=data_path, *args, **kwargs)
+        return guess_dataloader(data_path, *args, **kwargs)
 
     elif name == "rosbag":
         from .rosbag import RosbagDataLoader
@@ -68,9 +67,7 @@ def guess_dataloader(data_path: Path, *args, **kwargs):
     txt_files = list(data_path.glob("*.txt"))
     csv_files = list(data_path.glob("*.csv"))
     rko_lio_settings_file = data_path / "rko_lio_settings.yaml"
-    if rko_lio_settings_file.exists() or (
-        lidar_folder.is_dir() and (txt_files or csv_files)
-    ):
+    if rko_lio_settings_file.exists() or (lidar_folder.is_dir() and (txt_files or csv_files)):
         info("Guessed dataloader as raw!")
         return dataloader_factory("raw", data_path, *args, **kwargs)
 
@@ -83,6 +80,4 @@ def guess_dataloader(data_path: Path, *args, **kwargs):
         return dataloader_factory("helipr", data_path, *args, **kwargs)
 
     # nothing guessed
-    error_and_exit(
-        f"Could not guess dataloader for path: {data_path}, please pass the loader with --dataloader or -d"
-    )
+    error_and_exit(f"Could not guess dataloader for path: {data_path}, please pass the loader with --dataloader or -d")
