@@ -21,19 +21,20 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 //
-// NOTE: This implementation is heavily inspired in the original CT-ICP VoxelHashMap implementation,
-// although it was heavily modified and drastically simplified, but if you are using this module you
-// should at least acknoowledge the work from CT-ICP by giving a star on GitHub.
-//
-// modified from kiss-icp (kiss_icp/cpp/kiss_icp/core/VoxelHashMap.{hpp,cpp}).
+// modified heavily from kiss-icp (kiss_icp/cpp/kiss_icp/core/VoxelHashMap.{hpp,cpp}).
 #pragma once
 
 // brings VoxelHash and point_to_voxel
 #include "voxel_down_sample.hpp"
 
 #include <Eigen/Core>
+#include <array>
+#include <cstdint>
+#include <iterator>
+#include <limits>
 #include <optional>
 #include <sophus/se3.hpp>
+#include <stdexcept>
 #include <tsl/robin_map.h>
 #include <tuple>
 #include <vector>
@@ -41,12 +42,31 @@
 namespace rko_lio::core {
 
 using Voxel = Eigen::Vector3i;
-using VoxelBlock = std::vector<Eigen::Vector3s>;
+
+/// A map point is a signed offset from the centre of its voxel, quantized to int8
+struct VoxelBlock {
+  static constexpr unsigned int max_points = 8;
+  using PointArray = std::array<Eigen::Vector3i8, max_points>;
+
+  PointArray points{};
+  std::uint8_t size = 0;
+
+  bool full() const { return size == max_points; }
+
+  void push_back(const Eigen::Vector3i8& offset) {
+    if (full()) {
+      throw std::out_of_range("VoxelBlock is full, check full() before pushing");
+    }
+    *std::next(points.begin(), size) = offset;
+    ++size;
+  }
+
+  PointArray::const_iterator begin() const { return points.begin(); }
+  PointArray::const_iterator end() const { return points.begin() + size; } // capacity is 8, size is what's filled
+};
 
 struct VoxelHashMap {
-  explicit VoxelHashMap(const Scalar voxel_size,
-                        const Scalar clipping_distance,
-                        const unsigned int max_points_per_voxel);
+  explicit VoxelHashMap(const Scalar voxel_size, const Scalar clipping_distance);
 
   void clear() { map_.clear(); }
   bool empty() const { return map_.empty(); }
@@ -55,14 +75,14 @@ struct VoxelHashMap {
   void remove_points_far_from_location(const Eigen::Vector3s& origin);
   std::vector<Eigen::Vector3s> pointcloud() const;
 
-  /// Iterator to nearest point to `query` strictly within `max_distance`, or nullopt if there is none.
-  std::optional<VoxelBlock::const_iterator> get_closest_neighbor(const Eigen::Vector3s& query,
-                                                                 const Scalar max_distance) const;
+  /// Nearest point to `query` strictly within `max_distance`, or nullopt if there is none.
+  std::optional<Eigen::Vector3s> get_closest_neighbor(const Eigen::Vector3s& query, const Scalar max_distance) const;
 
   Scalar voxel_size_;
   Scalar inv_voxel_size_;
+  Scalar quantum_;
+  Scalar inv_quantum_;
   Scalar clipping_distance_;
-  unsigned int max_points_per_voxel_;
   tsl::robin_map<Voxel, VoxelBlock, VoxelHash> map_;
 };
 

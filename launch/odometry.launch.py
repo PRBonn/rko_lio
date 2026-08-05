@@ -146,12 +146,6 @@ configurable_parameters = [
         "description": "Voxel size for the local map (meters) used for odometry",
     },
     {
-        "name": "max_points_per_voxel",
-        "default": "20",
-        "type": "int",
-        "description": "Max points per voxel",
-    },
-    {
         "name": "max_range",
         "default": "100.0",
         "type": "float",

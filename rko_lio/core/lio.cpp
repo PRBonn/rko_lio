@@ -152,7 +152,7 @@ LinearSystem build_icp_linear_system(const Sophus::SE3s& current_pose,
           if (!closest_neighbor.has_value()) {
             continue;
           }
-          const Eigen::Vector3s residual = rotation_transpose * (transformed_point - **closest_neighbor);
+          const Eigen::Vector3s residual = rotation_transpose * (transformed_point - *closest_neighbor);
           const auto& [point_H, point_b, point_chi, point_n] = linear_system_for_one_point(point, residual);
           H += point_H;
           b += point_b;
@@ -252,7 +252,7 @@ namespace rko_lio::core {
 
 LIO::LIO(const Config& config_)
     : config(config_),
-      map(config_.voxel_size, config_.max_range, config_.max_points_per_voxel),
+      map(config_.voxel_size, config_.max_range),
       arena(config_.max_num_threads > 0 ? config_.max_num_threads : tbb::task_arena::automatic) {}
 
 // ==========================

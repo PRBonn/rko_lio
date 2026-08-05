@@ -41,7 +41,6 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(LIO::Config,
                                    deskew,
                                    max_iterations,
                                    voxel_size,
-                                   max_points_per_voxel,
                                    max_range,
                                    min_range,
                                    convergence_criterion,
@@ -113,8 +112,11 @@ BaseNode::BaseNode(const std::string& node_name, const rclcpp::NodeOptions& opti
       static_cast<size_t>(node->declare_parameter<int>("max_iterations", static_cast<int>(lio_config.max_iterations)));
   lio_config.voxel_size =
       static_cast<core::Scalar>(node->declare_parameter<double>("voxel_size", lio_config.voxel_size));
-  lio_config.max_points_per_voxel =
-      static_cast<int>(node->declare_parameter<int>("max_points_per_voxel", lio_config.max_points_per_voxel));
+  if (node->declare_parameter<int>("max_points_per_voxel", -1) != -1) {
+    throw std::runtime_error(
+        "max_points_per_voxel was removed, it is now fixed at compile time so the map can store points inline. "
+        "Use voxel_size to control map density instead: smaller keeps more points overall, larger keeps fewer.");
+  }
   lio_config.max_range = static_cast<core::Scalar>(node->declare_parameter<double>("max_range", lio_config.max_range));
   lio_config.min_range = static_cast<core::Scalar>(node->declare_parameter<double>("min_range", lio_config.min_range));
   lio_config.convergence_criterion = static_cast<core::Scalar>(
