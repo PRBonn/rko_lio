@@ -240,7 +240,7 @@ configurable_parameters = [
         "name": "async.max_lidar_buffer_size",
         "default": "10",
         "type": "int",
-        "description": "[threaded only] Max lidar frames buffered before incoming frames are dropped.",
+        "description": "[threaded only] Max lidar frames buffered before the oldest frame is dropped.",
     },
     # seq-pipeline-specific parameters (online with odom_at_imu_rate:=true)
     {
