@@ -42,7 +42,7 @@ dependencies = [
 [project.optional-dependencies]
 all = [
   "plyfile>=1,<2",
-  "rerun-sdk>=0.31,<0.34",
+  "rerun-sdk>=0.31,<0.36",
   "rosbags>=0.10,<0.12",
 ]
 
