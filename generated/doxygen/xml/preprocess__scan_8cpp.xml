@@ -4,13 +4,14 @@
     <compoundname>preprocess_scan.cpp</compoundname>
     <includes refid="preprocess__scan_8hpp" local="yes">preprocess_scan.hpp</includes>
     <includes refid="voxel__down__sample_8hpp" local="yes">voxel_down_sample.hpp</includes>
+    <includes local="no">cmath</includes>
     <incdepgraph>
       <node id="5">
         <label>lio.hpp</label>
         <link refid="lio_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
@@ -20,7 +21,9 @@
         <link refid="preprocess__scan_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -33,40 +36,40 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="8">
+      <node id="6">
         <label>util.hpp</label>
         <link refid="util_8hpp_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
         <childnode refid="9" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
       </node>
-      <node id="7">
+      <node id="12">
         <label>voxel_down_sample.hpp</label>
         <link refid="voxel__down__sample_8hpp_source"/>
-        <childnode refid="8" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="10" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="6">
+      <node id="11">
         <label>voxel_hash_map.hpp</label>
         <link refid="voxel__hash__map_8hpp_source"/>
-        <childnode refid="7" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="10" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
@@ -75,25 +78,28 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="10">
+      <node id="8">
         <label>Eigen/Core</label>
       </node>
       <node id="3">
         <label>Eigen/Dense</label>
       </node>
-      <node id="11">
+      <node id="9">
         <label>chrono</label>
       </node>
-      <node id="13">
+      <node id="18">
         <label>cmath</label>
+      </node>
+      <node id="13">
+        <label>cstdint</label>
       </node>
       <node id="14">
         <label>optional</label>
       </node>
-      <node id="9">
+      <node id="7">
         <label>rko_lio/core/scalar.hpp</label>
       </node>
-      <node id="12">
+      <node id="10">
         <label>sophus/se3.hpp</label>
       </node>
       <node id="17">
@@ -119,27 +125,28 @@
 <codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;preprocess_scan.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;voxel_down_sample.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacerko__lio_1_1core" kindref="compound">rko_lio::core</ref><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight></codeline>
-<codeline lineno="6"><highlight class="normal">PreprocessingResult<sp/>preprocess_scan(Vector3sVector<sp/>frame,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>LIO::Config&amp;<sp/>config)<sp/>{</highlight></codeline>
-<codeline lineno="7"><highlight class="normal"><sp/><sp/>std::erase_if(frame,<sp/>[&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>point)<sp/>{</highlight></codeline>
-<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>point_range<sp/>=<sp/>point.norm();</highlight></codeline>
-<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>negation<sp/>handles<sp/>nans<sp/>as<sp/>well</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>!(point_range<sp/>&gt;<sp/>config.min_range<sp/>&amp;&amp;<sp/>point_range<sp/>&lt;<sp/>config.max_range);</highlight></codeline>
-<codeline lineno="11"><highlight class="normal"><sp/><sp/>});</highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight></codeline>
-<codeline lineno="13"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(config.double_downsample)<sp/>{</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>Vector3sVector<sp/>downsampled_frame<sp/>=<sp/><ref refid="namespacerko__lio_1_1core_1af72280698a29ae2aa7a2e256c3228560" kindref="member">voxel_down_sample</ref>(frame,<sp/>config.voxel_size<sp/>*<sp/>0.5);</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>Vector3sVector<sp/>keypoints<sp/>=<sp/><ref refid="namespacerko__lio_1_1core_1af72280698a29ae2aa7a2e256c3228560" kindref="member">voxel_down_sample</ref>(downsampled_frame,<sp/>config.voxel_size<sp/>*<sp/>1.5);</highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{.filtered_frame<sp/>=<sp/>std::move(frame),</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.keypoints<sp/>=<sp/>std::move(keypoints),</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.map_frame<sp/>=<sp/>std::move(downsampled_frame)};</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/>Vector3sVector<sp/>keypoints<sp/>=<sp/><ref refid="namespacerko__lio_1_1core_1af72280698a29ae2aa7a2e256c3228560" kindref="member">voxel_down_sample</ref>(frame,<sp/>config.voxel_size);</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{.filtered_frame<sp/>=<sp/>std::move(frame),<sp/>.keypoints<sp/>=<sp/>std::move(keypoints),<sp/>.map_frame<sp/>=<sp/>{}};</highlight></codeline>
-<codeline lineno="22"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacerko__lio_1_1core" kindref="compound">rko_lio::core</ref><sp/>{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">PreprocessingResult<sp/>preprocess_scan(Vector3sVector<sp/>frame,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>LIO::Config&amp;<sp/>config)<sp/>{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/>std::erase_if(frame,<sp/>[&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>point)<sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>point_range<sp/>=<sp/>point.norm();</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>!std::isfinite(point_range)<sp/>||<sp/>point_range<sp/>&lt;=<sp/>config.min_range<sp/>||<sp/>point_range<sp/>&gt;=<sp/>config.max_range;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/>});</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(config.double_downsample)<sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>Vector3sVector<sp/>downsampled_frame<sp/>=<sp/><ref refid="namespacerko__lio_1_1core_1af72280698a29ae2aa7a2e256c3228560" kindref="member">voxel_down_sample</ref>(frame,<sp/>config.voxel_size<sp/>*<sp/>Scalar(0.5));</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>Vector3sVector<sp/>keypoints<sp/>=<sp/><ref refid="namespacerko__lio_1_1core_1af72280698a29ae2aa7a2e256c3228560" kindref="member">voxel_down_sample</ref>(downsampled_frame,<sp/>config.voxel_size<sp/>*<sp/>Scalar(1.5));</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{.filtered_frame<sp/>=<sp/>std::move(frame),</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.keypoints<sp/>=<sp/>std::move(keypoints),</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.map_frame<sp/>=<sp/>std::move(downsampled_frame)};</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/>Vector3sVector<sp/>keypoints<sp/>=<sp/><ref refid="namespacerko__lio_1_1core_1af72280698a29ae2aa7a2e256c3228560" kindref="member">voxel_down_sample</ref>(frame,<sp/>config.voxel_size);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{.filtered_frame<sp/>=<sp/>std::move(frame),<sp/>.keypoints<sp/>=<sp/>std::move(keypoints),<sp/>.map_frame<sp/>=<sp/>{}};</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.cpp"/>
   </compounddef>

@@ -61,7 +61,7 @@
         <label>chrono</label>
       </node>
       <node id="8">
-        <label>cmath</label>
+        <label>cstdint</label>
       </node>
       <node id="9">
         <label>optional</label>
@@ -144,7 +144,7 @@
 <codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SOFTWARE.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>NOTE:<sp/>This<sp/>implementation<sp/>is<sp/>heavily<sp/>inspired<sp/>in<sp/>the<sp/>original<sp/>CT-ICP<sp/>VoxelHashMap<sp/>implementation,</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>although<sp/>it<sp/>was<sp/>heavily<sp/>modifed<sp/>and<sp/>drastically<sp/>simplified,<sp/>but<sp/>if<sp/>you<sp/>are<sp/>using<sp/>this<sp/>module<sp/>you</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>although<sp/>it<sp/>was<sp/>heavily<sp/>modified<sp/>and<sp/>drastically<sp/>simplified,<sp/>but<sp/>if<sp/>you<sp/>are<sp/>using<sp/>this<sp/>module<sp/>you</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>should<sp/>at<sp/>least<sp/>acknoowledge<sp/>the<sp/>work<sp/>from<sp/>CT-ICP<sp/>by<sp/>giving<sp/>a<sp/>star<sp/>on<sp/>GitHub.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>modified<sp/>from<sp/>kiss-icp<sp/>(kiss_icp/cpp/kiss_icp/core/VoxelHashMap.{hpp,cpp}).</highlight><highlight class="normal"></highlight></codeline>

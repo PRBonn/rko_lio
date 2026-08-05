@@ -160,6 +160,20 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="55" column="21"/>
       </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1acee41f97e04cbb489482e40e60d9fca9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::ros::OnlineImuRateNode::~OnlineImuRateNode</definition>
+        <argsstring>()=default</argsstring>
+        <name>~OnlineImuRateNode</name>
+        <qualifiedname>rko_lio::ros::OnlineImuRateNode::~OnlineImuRateNode</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="56" column="3"/>
+      </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a1db8ed599e3a85c2613013db63ffb78c" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
         <type></type>
         <definition>rko_lio::ros::OnlineImuRateNode::OnlineImuRateNode</definition>
@@ -176,7 +190,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="57" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="57" bodyend="79"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="58" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="58" bodyend="79"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1OnlineImuRateNode_1aed7b4e4abfc5e17a72a10dfc4fa6f317" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>rclcpp::node_interfaces::NodeBaseInterface::SharedPtr</type>
@@ -271,7 +285,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="42" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="42" bodyend="125"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="42" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="42" bodyend="124"/>
     <listofallmembers>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1a38281b7e81e2292088a68b2fd2716003" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>atomic_node_running</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1aacbece9df2087272d75480fa2137f419" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>base_frame</name></member>
@@ -338,6 +352,7 @@
       <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1af7764e00398ed28619e5a60d24cd9b87" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>timer</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1a3e6bd9beb864c2d80b789f76d0022447" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>timestamp_proc_config</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1aaa03e3f3624f707e83921ceef9487baf" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>~BaseNode</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1acee41f97e04cbb489482e40e60d9fca9" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>~OnlineImuRateNode</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -30,7 +30,7 @@
         <link refid="lio_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
@@ -38,47 +38,47 @@
       <node id="16">
         <label>rko_lio/core/process_timestamps.hpp</label>
         <link refid="process__timestamps_8hpp_source"/>
-        <childnode refid="5" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="5">
+      <node id="3">
         <label>util.hpp</label>
         <link refid="util_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
         <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
       </node>
-      <node id="4">
+      <node id="9">
         <label>voxel_down_sample.hpp</label>
         <link refid="voxel__down__sample_8hpp_source"/>
-        <childnode refid="5" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="3">
+      <node id="8">
         <label>voxel_hash_map.hpp</label>
         <link refid="voxel__hash__map_8hpp_source"/>
-        <childnode refid="4" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
@@ -129,17 +129,17 @@
         <childnode refid="33" relation="include">
         </childnode>
       </node>
-      <node id="7">
+      <node id="5">
         <label>Eigen/Core</label>
       </node>
       <node id="17">
         <label>atomic</label>
       </node>
-      <node id="8">
+      <node id="6">
         <label>chrono</label>
       </node>
       <node id="10">
-        <label>cmath</label>
+        <label>cstdint</label>
       </node>
       <node id="18">
         <label>filesystem</label>
@@ -168,7 +168,7 @@
       <node id="28">
         <label>rclcpp/node_options.hpp</label>
       </node>
-      <node id="6">
+      <node id="4">
         <label>rko_lio/core/scalar.hpp</label>
       </node>
       <node id="29">
@@ -177,7 +177,7 @@
       <node id="30">
         <label>sensor_msgs/msg/point_cloud2.hpp</label>
       </node>
-      <node id="9">
+      <node id="7">
         <label>sophus/se3.hpp</label>
       </node>
       <node id="21">
@@ -290,46 +290,46 @@
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
 <codeline lineno="57" refid="classrko__lio_1_1ros_1_1BaseNode" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">BaseNode</ref><sp/>{</highlight></codeline>
 <codeline lineno="58"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/>rclcpp::Node::SharedPtr<sp/>node;</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/>std::unique_ptr&lt;core::LIO&gt;<sp/>lio;</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1TimestampProcessingConfig" kindref="compound">core::TimestampProcessingConfig</ref><sp/>timestamp_proc_config;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>field<sp/>order<sp/>minimises<sp/>padding</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/>Sophus::SE3s<sp/>extrinsic_imu2base;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/>Sophus::SE3s<sp/>extrinsic_lidar2base;</highlight></codeline>
 <codeline lineno="62"><highlight class="normal"></highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/>std::string<sp/>imu_topic;</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/>std::string<sp/>imu_frame<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">//<sp/>default:<sp/>get<sp/>from<sp/>the<sp/>first<sp/>imu<sp/>message</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/>std::string<sp/>lidar_topic;</highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/>std::string<sp/>lidar_frame<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">//<sp/>default:<sp/>get<sp/>from<sp/>the<sp/>first<sp/>lidar<sp/>message</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/>std::string<sp/>base_frame;</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/>std::string<sp/>odom_frame<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;odom&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/>std::string<sp/>odom_topic<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;rko_lio/odom&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/>std::string<sp/>map_topic<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;rko_lio/local_map&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/>std::string<sp/>deskewed_scan_topic<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;rko_lio/frame&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"></highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>dump_results<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/>std::string<sp/>results_dir<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;results&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/>std::string<sp/>run_name<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;rko_lio_run&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"></highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>invert_odom_tf<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>publish_lidar_acceleration<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>publish_deskewed_scan<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>publish_local_map<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"></highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/>Sophus::SE3s<sp/>extrinsic_imu2base;</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/>Sophus::SE3s<sp/>extrinsic_lidar2base;</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>extrinsics_set<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"></highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;tf2_ros::TransformListener&gt;<sp/>tf_listener;</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;tf2_ros::Buffer&gt;<sp/>tf_buffer;</highlight></codeline>
-<codeline lineno="88"><highlight class="normal"><sp/><sp/>std::unique_ptr&lt;tf2_ros::TransformBroadcaster&gt;<sp/>tf_broadcaster;</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"></highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/>rclcpp::Publisher&lt;nav_msgs::msg::Odometry&gt;::SharedPtr<sp/>odom_publisher;</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/>rclcpp::Publisher&lt;sensor_msgs::msg::PointCloud2&gt;::SharedPtr<sp/>frame_publisher;</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"><sp/><sp/>rclcpp::Publisher&lt;sensor_msgs::msg::PointCloud2&gt;::SharedPtr<sp/>map_publisher;</highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/>rclcpp::Publisher&lt;geometry_msgs::msg::AccelStamped&gt;::SharedPtr<sp/>lidar_accel_publisher;</highlight></codeline>
-<codeline lineno="94"><highlight class="normal"></highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>map<sp/>publish<sp/>thread</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/>std::jthread<sp/>map_publish_thead;</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/>core::Nsec<sp/>publish_map_after<sp/>=<sp/>std::chrono::seconds(1);</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/>std::mutex<sp/>local_map_mutex;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/>std::unique_ptr&lt;core::LIO&gt;<sp/>lio;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/>std::unique_ptr&lt;tf2_ros::TransformBroadcaster&gt;<sp/>tf_broadcaster;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/>core::Nsec<sp/>publish_map_after<sp/>=<sp/>std::chrono::seconds(1);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/>rclcpp::Node::SharedPtr<sp/>node;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1TimestampProcessingConfig" kindref="compound">core::TimestampProcessingConfig</ref><sp/>timestamp_proc_config;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;tf2_ros::TransformListener&gt;<sp/>tf_listener;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;tf2_ros::Buffer&gt;<sp/>tf_buffer;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/>rclcpp::Publisher&lt;nav_msgs::msg::Odometry&gt;::SharedPtr<sp/>odom_publisher;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/>rclcpp::Publisher&lt;sensor_msgs::msg::PointCloud2&gt;::SharedPtr<sp/>frame_publisher;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/>rclcpp::Publisher&lt;sensor_msgs::msg::PointCloud2&gt;::SharedPtr<sp/>map_publisher;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/>rclcpp::Publisher&lt;geometry_msgs::msg::AccelStamped&gt;::SharedPtr<sp/>lidar_accel_publisher;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>map<sp/>publish<sp/>thread</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/>std::jthread<sp/>map_publish_thead;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/>std::string<sp/>imu_topic;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/>std::string<sp/>imu_frame;<sp/></highlight><highlight class="comment">//<sp/>default:<sp/>get<sp/>from<sp/>the<sp/>first<sp/>imu<sp/>message</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/>std::string<sp/>lidar_topic;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/>std::string<sp/>lidar_frame;<sp/></highlight><highlight class="comment">//<sp/>default:<sp/>get<sp/>from<sp/>the<sp/>first<sp/>lidar<sp/>message</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/>std::string<sp/>base_frame;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/>std::string<sp/>odom_frame<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;odom&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/>std::string<sp/>odom_topic<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;rko_lio/odom&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/>std::string<sp/>map_topic<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;rko_lio/local_map&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/>std::string<sp/>deskewed_scan_topic<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;rko_lio/frame&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/>std::string<sp/>results_dir<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;results&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/>std::string<sp/>run_name<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;rko_lio_run&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/>std::mutex<sp/>local_map_mutex;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>dump_results<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>invert_odom_tf<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>publish_lidar_acceleration<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>publish_deskewed_scan<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>publish_local_map<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>extrinsics_set<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="99"><highlight class="normal"></highlight></codeline>
 <codeline lineno="100"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>shutdown<sp/>flag</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="101"><highlight class="normal"><sp/><sp/>std::atomic&lt;bool&gt;<sp/>atomic_node_running<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
@@ -343,31 +343,29 @@
 <codeline lineno="109"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Parse<sp/>the<sp/>message&apos;s<sp/>frame_id<sp/>into<sp/>target_frame<sp/>on<sp/>first<sp/>sight,<sp/>throw<sp/>if<sp/>neither<sp/>header<sp/>nor<sp/>static<sp/>extrinsics</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="110"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>are<sp/>usable,<sp/>and<sp/>report<sp/>whether<sp/>extrinsics<sp/>are<sp/>now<sp/>set.<sp/>Extrinsics<sp/>are<sp/>assumed<sp/>static;<sp/>if<sp/>they<sp/>change,<sp/>switch</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="111"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>to<sp/>querying<sp/>TF<sp/>inline<sp/>per-message.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="112"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ensure_frame_and_extrinsics(std::string&amp;<sp/>target_frame,</highlight></codeline>
-<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>msg_frame,</highlight></codeline>
-<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string_view<sp/>kind);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ensure_frame_and_extrinsics(std::string&amp;<sp/>target_frame,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>msg_frame,<sp/>std::string_view<sp/>kind);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1ros_1_1LidarFrame" kindref="compound">LidarFrame</ref><sp/>process_lidar_msg(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::PointCloud2::ConstSharedPtr&amp;<sp/>lidar_msg)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="115"><highlight class="normal"></highlight></codeline>
-<codeline lineno="116"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1ros_1_1LidarFrame" kindref="compound">LidarFrame</ref><sp/>process_lidar_msg(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::PointCloud2::ConstSharedPtr&amp;<sp/>lidar_msg)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/>core::Vector3sVector<sp/>register_scan_locked(core::Vector3sVector<sp/>scan,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::TimestampVector&amp;<sp/>time_vector);</highlight></codeline>
 <codeline lineno="117"><highlight class="normal"></highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><sp/><sp/>core::Vector3sVector<sp/>register_scan_locked(core::Vector3sVector<sp/>scan,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::TimestampVector&amp;<sp/>time_vector);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>publish_lidar_outputs(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::Vector3sVector&amp;<sp/>deskewed_frame)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="119"><highlight class="normal"></highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>publish_lidar_outputs(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::Vector3sVector&amp;<sp/>deskewed_frame)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="121"><highlight class="normal"></highlight></codeline>
-<codeline lineno="122"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>publish_odometry(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1State" kindref="compound">core::State</ref>&amp;<sp/>state,</highlight></codeline>
-<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>rclcpp::Publisher&lt;nav_msgs::msg::Odometry&gt;::SharedPtr&amp;<sp/>publisher)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>publish_tf(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1State" kindref="compound">core::State</ref>&amp;<sp/>state)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="125"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>publish_lidar_accel(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1State" kindref="compound">core::State</ref>&amp;<sp/>state)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>publish_map_loop();</highlight></codeline>
-<codeline lineno="127"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>dump_results_to_disk(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::filesystem::path&amp;<sp/>results_dir,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>run_name)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="128"><highlight class="normal"></highlight></codeline>
-<codeline lineno="129"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">~BaseNode</ref>();</highlight></codeline>
-<codeline lineno="130"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">BaseNode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">BaseNode</ref>&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="131"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">BaseNode</ref>(<ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">BaseNode</ref>&amp;&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="132"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">BaseNode</ref>&amp;<sp/>operator=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">BaseNode</ref>&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="133"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">BaseNode</ref>&amp;<sp/>operator=(<ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">BaseNode</ref>&amp;&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="134"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="135"><highlight class="normal"></highlight></codeline>
-<codeline lineno="136"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>publish_odometry(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1State" kindref="compound">core::State</ref>&amp;<sp/>state,</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>rclcpp::Publisher&lt;nav_msgs::msg::Odometry&gt;::SharedPtr&amp;<sp/>publisher)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>publish_tf(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1State" kindref="compound">core::State</ref>&amp;<sp/>state)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>publish_lidar_accel(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1State" kindref="compound">core::State</ref>&amp;<sp/>state)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>publish_map_loop();</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>dump_results_to_disk(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::filesystem::path&amp;<sp/>results_dir,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>run_name)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">~BaseNode</ref>();</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">BaseNode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">BaseNode</ref>&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">BaseNode</ref>(<ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">BaseNode</ref>&amp;&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">BaseNode</ref>&amp;<sp/>operator=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">BaseNode</ref>&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">BaseNode</ref>&amp;<sp/>operator=(<ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">BaseNode</ref>&amp;&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp"/>
   </compounddef>

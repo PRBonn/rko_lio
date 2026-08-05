@@ -32,7 +32,7 @@ Includes
 
 - ``Eigen/Core``
 
-- ``cmath``
+- ``cstdint``
 
 - ``sophus/se3.hpp``
 

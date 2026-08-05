@@ -92,14 +92,14 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="149" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" bodystart="149" bodyend="149"/>
       </memberdef>
-      <memberdef kind="function" id="structrko__lio_1_1core_1_1Timer_1a80e56a9f13072aec671ee74b7d5be406" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structrko__lio_1_1core_1_1Timer_1afcb90cb5fd4f2968bd2d3a82f6ebc575" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
         <type></type>
         <definition>rko_lio::core::Timer::Timer</definition>
-        <argsstring>(const std::string &amp;label)</argsstring>
+        <argsstring>(std::string label)</argsstring>
         <name>Timer</name>
         <qualifiedname>rko_lio::core::Timer::Timer</qualifiedname>
         <param>
-          <type>const std::string &amp;</type>
+          <type>std::string</type>
           <declname>label</declname>
         </param>
         <briefdescription>
@@ -208,7 +208,7 @@
       <member refid="structrko__lio_1_1core_1_1Timer_1ac68dc9c9d4f3b702fd518978e5362e3f" prot="public" virt="non-virtual"><scope>rko_lio::core::Timer</scope><name>start_time</name></member>
       <member refid="structrko__lio_1_1core_1_1Timer_1a715164e0a268bf21fac0b439ca674440" prot="public" virt="non-virtual"><scope>rko_lio::core::Timer</scope><name>TimePoint</name></member>
       <member refid="structrko__lio_1_1core_1_1Timer_1a91777f2c06edd982cf1bf75ec2fcca1e" prot="public" virt="non-virtual"><scope>rko_lio::core::Timer</scope><name>Timer</name></member>
-      <member refid="structrko__lio_1_1core_1_1Timer_1a80e56a9f13072aec671ee74b7d5be406" prot="public" virt="non-virtual"><scope>rko_lio::core::Timer</scope><name>Timer</name></member>
+      <member refid="structrko__lio_1_1core_1_1Timer_1afcb90cb5fd4f2968bd2d3a82f6ebc575" prot="public" virt="non-virtual"><scope>rko_lio::core::Timer</scope><name>Timer</name></member>
       <member refid="structrko__lio_1_1core_1_1Timer_1a1480b7483ffda1d5ba23f0f54063f6ef" prot="public" virt="non-virtual"><scope>rko_lio::core::Timer</scope><name>Timer</name></member>
       <member refid="structrko__lio_1_1core_1_1Timer_1a09b7895b9931887dad2a9b5e23f5eff3" prot="public" virt="non-virtual"><scope>rko_lio::core::Timer</scope><name>Timer</name></member>
       <member refid="structrko__lio_1_1core_1_1Timer_1adaf6fe6d98f58d17620f3ccbade46b99" prot="public" virt="non-virtual"><scope>rko_lio::core::Timer</scope><name>~Timer</name></member>

@@ -1,9 +1,20 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.8" xml:lang="en-US">
   <compound refid="classrko__lio_1_1ros_1_1BaseNode" kind="class"><name>rko_lio::ros::BaseNode</name>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a2ec7830c65011910f9dd7314a485bf5e" kind="variable"><name>node</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1ae08b9cf4d1ff260c8f4f0edc1636fa17" kind="variable"><name>extrinsic_imu2base</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a29a338c38af9e74c24814a54b4205902" kind="variable"><name>extrinsic_lidar2base</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a84e99e77440e1fab650a4358775f1a05" kind="variable"><name>lio</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1af1793fd089d51bc4c418d7263d586562" kind="variable"><name>tf_broadcaster</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a3331968d3b3174c04e5999e790dc4c4f" kind="variable"><name>publish_map_after</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a2ec7830c65011910f9dd7314a485bf5e" kind="variable"><name>node</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a3e6bd9beb864c2d80b789f76d0022447" kind="variable"><name>timestamp_proc_config</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a11ff8ee46c5b3ca79d0fd9aecf2ce025" kind="variable"><name>tf_listener</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a16ceefdd48a159e21f6e58ba0fef1a75" kind="variable"><name>tf_buffer</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a7029d4798385c83320ceb7335d6628a9" kind="variable"><name>odom_publisher</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a06912bbf34df92839933ade4c68586a0" kind="variable"><name>frame_publisher</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1aea83b9c5a547999ee0dc1ae096e92009" kind="variable"><name>map_publisher</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1acbf1e9c305d415f4fce37874e2b4f585" kind="variable"><name>lidar_accel_publisher</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a29e011188c23c57979bb020cd4ddead0" kind="variable"><name>map_publish_thead</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a5fa18b17bd57a3db3e4679504fe32e2e" kind="variable"><name>imu_topic</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a1593d0b0267fc265d9a8cc78d435c29d" kind="variable"><name>imu_frame</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a14b98efbded9dfa784e0aa795f785bbf" kind="variable"><name>lidar_topic</name></member>
@@ -13,26 +24,15 @@
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1af065e60acdb927b346b2c9f3b68af504" kind="variable"><name>odom_topic</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a8bc20a80d8d8efcda0d1106e2aa61f30" kind="variable"><name>map_topic</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a8d2cfe9221c19ca3a53dd1498c0573af" kind="variable"><name>deskewed_scan_topic</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1ab7a49a347fd805a7ce2ba91cb700671e" kind="variable"><name>dump_results</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1adf575671c2b74582e831e5d9a8fefe36" kind="variable"><name>results_dir</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1ac4aa545318868ed459b328398e5b39de" kind="variable"><name>run_name</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a065f035917e22a80aa1e18cb1b43a22e" kind="variable"><name>local_map_mutex</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1ab7a49a347fd805a7ce2ba91cb700671e" kind="variable"><name>dump_results</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a032de1bdd5984d28cc6d6785b9fd89dc" kind="variable"><name>invert_odom_tf</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1abf4d6745652fb6e310dc507849cadaee" kind="variable"><name>publish_lidar_acceleration</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1af1c6cb845774b666681e470b78dafcbc" kind="variable"><name>publish_deskewed_scan</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a28f3994bca8ca065b3196725c000b44a" kind="variable"><name>publish_local_map</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1ae08b9cf4d1ff260c8f4f0edc1636fa17" kind="variable"><name>extrinsic_imu2base</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a29a338c38af9e74c24814a54b4205902" kind="variable"><name>extrinsic_lidar2base</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1afbeabe15939267091aa36d19c7525c36" kind="variable"><name>extrinsics_set</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a11ff8ee46c5b3ca79d0fd9aecf2ce025" kind="variable"><name>tf_listener</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a16ceefdd48a159e21f6e58ba0fef1a75" kind="variable"><name>tf_buffer</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1af1793fd089d51bc4c418d7263d586562" kind="variable"><name>tf_broadcaster</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a7029d4798385c83320ceb7335d6628a9" kind="variable"><name>odom_publisher</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a06912bbf34df92839933ade4c68586a0" kind="variable"><name>frame_publisher</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1aea83b9c5a547999ee0dc1ae096e92009" kind="variable"><name>map_publisher</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1acbf1e9c305d415f4fce37874e2b4f585" kind="variable"><name>lidar_accel_publisher</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a29e011188c23c57979bb020cd4ddead0" kind="variable"><name>map_publish_thead</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a3331968d3b3174c04e5999e790dc4c4f" kind="variable"><name>publish_map_after</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a065f035917e22a80aa1e18cb1b43a22e" kind="variable"><name>local_map_mutex</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a38281b7e81e2292088a68b2fd2716003" kind="variable"><name>atomic_node_running</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1aff39f656667853f6bd7b46c26be0eeab" kind="function"><name>BaseNode</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1ad3fac1c1fc245199be7e5c8cb9b264f9" kind="function"><name>BaseNode</name></member>
@@ -60,7 +60,7 @@
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a9ffbf02e26f537eb15e0145d817eaacf" kind="variable"><name>buffer_size_</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1adf970f1c1e8c83d1c2e29b85d173d1cb" kind="variable"><name>topics_</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a1aece11fbc2332f540154a0e5f756fc1" kind="variable"><name>message_count_</name></member>
-    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1ad7c83c873e85a905594aafb26d668b27" kind="function"><name>BufferableBag</name></member>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a288fbc975677e9cf92e280f7db01f909" kind="function"><name>BufferableBag</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1aaa50d6e8b4d549370be1939d4e8aea4f" kind="function"><name>publish_tf_static</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1ac3a399562a403b1635a637d7782cb876" kind="function"><name>message_count</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1af7576b488166fddaa1ab0fdb1dc0e4fe" kind="function"><name>BufferMessages</name></member>
@@ -150,6 +150,7 @@
     <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1ac50595371cec85ac2adec2feffb2af6e" kind="function"><name>OnlineImuRateNode</name></member>
     <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a8197b2e03824e774b6729a2cd2099ea7" kind="function"><name>operator=</name></member>
     <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1ab2c2972cbc683333d9a7cc1585eb358e" kind="function"><name>operator=</name></member>
+    <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1acee41f97e04cbb489482e40e60d9fca9" kind="function"><name>~OnlineImuRateNode</name></member>
     <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a1db8ed599e3a85c2613013db63ffb78c" kind="function"><name>OnlineImuRateNode</name></member>
     <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1aed7b4e4abfc5e17a72a10dfc4fa6f317" kind="function"><name>get_node_base_interface</name></member>
     <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a42d18fd474d39967f5949f3a35ee67c8" kind="function"><name>imu_callback</name></member>
@@ -163,6 +164,7 @@
     <member refid="classrko__lio_1_1ros_1_1OnlineNode_1a2545fd04092466f59b5ba74e166b482c" kind="function"><name>OnlineNode</name></member>
     <member refid="classrko__lio_1_1ros_1_1OnlineNode_1a8e9eedd3ffc5d00bccf1d9cd4ca1eca0" kind="function"><name>operator=</name></member>
     <member refid="classrko__lio_1_1ros_1_1OnlineNode_1a0e8deb82a3fb444837bd8aff37b81d33" kind="function"><name>operator=</name></member>
+    <member refid="classrko__lio_1_1ros_1_1OnlineNode_1a0aae7d204b0a072cfcbc8c60b9e95a7a" kind="function"><name>~OnlineNode</name></member>
     <member refid="classrko__lio_1_1ros_1_1OnlineNode_1af007ddb722ed40ee77ec5c7b1d3c6710" kind="function"><name>OnlineNode</name></member>
     <member refid="classrko__lio_1_1ros_1_1OnlineNode_1a59d58b605334eb6201da6c76fc40dbed" kind="function"><name>get_node_base_interface</name></member>
   </compound>
@@ -223,7 +225,7 @@
     <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1a8bb752d6cf1909fa19b31081a0825c84" kind="variable"><name>tf_static_broadcaster</name></member>
     <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1a6debf60fdb1f7f3ce4a492292b8d05c0" kind="variable"><name>serializer</name></member>
     <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1aa22a87a56d2b91bd6cf2135567272ca8" kind="function"><name>TFBridge</name></member>
-    <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1a6dff851eea2ab6d57ac847f4bb6a18d1" kind="function"><name>ProcessTFMessage</name></member>
+    <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1aeac9890a3f2e78599763cfeceabc57ac" kind="function"><name>ProcessTFMessage</name></member>
   </compound>
   <compound refid="classrko__lio_1_1ros_1_1ThreadedNode" kind="class"><name>rko_lio::ros::ThreadedNode</name>
     <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a512b61e767463397837452326c17148b" kind="variable"><name>registration_thread</name></member>
@@ -252,7 +254,7 @@
     <member refid="structrko__lio_1_1core_1_1Timer_1a240f42bfce261aa2b56a7ea6f9a5a080" kind="variable"><name>label</name></member>
     <member refid="structrko__lio_1_1core_1_1Timer_1ac68dc9c9d4f3b702fd518978e5362e3f" kind="variable"><name>start_time</name></member>
     <member refid="structrko__lio_1_1core_1_1Timer_1a91777f2c06edd982cf1bf75ec2fcca1e" kind="function"><name>Timer</name></member>
-    <member refid="structrko__lio_1_1core_1_1Timer_1a80e56a9f13072aec671ee74b7d5be406" kind="function"><name>Timer</name></member>
+    <member refid="structrko__lio_1_1core_1_1Timer_1afcb90cb5fd4f2968bd2d3a82f6ebc575" kind="function"><name>Timer</name></member>
     <member refid="structrko__lio_1_1core_1_1Timer_1a1480b7483ffda1d5ba23f0f54063f6ef" kind="function"><name>Timer</name></member>
     <member refid="structrko__lio_1_1core_1_1Timer_1a09b7895b9931887dad2a9b5e23f5eff3" kind="function"><name>Timer</name></member>
     <member refid="structrko__lio_1_1core_1_1Timer_1af73241010569a47595e18b9a97315d79" kind="function"><name>operator=</name></member>

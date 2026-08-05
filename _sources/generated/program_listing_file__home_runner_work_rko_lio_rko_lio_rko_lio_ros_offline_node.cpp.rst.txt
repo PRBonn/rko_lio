@@ -34,9 +34,9 @@ Program Listing for File offline_node.cpp
     * SOFTWARE.
     */
    
-   #include "threaded_node.hpp"
    #include "rko_lio/core/profiler.hpp"
    #include "rko_lio/ros/utils/rosbag.hpp"
+   #include "threaded_node.hpp"
    // other
    #include <std_msgs/msg/float32_multi_array.hpp>
    
@@ -64,13 +64,14 @@ Program Listing for File offline_node.cpp
      std::chrono::steady_clock::time_point bag_start_time;
    
      explicit OfflineNode(const rclcpp::NodeOptions& options)
-         : ThreadedNode("rko_lio_offline_node", options), bag_start_time(std::chrono::steady_clock::now()) {
-       // bag reading
-       const tf2::Duration skip_to_time = tf2::durationFromSec(node->declare_parameter<double>("skip_to_time", 0.0));
-       bag = std::make_unique<utils::BufferableBag>(node->declare_parameter<std::string>("bag_path"),
-                                                    std::make_shared<utils::BufferableBag::TFBridge>(*node),
-                                                    std::vector<std::string>{imu_topic, lidar_topic}, skip_to_time);
-       total_bag_msgs = bag->message_count();
+         : ThreadedNode("rko_lio_offline_node", options),
+           bag(std::make_unique<utils::BufferableBag>(
+               node->declare_parameter<std::string>("bag_path"),
+               std::make_shared<utils::BufferableBag::TFBridge>(*node),
+               std::vector<std::string>{imu_topic, lidar_topic},
+               tf2::durationFromSec(node->declare_parameter<double>("skip_to_time", 0.0)))),
+           total_bag_msgs(static_cast<float>(bag->message_count())),
+           bag_start_time(std::chrono::steady_clock::now()) {
        bag_progress_publisher = node->create_publisher<std_msgs::msg::Float32MultiArray>("rko_lio/bag_progress", 10);
      }
    
@@ -95,7 +96,7 @@ Program Listing for File offline_node.cpp
      void run() {
        while (rclcpp::ok() && !bag->finished()) {
          {
-           if (lidar_buffer.size() >= 0.9 * max_lidar_buffer_size) {
+           if (10 * lidar_buffer.size() >= 9 * max_lidar_buffer_size) {
              RCLCPP_WARN_STREAM_ONCE(node->get_logger(),
                                      "Lidar buffer size: " << lidar_buffer.size()
                                                            << ", max_lidar_buffer_size: " << max_lidar_buffer_size
@@ -124,7 +125,7 @@ Program Listing for File offline_node.cpp
        while (rclcpp::ok()) {
          {
            // wait for the registration buffer to drain - leftover IMU after the last lidar scan is harmless
-           std::lock_guard<std::mutex> lock(buffer_mutex);
+           const std::scoped_lock<std::mutex> lock(buffer_mutex);
            if (lidar_buffer.empty() && !registration_busy.load()) {
              break;
            }
@@ -136,10 +137,15 @@ Program Listing for File offline_node.cpp
    } // namespace rko_lio::ros
    
    int main(int argc, char** argv) {
-     const rko_lio::core::Timer timer("RKO LIO Offline Node");
-     rclcpp::init(argc, argv);
-     auto node = rko_lio::ros::OfflineNode(rclcpp::NodeOptions());
-     node.run();
-     rclcpp::shutdown();
+     try {
+       const rko_lio::core::Timer timer("RKO LIO Offline Node");
+       rclcpp::init(argc, argv);
+       auto node = rko_lio::ros::OfflineNode(rclcpp::NodeOptions());
+       node.run();
+       rclcpp::shutdown();
+     } catch (const std::exception& error) {
+       std::cerr << "[FATAL] " << error.what() << "\n";
+       return 1;
+     }
      return 0;
    }

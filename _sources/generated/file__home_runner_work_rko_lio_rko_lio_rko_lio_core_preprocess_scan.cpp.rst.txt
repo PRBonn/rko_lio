@@ -30,6 +30,8 @@ Includes
 --------
 
 
+- ``cmath``
+
 - ``preprocess_scan.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_preprocess_scan.hpp`)
 
 - ``voxel_down_sample.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_voxel_down_sample.hpp`)

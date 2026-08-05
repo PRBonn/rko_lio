@@ -91,10 +91,10 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
-      <memberdef kind="function" id="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1ad7c83c873e85a905594aafb26d668b27" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a288fbc975677e9cf92e280f7db01f909" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>rko_lio::ros::utils::BufferableBag::BufferableBag</definition>
-        <argsstring>(const std::string &amp;bag_path, const std::shared_ptr&lt; TFBridge &gt; tf_bridge, const std::vector&lt; std::string &gt; &amp;topics, const tf2::Duration seek=tf2::durationFromSec(0.0), const std::chrono::seconds buffer_size=std::chrono::seconds(1))</argsstring>
+        <argsstring>(const std::string &amp;bag_path, const std::shared_ptr&lt; TFBridge &gt; &amp;tf_bridge, const std::vector&lt; std::string &gt; &amp;topics, const tf2::Duration seek=tf2::durationFromSec(0.0), const std::chrono::seconds buffer_size=std::chrono::seconds(1))</argsstring>
         <name>BufferableBag</name>
         <qualifiedname>rko_lio::ros::utils::BufferableBag::BufferableBag</qualifiedname>
         <param>
@@ -102,7 +102,7 @@
           <declname>bag_path</declname>
         </param>
         <param>
-          <type>const std::shared_ptr&lt; <ref refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge" kindref="compound">TFBridge</ref> &gt;</type>
+          <type>const std::shared_ptr&lt; <ref refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge" kindref="compound">TFBridge</ref> &gt; &amp;</type>
           <declname>tf_bridge</declname>
         </param>
         <param>
@@ -125,7 +125,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" line="56" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.cpp" bodystart="67" bodyend="96"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" line="56" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.cpp" bodystart="68" bodyend="97"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1aaa50d6e8b4d549370be1939d4e8aea4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -143,7 +143,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" line="62" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.cpp" bodystart="98" bodyend="109"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" line="62" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.cpp" bodystart="99" bodyend="110"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1ac3a399562a403b1635a637d7782cb876" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>size_t</type>
@@ -157,7 +157,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" line="63" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.cpp" bodystart="114" bodyend="114"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" line="63" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.cpp" bodystart="115" bodyend="115"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1af7576b488166fddaa1ab0fdb1dc0e4fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -171,7 +171,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" line="64" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.cpp" bodystart="116" bodyend="140"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" line="64" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.cpp" bodystart="117" bodyend="141"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a3c912f950a8411715d2194b6cbe04866" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>rosbag2_storage::SerializedBagMessage</type>
@@ -185,7 +185,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" line="65" column="41" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.cpp" bodystart="142" bodyend="149"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" line="65" column="41" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.cpp" bodystart="143" bodyend="150"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a67df53ba64b89ba36905b177a7ab2463" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -199,7 +199,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" line="66" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.cpp" bodystart="111" bodyend="111"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" line="66" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.cpp" bodystart="112" bodyend="112"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a7498145b5a13543c1f920f416034f970" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -213,7 +213,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" line="67" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.cpp" bodystart="112" bodyend="112"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" line="67" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.cpp" bodystart="113" bodyend="113"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -225,7 +225,7 @@
       <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a4601dd851dfca3b4d52866b70fea8402" prot="private" virt="non-virtual"><scope>rko_lio::ros::utils::BufferableBag</scope><name>bag_reader_</name></member>
       <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1adabaf3c114aca738bc1c57234107aca7" prot="private" virt="non-virtual"><scope>rko_lio::ros::utils::BufferableBag</scope><name>buffer_</name></member>
       <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a9ffbf02e26f537eb15e0145d817eaacf" prot="private" virt="non-virtual"><scope>rko_lio::ros::utils::BufferableBag</scope><name>buffer_size_</name></member>
-      <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1ad7c83c873e85a905594aafb26d668b27" prot="public" virt="non-virtual"><scope>rko_lio::ros::utils::BufferableBag</scope><name>BufferableBag</name></member>
+      <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a288fbc975677e9cf92e280f7db01f909" prot="public" virt="non-virtual"><scope>rko_lio::ros::utils::BufferableBag</scope><name>BufferableBag</name></member>
       <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1af7576b488166fddaa1ab0fdb1dc0e4fe" prot="public" virt="non-virtual"><scope>rko_lio::ros::utils::BufferableBag</scope><name>BufferMessages</name></member>
       <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a7498145b5a13543c1f920f416034f970" prot="public" virt="non-virtual"><scope>rko_lio::ros::utils::BufferableBag</scope><name>close</name></member>
       <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a67df53ba64b89ba36905b177a7ab2463" prot="public" virt="non-virtual"><scope>rko_lio::ros::utils::BufferableBag</scope><name>finished</name></member>

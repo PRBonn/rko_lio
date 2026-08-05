@@ -2,8 +2,8 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="lio_8hpp" kind="file" language="C++">
     <compoundname>lio.hpp</compoundname>
-    <includes refid="voxel__hash__map_8hpp" local="yes">voxel_hash_map.hpp</includes>
     <includes refid="util_8hpp" local="yes">util.hpp</includes>
+    <includes refid="voxel__hash__map_8hpp" local="yes">voxel_hash_map.hpp</includes>
     <includes local="no">tbb/task_arena.h</includes>
     <includedby refid="lio_8cpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp</includedby>
     <includedby refid="preprocess__scan_8hpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/core/preprocess_scan.hpp</includedby>
@@ -14,45 +14,45 @@
         <link refid="lio_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="4">
+      <node id="2">
         <label>util.hpp</label>
         <link refid="util_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
         <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
       </node>
-      <node id="3">
+      <node id="8">
         <label>voxel_down_sample.hpp</label>
         <link refid="voxel__down__sample_8hpp_source"/>
-        <childnode refid="4" relation="include">
+        <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="6" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="2">
+      <node id="7">
         <label>voxel_hash_map.hpp</label>
         <link refid="voxel__hash__map_8hpp_source"/>
-        <childnode refid="3" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="6" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
@@ -61,22 +61,22 @@
         <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="6">
+      <node id="4">
         <label>Eigen/Core</label>
       </node>
-      <node id="7">
+      <node id="5">
         <label>chrono</label>
       </node>
       <node id="9">
-        <label>cmath</label>
+        <label>cstdint</label>
       </node>
       <node id="10">
         <label>optional</label>
       </node>
-      <node id="5">
+      <node id="3">
         <label>rko_lio/core/scalar.hpp</label>
       </node>
-      <node id="8">
+      <node id="6">
         <label>sophus/se3.hpp</label>
       </node>
       <node id="14">
@@ -152,8 +152,8 @@
 <codeline lineno="23"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;voxel_hash_map.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;util.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;util.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;voxel_hash_map.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tbb/task_arena.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight></codeline>
@@ -212,28 +212,27 @@
 <codeline lineno="119"><highlight class="normal"></highlight></codeline>
 <codeline lineno="127"><highlight class="normal"><sp/><sp/>Vector3sVector<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1aaba2cf6d3b84ffaa8506ca1401217ebc" kindref="member">register_scan</ref>(Vector3sVector<sp/>scan,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>TimestampVector&amp;<sp/>timestamps);</highlight></codeline>
 <codeline lineno="128"><highlight class="normal"></highlight></codeline>
-<codeline lineno="137"><highlight class="normal"><sp/><sp/>Vector3sVector<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1aaba2cf6d3b84ffaa8506ca1401217ebc" kindref="member">register_scan</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3s&amp;<sp/>extrinsic_lidar2base,</highlight></codeline>
-<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Vector3sVector<sp/>scan,</highlight></codeline>
-<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>TimestampVector&amp;<sp/>timestamps);</highlight></codeline>
-<codeline lineno="140"><highlight class="normal"></highlight></codeline>
-<codeline lineno="142" refid="classrko__lio_1_1core_1_1LIO_1abbe45d6d4a850ff4f05ee3653e55d431" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;std::pair&lt;Nsec,<sp/>Sophus::SE3s&gt;&gt;<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1abbe45d6d4a850ff4f05ee3653e55d431" kindref="member">poses_with_timestamps</ref>;</highlight></codeline>
-<codeline lineno="143"><highlight class="normal"></highlight></codeline>
-<codeline lineno="148" refid="classrko__lio_1_1core_1_1LIO_1a582d6fd74013b8c85784326bc45fb7c0" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1State" kindref="compound">State</ref><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a582d6fd74013b8c85784326bc45fb7c0" kindref="member">imu_state</ref>;</highlight></codeline>
-<codeline lineno="149"><highlight class="normal"></highlight></codeline>
-<codeline lineno="150"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="155"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>initialize(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Nsec<sp/>lidar_time);</highlight></codeline>
-<codeline lineno="156"><highlight class="normal"></highlight></codeline>
-<codeline lineno="158"><highlight class="normal"><sp/><sp/>Vector3sVector<sp/>bootstrap_first_scan(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Vector3sVector&amp;<sp/>scan,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Nsec<sp/>current_lidar_time);</highlight></codeline>
-<codeline lineno="159"><highlight class="normal"></highlight></codeline>
-<codeline lineno="161"><highlight class="normal"><sp/><sp/>std::pair&lt;Eigen::Vector3s,<sp/>Eigen::Vector3s&gt;<sp/>motion_priors_from_imu(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Nsec<sp/>current_lidar_time);</highlight></codeline>
-<codeline lineno="162"><highlight class="normal"></highlight></codeline>
-<codeline lineno="164"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>_initialized<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="165"><highlight class="normal"></highlight></codeline>
-<codeline lineno="167"><highlight class="normal"><sp/><sp/>Nsec<sp/>_last_real_imu_time{0};</highlight></codeline>
-<codeline lineno="168"><highlight class="normal"></highlight></codeline>
-<codeline lineno="170"><highlight class="normal"><sp/><sp/>Eigen::Vector3s<sp/>_last_real_base_imu_ang_vel<sp/>=<sp/>Eigen::Vector3s::Zero();</highlight></codeline>
-<codeline lineno="171"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="172"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/>Vector3sVector</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1aaba2cf6d3b84ffaa8506ca1401217ebc" kindref="member">register_scan</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3s&amp;<sp/>extrinsic_lidar2base,<sp/>Vector3sVector<sp/>scan,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>TimestampVector&amp;<sp/>timestamps);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141" refid="classrko__lio_1_1core_1_1LIO_1abbe45d6d4a850ff4f05ee3653e55d431" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;std::pair&lt;Nsec,<sp/>Sophus::SE3s&gt;&gt;<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1abbe45d6d4a850ff4f05ee3653e55d431" kindref="member">poses_with_timestamps</ref>;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147" refid="classrko__lio_1_1core_1_1LIO_1a582d6fd74013b8c85784326bc45fb7c0" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1State" kindref="compound">State</ref><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a582d6fd74013b8c85784326bc45fb7c0" kindref="member">imu_state</ref>;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>initialize(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Nsec<sp/>lidar_time);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/>Vector3sVector<sp/>bootstrap_first_scan(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Vector3sVector&amp;<sp/>scan,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Nsec<sp/>current_lidar_time);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/>std::pair&lt;Eigen::Vector3s,<sp/>Eigen::Vector3s&gt;<sp/>motion_priors_from_imu(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Nsec<sp/>current_lidar_time);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>_initialized<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/>Nsec<sp/>_last_real_imu_time{0};</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/>Eigen::Vector3s<sp/>_last_real_base_imu_ang_vel<sp/>=<sp/>Eigen::Vector3s::Zero();</highlight></codeline>
+<codeline lineno="170"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="171"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp"/>
   </compounddef>

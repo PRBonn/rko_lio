@@ -112,8 +112,8 @@ Program Listing for File base_node.cpp
        map_topic = node->declare_parameter<std::string>("map_topic", map_topic);
        const double publish_map_after_seconds =
            node->declare_parameter<double>("publish_map_after", core::to_seconds(publish_map_after));
-       publish_map_after = std::chrono::duration_cast<std::chrono::nanoseconds>(
-           std::chrono::duration<double>(publish_map_after_seconds));
+       publish_map_after =
+           std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::duration<double>(publish_map_after_seconds));
        map_publisher = node->create_publisher<sensor_msgs::msg::PointCloud2>(map_topic, publisher_qos);
        map_publish_thead = std::jthread([this]() { publish_map_loop(); });
      }
@@ -123,22 +123,24 @@ Program Listing for File base_node.cpp
      lio_config.deskew = node->declare_parameter<bool>("deskew", lio_config.deskew);
      lio_config.max_iterations =
          static_cast<size_t>(node->declare_parameter<int>("max_iterations", static_cast<int>(lio_config.max_iterations)));
-     lio_config.voxel_size = node->declare_parameter<double>("voxel_size", lio_config.voxel_size);
+     lio_config.voxel_size =
+         static_cast<core::Scalar>(node->declare_parameter<double>("voxel_size", lio_config.voxel_size));
      lio_config.max_points_per_voxel =
          static_cast<int>(node->declare_parameter<int>("max_points_per_voxel", lio_config.max_points_per_voxel));
-     lio_config.max_range = node->declare_parameter<double>("max_range", lio_config.max_range);
-     lio_config.min_range = node->declare_parameter<double>("min_range", lio_config.min_range);
-     lio_config.convergence_criterion =
-         node->declare_parameter<double>("convergence_criterion", lio_config.convergence_criterion);
-     lio_config.max_correspondence_distance =
-         node->declare_parameter<double>("max_correspondence_distance", lio_config.max_correspondence_distance);
+     lio_config.max_range = static_cast<core::Scalar>(node->declare_parameter<double>("max_range", lio_config.max_range));
+     lio_config.min_range = static_cast<core::Scalar>(node->declare_parameter<double>("min_range", lio_config.min_range));
+     lio_config.convergence_criterion = static_cast<core::Scalar>(
+         node->declare_parameter<double>("convergence_criterion", lio_config.convergence_criterion));
+     lio_config.max_correspondence_distance = static_cast<core::Scalar>(
+         node->declare_parameter<double>("max_correspondence_distance", lio_config.max_correspondence_distance));
      lio_config.max_num_threads =
          static_cast<int>(node->declare_parameter<int>("max_num_threads", lio_config.max_num_threads));
      lio_config.initialization_phase =
          node->declare_parameter<bool>("initialization_phase", lio_config.initialization_phase);
-     lio_config.max_expected_jerk = node->declare_parameter<double>("max_expected_jerk", lio_config.max_expected_jerk);
+     lio_config.max_expected_jerk =
+         static_cast<core::Scalar>(node->declare_parameter<double>("max_expected_jerk", lio_config.max_expected_jerk));
      lio_config.double_downsample = node->declare_parameter<bool>("double_downsample", lio_config.double_downsample);
-     lio_config.min_beta = node->declare_parameter<double>("min_beta", lio_config.min_beta);
+     lio_config.min_beta = static_cast<core::Scalar>(node->declare_parameter<double>("min_beta", lio_config.min_beta));
      lio = std::make_unique<core::LIO>(lio_config);
    
      // Lidar per-point timestamp processing params, namespaced under lidar_timestamps.*
@@ -195,11 +197,11 @@ Program Listing for File base_node.cpp
          }
          return false;
        }
-       Eigen::Quaternions q(vec[3], vec[0], vec[1], vec[2]); // qw, qx, qy, qz
+       const Eigen::Quaternions q = Eigen::Quaterniond(vec[3], vec[0], vec[1], vec[2]).cast<core::Scalar>();
        if (q.norm() < 1e-6) {
          throw std::runtime_error(name + " extrinsic quaternion has zero norm");
        }
-       extrinsic = Sophus::SE3s(q, Eigen::Vector3s(vec[4], vec[5], vec[6]));
+       extrinsic = Sophus::SE3s(q, Eigen::Vector3d(vec[4], vec[5], vec[6]).cast<core::Scalar>());
        RCLCPP_INFO_STREAM(node->get_logger(), "Parsed " << name << " extrinsic as: " << extrinsic.log().transpose());
        return true;
      };

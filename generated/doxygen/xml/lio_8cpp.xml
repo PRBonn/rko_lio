@@ -26,27 +26,27 @@
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="25" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
         <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
         </childnode>
         <childnode refid="27" relation="include">
         </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
         <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="29" relation="include">
+        <childnode refid="30" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -54,7 +54,7 @@
         <link refid="lio_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
@@ -72,9 +72,7 @@
       <node id="18">
         <label>profiler.hpp</label>
         <link refid="profiler_8hpp"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
@@ -86,41 +84,43 @@
         </childnode>
         <childnode refid="23" relation="include">
         </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
       </node>
-      <node id="5">
+      <node id="3">
         <label>util.hpp</label>
         <link refid="util_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
         <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
       </node>
-      <node id="4">
+      <node id="9">
         <label>voxel_down_sample.hpp</label>
         <link refid="voxel__down__sample_8hpp_source"/>
-        <childnode refid="5" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="3">
+      <node id="8">
         <label>voxel_hash_map.hpp</label>
         <link refid="voxel__hash__map_8hpp_source"/>
-        <childnode refid="4" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
@@ -129,52 +129,55 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="7">
+      <node id="5">
         <label>Eigen/Core</label>
       </node>
       <node id="17">
         <label>Eigen/Dense</label>
       </node>
-      <node id="26">
+      <node id="27">
         <label>algorithm</label>
       </node>
-      <node id="8">
+      <node id="6">
         <label>chrono</label>
       </node>
-      <node id="10">
+      <node id="19">
         <label>cmath</label>
       </node>
-      <node id="27">
-        <label>functional</label>
-      </node>
-      <node id="19">
-        <label>iomanip</label>
-      </node>
-      <node id="20">
-        <label>iostream</label>
+      <node id="10">
+        <label>cstdint</label>
       </node>
       <node id="28">
+        <label>functional</label>
+      </node>
+      <node id="20">
+        <label>iomanip</label>
+      </node>
+      <node id="21">
+        <label>iostream</label>
+      </node>
+      <node id="29">
         <label>numeric</label>
       </node>
       <node id="11">
         <label>optional</label>
       </node>
-      <node id="6">
+      <node id="4">
         <label>rko_lio/core/scalar.hpp</label>
       </node>
-      <node id="9">
+      <node id="7">
         <label>sophus/se3.hpp</label>
       </node>
-      <node id="29">
+      <node id="30">
         <label>stdexcept</label>
       </node>
-      <node id="21">
+      <node id="22">
         <label>string</label>
       </node>
-      <node id="24">
+      <node id="25">
         <label>tbb/blocked_range.h</label>
       </node>
-      <node id="25">
+      <node id="26">
         <label>tbb/parallel_reduce.h</label>
       </node>
       <node id="15">
@@ -186,10 +189,10 @@
       <node id="13">
         <label>tuple</label>
       </node>
-      <node id="22">
+      <node id="23">
         <label>unordered_map</label>
       </node>
-      <node id="23">
+      <node id="24">
         <label>utility</label>
       </node>
       <node id="14">
@@ -267,7 +270,7 @@
 <codeline lineno="62"><highlight class="normal"></highlight></codeline>
 <codeline lineno="63"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">AccelFilterStep<sp/>{</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"><sp/><sp/>std::optional&lt;AccelInfo&gt;<sp/>info;</highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/>BodyAccelKF<sp/>updated;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/>BodyAccelKF<sp/>updated{};</highlight></codeline>
 <codeline lineno="66"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="67"><highlight class="normal"></highlight></codeline>
 <codeline lineno="68"><highlight class="normal">AccelFilterStep<sp/>step_body_accel_filter(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>BodyAccelKF&amp;<sp/>prev,</highlight></codeline>
@@ -280,14 +283,14 @@
 <codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>IMU<sp/>message(s)<sp/>in<sp/>interval<sp/>between<sp/>two<sp/>lidar<sp/>scans.<sp/>Cannot<sp/>compute<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;acceleration<sp/>statistics<sp/>for<sp/>orientation<sp/>regularisation.<sp/>Please<sp/>check<sp/>your<sp/>data<sp/>and<sp/>its<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;timestamping<sp/>as<sp/>likely<sp/>there<sp/>should<sp/>not<sp/>be<sp/>so<sp/>few<sp/>IMU<sp/>measurements<sp/>between<sp/>two<sp/>LiDAR<sp/>scans.\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{std::nullopt,<sp/>prev};</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{.info<sp/>=<sp/>std::nullopt,<sp/>.updated<sp/>=<sp/>prev};</highlight></codeline>
 <codeline lineno="79"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="80"><highlight class="normal"></highlight></codeline>
 <codeline lineno="81"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s<sp/>avg_imu_accel<sp/>=<sp/>stats.<ref refid="structrko__lio_1_1core_1_1IntervalStats_1af96d42b3db00350ec398257e78606fbf" kindref="member">imu_acceleration_sum</ref><sp/>/<sp/>stats.<ref refid="structrko__lio_1_1core_1_1IntervalStats_1ad03a2f9676e4eb163dc180dd707fd26c" kindref="member">imu_count</ref>;</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>accel_mag_variance<sp/>=<sp/>stats.<ref refid="structrko__lio_1_1core_1_1IntervalStats_1af66327f9f7b18f90a4bb6d1a7be904f0" kindref="member">welford_sum_of_squares</ref><sp/>/<sp/>(stats.<ref refid="structrko__lio_1_1core_1_1IntervalStats_1ad03a2f9676e4eb163dc180dd707fd26c" kindref="member">imu_count</ref><sp/>-<sp/>1);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>accel_mag_variance<sp/>=<sp/>stats.<ref refid="structrko__lio_1_1core_1_1IntervalStats_1af66327f9f7b18f90a4bb6d1a7be904f0" kindref="member">welford_sum_of_squares</ref><sp/>/<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">Scalar</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(stats.<ref refid="structrko__lio_1_1core_1_1IntervalStats_1ad03a2f9676e4eb163dc180dd707fd26c" kindref="member">imu_count</ref><sp/>-<sp/>1);</highlight></codeline>
 <codeline lineno="83"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s<sp/>body_accel_measurement<sp/>=<sp/>avg_imu_accel<sp/>+<sp/>rotation_estimate.inverse()<sp/>*<sp/>gravity();</highlight></codeline>
 <codeline lineno="84"><highlight class="normal"></highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>max_acceleration_change<sp/>=<sp/>max_expected_jerk<sp/>*<sp/>to_seconds(dt);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>max_acceleration_change<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">Scalar</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(max_expected_jerk<sp/>*<sp/>to_seconds(dt));</highlight></codeline>
 <codeline lineno="86"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>assume<sp/>[j,<sp/>-j]<sp/>range<sp/>for<sp/>uniform<sp/>dist.<sp/>on<sp/>jerk.<sp/>variance<sp/>is<sp/>(2j)^2<sp/>/<sp/>12<sp/>=<sp/>j^2/3.<sp/>multiply<sp/>by<sp/>dt^2<sp/>for<sp/>accel</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="87"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Matrix3s<sp/>process_noise<sp/>=<sp/>square(max_acceleration_change)<sp/>/<sp/>3<sp/>*<sp/>Eigen::Matrix3s::Identity();</highlight></codeline>
 <codeline lineno="88"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Matrix3s<sp/>cov_pred<sp/>=<sp/>prev.covariance<sp/>+<sp/>process_noise;</highlight></codeline>
@@ -301,8 +304,8 @@
 <codeline lineno="96"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Matrix3s<sp/>new_cov<sp/>=<sp/>cov_pred<sp/>-<sp/>kalman_gain<sp/>*<sp/>cov_pred;</highlight></codeline>
 <codeline lineno="97"><highlight class="normal"></highlight></codeline>
 <codeline lineno="98"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s<sp/>local_gravity_estimate<sp/>=<sp/>avg_imu_accel<sp/>-<sp/>new_mean;<sp/></highlight><highlight class="comment">//<sp/>points<sp/>upwards</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{AccelInfo{.accel_mag_variance<sp/>=<sp/>accel_mag_variance,<sp/>.local_gravity_estimate<sp/>=<sp/>local_gravity_estimate},</highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BodyAccelKF{new_mean,<sp/>new_cov}};</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{.info<sp/>=<sp/>AccelInfo{.accel_mag_variance<sp/>=<sp/>accel_mag_variance,<sp/>.local_gravity_estimate<sp/>=<sp/>local_gravity_estimate},</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.updated<sp/>=<sp/>BodyAccelKF{.mean<sp/>=<sp/>new_mean,<sp/>.covariance<sp/>=<sp/>new_cov}};</highlight></codeline>
 <codeline lineno="101"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="102"><highlight class="normal"></highlight></codeline>
 <codeline lineno="103"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Functor&gt;</highlight></codeline>
@@ -549,10 +552,10 @@
 <codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a582d6fd74013b8c85784326bc45fb7c0" kindref="member">imu_state</ref><sp/>=<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref>;</highlight></codeline>
 <codeline lineno="345"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="346"><highlight class="normal"></highlight></codeline>
-<codeline lineno="347"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>dt<sp/>=<sp/>to_seconds(base_imu.time<sp/>-<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a582d6fd74013b8c85784326bc45fb7c0" kindref="member">imu_state</ref>.time);</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>dt<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">Scalar</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(to_seconds(base_imu.time<sp/>-<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a582d6fd74013b8c85784326bc45fb7c0" kindref="member">imu_state</ref>.time));</highlight></codeline>
 <codeline lineno="348"><highlight class="normal"></highlight></codeline>
 <codeline lineno="349"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(dt<sp/>&lt;<sp/>0.0)<sp/>{</highlight></codeline>
-<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>messages<sp/>are<sp/>out<sp/>of<sp/>sync.<sp/>thats<sp/>a<sp/>problem,<sp/>since<sp/>we<sp/>integrate<sp/>gyro<sp/>from<sp/>last<sp/>lidar<sp/>time<sp/>onwards</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>messages<sp/>are<sp/>out<sp/>of<sp/>sync.<sp/>that<sp/>is<sp/>a<sp/>problem,<sp/>since<sp/>we<sp/>integrate<sp/>gyro<sp/>from<sp/>last<sp/>lidar<sp/>time<sp/>onwards</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/>std::cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;[WARNING]<sp/>Received<sp/>IMU<sp/>message<sp/>from<sp/>the<sp/>past.<sp/>Can<sp/>result<sp/>in<sp/>errors.\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>maybe<sp/>skip<sp/>this<sp/>imu<sp/>reading?</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="353"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
@@ -646,7 +649,7 @@
 <codeline lineno="441"><highlight class="normal"></highlight></codeline>
 <codeline lineno="442"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>compute<sp/>relative<sp/>motion<sp/>using<sp/>controls</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="443"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>relative_pose_at_time<sp/>=<sp/>[&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Nsec<sp/>time)<sp/>-&gt;<sp/>Sophus::SE3s<sp/>{</highlight></codeline>
-<codeline lineno="444"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>dt<sp/>=<sp/>to_seconds(time<sp/>-<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref>.time);</highlight></codeline>
+<codeline lineno="444"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>dt<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">Scalar</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(to_seconds(time<sp/>-<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref>.time));</highlight></codeline>
 <codeline lineno="445"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector6s<sp/>tau;</highlight></codeline>
 <codeline lineno="446"><highlight class="normal"><sp/><sp/><sp/><sp/>tau.head&lt;3&gt;()<sp/>=<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref>.velocity<sp/>*<sp/>dt<sp/>+<sp/>(avg_body_accel<sp/>*<sp/>square(dt)<sp/>/<sp/>2);</highlight></codeline>
 <codeline lineno="447"><highlight class="normal"><sp/><sp/><sp/><sp/>tau.tail&lt;3&gt;()<sp/>=<sp/>avg_ang_vel<sp/>*<sp/>dt;</highlight></codeline>
@@ -656,9 +659,9 @@
 <codeline lineno="451"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3s<sp/>initial_guess<sp/>=<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref>.pose<sp/>*<sp/>relative_pose_at_time(current_lidar_time);</highlight></codeline>
 <codeline lineno="452"><highlight class="normal"></highlight></codeline>
 <codeline lineno="453"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>body<sp/>acceleration<sp/>filter</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="454"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>kf_step<sp/>=</highlight></codeline>
-<codeline lineno="455"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>step_body_accel_filter({<ref refid="classrko__lio_1_1core_1_1LIO_1acaef58557031dd11624aea7cc84e0c2e" kindref="member">mean_body_acceleration</ref>,<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a81ef741f00c23279b2f1dcf08cc20e29" kindref="member">body_acceleration_covariance</ref>},<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a9b89efdfdcc0ab01ef3fd6caaadb69d2" kindref="member">interval_stats</ref>,</highlight></codeline>
-<codeline lineno="456"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>initial_guess.so3(),<sp/>current_lidar_time<sp/>-<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref>.time,<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" kindref="member">config</ref>.<ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a31eee3140c675a6232ebd602db723fa0" kindref="member">max_expected_jerk</ref>);</highlight></codeline>
+<codeline lineno="454"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>kf_step<sp/>=<sp/>step_body_accel_filter(</highlight></codeline>
+<codeline lineno="455"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{.mean<sp/>=<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1acaef58557031dd11624aea7cc84e0c2e" kindref="member">mean_body_acceleration</ref>,<sp/>.covariance<sp/>=<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a81ef741f00c23279b2f1dcf08cc20e29" kindref="member">body_acceleration_covariance</ref>},<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a9b89efdfdcc0ab01ef3fd6caaadb69d2" kindref="member">interval_stats</ref>,<sp/>initial_guess.so3(),</highlight></codeline>
+<codeline lineno="456"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>current_lidar_time<sp/>-<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref>.time,<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" kindref="member">config</ref>.<ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a31eee3140c675a6232ebd602db723fa0" kindref="member">max_expected_jerk</ref>);</highlight></codeline>
 <codeline lineno="457"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1acaef58557031dd11624aea7cc84e0c2e" kindref="member">mean_body_acceleration</ref><sp/>=<sp/>kf_step.updated.mean;</highlight></codeline>
 <codeline lineno="458"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a81ef741f00c23279b2f1dcf08cc20e29" kindref="member">body_acceleration_covariance</ref><sp/>=<sp/>kf_step.updated.covariance;</highlight></codeline>
 <codeline lineno="459"><highlight class="normal"></highlight></codeline>
@@ -681,11 +684,11 @@
 <codeline lineno="476"><highlight class="normal"></highlight></codeline>
 <codeline lineno="477"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" kindref="member">map</ref>.empty())<sp/>{</highlight></codeline>
 <codeline lineno="478"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="profiler_8hpp_1af9e43cc52cb0d854f3588064f9f97cd2" kindref="member">SCOPED_PROFILER</ref>(</highlight><highlight class="stringliteral">&quot;ICP&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="479"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3s<sp/>optimized_pose<sp/>=<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1ac02d8c6dce57bab05b7e1285ee23efd5" kindref="member">arena</ref>.execute(</highlight></codeline>
-<codeline lineno="480"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[&amp;]<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>icp(preproc_result.keypoints,<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" kindref="member">map</ref>,<sp/>initial_guess,<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" kindref="member">config</ref>,<sp/>kf_step.info);<sp/>});</highlight></codeline>
+<codeline lineno="479"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3s<sp/>optimized_pose<sp/>=</highlight></codeline>
+<codeline lineno="480"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1ac02d8c6dce57bab05b7e1285ee23efd5" kindref="member">arena</ref>.execute([&amp;]<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>icp(preproc_result.keypoints,<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" kindref="member">map</ref>,<sp/>initial_guess,<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" kindref="member">config</ref>,<sp/>kf_step.info);<sp/>});</highlight></codeline>
 <codeline lineno="481"><highlight class="normal"></highlight></codeline>
 <codeline lineno="482"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>estimate<sp/>velocities<sp/>and<sp/>accelerations<sp/>from<sp/>the<sp/>new<sp/>pose</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="483"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>dt<sp/>=<sp/>to_seconds(current_lidar_time<sp/>-<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref>.time);</highlight></codeline>
+<codeline lineno="483"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>dt<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">Scalar</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(to_seconds(current_lidar_time<sp/>-<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref>.time));</highlight></codeline>
 <codeline lineno="484"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3s<sp/>motion<sp/>=<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref>.pose.inverse()<sp/>*<sp/>optimized_pose;</highlight></codeline>
 <codeline lineno="485"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector6s<sp/>local_velocity<sp/>=<sp/>motion.log()<sp/>/<sp/>dt;</highlight></codeline>
 <codeline lineno="486"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s<sp/>local_linear_acceleration<sp/>=</highlight></codeline>

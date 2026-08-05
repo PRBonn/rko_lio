@@ -65,14 +65,14 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" line="49" column="14" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.cpp" bodystart="46" bodyend="50"/>
       </memberdef>
-      <memberdef kind="function" id="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1a6dff851eea2ab6d57ac847f4bb6a18d1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1aeac9890a3f2e78599763cfeceabc57ac" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void rko_lio::ros::utils::BufferableBag::TFBridge::ProcessTFMessage</definition>
-        <argsstring>(std::shared_ptr&lt; rosbag2_storage::SerializedBagMessage &gt; msg) const</argsstring>
+        <argsstring>(const std::shared_ptr&lt; rosbag2_storage::SerializedBagMessage &gt; &amp;msg) const</argsstring>
         <name>ProcessTFMessage</name>
         <qualifiedname>rko_lio::ros::utils::BufferableBag::TFBridge::ProcessTFMessage</qualifiedname>
         <param>
-          <type>std::shared_ptr&lt; rosbag2_storage::SerializedBagMessage &gt;</type>
+          <type>const std::shared_ptr&lt; rosbag2_storage::SerializedBagMessage &gt; &amp;</type>
           <declname>msg</declname>
         </param>
         <briefdescription>
@@ -81,7 +81,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" line="50" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.cpp" bodystart="52" bodyend="64"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" line="50" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.cpp" bodystart="52" bodyend="65"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -90,7 +90,7 @@
     </detaileddescription>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" line="48" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" bodystart="48" bodyend="54"/>
     <listofallmembers>
-      <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1a6dff851eea2ab6d57ac847f4bb6a18d1" prot="public" virt="non-virtual"><scope>rko_lio::ros::utils::BufferableBag::TFBridge</scope><name>ProcessTFMessage</name></member>
+      <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1aeac9890a3f2e78599763cfeceabc57ac" prot="public" virt="non-virtual"><scope>rko_lio::ros::utils::BufferableBag::TFBridge</scope><name>ProcessTFMessage</name></member>
       <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1a6debf60fdb1f7f3ce4a492292b8d05c0" prot="public" virt="non-virtual"><scope>rko_lio::ros::utils::BufferableBag::TFBridge</scope><name>serializer</name></member>
       <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1a16269296f55efbb230771f82c1ef41b7" prot="public" virt="non-virtual"><scope>rko_lio::ros::utils::BufferableBag::TFBridge</scope><name>tf_broadcaster</name></member>
       <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1a8bb752d6cf1909fa19b31081a0825c84" prot="public" virt="non-virtual"><scope>rko_lio::ros::utils::BufferableBag::TFBridge</scope><name>tf_static_broadcaster</name></member>

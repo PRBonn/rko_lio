@@ -35,8 +35,8 @@ Program Listing for File lio.hpp
     */
    
    #pragma once
-   #include "voxel_hash_map.hpp"
    #include "util.hpp"
+   #include "voxel_hash_map.hpp"
    
    #include <tbb/task_arena.h>
    
@@ -95,9 +95,8 @@ Program Listing for File lio.hpp
    
      Vector3sVector register_scan(Vector3sVector scan, const TimestampVector& timestamps);
    
-     Vector3sVector register_scan(const Sophus::SE3s& extrinsic_lidar2base,
-                                  Vector3sVector scan,
-                                  const TimestampVector& timestamps);
+     Vector3sVector
+     register_scan(const Sophus::SE3s& extrinsic_lidar2base, Vector3sVector scan, const TimestampVector& timestamps);
    
      std::vector<std::pair<Nsec, Sophus::SE3s>> poses_with_timestamps;
    

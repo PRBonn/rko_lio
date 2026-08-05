@@ -47,9 +47,9 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
         <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
@@ -88,10 +88,13 @@
       <node id="7">
         <label>chrono</label>
       </node>
-      <node id="9">
+      <node id="16">
         <label>cmath</label>
       </node>
-      <node id="16">
+      <node id="9">
+        <label>cstdint</label>
+      </node>
+      <node id="17">
         <label>limits</label>
       </node>
       <node id="10">
@@ -144,7 +147,7 @@
 <codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SOFTWARE.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>NOTE:<sp/>This<sp/>implementation<sp/>is<sp/>heavily<sp/>inspired<sp/>in<sp/>the<sp/>original<sp/>CT-ICP<sp/>VoxelHashMap<sp/>implementation,</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>although<sp/>it<sp/>was<sp/>heavily<sp/>modifed<sp/>and<sp/>drastically<sp/>simplified,<sp/>but<sp/>if<sp/>you<sp/>are<sp/>using<sp/>this<sp/>module<sp/>you</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>although<sp/>it<sp/>was<sp/>heavily<sp/>modified<sp/>and<sp/>drastically<sp/>simplified,<sp/>but<sp/>if<sp/>you<sp/>are<sp/>using<sp/>this<sp/>module<sp/>you</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>should<sp/>at<sp/>least<sp/>acknoowledge<sp/>the<sp/>work<sp/>from<sp/>CT-ICP<sp/>by<sp/>giving<sp/>a<sp/>star<sp/>on<sp/>GitHub.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Modified<sp/>from<sp/>kiss-icp<sp/>(kiss_icp/cpp/kiss_icp/core/VoxelHashMap.{hpp,cpp}).</highlight><highlight class="normal"></highlight></codeline>
@@ -164,7 +167,7 @@
 <codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">rko_lio::core::Voxel;</highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">//<sp/>the<sp/>order<sp/>of<sp/>the<sp/>shifts<sp/>is<sp/>deliberate</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;Voxel,<sp/>27&gt;<sp/>shifts{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;Voxel,<sp/>27&gt;<sp/>shifts{</highlight></codeline>
 <codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>Voxel{0,<sp/>0,<sp/>0},<sp/></highlight><highlight class="comment">//<sp/>home</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="47"><highlight class="normal"></highlight></codeline>
 <codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>Voxel{-1,<sp/>0,<sp/>0},<sp/><sp/><sp/>Voxel{0,<sp/>-1,<sp/>0},<sp/><sp/>Voxel{0,<sp/>0,<sp/>-1},<sp/></highlight><highlight class="comment">//<sp/>faces</highlight><highlight class="normal"></highlight></codeline>
@@ -185,7 +188,7 @@
 <codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>clipping_distance,</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>max_points_per_voxel)</highlight></codeline>
 <codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>voxel_size_(voxel_size),</highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>inv_voxel_size_(1.0<sp/>/<sp/>voxel_size),</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>inv_voxel_size_(static_cast&lt;Scalar&gt;(1.0<sp/>/<sp/>voxel_size)),</highlight></codeline>
 <codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>clipping_distance_(clipping_distance),</highlight></codeline>
 <codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>max_points_per_voxel_(max_points_per_voxel)<sp/>{}</highlight></codeline>
 <codeline lineno="69"><highlight class="normal"></highlight></codeline>
@@ -229,7 +232,7 @@
 <codeline lineno="107"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="108"><highlight class="normal"></highlight></codeline>
 <codeline lineno="109"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>VoxelHashMap::add_points(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Eigen::Vector3s&gt;&amp;<sp/>points,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3s&amp;<sp/>pose)<sp/>{</highlight></codeline>
-<codeline lineno="110"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>map_resolution_sq<sp/>=<sp/>voxel_size_<sp/>*<sp/>voxel_size_<sp/>/<sp/>max_points_per_voxel_;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>map_resolution_sq<sp/>=<sp/>voxel_size_<sp/>*<sp/>voxel_size_<sp/>/<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">Scalar</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(max_points_per_voxel_);</highlight></codeline>
 <codeline lineno="111"><highlight class="normal"><sp/><sp/>std::for_each(points.cbegin(),<sp/>points.cend(),<sp/>[&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s&amp;<sp/>point)<sp/>{</highlight></codeline>
 <codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>Eigen::Vector3s<sp/>p<sp/>=<sp/>pose<sp/>*<sp/>point;</highlight></codeline>
 <codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>Voxel<sp/>voxel<sp/>=<sp/>point_to_voxel(p,<sp/>inv_voxel_size_);</highlight></codeline>

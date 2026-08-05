@@ -116,6 +116,20 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" line="38" column="14"/>
       </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1OnlineNode_1a0aae7d204b0a072cfcbc8c60b9e95a7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::ros::OnlineNode::~OnlineNode</definition>
+        <argsstring>()=default</argsstring>
+        <name>~OnlineNode</name>
+        <qualifiedname>rko_lio::ros::OnlineNode::~OnlineNode</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" line="39" column="3"/>
+      </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1OnlineNode_1af007ddb722ed40ee77ec5c7b1d3c6710" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
         <type></type>
         <definition>rko_lio::ros::OnlineNode::OnlineNode</definition>
@@ -132,7 +146,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" line="40" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" bodystart="40" bodyend="51"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" line="41" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" bodystart="41" bodyend="52"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1OnlineNode_1a59d58b605334eb6201da6c76fc40dbed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>rclcpp::node_interfaces::NodeBaseInterface::SharedPtr</type>
@@ -146,7 +160,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" line="53" column="57" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" bodystart="53" bodyend="55"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" line="54" column="57" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" bodystart="54" bodyend="56"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -203,7 +217,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" line="29" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" bodystart="29" bodyend="56"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" line="29" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" bodystart="29" bodyend="57"/>
     <listofallmembers>
       <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1aa7d03cd98d1ec527ba1c880124b31f2a" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>atomic_can_process</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1a38281b7e81e2292088a68b2fd2716003" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>atomic_node_running</name></member>
@@ -282,6 +296,7 @@
       <member refid="classrko__lio_1_1ros_1_1OnlineNode_1ae05287f800b92923088537f0a317244b" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>timer</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1a3e6bd9beb864c2d80b789f76d0022447" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>timestamp_proc_config</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1aaa03e3f3624f707e83921ceef9487baf" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>~BaseNode</name></member>
+      <member refid="classrko__lio_1_1ros_1_1OnlineNode_1a0aae7d204b0a072cfcbc8c60b9e95a7a" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>~OnlineNode</name></member>
       <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a0713110ddc71f5ce45fd8f0f2f3703db" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineNode</scope><name>~ThreadedNode</name></member>
     </listofallmembers>
   </compounddef>
