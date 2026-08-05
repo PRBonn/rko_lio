@@ -84,9 +84,16 @@ public:
   void run() {
     while (rclcpp::ok() && !bag->finished()) {
       {
-        if (10 * lidar_buffer.size() >= 9 * max_lidar_buffer_size) {
+        size_t buffered_frames = 0;
+        bool registration_can_drain = false;
+        {
+          const std::scoped_lock<std::mutex> lock(buffer_mutex);
+          buffered_frames = lidar_buffer.size();
+          registration_can_drain = atomic_can_process.load() || registration_busy.load();
+        }
+        if (2 * buffered_frames >= max_lidar_buffer_size && registration_can_drain) {
           RCLCPP_WARN_STREAM_ONCE(node->get_logger(),
-                                  "Lidar buffer size: " << lidar_buffer.size()
+                                  "Lidar buffer size: " << buffered_frames
                                                         << ", max_lidar_buffer_size: " << max_lidar_buffer_size
                                                         << ", throttling the bag reading thread as it's too fast.\n");
           // this is a hack. can be improved
@@ -115,6 +122,9 @@ public:
         // wait for the registration buffer to drain - leftover IMU after the last lidar scan is harmless
         const std::scoped_lock<std::mutex> lock(buffer_mutex);
         if (lidar_buffer.empty() && !registration_busy.load()) {
+          break;
+        }
+        if (!atomic_can_process.load() && !registration_busy.load()) {
           break;
         }
       }
