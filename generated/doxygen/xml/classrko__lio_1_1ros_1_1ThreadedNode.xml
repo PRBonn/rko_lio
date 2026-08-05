@@ -112,7 +112,7 @@
         <argsstring></argsstring>
         <name>max_lidar_buffer_size</name>
         <qualifiedname>rko_lio::ros::ThreadedNode::max_lidar_buffer_size</qualifiedname>
-        <initializer>= 50</initializer>
+        <initializer>= 10</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>

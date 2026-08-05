@@ -2,7 +2,7 @@ Configuring the odometry
 ========================
 
 This page is a reference for runtime parameters.
-The first group -- the LIO core parameters -- is shared between the Python and ROS interfaces.
+The first group -- the LIO core parameters -- is shared between the Python and ROS interfaces, though a few defaults differ.
 The remaining groups (extrinsics, per-point timestamp handling, Python pipeline knobs, ROS launch knobs) cover the wrapper-specific bits.
 
 The defaults are sane and I've used them with success across a number of platforms and datasets.
@@ -82,7 +82,7 @@ These show up under the top level of a Python config and as ROS launch arguments
   fraction of itself between two iterations.
   Lower (stricter) values will requires more ICP iterations.
 
-- **max_num_threads** (`int`, default ``0``)
+- **max_num_threads** (`int`, default ``1`` in ROS, ``0`` in Python)
 
   Only used to parallelize data association for ICP.
   ``0`` means autodetect based on hardware.
@@ -253,9 +253,9 @@ Mode-specific knobs
 
 These take effect only in the corresponding mode and otherwise warn that they are being ignored.
 
-- **async.max_lidar_buffer_size** (`int`, default ``50``)
+- **async.max_lidar_buffer_size** (`int`, default ``10``)
 
-  Threaded path only. Caps the lidar buffer; older frames are dropped past this.
+  Threaded path only. Caps the lidar buffer; incoming frames are dropped once it is full.
 
 - **seq.odom_at_imu_rate_topic** (default ``rko_lio/odom_at_imu_rate``)
 
