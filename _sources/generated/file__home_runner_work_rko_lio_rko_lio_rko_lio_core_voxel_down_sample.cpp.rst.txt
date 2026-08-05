@@ -34,6 +34,8 @@ Includes
 
 - ``algorithm``
 
+- ``memory_resource``
+
 - ``sophus/se3.hpp``
 
 - ``unordered_map``

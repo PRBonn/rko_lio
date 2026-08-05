@@ -268,7 +268,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.cpp" line="36" column="13" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.cpp" bodystart="36" bodyend="47" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" declline="33" declcolumn="13"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.cpp" line="37" column="13" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.cpp" bodystart="37" bodyend="50" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_down_sample.hpp" declline="33" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacerko__lio_1_1core_1a20e41beba0ec902b7c78dcdb29899f33" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Eigen::Vector3i</type>
