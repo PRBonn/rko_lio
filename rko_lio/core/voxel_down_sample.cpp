@@ -24,6 +24,7 @@
 #include "voxel_down_sample.hpp"
 #include <Eigen/Core>
 #include <algorithm>
+#include <memory_resource>
 #include <sophus/se3.hpp>
 #include <unordered_map>
 #include <vector>
@@ -35,7 +36,9 @@ namespace rko_lio::core {
 
 std::vector<Eigen::Vector3s> voxel_down_sample(const std::vector<Eigen::Vector3s>& frame, const Scalar voxel_size) {
   const auto inv_voxel_size = static_cast<Scalar>(1.0 / voxel_size);
-  std::unordered_map<Eigen::Vector3i, Eigen::Vector3s, VoxelHash> grid;
+  // the default allocator mallocs once per voxel, pmr cuts that to a handful of arena chunks
+  std::pmr::monotonic_buffer_resource arena;
+  std::pmr::unordered_map<Eigen::Vector3i, Eigen::Vector3s, VoxelHash> grid{&arena};
   grid.reserve(frame.size());
   std::for_each(frame.cbegin(), frame.cend(),
                 [&](const auto& point) { grid.try_emplace(point_to_voxel(point, inv_voxel_size), point); });
