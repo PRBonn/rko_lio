@@ -26,7 +26,7 @@ repos:
     hooks:
       - id: cmake-format
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.4.1
+    rev: v2.4.3
     hooks:
       - id: codespell
         exclude: \.(patch|rst)$|^docs/_static/
