@@ -171,7 +171,7 @@ configurable_parameters = [
     },
     {
         "name": "max_num_threads",
-        "default": "0",
+        "default": "1",
         "type": "int",
         "description": "Number of threads used for data association in ICP",
     },
@@ -238,9 +238,9 @@ configurable_parameters = [
     # threaded node specific parameters
     {
         "name": "async.max_lidar_buffer_size",
-        "default": "50",
+        "default": "10",
         "type": "int",
-        "description": "[threaded only] Max lidar frames buffered before older frames are dropped.",
+        "description": "[threaded only] Max lidar frames buffered before incoming frames are dropped.",
     },
     # seq-pipeline-specific parameters (online with odom_at_imu_rate:=true)
     {

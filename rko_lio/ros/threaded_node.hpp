@@ -45,7 +45,7 @@ public:
   std::atomic<bool> registration_busy{false};
   std::queue<core::ImuControl> imu_buffer;
   std::queue<LidarFrame> lidar_buffer;
-  size_t max_lidar_buffer_size = 50;
+  size_t max_lidar_buffer_size = 10;
 
   ThreadedNode() = delete;
   ThreadedNode(const std::string& node_name, const rclcpp::NodeOptions& options);

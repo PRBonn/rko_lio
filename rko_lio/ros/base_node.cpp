@@ -123,8 +123,7 @@ BaseNode::BaseNode(const std::string& node_name, const rclcpp::NodeOptions& opti
       node->declare_parameter<double>("convergence_criterion", lio_config.convergence_criterion));
   lio_config.max_correspondence_distance = static_cast<core::Scalar>(
       node->declare_parameter<double>("max_correspondence_distance", lio_config.max_correspondence_distance));
-  lio_config.max_num_threads =
-      static_cast<int>(node->declare_parameter<int>("max_num_threads", lio_config.max_num_threads));
+  lio_config.max_num_threads = static_cast<int>(node->declare_parameter<int>("max_num_threads", 1));
   lio_config.initialization_phase =
       node->declare_parameter<bool>("initialization_phase", lio_config.initialization_phase);
   lio_config.max_expected_jerk =
