@@ -48,7 +48,7 @@ struct VoxelBlock {
   static constexpr unsigned int max_points = 8;
   using PointArray = std::array<Eigen::Vector3i8, max_points>;
 
-  PointArray points;
+  PointArray points{};
   std::uint8_t size = 0;
 
   bool full() const { return size == max_points; }

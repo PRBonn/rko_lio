@@ -141,38 +141,40 @@ std::optional<Eigen::Vector3s> VoxelHashMap::get_closest_neighbor(const Eigen::V
   const Eigen::Matrix3s lower_bounds = face_bounds(query_quanta_from_corner);
 
   Scalar closest_distance_sq = square(max_distance * inv_quantum_);
-  const Eigen::Vector3i8* closest_offset = nullptr;
-  const Voxel* closest_shift = shifts.begin();
+  Eigen::Vector3i8 closest_offset = Eigen::Vector3i8::Zero();
+  Voxel closest_shift = Voxel::Zero();
+  bool found = false;
 
-  for (const Voxel* shift = shifts.begin(); shift != shifts.end(); ++shift) {
+  for (const Voxel& shift : shifts) {
     // lower bound on the distance to query within this voxel + shift
     const Scalar lower_bound_sq =
-        lower_bounds(0, shift->x() + 1) + lower_bounds(1, shift->y() + 1) + lower_bounds(2, shift->z() + 1);
+        lower_bounds(0, shift.x() + 1) + lower_bounds(1, shift.y() + 1) + lower_bounds(2, shift.z() + 1);
     if (lower_bound_sq >= closest_distance_sq) {
       continue;
     }
-    const auto search = map_.find(voxel + *shift);
+    const auto search = map_.find(voxel + shift);
     if (search == map_.end()) {
       continue;
     }
-    const Eigen::Vector3s query_quanta_from_neighbour = quanta_from_neighbour_centre(query_quanta_from_centre, *shift);
+    const Eigen::Vector3s query_quanta_from_neighbour = quanta_from_neighbour_centre(query_quanta_from_centre, shift);
     const VoxelBlock& block = search.value();
-    for (const Eigen::Vector3i8* neighbor = block.begin(); neighbor != block.end(); ++neighbor) {
-      const Scalar distance_sq = (neighbor->cast<Scalar>() - query_quanta_from_neighbour).squaredNorm();
+    for (const Eigen::Vector3i8& neighbor : block) {
+      const Scalar distance_sq = (neighbor.cast<Scalar>() - query_quanta_from_neighbour).squaredNorm();
       if (distance_sq < closest_distance_sq) {
         closest_distance_sq = distance_sq;
         closest_offset = neighbor;
         closest_shift = shift;
+        found = true;
       }
     }
   }
 
-  if (closest_offset == nullptr) {
+  if (!found) {
     return std::nullopt;
   }
   const Eigen::Vector3s query_quanta_from_neighbour =
-      quanta_from_neighbour_centre(query_quanta_from_centre, *closest_shift);
-  return query + (closest_offset->cast<Scalar>() - query_quanta_from_neighbour) * quantum_;
+      quanta_from_neighbour_centre(query_quanta_from_centre, closest_shift);
+  return query + (closest_offset.cast<Scalar>() - query_quanta_from_neighbour) * quantum_;
 }
 
 void VoxelHashMap::add_points(const std::vector<Eigen::Vector3s>& points, const Sophus::SE3s& pose) {
