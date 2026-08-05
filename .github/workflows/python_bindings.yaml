@@ -25,9 +25,9 @@ jobs:
           echo "Changed files: $changed_files"
           if echo "$changed_files" | grep -vE "^($IGNORED_FOLDERS)/|^($IGNORED_FILES)$" | grep -q . ||
              echo "$changed_files" | grep -qxF "$SELF"; then
-            echo "continue_run=true" >> $GITHUB_OUTPUT
+            echo "continue_run=true" >> "$GITHUB_OUTPUT"
           else
-            echo "continue_run=false" >> $GITHUB_OUTPUT
+            echo "continue_run=false" >> "$GITHUB_OUTPUT"
           fi
   python_bindings:
     needs: check_relevant_changes

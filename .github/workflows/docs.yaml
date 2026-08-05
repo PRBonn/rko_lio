@@ -24,7 +24,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y doxygen
       - name: Build documentation with rosdoc2
         run: |
-          rosdoc2 build --package-path $GITHUB_WORKSPACE
+          rosdoc2 build --package-path "$GITHUB_WORKSPACE"
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
