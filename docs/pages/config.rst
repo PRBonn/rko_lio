@@ -255,7 +255,7 @@ These take effect only in the corresponding mode and otherwise warn that they ar
 
 - **async.max_lidar_buffer_size** (`int`, default ``10``)
 
-  Threaded path only. Caps the lidar buffer; incoming frames are dropped once it is full.
+  Threaded path only. Caps the lidar buffer; the oldest buffered frame is dropped once it is full.
 
 - **seq.odom_at_imu_rate_topic** (default ``rko_lio/odom_at_imu_rate``)
 
