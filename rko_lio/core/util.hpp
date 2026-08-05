@@ -38,6 +38,7 @@ using Matrix3_6s = Matrix<rko_lio::core::Scalar, 3, 6>;
 using Vector6s = Matrix<rko_lio::core::Scalar, 6, 1>;
 using Matrix6s = Matrix<rko_lio::core::Scalar, 6, 6>;
 using Quaternions = Quaternion<rko_lio::core::Scalar>;
+using Vector3i8 = Vector3<std::int8_t>;
 } // namespace Eigen
 
 namespace Sophus {

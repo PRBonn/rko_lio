@@ -62,7 +62,6 @@ PYBIND11_MODULE(rko_lio_pybind, m) {
       .def_readwrite("deskew", &LIO::Config::deskew)
       .def_readwrite("max_iterations", &LIO::Config::max_iterations)
       .def_readwrite("voxel_size", &LIO::Config::voxel_size)
-      .def_readwrite("max_points_per_voxel", &LIO::Config::max_points_per_voxel)
       .def_readwrite("max_range", &LIO::Config::max_range)
       .def_readwrite("min_range", &LIO::Config::min_range)
       .def_readwrite("convergence_criterion", &LIO::Config::convergence_criterion)

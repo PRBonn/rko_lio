@@ -109,8 +109,6 @@ class LIOConfig:
         Maximum optimization iterations for scan matching.
     voxel_size : float, default 1.0
         Size of map voxels (meters).
-    max_points_per_voxel : int, default 20
-        Maximum points stored per voxel.
     max_range : float, default 100.0
         Max usable range of lidar (meters).
     min_range : float, default 1.0
@@ -134,7 +132,6 @@ class LIOConfig:
     deskew: bool = True
     max_iterations: int = 100
     voxel_size: float = 1.0
-    max_points_per_voxel: int = 20
     max_range: float = 100.0
     min_range: float = 1.0
     convergence_criterion: float = 1e-5
@@ -207,6 +204,13 @@ class PipelineConfig:
                 continue
             if fname in args:
                 pipeline_args[fname] = args.pop(fname)
+
+        if "max_points_per_voxel" in args or "max_points_per_voxel" in lio_args:
+            error_and_exit(
+                "Config argument",
+                "max_points_per_voxel",
+                "was removed, it is now fixed at compile time so the map can store points inline. Use voxel_size to control map density instead: smaller keeps more points overall, larger keeps fewer.",
+            )
 
         lio_valid_names = [f.name for f in fields(LIOConfig)]
         for arg in args:

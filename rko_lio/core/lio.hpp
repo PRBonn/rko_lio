@@ -50,7 +50,6 @@ public:
     Scalar voxel_size = 1.0;
 
     /** Max points per voxel. */
-    int max_points_per_voxel = 20;
 
     /** Maximum lidar range (m). */
     Scalar max_range = 100.0;
