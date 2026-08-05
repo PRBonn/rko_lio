@@ -134,16 +134,19 @@ Program Listing for File lio.cpp
                                         const Scalar& max_correspondence_distance) {
      using IcpAccum = std::tuple<Eigen::Matrix6s, Eigen::Vector6s, Scalar, int>;
    
-     auto linear_system_for_one_point = [](const Eigen::Vector3s& source, const Eigen::Vector3s& target) {
+     auto linear_system_for_one_point = [](const Eigen::Vector3s& source, const Eigen::Vector3s& residual) {
+       // world frame this is R * [I | -hat(source)]; write the residual in the body frame, the R cancels, and the compute
+       // is cheaper
        Eigen::Matrix3_6s J_r;
        J_r.block<3, 3>(0, 0) = Eigen::Matrix3s::Identity();
        J_r.block<3, 3>(0, 3) = -1.0 * Sophus::SO3s::hat(source);
-       const Eigen::Vector3s residual = source - target;
        return IcpAccum(J_r.transpose() * J_r,      // JTJ
                        J_r.transpose() * residual, // JTr
                        residual.squaredNorm(),     // chi
                        1);                         // correspondence
      };
+   
+     const Eigen::Matrix3s rotation_transpose = current_pose.so3().inverse().matrix();
    
      // The only parallel part
      using points_iterator = std::vector<Eigen::Vector3s>::const_iterator;
@@ -161,8 +164,8 @@ Program Listing for File lio.cpp
              if (!closest_neighbor.has_value()) {
                continue;
              }
-             const auto& [point_H, point_b, point_chi, point_n] =
-                 linear_system_for_one_point(transformed_point, **closest_neighbor);
+             const Eigen::Vector3s residual = rotation_transpose * (transformed_point - **closest_neighbor);
+             const auto& [point_H, point_b, point_chi, point_n] = linear_system_for_one_point(point, residual);
              H += point_H;
              b += point_b;
              chi += point_chi;
@@ -196,7 +199,7 @@ Program Listing for File lio.cpp
      const Eigen::Vector3s residual = predicted_gravity - local_gravity_estimate;
    
      Eigen::Matrix3_6s J_ori = Eigen::Matrix3_6s::Zero();
-     J_ori.block<3, 3>(0, 3) = current_rotation.inverse().matrix() * Sophus::SO3s::hat(-1 * gravity()).matrix();
+     J_ori.block<3, 3>(0, 3) = Sophus::SO3s::hat(predicted_gravity);
    
      return LinearSystem{J_ori.transpose() * J_ori, J_ori.transpose() * residual, 0.5 * residual.squaredNorm()};
    }
@@ -229,7 +232,7 @@ Program Listing for File lio.cpp
        });
    
        const Eigen::Vector6s dx = H.ldlt().solve(-b);
-       current_pose = Sophus::SE3s::exp(dx) * current_pose;
+       current_pose = current_pose * Sophus::SE3s::exp(dx);
    
        // Ceres function_tolerance style convergence check
        const Scalar cost_change = std::abs(previous_chi - chi);
