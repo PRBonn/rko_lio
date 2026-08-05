@@ -69,7 +69,7 @@ These show up under the top level of a Python config and as ROS launch arguments
 
   Maximum distance threshold (meters) for ICP data associations.
 
-- **max_iterations** (`int`, default ``100``)
+- **max_iterations** (`int`, default ``50`` in ROS, ``100`` in Python)
 
   Limit on the number of iterations for ICP.
 

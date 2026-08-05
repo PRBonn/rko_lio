@@ -194,7 +194,7 @@ configurable_parameters = [
     },
     {
         "name": "max_iterations",
-        "default": "100",
+        "default": "50",
         "type": "int",
         "description": "Max ICP iterations",
     },

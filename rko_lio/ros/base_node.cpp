@@ -108,8 +108,7 @@ BaseNode::BaseNode(const std::string& node_name, const rclcpp::NodeOptions& opti
   // lio params
   core::LIO::Config lio_config{};
   lio_config.deskew = node->declare_parameter<bool>("deskew", lio_config.deskew);
-  lio_config.max_iterations =
-      static_cast<size_t>(node->declare_parameter<int>("max_iterations", static_cast<int>(lio_config.max_iterations)));
+  lio_config.max_iterations = static_cast<size_t>(node->declare_parameter<int>("max_iterations", 50));
   lio_config.voxel_size =
       static_cast<core::Scalar>(node->declare_parameter<double>("voxel_size", lio_config.voxel_size));
   if (node->declare_parameter<int>("max_points_per_voxel", -1) != -1) {
