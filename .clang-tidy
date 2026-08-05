@@ -1,4 +1,3 @@
----
 #   easily-swappable-parameters      geometry code takes runs of same-typed scalars by nature
 #   avoid-magic-numbers              physical constants read better inline than named once
 #   non-private-member-variables     the config and state structs are deliberately plain data
@@ -12,41 +11,14 @@
 #   else-after-return                early return style is used deliberately
 #   identifier-length                short names are idiomatic in the math
 Checks: >
-  bugprone-*,
-  clang-analyzer-*,
-  concurrency-*,
-  cppcoreguidelines-*,
-  misc-*,
-  modernize-*,
-  performance-*,
-  portability-*,
-  readability-*,
-  -bugprone-easily-swappable-parameters,
-  -cppcoreguidelines-avoid-magic-numbers,
-  -cppcoreguidelines-non-private-member-variables-in-classes,
-  -cppcoreguidelines-pro-bounds-pointer-arithmetic,
-  -misc-include-cleaner,
-  -misc-non-private-member-variables-in-classes,
-  -modernize-use-nodiscard,
-  -modernize-use-ranges,
-  -modernize-use-trailing-return-type,
-  -portability-avoid-pragma-once,
-  -portability-template-virtual-member-function,
-  -readability-avoid-const-params-in-decls,
-  -readability-else-after-return,
-  -readability-identifier-length,
-  -readability-magic-numbers,
-  -readability-static-accessed-through-instance
+  bugprone-*, clang-analyzer-*, concurrency-*, cppcoreguidelines-*, misc-*, modernize-*, performance-*, portability-*, readability-*, -bugprone-easily-swappable-parameters, -cppcoreguidelines-avoid-magic-numbers, -cppcoreguidelines-non-private-member-variables-in-classes, -cppcoreguidelines-pro-bounds-pointer-arithmetic, -misc-include-cleaner, -misc-non-private-member-variables-in-classes, -modernize-use-nodiscard, -modernize-use-ranges, -modernize-use-trailing-return-type, -portability-avoid-pragma-once, -portability-template-virtual-member-function, -readability-avoid-const-params-in-decls, -readability-else-after-return, -readability-identifier-length, -readability-magic-numbers, -readability-static-accessed-through-instance
 
 HeaderFilterRegex: "rko_lio/.*\\.hpp$"
-
 # sophus formats assertions through fmt consteval strings, which clang's frontend rejects
 ExtraArgs:
   - "-DSOPHUS_USE_BASIC_LOGGING"
-
 WarningsAsErrors: "*"
 FormatStyle: "file"
-
 CheckOptions:
   - key: readability-function-cognitive-complexity.IgnoreMacros
     value: "true"

@@ -5,15 +5,16 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
   check_relevant_changes:
     runs-on: ubuntu-latest
     outputs:
       continue_run: ${{ steps.check.outputs.continue_run }}
     env:
-      IGNORED_FOLDERS: "rko_lio/ros|tests/core|cmake/dependencies/catch2|docs|launch|config"
-      IGNORED_FILES: "colcon.pkg|package.xml|rosdoc2.yaml|CHANGELOG.rst|LICENSE|README.md"
+      IGNORED_FOLDERS: "rko_lio/ros|tests/core|cmake/dependencies/catch2|docs|launch|config|.github"
+      IGNORED_FILES: "colcon.pkg|package.xml|rosdoc2.yaml|CHANGELOG.rst|LICENSE|README.md|.pre-commit-config.yaml"
+      # .github is ignored wholesale above, so this workflow re-arms itself on its own edits
+      SELF: ".github/workflows/python_bindings.yaml"
     steps:
       - uses: actions/checkout@v7
         with:
@@ -22,7 +23,8 @@ jobs:
         run: |
           changed_files=$(git diff --name-only origin/master)
           echo "Changed files: $changed_files"
-          if [ -n "$changed_files" ] && echo "$changed_files" | grep -vE "^($IGNORED_FOLDERS)/|^($IGNORED_FILES)$" > /dev/null; then
+          if echo "$changed_files" | grep -vE "^($IGNORED_FOLDERS)/|^($IGNORED_FILES)$" | grep -q . ||
+             echo "$changed_files" | grep -qxF "$SELF"; then
             echo "continue_run=true" >> $GITHUB_OUTPUT
           else
             echo "continue_run=false" >> $GITHUB_OUTPUT

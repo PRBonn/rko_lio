@@ -7,6 +7,10 @@ updates:
     labels:
       - "dependencies"
       - "actions"
+    groups:
+      actions:
+        patterns:
+          - "*"
   - package-ecosystem: "pip"
     directory: "/"
     schedule:
@@ -15,6 +19,10 @@ updates:
     labels:
       - "dependencies"
       - "python"
+    groups:
+      python:
+        patterns:
+          - "*"
   - package-ecosystem: "pre-commit"
     directory: "/"
     schedule:
@@ -22,3 +30,7 @@ updates:
     labels:
       - "dependencies"
       - "pre-commit"
+    groups:
+      pre-commit:
+        patterns:
+          - "*"

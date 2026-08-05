@@ -5,7 +5,6 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
   pre_commit:
     runs-on: ubuntu-latest
@@ -13,9 +12,32 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
       - uses: pre-commit/action@v3.0.1
-
+  check_relevant_changes:
+    runs-on: ubuntu-latest
+    outputs:
+      continue_run: ${{ steps.check.outputs.continue_run }}
+    env:
+      IGNORED_FOLDERS: "rko_lio/python/rko_lio|tests|docs|launch|config|.github"
+      IGNORED_FILES: "colcon.pkg|rosdoc2.yaml|CHANGELOG.rst|LICENSE|README.md|pyproject.toml|.pre-commit-config.yaml"
+      SELF: ".github/workflows/lint.yaml"
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - id: check
+        run: |
+          changed_files=$(git diff --name-only origin/master)
+          echo "Changed files: $changed_files"
+          if echo "$changed_files" | grep -vE "^($IGNORED_FOLDERS)/|^($IGNORED_FILES)$" | grep -q . ||
+             echo "$changed_files" | grep -qxF "$SELF"; then
+            echo "continue_run=true" >> $GITHUB_OUTPUT
+          else
+            echo "continue_run=false" >> $GITHUB_OUTPUT
+          fi
   clang_tidy:
     # minutes per translation unit, so it lives here rather than in pre-commit
+    needs: check_relevant_changes
+    if: needs.check_relevant_changes.outputs.continue_run == 'true'
     runs-on: ubuntu-latest
     container:
       image: ros:lyrical-ros-base

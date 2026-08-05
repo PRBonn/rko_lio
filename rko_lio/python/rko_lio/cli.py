@@ -101,7 +101,7 @@ def cli(
         None,
         "--dataloader",
         "-d",
-        help="Specify a dataloader: [rosbag, raw, helipr]. Leave empty to guess one",
+        help=r"Specify a dataloader: \[rosbag, raw, helipr]. Leave empty to guess one",
         show_choices=True,
         callback=dataloader_name_callback,
         case_sensitive=False,
