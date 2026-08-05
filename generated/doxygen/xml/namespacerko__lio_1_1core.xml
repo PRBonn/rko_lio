@@ -12,6 +12,7 @@
     <innerclass refid="structrko__lio_1_1core_1_1Timer" prot="public">rko_lio::core::Timer</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1TimestampProcessingConfig" prot="public">rko_lio::core::TimestampProcessingConfig</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1Timestamps" prot="public">rko_lio::core::Timestamps</innerclass>
+    <innerclass refid="structrko__lio_1_1core_1_1VoxelBlock" prot="public">rko_lio::core::VoxelBlock</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1VoxelHash" prot="public">rko_lio::core::VoxelHash</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1VoxelHashMap" prot="public">rko_lio::core::VoxelHashMap</innerclass>
     <sectiondef kind="typedef">
@@ -27,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="49" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="49" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="50" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="50" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespacerko__lio_1_1core_1a5a3f42fcc9e49ecd569baa31d940734f" prot="public" static="no">
         <type>std::chrono::nanoseconds</type>
@@ -41,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="51" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="51" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="52" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="52" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespacerko__lio_1_1core_1ad6796ca63cae68d67a3963e198336a1e" prot="public" static="no">
         <type>std::vector&lt; Nsec &gt;</type>
@@ -55,7 +56,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="52" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="52" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="53" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="53" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespacerko__lio_1_1core_1adbcc16d5b9b09c370ce6c889b6356bda" prot="public" static="no">
         <type>Eigen::Vector3i</type>
@@ -63,20 +64,6 @@
         <argsstring></argsstring>
         <name>Voxel</name>
         <qualifiedname>rko_lio::core::Voxel</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" line="43" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" bodystart="43" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="typedef" id="namespacerko__lio_1_1core_1a4a7466a65783f3cf5619faa3cd164de5" prot="public" static="no">
-        <type>std::vector&lt; Eigen::Vector3s &gt;</type>
-        <definition>using rko_lio::core::VoxelBlock = typedef std::vector&lt;Eigen::Vector3s&gt;</definition>
-        <argsstring></argsstring>
-        <name>VoxelBlock</name>
-        <qualifiedname>rko_lio::core::VoxelBlock</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -100,7 +87,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="56" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="56" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="57" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="57" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="func">
@@ -213,7 +200,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="55" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="55" bodyend="55"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="56" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="56" bodyend="56"/>
       </memberdef>
       <memberdef kind="function" id="namespacerko__lio_1_1core_1aadd9f1f2b2b1bc30166c6e4e6228841c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Eigen::Vector3s</type>
@@ -227,7 +214,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="57" column="24" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="57" bodyend="57"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="58" column="24" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="58" bodyend="58"/>
       </memberdef>
       <memberdef kind="function" id="namespacerko__lio_1_1core_1a82bfbe6dd0859af66258d81747392bd6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -245,7 +232,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="59" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="59" bodyend="59"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="60" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="60" bodyend="60"/>
       </memberdef>
       <memberdef kind="function" id="namespacerko__lio_1_1core_1af72280698a29ae2aa7a2e256c3228560" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; Eigen::Vector3s &gt;</type>

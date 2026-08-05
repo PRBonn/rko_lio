@@ -158,9 +158,6 @@ Nevertheless, this is the default.</p>
 <p>Minimum LiDAR range in meters.</p>
 <p>Points closer than this are discarded.
 Useful if your platform shows up in the scan due to occlusions.</p>
-</li>
-<li><p><strong>max_points_per_voxel</strong> (<cite>int</cite>, default <code class="docutils literal notranslate"><span class="pre">20</span></code>)</p>
-<p>Maximum number of points stored per voxel in the VDB map.</p>
 <p>Affects both memory and ICP data association.</p>
 <p>In case you need more runtime performance, you can reduce this.
 Odometry performance will be a bit affected, but how much depends on the environment.</p>
@@ -181,7 +178,7 @@ Lower (stricter) values will requires more ICP iterations.</p>
 <li><p><strong>max_num_threads</strong> (<cite>int</cite>, default <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p>
 <p>Only used to parallelize data association for ICP.
 <code class="docutils literal notranslate"><span class="pre">0</span></code> means autodetect based on hardware.</p>
-<p>In case compute resources are a constraint, limit this to a few threads and, in order, <code class="docutils literal notranslate"><span class="pre">max_points_per_voxel</span></code>, <code class="docutils literal notranslate"><span class="pre">voxel_size</span></code>, <code class="docutils literal notranslate"><span class="pre">max_range</span></code>, <code class="docutils literal notranslate"><span class="pre">max_iterations</span></code> are the parameters you probably care about.</p>
+<p>In case compute resources are a constraint, limit this to a few threads and, in order, <code class="docutils literal notranslate"><span class="pre">voxel_size</span></code>, <code class="docutils literal notranslate"><span class="pre">max_range</span></code>, <code class="docutils literal notranslate"><span class="pre">max_iterations</span></code> are the parameters you probably care about.</p>
 </li>
 <li><p><strong>initialization_phase</strong> (<cite>bool</cite>, default <code class="docutils literal notranslate"><span class="pre">False</span></code>)</p>
 <p>Initializes the system orientation (roll and pitch) plus IMU biases using the IMU measurements between the first two LiDAR scans the odometry receives.</p>

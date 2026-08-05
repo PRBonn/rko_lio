@@ -112,6 +112,8 @@ Typedefs
 
 - :ref:`exhale_typedef_util_8hpp_1a7e8c6a6baaf32a4e56f0a95ee9e288b3`
 
+- :ref:`exhale_typedef_util_8hpp_1a59225034936e018c9753ea0d23b377b2`
+
 - :ref:`exhale_typedef_util_8hpp_1acbe7c0b7d2256e5520e0672cc1f453a5`
 
 - :ref:`exhale_typedef_util_8hpp_1a352b146ace6235f1f17b8a7c63bc8676`

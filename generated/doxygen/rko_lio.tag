@@ -57,13 +57,6 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>int</type>
-      <name>max_points_per_voxel</name>
-      <anchorfile>structrko__lio_1_1core_1_1LIO_1_1Config.html</anchorfile>
-      <anchor>a670b666aa92cf07b19b8537bf3e9446a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
       <type>Scalar</type>
       <name>max_range</name>
       <anchorfile>structrko__lio_1_1core_1_1LIO_1_1Config.html</anchorfile>
@@ -376,6 +369,10 @@
     <filename>structrko__lio_1_1core_1_1Timestamps.html</filename>
   </compound>
   <compound kind="struct">
+    <name>rko_lio::core::VoxelBlock</name>
+    <filename>structrko__lio_1_1core_1_1VoxelBlock.html</filename>
+  </compound>
+  <compound kind="struct">
     <name>rko_lio::core::VoxelHash</name>
     <filename>structrko__lio_1_1core_1_1VoxelHash.html</filename>
   </compound>
@@ -383,10 +380,10 @@
     <name>rko_lio::core::VoxelHashMap</name>
     <filename>structrko__lio_1_1core_1_1VoxelHashMap.html</filename>
     <member kind="function">
-      <type>std::optional&lt; VoxelBlock::const_iterator &gt;</type>
+      <type>std::optional&lt; Eigen::Vector3s &gt;</type>
       <name>get_closest_neighbor</name>
       <anchorfile>structrko__lio_1_1core_1_1VoxelHashMap.html</anchorfile>
-      <anchor>a0a6ccb87f261212ff773694df66f373a</anchor>
+      <anchor>a135adfd73ddcd2d39fd357062119acdf</anchor>
       <arglist>(const Eigen::Vector3s &amp;query, const Scalar max_distance) const</arglist>
     </member>
   </compound>
@@ -403,6 +400,7 @@
     <class kind="struct">rko_lio::core::Timer</class>
     <class kind="struct">rko_lio::core::TimestampProcessingConfig</class>
     <class kind="struct">rko_lio::core::Timestamps</class>
+    <class kind="struct">rko_lio::core::VoxelBlock</class>
     <class kind="struct">rko_lio::core::VoxelHash</class>
     <class kind="struct">rko_lio::core::VoxelHashMap</class>
     <member kind="function">

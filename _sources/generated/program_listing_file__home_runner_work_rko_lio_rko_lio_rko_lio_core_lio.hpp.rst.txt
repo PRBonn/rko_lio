@@ -50,8 +50,6 @@ Program Listing for File lio.hpp
    
        Scalar voxel_size = 1.0;
    
-       int max_points_per_voxel = 20;
-   
        Scalar max_range = 100.0;
    
        Scalar min_range = 1.0;

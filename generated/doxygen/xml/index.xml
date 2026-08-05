@@ -72,7 +72,6 @@
     <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a047439a48b3c8afebe95407926efbada" kind="variable"><name>deskew</name></member>
     <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a9cc9bd40427d206f8349bc330c40aa1f" kind="variable"><name>max_iterations</name></member>
     <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a67bdbe027a35535e1ead0817708bbf21" kind="variable"><name>voxel_size</name></member>
-    <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a670b666aa92cf07b19b8537bf3e9446a" kind="variable"><name>max_points_per_voxel</name></member>
     <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a05692713c28ca65ec3a8d17101fc339d" kind="variable"><name>max_range</name></member>
     <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a68e1ae51d4a2f51ed6c056c4ded4305f" kind="variable"><name>min_range</name></member>
     <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a56d0d45436b8a84fff17bcc091db526a" kind="variable"><name>convergence_criterion</name></member>
@@ -271,23 +270,34 @@
     <member refid="structrko__lio_1_1core_1_1Timestamps_1a815937b2994206648bfe5c054b06be6d" kind="variable"><name>max</name></member>
     <member refid="structrko__lio_1_1core_1_1Timestamps_1abfc3e14a796873bf311e1ae008b51c3c" kind="variable"><name>per_point</name></member>
   </compound>
+  <compound refid="structrko__lio_1_1core_1_1VoxelBlock" kind="struct"><name>rko_lio::core::VoxelBlock</name>
+    <member refid="structrko__lio_1_1core_1_1VoxelBlock_1a0906abe2ead7cc06557565ea6854147e" kind="typedef"><name>PointArray</name></member>
+    <member refid="structrko__lio_1_1core_1_1VoxelBlock_1a111f7f2898a0064608a70f6a32d4c36f" kind="variable"><name>max_points</name></member>
+    <member refid="structrko__lio_1_1core_1_1VoxelBlock_1abd10834f06f8171cbc37827b3f926c50" kind="variable"><name>points</name></member>
+    <member refid="structrko__lio_1_1core_1_1VoxelBlock_1a617ba0a5a451a8a522c964a5a1022c07" kind="variable"><name>size</name></member>
+    <member refid="structrko__lio_1_1core_1_1VoxelBlock_1aae5862ea61b58493cbafccd5fc026cb9" kind="function"><name>full</name></member>
+    <member refid="structrko__lio_1_1core_1_1VoxelBlock_1a21fdc9d567900d9f08659f273d24698b" kind="function"><name>push_back</name></member>
+    <member refid="structrko__lio_1_1core_1_1VoxelBlock_1aa944c24db7e70e634dcfc8b5196e143f" kind="function"><name>begin</name></member>
+    <member refid="structrko__lio_1_1core_1_1VoxelBlock_1a6bcac6711b62532a48ac434b42a0aaf4" kind="function"><name>end</name></member>
+  </compound>
   <compound refid="structrko__lio_1_1core_1_1VoxelHash" kind="struct"><name>rko_lio::core::VoxelHash</name>
     <member refid="structrko__lio_1_1core_1_1VoxelHash_1afb0b39696a21b88ce047315a95543d5a" kind="function"><name>operator()</name></member>
   </compound>
   <compound refid="structrko__lio_1_1core_1_1VoxelHashMap" kind="struct"><name>rko_lio::core::VoxelHashMap</name>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a2ce3b53c91c23d83e78234a6eb59b9aa" kind="variable"><name>voxel_size_</name></member>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a5c6f227a3a9115f0ed870ee377cbef59" kind="variable"><name>inv_voxel_size_</name></member>
+    <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a9ce9c2e734e8cc926f5a7828ad6d353a" kind="variable"><name>quantum_</name></member>
+    <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a6fc094bce2f1fcd02635909095cdd188" kind="variable"><name>inv_quantum_</name></member>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a74ce269eff642797c0e41cbf0a81ec5e" kind="variable"><name>clipping_distance_</name></member>
-    <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1aa49f7c25925cab092cf7a9333dcdda01" kind="variable"><name>max_points_per_voxel_</name></member>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a9f0080b6526586495a7c68d30611af10" kind="variable"><name>map_</name></member>
-    <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a2412ae6ed05698c1c644e5e975a4e0c5" kind="function"><name>VoxelHashMap</name></member>
+    <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1ae6726c68c556e39c4840a2a510af121b" kind="function"><name>VoxelHashMap</name></member>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1ac0a85829fa563836a01b77ceff59cabe" kind="function"><name>clear</name></member>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1acf441a271ba571fd0c44bd7742030348" kind="function"><name>empty</name></member>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1ac0c87b8ccde5d0b509eb09d9846ed63a" kind="function"><name>update</name></member>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a7b42eee401a4fa661e84888695ce7a90" kind="function"><name>add_points</name></member>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a2674e68f1e824601051ad5f50d419e04" kind="function"><name>remove_points_far_from_location</name></member>
     <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1ac699740e2e36a61420793ff3ae72e666" kind="function"><name>pointcloud</name></member>
-    <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a0a6ccb87f261212ff773694df66f373a" kind="function"><name>get_closest_neighbor</name></member>
+    <member refid="structrko__lio_1_1core_1_1VoxelHashMap_1a135adfd73ddcd2d39fd357062119acdf" kind="function"><name>get_closest_neighbor</name></member>
   </compound>
   <compound refid="namespace_0d0" kind="namespace"><name>@0</name>
   </compound>
@@ -314,6 +324,7 @@
     <member refid="util_8hpp_1ae00c895351e2248eb4d074825b8e6d85" kind="typedef"><name>Vector6s</name></member>
     <member refid="util_8hpp_1ad4ddf471463f5bd25184c71e490b4ada" kind="typedef"><name>Matrix6s</name></member>
     <member refid="util_8hpp_1a7e8c6a6baaf32a4e56f0a95ee9e288b3" kind="typedef"><name>Quaternions</name></member>
+    <member refid="util_8hpp_1a59225034936e018c9753ea0d23b377b2" kind="typedef"><name>Vector3i8</name></member>
   </compound>
   <compound refid="namespacerko__lio" kind="namespace"><name>rko_lio</name>
   </compound>
@@ -322,7 +333,6 @@
     <member refid="namespacerko__lio_1_1core_1a5a3f42fcc9e49ecd569baa31d940734f" kind="typedef"><name>Nsec</name></member>
     <member refid="namespacerko__lio_1_1core_1ad6796ca63cae68d67a3963e198336a1e" kind="typedef"><name>TimestampVector</name></member>
     <member refid="namespacerko__lio_1_1core_1adbcc16d5b9b09c370ce6c889b6356bda" kind="typedef"><name>Voxel</name></member>
-    <member refid="namespacerko__lio_1_1core_1a4a7466a65783f3cf5619faa3cd164de5" kind="typedef"><name>VoxelBlock</name></member>
     <member refid="namespacerko__lio_1_1core_1a54f88ad3bc44e0104ea7c3aae878b3ba" kind="variable"><name>GRAVITY_MAG</name></member>
     <member refid="namespacerko__lio_1_1core_1a1430bb1204c834d1c05fc142822002d5" kind="function"><name>preprocess_scan</name></member>
     <member refid="namespacerko__lio_1_1core_1ac1fb80bf51f668bd3442bcb18044a57c" kind="function"><name>process_timestamps</name></member>

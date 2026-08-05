@@ -22,31 +22,31 @@
         <link refid="lio_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="16" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="22" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="26" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-        <childnode refid="28" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
         <childnode refid="29" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
         <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -56,35 +56,35 @@
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="16">
+      <node id="20">
         <label>preprocess_scan.hpp</label>
         <link refid="preprocess__scan_8hpp_source"/>
-        <childnode refid="17" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="18">
+      <node id="22">
         <label>profiler.hpp</label>
         <link refid="profiler_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
         <childnode refid="23" relation="include">
         </childnode>
         <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
         </childnode>
       </node>
       <node id="3">
@@ -120,7 +120,7 @@
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
@@ -128,38 +128,57 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
       </node>
       <node id="5">
         <label>Eigen/Core</label>
       </node>
-      <node id="17">
+      <node id="21">
         <label>Eigen/Dense</label>
       </node>
-      <node id="27">
+      <node id="31">
         <label>algorithm</label>
+      </node>
+      <node id="11">
+        <label>array</label>
       </node>
       <node id="6">
         <label>chrono</label>
       </node>
-      <node id="19">
+      <node id="23">
         <label>cmath</label>
       </node>
       <node id="10">
         <label>cstdint</label>
       </node>
-      <node id="28">
+      <node id="32">
         <label>functional</label>
       </node>
-      <node id="20">
+      <node id="24">
         <label>iomanip</label>
       </node>
-      <node id="21">
+      <node id="25">
         <label>iostream</label>
       </node>
-      <node id="29">
+      <node id="12">
+        <label>iterator</label>
+      </node>
+      <node id="13">
+        <label>limits</label>
+      </node>
+      <node id="33">
         <label>numeric</label>
       </node>
-      <node id="11">
+      <node id="14">
         <label>optional</label>
       </node>
       <node id="4">
@@ -168,34 +187,34 @@
       <node id="7">
         <label>sophus/se3.hpp</label>
       </node>
-      <node id="30">
+      <node id="15">
         <label>stdexcept</label>
       </node>
-      <node id="22">
+      <node id="26">
         <label>string</label>
       </node>
-      <node id="25">
+      <node id="29">
         <label>tbb/blocked_range.h</label>
       </node>
-      <node id="26">
+      <node id="30">
         <label>tbb/parallel_reduce.h</label>
       </node>
-      <node id="15">
+      <node id="19">
         <label>tbb/task_arena.h</label>
       </node>
-      <node id="12">
+      <node id="16">
         <label>tsl/robin_map.h</label>
       </node>
-      <node id="13">
+      <node id="17">
         <label>tuple</label>
       </node>
-      <node id="23">
+      <node id="27">
         <label>unordered_map</label>
       </node>
-      <node id="24">
+      <node id="28">
         <label>utility</label>
       </node>
-      <node id="14">
+      <node id="18">
         <label>vector</label>
       </node>
     </incdepgraph>
@@ -356,11 +375,11 @@
 <codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>[H,<sp/>b,<sp/>chi,<sp/>correspondences]<sp/>=<sp/>J;</highlight></codeline>
 <codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s&amp;<sp/>point<sp/>:<sp/>r)<sp/>{</highlight></codeline>
 <codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s<sp/>transformed_point<sp/>=<sp/>current_pose<sp/>*<sp/>point;</highlight></codeline>
-<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>closest_neighbor<sp/>=<sp/>voxel_map.<ref refid="structrko__lio_1_1core_1_1VoxelHashMap_1a0a6ccb87f261212ff773694df66f373a" kindref="member">get_closest_neighbor</ref>(transformed_point,<sp/>max_correspondence_distance);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>closest_neighbor<sp/>=<sp/>voxel_map.<ref refid="structrko__lio_1_1core_1_1VoxelHashMap_1a135adfd73ddcd2d39fd357062119acdf" kindref="member">get_closest_neighbor</ref>(transformed_point,<sp/>max_correspondence_distance);</highlight></codeline>
 <codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!closest_neighbor.has_value())<sp/>{</highlight></codeline>
 <codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s<sp/>residual<sp/>=<sp/>rotation_transpose<sp/>*<sp/>(transformed_point<sp/>-<sp/>**closest_neighbor);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s<sp/>residual<sp/>=<sp/>rotation_transpose<sp/>*<sp/>(transformed_point<sp/>-<sp/>*closest_neighbor);</highlight></codeline>
 <codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>[point_H,<sp/>point_b,<sp/>point_chi,<sp/>point_n]<sp/>=<sp/>linear_system_for_one_point(point,<sp/>residual);</highlight></codeline>
 <codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>H<sp/>+=<sp/>point_H;</highlight></codeline>
 <codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b<sp/>+=<sp/>point_b;</highlight></codeline>
@@ -460,7 +479,7 @@
 <codeline lineno="252"><highlight class="normal"></highlight></codeline>
 <codeline lineno="253"><highlight class="normal">LIO::LIO(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Config&amp;<sp/>config_)</highlight></codeline>
 <codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>config(config_),</highlight></codeline>
-<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>map(config_.voxel_size,<sp/>config_.max_range,<sp/>config_.max_points_per_voxel),</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>map(config_.voxel_size,<sp/>config_.max_range),</highlight></codeline>
 <codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>arena(config_.max_num_threads<sp/>&gt;<sp/>0<sp/>?<sp/>config_.max_num_threads<sp/>:<sp/>tbb::task_arena::automatic)<sp/>{}</highlight></codeline>
 <codeline lineno="257"><highlight class="normal"></highlight></codeline>
 <codeline lineno="258"><highlight class="normal"></highlight><highlight class="comment">//<sp/>==========================</highlight><highlight class="normal"></highlight></codeline>

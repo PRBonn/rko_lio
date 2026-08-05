@@ -60,10 +60,6 @@ These show up under the top level of a Python config and as ROS launch arguments
   Points closer than this are discarded.
   Useful if your platform shows up in the scan due to occlusions.
 
-- **max_points_per_voxel** (`int`, default ``20``)
-
-  Maximum number of points stored per voxel in the VDB map.
-
   Affects both memory and ICP data association.
 
   In case you need more runtime performance, you can reduce this.
@@ -91,7 +87,7 @@ These show up under the top level of a Python config and as ROS launch arguments
   Only used to parallelize data association for ICP.
   ``0`` means autodetect based on hardware.
 
-  In case compute resources are a constraint, limit this to a few threads and, in order, ``max_points_per_voxel``, ``voxel_size``, ``max_range``, ``max_iterations`` are the parameters you probably care about.
+  In case compute resources are a constraint, limit this to a few threads and, in order, ``voxel_size``, ``max_range``, ``max_iterations`` are the parameters you probably care about.
 
 - **initialization_phase** (`bool`, default ``False``)
 

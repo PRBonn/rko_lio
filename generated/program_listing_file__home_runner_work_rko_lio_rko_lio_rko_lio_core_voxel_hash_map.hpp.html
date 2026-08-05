@@ -117,19 +117,20 @@
 <span class="c1">// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
 <span class="c1">// SOFTWARE.</span>
 <span class="c1">//</span>
-<span class="c1">// NOTE: This implementation is heavily inspired in the original CT-ICP VoxelHashMap implementation,</span>
-<span class="c1">// although it was heavily modified and drastically simplified, but if you are using this module you</span>
-<span class="c1">// should at least acknoowledge the work from CT-ICP by giving a star on GitHub.</span>
-<span class="c1">//</span>
-<span class="c1">// modified from kiss-icp (kiss_icp/cpp/kiss_icp/core/VoxelHashMap.{hpp,cpp}).</span>
+<span class="c1">// modified heavily from kiss-icp (kiss_icp/cpp/kiss_icp/core/VoxelHashMap.{hpp,cpp}).</span>
 <span class="cp">#pragma once</span>
 
 <span class="c1">// brings VoxelHash and point_to_voxel</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;voxel_down_sample.hpp&quot;</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Eigen/Core&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdint&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iterator&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;optional&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sophus/se3.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdexcept&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;tsl/robin_map.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;tuple&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
@@ -137,12 +138,30 @@
 <span class="k">namespace</span><span class="w"> </span><span class="nn">rko_lio</span><span class="o">::</span><span class="nn">core</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">using</span><span class="w"> </span><span class="n">Voxel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3i</span><span class="p">;</span>
-<span class="k">using</span><span class="w"> </span><span class="n">VoxelBlock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3s</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">VoxelBlock</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">max_points</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">PointArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3i8</span><span class="p">,</span><span class="w"> </span><span class="n">max_points</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">PointArray</span><span class="w"> </span><span class="n">points</span><span class="p">{};</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">full</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">max_points</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">push_back</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3i8</span><span class="o">&amp;</span><span class="w"> </span><span class="n">offset</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">full</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">out_of_range</span><span class="p">(</span><span class="s">&quot;VoxelBlock is full, check full() before pushing&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="o">*</span><span class="n">std</span><span class="o">::</span><span class="n">next</span><span class="p">(</span><span class="n">points</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">offset</span><span class="p">;</span>
+<span class="w">    </span><span class="o">++</span><span class="n">size</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">PointArray</span><span class="o">::</span><span class="n">const_iterator</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">points</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="n">PointArray</span><span class="o">::</span><span class="n">const_iterator</span><span class="w"> </span><span class="nf">end</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">points</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">size</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// capacity is 8, size is what&#39;s filled</span>
+<span class="p">};</span>
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">VoxelHashMap</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">explicit</span><span class="w"> </span><span class="n">VoxelHashMap</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Scalar</span><span class="w"> </span><span class="n">voxel_size</span><span class="p">,</span>
-<span class="w">                        </span><span class="k">const</span><span class="w"> </span><span class="n">Scalar</span><span class="w"> </span><span class="n">clipping_distance</span><span class="p">,</span>
-<span class="w">                        </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">max_points_per_voxel</span><span class="p">);</span>
+<span class="w">  </span><span class="k">explicit</span><span class="w"> </span><span class="n">VoxelHashMap</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Scalar</span><span class="w"> </span><span class="n">voxel_size</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Scalar</span><span class="w"> </span><span class="n">clipping_distance</span><span class="p">);</span>
 
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">clear</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">map_</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">empty</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">map_</span><span class="p">.</span><span class="n">empty</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
@@ -151,13 +170,13 @@
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">remove_points_far_from_location</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3s</span><span class="o">&amp;</span><span class="w"> </span><span class="n">origin</span><span class="p">);</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3s</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pointcloud</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">VoxelBlock</span><span class="o">::</span><span class="n">const_iterator</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_closest_neighbor</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3s</span><span class="o">&amp;</span><span class="w"> </span><span class="n">query</span><span class="p">,</span>
-<span class="w">                                                                 </span><span class="k">const</span><span class="w"> </span><span class="n">Scalar</span><span class="w"> </span><span class="n">max_distance</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3s</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_closest_neighbor</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3s</span><span class="o">&amp;</span><span class="w"> </span><span class="n">query</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Scalar</span><span class="w"> </span><span class="n">max_distance</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 
 <span class="w">  </span><span class="n">Scalar</span><span class="w"> </span><span class="n">voxel_size_</span><span class="p">;</span>
 <span class="w">  </span><span class="n">Scalar</span><span class="w"> </span><span class="n">inv_voxel_size_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Scalar</span><span class="w"> </span><span class="n">quantum_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Scalar</span><span class="w"> </span><span class="n">inv_quantum_</span><span class="p">;</span>
 <span class="w">  </span><span class="n">Scalar</span><span class="w"> </span><span class="n">clipping_distance_</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">max_points_per_voxel_</span><span class="p">;</span>
 <span class="w">  </span><span class="n">tsl</span><span class="o">::</span><span class="n">robin_map</span><span class="o">&lt;</span><span class="n">Voxel</span><span class="p">,</span><span class="w"> </span><span class="n">VoxelBlock</span><span class="p">,</span><span class="w"> </span><span class="n">VoxelHash</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map_</span><span class="p">;</span>
 <span class="p">};</span>
 

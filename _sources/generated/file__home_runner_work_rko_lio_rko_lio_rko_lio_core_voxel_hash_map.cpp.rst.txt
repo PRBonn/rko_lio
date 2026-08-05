@@ -40,7 +40,13 @@ Includes
 
 - ``limits``
 
+- ``numbers``
+
 - ``sophus/se3.hpp``
+
+- ``stdexcept``
+
+- ``string``
 
 - ``tuple``
 

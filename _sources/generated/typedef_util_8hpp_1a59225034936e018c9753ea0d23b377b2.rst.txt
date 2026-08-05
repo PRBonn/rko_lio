@@ -1,0 +1,14 @@
+.. _exhale_typedef_util_8hpp_1a59225034936e018c9753ea0d23b377b2:
+
+Typedef Eigen::Vector3i8
+========================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_util.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: Eigen::Vector3i8
+   :project: rko_lio Doxygen Project

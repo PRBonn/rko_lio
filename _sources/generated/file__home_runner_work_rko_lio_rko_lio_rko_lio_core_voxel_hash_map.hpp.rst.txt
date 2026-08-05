@@ -32,9 +32,19 @@ Includes
 
 - ``Eigen/Core``
 
+- ``array``
+
+- ``cstdint``
+
+- ``iterator``
+
+- ``limits``
+
 - ``optional``
 
 - ``sophus/se3.hpp``
+
+- ``stdexcept``
 
 - ``tsl/robin_map.h``
 
@@ -70,6 +80,8 @@ Classes
 -------
 
 
+- :ref:`exhale_struct_structrko__lio_1_1core_1_1VoxelBlock`
+
 - :ref:`exhale_struct_structrko__lio_1_1core_1_1VoxelHashMap`
 
 
@@ -78,6 +90,4 @@ Typedefs
 
 
 - :ref:`exhale_typedef_namespacerko__lio_1_1core_1adbcc16d5b9b09c370ce6c889b6356bda`
-
-- :ref:`exhale_typedef_namespacerko__lio_1_1core_1a4a7466a65783f3cf5619faa3cd164de5`
 

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Struct VoxelBlock &#8212; RKO-LIO: Lidar-inertial odometry without sensor-specific modeling</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=f6a572b4" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=adc50415" />
+    <script src="../_static/documentation_options.js?v=71d9d8e6"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Struct VoxelHash" href="structrko__lio_1_1core_1_1VoxelHash.html" />
+    <link rel="prev" title="Struct Timestamps" href="structrko__lio_1_1core_1_1Timestamps.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">RKO-LIO</a></h1>
+
+
+
+<p class="blurb">Lidar-inertial odometry</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=PRBonn&repo=rko_lio&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/data.html">Data</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pages/ros.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/config.html">Configuring rko_lio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/changelog_literal.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://index.ros.org/p/rko_lio/">ROS Index</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/rko-lio/">PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://github.com/PRBonn/rko_lio">GitHub</a></li>
+    
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="struct-voxelblock">
+<span id="exhale-struct-structrko-lio-1-1core-1-1voxelblock"></span><h1>Struct VoxelBlock<a class="headerlink" href="#struct-voxelblock" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_rko_lio_core_voxel_hash_map.hpp.html#file-home-runner-work-rko-lio-rko-lio-rko-lio-core-voxel-hash-map-hpp"><span class="std std-ref">File voxel_hash_map.hpp</span></a></p></li>
+</ul>
+<section id="struct-documentation">
+<h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Link to this heading">¶</a></h2>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core10VoxelBlockE">
+<span id="_CPPv3N7rko_lio4core10VoxelBlockE"></span><span id="_CPPv2N7rko_lio4core10VoxelBlockE"></span><span id="rko_lio::core::VoxelBlock"></span><span class="target" id="structrko__lio_1_1core_1_1VoxelBlock"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">VoxelBlock</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core10VoxelBlockE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>A map point is a signed offset from the centre of its voxel, quantized to int8. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core10VoxelBlock10PointArrayE">
+<span id="_CPPv3N7rko_lio4core10VoxelBlock10PointArrayE"></span><span id="_CPPv2N7rko_lio4core10VoxelBlock10PointArrayE"></span><span class="target" id="structrko__lio_1_1core_1_1VoxelBlock_1a0906abe2ead7cc06557565ea6854147e"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PointArray</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="typedef_util_8hpp_1a59225034936e018c9753ea0d23b377b2.html#_CPPv4N5Eigen9Vector3i8E" title="Eigen::Vector3i8"><span class="n"><span class="pre">Vector3i8</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7rko_lio4core10VoxelBlock10max_pointsE" title="rko_lio::core::VoxelBlock::max_points"><span class="n"><span class="pre">max_points</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core10VoxelBlock10PointArrayE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7rko_lio4core10VoxelBlock4fullEv">
+<span id="_CPPv3NK7rko_lio4core10VoxelBlock4fullEv"></span><span id="_CPPv2NK7rko_lio4core10VoxelBlock4fullEv"></span><span id="rko_lio::core::VoxelBlock::fullC"></span><span class="target" id="structrko__lio_1_1core_1_1VoxelBlock_1aae5862ea61b58493cbafccd5fc026cb9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">full</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7rko_lio4core10VoxelBlock4fullEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core10VoxelBlock9push_backERKN5Eigen9Vector3i8E">
+<span id="_CPPv3N7rko_lio4core10VoxelBlock9push_backERKN5Eigen9Vector3i8E"></span><span id="_CPPv2N7rko_lio4core10VoxelBlock9push_backERKN5Eigen9Vector3i8E"></span><span id="rko_lio::core::VoxelBlock::push_back__Eigen::Vector3i8CR"></span><span class="target" id="structrko__lio_1_1core_1_1VoxelBlock_1a21fdc9d567900d9f08659f273d24698b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">push_back</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="typedef_util_8hpp_1a59225034936e018c9753ea0d23b377b2.html#_CPPv4N5Eigen9Vector3i8E" title="Eigen::Vector3i8"><span class="n"><span class="pre">Vector3i8</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">offset</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio4core10VoxelBlock9push_backERKN5Eigen9Vector3i8E" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7rko_lio4core10VoxelBlock5beginEv">
+<span id="_CPPv3NK7rko_lio4core10VoxelBlock5beginEv"></span><span id="_CPPv2NK7rko_lio4core10VoxelBlock5beginEv"></span><span id="rko_lio::core::VoxelBlock::beginC"></span><span class="target" id="structrko__lio_1_1core_1_1VoxelBlock_1aa944c24db7e70e634dcfc8b5196e143f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7rko_lio4core10VoxelBlock10PointArrayE" title="rko_lio::core::VoxelBlock::PointArray"><span class="n"><span class="pre">PointArray</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">const_iterator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">begin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7rko_lio4core10VoxelBlock5beginEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7rko_lio4core10VoxelBlock3endEv">
+<span id="_CPPv3NK7rko_lio4core10VoxelBlock3endEv"></span><span id="_CPPv2NK7rko_lio4core10VoxelBlock3endEv"></span><span id="rko_lio::core::VoxelBlock::endC"></span><span class="target" id="structrko__lio_1_1core_1_1VoxelBlock_1a6bcac6711b62532a48ac434b42a0aaf4"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7rko_lio4core10VoxelBlock10PointArrayE" title="rko_lio::core::VoxelBlock::PointArray"><span class="n"><span class="pre">PointArray</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">const_iterator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">end</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7rko_lio4core10VoxelBlock3endEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core10VoxelBlock6pointsE">
+<span id="_CPPv3N7rko_lio4core10VoxelBlock6pointsE"></span><span id="_CPPv2N7rko_lio4core10VoxelBlock6pointsE"></span><span id="rko_lio::core::VoxelBlock::points__PointArray"></span><span class="target" id="structrko__lio_1_1core_1_1VoxelBlock_1abd10834f06f8171cbc37827b3f926c50"></span><a class="reference internal" href="#_CPPv4N7rko_lio4core10VoxelBlock10PointArrayE" title="rko_lio::core::VoxelBlock::PointArray"><span class="n"><span class="pre">PointArray</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">points</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core10VoxelBlock6pointsE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core10VoxelBlock4sizeE">
+<span id="_CPPv3N7rko_lio4core10VoxelBlock4sizeE"></span><span id="_CPPv2N7rko_lio4core10VoxelBlock4sizeE"></span><span id="rko_lio::core::VoxelBlock::size__std::uint8_t"></span><span class="target" id="structrko__lio_1_1core_1_1VoxelBlock_1a617ba0a5a451a8a522c964a5a1022c07"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core10VoxelBlock4sizeE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-attributes">Public Static Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio4core10VoxelBlock10max_pointsE">
+<span id="_CPPv3N7rko_lio4core10VoxelBlock10max_pointsE"></span><span id="_CPPv2N7rko_lio4core10VoxelBlock10max_pointsE"></span><span id="rko_lio::core::VoxelBlock::max_points__unsigned-i"></span><span class="target" id="structrko__lio_1_1core_1_1VoxelBlock_1a111f7f2898a0064608a70f6a32d4c36f"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">max_points</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">8</span></span><a class="headerlink" href="#_CPPv4N7rko_lio4core10VoxelBlock10max_pointsE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="structrko__lio_1_1core_1_1Timestamps.html" title="Previous document">Struct Timestamps</a>
+        </li>
+        <li>
+          <a href="structrko__lio_1_1core_1_1VoxelHash.html" title="Next document">Struct VoxelHash</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &#169;2026 Meher Malladi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/generated/structrko__lio_1_1core_1_1VoxelBlock.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
