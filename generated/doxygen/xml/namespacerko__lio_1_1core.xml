@@ -216,9 +216,15 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="58" column="24" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="58" bodyend="58"/>
       </memberdef>
-      <memberdef kind="function" id="namespacerko__lio_1_1core_1a82bfbe6dd0859af66258d81747392bd6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>double</type>
-        <definition>double rko_lio::core::to_seconds</definition>
+      <memberdef kind="function" id="namespacerko__lio_1_1core_1a4b33112425f17284c5c3ed6b2fe43119" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+            <defval>double</defval>
+          </param>
+        </templateparamlist>
+        <type>constexpr T</type>
+        <definition>constexpr T rko_lio::core::to_seconds</definition>
         <argsstring>(const Nsec d)</argsstring>
         <name>to_seconds</name>
         <qualifiedname>rko_lio::core::to_seconds</qualifiedname>
@@ -232,7 +238,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="60" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="60" bodyend="60"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="62" column="13" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="62" bodyend="64"/>
       </memberdef>
       <memberdef kind="function" id="namespacerko__lio_1_1core_1af72280698a29ae2aa7a2e256c3228560" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; Eigen::Vector3s &gt;</type>

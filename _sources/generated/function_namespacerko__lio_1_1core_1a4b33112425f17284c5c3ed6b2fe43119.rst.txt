@@ -1,7 +1,7 @@
-.. _exhale_function_namespacerko__lio_1_1core_1a82bfbe6dd0859af66258d81747392bd6:
+.. _exhale_function_namespacerko__lio_1_1core_1a4b33112425f17284c5c3ed6b2fe43119:
 
-Function rko_lio::core::to_seconds
-==================================
+Template Function rko_lio::core::to_seconds
+===========================================
 
 - Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_util.hpp`
 

@@ -338,7 +338,7 @@
     <member refid="namespacerko__lio_1_1core_1ac1fb80bf51f668bd3442bcb18044a57c" kind="function"><name>process_timestamps</name></member>
     <member refid="namespacerko__lio_1_1core_1a1606d7b4fe5b32a257501d8079c968ca" kind="function"><name>square</name></member>
     <member refid="namespacerko__lio_1_1core_1aadd9f1f2b2b1bc30166c6e4e6228841c" kind="function"><name>gravity</name></member>
-    <member refid="namespacerko__lio_1_1core_1a82bfbe6dd0859af66258d81747392bd6" kind="function"><name>to_seconds</name></member>
+    <member refid="namespacerko__lio_1_1core_1a4b33112425f17284c5c3ed6b2fe43119" kind="function"><name>to_seconds</name></member>
     <member refid="namespacerko__lio_1_1core_1af72280698a29ae2aa7a2e256c3228560" kind="function"><name>voxel_down_sample</name></member>
     <member refid="namespacerko__lio_1_1core_1a20e41beba0ec902b7c78dcdb29899f33" kind="function"><name>point_to_voxel</name></member>
   </compound>
