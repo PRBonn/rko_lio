@@ -57,7 +57,11 @@ constexpr Scalar square(Scalar x) { return x * x; }
 constexpr Scalar GRAVITY_MAG = 9.8107;
 inline Eigen::Vector3s gravity() { return {0, 0, -GRAVITY_MAG}; }
 
-inline double to_seconds(const Nsec d) { return std::chrono::duration<double>(d).count(); }
+// always divides in double, then narrows, so an absolute timestamp does not lose its magnitude
+template <typename T = double>
+constexpr T to_seconds(const Nsec d) {
+  return static_cast<T>(std::chrono::duration<double>(d).count());
+}
 
 // data structs
 struct State {

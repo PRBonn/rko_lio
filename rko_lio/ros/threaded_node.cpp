@@ -85,9 +85,9 @@ void ThreadedNode::lidar_callback(const sensor_msgs::msg::PointCloud2::ConstShar
 
 void ThreadedNode::registration_loop() {
   while (rclcpp::ok() && atomic_node_running) {
-    SCOPED_PROFILER("ROS Registration Loop");
     std::unique_lock buffer_lock(buffer_mutex);
     sync_condition_variable.wait(buffer_lock, [this]() { return !atomic_node_running || atomic_can_process; });
+    SCOPED_PROFILER("ROS Registration Loop");
     if (!atomic_node_running) {
       // node could have been killed after waiting on the cv
       break;

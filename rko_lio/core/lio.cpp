@@ -347,7 +347,7 @@ void LIO::add_imu_measurement(const ImuControl& base_imu) {
     imu_state = lidar_state;
   }
 
-  const auto dt = static_cast<Scalar>(to_seconds(base_imu.time - imu_state.time));
+  const auto dt = to_seconds<Scalar>(base_imu.time - imu_state.time);
 
   if (dt < 0.0) {
     // messages are out of sync. that is a problem, since we integrate gyro from last lidar time onwards
@@ -444,7 +444,7 @@ Vector3sVector LIO::register_scan(Vector3sVector scan, const TimestampVector& ti
 
   // compute relative motion using controls
   auto relative_pose_at_time = [&](const Nsec time) -> Sophus::SE3s {
-    const auto dt = static_cast<Scalar>(to_seconds(time - lidar_state.time));
+    const auto dt = to_seconds<Scalar>(time - lidar_state.time);
     Eigen::Vector6s tau;
     tau.head<3>() = lidar_state.velocity * dt + (avg_body_accel * square(dt) / 2);
     tau.tail<3>() = avg_ang_vel * dt;
@@ -483,7 +483,7 @@ Vector3sVector LIO::register_scan(Vector3sVector scan, const TimestampVector& ti
         arena.execute([&] { return icp(preproc_result.keypoints, map, initial_guess, config, kf_step.info); });
 
     // estimate velocities and accelerations from the new pose
-    const auto dt = static_cast<Scalar>(to_seconds(current_lidar_time - lidar_state.time));
+    const auto dt = to_seconds<Scalar>(current_lidar_time - lidar_state.time);
     const Sophus::SE3s motion = lidar_state.pose.inverse() * optimized_pose;
     const Eigen::Vector6s local_velocity = motion.log() / dt;
     const Eigen::Vector3s local_linear_acceleration =

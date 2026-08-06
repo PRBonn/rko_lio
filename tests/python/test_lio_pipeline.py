@@ -114,8 +114,7 @@ def test_identity_registration(
     pipeline.add_imu(last_lidar_end + 10_000_000, accel, gyro)  # ensure the second lidar gets processed
     verify_identity_pose(2)
 
-    # TODO: ARM builds break on the third scan with more than a 1mm error, and only the ARM builds. i dont know why. same as above. problem for future me
     # Third scan
-    # last_lidar_end = add_scan_with_imu(last_lidar_end)
-    # pipeline.add_imu(last_lidar_end + 0.01, accel, gyro) # ensure the third lidar gets processed
-    # verify_identity_pose(3)
+    last_lidar_end = add_scan_with_imu(last_lidar_end)
+    pipeline.add_imu(last_lidar_end + 10_000_000, accel, gyro)  # ensure the third lidar gets processed
+    verify_identity_pose(3)
