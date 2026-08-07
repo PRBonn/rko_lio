@@ -114,7 +114,7 @@ PYBIND11_MODULE(rko_lio_pybind, m) {
             return self.register_scan(Sophus::SE3s(extrinsic_lidar2base), scan, timestamps);
           },
           "extrinsic_lidar2base"_a, "scan"_a, "timestamps"_a)
-      .def("map_point_cloud", [](LIO& self) { return self.map.pointcloud(); })
+      .def("map_point_cloud", [](LIO& self) { return self.map.points(); })
       .def("pose", [](LIO& self) { return self.lidar_state.pose.matrix(); })
       .def("imu_pose", [](LIO& self) { return self.imu_state.pose.matrix(); })
       .def("imu_velocity", [](LIO& self) { return self.imu_state.velocity; })

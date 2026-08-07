@@ -108,17 +108,17 @@ public:
     }
 
     try {
-      LidarFrame frame = process_lidar_msg(lidar_msg);
-      const core::Vector3sVector deskewed_frame =
-          register_scan_locked(std::move(frame.points), frame.timestamps.per_point);
-      if (deskewed_frame.empty()) {
-        // first frame is skipped and an empty frame is returned. nothing to publish.
+      LidarScan scan = process_lidar_msg(lidar_msg);
+      const core::Vector3sVector deskewed_scan =
+          register_scan_locked(std::move(scan.points), scan.timestamps.per_point);
+      if (deskewed_scan.empty()) {
+        // first scan is skipped and an empty scan is returned. nothing to publish.
         return;
       }
-      publish_lidar_outputs(deskewed_frame);
+      publish_lidar_outputs(deskewed_scan);
       publish_tf(lio->lidar_state);
     } catch (const std::invalid_argument& ex) {
-      RCLCPP_ERROR_STREAM(node->get_logger(), "Encountered error, dropping frame. Error: " << ex.what());
+      RCLCPP_ERROR_STREAM(node->get_logger(), "Encountered error, dropping scan. Error: " << ex.what());
     }
   }
 };

@@ -63,23 +63,23 @@ void ThreadedNode::lidar_callback(const sensor_msgs::msg::PointCloud2::ConstShar
   {
     const std::scoped_lock lock(buffer_mutex);
     if (lidar_buffer.size() >= max_lidar_buffer_size) {
-      RCLCPP_WARN_STREAM(node->get_logger(), "Registration lidar buffer limit reached. Dropping frame.");
+      RCLCPP_WARN_STREAM(node->get_logger(), "Registration lidar buffer limit reached. Dropping scan.");
       sync_condition_variable.notify_one();
       return;
     }
   }
   try {
-    LidarFrame frame = process_lidar_msg(lidar_msg);
+    LidarScan scan = process_lidar_msg(lidar_msg);
     {
       const std::scoped_lock lock(buffer_mutex);
-      lidar_buffer.push(std::move(frame));
+      lidar_buffer.push(std::move(scan));
       atomic_can_process = !imu_buffer.empty() && imu_buffer.back().time > lidar_buffer.front().timestamps.max;
     }
     if (atomic_can_process) {
       sync_condition_variable.notify_one();
     }
   } catch (const std::invalid_argument& ex) {
-    RCLCPP_ERROR_STREAM(node->get_logger(), "Encountered error, dropping frame: Error. " << ex.what());
+    RCLCPP_ERROR_STREAM(node->get_logger(), "Encountered error, dropping scan: Error. " << ex.what());
   }
 }
 
@@ -92,10 +92,10 @@ void ThreadedNode::registration_loop() {
       // node could have been killed after waiting on the cv
       break;
     }
-    LidarFrame frame = std::move(lidar_buffer.front());
+    LidarScan scan = std::move(lidar_buffer.front());
     lidar_buffer.pop();
     registration_busy = true;
-    const core::Nsec end_stamp = frame.timestamps.max;
+    const core::Nsec end_stamp = scan.timestamps.max;
     for (; !imu_buffer.empty() && imu_buffer.front().time < end_stamp; imu_buffer.pop()) {
       const core::ImuControl& imu_data = imu_buffer.front();
       lio->add_imu_measurement(extrinsic_imu2base, imu_data);
@@ -106,15 +106,15 @@ void ThreadedNode::registration_loop() {
     buffer_lock.unlock(); // we dont touch the buffers anymore
 
     try {
-      const core::Vector3sVector deskewed_frame =
-          register_scan_locked(std::move(frame.points), frame.timestamps.per_point);
-      if (!deskewed_frame.empty()) {
-        // TODO: first frame is skipped and an empty frame is returned. improve how we handle this
-        publish_lidar_outputs(deskewed_frame);
+      const core::Vector3sVector deskewed_scan =
+          register_scan_locked(std::move(scan.points), scan.timestamps.per_point);
+      if (!deskewed_scan.empty()) {
+        // TODO: first scan is skipped and an empty scan is returned. improve how we handle this
+        publish_lidar_outputs(deskewed_scan);
         publish_tf(lio->lidar_state);
       }
     } catch (const std::invalid_argument& ex) {
-      RCLCPP_ERROR_STREAM(node->get_logger(), "Encountered error, dropping frame. Error: " << ex.what());
+      RCLCPP_ERROR_STREAM(node->get_logger(), "Encountered error, dropping scan. Error: " << ex.what());
     }
     registration_busy = false;
   }

@@ -65,25 +65,27 @@ struct VoxelBlock {
   PointArray::const_iterator end() const { return points.begin() + size; } // capacity is 8, size is what's filled
 };
 
-struct VoxelHashMap {
+class VoxelHashMap {
+public:
   explicit VoxelHashMap(const Scalar voxel_size, const Scalar clipping_distance);
 
-  void clear() { map_.clear(); }
-  bool empty() const { return map_.empty(); }
+  void clear() { voxels_.clear(); }
+  bool empty() const { return voxels_.empty(); }
   void update(const std::vector<Eigen::Vector3s>& points, const Sophus::SE3s& pose);
   void add_points(const std::vector<Eigen::Vector3s>& points, const Sophus::SE3s& pose);
-  void remove_points_far_from_location(const Eigen::Vector3s& origin);
-  std::vector<Eigen::Vector3s> pointcloud() const;
+  void remove_points_far_from_location(const Eigen::Vector3s& location);
+  std::vector<Eigen::Vector3s> points() const;
 
   /// Nearest point to `query` strictly within `max_distance`, or nullopt if there is none.
   std::optional<Eigen::Vector3s> get_closest_neighbor(const Eigen::Vector3s& query, const Scalar max_distance) const;
 
+private:
   Scalar voxel_size_;
   Scalar inv_voxel_size_;
   Scalar quantum_;
   Scalar inv_quantum_;
   Scalar clipping_distance_;
-  tsl::robin_map<Voxel, VoxelBlock, VoxelHash> map_;
+  tsl::robin_map<Voxel, VoxelBlock, VoxelHash> voxels_;
 };
 
 } // namespace rko_lio::core
