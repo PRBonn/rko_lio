@@ -21,7 +21,7 @@
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="83" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="83" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" prot="public" static="no" mutable="no">
-        <type><ref refid="structrko__lio_1_1core_1_1VoxelHashMap" kindref="compound">VoxelHashMap</ref></type>
+        <type><ref refid="classrko__lio_1_1core_1_1VoxelHashMap" kindref="compound">VoxelHashMap</ref></type>
         <definition>VoxelHashMap rko_lio::core::LIO::map</definition>
         <argsstring></argsstring>
         <name>map</name>
@@ -160,12 +160,12 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="classrko__lio_1_1core_1_1LIO_1aa0e98c41c711dff7bf50bb1706b2d603" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="classrko__lio_1_1core_1_1LIO_1a24f43f1b454e20bf72200a644415c026" prot="private" static="no" mutable="no">
         <type>bool</type>
-        <definition>bool rko_lio::core::LIO::_initialized</definition>
+        <definition>bool rko_lio::core::LIO::initialized_</definition>
         <argsstring></argsstring>
-        <name>_initialized</name>
-        <qualifiedname>rko_lio::core::LIO::_initialized</qualifiedname>
+        <name>initialized_</name>
+        <qualifiedname>rko_lio::core::LIO::initialized_</qualifiedname>
         <initializer>= false</initializer>
         <briefdescription>
 <para>True if odometry initialization has been completed. </para>
@@ -176,12 +176,12 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="162" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="162" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classrko__lio_1_1core_1_1LIO_1a59cd94ba392837604c1fbdca1cb0a05d" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="classrko__lio_1_1core_1_1LIO_1ae5dee26026a73e83bd9716cad79cd0e3" prot="private" static="no" mutable="no">
         <type>Nsec</type>
-        <definition>Nsec rko_lio::core::LIO::_last_real_imu_time</definition>
+        <definition>Nsec rko_lio::core::LIO::last_real_imu_time_</definition>
         <argsstring></argsstring>
-        <name>_last_real_imu_time</name>
-        <qualifiedname>rko_lio::core::LIO::_last_real_imu_time</qualifiedname>
+        <name>last_real_imu_time_</name>
+        <qualifiedname>rko_lio::core::LIO::last_real_imu_time_</qualifiedname>
         <initializer>{0}</initializer>
         <briefdescription>
 <para>Timestamp of the most recent real IMU measurement. </para>
@@ -192,12 +192,12 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="165" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="165" bodyend="165"/>
       </memberdef>
-      <memberdef kind="variable" id="classrko__lio_1_1core_1_1LIO_1a1b1e6b226f96544e59331128d06afda7" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="classrko__lio_1_1core_1_1LIO_1a97e6e37aa7c9352b27913b774be9aea6" prot="private" static="no" mutable="no">
         <type>Eigen::Vector3s</type>
-        <definition>Eigen::Vector3s rko_lio::core::LIO::_last_real_base_imu_ang_vel</definition>
+        <definition>Eigen::Vector3s rko_lio::core::LIO::last_real_base_imu_ang_vel_</definition>
         <argsstring></argsstring>
-        <name>_last_real_base_imu_ang_vel</name>
-        <qualifiedname>rko_lio::core::LIO::_last_real_base_imu_ang_vel</qualifiedname>
+        <name>last_real_base_imu_ang_vel_</name>
+        <qualifiedname>rko_lio::core::LIO::last_real_base_imu_ang_vel_</qualifiedname>
         <initializer>= Eigen::Vector3s::Zero()</initializer>
         <briefdescription>
 <para>Angular velocity of last true IMU measurement expressed in base frame. </para>
@@ -520,21 +520,11 @@
       </node>
       <node id="4">
         <label>rko_lio::core::VoxelHashMap</label>
-        <link refid="structrko__lio_1_1core_1_1VoxelHashMap"/>
-        <childnode refid="3" relation="usage">
-          <edgelabel>clipping_distance_</edgelabel>
-          <edgelabel>inv_quantum_</edgelabel>
-          <edgelabel>inv_voxel_size_</edgelabel>
-          <edgelabel>quantum_</edgelabel>
-          <edgelabel>voxel_size_</edgelabel>
-        </childnode>
+        <link refid="classrko__lio_1_1core_1_1VoxelHashMap"/>
       </node>
     </collaborationgraph>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="39" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="39" bodyend="169"/>
     <listofallmembers>
-      <member refid="classrko__lio_1_1core_1_1LIO_1aa0e98c41c711dff7bf50bb1706b2d603" prot="private" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>_initialized</name></member>
-      <member refid="classrko__lio_1_1core_1_1LIO_1a1b1e6b226f96544e59331128d06afda7" prot="private" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>_last_real_base_imu_ang_vel</name></member>
-      <member refid="classrko__lio_1_1core_1_1LIO_1a59cd94ba392837604c1fbdca1cb0a05d" prot="private" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>_last_real_imu_time</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1a34139c65d35e7929125788bdafd0470c" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>add_imu_measurement</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1a38d1f2b9d7de4981b3d14bfee77f5c06" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>add_imu_measurement</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1ac02d8c6dce57bab05b7e1285ee23efd5" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>arena</name></member>
@@ -544,7 +534,10 @@
       <member refid="classrko__lio_1_1core_1_1LIO_1aedab30ea81941b951314113cd9d3166a" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>imu_bias</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1a582d6fd74013b8c85784326bc45fb7c0" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>imu_state</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1a5cf6313e60eabd62f2379d40ec796295" prot="private" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>initialize</name></member>
+      <member refid="classrko__lio_1_1core_1_1LIO_1a24f43f1b454e20bf72200a644415c026" prot="private" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>initialized_</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1a9b89efdfdcc0ab01ef3fd6caaadb69d2" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>interval_stats</name></member>
+      <member refid="classrko__lio_1_1core_1_1LIO_1a97e6e37aa7c9352b27913b774be9aea6" prot="private" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>last_real_base_imu_ang_vel_</name></member>
+      <member refid="classrko__lio_1_1core_1_1LIO_1ae5dee26026a73e83bd9716cad79cd0e3" prot="private" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>last_real_imu_time_</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>lidar_state</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1a27bdff7e57866bd6429e81d8f7d74ed8" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>LIO</name></member>
       <member refid="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO</scope><name>map</name></member>

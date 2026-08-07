@@ -470,23 +470,23 @@
 <codeline lineno="63"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::scoped_lock<sp/>lock(buffer_mutex);</highlight></codeline>
 <codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(lidar_buffer.size()<sp/>&gt;=<sp/>max_lidar_buffer_size)<sp/>{</highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>RCLCPP_WARN_STREAM(node-&gt;get_logger(),<sp/></highlight><highlight class="stringliteral">&quot;Registration<sp/>lidar<sp/>buffer<sp/>limit<sp/>reached.<sp/>Dropping<sp/>frame.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>RCLCPP_WARN_STREAM(node-&gt;get_logger(),<sp/></highlight><highlight class="stringliteral">&quot;Registration<sp/>lidar<sp/>buffer<sp/>limit<sp/>reached.<sp/>Dropping<sp/>scan.&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>sync_condition_variable.notify_one();</highlight></codeline>
 <codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="70"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="71"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>LidarFrame<sp/>frame<sp/>=<sp/>process_lidar_msg(lidar_msg);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>LidarScan<sp/>scan<sp/>=<sp/>process_lidar_msg(lidar_msg);</highlight></codeline>
 <codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::scoped_lock<sp/>lock(buffer_mutex);</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>lidar_buffer.push(std::move(frame));</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>lidar_buffer.push(std::move(scan));</highlight></codeline>
 <codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>atomic_can_process<sp/>=<sp/>!imu_buffer.empty()<sp/>&amp;&amp;<sp/>imu_buffer.back().time<sp/>&gt;<sp/>lidar_buffer.front().timestamps.max;</highlight></codeline>
 <codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(atomic_can_process)<sp/>{</highlight></codeline>
 <codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>sync_condition_variable.notify_one();</highlight></codeline>
 <codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="81"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::invalid_argument&amp;<sp/>ex)<sp/>{</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>RCLCPP_ERROR_STREAM(node-&gt;get_logger(),<sp/></highlight><highlight class="stringliteral">&quot;Encountered<sp/>error,<sp/>dropping<sp/>frame:<sp/>Error.<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>ex.what());</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>RCLCPP_ERROR_STREAM(node-&gt;get_logger(),<sp/></highlight><highlight class="stringliteral">&quot;Encountered<sp/>error,<sp/>dropping<sp/>scan:<sp/>Error.<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>ex.what());</highlight></codeline>
 <codeline lineno="83"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="84"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="85"><highlight class="normal"></highlight></codeline>
@@ -499,10 +499,10 @@
 <codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>node<sp/>could<sp/>have<sp/>been<sp/>killed<sp/>after<sp/>waiting<sp/>on<sp/>the<sp/>cv</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>LidarFrame<sp/>frame<sp/>=<sp/>std::move(lidar_buffer.front());</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>LidarScan<sp/>scan<sp/>=<sp/>std::move(lidar_buffer.front());</highlight></codeline>
 <codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>lidar_buffer.pop();</highlight></codeline>
 <codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>registration_busy<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::Nsec<sp/>end_stamp<sp/>=<sp/>frame.timestamps.max;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::Nsec<sp/>end_stamp<sp/>=<sp/>scan.timestamps.max;</highlight></codeline>
 <codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(;<sp/>!imu_buffer.empty()<sp/>&amp;&amp;<sp/>imu_buffer.front().time<sp/>&lt;<sp/>end_stamp;<sp/>imu_buffer.pop())<sp/>{</highlight></codeline>
 <codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::ImuControl&amp;<sp/>imu_data<sp/>=<sp/>imu_buffer.front();</highlight></codeline>
 <codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>lio-&gt;add_imu_measurement(extrinsic_imu2base,<sp/>imu_data);</highlight></codeline>
@@ -513,15 +513,15 @@
 <codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>buffer_lock.unlock();<sp/></highlight><highlight class="comment">//<sp/>we<sp/>dont<sp/>touch<sp/>the<sp/>buffers<sp/>anymore</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="107"><highlight class="normal"></highlight></codeline>
 <codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::Vector3sVector<sp/>deskewed_frame<sp/>=</highlight></codeline>
-<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>register_scan_locked(std::move(frame.points),<sp/>frame.timestamps.per_point);</highlight></codeline>
-<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!deskewed_frame.empty())<sp/>{</highlight></codeline>
-<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>first<sp/>frame<sp/>is<sp/>skipped<sp/>and<sp/>an<sp/>empty<sp/>frame<sp/>is<sp/>returned.<sp/>improve<sp/>how<sp/>we<sp/>handle<sp/>this</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>publish_lidar_outputs(deskewed_frame);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::Vector3sVector<sp/>deskewed_scan<sp/>=</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>register_scan_locked(std::move(scan.points),<sp/>scan.timestamps.per_point);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!deskewed_scan.empty())<sp/>{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>first<sp/>scan<sp/>is<sp/>skipped<sp/>and<sp/>an<sp/>empty<sp/>scan<sp/>is<sp/>returned.<sp/>improve<sp/>how<sp/>we<sp/>handle<sp/>this</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>publish_lidar_outputs(deskewed_scan);</highlight></codeline>
 <codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>publish_tf(lio-&gt;lidar_state);</highlight></codeline>
 <codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::invalid_argument&amp;<sp/>ex)<sp/>{</highlight></codeline>
-<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>RCLCPP_ERROR_STREAM(node-&gt;get_logger(),<sp/></highlight><highlight class="stringliteral">&quot;Encountered<sp/>error,<sp/>dropping<sp/>frame.<sp/>Error:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>ex.what());</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>RCLCPP_ERROR_STREAM(node-&gt;get_logger(),<sp/></highlight><highlight class="stringliteral">&quot;Encountered<sp/>error,<sp/>dropping<sp/>scan.<sp/>Error:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>ex.what());</highlight></codeline>
 <codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>registration_busy<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="120"><highlight class="normal"><sp/><sp/>}</highlight></codeline>

@@ -82,7 +82,7 @@ Classes
 
 - :ref:`exhale_struct_structrko__lio_1_1core_1_1VoxelBlock`
 
-- :ref:`exhale_struct_structrko__lio_1_1core_1_1VoxelHashMap`
+- :ref:`exhale_class_classrko__lio_1_1core_1_1VoxelHashMap`
 
 
 Typedefs

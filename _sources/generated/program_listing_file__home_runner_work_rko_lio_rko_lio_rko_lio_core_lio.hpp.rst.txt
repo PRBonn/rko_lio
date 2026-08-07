@@ -107,10 +107,10 @@ Program Listing for File lio.hpp
    
      std::pair<Eigen::Vector3s, Eigen::Vector3s> motion_priors_from_imu(const Nsec current_lidar_time);
    
-     bool _initialized = false;
+     bool initialized_ = false;
    
-     Nsec _last_real_imu_time{0};
+     Nsec last_real_imu_time_{0};
    
-     Eigen::Vector3s _last_real_base_imu_ang_vel = Eigen::Vector3s::Zero();
+     Eigen::Vector3s last_real_base_imu_ang_vel_ = Eigen::Vector3s::Zero();
    };
    } // namespace rko_lio::core

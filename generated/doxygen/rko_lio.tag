@@ -189,8 +189,8 @@
     </member>
   </compound>
   <compound kind="struct">
-    <name>rko_lio::ros::LidarFrame</name>
-    <filename>structrko__lio_1_1ros_1_1LidarFrame.html</filename>
+    <name>rko_lio::ros::LidarScan</name>
+    <filename>structrko__lio_1_1ros_1_1LidarScan.html</filename>
   </compound>
   <compound kind="class">
     <name>rko_lio::core::LIO</name>
@@ -376,13 +376,13 @@
     <name>rko_lio::core::VoxelHash</name>
     <filename>structrko__lio_1_1core_1_1VoxelHash.html</filename>
   </compound>
-  <compound kind="struct">
+  <compound kind="class">
     <name>rko_lio::core::VoxelHashMap</name>
-    <filename>structrko__lio_1_1core_1_1VoxelHashMap.html</filename>
+    <filename>classrko__lio_1_1core_1_1VoxelHashMap.html</filename>
     <member kind="function">
       <type>std::optional&lt; Eigen::Vector3s &gt;</type>
       <name>get_closest_neighbor</name>
-      <anchorfile>structrko__lio_1_1core_1_1VoxelHashMap.html</anchorfile>
+      <anchorfile>classrko__lio_1_1core_1_1VoxelHashMap.html</anchorfile>
       <anchor>a135adfd73ddcd2d39fd357062119acdf</anchor>
       <arglist>(const Eigen::Vector3s &amp;query, const Scalar max_distance) const</arglist>
     </member>
@@ -402,7 +402,7 @@
     <class kind="struct">rko_lio::core::Timestamps</class>
     <class kind="struct">rko_lio::core::VoxelBlock</class>
     <class kind="struct">rko_lio::core::VoxelHash</class>
-    <class kind="struct">rko_lio::core::VoxelHashMap</class>
+    <class kind="class">rko_lio::core::VoxelHashMap</class>
     <member kind="function">
       <type>Timestamps</type>
       <name>process_timestamps</name>
@@ -414,8 +414,8 @@
       <type>std::vector&lt; Eigen::Vector3s &gt;</type>
       <name>voxel_down_sample</name>
       <anchorfile>namespacerko__lio_1_1core.html</anchorfile>
-      <anchor>af72280698a29ae2aa7a2e256c3228560</anchor>
-      <arglist>(const std::vector&lt; Eigen::Vector3s &gt; &amp;frame, const Scalar voxel_size)</arglist>
+      <anchor>a12e21e9c3530270bad001beddeed6572</anchor>
+      <arglist>(const std::vector&lt; Eigen::Vector3s &gt; &amp;points, const Scalar voxel_size)</arglist>
     </member>
   </compound>
 </tagfile>

@@ -298,8 +298,8 @@
 <codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(lower_bound_sq<sp/>&gt;=<sp/>closest_distance_sq)<sp/>{</highlight></codeline>
 <codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>search<sp/>=<sp/>map_.find(voxel<sp/>+<sp/>shift);</highlight></codeline>
-<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(search<sp/>==<sp/>map_.end())<sp/>{</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>search<sp/>=<sp/>voxels_.find(voxel<sp/>+<sp/>shift);</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(search<sp/>==<sp/>voxels_.end())<sp/>{</highlight></codeline>
 <codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s<sp/>query_quanta_from_neighbour<sp/>=<sp/>quanta_from_neighbour_centre(query_quanta_from_centre,<sp/>shift);</highlight></codeline>
@@ -331,7 +331,7 @@
 <codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>Voxel<sp/>voxel<sp/>=<sp/>point_to_voxel(p,<sp/>inv_voxel_size_);</highlight></codeline>
 <codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>quantise<sp/>before<sp/>the<sp/>spacing<sp/>test,<sp/>so<sp/>the<sp/>test<sp/>sees<sp/>the<sp/>offset<sp/>that<sp/>would<sp/>actually<sp/>be<sp/>stored</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>Eigen::Vector3i8<sp/>offset<sp/>=<sp/>to_stored_offset(quanta_from_centre(p,<sp/>voxel,<sp/>voxel_size_,<sp/>inv_quantum_));</highlight></codeline>
-<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>auto<sp/>it<sp/>=<sp/>map_.try_emplace(voxel).first;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>auto<sp/>it<sp/>=<sp/>voxels_.try_emplace(voxel).first;</highlight></codeline>
 <codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/>VoxelBlock&amp;<sp/>voxel_points<sp/>=<sp/>it.value();</highlight></codeline>
 <codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(voxel_points.full()<sp/>||</highlight></codeline>
 <codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::any_of(voxel_points.begin(),<sp/>voxel_points.end(),<sp/>[&amp;](const<sp/>Eigen::Vector3i8&amp;<sp/>voxel_point)<sp/>{</highlight></codeline>
@@ -343,13 +343,13 @@
 <codeline lineno="197"><highlight class="normal"><sp/><sp/>});</highlight></codeline>
 <codeline lineno="198"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="199"><highlight class="normal"></highlight></codeline>
-<codeline lineno="200"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>VoxelHashMap::remove_points_far_from_location(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s&amp;<sp/>origin)<sp/>{</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>VoxelHashMap::remove_points_far_from_location(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s&amp;<sp/>location)<sp/>{</highlight></codeline>
 <codeline lineno="201"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>a<sp/>centre<sp/>is<sp/>within<sp/>half<sp/>a<sp/>diagonal<sp/>of<sp/>every<sp/>point<sp/>it<sp/>holds,<sp/>so<sp/>widening<sp/>by<sp/>that<sp/>keeps<sp/>a<sp/>superset</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="202"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>half_diagonal<sp/>=<sp/>Scalar(0.5)<sp/>*<sp/>std::numbers::sqrt3_v&lt;Scalar&gt;<sp/>*<sp/>voxel_size_;</highlight></codeline>
 <codeline lineno="203"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>max_distance_sq<sp/>=<sp/>square(clipping_distance_<sp/>+<sp/>half_diagonal);</highlight></codeline>
-<codeline lineno="204"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>it<sp/>=<sp/>map_.begin();<sp/>it<sp/>!=<sp/>map_.end();)<sp/>{</highlight></codeline>
-<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>it<sp/>=<sp/>(voxel_centre(it-&gt;first,<sp/>voxel_size_)<sp/>-<sp/>origin).squaredNorm()<sp/>&gt;<sp/>max_distance_sq<sp/>?<sp/>map_.erase(it)</highlight></codeline>
-<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>std::next(it);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>it<sp/>=<sp/>voxels_.begin();<sp/>it<sp/>!=<sp/>voxels_.end();)<sp/>{</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>it<sp/>=<sp/>(voxel_centre(it-&gt;first,<sp/>voxel_size_)<sp/>-<sp/>location).squaredNorm()<sp/>&gt;<sp/>max_distance_sq<sp/>?<sp/>voxels_.erase(it)</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>std::next(it);</highlight></codeline>
 <codeline lineno="207"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="208"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="209"><highlight class="normal"></highlight></codeline>
@@ -358,16 +358,16 @@
 <codeline lineno="212"><highlight class="normal"><sp/><sp/>remove_points_far_from_location(pose.translation());</highlight></codeline>
 <codeline lineno="213"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="214"><highlight class="normal"></highlight></codeline>
-<codeline lineno="215"><highlight class="normal">std::vector&lt;Eigen::Vector3s&gt;<sp/>VoxelHashMap::pointcloud()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="216"><highlight class="normal"><sp/><sp/>std::vector&lt;Eigen::Vector3s&gt;<sp/>point_cloud;</highlight></codeline>
-<codeline lineno="217"><highlight class="normal"><sp/><sp/>point_cloud.reserve(map_.size()<sp/>*<sp/>VoxelBlock::max_points);</highlight></codeline>
-<codeline lineno="218"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>[voxel,<sp/>block]<sp/>:<sp/>map_)<sp/>{</highlight></codeline>
+<codeline lineno="215"><highlight class="normal">std::vector&lt;Eigen::Vector3s&gt;<sp/>VoxelHashMap::points()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/>std::vector&lt;Eigen::Vector3s&gt;<sp/>map_points;</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/>map_points.reserve(voxels_.size()<sp/>*<sp/>VoxelBlock::max_points);</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>[voxel,<sp/>block]<sp/>:<sp/>voxels_)<sp/>{</highlight></codeline>
 <codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s<sp/>centre<sp/>=<sp/>voxel_centre(voxel,<sp/>voxel_size_);</highlight></codeline>
 <codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3i8&amp;<sp/>offset<sp/>:<sp/>block)<sp/>{</highlight></codeline>
-<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>point_cloud.emplace_back(centre<sp/>+<sp/>offset.cast&lt;Scalar&gt;()<sp/>*<sp/>quantum_);</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>map_points.emplace_back(centre<sp/>+<sp/>offset.cast&lt;Scalar&gt;()<sp/>*<sp/>quantum_);</highlight></codeline>
 <codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="223"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="224"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>point_cloud;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>map_points;</highlight></codeline>
 <codeline lineno="225"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="226"><highlight class="normal"></highlight></codeline>
 <codeline lineno="227"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>

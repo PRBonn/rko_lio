@@ -245,7 +245,7 @@
         <link refid="threaded__node_8hpp_source"/>
       </node>
     </invincdepgraph>
-    <innerclass refid="structrko__lio_1_1ros_1_1LidarFrame" prot="public">rko_lio::ros::LidarFrame</innerclass>
+    <innerclass refid="structrko__lio_1_1ros_1_1LidarScan" prot="public">rko_lio::ros::LidarScan</innerclass>
     <innerclass refid="classrko__lio_1_1ros_1_1BaseNode" prot="public">rko_lio::ros::BaseNode</innerclass>
     <innernamespace refid="namespacerko__lio">rko_lio</innernamespace>
     <innernamespace refid="namespacerko__lio_1_1ros">rko_lio::ros</innernamespace>
@@ -303,7 +303,7 @@
 <codeline lineno="47"><highlight class="normal"></highlight></codeline>
 <codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros<sp/>{</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="50" refid="structrko__lio_1_1ros_1_1LidarFrame" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1ros_1_1LidarFrame" kindref="compound">LidarFrame</ref><sp/>{</highlight></codeline>
+<codeline lineno="50" refid="structrko__lio_1_1ros_1_1LidarScan" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1ros_1_1LidarScan" kindref="compound">LidarScan</ref><sp/>{</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1Timestamps" kindref="compound">core::Timestamps</ref><sp/>timestamps;</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"><sp/><sp/>core::Vector3sVector<sp/>points;</highlight></codeline>
 <codeline lineno="53"><highlight class="normal">};</highlight></codeline>
@@ -330,7 +330,7 @@
 <codeline lineno="74"><highlight class="normal"><sp/><sp/>rclcpp::Publisher&lt;geometry_msgs::msg::AccelStamped&gt;::SharedPtr<sp/>lidar_accel_publisher;</highlight></codeline>
 <codeline lineno="75"><highlight class="normal"></highlight></codeline>
 <codeline lineno="76"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>map<sp/>publish<sp/>thread</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/>std::jthread<sp/>map_publish_thead;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/>std::jthread<sp/>map_publish_thread;</highlight></codeline>
 <codeline lineno="78"><highlight class="normal"></highlight></codeline>
 <codeline lineno="79"><highlight class="normal"><sp/><sp/>std::string<sp/>imu_topic;</highlight></codeline>
 <codeline lineno="80"><highlight class="normal"><sp/><sp/>std::string<sp/>imu_frame;<sp/></highlight><highlight class="comment">//<sp/>default:<sp/>get<sp/>from<sp/>the<sp/>first<sp/>imu<sp/>message</highlight><highlight class="normal"></highlight></codeline>
@@ -367,11 +367,11 @@
 <codeline lineno="111"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>to<sp/>querying<sp/>TF<sp/>inline<sp/>per-message.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="112"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ensure_frame_and_extrinsics(std::string&amp;<sp/>target_frame,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>msg_frame,<sp/>std::string_view<sp/>kind);</highlight></codeline>
 <codeline lineno="113"><highlight class="normal"></highlight></codeline>
-<codeline lineno="114"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1ros_1_1LidarFrame" kindref="compound">LidarFrame</ref><sp/>process_lidar_msg(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::PointCloud2::ConstSharedPtr&amp;<sp/>lidar_msg)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1ros_1_1LidarScan" kindref="compound">LidarScan</ref><sp/>process_lidar_msg(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::PointCloud2::ConstSharedPtr&amp;<sp/>lidar_msg)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="115"><highlight class="normal"></highlight></codeline>
 <codeline lineno="116"><highlight class="normal"><sp/><sp/>core::Vector3sVector<sp/>register_scan_locked(core::Vector3sVector<sp/>scan,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::TimestampVector&amp;<sp/>time_vector);</highlight></codeline>
 <codeline lineno="117"><highlight class="normal"></highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>publish_lidar_outputs(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::Vector3sVector&amp;<sp/>deskewed_frame)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>publish_lidar_outputs(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::Vector3sVector&amp;<sp/>deskewed_scan)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="119"><highlight class="normal"></highlight></codeline>
 <codeline lineno="120"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>publish_odometry(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1State" kindref="compound">core::State</ref>&amp;<sp/>state,</highlight></codeline>
 <codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>rclcpp::Publisher&lt;nav_msgs::msg::Odometry&gt;::SharedPtr&amp;<sp/>publisher)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>

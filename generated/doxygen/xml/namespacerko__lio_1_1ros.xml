@@ -3,7 +3,7 @@
   <compounddef id="namespacerko__lio_1_1ros" kind="namespace" language="C++">
     <compoundname>rko_lio::ros</compoundname>
     <innerclass refid="classrko__lio_1_1ros_1_1BaseNode" prot="public">rko_lio::ros::BaseNode</innerclass>
-    <innerclass refid="structrko__lio_1_1ros_1_1LidarFrame" prot="public">rko_lio::ros::LidarFrame</innerclass>
+    <innerclass refid="structrko__lio_1_1ros_1_1LidarScan" prot="public">rko_lio::ros::LidarScan</innerclass>
     <innerclass refid="classrko__lio_1_1ros_1_1OfflineNode" prot="public">rko_lio::ros::OfflineNode</innerclass>
     <innerclass refid="classrko__lio_1_1ros_1_1OnlineImuRateNode" prot="public">rko_lio::ros::OnlineImuRateNode</innerclass>
     <innerclass refid="classrko__lio_1_1ros_1_1OnlineNode" prot="public">rko_lio::ros::OnlineNode</innerclass>

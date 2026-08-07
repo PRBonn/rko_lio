@@ -191,11 +191,11 @@
 
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3s</span><span class="p">,</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3s</span><span class="o">&gt;</span><span class="w"> </span><span class="n">motion_priors_from_imu</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Nsec</span><span class="w"> </span><span class="n">current_lidar_time</span><span class="p">);</span>
 
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">_initialized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">initialized_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 
-<span class="w">  </span><span class="n">Nsec</span><span class="w"> </span><span class="n">_last_real_imu_time</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="w">  </span><span class="n">Nsec</span><span class="w"> </span><span class="n">last_real_imu_time_</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
 
-<span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3s</span><span class="w"> </span><span class="n">_last_real_base_imu_ang_vel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3s</span><span class="o">::</span><span class="n">Zero</span><span class="p">();</span>
+<span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3s</span><span class="w"> </span><span class="n">last_real_base_imu_ang_vel_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3s</span><span class="o">::</span><span class="n">Zero</span><span class="p">();</span>
 <span class="p">};</span>
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace rko_lio::core</span>
 </pre></div>

@@ -302,7 +302,7 @@
 <codeline lineno="44"><highlight class="normal"><sp/><sp/>std::atomic&lt;bool&gt;<sp/>atomic_can_process<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"><sp/><sp/>std::atomic&lt;bool&gt;<sp/>registration_busy{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
 <codeline lineno="46"><highlight class="normal"><sp/><sp/>std::queue&lt;core::ImuControl&gt;<sp/>imu_buffer;</highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/>std::queue&lt;LidarFrame&gt;<sp/>lidar_buffer;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/>std::queue&lt;LidarScan&gt;<sp/>lidar_buffer;</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>max_lidar_buffer_size<sp/>=<sp/>10;</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
 <codeline lineno="50"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref>()<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>

@@ -17,21 +17,19 @@ Program Listing for File preprocess_scan.cpp
    
    namespace rko_lio::core {
    
-   PreprocessingResult preprocess_scan(Vector3sVector frame, const LIO::Config& config) {
-     std::erase_if(frame, [&](const auto& point) {
+   PreprocessingResult preprocess_scan(Vector3sVector scan, const LIO::Config& config) {
+     std::erase_if(scan, [&](const auto& point) {
        const Scalar point_range = point.norm();
        return !std::isfinite(point_range) || point_range <= config.min_range || point_range >= config.max_range;
      });
    
      if (config.double_downsample) {
-       Vector3sVector downsampled_frame = voxel_down_sample(frame, config.voxel_size * Scalar(0.5));
-       Vector3sVector keypoints = voxel_down_sample(downsampled_frame, config.voxel_size * Scalar(1.5));
-       return {.filtered_frame = std::move(frame),
-               .keypoints = std::move(keypoints),
-               .map_frame = std::move(downsampled_frame)};
+       Vector3sVector downsampled = voxel_down_sample(scan, config.voxel_size * Scalar(0.5));
+       Vector3sVector keypoints = voxel_down_sample(downsampled, config.voxel_size * Scalar(1.5));
+       return {.filtered_scan = std::move(scan), .keypoints = std::move(keypoints), .map_points = std::move(downsampled)};
      }
-     Vector3sVector keypoints = voxel_down_sample(frame, config.voxel_size);
-     return {.filtered_frame = std::move(frame), .keypoints = std::move(keypoints), .map_frame = {}};
+     Vector3sVector keypoints = voxel_down_sample(scan, config.voxel_size);
+     return {.filtered_scan = std::move(scan), .keypoints = std::move(keypoints), .map_points = {}};
    }
    
    } // namespace rko_lio::core

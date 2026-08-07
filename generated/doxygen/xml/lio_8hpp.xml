@@ -210,7 +210,7 @@
 <codeline lineno="81"><highlight class="normal"></highlight></codeline>
 <codeline lineno="83" refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config" kindref="compound">Config</ref><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" kindref="member">config</ref>;</highlight></codeline>
 <codeline lineno="84"><highlight class="normal"></highlight></codeline>
-<codeline lineno="86" refid="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1VoxelHashMap" kindref="compound">VoxelHashMap</ref><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" kindref="member">map</ref>;</highlight></codeline>
+<codeline lineno="86" refid="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1VoxelHashMap" kindref="compound">VoxelHashMap</ref><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" kindref="member">map</ref>;</highlight></codeline>
 <codeline lineno="87"><highlight class="normal"></highlight></codeline>
 <codeline lineno="89" refid="classrko__lio_1_1core_1_1LIO_1ac02d8c6dce57bab05b7e1285ee23efd5" refkind="member"><highlight class="normal"><sp/><sp/>tbb::task_arena<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1ac02d8c6dce57bab05b7e1285ee23efd5" kindref="member">arena</ref>;</highlight></codeline>
 <codeline lineno="90"><highlight class="normal"></highlight></codeline>
@@ -246,11 +246,11 @@
 <codeline lineno="157"><highlight class="normal"></highlight></codeline>
 <codeline lineno="159"><highlight class="normal"><sp/><sp/>std::pair&lt;Eigen::Vector3s,<sp/>Eigen::Vector3s&gt;<sp/>motion_priors_from_imu(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Nsec<sp/>current_lidar_time);</highlight></codeline>
 <codeline lineno="160"><highlight class="normal"></highlight></codeline>
-<codeline lineno="162"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>_initialized<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>initialized_<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="163"><highlight class="normal"></highlight></codeline>
-<codeline lineno="165"><highlight class="normal"><sp/><sp/>Nsec<sp/>_last_real_imu_time{0};</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/>Nsec<sp/>last_real_imu_time_{0};</highlight></codeline>
 <codeline lineno="166"><highlight class="normal"></highlight></codeline>
-<codeline lineno="168"><highlight class="normal"><sp/><sp/>Eigen::Vector3s<sp/>_last_real_base_imu_ang_vel<sp/>=<sp/>Eigen::Vector3s::Zero();</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/>Eigen::Vector3s<sp/>last_real_base_imu_ang_vel_<sp/>=<sp/>Eigen::Vector3s::Zero();</highlight></codeline>
 <codeline lineno="169"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="170"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>

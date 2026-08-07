@@ -140,7 +140,7 @@
       </node>
     </invincdepgraph>
     <innerclass refid="structrko__lio_1_1core_1_1VoxelBlock" prot="public">rko_lio::core::VoxelBlock</innerclass>
-    <innerclass refid="structrko__lio_1_1core_1_1VoxelHashMap" prot="public">rko_lio::core::VoxelHashMap</innerclass>
+    <innerclass refid="classrko__lio_1_1core_1_1VoxelHashMap" prot="public">rko_lio::core::VoxelHashMap</innerclass>
     <innernamespace refid="namespacerko__lio">rko_lio</innernamespace>
     <innernamespace refid="namespacerko__lio_1_1core">rko_lio::core</innernamespace>
     <briefdescription>
@@ -214,27 +214,29 @@
 <codeline lineno="65"><highlight class="normal"><sp/><sp/>PointArray::const_iterator<sp/>end()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>points.begin()<sp/>+<sp/>size;<sp/>}<sp/></highlight><highlight class="comment">//<sp/>capacity<sp/>is<sp/>8,<sp/>size<sp/>is<sp/>what&apos;s<sp/>filled</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="66"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="67"><highlight class="normal"></highlight></codeline>
-<codeline lineno="68" refid="structrko__lio_1_1core_1_1VoxelHashMap" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1VoxelHashMap" kindref="compound">VoxelHashMap</ref><sp/>{</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1VoxelHashMap" kindref="compound">VoxelHashMap</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>voxel_size,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>clipping_distance);</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"></highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>clear()<sp/>{<sp/>map_.clear();<sp/>}</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>empty()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>map_.empty();<sp/>}</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>update(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Eigen::Vector3s&gt;&amp;<sp/>points,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3s&amp;<sp/>pose);</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>add_points(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Eigen::Vector3s&gt;&amp;<sp/>points,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3s&amp;<sp/>pose);</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>remove_points_far_from_location(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s&amp;<sp/>origin);</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/>std::vector&lt;Eigen::Vector3s&gt;<sp/>pointcloud()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="77"><highlight class="normal"></highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/>std::optional&lt;Eigen::Vector3s&gt;<sp/><ref refid="structrko__lio_1_1core_1_1VoxelHashMap_1a135adfd73ddcd2d39fd357062119acdf" kindref="member">get_closest_neighbor</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s&amp;<sp/>query,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>max_distance)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"></highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/>Scalar<sp/>voxel_size_;</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/>Scalar<sp/>inv_voxel_size_;</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/>Scalar<sp/>quantum_;</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/>Scalar<sp/>inv_quantum_;</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/>Scalar<sp/>clipping_distance_;</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/>tsl::robin_map&lt;Voxel,<sp/>VoxelBlock,<sp/>VoxelHash&gt;<sp/>map_;</highlight></codeline>
-<codeline lineno="87"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="88"><highlight class="normal"></highlight></codeline>
-<codeline lineno="89"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="classrko__lio_1_1core_1_1VoxelHashMap" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrko__lio_1_1core_1_1VoxelHashMap" kindref="compound">VoxelHashMap</ref><sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1core_1_1VoxelHashMap" kindref="compound">VoxelHashMap</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>voxel_size,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>clipping_distance);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>clear()<sp/>{<sp/>voxels_.clear();<sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>empty()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>voxels_.empty();<sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>update(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Eigen::Vector3s&gt;&amp;<sp/>points,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3s&amp;<sp/>pose);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>add_points(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Eigen::Vector3s&gt;&amp;<sp/>points,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3s&amp;<sp/>pose);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>remove_points_far_from_location(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s&amp;<sp/>location);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/>std::vector&lt;Eigen::Vector3s&gt;<sp/>points()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/>std::optional&lt;Eigen::Vector3s&gt;<sp/><ref refid="classrko__lio_1_1core_1_1VoxelHashMap_1a135adfd73ddcd2d39fd357062119acdf" kindref="member">get_closest_neighbor</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s&amp;<sp/>query,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>max_distance)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/>Scalar<sp/>voxel_size_;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/>Scalar<sp/>inv_voxel_size_;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/>Scalar<sp/>quantum_;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/>Scalar<sp/>inv_quantum_;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/>Scalar<sp/>clipping_distance_;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/>tsl::robin_map&lt;Voxel,<sp/>VoxelBlock,<sp/>VoxelHash&gt;<sp/>voxels_;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp"/>
   </compounddef>

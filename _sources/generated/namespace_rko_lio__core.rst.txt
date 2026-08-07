@@ -46,13 +46,13 @@ Classes
 
 - :ref:`exhale_struct_structrko__lio_1_1core_1_1VoxelHash`
 
-- :ref:`exhale_struct_structrko__lio_1_1core_1_1VoxelHashMap`
-
 - :ref:`exhale_class_classrko__lio_1_1core_1_1LIO`
 
 - :ref:`exhale_class_classrko__lio_1_1core_1_1ScopedProfiler`
 
 - :ref:`exhale_class_classrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfoMap`
+
+- :ref:`exhale_class_classrko__lio_1_1core_1_1VoxelHashMap`
 
 
 Functions
@@ -63,7 +63,7 @@ Functions
 
 - :ref:`exhale_function_namespacerko__lio_1_1core_1a20e41beba0ec902b7c78dcdb29899f33`
 
-- :ref:`exhale_function_namespacerko__lio_1_1core_1a1430bb1204c834d1c05fc142822002d5`
+- :ref:`exhale_function_namespacerko__lio_1_1core_1a15ad77d57e545f66d0ff5d0843b797e8`
 
 - :ref:`exhale_function_namespacerko__lio_1_1core_1ac1fb80bf51f668bd3442bcb18044a57c`
 
@@ -71,7 +71,7 @@ Functions
 
 - :ref:`exhale_function_namespacerko__lio_1_1core_1a4b33112425f17284c5c3ed6b2fe43119`
 
-- :ref:`exhale_function_namespacerko__lio_1_1core_1af72280698a29ae2aa7a2e256c3228560`
+- :ref:`exhale_function_namespacerko__lio_1_1core_1a12e21e9c3530270bad001beddeed6572`
 
 
 Typedefs
