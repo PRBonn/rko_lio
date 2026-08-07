@@ -175,7 +175,7 @@ TEST_CASE("Static IMU at rest: imu_state translation stays zero", "[imu_integrat
 
   REQUIRE(lio.interval_stats.imu_count == N);
   REQUIRE(lio.imu_state.pose.translation().norm() < TOL);
-  REQUIRE(lio.imu_state.velocity.norm() < TOL);
+  REQUIRE(lio.imu_state.linear_velocity.norm() < TOL);
 }
 
 TEST_CASE("Constant body acceleration: position grows as 0.5 * a * t^2", "[imu_integration]") {
@@ -206,9 +206,9 @@ TEST_CASE("Constant body acceleration: position grows as 0.5 * a * t^2", "[imu_i
   REQUIRE_THAT(lio.imu_state.pose.translation().x(), WithinAbs(0.5 * a_x * T * T, pos_tol));
   REQUIRE(std::abs(lio.imu_state.pose.translation().y()) < TOL);
   REQUIRE(std::abs(lio.imu_state.pose.translation().z()) < TOL);
-  REQUIRE_THAT(lio.imu_state.velocity.x(), WithinAbs(a_x * T, vel_tol));
-  REQUIRE(std::abs(lio.imu_state.velocity.y()) < TOL);
-  REQUIRE(std::abs(lio.imu_state.velocity.z()) < TOL);
+  REQUIRE_THAT(lio.imu_state.linear_velocity.x(), WithinAbs(a_x * T, vel_tol));
+  REQUIRE(std::abs(lio.imu_state.linear_velocity.y()) < TOL);
+  REQUIRE(std::abs(lio.imu_state.linear_velocity.z()) < TOL);
 }
 
 TEST_CASE("register_scan resets imu_state to optimized pose", "[imu_integration]") {
@@ -250,7 +250,7 @@ TEST_CASE("register_scan resets imu_state to optimized pose", "[imu_integration]
   REQUIRE(lio.poses_with_timestamps.size() == 2);
   REQUIRE(approx_equal(lio.imu_state.pose, lio.lidar_state.pose, EXACT_TOL));
   REQUIRE_THAT(to_seconds(lio.imu_state.time), WithinAbs(to_seconds(lio.lidar_state.time), 1e-12));
-  REQUIRE(approx_equal(lio.imu_state.velocity, lio.lidar_state.velocity, EXACT_TOL));
+  REQUIRE(approx_equal(lio.imu_state.linear_velocity, lio.lidar_state.linear_velocity, EXACT_TOL));
   REQUIRE(approx_equal(lio.imu_state.angular_velocity, lio.lidar_state.angular_velocity, EXACT_TOL));
   REQUIRE(approx_equal(lio.imu_state.linear_acceleration, lio.lidar_state.linear_acceleration, EXACT_TOL));
 }
