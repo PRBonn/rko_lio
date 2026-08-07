@@ -30,7 +30,7 @@
 
 namespace rko_lio::core {
 /// Voxelize point cloud keeping the original coordinates
-std::vector<Eigen::Vector3s> voxel_down_sample(const std::vector<Eigen::Vector3s>& frame, const Scalar voxel_size);
+std::vector<Eigen::Vector3s> voxel_down_sample(const std::vector<Eigen::Vector3s>& points, const Scalar voxel_size);
 
 inline Eigen::Vector3i point_to_voxel(const Eigen::Vector3s& point, const Scalar inv_voxel_size) {
   return (point * inv_voxel_size).array().floor().cast<int>();

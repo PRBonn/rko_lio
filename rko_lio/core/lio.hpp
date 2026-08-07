@@ -159,12 +159,12 @@ private:
   std::pair<Eigen::Vector3s, Eigen::Vector3s> motion_priors_from_imu(const Nsec current_lidar_time);
 
   /** True if odometry initialization has been completed. */
-  bool _initialized = false;
+  bool initialized_ = false;
 
   /** Timestamp of the most recent real IMU measurement. */
-  Nsec _last_real_imu_time{0};
+  Nsec last_real_imu_time_{0};
 
   /** Angular velocity of last true IMU measurement expressed in base frame. */
-  Eigen::Vector3s _last_real_base_imu_ang_vel = Eigen::Vector3s::Zero();
+  Eigen::Vector3s last_real_base_imu_ang_vel_ = Eigen::Vector3s::Zero();
 };
 } // namespace rko_lio::core

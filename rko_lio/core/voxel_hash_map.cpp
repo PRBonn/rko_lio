@@ -152,8 +152,8 @@ std::optional<Eigen::Vector3s> VoxelHashMap::get_closest_neighbor(const Eigen::V
     if (lower_bound_sq >= closest_distance_sq) {
       continue;
     }
-    const auto search = map_.find(voxel + shift);
-    if (search == map_.end()) {
+    const auto search = voxels_.find(voxel + shift);
+    if (search == voxels_.end()) {
       continue;
     }
     const Eigen::Vector3s query_quanta_from_neighbour = quanta_from_neighbour_centre(query_quanta_from_centre, shift);
@@ -185,7 +185,7 @@ void VoxelHashMap::add_points(const std::vector<Eigen::Vector3s>& points, const 
     const Voxel voxel = point_to_voxel(p, inv_voxel_size_);
     // quantise before the spacing test, so the test sees the offset that would actually be stored
     const Eigen::Vector3i8 offset = to_stored_offset(quanta_from_centre(p, voxel, voxel_size_, inv_quantum_));
-    auto it = map_.try_emplace(voxel).first;
+    auto it = voxels_.try_emplace(voxel).first;
     VoxelBlock& voxel_points = it.value();
     if (voxel_points.full() ||
         std::any_of(voxel_points.begin(), voxel_points.end(), [&](const Eigen::Vector3i8& voxel_point) {
@@ -197,13 +197,13 @@ void VoxelHashMap::add_points(const std::vector<Eigen::Vector3s>& points, const 
   });
 }
 
-void VoxelHashMap::remove_points_far_from_location(const Eigen::Vector3s& origin) {
+void VoxelHashMap::remove_points_far_from_location(const Eigen::Vector3s& location) {
   // a centre is within half a diagonal of every point it holds, so widening by that keeps a superset
   const Scalar half_diagonal = Scalar(0.5) * std::numbers::sqrt3_v<Scalar> * voxel_size_;
   const Scalar max_distance_sq = square(clipping_distance_ + half_diagonal);
-  for (auto it = map_.begin(); it != map_.end();) {
-    it = (voxel_centre(it->first, voxel_size_) - origin).squaredNorm() > max_distance_sq ? map_.erase(it)
-                                                                                         : std::next(it);
+  for (auto it = voxels_.begin(); it != voxels_.end();) {
+    it = (voxel_centre(it->first, voxel_size_) - location).squaredNorm() > max_distance_sq ? voxels_.erase(it)
+                                                                                           : std::next(it);
   }
 }
 
@@ -212,16 +212,16 @@ void VoxelHashMap::update(const std::vector<Eigen::Vector3s>& points, const Soph
   remove_points_far_from_location(pose.translation());
 }
 
-std::vector<Eigen::Vector3s> VoxelHashMap::pointcloud() const {
-  std::vector<Eigen::Vector3s> point_cloud;
-  point_cloud.reserve(map_.size() * VoxelBlock::max_points);
-  for (const auto& [voxel, block] : map_) {
+std::vector<Eigen::Vector3s> VoxelHashMap::points() const {
+  std::vector<Eigen::Vector3s> map_points;
+  map_points.reserve(voxels_.size() * VoxelBlock::max_points);
+  for (const auto& [voxel, block] : voxels_) {
     const Eigen::Vector3s centre = voxel_centre(voxel, voxel_size_);
     for (const Eigen::Vector3i8& offset : block) {
-      point_cloud.emplace_back(centre + offset.cast<Scalar>() * quantum_);
+      map_points.emplace_back(centre + offset.cast<Scalar>() * quantum_);
     }
   }
-  return point_cloud;
+  return map_points;
 }
 
 } // namespace rko_lio::core

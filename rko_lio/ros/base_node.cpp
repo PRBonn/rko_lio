@@ -102,7 +102,7 @@ BaseNode::BaseNode(const std::string& node_name, const rclcpp::NodeOptions& opti
     publish_map_after =
         std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::duration<double>(publish_map_after_seconds));
     map_publisher = node->create_publisher<sensor_msgs::msg::PointCloud2>(map_topic, publisher_qos);
-    map_publish_thead = std::jthread([this]() { publish_map_loop(); });
+    map_publish_thread = std::jthread([this]() { publish_map_loop(); });
   }
 
   // lio params
@@ -231,7 +231,7 @@ bool BaseNode::check_and_set_extrinsics() {
   return true;
 }
 
-LidarFrame BaseNode::process_lidar_msg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& lidar_msg) const {
+LidarScan BaseNode::process_lidar_msg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& lidar_msg) const {
   const core::Nsec header_stamp = utils::to_ns(lidar_msg->header.stamp);
   if (lio->config.deskew) {
     utils::RawScan scan = utils::point_cloud2_to_eigen_with_timestamps(lidar_msg);
@@ -239,10 +239,10 @@ LidarFrame BaseNode::process_lidar_msg(const sensor_msgs::msg::PointCloud2::Cons
             .points = std::move(scan.points)};
   }
   RCLCPP_WARN_STREAM_ONCE(node->get_logger(), "Deskewing is disabled. Populating timestamps with static header time.");
-  LidarFrame frame{.timestamps = {.min = header_stamp, .max = header_stamp},
-                   .points = utils::point_cloud2_to_eigen(lidar_msg)};
-  frame.timestamps.per_point.assign(frame.points.size(), header_stamp);
-  return frame;
+  LidarScan scan{.timestamps = {.min = header_stamp, .max = header_stamp},
+                 .points = utils::point_cloud2_to_eigen(lidar_msg)};
+  scan.timestamps.per_point.assign(scan.points.size(), header_stamp);
+  return scan;
 }
 
 core::Vector3sVector BaseNode::register_scan_locked(core::Vector3sVector scan,
@@ -254,12 +254,12 @@ core::Vector3sVector BaseNode::register_scan_locked(core::Vector3sVector scan,
   return lio->register_scan(extrinsic_lidar2base, std::move(scan), time_vector);
 }
 
-void BaseNode::publish_lidar_outputs(const core::Vector3sVector& deskewed_frame) const {
+void BaseNode::publish_lidar_outputs(const core::Vector3sVector& deskewed_scan) const {
   if (publish_deskewed_scan) {
     std_msgs::msg::Header header;
     header.frame_id = lidar_frame;
     header.stamp = utils::to_ros_time(lio->lidar_state.time);
-    frame_publisher->publish(utils::eigen_to_point_cloud2(deskewed_frame, header));
+    frame_publisher->publish(utils::eigen_to_point_cloud2(deskewed_scan, header));
   }
   publish_odometry(lio->lidar_state, odom_publisher);
   if (publish_lidar_acceleration) {
@@ -310,7 +310,7 @@ void BaseNode::publish_map_loop() {
       RCLCPP_WARN_ONCE(node->get_logger(), "Local map publish thread: Local map is empty.");
       continue;
     }
-    const core::Vector3sVector map_points = lio->map.pointcloud();
+    const core::Vector3sVector map_points = lio->map.points();
     lock.unlock(); // we don't access the local map anymore
     std_msgs::msg::Header map_header;
     map_header.stamp = node->now();

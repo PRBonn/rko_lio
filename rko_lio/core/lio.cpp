@@ -104,12 +104,12 @@ template <typename Functor>
   requires requires(Functor f, Nsec stamp) {
     { f(stamp) } -> std::same_as<Sophus::SE3s>;
   }
-void deskew_scan(Vector3sVector& frame,
+void deskew_scan(Vector3sVector& scan,
                  const TimestampVector& timestamps,
                  const Nsec end_time,
                  const Functor& relative_pose_at_time) {
   const Sophus::SE3s scan_to_scan_motion_inverse = relative_pose_at_time(end_time).inverse();
-  std::transform(frame.cbegin(), frame.cend(), timestamps.cbegin(), frame.begin(),
+  std::transform(scan.cbegin(), scan.cend(), timestamps.cbegin(), scan.begin(),
                  [&](const Eigen::Vector3s& point, const Nsec timestamp) {
                    return (scan_to_scan_motion_inverse * relative_pose_at_time(timestamp)) * point;
                  });
@@ -117,7 +117,7 @@ void deskew_scan(Vector3sVector& frame,
 
 using LinearSystem = std::tuple<Eigen::Matrix6s, Eigen::Vector6s, Scalar>;
 LinearSystem build_icp_linear_system(const Sophus::SE3s& current_pose,
-                                     const rko_lio::core::Vector3sVector& frame,
+                                     const rko_lio::core::Vector3sVector& keypoints,
                                      const rko_lio::core::VoxelHashMap& voxel_map,
                                      const Scalar& max_correspondence_distance) {
   using IcpAccum = std::tuple<Eigen::Matrix6s, Eigen::Vector6s, Scalar, int>;
@@ -140,7 +140,7 @@ LinearSystem build_icp_linear_system(const Sophus::SE3s& current_pose,
   using points_iterator = std::vector<Eigen::Vector3s>::const_iterator;
   const auto& [H_icp, b_icp, chi_icp, correspondences_counter] = tbb::parallel_reduce(
       // Range
-      tbb::blocked_range<points_iterator>{frame.cbegin(), frame.cend()},
+      tbb::blocked_range<points_iterator>{keypoints.cbegin(), keypoints.cend()},
       // Identity
       IcpAccum(Eigen::Matrix6s::Zero(), Eigen::Vector6s::Zero(), 0.0, 0),
       // 1st Lambda: Parallel computation
@@ -192,7 +192,7 @@ LinearSystem build_orientation_linear_system(const Sophus::SE3s& current_pose,
   return LinearSystem{J_ori.transpose() * J_ori, J_ori.transpose() * residual, 0.5 * residual.squaredNorm()};
 }
 
-Sophus::SE3s icp(const Vector3sVector& frame,
+Sophus::SE3s icp(const Vector3sVector& keypoints,
                  const VoxelHashMap& voxel_map,
                  const Sophus::SE3s& initial_guess,
                  const LIO::Config& config,
@@ -208,7 +208,7 @@ Sophus::SE3s icp(const Vector3sVector& frame,
   for (size_t i = 0; i < config.max_iterations; ++i) {
     const auto& [H, b, chi] = std::invoke([&]() -> LinearSystem {
       const auto& [H_icp, b_icp, chi_icp] =
-          build_icp_linear_system(current_pose, frame, voxel_map, config.max_correspondence_distance);
+          build_icp_linear_system(current_pose, keypoints, voxel_map, config.max_correspondence_distance);
       if (beta >= 0) {
         const auto& [H_ori, b_ori, chi_ori] =
             build_orientation_linear_system(current_pose, optional_accel_info->local_gravity_estimate);
@@ -264,7 +264,7 @@ void LIO::initialize(const Nsec lidar_time) {
     std::cerr << "[WARNING] Cannot initialize. No imu measurements received.\n";
     // lidar_state.time has the time from the previous lidar, which we didn't log if init_phase was on
     poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
-    _initialized = true;
+    initialized_ = true;
     return;
   }
 
@@ -286,7 +286,7 @@ void LIO::initialize(const Nsec lidar_time) {
   imu_bias.accelerometer = avg_accel + local_gravity;
   imu_bias.gyroscope = avg_gyro;
 
-  _initialized = true;
+  initialized_ = true;
   std::cout << "[INFO] Odometry map frame initialized using " << interval_stats.imu_count
             << " IMU measurements. Estimated initial rotation [se(3)] is " << imu_state.pose.so3().log().transpose()
             << "\n";
@@ -299,15 +299,15 @@ Vector3sVector LIO::bootstrap_first_scan(const Vector3sVector& scan, const Nsec 
   imu_state = lidar_state;
   auto preproc = preprocess_scan(scan, config);
   if (!config.initialization_phase) {
-    map.update(config.double_downsample ? preproc.map_frame : preproc.keypoints, lidar_state.pose);
+    map.update(config.double_downsample ? preproc.map_points : preproc.keypoints, lidar_state.pose);
     poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
     std::cout << "[INFO] Odometry map frame initialized with first lidar scan.\n";
   }
-  return std::move(preproc.filtered_frame);
+  return std::move(preproc.filtered_scan);
 }
 
 std::pair<Eigen::Vector3s, Eigen::Vector3s> LIO::motion_priors_from_imu(const Nsec current_lidar_time) {
-  if (config.initialization_phase && !_initialized) {
+  if (config.initialization_phase && !initialized_) {
     // assume static and
     initialize(current_lidar_time);
     return {Eigen::Vector3s::Zero(), Eigen::Vector3s::Zero()};
@@ -338,8 +338,8 @@ void LIO::add_imu_measurement(const ImuControl& base_imu) {
       std::cerr << "[WARNING - ONCE] Skipping IMU, waiting for first LiDAR message.\n";
       warning_skip_till_first_lidar = true;
     }
-    _last_real_imu_time = base_imu.time;
-    _last_real_base_imu_ang_vel = base_imu.angular_velocity;
+    last_real_imu_time_ = base_imu.time;
+    last_real_base_imu_ang_vel_ = base_imu.angular_velocity;
     return;
   }
 
@@ -372,8 +372,8 @@ void LIO::add_imu_measurement(const ImuControl& base_imu) {
 
   interval_stats.update(unbiased_ang_vel, unbiased_accel, compensated_accel);
 
-  _last_real_imu_time = base_imu.time;
-  _last_real_base_imu_ang_vel = base_imu.angular_velocity;
+  last_real_imu_time_ = base_imu.time;
+  last_real_base_imu_ang_vel_ = base_imu.angular_velocity;
 }
 
 void LIO::add_imu_measurement(const Sophus::SE3s& extrinsic_imu2base, const ImuControl& raw_imu) {
@@ -382,9 +382,9 @@ void LIO::add_imu_measurement(const Sophus::SE3s& extrinsic_imu2base, const ImuC
     return;
   }
 
-  if (_last_real_imu_time < EPSILON_TIME) {
+  if (last_real_imu_time_ < EPSILON_TIME) {
     // skip IMU message as we need a previous imu time for extrinsic compensation
-    _last_real_imu_time = raw_imu.time;
+    last_real_imu_time_ = raw_imu.time;
     return;
   }
 
@@ -394,7 +394,7 @@ void LIO::add_imu_measurement(const Sophus::SE3s& extrinsic_imu2base, const ImuC
   base_imu.angular_velocity = extrinsic_rotation * raw_imu.angular_velocity;
 
   const Eigen::Vector3s& lever_arm = -1 * extrinsic_imu2base.translation();
-  const Nsec dt = raw_imu.time - _last_real_imu_time;
+  const Nsec dt = raw_imu.time - last_real_imu_time_;
 
   const Eigen::Vector3s angular_acceleration = std::invoke([&]() -> Eigen::Vector3s {
     if (std::chrono::abs(dt) < std::chrono::microseconds(200)) {
@@ -409,7 +409,7 @@ void LIO::add_imu_measurement(const Sophus::SE3s& extrinsic_imu2base, const ImuC
       return Eigen::Vector3s::Zero();
     } else {
       const Eigen::Vector3s angular_acceleration =
-          (base_imu.angular_velocity - _last_real_base_imu_ang_vel) / to_seconds(dt);
+          (base_imu.angular_velocity - last_real_base_imu_ang_vel_) / to_seconds(dt);
       return angular_acceleration;
     }
   });
@@ -475,7 +475,7 @@ Vector3sVector LIO::register_scan(Vector3sVector scan, const TimestampVector& ti
     throw std::invalid_argument(error_msg);
   }
 
-  const Vector3sVector& map_input = config.double_downsample ? preproc_result.map_frame : preproc_result.keypoints;
+  const Vector3sVector& map_input = config.double_downsample ? preproc_result.map_points : preproc_result.keypoints;
 
   if (!map.empty()) {
     SCOPED_PROFILER("ICP");
@@ -506,7 +506,7 @@ Vector3sVector LIO::register_scan(Vector3sVector scan, const TimestampVector& ti
 
   poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
 
-  return std::move(preproc_result.filtered_frame);
+  return std::move(preproc_result.filtered_scan);
 }
 
 Vector3sVector
@@ -516,8 +516,8 @@ LIO::register_scan(const Sophus::SE3s& extrinsic_lidar2base, Vector3sVector scan
   }
 
   transform_points(extrinsic_lidar2base, scan);
-  Vector3sVector frame = register_scan(std::move(scan), timestamps);
-  transform_points(extrinsic_lidar2base.inverse(), frame);
-  return frame;
+  Vector3sVector filtered_scan = register_scan(std::move(scan), timestamps);
+  transform_points(extrinsic_lidar2base.inverse(), filtered_scan);
+  return filtered_scan;
 }
 } // namespace rko_lio::core

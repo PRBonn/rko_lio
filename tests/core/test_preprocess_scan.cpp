@@ -29,15 +29,15 @@ TEST_CASE("preprocess_scan: clipping by min/max range", "[preprocess_scan]") {
 
   const auto result = preprocess_scan(frame, cfg);
 
-  REQUIRE(result.filtered_frame.size() == 3);
-  for (const auto& p : result.filtered_frame) {
+  REQUIRE(result.filtered_scan.size() == 3);
+  for (const auto& p : result.filtered_scan) {
     const double r = p.norm();
     REQUIRE(r > cfg.min_range);
     REQUIRE(r < cfg.max_range);
   }
 }
 
-TEST_CASE("preprocess_scan: double_downsample = false -> no map_frame", "[preprocess_scan]") {
+TEST_CASE("preprocess_scan: double_downsample = false -> no map_points", "[preprocess_scan]") {
   LIO::Config cfg = default_config();
   cfg.double_downsample = false;
 
@@ -49,9 +49,9 @@ TEST_CASE("preprocess_scan: double_downsample = false -> no map_frame", "[prepro
   }
 
   const auto result = preprocess_scan(frame, cfg);
-  REQUIRE(result.map_frame.empty());
+  REQUIRE(result.map_points.empty());
   REQUIRE(result.keypoints.size() > 0);
-  REQUIRE(result.filtered_frame.size() == frame.size());
+  REQUIRE(result.filtered_scan.size() == frame.size());
 }
 
 TEST_CASE("preprocess_scan: double_downsample = true -> all three populated", "[preprocess_scan]") {
@@ -66,7 +66,7 @@ TEST_CASE("preprocess_scan: double_downsample = true -> all three populated", "[
   }
 
   const auto result = preprocess_scan(frame, cfg);
-  REQUIRE_FALSE(result.map_frame.empty());
-  REQUIRE(result.map_frame.size() >= result.keypoints.size());
-  REQUIRE(result.filtered_frame.size() == frame.size());
+  REQUIRE_FALSE(result.map_points.empty());
+  REQUIRE(result.map_points.size() >= result.keypoints.size());
+  REQUIRE(result.filtered_scan.size() == frame.size());
 }

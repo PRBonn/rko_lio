@@ -47,7 +47,7 @@
 
 namespace rko_lio::ros {
 
-struct LidarFrame {
+struct LidarScan {
   core::Timestamps timestamps;
   core::Vector3sVector points;
 };
@@ -74,7 +74,7 @@ public:
   rclcpp::Publisher<geometry_msgs::msg::AccelStamped>::SharedPtr lidar_accel_publisher;
 
   // map publish thread
-  std::jthread map_publish_thead;
+  std::jthread map_publish_thread;
 
   std::string imu_topic;
   std::string imu_frame; // default: get from the first imu message
@@ -111,11 +111,11 @@ public:
   // to querying TF inline per-message.
   bool ensure_frame_and_extrinsics(std::string& target_frame, const std::string& msg_frame, std::string_view kind);
 
-  LidarFrame process_lidar_msg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& lidar_msg) const;
+  LidarScan process_lidar_msg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& lidar_msg) const;
 
   core::Vector3sVector register_scan_locked(core::Vector3sVector scan, const core::TimestampVector& time_vector);
 
-  void publish_lidar_outputs(const core::Vector3sVector& deskewed_frame) const;
+  void publish_lidar_outputs(const core::Vector3sVector& deskewed_scan) const;
 
   void publish_odometry(const core::State& state,
                         const rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr& publisher) const;
