@@ -105,7 +105,7 @@ Program Listing for File lio.hpp
    
      Vector3sVector bootstrap_first_scan(const Vector3sVector& scan, const Nsec current_lidar_time);
    
-     std::pair<Eigen::Vector3s, Eigen::Vector3s> motion_priors_from_imu(const Nsec current_lidar_time);
+     MotionPrior motion_prior_from_imu(const Nsec current_lidar_time);
    
      bool initialized_ = false;
    

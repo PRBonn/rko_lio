@@ -6,6 +6,7 @@
     <innerclass refid="structrko__lio_1_1core_1_1ImuControl" prot="public">rko_lio::core::ImuControl</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1IntervalStats" prot="public">rko_lio::core::IntervalStats</innerclass>
     <innerclass refid="classrko__lio_1_1core_1_1LIO" prot="public">rko_lio::core::LIO</innerclass>
+    <innerclass refid="structrko__lio_1_1core_1_1MotionPrior" prot="public">rko_lio::core::MotionPrior</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1PreprocessingResult" prot="public">rko_lio::core::PreprocessingResult</innerclass>
     <innerclass refid="classrko__lio_1_1core_1_1ScopedProfiler" prot="public">rko_lio::core::ScopedProfiler</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1State" prot="public">rko_lio::core::State</innerclass>
@@ -240,6 +241,29 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="62" column="13" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="62" bodyend="64"/>
       </memberdef>
+      <memberdef kind="function" id="namespacerko__lio_1_1core_1a08e058fe051b31851b65d12f94a28bd8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Sophus::SE3s</type>
+        <definition>Sophus::SE3s rko_lio::core::relative_pose_at_time</definition>
+        <argsstring>(const MotionPrior &amp;prior, const Nsec time)</argsstring>
+        <name>relative_pose_at_time</name>
+        <qualifiedname>rko_lio::core::relative_pose_at_time</qualifiedname>
+        <param>
+          <type>const <ref refid="structrko__lio_1_1core_1_1MotionPrior" kindref="compound">MotionPrior</ref> &amp;</type>
+          <declname>prior</declname>
+        </param>
+        <param>
+          <type>const Nsec</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+<para>Pose change from start_time to time. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="84" column="21" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="84" bodyend="90"/>
+      </memberdef>
       <memberdef kind="function" id="namespacerko__lio_1_1core_1a12e21e9c3530270bad001beddeed6572" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; Eigen::Vector3s &gt;</type>
         <definition>std::vector&lt; Eigen::Vector3s &gt; rko_lio::core::voxel_down_sample</definition>
@@ -291,6 +315,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" line="251" column="1"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" line="276" column="1"/>
   </compounddef>
 </doxygen>

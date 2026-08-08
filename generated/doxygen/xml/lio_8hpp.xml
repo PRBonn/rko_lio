@@ -244,7 +244,7 @@
 <codeline lineno="154"><highlight class="normal"></highlight></codeline>
 <codeline lineno="156"><highlight class="normal"><sp/><sp/>Vector3sVector<sp/>bootstrap_first_scan(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Vector3sVector&amp;<sp/>scan,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Nsec<sp/>current_lidar_time);</highlight></codeline>
 <codeline lineno="157"><highlight class="normal"></highlight></codeline>
-<codeline lineno="159"><highlight class="normal"><sp/><sp/>std::pair&lt;Eigen::Vector3s,<sp/>Eigen::Vector3s&gt;<sp/>motion_priors_from_imu(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Nsec<sp/>current_lidar_time);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1MotionPrior" kindref="compound">MotionPrior</ref><sp/>motion_prior_from_imu(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Nsec<sp/>current_lidar_time);</highlight></codeline>
 <codeline lineno="160"><highlight class="normal"></highlight></codeline>
 <codeline lineno="162"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>initialized_<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="163"><highlight class="normal"></highlight></codeline>

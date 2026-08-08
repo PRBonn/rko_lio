@@ -295,6 +295,10 @@
       <arglist></arglist>
     </member>
   </compound>
+  <compound kind="struct">
+    <name>rko_lio::core::MotionPrior</name>
+    <filename>structrko__lio_1_1core_1_1MotionPrior.html</filename>
+  </compound>
   <compound kind="class">
     <name>rko_lio::ros::OfflineNode</name>
     <filename>classrko__lio_1_1ros_1_1OfflineNode.html</filename>
@@ -394,6 +398,7 @@
     <class kind="struct">rko_lio::core::ImuControl</class>
     <class kind="struct">rko_lio::core::IntervalStats</class>
     <class kind="class">rko_lio::core::LIO</class>
+    <class kind="struct">rko_lio::core::MotionPrior</class>
     <class kind="struct">rko_lio::core::PreprocessingResult</class>
     <class kind="class">rko_lio::core::ScopedProfiler</class>
     <class kind="struct">rko_lio::core::State</class>
@@ -409,6 +414,13 @@
       <anchorfile>namespacerko__lio_1_1core.html</anchorfile>
       <anchor>ac1fb80bf51f668bd3442bcb18044a57c</anchor>
       <arglist>(const std::vector&lt; double &gt; &amp;raw_timestamps, const Nsec header_stamp, const TimestampProcessingConfig &amp;config)</arglist>
+    </member>
+    <member kind="function">
+      <type>Sophus::SE3s</type>
+      <name>relative_pose_at_time</name>
+      <anchorfile>namespacerko__lio_1_1core.html</anchorfile>
+      <anchor>a08e058fe051b31851b65d12f94a28bd8</anchor>
+      <arglist>(const MotionPrior &amp;prior, const Nsec time)</arglist>
     </member>
     <member kind="function">
       <type>std::vector&lt; Eigen::Vector3s &gt;</type>

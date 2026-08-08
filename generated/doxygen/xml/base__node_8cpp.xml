@@ -639,7 +639,7 @@
 <codeline lineno="274"><highlight class="normal"><sp/><sp/>odom_msg.header.frame_id<sp/>=<sp/>odom_frame;</highlight></codeline>
 <codeline lineno="275"><highlight class="normal"><sp/><sp/>odom_msg.child_frame_id<sp/>=<sp/>base_frame;</highlight></codeline>
 <codeline lineno="276"><highlight class="normal"><sp/><sp/>odom_msg.pose.pose<sp/>=<sp/>utils::sophus_to_pose(state.pose);</highlight></codeline>
-<codeline lineno="277"><highlight class="normal"><sp/><sp/>utils::eigen_vector_to_ros_xyz(state.velocity,<sp/>odom_msg.twist.twist.linear);</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/>utils::eigen_vector_to_ros_xyz(state.linear_velocity,<sp/>odom_msg.twist.twist.linear);</highlight></codeline>
 <codeline lineno="278"><highlight class="normal"><sp/><sp/>utils::eigen_vector_to_ros_xyz(state.angular_velocity,<sp/>odom_msg.twist.twist.angular);</highlight></codeline>
 <codeline lineno="279"><highlight class="normal"><sp/><sp/>publisher-&gt;publish(odom_msg);</highlight></codeline>
 <codeline lineno="280"><highlight class="normal">}</highlight></codeline>

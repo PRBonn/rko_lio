@@ -30,6 +30,8 @@ Classes
 
 - :ref:`exhale_struct_structrko__lio_1_1core_1_1LIO_1_1Config`
 
+- :ref:`exhale_struct_structrko__lio_1_1core_1_1MotionPrior`
+
 - :ref:`exhale_struct_structrko__lio_1_1core_1_1PreprocessingResult`
 
 - :ref:`exhale_struct_structrko__lio_1_1core_1_1ScopedProfiler_1_1ProfilingInfo`
@@ -66,6 +68,8 @@ Functions
 - :ref:`exhale_function_namespacerko__lio_1_1core_1a15ad77d57e545f66d0ff5d0843b797e8`
 
 - :ref:`exhale_function_namespacerko__lio_1_1core_1ac1fb80bf51f668bd3442bcb18044a57c`
+
+- :ref:`exhale_function_namespacerko__lio_1_1core_1a08e058fe051b31851b65d12f94a28bd8`
 
 - :ref:`exhale_function_namespacerko__lio_1_1core_1a1606d7b4fe5b32a257501d8079c968ca`
 

@@ -189,7 +189,7 @@
 
 <span class="w">  </span><span class="n">Vector3sVector</span><span class="w"> </span><span class="nf">bootstrap_first_scan</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector3sVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">scan</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Nsec</span><span class="w"> </span><span class="n">current_lidar_time</span><span class="p">);</span>
 
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3s</span><span class="p">,</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3s</span><span class="o">&gt;</span><span class="w"> </span><span class="n">motion_priors_from_imu</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Nsec</span><span class="w"> </span><span class="n">current_lidar_time</span><span class="p">);</span>
+<span class="w">  </span><span class="n">MotionPrior</span><span class="w"> </span><span class="nf">motion_prior_from_imu</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Nsec</span><span class="w"> </span><span class="n">current_lidar_time</span><span class="p">);</span>
 
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">initialized_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 

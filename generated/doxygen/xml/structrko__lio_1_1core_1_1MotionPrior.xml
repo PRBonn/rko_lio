@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structrko__lio_1_1core_1_1MotionPrior" kind="struct" language="C++" prot="public">
+    <compoundname>rko_lio::core::MotionPrior</compoundname>
+    <includes refid="util_8hpp" local="no">util.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1MotionPrior_1ade3cf9e29d53837f4991756ea7cc77b5" prot="public" static="no" mutable="no">
+        <type>Nsec</type>
+        <definition>Nsec rko_lio::core::MotionPrior::start_time</definition>
+        <argsstring></argsstring>
+        <name>start_time</name>
+        <qualifiedname>rko_lio::core::MotionPrior::start_time</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="77" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="77" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1MotionPrior_1a350554ed0812ad7f9649ca9c639592bb" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3s</type>
+        <definition>Eigen::Vector3s rko_lio::core::MotionPrior::linear_velocity</definition>
+        <argsstring></argsstring>
+        <name>linear_velocity</name>
+        <qualifiedname>rko_lio::core::MotionPrior::linear_velocity</qualifiedname>
+        <initializer>= Eigen::Vector3s::Zero()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="78" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1MotionPrior_1ac390c8cbcce02cfddd0afc8f83fe2712" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3s</type>
+        <definition>Eigen::Vector3s rko_lio::core::MotionPrior::acceleration</definition>
+        <argsstring></argsstring>
+        <name>acceleration</name>
+        <qualifiedname>rko_lio::core::MotionPrior::acceleration</qualifiedname>
+        <initializer>= Eigen::Vector3s::Zero()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="79" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1MotionPrior_1a6acccbce4012aab83cb87e3d58072da4" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3s</type>
+        <definition>Eigen::Vector3s rko_lio::core::MotionPrior::angular_velocity</definition>
+        <argsstring></argsstring>
+        <name>angular_velocity</name>
+        <qualifiedname>rko_lio::core::MotionPrior::angular_velocity</qualifiedname>
+        <initializer>= Eigen::Vector3s::Zero()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="80" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="80" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Constant-motion model anchored at the last registered state. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="76" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="76" bodyend="81"/>
+    <listofallmembers>
+      <member refid="structrko__lio_1_1core_1_1MotionPrior_1ac390c8cbcce02cfddd0afc8f83fe2712" prot="public" virt="non-virtual"><scope>rko_lio::core::MotionPrior</scope><name>acceleration</name></member>
+      <member refid="structrko__lio_1_1core_1_1MotionPrior_1a6acccbce4012aab83cb87e3d58072da4" prot="public" virt="non-virtual"><scope>rko_lio::core::MotionPrior</scope><name>angular_velocity</name></member>
+      <member refid="structrko__lio_1_1core_1_1MotionPrior_1a350554ed0812ad7f9649ca9c639592bb" prot="public" virt="non-virtual"><scope>rko_lio::core::MotionPrior</scope><name>linear_velocity</name></member>
+      <member refid="structrko__lio_1_1core_1_1MotionPrior_1ade3cf9e29d53837f4991756ea7cc77b5" prot="public" virt="non-virtual"><scope>rko_lio::core::MotionPrior</scope><name>start_time</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -32,12 +32,12 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="69" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="69" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structrko__lio_1_1core_1_1State_1a34b7453484254e3c2ea3e7ce84e6a250" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="structrko__lio_1_1core_1_1State_1a20339fedc7af99c7c773a8bb2f4d3639" prot="public" static="no" mutable="no">
         <type>Eigen::Vector3s</type>
-        <definition>Eigen::Vector3s rko_lio::core::State::velocity</definition>
+        <definition>Eigen::Vector3s rko_lio::core::State::linear_velocity</definition>
         <argsstring></argsstring>
-        <name>velocity</name>
-        <qualifiedname>rko_lio::core::State::velocity</qualifiedname>
+        <name>linear_velocity</name>
+        <qualifiedname>rko_lio::core::State::linear_velocity</qualifiedname>
         <initializer>= Eigen::Vector3s::Zero()</initializer>
         <briefdescription>
         </briefdescription>
@@ -86,9 +86,9 @@
     <listofallmembers>
       <member refid="structrko__lio_1_1core_1_1State_1aa154566d6494b7af5c741e426e89a055" prot="public" virt="non-virtual"><scope>rko_lio::core::State</scope><name>angular_velocity</name></member>
       <member refid="structrko__lio_1_1core_1_1State_1a151759a0ab95cbf7c0e036b30381f44e" prot="public" virt="non-virtual"><scope>rko_lio::core::State</scope><name>linear_acceleration</name></member>
+      <member refid="structrko__lio_1_1core_1_1State_1a20339fedc7af99c7c773a8bb2f4d3639" prot="public" virt="non-virtual"><scope>rko_lio::core::State</scope><name>linear_velocity</name></member>
       <member refid="structrko__lio_1_1core_1_1State_1ab9b1f863c226a809e93fe928ce45406b" prot="public" virt="non-virtual"><scope>rko_lio::core::State</scope><name>pose</name></member>
       <member refid="structrko__lio_1_1core_1_1State_1a1b0c9bd6280560c585e05430a6ada6c3" prot="public" virt="non-virtual"><scope>rko_lio::core::State</scope><name>time</name></member>
-      <member refid="structrko__lio_1_1core_1_1State_1a34b7453484254e3c2ea3e7ce84e6a250" prot="public" virt="non-virtual"><scope>rko_lio::core::State</scope><name>velocity</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

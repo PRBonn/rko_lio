@@ -126,7 +126,13 @@
     <member refid="classrko__lio_1_1core_1_1LIO_1acbef1dddc03a92627600364fa79217ac" kind="function"><name>register_scan</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1a5cf6313e60eabd62f2379d40ec796295" kind="function"><name>initialize</name></member>
     <member refid="classrko__lio_1_1core_1_1LIO_1ab06b5040b202204f3496ebeb7a297665" kind="function"><name>bootstrap_first_scan</name></member>
-    <member refid="classrko__lio_1_1core_1_1LIO_1ab04b0cb17db61aca3021bc3f0a54b4a0" kind="function"><name>motion_priors_from_imu</name></member>
+    <member refid="classrko__lio_1_1core_1_1LIO_1a42f1adb7a6f3676e6a0082018bf50252" kind="function"><name>motion_prior_from_imu</name></member>
+  </compound>
+  <compound refid="structrko__lio_1_1core_1_1MotionPrior" kind="struct"><name>rko_lio::core::MotionPrior</name>
+    <member refid="structrko__lio_1_1core_1_1MotionPrior_1ade3cf9e29d53837f4991756ea7cc77b5" kind="variable"><name>start_time</name></member>
+    <member refid="structrko__lio_1_1core_1_1MotionPrior_1a350554ed0812ad7f9649ca9c639592bb" kind="variable"><name>linear_velocity</name></member>
+    <member refid="structrko__lio_1_1core_1_1MotionPrior_1ac390c8cbcce02cfddd0afc8f83fe2712" kind="variable"><name>acceleration</name></member>
+    <member refid="structrko__lio_1_1core_1_1MotionPrior_1a6acccbce4012aab83cb87e3d58072da4" kind="variable"><name>angular_velocity</name></member>
   </compound>
   <compound refid="classrko__lio_1_1ros_1_1OfflineNode" kind="class"><name>rko_lio::ros::OfflineNode</name>
     <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a492b765756e4d00b19d84c3cc8d5de93" kind="variable"><name>bag</name></member>
@@ -215,7 +221,7 @@
   <compound refid="structrko__lio_1_1core_1_1State" kind="struct"><name>rko_lio::core::State</name>
     <member refid="structrko__lio_1_1core_1_1State_1a1b0c9bd6280560c585e05430a6ada6c3" kind="variable"><name>time</name></member>
     <member refid="structrko__lio_1_1core_1_1State_1ab9b1f863c226a809e93fe928ce45406b" kind="variable"><name>pose</name></member>
-    <member refid="structrko__lio_1_1core_1_1State_1a34b7453484254e3c2ea3e7ce84e6a250" kind="variable"><name>velocity</name></member>
+    <member refid="structrko__lio_1_1core_1_1State_1a20339fedc7af99c7c773a8bb2f4d3639" kind="variable"><name>linear_velocity</name></member>
     <member refid="structrko__lio_1_1core_1_1State_1aa154566d6494b7af5c741e426e89a055" kind="variable"><name>angular_velocity</name></member>
     <member refid="structrko__lio_1_1core_1_1State_1a151759a0ab95cbf7c0e036b30381f44e" kind="variable"><name>linear_acceleration</name></member>
   </compound>
@@ -339,6 +345,7 @@
     <member refid="namespacerko__lio_1_1core_1a1606d7b4fe5b32a257501d8079c968ca" kind="function"><name>square</name></member>
     <member refid="namespacerko__lio_1_1core_1aadd9f1f2b2b1bc30166c6e4e6228841c" kind="function"><name>gravity</name></member>
     <member refid="namespacerko__lio_1_1core_1a4b33112425f17284c5c3ed6b2fe43119" kind="function"><name>to_seconds</name></member>
+    <member refid="namespacerko__lio_1_1core_1a08e058fe051b31851b65d12f94a28bd8" kind="function"><name>relative_pose_at_time</name></member>
     <member refid="namespacerko__lio_1_1core_1a12e21e9c3530270bad001beddeed6572" kind="function"><name>voxel_down_sample</name></member>
     <member refid="namespacerko__lio_1_1core_1a20e41beba0ec902b7c78dcdb29899f33" kind="function"><name>point_to_voxel</name></member>
   </compound>

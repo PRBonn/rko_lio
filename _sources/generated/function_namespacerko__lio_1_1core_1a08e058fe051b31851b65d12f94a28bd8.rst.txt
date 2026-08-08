@@ -1,0 +1,14 @@
+.. _exhale_function_namespacerko__lio_1_1core_1a08e058fe051b31851b65d12f94a28bd8:
+
+Function rko_lio::core::relative_pose_at_time
+=============================================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_util.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: rko_lio::core::relative_pose_at_time(const MotionPrior&, const Nsec)
+   :project: rko_lio Doxygen Project

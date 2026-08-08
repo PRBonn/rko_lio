@@ -112,18 +112,43 @@ Program Listing for File lio.cpp
              .updated = BodyAccelKF{.mean = new_mean, .covariance = new_cov}};
    }
    
-   template <typename Functor>
-     requires requires(Functor f, Nsec stamp) {
-       { f(stamp) } -> std::same_as<Sophus::SE3s>;
-     }
+   // Refers every point to reference_time
    void deskew_scan(Vector3sVector& scan,
                     const TimestampVector& timestamps,
-                    const Nsec end_time,
-                    const Functor& relative_pose_at_time) {
-     const Sophus::SE3s scan_to_scan_motion_inverse = relative_pose_at_time(end_time).inverse();
+                    const Nsec reference_time,
+                    const MotionPrior& motion) {
+     const Sophus::SE3s start2reference = relative_pose_at_time(motion, reference_time).inverse();
+     const Eigen::Matrix3s& start2reference_rotation = start2reference.so3().matrix();
+     const Eigen::Vector3s& start2reference_translation = start2reference.translation();
+   
+     // to avoid numerical issues
+     const Scalar angular_speed = std::max(motion.angular_velocity.norm(), Scalar(1e-6));
+     const Scalar inverse_angular_speed = 1 / angular_speed;
+     const Eigen::Vector3s axis = motion.angular_velocity * inverse_angular_speed;
+   
      std::transform(scan.cbegin(), scan.cend(), timestamps.cbegin(), scan.begin(),
                     [&](const Eigen::Vector3s& point, const Nsec timestamp) {
-                      return (scan_to_scan_motion_inverse * relative_pose_at_time(timestamp)) * point;
+                      const auto dt = to_seconds<Scalar>(timestamp - motion.start_time);
+                      const Scalar theta = angular_speed * dt;
+                      const Scalar sin_theta = std::sin(theta);
+                      const Scalar one_minus_cos_theta = 1 - std::cos(theta);
+                      const Eigen::Vector3s mean_linear_velocity = motion.linear_velocity + motion.acceleration * dt / 2;
+                      const Eigen::Vector3s K_times_p = axis.cross(point);
+                      const Eigen::Vector3s K_times_linear_velocity = axis.cross(mean_linear_velocity);
+                      // SE(3) exp about a fixed axis, applied to the point: R * p + V * rho
+                      // Rodrigues -> K = hat(axis), R = I + sin(theta) K + (1 - cos theta) K^2
+                      // left Jacobian -> V = I + ((1 - cos theta) / theta) K + ((theta - sin theta) / theta) K^2
+                      // rho = dt * mean_linear_velocity and theta = angular_speed * dt
+                      // dt cancels in V * rho
+                      const Eigen::Vector3s R_times_p =
+                          point + sin_theta * K_times_p + one_minus_cos_theta * axis.cross(K_times_p);
+                      const Eigen::Vector3s V_times_rho =
+                          dt * mean_linear_velocity +
+                          (one_minus_cos_theta * inverse_angular_speed) * K_times_linear_velocity +
+                          ((theta - sin_theta) * inverse_angular_speed) * axis.cross(K_times_linear_velocity);
+                      const Eigen::Vector3s point_at_start = R_times_p + V_times_rho;
+                      // and finally move to reference time
+                      return Eigen::Vector3s(start2reference_rotation * point_at_start + start2reference_translation);
                     });
    }
    
@@ -318,15 +343,17 @@ Program Listing for File lio.cpp
      return std::move(preproc.filtered_scan);
    }
    
-   std::pair<Eigen::Vector3s, Eigen::Vector3s> LIO::motion_priors_from_imu(const Nsec current_lidar_time) {
+   MotionPrior LIO::motion_prior_from_imu(const Nsec current_lidar_time) {
+     const Nsec start = lidar_state.time;
+     const Eigen::Vector3s& linear_velocity = lidar_state.linear_velocity;
      if (config.initialization_phase && !initialized_) {
        // assume static and
        initialize(current_lidar_time);
-       return {Eigen::Vector3s::Zero(), Eigen::Vector3s::Zero()};
+       return {.start_time = start, .linear_velocity = linear_velocity};
      }
      if (interval_stats.imu_count == 0) {
        std::cerr << "[WARNING] No Imu measurements in interval to average. Assuming constant velocity motion.\n";
-       return {Eigen::Vector3s::Zero(), lidar_state.angular_velocity};
+       return {.start_time = start, .linear_velocity = linear_velocity, .angular_velocity = lidar_state.angular_velocity};
      }
      const Eigen::Vector3s avg_body_accel = interval_stats.body_acceleration_sum / interval_stats.imu_count;
      const Eigen::Vector3s avg_ang_vel = interval_stats.angular_velocity_sum / interval_stats.imu_count;
@@ -334,7 +361,10 @@ Program Listing for File lio.cpp
        std::cerr << "[WARNING] Erratic body acceleration computed, norm > 50 m/s2. Either IMU data is corrupted, or you "
                     "should report an issue.";
      }
-     return {avg_body_accel, avg_ang_vel};
+     return {.start_time = start,
+             .linear_velocity = linear_velocity,
+             .acceleration = avg_body_accel,
+             .angular_velocity = avg_ang_vel};
    }
    
    // ==========================
@@ -375,10 +405,10 @@ Program Listing for File lio.cpp
    
      // imu state update
      Eigen::Vector6s tau;
-     tau.head<3>() = imu_state.velocity * dt + compensated_accel * square(dt) / 2;
+     tau.head<3>() = imu_state.linear_velocity * dt + compensated_accel * square(dt) / 2;
      tau.tail<3>() = unbiased_ang_vel * dt;
      imu_state.pose = imu_state.pose * Sophus::SE3s::exp(tau);
-     imu_state.velocity += compensated_accel * dt;
+     imu_state.linear_velocity += compensated_accel * dt;
      imu_state.angular_velocity = unbiased_ang_vel;
      imu_state.time = base_imu.time;
    
@@ -452,18 +482,9 @@ Program Listing for File lio.cpp
                                    " seconds delta to previous scan.");
      }
    
-     const auto [avg_body_accel, avg_ang_vel] = motion_priors_from_imu(current_lidar_time);
+     const MotionPrior motion = motion_prior_from_imu(current_lidar_time);
    
-     // compute relative motion using controls
-     auto relative_pose_at_time = [&](const Nsec time) -> Sophus::SE3s {
-       const auto dt = to_seconds<Scalar>(time - lidar_state.time);
-       Eigen::Vector6s tau;
-       tau.head<3>() = lidar_state.velocity * dt + (avg_body_accel * square(dt) / 2);
-       tau.tail<3>() = avg_ang_vel * dt;
-       return Sophus::SE3s::exp(tau);
-     };
-   
-     const Sophus::SE3s initial_guess = lidar_state.pose * relative_pose_at_time(current_lidar_time);
+     const Sophus::SE3s initial_guess = lidar_state.pose * relative_pose_at_time(motion, current_lidar_time);
    
      // body acceleration filter
      const auto kf_step = step_body_accel_filter(
@@ -473,7 +494,8 @@ Program Listing for File lio.cpp
      body_acceleration_covariance = kf_step.updated.covariance;
    
      if (config.deskew) {
-       deskew_scan(scan, timestamps, current_lidar_time, relative_pose_at_time);
+       SCOPED_PROFILER("Deskew");
+       deskew_scan(scan, timestamps, current_lidar_time, motion);
      }
      const std::size_t input_scan_size = scan.size();
      auto preproc_result = preprocess_scan(std::move(scan), config);
@@ -496,14 +518,14 @@ Program Listing for File lio.cpp
    
        // estimate velocities and accelerations from the new pose
        const auto dt = to_seconds<Scalar>(current_lidar_time - lidar_state.time);
-       const Sophus::SE3s motion = lidar_state.pose.inverse() * optimized_pose;
-       const Eigen::Vector6s local_velocity = motion.log() / dt;
+       const Sophus::SE3s pose_delta = lidar_state.pose.inverse() * optimized_pose;
+       const Eigen::Vector6s local_velocity = pose_delta.log() / dt;
        const Eigen::Vector3s local_linear_acceleration =
-           (local_velocity.head<3>() - motion.so3().inverse() * lidar_state.velocity) / dt;
+           (local_velocity.head<3>() - pose_delta.so3().inverse() * lidar_state.linear_velocity) / dt;
    
        // update
        lidar_state.pose = optimized_pose;
-       lidar_state.velocity = local_velocity.head<3>();
+       lidar_state.linear_velocity = local_velocity.head<3>();
        lidar_state.angular_velocity = local_velocity.tail<3>();
        lidar_state.linear_acceleration = local_linear_acceleration;
      }
