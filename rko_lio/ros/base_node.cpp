@@ -274,7 +274,7 @@ void BaseNode::publish_odometry(const core::State& state,
   odom_msg.header.frame_id = odom_frame;
   odom_msg.child_frame_id = base_frame;
   odom_msg.pose.pose = utils::sophus_to_pose(state.pose);
-  utils::eigen_vector_to_ros_xyz(state.velocity, odom_msg.twist.twist.linear);
+  utils::eigen_vector_to_ros_xyz(state.linear_velocity, odom_msg.twist.twist.linear);
   utils::eigen_vector_to_ros_xyz(state.angular_velocity, odom_msg.twist.twist.angular);
   publisher->publish(odom_msg);
 }

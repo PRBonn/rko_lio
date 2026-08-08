@@ -155,8 +155,8 @@ private:
   /** First-scan path: stamps state, optionally seeds the map, logs the pose. */
   Vector3sVector bootstrap_first_scan(const Vector3sVector& scan, const Nsec current_lidar_time);
 
-  /** Average body acceleration and angular velocity over the IMU interval, with init-phase and no-IMU fallbacks. */
-  std::pair<Eigen::Vector3s, Eigen::Vector3s> motion_priors_from_imu(const Nsec current_lidar_time);
+  /** Motion prior for the coming scan, from the IMU interval average */
+  MotionPrior motion_prior_from_imu(const Nsec current_lidar_time);
 
   /** True if odometry initialization has been completed. */
   bool initialized_ = false;

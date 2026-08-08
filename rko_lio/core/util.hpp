@@ -67,10 +67,27 @@ constexpr T to_seconds(const Nsec d) {
 struct State {
   Nsec time{0};
   Sophus::SE3s pose;
-  Eigen::Vector3s velocity = Eigen::Vector3s::Zero();
+  Eigen::Vector3s linear_velocity = Eigen::Vector3s::Zero();
   Eigen::Vector3s angular_velocity = Eigen::Vector3s::Zero();
   Eigen::Vector3s linear_acceleration = Eigen::Vector3s::Zero();
 };
+
+/** Constant-motion model anchored at the last registered state */
+struct MotionPrior {
+  Nsec start_time{0};
+  Eigen::Vector3s linear_velocity = Eigen::Vector3s::Zero();
+  Eigen::Vector3s acceleration = Eigen::Vector3s::Zero();
+  Eigen::Vector3s angular_velocity = Eigen::Vector3s::Zero();
+};
+
+/** Pose change from start_time to time */
+inline Sophus::SE3s relative_pose_at_time(const MotionPrior& prior, const Nsec time) {
+  const auto dt = to_seconds<Scalar>(time - prior.start_time);
+  Eigen::Vector6s tau;
+  tau.head<3>() = prior.linear_velocity * dt + (prior.acceleration * square(dt) / 2);
+  tau.tail<3>() = prior.angular_velocity * dt;
+  return Sophus::SE3s::exp(tau);
+}
 
 struct ImuBias {
   Eigen::Vector3s accelerometer = Eigen::Vector3s::Zero();
