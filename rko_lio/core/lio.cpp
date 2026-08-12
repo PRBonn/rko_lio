@@ -45,6 +45,8 @@ using namespace rko_lio::core;
 
 constexpr Scalar NEGLIGIBLE_EXTRINSIC = 1e-6;
 constexpr auto EPSILON_TIME = std::chrono::nanoseconds(10);
+// a delta between scans this large is a gap in the stream, not the usual jitter
+constexpr auto MAX_SCAN_DELTA = std::chrono::seconds(1);
 
 inline void transform_points(const Sophus::SE3s& T, Vector3sVector& points) {
   std::transform(points.begin(), points.end(), points.begin(), [&](const auto& point) { return T * point; });
@@ -198,7 +200,8 @@ LinearSystem build_icp_linear_system(const Sophus::SE3s& current_pose,
       });
 
   if (correspondences_counter == 0) {
-    throw std::runtime_error("Number of correspondences are 0.");
+    // same class of problem as the keypoint check in register_scan, so the same exception type, which callers drop on
+    throw std::invalid_argument("Number of correspondences are 0.");
   }
 
   return {H_icp / correspondences_counter, b_icp / correspondences_counter, 0.5 * chi_icp / correspondences_counter};
@@ -463,11 +466,10 @@ Vector3sVector LIO::register_scan(Vector3sVector scan, const TimestampVector& ti
     return bootstrap_first_scan(scan, current_lidar_time);
   }
 
-  if (std::chrono::abs(current_lidar_time - lidar_state.time) > std::chrono::seconds(1)) {
-    const double diff_seconds = to_seconds(current_lidar_time - lidar_state.time);
-    // TODO: std::expected with tl::expected (because ros humble)
-    throw std::invalid_argument("Received LiDAR scan with " + std::to_string(diff_seconds) +
-                                " seconds delta to previous scan.");
+  if (std::chrono::abs(current_lidar_time - lidar_state.time) > MAX_SCAN_DELTA) {
+    // the imu prior below extrapolates across the gap, and falls back to constant velocity if the imu dropped out too
+    std::cerr << "[WARNING] " << to_seconds(current_lidar_time - lidar_state.time)
+              << " seconds delta to the previous scan. Extrapolating the motion prior across it.\n";
   }
 
   const MotionPrior motion = motion_prior_from_imu(current_lidar_time);
