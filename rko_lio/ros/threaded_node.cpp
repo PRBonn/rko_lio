@@ -78,7 +78,7 @@ void ThreadedNode::lidar_callback(const sensor_msgs::msg::PointCloud2::ConstShar
     if (atomic_can_process) {
       sync_condition_variable.notify_one();
     }
-  } catch (const std::invalid_argument& ex) {
+  } catch (const std::exception& ex) {
     RCLCPP_ERROR_STREAM(node->get_logger(), "Encountered error, dropping scan: Error. " << ex.what());
   }
 }
@@ -113,7 +113,7 @@ void ThreadedNode::registration_loop() {
         publish_lidar_outputs(deskewed_scan);
         publish_tf(lio->lidar_state);
       }
-    } catch (const std::invalid_argument& ex) {
+    } catch (const std::exception& ex) {
       RCLCPP_ERROR_STREAM(node->get_logger(), "Encountered error, dropping scan. Error: " << ex.what());
     }
     registration_busy = false;
