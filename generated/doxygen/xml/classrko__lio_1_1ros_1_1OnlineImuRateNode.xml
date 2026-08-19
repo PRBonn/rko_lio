@@ -240,7 +240,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="105" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="105" bodyend="123"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="105" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="105" bodyend="122"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -285,7 +285,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="42" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="42" bodyend="124"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="42" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="42" bodyend="123"/>
     <listofallmembers>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1a38281b7e81e2292088a68b2fd2716003" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>atomic_node_running</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1aacbece9df2087272d75480fa2137f419" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>base_frame</name></member>
@@ -342,7 +342,7 @@
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1acdc4ef902102131dbbb350afea921b17" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>publish_map_loop</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1a886af9f92ef9734085f99ae5e770b1cb" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>publish_odometry</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1a404fef7df2bc45e8e080323888e7089d" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>publish_tf</name></member>
-      <member refid="classrko__lio_1_1ros_1_1BaseNode_1ac43c88d63c9d65b5083aaf94db5d626d" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>register_scan_locked</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1ae4a9c83881fcd1caa878bb2c3f823d29" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>register_scan_locked</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1adf575671c2b74582e831e5d9a8fefe36" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>results_dir</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1ac4aa545318868ed459b328398e5b39de" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>run_name</name></member>
       <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a87bdb49e8a7652cded933697fd92a8a9" prot="public" virt="non-virtual"><scope>rko_lio::ros::OnlineImuRateNode</scope><name>tf_at_imu_rate</name></member>

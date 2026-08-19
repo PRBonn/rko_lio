@@ -207,7 +207,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="55" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.cpp" bodystart="86" bodyend="122"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="55" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.cpp" bodystart="86" bodyend="121"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1ThreadedNode_1a0713110ddc71f5ce45fd8f0f2f3703db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -221,7 +221,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="57" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.cpp" bodystart="124" bodyend="127"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="57" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.cpp" bodystart="123" bodyend="126"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1ThreadedNode_1ac947ed258a941261b514f245fbdeb23c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -393,7 +393,7 @@
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1acdc4ef902102131dbbb350afea921b17" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>publish_map_loop</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1a886af9f92ef9734085f99ae5e770b1cb" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>publish_odometry</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1a404fef7df2bc45e8e080323888e7089d" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>publish_tf</name></member>
-      <member refid="classrko__lio_1_1ros_1_1BaseNode_1ac43c88d63c9d65b5083aaf94db5d626d" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>register_scan_locked</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1ae4a9c83881fcd1caa878bb2c3f823d29" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>register_scan_locked</name></member>
       <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a6f35b0ecc638e5cfa6ce57f2a6c74689" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>registration_busy</name></member>
       <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1acd61b2f9ae6de55e915313d3962c0279" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>registration_loop</name></member>
       <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a512b61e767463397837452326c17148b" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>registration_thread</name></member>

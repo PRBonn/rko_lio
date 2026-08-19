@@ -100,7 +100,7 @@
 <span class="c1">// Stachniss.</span>
 <span class="c1">//</span>
 <span class="c1">// Permission is hereby granted, free of charge, to any person obtaining a copy</span>
-<span class="c1">// of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="c1">// of this software and associated documentation files (the "Software"), to deal</span>
 <span class="c1">// in the Software without restriction, including without limitation the rights</span>
 <span class="c1">// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
 <span class="c1">// copies of the Software, and to permit persons to whom the Software is</span>
@@ -109,7 +109,7 @@
 <span class="c1">// The above copyright notice and this permission notice shall be included in all</span>
 <span class="c1">// copies or substantial portions of the Software.</span>
 <span class="c1">//</span>
-<span class="c1">// THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="c1">// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
 <span class="c1">// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
 <span class="c1">// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
 <span class="c1">// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
@@ -121,7 +121,7 @@
 <span class="cp">#pragma once</span>
 
 <span class="c1">// brings VoxelHash and point_to_voxel</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;voxel_down_sample.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"voxel_down_sample.hpp"</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Eigen/Core&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span>
@@ -150,14 +150,14 @@
 
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">push_back</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3i8</span><span class="o">&amp;</span><span class="w"> </span><span class="n">offset</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">full</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">out_of_range</span><span class="p">(</span><span class="s">&quot;VoxelBlock is full, check full() before pushing&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">out_of_range</span><span class="p">(</span><span class="s">"VoxelBlock is full, check full() before pushing"</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="o">*</span><span class="n">std</span><span class="o">::</span><span class="n">next</span><span class="p">(</span><span class="n">points</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">offset</span><span class="p">;</span>
 <span class="w">    </span><span class="o">++</span><span class="n">size</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="n">PointArray</span><span class="o">::</span><span class="n">const_iterator</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">points</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="n">PointArray</span><span class="o">::</span><span class="n">const_iterator</span><span class="w"> </span><span class="nf">end</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">points</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">size</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// capacity is 8, size is what&#39;s filled</span>
+<span class="w">  </span><span class="n">PointArray</span><span class="o">::</span><span class="n">const_iterator</span><span class="w"> </span><span class="nf">end</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">points</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">size</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// capacity is 8, size is what's filled</span>
 <span class="p">};</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">VoxelHashMap</span><span class="w"> </span><span class="p">{</span>

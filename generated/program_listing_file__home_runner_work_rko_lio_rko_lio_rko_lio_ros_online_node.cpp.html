@@ -100,7 +100,7 @@
 <span class="cm"> * Copyright (c) 2025 Meher V.R. Malladi.</span>
 <span class="cm"> *</span>
 <span class="cm"> * Permission is hereby granted, free of charge, to any person obtaining a copy</span>
-<span class="cm"> * of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="cm"> * of this software and associated documentation files (the "Software"), to deal</span>
 <span class="cm"> * in the Software without restriction, including without limitation the rights</span>
 <span class="cm"> * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
 <span class="cm"> * copies of the Software, and to permit persons to whom the Software is</span>
@@ -109,7 +109,7 @@
 <span class="cm"> * The above copyright notice and this permission notice shall be included in all</span>
 <span class="cm"> * copies or substantial portions of the Software.</span>
 <span class="cm"> *</span>
-<span class="cm"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="cm"> * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
 <span class="cm"> * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
 <span class="cm"> * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
 <span class="cm"> * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
@@ -118,8 +118,8 @@
 <span class="cm"> * SOFTWARE.</span>
 <span class="cm"> */</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;rko_lio/core/profiler.hpp&quot;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;threaded_node.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"rko_lio/core/profiler.hpp"</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"threaded_node.hpp"</span>
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">rko_lio</span><span class="o">::</span><span class="nn">ros</span><span class="w"> </span><span class="p">{</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">OnlineNode</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">ThreadedNode</span><span class="w"> </span><span class="p">{</span>
@@ -135,7 +135,7 @@
 <span class="w">  </span><span class="o">~</span><span class="n">OnlineNode</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
 
 <span class="w">  </span><span class="k">explicit</span><span class="w"> </span><span class="n">OnlineNode</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">NodeOptions</span><span class="o">&amp;</span><span class="w"> </span><span class="n">options</span><span class="p">)</span>
-<span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="n">ThreadedNode</span><span class="p">(</span><span class="s">&quot;rko_lio_online_node&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="p">),</span><span class="w"> </span><span class="n">timer</span><span class="p">(</span><span class="s">&quot;RKO LIO Online Node&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="n">ThreadedNode</span><span class="p">(</span><span class="s">"rko_lio_online_node"</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="p">),</span><span class="w"> </span><span class="n">timer</span><span class="p">(</span><span class="s">"RKO LIO Online Node"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">qos_imu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">SensorDataQoS</span><span class="p">().</span><span class="n">keep_last</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">qos_lidar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">SensorDataQoS</span><span class="p">().</span><span class="n">keep_last</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
 

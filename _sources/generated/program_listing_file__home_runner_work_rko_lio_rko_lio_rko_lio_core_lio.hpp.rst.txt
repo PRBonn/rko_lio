@@ -35,6 +35,7 @@ Program Listing for File lio.hpp
     */
    
    #pragma once
+   #include "process_timestamps.hpp"
    #include "util.hpp"
    #include "voxel_hash_map.hpp"
    
@@ -91,10 +92,10 @@ Program Listing for File lio.hpp
    
      void add_imu_measurement(const Sophus::SE3s& extrinsic_imu2base, const ImuControl& raw_imu);
    
-     Vector3sVector register_scan(Vector3sVector scan, const TimestampVector& timestamps);
+     Vector3sVector register_scan(Vector3sVector scan, const Timestamps& timestamps);
    
      Vector3sVector
-     register_scan(const Sophus::SE3s& extrinsic_lidar2base, Vector3sVector scan, const TimestampVector& timestamps);
+     register_scan(const Sophus::SE3s& extrinsic_lidar2base, Vector3sVector scan, const Timestamps& timestamps);
    
      std::vector<std::pair<Nsec, Sophus::SE3s>> poses_with_timestamps;
    

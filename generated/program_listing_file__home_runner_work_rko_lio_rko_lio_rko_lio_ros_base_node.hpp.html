@@ -100,7 +100,7 @@
 <span class="cm"> * Copyright (c) 2025 Meher V.R. Malladi.</span>
 <span class="cm"> *</span>
 <span class="cm"> * Permission is hereby granted, free of charge, to any person obtaining a copy</span>
-<span class="cm"> * of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="cm"> * of this software and associated documentation files (the "Software"), to deal</span>
 <span class="cm"> * in the Software without restriction, including without limitation the rights</span>
 <span class="cm"> * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
 <span class="cm"> * copies of the Software, and to permit persons to whom the Software is</span>
@@ -109,7 +109,7 @@
 <span class="cm"> * The above copyright notice and this permission notice shall be included in all</span>
 <span class="cm"> * copies or substantial portions of the Software.</span>
 <span class="cm"> *</span>
-<span class="cm"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="cm"> * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
 <span class="cm"> * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
 <span class="cm"> * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
 <span class="cm"> * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
@@ -119,8 +119,8 @@
 <span class="cm"> */</span>
 
 <span class="cp">#pragma once</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;rko_lio/core/lio.hpp&quot;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;rko_lio/core/process_timestamps.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"rko_lio/core/lio.hpp"</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"rko_lio/core/process_timestamps.hpp"</span>
 <span class="c1">// stl</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;atomic&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;filesystem&gt;</span>
@@ -177,12 +177,12 @@
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">lidar_topic</span><span class="p">;</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">lidar_frame</span><span class="p">;</span><span class="w"> </span><span class="c1">// default: get from the first lidar message</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">base_frame</span><span class="p">;</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">odom_frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;odom&quot;</span><span class="p">;</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">odom_topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rko_lio/odom&quot;</span><span class="p">;</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">map_topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rko_lio/local_map&quot;</span><span class="p">;</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">deskewed_scan_topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rko_lio/frame&quot;</span><span class="p">;</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">results_dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;results&quot;</span><span class="p">;</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">run_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rko_lio_run&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">odom_frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"odom"</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">odom_topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"rko_lio/odom"</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">map_topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"rko_lio/local_map"</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">deskewed_scan_topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"rko_lio/frame"</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">results_dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"results"</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">run_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"rko_lio_run"</span><span class="p">;</span>
 
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="w"> </span><span class="n">local_map_mutex</span><span class="p">;</span>
 
@@ -202,14 +202,14 @@
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">parse_cli_extrinsics</span><span class="p">();</span>
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">check_and_set_extrinsics</span><span class="p">();</span>
 
-<span class="w">  </span><span class="c1">// Parse the message&#39;s frame_id into target_frame on first sight, throw if neither header nor static extrinsics</span>
+<span class="w">  </span><span class="c1">// Parse the message's frame_id into target_frame on first sight, throw if neither header nor static extrinsics</span>
 <span class="w">  </span><span class="c1">// are usable, and report whether extrinsics are now set. Extrinsics are assumed static; if they change, switch</span>
 <span class="w">  </span><span class="c1">// to querying TF inline per-message.</span>
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">ensure_frame_and_extrinsics</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">target_frame</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">msg_frame</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string_view</span><span class="w"> </span><span class="n">kind</span><span class="p">);</span>
 
 <span class="w">  </span><span class="n">LidarScan</span><span class="w"> </span><span class="nf">process_lidar_msg</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PointCloud2</span><span class="o">::</span><span class="n">ConstSharedPtr</span><span class="o">&amp;</span><span class="w"> </span><span class="n">lidar_msg</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 
-<span class="w">  </span><span class="n">core</span><span class="o">::</span><span class="n">Vector3sVector</span><span class="w"> </span><span class="nf">register_scan_locked</span><span class="p">(</span><span class="n">core</span><span class="o">::</span><span class="n">Vector3sVector</span><span class="w"> </span><span class="n">scan</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">core</span><span class="o">::</span><span class="n">TimestampVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">time_vector</span><span class="p">);</span>
+<span class="w">  </span><span class="n">core</span><span class="o">::</span><span class="n">Vector3sVector</span><span class="w"> </span><span class="nf">register_scan_locked</span><span class="p">(</span><span class="n">core</span><span class="o">::</span><span class="n">Vector3sVector</span><span class="w"> </span><span class="n">scan</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">core</span><span class="o">::</span><span class="n">Timestamps</span><span class="o">&amp;</span><span class="w"> </span><span class="n">timestamps</span><span class="p">);</span>
 
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">publish_lidar_outputs</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">core</span><span class="o">::</span><span class="n">Vector3sVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">deskewed_scan</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 

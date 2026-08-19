@@ -111,7 +111,7 @@ The TF tree is queried for the necessary transformations.</p>
 </ul>
 <p>If there is no TF tree, you must supply extrinsics for IMU-to-base and LiDAR-to-base. Set one transformation to identity if you want that frame to be the reference, but both must be given.</p>
 <p>Message header frame IDs must match the TF tree frame names. If they do not, override with <code class="docutils literal notranslate"><span class="pre">--lidar_frame</span></code> or <code class="docutils literal notranslate"><span class="pre">--imu_frame</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The config should provide extrinsics if they can&#39;t be inferred</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The config should provide extrinsics if they can't be inferred</span>
 rko_lio<span class="w"> </span>-v<span class="w"> </span>-c<span class="w"> </span>config.yaml<span class="w"> </span>--imu<span class="w"> </span>imu_topic<span class="w"> </span>--lidar<span class="w"> </span>lidar_topic<span class="w"> </span>/path/to/rosbag_folder
 </pre></div>
 </div>

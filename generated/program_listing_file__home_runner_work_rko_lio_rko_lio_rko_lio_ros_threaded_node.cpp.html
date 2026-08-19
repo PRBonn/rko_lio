@@ -100,7 +100,7 @@
 <span class="cm"> * Copyright (c) 2025 Meher V.R. Malladi.</span>
 <span class="cm"> *</span>
 <span class="cm"> * Permission is hereby granted, free of charge, to any person obtaining a copy</span>
-<span class="cm"> * of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="cm"> * of this software and associated documentation files (the "Software"), to deal</span>
 <span class="cm"> * in the Software without restriction, including without limitation the rights</span>
 <span class="cm"> * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
 <span class="cm"> * copies of the Software, and to permit persons to whom the Software is</span>
@@ -109,7 +109,7 @@
 <span class="cm"> * The above copyright notice and this permission notice shall be included in all</span>
 <span class="cm"> * copies or substantial portions of the Software.</span>
 <span class="cm"> *</span>
-<span class="cm"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="cm"> * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
 <span class="cm"> * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
 <span class="cm"> * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
 <span class="cm"> * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
@@ -118,10 +118,10 @@
 <span class="cm"> * SOFTWARE.</span>
 <span class="cm"> */</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;threaded_node.hpp&quot;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;rko_lio/core/process_timestamps.hpp&quot;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;rko_lio/core/profiler.hpp&quot;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;rko_lio/ros/utils/utils.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"threaded_node.hpp"</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"rko_lio/core/process_timestamps.hpp"</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"rko_lio/core/profiler.hpp"</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"rko_lio/ros/utils/utils.hpp"</span>
 <span class="c1">// other</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdexcept&gt;</span>
 
@@ -134,12 +134,12 @@
 <span class="n">ThreadedNode</span><span class="o">::</span><span class="n">ThreadedNode</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">node_name</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">NodeOptions</span><span class="o">&amp;</span><span class="w"> </span><span class="n">options</span><span class="p">)</span>
 <span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">BaseNode</span><span class="p">(</span><span class="n">node_name</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">max_lidar_buffer_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">(</span>
-<span class="w">      </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">declare_parameter</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;async.max_lidar_buffer_size&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">max_lidar_buffer_size</span><span class="p">)));</span>
+<span class="w">      </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">declare_parameter</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"async.max_lidar_buffer_size"</span><span class="p">,</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">max_lidar_buffer_size</span><span class="p">)));</span>
 <span class="w">  </span><span class="n">registration_thread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">jthread</span><span class="p">([</span><span class="k">this</span><span class="p">]()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">registration_loop</span><span class="p">();</span><span class="w"> </span><span class="p">});</span>
 <span class="p">}</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="n">ThreadedNode</span><span class="o">::</span><span class="n">imu_callback</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Imu</span><span class="o">::</span><span class="n">ConstSharedPtr</span><span class="o">&amp;</span><span class="w"> </span><span class="n">imu_msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">ensure_frame_and_extrinsics</span><span class="p">(</span><span class="n">imu_frame</span><span class="p">,</span><span class="w"> </span><span class="n">imu_msg</span><span class="o">-&gt;</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;IMU&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">ensure_frame_and_extrinsics</span><span class="p">(</span><span class="n">imu_frame</span><span class="p">,</span><span class="w"> </span><span class="n">imu_msg</span><span class="o">-&gt;</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span><span class="p">,</span><span class="w"> </span><span class="s">"IMU"</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="w">  </span><span class="p">{</span>
@@ -153,13 +153,13 @@
 <span class="p">}</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="n">ThreadedNode</span><span class="o">::</span><span class="n">lidar_callback</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PointCloud2</span><span class="o">::</span><span class="n">ConstSharedPtr</span><span class="o">&amp;</span><span class="w"> </span><span class="n">lidar_msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">ensure_frame_and_extrinsics</span><span class="p">(</span><span class="n">lidar_frame</span><span class="p">,</span><span class="w"> </span><span class="n">lidar_msg</span><span class="o">-&gt;</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;LiDAR&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">ensure_frame_and_extrinsics</span><span class="p">(</span><span class="n">lidar_frame</span><span class="p">,</span><span class="w"> </span><span class="n">lidar_msg</span><span class="o">-&gt;</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span><span class="p">,</span><span class="w"> </span><span class="s">"LiDAR"</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="w">  </span><span class="p">{</span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">scoped_lock</span><span class="w"> </span><span class="nf">lock</span><span class="p">(</span><span class="n">buffer_mutex</span><span class="p">);</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lidar_buffer</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">max_lidar_buffer_size</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">RCLCPP_WARN_STREAM</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Registration lidar buffer limit reached. Dropping scan.&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="n">RCLCPP_WARN_STREAM</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">"Registration lidar buffer limit reached. Dropping scan."</span><span class="p">);</span>
 <span class="w">      </span><span class="n">sync_condition_variable</span><span class="p">.</span><span class="n">notify_one</span><span class="p">();</span>
 <span class="w">      </span><span class="k">return</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
@@ -175,7 +175,7 @@
 <span class="w">      </span><span class="n">sync_condition_variable</span><span class="p">.</span><span class="n">notify_one</span><span class="p">();</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">invalid_argument</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">RCLCPP_ERROR_STREAM</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Encountered error, dropping scan: Error. &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ex</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
+<span class="w">    </span><span class="n">RCLCPP_ERROR_STREAM</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">"Encountered error, dropping scan: Error. "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ex</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 
@@ -183,7 +183,7 @@
 <span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">rclcpp</span><span class="o">::</span><span class="n">ok</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">atomic_node_running</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_lock</span><span class="w"> </span><span class="nf">buffer_lock</span><span class="p">(</span><span class="n">buffer_mutex</span><span class="p">);</span>
 <span class="w">    </span><span class="n">sync_condition_variable</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">buffer_lock</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="k">this</span><span class="p">]()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">!</span><span class="n">atomic_node_running</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">atomic_can_process</span><span class="p">;</span><span class="w"> </span><span class="p">});</span>
-<span class="w">    </span><span class="n">SCOPED_PROFILER</span><span class="p">(</span><span class="s">&quot;ROS Registration Loop&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">SCOPED_PROFILER</span><span class="p">(</span><span class="s">"ROS Registration Loop"</span><span class="p">);</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">atomic_node_running</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="c1">// node could have been killed after waiting on the cv</span>
 <span class="w">      </span><span class="k">break</span><span class="p">;</span>
@@ -202,15 +202,14 @@
 <span class="w">    </span><span class="n">buffer_lock</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span><span class="w"> </span><span class="c1">// we dont touch the buffers anymore</span>
 
 <span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="n">core</span><span class="o">::</span><span class="n">Vector3sVector</span><span class="w"> </span><span class="n">deskewed_scan</span><span class="w"> </span><span class="o">=</span>
-<span class="w">          </span><span class="n">register_scan_locked</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">scan</span><span class="p">.</span><span class="n">points</span><span class="p">),</span><span class="w"> </span><span class="n">scan</span><span class="p">.</span><span class="n">timestamps</span><span class="p">.</span><span class="n">per_point</span><span class="p">);</span>
+<span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="n">core</span><span class="o">::</span><span class="n">Vector3sVector</span><span class="w"> </span><span class="n">deskewed_scan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">register_scan_locked</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">scan</span><span class="p">.</span><span class="n">points</span><span class="p">),</span><span class="w"> </span><span class="n">scan</span><span class="p">.</span><span class="n">timestamps</span><span class="p">);</span>
 <span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">deskewed_scan</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="c1">// TODO: first scan is skipped and an empty scan is returned. improve how we handle this</span>
 <span class="w">        </span><span class="n">publish_lidar_outputs</span><span class="p">(</span><span class="n">deskewed_scan</span><span class="p">);</span>
 <span class="w">        </span><span class="n">publish_tf</span><span class="p">(</span><span class="n">lio</span><span class="o">-&gt;</span><span class="n">lidar_state</span><span class="p">);</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">invalid_argument</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">RCLCPP_ERROR_STREAM</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Encountered error, dropping scan. Error: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ex</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
+<span class="w">      </span><span class="n">RCLCPP_ERROR_STREAM</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">"Encountered error, dropping scan. Error: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ex</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="n">registration_busy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>

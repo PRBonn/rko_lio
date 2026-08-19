@@ -118,8 +118,7 @@ Program Listing for File threaded_node.cpp
        buffer_lock.unlock(); // we dont touch the buffers anymore
    
        try {
-         const core::Vector3sVector deskewed_scan =
-             register_scan_locked(std::move(scan.points), scan.timestamps.per_point);
+         const core::Vector3sVector deskewed_scan = register_scan_locked(std::move(scan.points), scan.timestamps);
          if (!deskewed_scan.empty()) {
            // TODO: first scan is skipped and an empty scan is returned. improve how we handle this
            publish_lidar_outputs(deskewed_scan);

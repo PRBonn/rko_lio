@@ -214,15 +214,15 @@
       <type>Vector3sVector</type>
       <name>register_scan</name>
       <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
-      <anchor>aaba2cf6d3b84ffaa8506ca1401217ebc</anchor>
-      <arglist>(Vector3sVector scan, const TimestampVector &amp;timestamps)</arglist>
+      <anchor>a44779bec63fb5044b23507a0e7984a38</anchor>
+      <arglist>(Vector3sVector scan, const Timestamps &amp;timestamps)</arglist>
     </member>
     <member kind="function">
       <type>Vector3sVector</type>
       <name>register_scan</name>
       <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
-      <anchor>acbef1dddc03a92627600364fa79217ac</anchor>
-      <arglist>(const Sophus::SE3s &amp;extrinsic_lidar2base, Vector3sVector scan, const TimestampVector &amp;timestamps)</arglist>
+      <anchor>a68d76c941b7c008f86e6bf709236b5b6</anchor>
+      <arglist>(const Sophus::SE3s &amp;extrinsic_lidar2base, Vector3sVector scan, const Timestamps &amp;timestamps)</arglist>
     </member>
     <member kind="variable">
       <type>Config</type>

@@ -100,7 +100,7 @@
 <span class="cm"> * Copyright (c) 2025 Meher V.R. Malladi.</span>
 <span class="cm"> *</span>
 <span class="cm"> * Permission is hereby granted, free of charge, to any person obtaining a copy</span>
-<span class="cm"> * of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="cm"> * of this software and associated documentation files (the "Software"), to deal</span>
 <span class="cm"> * in the Software without restriction, including without limitation the rights</span>
 <span class="cm"> * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
 <span class="cm"> * copies of the Software, and to permit persons to whom the Software is</span>
@@ -109,7 +109,7 @@
 <span class="cm"> * The above copyright notice and this permission notice shall be included in all</span>
 <span class="cm"> * copies or substantial portions of the Software.</span>
 <span class="cm"> *</span>
-<span class="cm"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="cm"> * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
 <span class="cm"> * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
 <span class="cm"> * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
 <span class="cm"> * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
@@ -119,8 +119,9 @@
 <span class="cm"> */</span>
 
 <span class="cp">#pragma once</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;util.hpp&quot;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;voxel_hash_map.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"process_timestamps.hpp"</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"util.hpp"</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"voxel_hash_map.hpp"</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;tbb/task_arena.h&gt;</span>
 
@@ -175,10 +176,10 @@
 
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">add_imu_measurement</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Sophus</span><span class="o">::</span><span class="n">SE3s</span><span class="o">&amp;</span><span class="w"> </span><span class="n">extrinsic_imu2base</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">ImuControl</span><span class="o">&amp;</span><span class="w"> </span><span class="n">raw_imu</span><span class="p">);</span>
 
-<span class="w">  </span><span class="n">Vector3sVector</span><span class="w"> </span><span class="nf">register_scan</span><span class="p">(</span><span class="n">Vector3sVector</span><span class="w"> </span><span class="n">scan</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">TimestampVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">timestamps</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Vector3sVector</span><span class="w"> </span><span class="nf">register_scan</span><span class="p">(</span><span class="n">Vector3sVector</span><span class="w"> </span><span class="n">scan</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Timestamps</span><span class="o">&amp;</span><span class="w"> </span><span class="n">timestamps</span><span class="p">);</span>
 
 <span class="w">  </span><span class="n">Vector3sVector</span>
-<span class="w">  </span><span class="nf">register_scan</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Sophus</span><span class="o">::</span><span class="n">SE3s</span><span class="o">&amp;</span><span class="w"> </span><span class="n">extrinsic_lidar2base</span><span class="p">,</span><span class="w"> </span><span class="n">Vector3sVector</span><span class="w"> </span><span class="n">scan</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">TimestampVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">timestamps</span><span class="p">);</span>
+<span class="w">  </span><span class="nf">register_scan</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Sophus</span><span class="o">::</span><span class="n">SE3s</span><span class="o">&amp;</span><span class="w"> </span><span class="n">extrinsic_lidar2base</span><span class="p">,</span><span class="w"> </span><span class="n">Vector3sVector</span><span class="w"> </span><span class="n">scan</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Timestamps</span><span class="o">&amp;</span><span class="w"> </span><span class="n">timestamps</span><span class="p">);</span>
 
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">Nsec</span><span class="p">,</span><span class="w"> </span><span class="n">Sophus</span><span class="o">::</span><span class="n">SE3s</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">poses_with_timestamps</span><span class="p">;</span>
 

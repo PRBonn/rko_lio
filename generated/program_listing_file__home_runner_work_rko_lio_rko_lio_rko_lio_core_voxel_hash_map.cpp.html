@@ -100,7 +100,7 @@
 <span class="c1">// Stachniss.</span>
 <span class="c1">//</span>
 <span class="c1">// Permission is hereby granted, free of charge, to any person obtaining a copy</span>
-<span class="c1">// of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="c1">// of this software and associated documentation files (the "Software"), to deal</span>
 <span class="c1">// in the Software without restriction, including without limitation the rights</span>
 <span class="c1">// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
 <span class="c1">// copies of the Software, and to permit persons to whom the Software is</span>
@@ -109,7 +109,7 @@
 <span class="c1">// The above copyright notice and this permission notice shall be included in all</span>
 <span class="c1">// copies or substantial portions of the Software.</span>
 <span class="c1">//</span>
-<span class="c1">// THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="c1">// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
 <span class="c1">// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
 <span class="c1">// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
 <span class="c1">// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
@@ -119,7 +119,7 @@
 <span class="c1">//</span>
 <span class="c1">// Modified heavily from kiss-icp (kiss_icp/cpp/kiss_icp/core/VoxelHashMap.{hpp,cpp}).</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;voxel_hash_map.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"voxel_hash_map.hpp"</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Eigen/Core&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
@@ -215,7 +215,7 @@
 <span class="w">      </span><span class="n">inv_quantum_</span><span class="p">(</span><span class="n">QUANTA_PER_VOXEL</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">voxel_size</span><span class="p">),</span>
 <span class="w">      </span><span class="n">clipping_distance_</span><span class="p">(</span><span class="n">clipping_distance</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">voxel_size</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">voxel_size</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">MAX_VOXEL_SIZE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">invalid_argument</span><span class="p">(</span><span class="s">&quot;voxel_size must be in (0, &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">MAX_VOXEL_SIZE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;] metres&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">invalid_argument</span><span class="p">(</span><span class="s">"voxel_size must be in (0, "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">MAX_VOXEL_SIZE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">"] metres"</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 

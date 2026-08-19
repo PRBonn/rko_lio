@@ -257,13 +257,12 @@ Program Listing for File base_node.cpp
      return scan;
    }
    
-   core::Vector3sVector BaseNode::register_scan_locked(core::Vector3sVector scan,
-                                                       const core::TimestampVector& time_vector) {
+   core::Vector3sVector BaseNode::register_scan_locked(core::Vector3sVector scan, const core::Timestamps& timestamps) {
      std::unique_lock lock(local_map_mutex, std::defer_lock);
      if (publish_local_map) {
        lock.lock(); // map publish thread may access map simultaneously
      }
-     return lio->register_scan(extrinsic_lidar2base, std::move(scan), time_vector);
+     return lio->register_scan(extrinsic_lidar2base, std::move(scan), timestamps);
    }
    
    void BaseNode::publish_lidar_outputs(const core::Vector3sVector& deskewed_scan) const {
