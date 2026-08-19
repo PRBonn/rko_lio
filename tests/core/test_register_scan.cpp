@@ -13,6 +13,7 @@ using rko_lio::core::GRAVITY_MAG;
 using rko_lio::core::ImuControl;
 using rko_lio::core::LIO;
 using rko_lio::core::Nsec;
+using rko_lio::core::Timestamps;
 using rko_lio::core::TimestampVector;
 using rko_lio::core::to_seconds;
 using rko_lio::core::Vector3sVector;
@@ -32,19 +33,25 @@ constexpr double DT = 1.0;
 constexpr double FIRST_SCAN_END = 0.1;
 constexpr double SECOND_SCAN_END = FIRST_SCAN_END + DT;
 
-TimestampVector linspace_timestamps(size_t n, double t_start, double t_end) {
+Timestamps linspace_timestamps(size_t n, double t_start, double t_end) {
   TimestampVector ts;
   ts.reserve(n);
   for (size_t i = 0; i < n; ++i) {
     const double frac = n == 1 ? 0.0 : static_cast<double>(i) / static_cast<double>(n - 1);
     ts.emplace_back(ns_from_seconds(t_start + (t_end - t_start) * frac));
   }
-  return ts;
+  const Nsec t_start_ns = ns_from_seconds(t_start);
+  const Nsec t_end_ns = ns_from_seconds(t_end);
+  return Timestamps{
+      .min = std::min(t_start_ns, t_end_ns), .max = std::max(t_start_ns, t_end_ns), .per_point = std::move(ts)};
 }
 
 // Single-instant timestamps for the second scan: deskewing reduces to identity
 // when every point shares end_time.
-TimestampVector instant_timestamps(size_t n, double t) { return TimestampVector(n, ns_from_seconds(t)); }
+Timestamps instant_timestamps(size_t n, double t) {
+  return Timestamps{
+      .min = ns_from_seconds(t), .max = ns_from_seconds(t), .per_point = TimestampVector(n, ns_from_seconds(t))};
+}
 
 void feed_imu(LIO& lio,
               double t_start,
@@ -334,6 +341,6 @@ TEST_CASE("Noisy: full SE(3) translation + rotation", "[register_scan][!mayfail]
 TEST_CASE("register_scan: empty timestamps throws instead of UB", "[register_scan]") {
   LIO lio((LIO::Config{}));
   const auto cloud = make_hollow_cube();
-  const TimestampVector empty_timestamps;
+  const Timestamps empty_timestamps{};
   REQUIRE_THROWS_AS(lio.register_scan(cloud, empty_timestamps), std::invalid_argument);
 }
