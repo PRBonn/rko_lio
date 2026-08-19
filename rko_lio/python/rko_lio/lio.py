@@ -153,6 +153,8 @@ class LIO:
         scan: np.ndarray,
         timestamps: np.ndarray,
         extrinsic_lidar2base: np.ndarray | None = None,
+        start_time_ns: int | None = None,
+        end_time_ns: int | None = None,
     ):
         scan_arr = np.asarray(scan, dtype=np.float64)
         times_arr = np.ascontiguousarray(np.asarray(timestamps), dtype=np.int64)
@@ -162,11 +164,13 @@ class LIO:
             raise ValueError(f"timestamps: expected ({scan_arr.shape[0]},), got {times_arr.shape}")
         scan_vec = _Vector3sVector(scan_arr)
         time_vec = _VectorInt64(times_arr)
+        start_ns = int(times_arr.min()) if start_time_ns is None else start_time_ns
+        end_ns = int(times_arr.max()) if end_time_ns is None else end_time_ns
         if extrinsic_lidar2base is None:
-            ret_scan = self._impl.register_scan(scan_vec, time_vec)
+            ret_scan = self._impl.register_scan(scan_vec, time_vec, start_ns, end_ns)
             return np.asarray(ret_scan)
         extr = _as_se3("extrinsic_lidar2base", extrinsic_lidar2base)
-        ret_scan = self._impl.register_scan(extr, scan_vec, time_vec)
+        ret_scan = self._impl.register_scan(extr, scan_vec, time_vec, start_ns, end_ns)
         return np.asarray(ret_scan)
 
     def poses_with_timestamps(self):

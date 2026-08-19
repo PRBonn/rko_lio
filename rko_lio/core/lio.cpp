@@ -452,12 +452,11 @@ void LIO::add_imu_measurement(const Sophus::SE3s& extrinsic_imu2base, const ImuC
 
 // ============================ lidar ===============================
 
-Vector3sVector LIO::register_scan(Vector3sVector scan, const TimestampVector& timestamps) {
-  if (timestamps.empty()) {
+Vector3sVector LIO::register_scan(Vector3sVector scan, const Timestamps& timestamps) {
+  if (timestamps.per_point.empty()) {
     throw std::invalid_argument("LIO::register_scan: timestamps must not be empty.");
   }
-  // TODO: redundant max compute as its available after process_timestamps
-  const Nsec current_lidar_time = *std::max_element(timestamps.cbegin(), timestamps.cend());
+  const Nsec current_lidar_time = timestamps.max;
 
   if (lidar_state.time < EPSILON_TIME) {
     return bootstrap_first_scan(scan, current_lidar_time);
@@ -483,7 +482,7 @@ Vector3sVector LIO::register_scan(Vector3sVector scan, const TimestampVector& ti
 
   if (config.deskew) {
     SCOPED_PROFILER("Deskew");
-    deskew_scan(scan, timestamps, current_lidar_time, motion);
+    deskew_scan(scan, timestamps.per_point, current_lidar_time, motion);
   }
   const std::size_t input_scan_size = scan.size();
   auto preproc_result = preprocess_scan(std::move(scan), config);
@@ -532,7 +531,7 @@ Vector3sVector LIO::register_scan(Vector3sVector scan, const TimestampVector& ti
 }
 
 Vector3sVector
-LIO::register_scan(const Sophus::SE3s& extrinsic_lidar2base, Vector3sVector scan, const TimestampVector& timestamps) {
+LIO::register_scan(const Sophus::SE3s& extrinsic_lidar2base, Vector3sVector scan, const Timestamps& timestamps) {
   if (extrinsic_lidar2base.log().norm() < NEGLIGIBLE_EXTRINSIC) {
     return register_scan(std::move(scan), timestamps);
   }

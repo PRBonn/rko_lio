@@ -28,6 +28,7 @@
  */
 
 #pragma once
+#include "process_timestamps.hpp"
 #include "util.hpp"
 #include "voxel_hash_map.hpp"
 
@@ -120,21 +121,23 @@ public:
    * Register a LiDAR scan, applying deskewing based on the initial motion guess
    * and clipping points beyond valid range.
    * @param scan Input raw point cloud.
-   * @param timestamps Absolute timestamps corresponding to each scan point.
+   * @param timestamps Absolute per-point timestamps, plus the scan's own min/max, as already
+   *   computed by process_timestamps.
    * @return Deskewed and clipped point cloud.
    */
-  Vector3sVector register_scan(Vector3sVector scan, const TimestampVector& timestamps);
+  Vector3sVector register_scan(Vector3sVector scan, const Timestamps& timestamps);
 
   /**
    * Register a LiDAR scan for which the extrinsic calibration from lidar to base
    * has already been applied.
    * @param extrinsic_lidar2base Extrinsic from lidar to base frame.
    * @param scan Input raw point cloud.
-   * @param timestamps Absolute timestamps corresponding to each scan point.
+   * @param timestamps Absolute per-point timestamps, plus the scan's own min/max, as already
+   *   computed by process_timestamps.
    * @return Deskewed and clipped scan in the original lidar frame.
    */
   Vector3sVector
-  register_scan(const Sophus::SE3s& extrinsic_lidar2base, Vector3sVector scan, const TimestampVector& timestamps);
+  register_scan(const Sophus::SE3s& extrinsic_lidar2base, Vector3sVector scan, const Timestamps& timestamps);
 
   /** Sequence of registered scan poses with corresponding timestamps. */
   std::vector<std::pair<Nsec, Sophus::SE3s>> poses_with_timestamps;
