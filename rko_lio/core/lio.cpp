@@ -196,6 +196,7 @@ LinearSystem build_icp_linear_system(const Sophus::SE3s& current_pose,
       });
 
   if (correspondences_counter == 0) {
+    // TODO: std::expected with tl::expected (because ros humble)
     throw std::runtime_error("Number of correspondences are 0.");
   }
 
