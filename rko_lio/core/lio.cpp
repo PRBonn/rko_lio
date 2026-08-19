@@ -101,12 +101,9 @@ AccelFilterStep step_body_accel_filter(const BodyAccelKF& prev,
           .updated = BodyAccelKF{.mean = new_mean, .covariance = new_cov}};
 }
 
-// Refers every point to reference_time
-void deskew_scan(Vector3sVector& scan,
-                 const TimestampVector& timestamps,
-                 const Nsec reference_time,
-                 const MotionPrior& motion) {
-  const Sophus::SE3s start2reference = relative_pose_at_time(motion, reference_time).inverse();
+// Refers every point to timestamps.max
+void deskew_scan(Vector3sVector& scan, const Timestamps& timestamps, const MotionPrior& motion) {
+  const Sophus::SE3s start2reference = relative_pose_at_time(motion, timestamps.max).inverse();
   const Eigen::Matrix3s& start2reference_rotation = start2reference.so3().matrix();
   const Eigen::Vector3s& start2reference_translation = start2reference.translation();
 
@@ -115,7 +112,7 @@ void deskew_scan(Vector3sVector& scan,
   const Scalar inverse_angular_speed = 1 / angular_speed;
   const Eigen::Vector3s axis = motion.angular_velocity * inverse_angular_speed;
 
-  std::transform(scan.cbegin(), scan.cend(), timestamps.cbegin(), scan.begin(),
+  std::transform(scan.cbegin(), scan.cend(), timestamps.per_point.cbegin(), scan.begin(),
                  [&](const Eigen::Vector3s& point, const Nsec timestamp) {
                    const auto dt = to_seconds<Scalar>(timestamp - motion.start_time);
                    const Scalar theta = angular_speed * dt;
@@ -482,7 +479,14 @@ Vector3sVector LIO::register_scan(Vector3sVector scan, const Timestamps& timesta
 
   if (config.deskew) {
     SCOPED_PROFILER("Deskew");
-    deskew_scan(scan, timestamps.per_point, current_lidar_time, motion);
+    const auto gap_to_scan_start = to_seconds<Scalar>(timestamps.min - motion.start_time);
+    const MotionPrior scan_motion{
+        .start_time = timestamps.min,
+        .linear_velocity = motion.linear_velocity + motion.acceleration * gap_to_scan_start,
+        .acceleration = motion.acceleration,
+        .angular_velocity = motion.angular_velocity,
+    };
+    deskew_scan(scan, timestamps, scan_motion);
   }
   const std::size_t input_scan_size = scan.size();
   auto preproc_result = preprocess_scan(std::move(scan), config);
