@@ -157,6 +157,8 @@ class LIOPipeline:
                 scan,
                 timestamps,
                 extrinsic_lidar2base=self.extrinsic_lidar2base,
+                start_time_ns=start_time_ns,
+                end_time_ns=end_time_ns,
             )
         except ValueError as e:
             print(

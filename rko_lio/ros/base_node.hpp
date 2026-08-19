@@ -113,7 +113,7 @@ public:
 
   LidarScan process_lidar_msg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& lidar_msg) const;
 
-  core::Vector3sVector register_scan_locked(core::Vector3sVector scan, const core::TimestampVector& time_vector);
+  core::Vector3sVector register_scan_locked(core::Vector3sVector scan, const core::Timestamps& timestamps);
 
   void publish_lidar_outputs(const core::Vector3sVector& deskewed_scan) const;
 

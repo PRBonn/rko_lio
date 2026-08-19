@@ -97,23 +97,28 @@ PYBIND11_MODULE(rko_lio_pybind, m) {
           "extrinsic_imu2base"_a, "acceleration"_a, "angular_velocity"_a, "time"_a)
       .def(
           "register_scan",
-          [](LIO& self, const std::vector<Eigen::Vector3s>& scan, const std::vector<int64_t>& timestamps_ns) {
-            TimestampVector timestamps(timestamps_ns.size());
-            std::transform(timestamps_ns.cbegin(), timestamps_ns.cend(), timestamps.begin(),
+          [](LIO& self, const std::vector<Eigen::Vector3s>& scan, const std::vector<int64_t>& timestamps_ns,
+             const int64_t start_time_ns, const int64_t end_time_ns) {
+            TimestampVector per_point(timestamps_ns.size());
+            std::transform(timestamps_ns.cbegin(), timestamps_ns.cend(), per_point.begin(),
                            [](const int64_t t) { return Nsec(t); });
-            return self.register_scan(scan, timestamps);
+            return self.register_scan(
+                scan,
+                Timestamps{.min = Nsec(start_time_ns), .max = Nsec(end_time_ns), .per_point = std::move(per_point)});
           },
-          "scan"_a, "timestamps"_a)
+          "scan"_a, "timestamps"_a, "start_time_ns"_a, "end_time_ns"_a)
       .def(
           "register_scan",
           [](LIO& self, const Eigen::Matrix4s& extrinsic_lidar2base, const std::vector<Eigen::Vector3s>& scan,
-             const std::vector<int64_t>& timestamps_ns) {
-            TimestampVector timestamps(timestamps_ns.size());
-            std::transform(timestamps_ns.cbegin(), timestamps_ns.cend(), timestamps.begin(),
+             const std::vector<int64_t>& timestamps_ns, const int64_t start_time_ns, const int64_t end_time_ns) {
+            TimestampVector per_point(timestamps_ns.size());
+            std::transform(timestamps_ns.cbegin(), timestamps_ns.cend(), per_point.begin(),
                            [](const int64_t t) { return Nsec(t); });
-            return self.register_scan(Sophus::SE3s(extrinsic_lidar2base), scan, timestamps);
+            return self.register_scan(
+                Sophus::SE3s(extrinsic_lidar2base), scan,
+                Timestamps{.min = Nsec(start_time_ns), .max = Nsec(end_time_ns), .per_point = std::move(per_point)});
           },
-          "extrinsic_lidar2base"_a, "scan"_a, "timestamps"_a)
+          "extrinsic_lidar2base"_a, "scan"_a, "timestamps"_a, "start_time_ns"_a, "end_time_ns"_a)
       .def("map_point_cloud", [](LIO& self) { return self.map.points(); })
       .def("pose", [](LIO& self) { return self.lidar_state.pose.matrix(); })
       .def("imu_pose", [](LIO& self) { return self.imu_state.pose.matrix(); })

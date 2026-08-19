@@ -12,6 +12,7 @@ using rko_lio::core::GRAVITY_MAG;
 using rko_lio::core::ImuControl;
 using rko_lio::core::LIO;
 using rko_lio::core::Nsec;
+using rko_lio::core::Timestamps;
 using rko_lio::core::TimestampVector;
 using rko_lio::core::to_seconds;
 using rko_lio::core::Vector3sVector;
@@ -223,12 +224,13 @@ TEST_CASE("register_scan resets imu_state to optimized pose", "[imu_integration]
   constexpr double SECOND_SCAN_END = FIRST_SCAN_END + DT;
 
   // Build per-point timestamps for the first scan (linspace from 0 to FIRST_SCAN_END).
-  TimestampVector ts1;
-  ts1.reserve(cloud.size());
+  TimestampVector ts1_per_point;
+  ts1_per_point.reserve(cloud.size());
   for (size_t i = 0; i < cloud.size(); ++i) {
     const double frac = cloud.size() == 1 ? 0.0 : static_cast<double>(i) / static_cast<double>(cloud.size() - 1);
-    ts1.emplace_back(ns_from_seconds(FIRST_SCAN_END * frac));
+    ts1_per_point.emplace_back(ns_from_seconds(FIRST_SCAN_END * frac));
   }
+  const Timestamps ts1{.min = ns_from_seconds(0.0), .max = ns_from_seconds(FIRST_SCAN_END), .per_point = ts1_per_point};
   lio.register_scan(cloud, ts1);
 
   // Static IMU samples between the two scans. Use enough samples that interval_stats
@@ -244,7 +246,9 @@ TEST_CASE("register_scan resets imu_state to optimized pose", "[imu_integration]
   }
 
   // Single-instant timestamps for the second scan -> deskewing is identity.
-  const TimestampVector ts2(cloud.size(), ns_from_seconds(SECOND_SCAN_END));
+  const Timestamps ts2{.min = ns_from_seconds(SECOND_SCAN_END),
+                       .max = ns_from_seconds(SECOND_SCAN_END),
+                       .per_point = TimestampVector(cloud.size(), ns_from_seconds(SECOND_SCAN_END))};
   lio.register_scan(cloud, ts2);
 
   REQUIRE(lio.poses_with_timestamps.size() == 2);
