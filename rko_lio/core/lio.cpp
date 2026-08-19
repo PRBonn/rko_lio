@@ -199,8 +199,7 @@ LinearSystem build_icp_linear_system(const Sophus::SE3s& current_pose,
       });
 
   if (correspondences_counter == 0) {
-    // same class of problem as the keypoint check in register_scan, so the same exception type, which callers drop on
-    throw std::invalid_argument("Number of correspondences are 0.");
+    throw std::runtime_error("Number of correspondences are 0.");
   }
 
   return {H_icp / correspondences_counter, b_icp / correspondences_counter, 0.5 * chi_icp / correspondences_counter};
