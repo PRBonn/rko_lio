@@ -45,6 +45,7 @@ using namespace rko_lio::core;
 
 constexpr Scalar NEGLIGIBLE_EXTRINSIC = 1e-6;
 constexpr auto EPSILON_TIME = std::chrono::nanoseconds(10);
+constexpr auto MAX_SCAN_TO_SCAN_DELTA = std::chrono::seconds(1);
 
 inline void transform_points(const Sophus::SE3s& T, Vector3sVector& points) {
   std::transform(points.begin(), points.end(), points.begin(), [&](const auto& point) { return T * point; });
@@ -100,12 +101,9 @@ AccelFilterStep step_body_accel_filter(const BodyAccelKF& prev,
           .updated = BodyAccelKF{.mean = new_mean, .covariance = new_cov}};
 }
 
-// Refers every point to reference_time
-void deskew_scan(Vector3sVector& scan,
-                 const TimestampVector& timestamps,
-                 const Nsec reference_time,
-                 const MotionPrior& motion) {
-  const Sophus::SE3s start2reference = relative_pose_at_time(motion, reference_time).inverse();
+// Refers every point to timestamps.max
+void deskew_scan(Vector3sVector& scan, const Timestamps& timestamps, const MotionPrior& motion) {
+  const Sophus::SE3s start2reference = relative_pose_at_time(motion, timestamps.max).inverse();
   const Eigen::Matrix3s& start2reference_rotation = start2reference.so3().matrix();
   const Eigen::Vector3s& start2reference_translation = start2reference.translation();
 
@@ -114,7 +112,7 @@ void deskew_scan(Vector3sVector& scan,
   const Scalar inverse_angular_speed = 1 / angular_speed;
   const Eigen::Vector3s axis = motion.angular_velocity * inverse_angular_speed;
 
-  std::transform(scan.cbegin(), scan.cend(), timestamps.cbegin(), scan.begin(),
+  std::transform(scan.cbegin(), scan.cend(), timestamps.per_point.cbegin(), scan.begin(),
                  [&](const Eigen::Vector3s& point, const Nsec timestamp) {
                    const auto dt = to_seconds<Scalar>(timestamp - motion.start_time);
                    const Scalar theta = angular_speed * dt;
@@ -198,6 +196,7 @@ LinearSystem build_icp_linear_system(const Sophus::SE3s& current_pose,
       });
 
   if (correspondences_counter == 0) {
+    // TODO: std::expected with tl::expected (because ros humble)
     throw std::runtime_error("Number of correspondences are 0.");
   }
 
@@ -462,11 +461,10 @@ Vector3sVector LIO::register_scan(Vector3sVector scan, const Timestamps& timesta
     return bootstrap_first_scan(scan, current_lidar_time);
   }
 
-  if (std::chrono::abs(current_lidar_time - lidar_state.time) > std::chrono::seconds(1)) {
-    const double diff_seconds = to_seconds(current_lidar_time - lidar_state.time);
-    // TODO: std::expected with tl::expected (because ros humble)
-    throw std::invalid_argument("Received LiDAR scan with " + std::to_string(diff_seconds) +
-                                " seconds delta to previous scan.");
+  if (std::chrono::abs(current_lidar_time - lidar_state.time) > MAX_SCAN_TO_SCAN_DELTA) {
+    // the imu prior below extrapolates across the gap, and falls back to constant velocity if the imu dropped out too
+    std::cerr << "[WARNING] " << to_seconds(current_lidar_time - lidar_state.time)
+              << " seconds delta to the previous scan. Extrapolating the motion prior across it.\n";
   }
 
   const MotionPrior motion = motion_prior_from_imu(current_lidar_time);
@@ -482,7 +480,14 @@ Vector3sVector LIO::register_scan(Vector3sVector scan, const Timestamps& timesta
 
   if (config.deskew) {
     SCOPED_PROFILER("Deskew");
-    deskew_scan(scan, timestamps.per_point, current_lidar_time, motion);
+    const auto gap_to_scan_start = to_seconds<Scalar>(timestamps.min - motion.start_time);
+    const MotionPrior scan_motion{
+        .start_time = timestamps.min,
+        .linear_velocity = motion.linear_velocity + motion.acceleration * gap_to_scan_start,
+        .acceleration = motion.acceleration,
+        .angular_velocity = motion.angular_velocity,
+    };
+    deskew_scan(scan, timestamps, scan_motion);
   }
   const std::size_t input_scan_size = scan.size();
   auto preproc_result = preprocess_scan(std::move(scan), config);

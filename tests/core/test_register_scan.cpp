@@ -199,6 +199,69 @@ TEST_CASE("Pure rotation: recover 5 deg yaw", "[register_scan]") {
   REQUIRE(pose.translation().norm() < 1e-3);
 }
 
+TEST_CASE("Gap in the lidar stream: prior extrapolates instead of throwing", "[register_scan]") {
+  LIO lio((LIO::Config{}));
+  const auto cloud = make_hollow_cube();
+
+  lio.register_scan(cloud, linspace_timestamps(cloud.size(), 0.0, FIRST_SCAN_END));
+
+  // a gap longer than the one second tolerance, with the imu still streaming. yawing about the gravity axis keeps the
+  // gravity compensation exact, so the body acceleration in x turns into a real translation as well as a rotation
+  constexpr double SECOND_SCAN_START = FIRST_SCAN_END + 1.5;
+  feed_imu(lio, FIRST_SCAN_END, SECOND_SCAN_START, 150, {2.0, 0.0, GRAVITY_MAG}, {0.0, 0.0, 0.4});
+
+  // the imu integration is where that motion actually ended up, so put the cloud there and let the prior find it
+  const Sophus::SE3s ground_truth = lio.imu_state.pose;
+  REQUIRE(ground_truth.translation().norm() > 1.0);
+  REQUIRE(ground_truth.so3().log().norm() > 0.1);
+
+  const Sophus::SE3s into_ground_truth_frame = ground_truth.inverse();
+  Vector3sVector cloud2;
+  cloud2.reserve(cloud.size());
+  for (const auto& p : cloud) {
+    cloud2.emplace_back(into_ground_truth_frame * p);
+  }
+  REQUIRE_NOTHROW(lio.register_scan(cloud2, instant_timestamps(cloud2.size(), SECOND_SCAN_START)));
+
+  REQUIRE(lio.poses_with_timestamps.size() == 2);
+  REQUIRE(approx_equal(lio.lidar_state.pose, ground_truth, 1e-2));
+}
+
+TEST_CASE("Gap in the lidar stream: second scan has real per-point spread, not instant", "[register_scan]") {
+  LIO lio((LIO::Config{}));
+  const auto cloud = make_hollow_cube(2.0, 5.0);
+
+  lio.register_scan(cloud, linspace_timestamps(cloud.size(), 0.0, FIRST_SCAN_END));
+
+  constexpr double SECOND_SCAN_START = FIRST_SCAN_END + 1.5;
+  constexpr double SECOND_SCAN_SPAN_END = SECOND_SCAN_START + 0.1;
+  const Eigen::Vector3s a_body(2.0, 0.0, 0.0);
+  const Eigen::Vector3s omega(0.0, 0.0, 0.4);
+  const Eigen::Vector3s imu_accel = a_body + Eigen::Vector3s{0.0, 0.0, GRAVITY_MAG};
+  feed_imu(lio, FIRST_SCAN_END, SECOND_SCAN_START, 150, imu_accel, omega);
+
+  // one imu sample per point, at that point's own timestamp; imu_state right after is a true
+  // per-sample-integrated pose for that point, independent of deskew's own (coarser) model
+  const Timestamps ts2 = linspace_timestamps(cloud.size(), SECOND_SCAN_START, SECOND_SCAN_SPAN_END);
+  Vector3sVector cloud2(cloud.size());
+  for (size_t i = 0; i < cloud.size(); ++i) {
+    ImuControl m;
+    m.time = ts2.per_point[i];
+    m.acceleration = imu_accel;
+    m.angular_velocity = omega;
+    lio.add_imu_measurement(m);
+    cloud2[i] = lio.imu_state.pose.inverse() * cloud[i];
+  }
+  const Sophus::SE3s ground_truth = lio.imu_state.pose;
+  REQUIRE(ground_truth.translation().norm() > 1.0);
+  REQUIRE(ground_truth.so3().log().norm() > 0.1);
+
+  REQUIRE_NOTHROW(lio.register_scan(cloud2, ts2));
+
+  REQUIRE(lio.poses_with_timestamps.size() == 2);
+  REQUIRE(approx_equal(lio.lidar_state.pose, ground_truth, 1e-2));
+}
+
 TEST_CASE("Full SE(3): translation + rotation combined", "[register_scan]") {
   LIO lio((LIO::Config{}));
   const auto cloud = make_hollow_cube();
