@@ -365,7 +365,7 @@ See <a class="reference internal" href="ros.html#autodetection"><span class="std
 <p>These take effect only in the corresponding mode and otherwise warn that they are being ignored.</p>
 <ul>
 <li><p><strong>async.max_lidar_buffer_size</strong> (<cite>int</cite>, default <code class="docutils literal notranslate"><span class="pre">10</span></code>)</p>
-<p>Threaded path only. Caps the lidar buffer; incoming frames are dropped once it is full.</p>
+<p>Threaded path only. Caps the lidar buffer; the oldest buffered frame is dropped once it is full.</p>
 </li>
 <li><p><strong>seq.odom_at_imu_rate_topic</strong> (default <code class="docutils literal notranslate"><span class="pre">rko_lio/odom_at_imu_rate</span></code>)</p>
 <p>IMU-rate output topic name.</p>

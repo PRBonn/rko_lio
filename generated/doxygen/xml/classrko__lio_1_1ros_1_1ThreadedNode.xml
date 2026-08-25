@@ -193,7 +193,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="54" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.cpp" bodystart="59" bodyend="84"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="54" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.cpp" bodystart="59" bodyend="81"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1ThreadedNode_1acd61b2f9ae6de55e915313d3962c0279" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -207,7 +207,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="55" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.cpp" bodystart="86" bodyend="121"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="55" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.cpp" bodystart="83" bodyend="118"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1ThreadedNode_1a0713110ddc71f5ce45fd8f0f2f3703db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -221,7 +221,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="57" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.cpp" bodystart="123" bodyend="126"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="57" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.cpp" bodystart="120" bodyend="123"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1ThreadedNode_1ac947ed258a941261b514f245fbdeb23c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
