@@ -60,18 +60,15 @@ void ThreadedNode::lidar_callback(const sensor_msgs::msg::PointCloud2::ConstShar
   if (!ensure_frame_and_extrinsics(lidar_frame, lidar_msg->header.frame_id, "LiDAR")) {
     return;
   }
-  {
-    const std::scoped_lock lock(buffer_mutex);
-    if (lidar_buffer.size() >= max_lidar_buffer_size) {
-      RCLCPP_WARN_STREAM(node->get_logger(), "Registration lidar buffer limit reached. Dropping scan.");
-      sync_condition_variable.notify_one();
-      return;
-    }
-  }
   try {
     LidarScan scan = process_lidar_msg(lidar_msg);
     {
       const std::scoped_lock lock(buffer_mutex);
+      if (lidar_buffer.size() >= max_lidar_buffer_size) {
+        RCLCPP_WARN_STREAM(node->get_logger(),
+                           "Registration lidar buffer limit reached. Dropping oldest buffered frame.");
+        lidar_buffer.pop();
+      }
       lidar_buffer.push(std::move(scan));
       atomic_can_process = !imu_buffer.empty() && imu_buffer.back().time > lidar_buffer.front().timestamps.max;
     }
