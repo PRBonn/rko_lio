@@ -41,8 +41,6 @@ if(NOT RKO_LIO_BUILD_ROS)
 else()
   message(STATUS "Building RKO_LIO ROS wrapper.")
 
-  find_package(nlohmann_json REQUIRED CONFIG)
-
   find_package(ament_cmake REQUIRED)
   find_package(rclcpp REQUIRED CONFIG)
   find_package(std_msgs REQUIRED CONFIG)
