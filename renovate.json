@@ -63,6 +63,18 @@
       ],
       "datasourceTemplate": "github-tags",
       "packageNameTemplate": "catchorg/Catch2"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^\\.github/workflows/lint\\.yaml$/"
+      ],
+      "matchStrings": [
+        "LLVM_VERSION: \"(?<currentValue>\\d+)\""
+      ],
+      "datasourceTemplate": "github-releases",
+      "packageNameTemplate": "llvm/llvm-project",
+      "extractVersionTemplate": "^llvmorg-(?<version>\\d+)\\."
     }
   ],
   "separateMajorMinor": false,
@@ -93,6 +105,15 @@
       "groupName": "pre-commit hooks",
       "matchManagers": [
         "pre-commit"
+      ]
+    },
+    {
+      "groupName": "CI toolchain",
+      "matchManagers": [
+        "custom.regex"
+      ],
+      "matchFileNames": [
+        ".github/workflows/lint.yaml"
       ]
     }
   ],

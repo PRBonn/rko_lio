@@ -27,12 +27,18 @@ jobs:
       image: ros:lyrical-ros-base
     env:
       GIT_LFS_SKIP_SMUDGE: 1
+      LLVM_VERSION: "23"
     steps:
       - uses: actions/checkout@v7
       - name: Install build tools
         run: |
           apt-get update
-          apt-get install -y --no-install-recommends cmake ninja-build clang-tidy python3-pybind11 python3-dev
+          apt-get install -y --no-install-recommends cmake ninja-build python3-pybind11 python3-dev \
+            wget gnupg lsb-release software-properties-common ca-certificates
+          wget -q https://apt.llvm.org/llvm.sh -O /tmp/llvm.sh
+          chmod +x /tmp/llvm.sh
+          /tmp/llvm.sh ${{ env.LLVM_VERSION }}
+          apt-get install -y clang-tidy-${{ env.LLVM_VERSION }}
           rosdep update
           rosdep install --from-paths . --ignore-src -r -y
       # the pybind sources are a separate cmake project, so they need their own compile database
@@ -53,5 +59,5 @@ jobs:
       - name: Run clang-tidy
         run: |
           for db in build/ros build/python; do
-            run-clang-tidy -p "$db" -j "$(nproc)" -quiet -warnings-as-errors='*' "$PWD/rko_lio/.*\.cpp$"
+            run-clang-tidy-${{ env.LLVM_VERSION }} -p "$db" -j "$(nproc)" -quiet -warnings-as-errors='*' "$PWD/rko_lio/.*\.cpp$"
           done
