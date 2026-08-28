@@ -9,8 +9,8 @@ jobs:
   check_relevant_changes:
     uses: ./.github/workflows/check_relevant_changes.yaml
     with:
-      ignored_folders: "rko_lio/python|docs|tests/python|tests/core|cmake/dependencies/catch2|.github"
-      ignored_files: "pyproject.toml|CHANGELOG.rst|LICENSE|README.md|.pre-commit-config.yaml"
+      ignored_folders: "rko_lio/python|docs|tests/python|launch|config"
+      ignored_files: "pyproject.toml"
       self: ".github/workflows/ros_build.yaml|.github/workflows/check_relevant_changes.yaml"
   ros_build_with_rosdep:
     needs: check_relevant_changes

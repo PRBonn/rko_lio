@@ -9,8 +9,8 @@ jobs:
   check_relevant_changes:
     uses: ./.github/workflows/check_relevant_changes.yaml
     with:
-      ignored_folders: "rko_lio/ros|rko_lio/python|tests/python|docs|launch|config|.github"
-      ignored_files: "colcon.pkg|package.xml|rosdoc2.yaml|CHANGELOG.rst|LICENSE|README.md|pyproject.toml|.pre-commit-config.yaml"
+      ignored_folders: "rko_lio/ros|rko_lio/python|tests/python|docs|launch|config"
+      ignored_files: "colcon.pkg|package.xml|pyproject.toml"
       self: ".github/workflows/core_tests.yaml|.github/workflows/check_relevant_changes.yaml"
   core_tests:
     needs: check_relevant_changes

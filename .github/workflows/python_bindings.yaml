@@ -9,8 +9,8 @@ jobs:
   check_relevant_changes:
     uses: ./.github/workflows/check_relevant_changes.yaml
     with:
-      ignored_folders: "rko_lio/ros|tests/core|cmake/dependencies/catch2|docs|launch|config|.github"
-      ignored_files: "colcon.pkg|package.xml|rosdoc2.yaml|CHANGELOG.rst|LICENSE|README.md|.pre-commit-config.yaml"
+      ignored_folders: "rko_lio/ros|tests/core|cmake/dependencies/catch2|docs|launch|config"
+      ignored_files: "colcon.pkg|package.xml"
       self: ".github/workflows/python_bindings.yaml|.github/workflows/check_relevant_changes.yaml"
   python_bindings:
     needs: check_relevant_changes
