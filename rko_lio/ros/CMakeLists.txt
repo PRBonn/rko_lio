@@ -33,7 +33,6 @@ compat_target_sources(
 
 target_link_libraries(
   rko_lio.ros
-  PRIVATE nlohmann_json::nlohmann_json
   PUBLIC rko_lio::ros::utils
          # ros deps
          ${geometry_msgs_TARGETS}

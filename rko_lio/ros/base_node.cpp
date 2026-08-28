@@ -27,30 +27,33 @@
 #include "rko_lio/ros/utils/utils.hpp"
 // other
 #include <fstream>
+#include <iomanip>
 #include <iostream>
-#include <nlohmann/json.hpp>
+#include <limits>
+#include <sstream>
 #include <stdexcept>
 
 namespace {
 using namespace std::literals;
-} // namespace
 
-namespace rko_lio::core {
-// necessary for serializing the config, including the namespacing
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(LIO::Config,
-                                   deskew,
-                                   max_iterations,
-                                   voxel_size,
-                                   max_range,
-                                   min_range,
-                                   convergence_criterion,
-                                   max_correspondence_distance,
-                                   max_num_threads,
-                                   initialization_phase,
-                                   max_expected_jerk,
-                                   double_downsample,
-                                   min_beta)
-} // namespace rko_lio::core
+std::string config_to_yaml(const rko_lio::core::LIO::Config& config) {
+  std::ostringstream ss;
+  ss << std::boolalpha << std::setprecision(std::numeric_limits<rko_lio::core::Scalar>::max_digits10);
+  ss << "deskew: " << config.deskew << "\n"
+     << "max_iterations: " << config.max_iterations << "\n"
+     << "voxel_size: " << config.voxel_size << "\n"
+     << "max_range: " << config.max_range << "\n"
+     << "min_range: " << config.min_range << "\n"
+     << "convergence_criterion: " << config.convergence_criterion << "\n"
+     << "max_correspondence_distance: " << config.max_correspondence_distance << "\n"
+     << "max_num_threads: " << config.max_num_threads << "\n"
+     << "initialization_phase: " << config.initialization_phase << "\n"
+     << "max_expected_jerk: " << config.max_expected_jerk << "\n"
+     << "double_downsample: " << config.double_downsample << "\n"
+     << "min_beta: " << config.min_beta << "\n";
+  return ss.str();
+}
+} // namespace
 
 namespace rko_lio::ros {
 
@@ -343,10 +346,9 @@ void BaseNode::dump_results_to_disk(const std::filesystem::path& results_dir, co
       std::cout << "Poses written to " << std::filesystem::absolute(output_file) << "\n";
     }
     // dump config
-    const nlohmann::json json_config = {{"config", lio->config}};
-    const std::filesystem::path config_file = output_dir / "config.json";
+    const std::filesystem::path config_file = output_dir / "config.yaml";
     if (std::ofstream file(config_file); file.is_open()) {
-      file << json_config.dump(4);
+      file << config_to_yaml(lio->config);
       std::cout << "Configuration written to " << config_file << "\n";
     }
   } catch (const std::filesystem::filesystem_error& ex) {
