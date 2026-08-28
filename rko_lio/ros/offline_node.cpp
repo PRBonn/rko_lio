@@ -41,6 +41,7 @@ using BagProgressPublisher = rclcpp::Publisher<std_msgs::msg::Float32MultiArray>
 } // namespace
 
 namespace rko_lio::ros {
+namespace {
 class OfflineNode : public ThreadedNode {
 public:
   std::unique_ptr<utils::BufferableBag> bag;
@@ -73,9 +74,9 @@ public:
 
     std_msgs::msg::Float32MultiArray progress_msg;
     progress_msg.layout.dim.resize(1);
-    progress_msg.layout.dim[0].label = "percent_complete,seconds_remaining";
-    progress_msg.layout.dim[0].size = 2;
-    progress_msg.layout.dim[0].stride = 2;
+    progress_msg.layout.dim.at(0).label = "percent_complete,seconds_remaining";
+    progress_msg.layout.dim.at(0).size = 2;
+    progress_msg.layout.dim.at(0).stride = 2;
     progress_msg.data = {percent_complete, seconds_remaining};
 
     bag_progress_publisher->publish(progress_msg);
@@ -132,9 +133,10 @@ public:
     }
   }
 };
+} // namespace
 } // namespace rko_lio::ros
 
-int main(int argc, char** argv) {
+int main(int argc, char* const* argv) {
   try {
     const rko_lio::core::Timer timer("RKO LIO Offline Node");
     rclcpp::init(argc, argv);

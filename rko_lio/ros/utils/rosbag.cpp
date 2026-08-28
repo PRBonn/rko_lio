@@ -55,7 +55,7 @@ void BufferableBag::TFBridge::ProcessTFMessage(
   const rclcpp::SerializedMessage serialized_msg(*msg->serialized_data);
   serializer.deserialize_message(&serialized_msg, &tf_message);
   // Broadcast transforms to /tf and /tf_static topics
-  for (auto& transform : tf_message.transforms) {
+  for (const auto& transform : tf_message.transforms) {
     if (msg->topic_name == "/tf_static") {
       tf_static_broadcaster->sendTransform(transform);
     } else {
@@ -78,7 +78,7 @@ BufferableBag::BufferableBag(const std::string& bag_path,
   bag_reader_->open(bag_path);
   bag_reader_->seek(seek.count());
   bag_reader_->set_filter(rosbag2_storage::StorageFilter{.topics = topics_});
-  message_count_ = [&]() {
+  message_count_ = [&] {
     size_t message_count = 0;
     const auto& metadata = bag_reader_->get_metadata();
     const auto topic_info = metadata.topics_with_message_count;
@@ -115,7 +115,7 @@ void BufferableBag::close() const { bag_reader_->close(); }
 size_t BufferableBag::message_count() const { return message_count_; }
 
 void BufferableBag::BufferMessages() {
-  auto buffer_is_filled = [&]() -> bool {
+  const auto buffer_is_filled = [&]() -> bool {
     if (buffer_.empty()) {
       return false;
     }

@@ -29,8 +29,8 @@
 #include <stdexcept>
 
 namespace rko_lio::ros::utils {
-using PointCloud2 = sensor_msgs::msg::PointCloud2;
-using PointField = sensor_msgs::msg::PointField;
+using sensor_msgs::msg::PointCloud2;
+using sensor_msgs::msg::PointField;
 
 core::Vector3sVector point_cloud2_to_eigen(const sensor_msgs::msg::PointCloud2::ConstSharedPtr& msg) {
   const size_t point_count = static_cast<size_t>(msg->height) * msg->width;
@@ -58,17 +58,16 @@ RawScan point_cloud2_to_eigen_with_timestamps(const PointCloud2::ConstSharedPtr&
 
   const auto& timestamp_field = std::invoke([&msg]() -> PointField {
     for (const PointField& field : msg->fields) {
-      if ((field.name == "t" || field.name == "timestamp" || field.name == "time" || field.name == "stamps")) {
-        if (field.count != 0U) {
-          return field;
-        }
+      if ((field.name == "t" || field.name == "timestamp" || field.name == "time" || field.name == "stamps") &&
+          field.count != 0U) {
+        return field;
       }
     }
     throw std::invalid_argument("Point cloud needs timestamps for deskewing");
   });
 
   // templated lambda (auto) ftw
-  auto extract_points_and_timestamps = [&](auto&& time_iter) {
+  const auto extract_points_and_timestamps = [&](auto&& time_iter) {
     for (size_t i = 0; i < point_count; ++i, ++msg_x, ++msg_y, ++msg_z, ++time_iter) {
       scan.points.emplace_back(*msg_x, *msg_y, *msg_z);
       scan.timestamps.emplace_back(static_cast<double>(*time_iter));

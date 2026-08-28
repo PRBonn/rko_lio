@@ -34,6 +34,7 @@
 #include <stdexcept>
 
 namespace rko_lio::ros {
+namespace {
 
 // Sequential variant of the LIO node: IMU and LiDAR are processed inline on
 // the rclcpp executor thread. The IMU callback feeds add_imu_measurement and
@@ -60,7 +61,7 @@ public:
     odom_at_imu_rate_topic = node->declare_parameter<std::string>("seq.odom_at_imu_rate_topic", odom_at_imu_rate_topic);
     tf_at_imu_rate = node->declare_parameter<bool>("seq.tf_at_imu_rate", tf_at_imu_rate);
 
-    const rclcpp::QoS publisher_qos((rclcpp::SystemDefaultsQoS().keep_last(1).durability_volatile()));
+    const rclcpp::QoS publisher_qos(rclcpp::SystemDefaultsQoS().keep_last(1).durability_volatile());
     odom_at_imu_rate_publisher = node->create_publisher<nav_msgs::msg::Odometry>(odom_at_imu_rate_topic, publisher_qos);
 
     RCLCPP_INFO_STREAM(node->get_logger(), "OnlineImuRateNode publishing IMU-rate odometry to "
@@ -122,6 +123,7 @@ public:
   }
 };
 
+} // namespace
 } // namespace rko_lio::ros
 
 #include <rclcpp_components/register_node_macro.hpp>

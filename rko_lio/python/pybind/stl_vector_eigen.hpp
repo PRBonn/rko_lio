@@ -65,10 +65,12 @@ py_array_to_vectors(const py::array_t<typename EigenVector::Scalar, py::array::c
     throw py::cast_error();
   }
   std::vector<EigenVector> eigen_vectors(array.shape(0));
-  auto array_unchecked = array.template unchecked<2>();
+  const auto array_unchecked = array.template unchecked<2>();
+  // NOLINTBEGIN(cppcoreguidelines-pro-bounds-avoid-unchecked-container-access)
   for (auto i = 0; i < array_unchecked.shape(0); ++i) {
     eigen_vectors[i] = Eigen::Map<const EigenVector>(&array_unchecked(i, 0));
   }
+  // NOLINTEND(cppcoreguidelines-pro-bounds-avoid-unchecked-container-access)
   return eigen_vectors;
 }
 
@@ -82,7 +84,7 @@ py::class_<Vector, holder_type> pybind_eigen_vector_of_vector(py::module& m,
                                                               const std::string& bind_name,
                                                               const std::string& repr_name,
                                                               InitFunc init_func) {
-  using Scalar = typename EigenVector::Scalar;
+  using Scalar = EigenVector::Scalar;
   auto vec =
       py::bind_vector_without_repr<std::vector<EigenVector>>(m, bind_name, py::buffer_protocol(), py::module_local());
   vec.def(py::init(init_func));

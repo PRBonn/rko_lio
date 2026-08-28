@@ -97,8 +97,10 @@ AccelFilterStep step_body_accel_filter(const BodyAccelKF& prev,
   const Eigen::Matrix3s new_cov = cov_pred - kalman_gain * cov_pred;
 
   const Eigen::Vector3s local_gravity_estimate = avg_imu_accel - new_mean; // points upwards
-  return {.info = AccelInfo{.accel_mag_variance = accel_mag_variance, .local_gravity_estimate = local_gravity_estimate},
-          .updated = BodyAccelKF{.mean = new_mean, .covariance = new_cov}};
+  return {
+      .info = AccelInfo{.accel_mag_variance = accel_mag_variance, .local_gravity_estimate = local_gravity_estimate},
+      .updated = BodyAccelKF{.mean = new_mean, .covariance = new_cov},
+  };
 }
 
 // Refers every point to timestamps.max
@@ -108,7 +110,7 @@ void deskew_scan(Vector3sVector& scan, const Timestamps& timestamps, const Motio
   const Eigen::Vector3s& start2reference_translation = start2reference.translation();
 
   // to avoid numerical issues
-  const Scalar angular_speed = std::max(motion.angular_velocity.norm(), Scalar(1e-6));
+  const Scalar angular_speed = std::max(motion.angular_velocity.norm(), static_cast<Scalar>(1e-6));
   const Scalar inverse_angular_speed = 1 / angular_speed;
   const Eigen::Vector3s axis = motion.angular_velocity * inverse_angular_speed;
 
@@ -348,10 +350,12 @@ MotionPrior LIO::motion_prior_from_imu(const Nsec current_lidar_time) {
     std::cerr << "[WARNING] Erratic body acceleration computed, norm > 50 m/s2. Either IMU data is corrupted, or you "
                  "should report an issue.";
   }
-  return {.start_time = start,
-          .linear_velocity = linear_velocity,
-          .acceleration = avg_body_accel,
-          .angular_velocity = avg_ang_vel};
+  return {
+      .start_time = start,
+      .linear_velocity = linear_velocity,
+      .acceleration = avg_body_accel,
+      .angular_velocity = avg_ang_vel,
+  };
 }
 
 // ==========================

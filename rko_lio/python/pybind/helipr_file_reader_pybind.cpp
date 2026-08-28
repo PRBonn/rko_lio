@@ -156,7 +156,7 @@ template <SensorType sensor_type>
   requires requires { typename SensorTraits<sensor_type>::Record; }
 PointsAndTime read_helipr_data(const std::string& filename) {
   using Traits = SensorTraits<sensor_type>;
-  using Record = typename Traits::Record;
+  using Record = Traits::Record;
 
   std::ifstream file(filename, std::ios::binary);
   if (!file.is_open()) {
@@ -187,6 +187,7 @@ PointsAndTime read_helipr_data(const std::string& filename) {
   std::vector<size_t> indices(record_count);
   std::iota(indices.begin(), indices.end(), 0);
 
+  // NOLINTBEGIN(cppcoreguidelines-pro-bounds-avoid-unchecked-container-access)
   std::for_each(indices.cbegin(), indices.cend(), [&](const size_t i) {
     const auto& rec = records[i];
     points[3 * i] = rec.x;
@@ -194,6 +195,7 @@ PointsAndTime read_helipr_data(const std::string& filename) {
     points[(3 * i) + 2] = rec.z;
     times[i] = Traits::get_time(rec);
   });
+  // NOLINTEND(cppcoreguidelines-pro-bounds-avoid-unchecked-container-access)
 
   return {points, times};
 }
