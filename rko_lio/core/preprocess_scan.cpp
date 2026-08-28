@@ -12,8 +12,8 @@ PreprocessingResult preprocess_scan(Vector3sVector scan, const LIO::Config& conf
   });
 
   if (config.double_downsample) {
-    Vector3sVector downsampled = voxel_down_sample(scan, config.voxel_size * Scalar(0.5));
-    Vector3sVector keypoints = voxel_down_sample(downsampled, config.voxel_size * Scalar(1.5));
+    Vector3sVector downsampled = voxel_down_sample(scan, config.voxel_size * static_cast<Scalar>(0.5));
+    Vector3sVector keypoints = voxel_down_sample(downsampled, config.voxel_size * static_cast<Scalar>(1.5));
     return {.filtered_scan = std::move(scan), .keypoints = std::move(keypoints), .map_points = std::move(downsampled)};
   }
   Vector3sVector keypoints = voxel_down_sample(scan, config.voxel_size);

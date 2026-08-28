@@ -39,7 +39,7 @@ ThreadedNode::ThreadedNode(const std::string& node_name, const rclcpp::NodeOptio
     : BaseNode(node_name, options) {
   max_lidar_buffer_size = static_cast<size_t>(
       node->declare_parameter<int>("async.max_lidar_buffer_size", static_cast<int>(max_lidar_buffer_size)));
-  registration_thread = std::jthread([this]() { registration_loop(); });
+  registration_thread = std::jthread([this] { registration_loop(); });
 }
 
 void ThreadedNode::imu_callback(const sensor_msgs::msg::Imu::ConstSharedPtr& imu_msg) {
@@ -83,7 +83,7 @@ void ThreadedNode::lidar_callback(const sensor_msgs::msg::PointCloud2::ConstShar
 void ThreadedNode::registration_loop() {
   while (rclcpp::ok() && atomic_node_running) {
     std::unique_lock buffer_lock(buffer_mutex);
-    sync_condition_variable.wait(buffer_lock, [this]() { return !atomic_node_running || atomic_can_process; });
+    sync_condition_variable.wait(buffer_lock, [this] { return !atomic_node_running || atomic_can_process; });
     SCOPED_PROFILER("ROS Registration Loop");
     if (!atomic_node_running) {
       // node could have been killed after waiting on the cv

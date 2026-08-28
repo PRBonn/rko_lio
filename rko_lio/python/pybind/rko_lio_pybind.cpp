@@ -42,7 +42,7 @@ PYBIND11_MAKE_OPAQUE(std::vector<double>);
 PYBIND11_MAKE_OPAQUE(std::vector<int64_t>);
 
 PYBIND11_MODULE(rko_lio_pybind, m) {
-  auto vector3svector = pybind_eigen_vector_of_vector<Eigen::Vector3s>(
+  const auto vector3svector = pybind_eigen_vector_of_vector<Eigen::Vector3s>(
       m, "_Vector3sVector", "std::vector<Eigen::Vector3s>", py::py_array_to_vectors<Eigen::Vector3s>);
   py::bind_vector<std::vector<double>>(m, "_VectorDouble");
   py::bind_vector<std::vector<int64_t>>(m, "_VectorInt64");
@@ -132,8 +132,10 @@ PYBIND11_MODULE(rko_lio_pybind, m) {
              // https://pybind11.readthedocs.io/en/stable/advanced/pycpp/numpy.html#direct-access
              auto pose_buf = poses.mutable_unchecked<2>();
              for (size_t i = 0; i < n; ++i) {
+               // NOLINTBEGIN(cppcoreguidelines-pro-bounds-avoid-unchecked-container-access)
                const auto& [time, pose] = self.poses_with_timestamps[i];
                times_ns[i] = time.count();
+               // NOLINTEND(cppcoreguidelines-pro-bounds-avoid-unchecked-container-access)
                const Eigen::Vector3s& trans = pose.translation();
                const Eigen::Quaternions& q = pose.unit_quaternion();
                pose_buf(i, 0) = trans.x();

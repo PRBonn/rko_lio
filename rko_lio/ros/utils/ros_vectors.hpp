@@ -34,9 +34,11 @@ void eigen_vector_to_ros_xyz(const Eigen::Vector3s& vector, auto& ros_vector)
     { v.z } -> std::convertible_to<double>;
   }
 {
+  // NOLINTBEGIN(cppcoreguidelines-pro-bounds-avoid-unchecked-container-access)
   ros_vector.x = vector[0];
   ros_vector.y = vector[1];
   ros_vector.z = vector[2];
+  // NOLINTEND(cppcoreguidelines-pro-bounds-avoid-unchecked-container-access)
 }
 
 template <typename T>

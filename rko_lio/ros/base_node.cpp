@@ -82,7 +82,7 @@ BaseNode::BaseNode(const std::string& node_name, const rclcpp::NodeOptions& opti
   tf_broadcaster = std::make_unique<tf2_ros::TransformBroadcaster>(*node);
 
   // publishing
-  const rclcpp::QoS publisher_qos((rclcpp::SystemDefaultsQoS().keep_last(1).durability_volatile()));
+  const rclcpp::QoS publisher_qos(rclcpp::SystemDefaultsQoS().keep_last(1).durability_volatile());
   odom_publisher = node->create_publisher<nav_msgs::msg::Odometry>(odom_topic, publisher_qos);
 
   publish_lidar_acceleration = node->declare_parameter<bool>("publish_lidar_acceleration", publish_lidar_acceleration);
@@ -105,7 +105,7 @@ BaseNode::BaseNode(const std::string& node_name, const rclcpp::NodeOptions& opti
     publish_map_after =
         std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::duration<double>(publish_map_after_seconds));
     map_publisher = node->create_publisher<sensor_msgs::msg::PointCloud2>(map_topic, publisher_qos);
-    map_publish_thread = std::jthread([this]() { publish_map_loop(); });
+    map_publish_thread = std::jthread([this] { publish_map_loop(); });
   }
 
   // lio params
@@ -161,7 +161,7 @@ BaseNode::BaseNode(const std::string& node_name, const rclcpp::NodeOptions& opti
   dump_results = node->declare_parameter<bool>("dump_results", dump_results);
   results_dir = node->declare_parameter<std::string>("results_dir", results_dir);
   run_name = node->declare_parameter<std::string>("run_name", run_name);
-  rclcpp::on_shutdown([this]() {
+  rclcpp::on_shutdown([this] {
     // i'll need to look into rclcpp::Context a bit more, but for now i think this callback should be called before
     // anything gets destroyed.
     if (dump_results) {
@@ -174,7 +174,7 @@ BaseNode::BaseNode(const std::string& node_name, const rclcpp::NodeOptions& opti
 }
 
 void BaseNode::parse_cli_extrinsics() {
-  auto parse_extrinsic = [this](const std::string& name, Sophus::SE3s& extrinsic) {
+  const auto parse_extrinsic = [this](const std::string& name, Sophus::SE3s& extrinsic) {
     const std::string param_name = "extrinsic_" + name + "2base_quat_xyzw_xyz";
     const std::vector<double> vec = node->declare_parameter<std::vector<double>>(param_name, std::vector<double>{});
 
@@ -188,11 +188,11 @@ void BaseNode::parse_cli_extrinsics() {
       }
       return false;
     }
-    const Eigen::Quaternions q = Eigen::Quaterniond(vec[3], vec[0], vec[1], vec[2]).cast<core::Scalar>();
+    const Eigen::Quaternions q = Eigen::Quaterniond(vec.at(3), vec.at(0), vec.at(1), vec.at(2)).cast<core::Scalar>();
     if (q.norm() < 1e-6) {
       throw std::runtime_error(name + " extrinsic quaternion has zero norm");
     }
-    extrinsic = Sophus::SE3s(q, Eigen::Vector3d(vec[4], vec[5], vec[6]).cast<core::Scalar>());
+    extrinsic = Sophus::SE3s(q, Eigen::Vector3d(vec.at(4), vec.at(5), vec.at(6)).cast<core::Scalar>());
     RCLCPP_INFO_STREAM(node->get_logger(), "Parsed " << name << " extrinsic as: " << extrinsic.log().transpose());
     return true;
   };
@@ -238,12 +238,16 @@ LidarScan BaseNode::process_lidar_msg(const sensor_msgs::msg::PointCloud2::Const
   const core::Nsec header_stamp = utils::to_ns(lidar_msg->header.stamp);
   if (lio->config.deskew) {
     utils::RawScan scan = utils::point_cloud2_to_eigen_with_timestamps(lidar_msg);
-    return {.timestamps = core::process_timestamps(scan.timestamps, header_stamp, timestamp_proc_config),
-            .points = std::move(scan.points)};
+    return {
+        .timestamps = core::process_timestamps(scan.timestamps, header_stamp, timestamp_proc_config),
+        .points = std::move(scan.points),
+    };
   }
   RCLCPP_WARN_STREAM_ONCE(node->get_logger(), "Deskewing is disabled. Populating timestamps with static header time.");
-  LidarScan scan{.timestamps = {.min = header_stamp, .max = header_stamp},
-                 .points = utils::point_cloud2_to_eigen(lidar_msg)};
+  LidarScan scan{
+      .timestamps = {.min = header_stamp, .max = header_stamp},
+      .points = utils::point_cloud2_to_eigen(lidar_msg),
+  };
   scan.timestamps.per_point.assign(scan.points.size(), header_stamp);
   return scan;
 }

@@ -28,9 +28,9 @@
 #include <sensor_msgs/point_cloud2_iterator.hpp>
 
 namespace {
-using PointCloud2 = sensor_msgs::msg::PointCloud2;
-using PointField = sensor_msgs::msg::PointField;
-using Header = std_msgs::msg::Header;
+using sensor_msgs::msg::PointCloud2;
+using sensor_msgs::msg::PointField;
+using std_msgs::msg::Header;
 using StampType = builtin_interfaces::msg::Time;
 
 std::string FixFrameId(const std::string& frame_id) { return std::regex_replace(frame_id, std::regex("^/"), ""); }
@@ -65,7 +65,7 @@ void fill_point_cloud2_xyz(const rko_lio::core::Vector3sVector& points, PointClo
   sensor_msgs::PointCloud2Iterator<float> msg_y(msg, "y");
   sensor_msgs::PointCloud2Iterator<float> msg_z(msg, "z");
   for (size_t i = 0; i < points.size(); i++, ++msg_x, ++msg_y, ++msg_z) {
-    const Eigen::Vector3s& point = points[i];
+    const Eigen::Vector3s& point = points[i]; // NOLINT(cppcoreguidelines-pro-bounds-avoid-unchecked-container-access)
     *msg_x = static_cast<float>(point.x());
     *msg_y = static_cast<float>(point.y());
     *msg_z = static_cast<float>(point.z());

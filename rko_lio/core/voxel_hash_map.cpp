@@ -42,6 +42,7 @@ using rko_lio::core::Scalar;
 using rko_lio::core::Voxel;
 
 // the order of the shifts is deliberate
+// NOLINTNEXTLINE(bugprone-throwing-static-initialization): Eigen int vector ctor cannot throw
 const std::array<Voxel, 27> shifts{
     Voxel{0, 0, 0}, // home
 
@@ -53,7 +54,8 @@ const std::array<Voxel, 27> shifts{
     Voxel{1, -1, 0},   Voxel{1, 0, -1},  Voxel{1, 0, 1},   Voxel{1, 1, 0},
 
     Voxel{-1, -1, -1}, Voxel{-1, -1, 1}, Voxel{-1, 1, -1}, // corners
-    Voxel{-1, 1, 1},   Voxel{1, -1, -1}, Voxel{1, -1, 1},  Voxel{1, 1, -1}, Voxel{1, 1, 1}};
+    Voxel{-1, 1, 1},   Voxel{1, -1, -1}, Voxel{1, -1, 1},  Voxel{1, 1, -1}, Voxel{1, 1, 1},
+};
 
 // Fixed point layout. A voxel is cut into QUANTA_PER_VOXEL steps per axis and a point is stored as its offset
 // from the centre in those steps, spanning [-127, 127], i.e. int8_t. One step is voxel_size / QUANTA_PER_VOXEL m.
@@ -74,7 +76,7 @@ inline Eigen::Vector3s voxel_corner(const Voxel& voxel, const Scalar voxel_size)
 
 /// centre of `voxel`, in metres
 inline Eigen::Vector3s voxel_centre(const Voxel& voxel, const Scalar voxel_size) {
-  return (voxel.cast<Scalar>() + Eigen::Vector3s::Constant(Scalar(0.5))) * voxel_size;
+  return (voxel.cast<Scalar>() + Eigen::Vector3s::Constant(static_cast<Scalar>(0.5))) * voxel_size;
 }
 
 /// `point` from the voxel corner, in quanta. Runs 0 to QUANTA_PER_VOXEL
@@ -185,7 +187,7 @@ void VoxelHashMap::add_points(const std::vector<Eigen::Vector3s>& points, const 
     const Voxel voxel = point_to_voxel(p, inv_voxel_size_);
     // quantise before the spacing test, so the test sees the offset that would actually be stored
     const Eigen::Vector3i8 offset = to_stored_offset(quanta_from_centre(p, voxel, voxel_size_, inv_quantum_));
-    auto it = voxels_.try_emplace(voxel).first;
+    const auto it = voxels_.try_emplace(voxel).first;
     VoxelBlock& voxel_points = it.value();
     if (voxel_points.full() ||
         std::any_of(voxel_points.begin(), voxel_points.end(), [&](const Eigen::Vector3i8& voxel_point) {
@@ -199,7 +201,7 @@ void VoxelHashMap::add_points(const std::vector<Eigen::Vector3s>& points, const 
 
 void VoxelHashMap::remove_points_far_from_location(const Eigen::Vector3s& location) {
   // a centre is within half a diagonal of every point it holds, so widening by that keeps a superset
-  const Scalar half_diagonal = Scalar(0.5) * std::numbers::sqrt3_v<Scalar> * voxel_size_;
+  const Scalar half_diagonal = static_cast<Scalar>(0.5) * std::numbers::sqrt3_v<Scalar> * voxel_size_;
   const Scalar max_distance_sq = square(clipping_distance_ + half_diagonal);
   for (auto it = voxels_.begin(); it != voxels_.end();) {
     it = (voxel_centre(it->first, voxel_size_) - location).squaredNorm() > max_distance_sq ? voxels_.erase(it)
