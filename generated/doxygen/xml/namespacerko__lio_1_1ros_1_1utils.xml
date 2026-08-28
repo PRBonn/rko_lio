@@ -4,36 +4,6 @@
     <compoundname>rko_lio::ros::utils</compoundname>
     <innerclass refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag" prot="public">rko_lio::ros::utils::BufferableBag</innerclass>
     <innerclass refid="structrko__lio_1_1ros_1_1utils_1_1RawScan" prot="public">rko_lio::ros::utils::RawScan</innerclass>
-    <sectiondef kind="typedef">
-      <memberdef kind="typedef" id="point__cloud__read_8cpp_1ae6e9f928a853730fee4156c59d31b232" prot="public" static="no">
-        <type>sensor_msgs::msg::PointCloud2</type>
-        <definition>using rko_lio::ros::utils::PointCloud2 = typedef sensor_msgs::msg::PointCloud2</definition>
-        <argsstring></argsstring>
-        <name>PointCloud2</name>
-        <qualifiedname>rko_lio::ros::utils::PointCloud2</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" line="32" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" bodystart="32" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="typedef" id="point__cloud__read_8cpp_1ac033ab6bd6b1f2e03682506ba229b194" prot="public" static="no">
-        <type>sensor_msgs::msg::PointField</type>
-        <definition>using rko_lio::ros::utils::PointField = typedef sensor_msgs::msg::PointField</definition>
-        <argsstring></argsstring>
-        <name>PointField</name>
-        <qualifiedname>rko_lio::ros::utils::PointField</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" line="33" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" bodystart="33" bodyend="-1"/>
-      </memberdef>
-    </sectiondef>
     <sectiondef kind="func">
       <memberdef kind="function" id="point__cloud__read_8cpp_1a77975e01f058823f8615a43bba6396a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>core::Vector3sVector</type>
@@ -69,7 +39,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" line="48" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" bodystart="48" bodyend="99"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" line="48" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" bodystart="48" bodyend="98"/>
       </memberdef>
       <memberdef kind="function" id="point__cloud__read_8hpp_1a77d7ba00ca1501f61934151103ed9af2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structrko__lio_1_1ros_1_1utils_1_1RawScan" kindref="compound">RawScan</ref></type>
@@ -154,7 +124,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/ros_vectors.hpp" line="30" column="6" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/ros_vectors.hpp" bodystart="30" bodyend="40"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/ros_vectors.hpp" line="30" column="6" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/ros_vectors.hpp" bodystart="30" bodyend="42"/>
       </memberdef>
       <memberdef kind="function" id="ros__vectors_8hpp_1ae723899a59eb320ecfecaf27e4a2404b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -177,7 +147,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/ros_vectors.hpp" line="43" column="17" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/ros_vectors.hpp" bodystart="43" bodyend="45"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/ros_vectors.hpp" line="45" column="17" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/ros_vectors.hpp" bodystart="45" bodyend="47"/>
       </memberdef>
       <memberdef kind="function" id="time_8hpp_1ac8836828d9bdda7dadc9f125f03b2154" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::chrono::nanoseconds</type>

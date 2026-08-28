@@ -1,4 +1,4 @@
-.. _exhale_function_offline__node_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627:
+.. _exhale_function_offline__node_8cpp_1ad1835a0a190dc5fe4f925bb69443c770:
 
 Function main
 =============
@@ -10,5 +10,5 @@ Function Documentation
 ----------------------
 
 
-.. doxygenfunction:: main(int, char **)
+.. doxygenfunction:: main(int, char *const *)
    :project: rko_lio Doxygen Project

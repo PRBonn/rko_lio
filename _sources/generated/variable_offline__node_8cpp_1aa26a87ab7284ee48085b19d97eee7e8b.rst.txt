@@ -1,0 +1,14 @@
+.. _exhale_variable_offline__node_8cpp_1aa26a87ab7284ee48085b19d97eee7e8b:
+
+Variable processed_bag_msgs
+===========================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_offline_node.cpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: processed_bag_msgs
+   :project: rko_lio Doxygen Project

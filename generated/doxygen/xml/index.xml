@@ -134,45 +134,6 @@
     <member refid="structrko__lio_1_1core_1_1MotionPrior_1ac390c8cbcce02cfddd0afc8f83fe2712" kind="variable"><name>acceleration</name></member>
     <member refid="structrko__lio_1_1core_1_1MotionPrior_1a6acccbce4012aab83cb87e3d58072da4" kind="variable"><name>angular_velocity</name></member>
   </compound>
-  <compound refid="classrko__lio_1_1ros_1_1OfflineNode" kind="class"><name>rko_lio::ros::OfflineNode</name>
-    <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a492b765756e4d00b19d84c3cc8d5de93" kind="variable"><name>bag</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OfflineNode_1ad3f8b534140952b2ca4e1d3ba742147d" kind="variable"><name>bag_progress_publisher</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a7a831770cf30cf103bb2a2274c1b1b70" kind="variable"><name>total_bag_msgs</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a281e32f4e836a057a2a390e83e5ace1b" kind="variable"><name>processed_bag_msgs</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a76a398ffa0feadc10b782518e31760e7" kind="variable"><name>bag_start_time</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OfflineNode_1aba5ec197aa5c51eafb595756c4095a3f" kind="function"><name>OfflineNode</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a31edbffa8df1859ad2784370a95fd546" kind="function"><name>publish_bag_progress</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OfflineNode_1a82769092823a22fb97af2d54609e0f55" kind="function"><name>run</name></member>
-  </compound>
-  <compound refid="classrko__lio_1_1ros_1_1OnlineImuRateNode" kind="class"><name>rko_lio::ros::OnlineImuRateNode</name>
-    <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1abeffa09542eff4f6305514a742dcd7fb" kind="variable"><name>odom_at_imu_rate_publisher</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1ab104123fcfce397ef90c73d49259fb0a" kind="variable"><name>imu_sub</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1ac24f2fcbd46297538dd1ce5a00af6213" kind="variable"><name>lidar_sub</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1af7764e00398ed28619e5a60d24cd9b87" kind="variable"><name>timer</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a2516e9d4986b07cc76981ab9e9c13507" kind="variable"><name>odom_at_imu_rate_topic</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a87bdb49e8a7652cded933697fd92a8a9" kind="variable"><name>tf_at_imu_rate</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a6998f7eb857da738e15cc6fc7c40328a" kind="function"><name>OnlineImuRateNode</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1ac50595371cec85ac2adec2feffb2af6e" kind="function"><name>OnlineImuRateNode</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a8197b2e03824e774b6729a2cd2099ea7" kind="function"><name>operator=</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1ab2c2972cbc683333d9a7cc1585eb358e" kind="function"><name>operator=</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1acee41f97e04cbb489482e40e60d9fca9" kind="function"><name>~OnlineImuRateNode</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a1db8ed599e3a85c2613013db63ffb78c" kind="function"><name>OnlineImuRateNode</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1aed7b4e4abfc5e17a72a10dfc4fa6f317" kind="function"><name>get_node_base_interface</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1a42d18fd474d39967f5949f3a35ee67c8" kind="function"><name>imu_callback</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineImuRateNode_1acbe7dea353329f09276f10fc66c1376f" kind="function"><name>lidar_callback</name></member>
-  </compound>
-  <compound refid="classrko__lio_1_1ros_1_1OnlineNode" kind="class"><name>rko_lio::ros::OnlineNode</name>
-    <member refid="classrko__lio_1_1ros_1_1OnlineNode_1aa5c3fb878c2dd90ee90ab2d833d046aa" kind="variable"><name>imu_sub</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineNode_1aec3b1caa5e42c9526af48b351aa46a2f" kind="variable"><name>lidar_sub</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineNode_1ae05287f800b92923088537f0a317244b" kind="variable"><name>timer</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineNode_1a9e791c6ba45ae3f65a05cb7c31f07fed" kind="function"><name>OnlineNode</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineNode_1a2545fd04092466f59b5ba74e166b482c" kind="function"><name>OnlineNode</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineNode_1a8e9eedd3ffc5d00bccf1d9cd4ca1eca0" kind="function"><name>operator=</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineNode_1a0e8deb82a3fb444837bd8aff37b81d33" kind="function"><name>operator=</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineNode_1a0aae7d204b0a072cfcbc8c60b9e95a7a" kind="function"><name>~OnlineNode</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineNode_1af007ddb722ed40ee77ec5c7b1d3c6710" kind="function"><name>OnlineNode</name></member>
-    <member refid="classrko__lio_1_1ros_1_1OnlineNode_1a59d58b605334eb6201da6c76fc40dbed" kind="function"><name>get_node_base_interface</name></member>
-  </compound>
   <compound refid="structrko__lio_1_1core_1_1PreprocessingResult" kind="struct"><name>rko_lio::core::PreprocessingResult</name>
     <member refid="structrko__lio_1_1core_1_1PreprocessingResult_1a5c0cd1e4571393b9f545b5983bdd003e" kind="variable"><name>filtered_scan</name></member>
     <member refid="structrko__lio_1_1core_1_1PreprocessingResult_1a68f669e5e37ebc48860bdcf5ab9446f3" kind="variable"><name>keypoints</name></member>
@@ -352,9 +313,13 @@
   <compound refid="namespacerko__lio_1_1ros" kind="namespace"><name>rko_lio::ros</name>
     <member refid="base__node_8cpp_1afae6f65417b908b3b2a34c5a6261c7d1" kind="function"><name>imu_msg_to_imu_data</name></member>
   </compound>
+  <compound refid="namespacerko__lio_1_1ros_1_1_0d14" kind="namespace"><name>rko_lio::ros::@14</name>
+  </compound>
+  <compound refid="namespacerko__lio_1_1ros_1_1_0d15" kind="namespace"><name>rko_lio::ros::@15</name>
+  </compound>
+  <compound refid="namespacerko__lio_1_1ros_1_1_0d16" kind="namespace"><name>rko_lio::ros::@16</name>
+  </compound>
   <compound refid="namespacerko__lio_1_1ros_1_1utils" kind="namespace"><name>rko_lio::ros::utils</name>
-    <member refid="point__cloud__read_8cpp_1ae6e9f928a853730fee4156c59d31b232" kind="typedef"><name>PointCloud2</name></member>
-    <member refid="point__cloud__read_8cpp_1ac033ab6bd6b1f2e03682506ba229b194" kind="typedef"><name>PointField</name></member>
     <member refid="point__cloud__read_8cpp_1a77975e01f058823f8615a43bba6396a5" kind="function"><name>point_cloud2_to_eigen</name></member>
     <member refid="point__cloud__read_8cpp_1ac97c323cb1b6bab04e1f5a2766731cd8" kind="function"><name>point_cloud2_to_eigen_with_timestamps</name></member>
     <member refid="point__cloud__read_8hpp_1a77d7ba00ca1501f61934151103ed9af2" kind="function"><name>point_cloud2_to_eigen_with_timestamps</name></member>
@@ -410,11 +375,25 @@
   <compound refid="base__node_8hpp" kind="file"><name>base_node.hpp</name>
   </compound>
   <compound refid="offline__node_8cpp" kind="file"><name>offline_node.cpp</name>
-    <member refid="offline__node_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+    <member refid="offline__node_8cpp_1a8e0b7a912b9d319d0789184b7ad08d69" kind="variable"><name>bag</name></member>
+    <member refid="offline__node_8cpp_1ade940662fda9df68bc05a8f3e310179e" kind="variable"><name>bag_progress_publisher</name></member>
+    <member refid="offline__node_8cpp_1a1bd5b286cc04a6febf7022cd11ae6d0f" kind="variable"><name>total_bag_msgs</name></member>
+    <member refid="offline__node_8cpp_1aa26a87ab7284ee48085b19d97eee7e8b" kind="variable"><name>processed_bag_msgs</name></member>
+    <member refid="offline__node_8cpp_1abccb066f3c0f5f8fdc47695d6cab4ecc" kind="variable"><name>bag_start_time</name></member>
+    <member refid="offline__node_8cpp_1ad1835a0a190dc5fe4f925bb69443c770" kind="function"><name>main</name></member>
   </compound>
   <compound refid="online__imu__rate__node_8cpp" kind="file"><name>online_imu_rate_node.cpp</name>
+    <member refid="online__imu__rate__node_8cpp_1aacbe12345a9ca47e3872e572922e6a5f" kind="variable"><name>odom_at_imu_rate_publisher</name></member>
+    <member refid="online__imu__rate__node_8cpp_1a99af4aad7b375dc52ceeabb68e5be2ef" kind="variable"><name>imu_sub</name></member>
+    <member refid="online__imu__rate__node_8cpp_1a5a129e80a6ca4335b1488d932e98601d" kind="variable"><name>lidar_sub</name></member>
+    <member refid="online__imu__rate__node_8cpp_1ab78a07be796aaebb5f7bad06b5e301e7" kind="variable"><name>timer</name></member>
+    <member refid="online__imu__rate__node_8cpp_1aa48f161529ca3217def3fe5a8407e777" kind="variable"><name>odom_at_imu_rate_topic</name></member>
+    <member refid="online__imu__rate__node_8cpp_1a70eec06ed2c7220f2a80ac9c9ab29b49" kind="variable"><name>tf_at_imu_rate</name></member>
   </compound>
   <compound refid="online__node_8cpp" kind="file"><name>online_node.cpp</name>
+    <member refid="online__node_8cpp_1a99af4aad7b375dc52ceeabb68e5be2ef" kind="variable"><name>imu_sub</name></member>
+    <member refid="online__node_8cpp_1a5a129e80a6ca4335b1488d932e98601d" kind="variable"><name>lidar_sub</name></member>
+    <member refid="online__node_8cpp_1a65dc6c748af20a45bea7469712b724dd" kind="variable"><name>timer</name></member>
   </compound>
   <compound refid="threaded__node_8cpp" kind="file"><name>threaded_node.cpp</name>
   </compound>

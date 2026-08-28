@@ -3,8 +3,6 @@
   <compounddef id="classrko__lio_1_1ros_1_1ThreadedNode" kind="class" language="C++" prot="public">
     <compoundname>rko_lio::ros::ThreadedNode</compoundname>
     <basecompoundref refid="classrko__lio_1_1ros_1_1BaseNode" prot="public" virt="non-virtual">rko_lio::ros::BaseNode</basecompoundref>
-    <derivedcompoundref refid="classrko__lio_1_1ros_1_1OfflineNode" prot="public" virt="non-virtual">rko_lio::ros::OfflineNode</derivedcompoundref>
-    <derivedcompoundref refid="classrko__lio_1_1ros_1_1OnlineNode" prot="public" virt="non-virtual">rko_lio::ros::OnlineNode</derivedcompoundref>
     <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1ThreadedNode_1a512b61e767463397837452326c17148b" prot="public" static="no" mutable="no">
         <type>std::jthread</type>
@@ -300,18 +298,6 @@
       <node id="2">
         <label>rko_lio::ros::BaseNode</label>
         <link refid="classrko__lio_1_1ros_1_1BaseNode"/>
-      </node>
-      <node id="3">
-        <label>rko_lio::ros::OfflineNode</label>
-        <link refid="classrko__lio_1_1ros_1_1OfflineNode"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>rko_lio::ros::OnlineNode</label>
-        <link refid="classrko__lio_1_1ros_1_1OnlineNode"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
       </node>
       <node id="1">
         <label>rko_lio::ros::ThreadedNode</label>

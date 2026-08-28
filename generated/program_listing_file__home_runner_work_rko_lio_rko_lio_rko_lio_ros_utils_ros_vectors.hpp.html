@@ -130,9 +130,11 @@
 <span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">convertible_to</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">{</span>
+<span class="w">  </span><span class="c1">// NOLINTBEGIN(cppcoreguidelines-pro-bounds-avoid-unchecked-container-access)</span>
 <span class="w">  </span><span class="n">ros_vector</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vector</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 <span class="w">  </span><span class="n">ros_vector</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vector</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
 <span class="w">  </span><span class="n">ros_vector</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vector</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="w">  </span><span class="c1">// NOLINTEND(cppcoreguidelines-pro-bounds-avoid-unchecked-container-access)</span>
 <span class="p">}</span>
 
 <span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>

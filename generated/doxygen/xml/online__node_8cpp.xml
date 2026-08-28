@@ -288,9 +288,49 @@
         <label>vector</label>
       </node>
     </incdepgraph>
-    <innerclass refid="classrko__lio_1_1ros_1_1OnlineNode" prot="public">rko_lio::ros::OnlineNode</innerclass>
     <innernamespace refid="namespacerko__lio">rko_lio</innernamespace>
     <innernamespace refid="namespacerko__lio_1_1ros">rko_lio::ros</innernamespace>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="online__node_8cpp_1a99af4aad7b375dc52ceeabb68e5be2ef" prot="public" static="no" mutable="no">
+        <type>rclcpp::Subscription&lt; sensor_msgs::msg::Imu &gt;::SharedPtr</type>
+        <definition>rclcpp::Subscription&lt;sensor_msgs::msg::Imu&gt;::SharedPtr imu_sub</definition>
+        <argsstring></argsstring>
+        <name>imu_sub</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" line="32" column="36" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="online__node_8cpp_1a5a129e80a6ca4335b1488d932e98601d" prot="public" static="no" mutable="no">
+        <type>rclcpp::Subscription&lt; sensor_msgs::msg::PointCloud2 &gt;::SharedPtr</type>
+        <definition>rclcpp::Subscription&lt;sensor_msgs::msg::PointCloud2&gt;::SharedPtr lidar_sub</definition>
+        <argsstring></argsstring>
+        <name>lidar_sub</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" line="33" column="36" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="online__node_8cpp_1a65dc6c748af20a45bea7469712b724dd" prot="public" static="no" mutable="no">
+        <type><ref refid="structrko__lio_1_1core_1_1Timer" kindref="compound">rko_lio::core::Timer</ref></type>
+        <definition>rko_lio::core::Timer timer</definition>
+        <argsstring></argsstring>
+        <name>timer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" line="34" column="24" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -324,39 +364,41 @@
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;threaded_node.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros<sp/>{</highlight></codeline>
-<codeline lineno="29" refid="classrko__lio_1_1ros_1_1OnlineNode" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrko__lio_1_1ros_1_1OnlineNode" kindref="compound">OnlineNode</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref><sp/>{</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/>rclcpp::Subscription&lt;sensor_msgs::msg::Imu&gt;::SharedPtr<sp/>imu_sub;</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/>rclcpp::Subscription&lt;sensor_msgs::msg::PointCloud2&gt;::SharedPtr<sp/>lidar_sub;</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1Timer" kindref="compound">rko_lio::core::Timer</ref><sp/>timer;</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1OnlineNode" kindref="compound">OnlineNode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1ros_1_1OnlineNode" kindref="compound">OnlineNode</ref>&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1OnlineNode" kindref="compound">OnlineNode</ref>(<ref refid="classrko__lio_1_1ros_1_1OnlineNode" kindref="compound">OnlineNode</ref>&amp;&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1OnlineNode" kindref="compound">OnlineNode</ref>&amp;<sp/>operator=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1ros_1_1OnlineNode" kindref="compound">OnlineNode</ref>&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1OnlineNode" kindref="compound">OnlineNode</ref>&amp;<sp/>operator=(<ref refid="classrko__lio_1_1ros_1_1OnlineNode" kindref="compound">OnlineNode</ref>&amp;&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1OnlineNode" kindref="compound">~OnlineNode</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1ros_1_1OnlineNode" kindref="compound">OnlineNode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>rclcpp::NodeOptions&amp;<sp/>options)</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref>(</highlight><highlight class="stringliteral">&quot;rko_lio_online_node&quot;</highlight><highlight class="normal">,<sp/>options),<sp/>timer(</highlight><highlight class="stringliteral">&quot;RKO<sp/>LIO<sp/>Online<sp/>Node&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>qos_imu<sp/>=<sp/>rclcpp::SensorDataQoS().keep_last(100);</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>qos_lidar<sp/>=<sp/>rclcpp::SensorDataQoS().keep_last(10);</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>imu_sub<sp/>=<sp/>node-&gt;create_subscription&lt;sensor_msgs::msg::Imu&gt;(</highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>imu_topic,<sp/>qos_imu,<sp/>[</highlight><highlight class="keyword">this</highlight><highlight class="normal">](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::Imu::ConstSharedPtr&amp;<sp/>imu_msg)<sp/>{<sp/>imu_callback(imu_msg);<sp/>});</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"></highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>lidar_sub<sp/>=<sp/>node-&gt;create_subscription&lt;sensor_msgs::msg::PointCloud2&gt;(</highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lidar_topic,<sp/>qos_lidar,</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[</highlight><highlight class="keyword">this</highlight><highlight class="normal">](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::PointCloud2::ConstSharedPtr&amp;<sp/>lidar_msg)<sp/>{<sp/>lidar_callback(lidar_msg);<sp/>});</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"></highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/>rclcpp::node_interfaces::NodeBaseInterface::SharedPtr<sp/>get_node_base_interface()<sp/>{</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>node-&gt;get_node_base_interface();</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="57"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="58"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="59"><highlight class="normal"></highlight></codeline>
-<codeline lineno="60"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;rclcpp_components/register_node_macro.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="61"><highlight class="normal">RCLCPP_COMPONENTS_REGISTER_NODE(<ref refid="classrko__lio_1_1ros_1_1OnlineNode" kindref="compound">rko_lio::ros::OnlineNode</ref>)</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">OnlineNode<sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>ThreadedNode<sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/>rclcpp::Subscription&lt;sensor_msgs::msg::Imu&gt;::SharedPtr<sp/>imu_sub;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/>rclcpp::Subscription&lt;sensor_msgs::msg::PointCloud2&gt;::SharedPtr<sp/>lidar_sub;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1Timer" kindref="compound">rko_lio::core::Timer</ref><sp/>timer;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/>OnlineNode(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>OnlineNode&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/>OnlineNode(OnlineNode&amp;&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/>OnlineNode&amp;<sp/>operator=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>OnlineNode&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/>OnlineNode&amp;<sp/>operator=(OnlineNode&amp;&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/>~OnlineNode()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/>OnlineNode(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>rclcpp::NodeOptions&amp;<sp/>options)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>ThreadedNode(</highlight><highlight class="stringliteral">&quot;rko_lio_online_node&quot;</highlight><highlight class="normal">,<sp/>options),<sp/>timer(</highlight><highlight class="stringliteral">&quot;RKO<sp/>LIO<sp/>Online<sp/>Node&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>qos_imu<sp/>=<sp/>rclcpp::SensorDataQoS().keep_last(100);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>qos_lidar<sp/>=<sp/>rclcpp::SensorDataQoS().keep_last(10);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>imu_sub<sp/>=<sp/>node-&gt;create_subscription&lt;sensor_msgs::msg::Imu&gt;(</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>imu_topic,<sp/>qos_imu,<sp/>[</highlight><highlight class="keyword">this</highlight><highlight class="normal">](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::Imu::ConstSharedPtr&amp;<sp/>imu_msg)<sp/>{<sp/>imu_callback(imu_msg);<sp/>});</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>lidar_sub<sp/>=<sp/>node-&gt;create_subscription&lt;sensor_msgs::msg::PointCloud2&gt;(</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lidar_topic,<sp/>qos_lidar,</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[</highlight><highlight class="keyword">this</highlight><highlight class="normal">](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::PointCloud2::ConstSharedPtr&amp;<sp/>lidar_msg)<sp/>{<sp/>lidar_callback(lidar_msg);<sp/>});</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/>rclcpp::node_interfaces::NodeBaseInterface::SharedPtr<sp/>get_node_base_interface()<sp/>{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>node-&gt;get_node_base_interface();</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="59"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;rclcpp_components/register_node_macro.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal">RCLCPP_COMPONENTS_REGISTER_NODE(rko_lio::ros::OnlineNode)</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp"/>
   </compounddef>

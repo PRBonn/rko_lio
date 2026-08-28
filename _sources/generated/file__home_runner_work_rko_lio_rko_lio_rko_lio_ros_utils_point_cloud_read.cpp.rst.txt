@@ -62,12 +62,3 @@ Functions
 
 - :ref:`exhale_function_point__cloud__read_8cpp_1ac97c323cb1b6bab04e1f5a2766731cd8`
 
-
-Typedefs
---------
-
-
-- :ref:`exhale_typedef_point__cloud__read_8cpp_1ae6e9f928a853730fee4156c59d31b232`
-
-- :ref:`exhale_typedef_point__cloud__read_8cpp_1ac033ab6bd6b1f2e03682506ba229b194`
-

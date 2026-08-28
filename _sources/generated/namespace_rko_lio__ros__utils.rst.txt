@@ -28,9 +28,9 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_point__cloud__write_8hpp_1a23726637c0f702f265b6aa8f649dc99f`
-
 - :ref:`exhale_function_point__cloud__write_8cpp_1abc355982206b665ccf8d223ef1a85d5f`
+
+- :ref:`exhale_function_point__cloud__write_8hpp_1a23726637c0f702f265b6aa8f649dc99f`
 
 - :ref:`exhale_function_ros__vectors_8hpp_1a1ec41d7121199c6a747035f9b7ac87b6`
 
@@ -55,12 +55,3 @@ Functions
 - :ref:`exhale_function_time_8hpp_1ac0334fa598ca2d1a236b10d23db3ff0f`
 
 - :ref:`exhale_function_transforms_8hpp_1a58cdd22e9dad87455b7bc02f654031c3`
-
-
-Typedefs
---------
-
-
-- :ref:`exhale_typedef_point__cloud__read_8cpp_1ae6e9f928a853730fee4156c59d31b232`
-
-- :ref:`exhale_typedef_point__cloud__read_8cpp_1ac033ab6bd6b1f2e03682506ba229b194`

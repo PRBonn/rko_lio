@@ -1,0 +1,14 @@
+.. _exhale_variable_offline__node_8cpp_1ade940662fda9df68bc05a8f3e310179e:
+
+Variable bag_progress_publisher
+===============================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_offline_node.cpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: bag_progress_publisher
+   :project: rko_lio Doxygen Project

@@ -50,9 +50,13 @@ Namespaces
 - :ref:`namespace_rko_lio__ros`
 
 
-Classes
--------
+Variables
+---------
 
 
-- :ref:`exhale_class_classrko__lio_1_1ros_1_1OnlineNode`
+- :ref:`exhale_variable_online__node_8cpp_1a99af4aad7b375dc52ceeabb68e5be2ef`
+
+- :ref:`exhale_variable_online__node_8cpp_1a5a129e80a6ca4335b1488d932e98601d`
+
+- :ref:`exhale_variable_online__node_8cpp_1a65dc6c748af20a45bea7469712b724dd`
 

@@ -15,13 +15,6 @@ Base Type
 - ``public rko_lio::ros::BaseNode`` (:ref:`exhale_class_classrko__lio_1_1ros_1_1BaseNode`)
 
 
-Derived Types
-*************
-
-- ``public rko_lio::ros::OfflineNode`` (:ref:`exhale_class_classrko__lio_1_1ros_1_1OfflineNode`)
-- ``public rko_lio::ros::OnlineNode`` (:ref:`exhale_class_classrko__lio_1_1ros_1_1OnlineNode`)
-
-
 Class Documentation
 -------------------
 

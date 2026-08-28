@@ -17,6 +17,12 @@ Namespaces
 ----------
 
 
+- :ref:`namespace_rko_lio__ros__@14`
+
+- :ref:`namespace_rko_lio__ros__@15`
+
+- :ref:`namespace_rko_lio__ros__@16`
+
 - :ref:`namespace_rko_lio__ros__utils`
 
 
@@ -27,12 +33,6 @@ Classes
 - :ref:`exhale_struct_structrko__lio_1_1ros_1_1LidarScan`
 
 - :ref:`exhale_class_classrko__lio_1_1ros_1_1BaseNode`
-
-- :ref:`exhale_class_classrko__lio_1_1ros_1_1OfflineNode`
-
-- :ref:`exhale_class_classrko__lio_1_1ros_1_1OnlineImuRateNode`
-
-- :ref:`exhale_class_classrko__lio_1_1ros_1_1OnlineNode`
 
 - :ref:`exhale_class_classrko__lio_1_1ros_1_1ThreadedNode`
 

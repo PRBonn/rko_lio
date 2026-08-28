@@ -1,0 +1,14 @@
+.. _exhale_variable_online__imu__rate__node_8cpp_1a70eec06ed2c7220f2a80ac9c9ab29b49:
+
+Variable tf_at_imu_rate
+=======================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_online_imu_rate_node.cpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: tf_at_imu_rate
+   :project: rko_lio Doxygen Project

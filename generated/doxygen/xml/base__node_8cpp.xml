@@ -457,7 +457,7 @@
 <codeline lineno="82"><highlight class="normal"><sp/><sp/>tf_broadcaster<sp/>=<sp/>std::make_unique&lt;tf2_ros::TransformBroadcaster&gt;(*node);</highlight></codeline>
 <codeline lineno="83"><highlight class="normal"></highlight></codeline>
 <codeline lineno="84"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>publishing</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>rclcpp::QoS<sp/>publisher_qos((rclcpp::SystemDefaultsQoS().keep_last(1).durability_volatile()));</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>rclcpp::QoS<sp/>publisher_qos(rclcpp::SystemDefaultsQoS().keep_last(1).durability_volatile());</highlight></codeline>
 <codeline lineno="86"><highlight class="normal"><sp/><sp/>odom_publisher<sp/>=<sp/>node-&gt;create_publisher&lt;nav_msgs::msg::Odometry&gt;(odom_topic,<sp/>publisher_qos);</highlight></codeline>
 <codeline lineno="87"><highlight class="normal"></highlight></codeline>
 <codeline lineno="88"><highlight class="normal"><sp/><sp/>publish_lidar_acceleration<sp/>=<sp/>node-&gt;declare_parameter&lt;</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">&gt;(</highlight><highlight class="stringliteral">&quot;publish_lidar_acceleration&quot;</highlight><highlight class="normal">,<sp/>publish_lidar_acceleration);</highlight></codeline>
@@ -480,7 +480,7 @@
 <codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>publish_map_after<sp/>=</highlight></codeline>
 <codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::chrono::duration_cast&lt;std::chrono::nanoseconds&gt;(std::chrono::duration&lt;double&gt;(publish_map_after_seconds));</highlight></codeline>
 <codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>map_publisher<sp/>=<sp/>node-&gt;create_publisher&lt;sensor_msgs::msg::PointCloud2&gt;(map_topic,<sp/>publisher_qos);</highlight></codeline>
-<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>map_publish_thread<sp/>=<sp/>std::jthread([</highlight><highlight class="keyword">this</highlight><highlight class="normal">]()<sp/>{<sp/>publish_map_loop();<sp/>});</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>map_publish_thread<sp/>=<sp/>std::jthread([</highlight><highlight class="keyword">this</highlight><highlight class="normal">]<sp/>{<sp/>publish_map_loop();<sp/>});</highlight></codeline>
 <codeline lineno="109"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="110"><highlight class="normal"></highlight></codeline>
 <codeline lineno="111"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>lio<sp/>params</highlight><highlight class="normal"></highlight></codeline>
@@ -536,7 +536,7 @@
 <codeline lineno="161"><highlight class="normal"><sp/><sp/>dump_results<sp/>=<sp/>node-&gt;declare_parameter&lt;</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">&gt;(</highlight><highlight class="stringliteral">&quot;dump_results&quot;</highlight><highlight class="normal">,<sp/>dump_results);</highlight></codeline>
 <codeline lineno="162"><highlight class="normal"><sp/><sp/>results_dir<sp/>=<sp/>node-&gt;declare_parameter&lt;std::string&gt;(</highlight><highlight class="stringliteral">&quot;results_dir&quot;</highlight><highlight class="normal">,<sp/>results_dir);</highlight></codeline>
 <codeline lineno="163"><highlight class="normal"><sp/><sp/>run_name<sp/>=<sp/>node-&gt;declare_parameter&lt;std::string&gt;(</highlight><highlight class="stringliteral">&quot;run_name&quot;</highlight><highlight class="normal">,<sp/>run_name);</highlight></codeline>
-<codeline lineno="164"><highlight class="normal"><sp/><sp/>rclcpp::on_shutdown([</highlight><highlight class="keyword">this</highlight><highlight class="normal">]()<sp/>{</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/>rclcpp::on_shutdown([</highlight><highlight class="keyword">this</highlight><highlight class="normal">]<sp/>{</highlight></codeline>
 <codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>i&apos;ll<sp/>need<sp/>to<sp/>look<sp/>into<sp/>rclcpp::Context<sp/>a<sp/>bit<sp/>more,<sp/>but<sp/>for<sp/>now<sp/>i<sp/>think<sp/>this<sp/>callback<sp/>should<sp/>be<sp/>called<sp/>before</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>anything<sp/>gets<sp/>destroyed.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(dump_results)<sp/>{</highlight></codeline>
@@ -549,7 +549,7 @@
 <codeline lineno="174"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="175"><highlight class="normal"></highlight></codeline>
 <codeline lineno="176"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BaseNode::parse_cli_extrinsics()<sp/>{</highlight></codeline>
-<codeline lineno="177"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>parse_extrinsic<sp/>=<sp/>[</highlight><highlight class="keyword">this</highlight><highlight class="normal">](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>name,<sp/>Sophus::SE3s&amp;<sp/>extrinsic)<sp/>{</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>parse_extrinsic<sp/>=<sp/>[</highlight><highlight class="keyword">this</highlight><highlight class="normal">](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>name,<sp/>Sophus::SE3s&amp;<sp/>extrinsic)<sp/>{</highlight></codeline>
 <codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>param_name<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;extrinsic_&quot;</highlight><highlight class="normal"><sp/>+<sp/>name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;2base_quat_xyzw_xyz&quot;</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;<sp/>vec<sp/>=<sp/>node-&gt;declare_parameter&lt;std::vector&lt;double&gt;&gt;(param_name,<sp/>std::vector&lt;double&gt;{});</highlight></codeline>
 <codeline lineno="180"><highlight class="normal"></highlight></codeline>
@@ -563,11 +563,11 @@
 <codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Quaternions<sp/>q<sp/>=<sp/>Eigen::Quaterniond(vec[3],<sp/>vec[0],<sp/>vec[1],<sp/>vec[2]).cast&lt;core::Scalar&gt;();</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Quaternions<sp/>q<sp/>=<sp/>Eigen::Quaterniond(vec.at(3),<sp/>vec.at(0),<sp/>vec.at(1),<sp/>vec.at(2)).cast&lt;core::Scalar&gt;();</highlight></codeline>
 <codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(q.norm()<sp/>&lt;<sp/>1e-6)<sp/>{</highlight></codeline>
 <codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>extrinsic<sp/>quaternion<sp/>has<sp/>zero<sp/>norm&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/>extrinsic<sp/>=<sp/>Sophus::SE3s(q,<sp/>Eigen::Vector3d(vec[4],<sp/>vec[5],<sp/>vec[6]).cast&lt;core::Scalar&gt;());</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/>extrinsic<sp/>=<sp/>Sophus::SE3s(q,<sp/>Eigen::Vector3d(vec.at(4),<sp/>vec.at(5),<sp/>vec.at(6)).cast&lt;core::Scalar&gt;());</highlight></codeline>
 <codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/>RCLCPP_INFO_STREAM(node-&gt;get_logger(),<sp/></highlight><highlight class="stringliteral">&quot;Parsed<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>name<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>extrinsic<sp/>as:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>extrinsic.log().transpose());</highlight></codeline>
 <codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="198"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
@@ -613,125 +613,129 @@
 <codeline lineno="238"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::Nsec<sp/>header_stamp<sp/>=<sp/>utils::to_ns(lidar_msg-&gt;header.stamp);</highlight></codeline>
 <codeline lineno="239"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(lio-&gt;config.deskew)<sp/>{</highlight></codeline>
 <codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/>utils::RawScan<sp/>scan<sp/>=<sp/>utils::point_cloud2_to_eigen_with_timestamps(lidar_msg);</highlight></codeline>
-<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{.timestamps<sp/>=<sp/><ref refid="namespacerko__lio_1_1core_1ac1fb80bf51f668bd3442bcb18044a57c" kindref="member">core::process_timestamps</ref>(scan.timestamps,<sp/>header_stamp,<sp/>timestamp_proc_config),</highlight></codeline>
-<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.points<sp/>=<sp/>std::move(scan.points)};</highlight></codeline>
-<codeline lineno="243"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="244"><highlight class="normal"><sp/><sp/>RCLCPP_WARN_STREAM_ONCE(node-&gt;get_logger(),<sp/></highlight><highlight class="stringliteral">&quot;Deskewing<sp/>is<sp/>disabled.<sp/>Populating<sp/>timestamps<sp/>with<sp/>static<sp/>header<sp/>time.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="245"><highlight class="normal"><sp/><sp/>LidarScan<sp/>scan{.timestamps<sp/>=<sp/>{.min<sp/>=<sp/>header_stamp,<sp/>.max<sp/>=<sp/>header_stamp},</highlight></codeline>
-<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.points<sp/>=<sp/>utils::point_cloud2_to_eigen(lidar_msg)};</highlight></codeline>
-<codeline lineno="247"><highlight class="normal"><sp/><sp/>scan.timestamps.per_point.assign(scan.points.size(),<sp/>header_stamp);</highlight></codeline>
-<codeline lineno="248"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>scan;</highlight></codeline>
-<codeline lineno="249"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="250"><highlight class="normal"></highlight></codeline>
-<codeline lineno="251"><highlight class="normal">core::Vector3sVector<sp/>BaseNode::register_scan_locked(core::Vector3sVector<sp/>scan,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::Timestamps&amp;<sp/>timestamps)<sp/>{</highlight></codeline>
-<codeline lineno="252"><highlight class="normal"><sp/><sp/>std::unique_lock<sp/>lock(local_map_mutex,<sp/>std::defer_lock);</highlight></codeline>
-<codeline lineno="253"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(publish_local_map)<sp/>{</highlight></codeline>
-<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/>lock.lock();<sp/></highlight><highlight class="comment">//<sp/>map<sp/>publish<sp/>thread<sp/>may<sp/>access<sp/>map<sp/>simultaneously</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="255"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="256"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>lio-&gt;register_scan(extrinsic_lidar2base,<sp/>std::move(scan),<sp/>timestamps);</highlight></codeline>
-<codeline lineno="257"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="258"><highlight class="normal"></highlight></codeline>
-<codeline lineno="259"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BaseNode::publish_lidar_outputs(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::Vector3sVector&amp;<sp/>deskewed_scan)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="260"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(publish_deskewed_scan)<sp/>{</highlight></codeline>
-<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/>std_msgs::msg::Header<sp/>header;</highlight></codeline>
-<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/>header.frame_id<sp/>=<sp/>lidar_frame;</highlight></codeline>
-<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/>header.stamp<sp/>=<sp/>utils::to_ros_time(lio-&gt;lidar_state.time);</highlight></codeline>
-<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/>frame_publisher-&gt;publish(utils::eigen_to_point_cloud2(deskewed_scan,<sp/>header));</highlight></codeline>
-<codeline lineno="265"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="266"><highlight class="normal"><sp/><sp/>publish_odometry(lio-&gt;lidar_state,<sp/>odom_publisher);</highlight></codeline>
-<codeline lineno="267"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(publish_lidar_acceleration)<sp/>{</highlight></codeline>
-<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/>publish_lidar_accel(lio-&gt;lidar_state);</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.timestamps<sp/>=<sp/><ref refid="namespacerko__lio_1_1core_1ac1fb80bf51f668bd3442bcb18044a57c" kindref="member">core::process_timestamps</ref>(scan.timestamps,<sp/>header_stamp,<sp/>timestamp_proc_config),</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.points<sp/>=<sp/>std::move(scan.points),</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/>RCLCPP_WARN_STREAM_ONCE(node-&gt;get_logger(),<sp/></highlight><highlight class="stringliteral">&quot;Deskewing<sp/>is<sp/>disabled.<sp/>Populating<sp/>timestamps<sp/>with<sp/>static<sp/>header<sp/>time.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/>LidarScan<sp/>scan{</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>.timestamps<sp/>=<sp/>{.min<sp/>=<sp/>header_stamp,<sp/>.max<sp/>=<sp/>header_stamp},</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>.points<sp/>=<sp/>utils::point_cloud2_to_eigen(lidar_msg),</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/>scan.timestamps.per_point.assign(scan.points.size(),<sp/>header_stamp);</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>scan;</highlight></codeline>
+<codeline lineno="253"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="normal">core::Vector3sVector<sp/>BaseNode::register_scan_locked(core::Vector3sVector<sp/>scan,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::Timestamps&amp;<sp/>timestamps)<sp/>{</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/>std::unique_lock<sp/>lock(local_map_mutex,<sp/>std::defer_lock);</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(publish_local_map)<sp/>{</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/>lock.lock();<sp/></highlight><highlight class="comment">//<sp/>map<sp/>publish<sp/>thread<sp/>may<sp/>access<sp/>map<sp/>simultaneously</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>lio-&gt;register_scan(extrinsic_lidar2base,<sp/>std::move(scan),<sp/>timestamps);</highlight></codeline>
+<codeline lineno="261"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"></highlight></codeline>
+<codeline lineno="263"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BaseNode::publish_lidar_outputs(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::Vector3sVector&amp;<sp/>deskewed_scan)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(publish_deskewed_scan)<sp/>{</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/>std_msgs::msg::Header<sp/>header;</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/>header.frame_id<sp/>=<sp/>lidar_frame;</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/>header.stamp<sp/>=<sp/>utils::to_ros_time(lio-&gt;lidar_state.time);</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/>frame_publisher-&gt;publish(utils::eigen_to_point_cloud2(deskewed_scan,<sp/>header));</highlight></codeline>
 <codeline lineno="269"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="270"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="271"><highlight class="normal"></highlight></codeline>
-<codeline lineno="272"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BaseNode::publish_odometry(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::State&amp;<sp/>state,</highlight></codeline>
-<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>rclcpp::Publisher&lt;nav_msgs::msg::Odometry&gt;::SharedPtr&amp;<sp/>publisher)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="274"><highlight class="normal"><sp/><sp/>nav_msgs::msg::Odometry<sp/>odom_msg;</highlight></codeline>
-<codeline lineno="275"><highlight class="normal"><sp/><sp/>odom_msg.header.stamp<sp/>=<sp/>utils::to_ros_time(state.time);</highlight></codeline>
-<codeline lineno="276"><highlight class="normal"><sp/><sp/>odom_msg.header.frame_id<sp/>=<sp/>odom_frame;</highlight></codeline>
-<codeline lineno="277"><highlight class="normal"><sp/><sp/>odom_msg.child_frame_id<sp/>=<sp/>base_frame;</highlight></codeline>
-<codeline lineno="278"><highlight class="normal"><sp/><sp/>odom_msg.pose.pose<sp/>=<sp/>utils::sophus_to_pose(state.pose);</highlight></codeline>
-<codeline lineno="279"><highlight class="normal"><sp/><sp/>utils::eigen_vector_to_ros_xyz(state.linear_velocity,<sp/>odom_msg.twist.twist.linear);</highlight></codeline>
-<codeline lineno="280"><highlight class="normal"><sp/><sp/>utils::eigen_vector_to_ros_xyz(state.angular_velocity,<sp/>odom_msg.twist.twist.angular);</highlight></codeline>
-<codeline lineno="281"><highlight class="normal"><sp/><sp/>publisher-&gt;publish(odom_msg);</highlight></codeline>
-<codeline lineno="282"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="283"><highlight class="normal"></highlight></codeline>
-<codeline lineno="284"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BaseNode::publish_tf(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::State&amp;<sp/>state)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="285"><highlight class="normal"><sp/><sp/>geometry_msgs::msg::TransformStamped<sp/>transform_msg;</highlight></codeline>
-<codeline lineno="286"><highlight class="normal"><sp/><sp/>transform_msg.header.stamp<sp/>=<sp/>utils::to_ros_time(state.time);</highlight></codeline>
-<codeline lineno="287"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(invert_odom_tf)<sp/>{</highlight></codeline>
-<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/>transform_msg.header.frame_id<sp/>=<sp/>base_frame;</highlight></codeline>
-<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/>transform_msg.child_frame_id<sp/>=<sp/>odom_frame;</highlight></codeline>
-<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/>transform_msg.transform<sp/>=<sp/>utils::sophus_to_transform(state.pose.inverse());</highlight></codeline>
-<codeline lineno="291"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/>transform_msg.header.frame_id<sp/>=<sp/>odom_frame;</highlight></codeline>
-<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/>transform_msg.child_frame_id<sp/>=<sp/>base_frame;</highlight></codeline>
-<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/>transform_msg.transform<sp/>=<sp/>utils::sophus_to_transform(state.pose);</highlight></codeline>
-<codeline lineno="295"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="296"><highlight class="normal"><sp/><sp/>tf_broadcaster-&gt;sendTransform(transform_msg);</highlight></codeline>
-<codeline lineno="297"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="298"><highlight class="normal"></highlight></codeline>
-<codeline lineno="299"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BaseNode::publish_lidar_accel(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::State&amp;<sp/>state)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="300"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>accel_msg<sp/>=<sp/>geometry_msgs::msg::AccelStamped();</highlight></codeline>
-<codeline lineno="301"><highlight class="normal"><sp/><sp/>accel_msg.header.stamp<sp/>=<sp/>utils::to_ros_time(state.time);</highlight></codeline>
-<codeline lineno="302"><highlight class="normal"><sp/><sp/>accel_msg.header.frame_id<sp/>=<sp/>base_frame;</highlight></codeline>
-<codeline lineno="303"><highlight class="normal"><sp/><sp/>utils::eigen_vector_to_ros_xyz(state.linear_acceleration,<sp/>accel_msg.accel.linear);</highlight></codeline>
-<codeline lineno="304"><highlight class="normal"><sp/><sp/>lidar_accel_publisher-&gt;publish(accel_msg);</highlight></codeline>
-<codeline lineno="305"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="306"><highlight class="normal"></highlight></codeline>
-<codeline lineno="307"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BaseNode::publish_map_loop()<sp/>{</highlight></codeline>
-<codeline lineno="308"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(atomic_node_running)<sp/>{</highlight></codeline>
-<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/>std::this_thread::sleep_for(publish_map_after);</highlight></codeline>
-<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/>std::unique_lock<sp/>lock(local_map_mutex);</highlight></codeline>
-<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(lio-&gt;map.empty())<sp/>{</highlight></codeline>
-<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>RCLCPP_WARN_ONCE(node-&gt;get_logger(),<sp/></highlight><highlight class="stringliteral">&quot;Local<sp/>map<sp/>publish<sp/>thread:<sp/>Local<sp/>map<sp/>is<sp/>empty.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::Vector3sVector<sp/>map_points<sp/>=<sp/>lio-&gt;map.points();</highlight></codeline>
-<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/>lock.unlock();<sp/></highlight><highlight class="comment">//<sp/>we<sp/>don&apos;t<sp/>access<sp/>the<sp/>local<sp/>map<sp/>anymore</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/>std_msgs::msg::Header<sp/>map_header;</highlight></codeline>
-<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/>map_header.stamp<sp/>=<sp/>node-&gt;now();</highlight></codeline>
-<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/>map_header.frame_id<sp/>=<sp/>odom_frame;</highlight></codeline>
-<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/>map_publisher-&gt;publish(utils::eigen_to_point_cloud2(map_points,<sp/>map_header));</highlight></codeline>
-<codeline lineno="321"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="322"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="323"><highlight class="normal"></highlight></codeline>
-<codeline lineno="324"><highlight class="normal">BaseNode::~BaseNode()<sp/>{<sp/>atomic_node_running<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
-<codeline lineno="325"><highlight class="normal"></highlight></codeline>
-<codeline lineno="326"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BaseNode::dump_results_to_disk(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::filesystem::path&amp;<sp/>results_dir,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>run_name)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="327"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/>std::filesystem::create_directories(results_dir);<sp/></highlight><highlight class="comment">//<sp/>no<sp/>error<sp/>if<sp/>exists</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/>std::filesystem::path<sp/>output_dir<sp/>=<sp/>results_dir<sp/>/<sp/>(run_name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;_&quot;</highlight><highlight class="normal"><sp/>+<sp/>std::to_string(index));</highlight></codeline>
-<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(std::filesystem::exists(output_dir))<sp/>{</highlight></codeline>
-<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>++index;</highlight></codeline>
-<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>output_dir<sp/>=<sp/>results_dir<sp/>/<sp/>(run_name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;_&quot;</highlight><highlight class="normal"><sp/>+<sp/>std::to_string(index));</highlight></codeline>
-<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/>std::filesystem::create_directory(output_dir);</highlight></codeline>
-<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::filesystem::path<sp/>output_file<sp/>=<sp/>output_dir<sp/>/<sp/>(run_name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;_tum_&quot;</highlight><highlight class="normal"><sp/>+<sp/>std::to_string(index)<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;.txt&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>dump<sp/>poses</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(std::ofstream<sp/>file(output_file);<sp/>file.is_open())<sp/>{</highlight></codeline>
-<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>[timestamp,<sp/>pose]<sp/>:<sp/>lio-&gt;poses_with_timestamps)<sp/>{</highlight></codeline>
-<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s&amp;<sp/>translation<sp/>=<sp/>pose.translation();</highlight></codeline>
-<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Quaternions&amp;<sp/>quaternion<sp/>=<sp/>pose.so3().unit_quaternion();</highlight></codeline>
-<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>file<sp/>&lt;&lt;<sp/>std::fixed<sp/>&lt;&lt;<sp/>std::setprecision(6)<sp/>&lt;&lt;<sp/>core::to_seconds(timestamp)<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>translation.x()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>translation.y()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>translation.z()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>quaternion.x()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>quaternion.y()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>quaternion.z()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>quaternion.w()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Poses<sp/>written<sp/>to<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std::filesystem::absolute(output_file)<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>dump<sp/>config</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::filesystem::path<sp/>config_file<sp/>=<sp/>output_dir<sp/>/<sp/></highlight><highlight class="stringliteral">&quot;config.yaml&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(std::ofstream<sp/>file(config_file);<sp/>file.is_open())<sp/>{</highlight></codeline>
-<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>file<sp/>&lt;&lt;<sp/>config_to_yaml(lio-&gt;config);</highlight></codeline>
-<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Configuration<sp/>written<sp/>to<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>config_file<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="354"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::filesystem::filesystem_error&amp;<sp/>ex)<sp/>{</highlight></codeline>
-<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/>std::cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;[WARNING]<sp/>Cannot<sp/>write<sp/>files<sp/>to<sp/>disk,<sp/>encountered<sp/>filesystem<sp/>error:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>ex.what()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="356"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="357"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="358"><highlight class="normal"></highlight></codeline>
-<codeline lineno="359"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/>publish_odometry(lio-&gt;lidar_state,<sp/>odom_publisher);</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(publish_lidar_acceleration)<sp/>{</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/>publish_lidar_accel(lio-&gt;lidar_state);</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="274"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"></highlight></codeline>
+<codeline lineno="276"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BaseNode::publish_odometry(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::State&amp;<sp/>state,</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>rclcpp::Publisher&lt;nav_msgs::msg::Odometry&gt;::SharedPtr&amp;<sp/>publisher)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/>nav_msgs::msg::Odometry<sp/>odom_msg;</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/>odom_msg.header.stamp<sp/>=<sp/>utils::to_ros_time(state.time);</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/>odom_msg.header.frame_id<sp/>=<sp/>odom_frame;</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/>odom_msg.child_frame_id<sp/>=<sp/>base_frame;</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/>odom_msg.pose.pose<sp/>=<sp/>utils::sophus_to_pose(state.pose);</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/>utils::eigen_vector_to_ros_xyz(state.linear_velocity,<sp/>odom_msg.twist.twist.linear);</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/>utils::eigen_vector_to_ros_xyz(state.angular_velocity,<sp/>odom_msg.twist.twist.angular);</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/>publisher-&gt;publish(odom_msg);</highlight></codeline>
+<codeline lineno="286"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BaseNode::publish_tf(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::State&amp;<sp/>state)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/>geometry_msgs::msg::TransformStamped<sp/>transform_msg;</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/>transform_msg.header.stamp<sp/>=<sp/>utils::to_ros_time(state.time);</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(invert_odom_tf)<sp/>{</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/>transform_msg.header.frame_id<sp/>=<sp/>base_frame;</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/>transform_msg.child_frame_id<sp/>=<sp/>odom_frame;</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/>transform_msg.transform<sp/>=<sp/>utils::sophus_to_transform(state.pose.inverse());</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/>transform_msg.header.frame_id<sp/>=<sp/>odom_frame;</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/>transform_msg.child_frame_id<sp/>=<sp/>base_frame;</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/>transform_msg.transform<sp/>=<sp/>utils::sophus_to_transform(state.pose);</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/>tf_broadcaster-&gt;sendTransform(transform_msg);</highlight></codeline>
+<codeline lineno="301"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"></highlight></codeline>
+<codeline lineno="303"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BaseNode::publish_lidar_accel(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::State&amp;<sp/>state)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>accel_msg<sp/>=<sp/>geometry_msgs::msg::AccelStamped();</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/>accel_msg.header.stamp<sp/>=<sp/>utils::to_ros_time(state.time);</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/>accel_msg.header.frame_id<sp/>=<sp/>base_frame;</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/>utils::eigen_vector_to_ros_xyz(state.linear_acceleration,<sp/>accel_msg.accel.linear);</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/>lidar_accel_publisher-&gt;publish(accel_msg);</highlight></codeline>
+<codeline lineno="309"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"></highlight></codeline>
+<codeline lineno="311"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BaseNode::publish_map_loop()<sp/>{</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(atomic_node_running)<sp/>{</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/>std::this_thread::sleep_for(publish_map_after);</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/>std::unique_lock<sp/>lock(local_map_mutex);</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(lio-&gt;map.empty())<sp/>{</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>RCLCPP_WARN_ONCE(node-&gt;get_logger(),<sp/></highlight><highlight class="stringliteral">&quot;Local<sp/>map<sp/>publish<sp/>thread:<sp/>Local<sp/>map<sp/>is<sp/>empty.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::Vector3sVector<sp/>map_points<sp/>=<sp/>lio-&gt;map.points();</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/>lock.unlock();<sp/></highlight><highlight class="comment">//<sp/>we<sp/>don&apos;t<sp/>access<sp/>the<sp/>local<sp/>map<sp/>anymore</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/>std_msgs::msg::Header<sp/>map_header;</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/>map_header.stamp<sp/>=<sp/>node-&gt;now();</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/>map_header.frame_id<sp/>=<sp/>odom_frame;</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/>map_publisher-&gt;publish(utils::eigen_to_point_cloud2(map_points,<sp/>map_header));</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="326"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"></highlight></codeline>
+<codeline lineno="328"><highlight class="normal">BaseNode::~BaseNode()<sp/>{<sp/>atomic_node_running<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"></highlight></codeline>
+<codeline lineno="330"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BaseNode::dump_results_to_disk(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::filesystem::path&amp;<sp/>results_dir,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>run_name)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/>std::filesystem::create_directories(results_dir);<sp/></highlight><highlight class="comment">//<sp/>no<sp/>error<sp/>if<sp/>exists</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/>std::filesystem::path<sp/>output_dir<sp/>=<sp/>results_dir<sp/>/<sp/>(run_name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;_&quot;</highlight><highlight class="normal"><sp/>+<sp/>std::to_string(index));</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(std::filesystem::exists(output_dir))<sp/>{</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>++index;</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>output_dir<sp/>=<sp/>results_dir<sp/>/<sp/>(run_name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;_&quot;</highlight><highlight class="normal"><sp/>+<sp/>std::to_string(index));</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/>std::filesystem::create_directory(output_dir);</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::filesystem::path<sp/>output_file<sp/>=<sp/>output_dir<sp/>/<sp/>(run_name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;_tum_&quot;</highlight><highlight class="normal"><sp/>+<sp/>std::to_string(index)<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;.txt&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>dump<sp/>poses</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(std::ofstream<sp/>file(output_file);<sp/>file.is_open())<sp/>{</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>[timestamp,<sp/>pose]<sp/>:<sp/>lio-&gt;poses_with_timestamps)<sp/>{</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3s&amp;<sp/>translation<sp/>=<sp/>pose.translation();</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Quaternions&amp;<sp/>quaternion<sp/>=<sp/>pose.so3().unit_quaternion();</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>file<sp/>&lt;&lt;<sp/>std::fixed<sp/>&lt;&lt;<sp/>std::setprecision(6)<sp/>&lt;&lt;<sp/>core::to_seconds(timestamp)<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>translation.x()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>translation.y()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>translation.z()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>quaternion.x()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>quaternion.y()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>quaternion.z()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>quaternion.w()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Poses<sp/>written<sp/>to<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std::filesystem::absolute(output_file)<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>dump<sp/>config</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::filesystem::path<sp/>config_file<sp/>=<sp/>output_dir<sp/>/<sp/></highlight><highlight class="stringliteral">&quot;config.yaml&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(std::ofstream<sp/>file(config_file);<sp/>file.is_open())<sp/>{</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>file<sp/>&lt;&lt;<sp/>config_to_yaml(lio-&gt;config);</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Configuration<sp/>written<sp/>to<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>config_file<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::filesystem::filesystem_error&amp;<sp/>ex)<sp/>{</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/>std::cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;[WARNING]<sp/>Cannot<sp/>write<sp/>files<sp/>to<sp/>disk,<sp/>encountered<sp/>filesystem<sp/>error:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>ex.what()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="361"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"></highlight></codeline>
+<codeline lineno="363"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp"/>
   </compounddef>

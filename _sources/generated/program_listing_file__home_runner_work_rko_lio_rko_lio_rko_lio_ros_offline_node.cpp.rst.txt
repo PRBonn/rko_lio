@@ -53,6 +53,7 @@ Program Listing for File offline_node.cpp
    } // namespace
    
    namespace rko_lio::ros {
+   namespace {
    class OfflineNode : public ThreadedNode {
    public:
      std::unique_ptr<utils::BufferableBag> bag;
@@ -85,9 +86,9 @@ Program Listing for File offline_node.cpp
    
        std_msgs::msg::Float32MultiArray progress_msg;
        progress_msg.layout.dim.resize(1);
-       progress_msg.layout.dim[0].label = "percent_complete,seconds_remaining";
-       progress_msg.layout.dim[0].size = 2;
-       progress_msg.layout.dim[0].stride = 2;
+       progress_msg.layout.dim.at(0).label = "percent_complete,seconds_remaining";
+       progress_msg.layout.dim.at(0).size = 2;
+       progress_msg.layout.dim.at(0).stride = 2;
        progress_msg.data = {percent_complete, seconds_remaining};
    
        bag_progress_publisher->publish(progress_msg);
@@ -144,9 +145,10 @@ Program Listing for File offline_node.cpp
        }
      }
    };
+   } // namespace
    } // namespace rko_lio::ros
    
-   int main(int argc, char** argv) {
+   int main(int argc, char* const* argv) {
      try {
        const rko_lio::core::Timer timer("RKO LIO Offline Node");
        rclcpp::init(argc, argv);

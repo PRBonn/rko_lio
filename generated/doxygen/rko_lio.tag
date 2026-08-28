@@ -299,21 +299,6 @@
     <name>rko_lio::core::MotionPrior</name>
     <filename>structrko__lio_1_1core_1_1MotionPrior.html</filename>
   </compound>
-  <compound kind="class">
-    <name>rko_lio::ros::OfflineNode</name>
-    <filename>classrko__lio_1_1ros_1_1OfflineNode.html</filename>
-    <base>rko_lio::ros::ThreadedNode</base>
-  </compound>
-  <compound kind="class">
-    <name>rko_lio::ros::OnlineImuRateNode</name>
-    <filename>classrko__lio_1_1ros_1_1OnlineImuRateNode.html</filename>
-    <base>rko_lio::ros::BaseNode</base>
-  </compound>
-  <compound kind="class">
-    <name>rko_lio::ros::OnlineNode</name>
-    <filename>classrko__lio_1_1ros_1_1OnlineNode.html</filename>
-    <base>rko_lio::ros::ThreadedNode</base>
-  </compound>
   <compound kind="struct">
     <name>rko_lio::core::PreprocessingResult</name>
     <filename>structrko__lio_1_1core_1_1PreprocessingResult.html</filename>

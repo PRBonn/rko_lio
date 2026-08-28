@@ -62,9 +62,19 @@ Namespaces
 - :ref:`namespace_rko_lio__ros`
 
 
-Classes
--------
+Variables
+---------
 
 
-- :ref:`exhale_class_classrko__lio_1_1ros_1_1OnlineImuRateNode`
+- :ref:`exhale_variable_online__imu__rate__node_8cpp_1a99af4aad7b375dc52ceeabb68e5be2ef`
+
+- :ref:`exhale_variable_online__imu__rate__node_8cpp_1a5a129e80a6ca4335b1488d932e98601d`
+
+- :ref:`exhale_variable_online__imu__rate__node_8cpp_1aacbe12345a9ca47e3872e572922e6a5f`
+
+- :ref:`exhale_variable_online__imu__rate__node_8cpp_1aa48f161529ca3217def3fe5a8407e777`
+
+- :ref:`exhale_variable_online__imu__rate__node_8cpp_1a70eec06ed2c7220f2a80ac9c9ab29b49`
+
+- :ref:`exhale_variable_online__imu__rate__node_8cpp_1ab78a07be796aaebb5f7bad06b5e301e7`
 

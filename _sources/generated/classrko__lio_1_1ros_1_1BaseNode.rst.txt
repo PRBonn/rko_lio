@@ -9,10 +9,9 @@ Class BaseNode
 Inheritance Relationships
 -------------------------
 
-Derived Types
-*************
+Derived Type
+************
 
-- ``public rko_lio::ros::OnlineImuRateNode`` (:ref:`exhale_class_classrko__lio_1_1ros_1_1OnlineImuRateNode`)
 - ``public rko_lio::ros::ThreadedNode`` (:ref:`exhale_class_classrko__lio_1_1ros_1_1ThreadedNode`)
 
 

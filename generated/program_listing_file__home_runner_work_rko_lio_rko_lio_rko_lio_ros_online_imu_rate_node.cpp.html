@@ -130,6 +130,7 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdexcept&gt;</span>
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">rko_lio</span><span class="o">::</span><span class="nn">ros</span><span class="w"> </span><span class="p">{</span>
+<span class="k">namespace</span><span class="w"> </span><span class="p">{</span>
 
 <span class="c1">// Sequential variant of the LIO node: IMU and LiDAR are processed inline on</span>
 <span class="c1">// the rclcpp executor thread. The IMU callback feeds add_imu_measurement and</span>
@@ -156,7 +157,7 @@
 <span class="w">    </span><span class="n">odom_at_imu_rate_topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">declare_parameter</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"seq.odom_at_imu_rate_topic"</span><span class="p">,</span><span class="w"> </span><span class="n">odom_at_imu_rate_topic</span><span class="p">);</span>
 <span class="w">    </span><span class="n">tf_at_imu_rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">declare_parameter</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"seq.tf_at_imu_rate"</span><span class="p">,</span><span class="w"> </span><span class="n">tf_at_imu_rate</span><span class="p">);</span>
 
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">QoS</span><span class="w"> </span><span class="nf">publisher_qos</span><span class="p">((</span><span class="n">rclcpp</span><span class="o">::</span><span class="n">SystemDefaultsQoS</span><span class="p">().</span><span class="n">keep_last</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">durability_volatile</span><span class="p">()));</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">QoS</span><span class="w"> </span><span class="nf">publisher_qos</span><span class="p">(</span><span class="n">rclcpp</span><span class="o">::</span><span class="n">SystemDefaultsQoS</span><span class="p">().</span><span class="n">keep_last</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">durability_volatile</span><span class="p">());</span>
 <span class="w">    </span><span class="n">odom_at_imu_rate_publisher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">create_publisher</span><span class="o">&lt;</span><span class="n">nav_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Odometry</span><span class="o">&gt;</span><span class="p">(</span><span class="n">odom_at_imu_rate_topic</span><span class="p">,</span><span class="w"> </span><span class="n">publisher_qos</span><span class="p">);</span>
 
 <span class="w">    </span><span class="n">RCLCPP_INFO_STREAM</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">"OnlineImuRateNode publishing IMU-rate odometry to "</span>
@@ -218,6 +219,7 @@
 <span class="w">  </span><span class="p">}</span>
 <span class="p">};</span>
 
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace</span>
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace rko_lio::ros</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;rclcpp_components/register_node_macro.hpp&gt;</span>
