@@ -1,0 +1,39 @@
+name: Check Relevant Changes
+on:
+  workflow_call:
+    inputs:
+      ignored_folders:
+        required: true
+        type: string
+      ignored_files:
+        required: true
+        type: string
+      self:
+        required: true
+        type: string
+    outputs:
+      continue_run:
+        value: ${{ jobs.check_relevant_changes.outputs.continue_run }}
+jobs:
+  check_relevant_changes:
+    runs-on: ubuntu-latest
+    outputs:
+      continue_run: ${{ steps.check.outputs.continue_run }}
+    env:
+      IGNORED_FOLDERS: ${{ inputs.ignored_folders }}
+      IGNORED_FILES: ${{ inputs.ignored_files }}
+      SELF: ${{ inputs.self }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - id: check
+        run: |
+          changed_files=$(git diff --name-only origin/master)
+          echo "Changed files: $changed_files"
+          if echo "$changed_files" | grep -vE "^($IGNORED_FOLDERS)/|^($IGNORED_FILES)$" | grep -q . ||
+             echo "$changed_files" | grep -qxE "$SELF"; then
+            echo "continue_run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "continue_run=false" >> "$GITHUB_OUTPUT"
+          fi
