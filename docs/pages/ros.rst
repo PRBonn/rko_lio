@@ -32,7 +32,7 @@ Build from source
 The system dependencies are:
 
 - CMake, a ROS environment.
-- Optionally: Eigen, Sophus, nlohmann_json, TBB. tsl::robin_map is always fetched (no rosdep rule yet).
+- Optionally: Eigen, Sophus, nlohmann_json, TBB, robin-map.
 
 Clone the repository into a colcon workspace's ``src``.
 
