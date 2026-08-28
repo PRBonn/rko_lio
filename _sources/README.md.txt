@@ -141,10 +141,10 @@ Thanks to the following contributors
 ## Acknowledgements
 
 <details>
-<summary>KISS-ICP, Kinematic-ICP, Bonxai, PlotJuggler, Rerun</summary>
+<summary>KISS-ICP, Kinematic-ICP, PlotJuggler, Rerun</summary>
 
 This package is inspired by and would not be possible without the work of [KISS-ICP](https://github.com/PRBonn/kiss-icp) and [Kinematic-ICP](https://github.com/PRBonn/kinematic-icp).
-Additionally, we use and rely heavily on, either in the package itself or during development, [Bonxai](https://github.com/facontidavide/Bonxai), [PlotJuggler](https://github.com/facontidavide/PlotJuggler), [Rerun](https://github.com/rerun-io/rerun), and of course ROS itself.
+Additionally, we use and rely heavily on, either in the package itself or during development, [PlotJuggler](https://github.com/facontidavide/PlotJuggler), [Rerun](https://github.com/rerun-io/rerun), and of course ROS itself.
 
 A special mention goes out to [Rerun](https://rerun.io/) for providing an extremely easy-to-use but highly performative visualization system. Without this, I probably would not have made a python interface at all.
 
