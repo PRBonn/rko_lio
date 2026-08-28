@@ -1,0 +1,15 @@
+name: Renovate
+on:
+  schedule:
+    - cron: '0 0 1 1,4,7,10 *'
+  workflow_dispatch:
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    if: github.repository == 'PRBonn/rko_lio'
+    steps:
+      - uses: actions/checkout@v7
+      - uses: renovatebot/github-action@v46.2.4
+        with:
+          configurationFile: renovate.json
+          token: ${{ secrets.RENOVATE_TOKEN }}

@@ -15,8 +15,8 @@ jobs:
   check_relevant_changes:
     uses: ./.github/workflows/check_relevant_changes.yaml
     with:
-      ignored_folders: "rko_lio/python/rko_lio|tests|docs|launch|config|.github"
-      ignored_files: "colcon.pkg|rosdoc2.yaml|CHANGELOG.rst|LICENSE|README.md|pyproject.toml|.pre-commit-config.yaml"
+      ignored_folders: "rko_lio/python/rko_lio|tests|docs|launch|config"
+      ignored_files: "colcon.pkg|pyproject.toml"
       self: ".github/workflows/lint.yaml|.github/workflows/check_relevant_changes.yaml"
   clang_tidy:
     # minutes per translation unit, so it lives here rather than in pre-commit
