@@ -1,0 +1,102 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "pre-commit": {
+    "enabled": true
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^cmake/dependencies/eigen/eigen\\.cmake$/"
+      ],
+      "matchStrings": [
+        "FetchContent_Declare\\(Eigen3 URL https://gitlab\\.com/libeigen/eigen/-/archive/(?<currentValue>[\\d.]+)/eigen-[\\d.]+\\.tar\\.gz"
+      ],
+      "autoReplaceStringTemplate":
+          "FetchContent_Declare(Eigen3 URL https://gitlab.com/libeigen/eigen/-/archive/{{{newValue}}}/eigen-{{{newValue}}}.tar.gz",
+      "datasourceTemplate": "gitlab-tags",
+      "packageNameTemplate": "libeigen/eigen"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^cmake/dependencies/sophus/sophus\\.cmake$/"
+      ],
+      "matchStrings": [
+        "set\\(SOPHUS_VERSION \"(?<currentValue>[\\d.]+)\"\\)"
+      ],
+      "datasourceTemplate": "github-tags",
+      "packageNameTemplate": "strasdat/Sophus"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^cmake/dependencies/tsl_robin/tsl_robin\\.cmake$/"
+      ],
+      "matchStrings": [
+        "FetchContent_Declare\\(tsl-robin-map URL https://github\\.com/Tessil/robin-map/archive/refs/tags/(?<currentValue>v[\\d.]+)\\.tar\\.gz"
+      ],
+      "datasourceTemplate": "github-tags",
+      "packageNameTemplate": "Tessil/robin-map"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^cmake/dependencies/tbb/tbb\\.cmake$/"
+      ],
+      "matchStrings": [
+        "FetchContent_Declare\\(TBB URL https://github\\.com/uxlfoundation/oneTBB/archive/refs/tags/(?<currentValue>v[\\d.]+)\\.tar\\.gz"
+      ],
+      "datasourceTemplate": "github-tags",
+      "packageNameTemplate": "uxlfoundation/oneTBB"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^cmake/dependencies/catch2/catch2\\.cmake$/"
+      ],
+      "matchStrings": [
+        "GIT_TAG (?<currentValue>v[\\d.]+)"
+      ],
+      "datasourceTemplate": "github-tags",
+      "packageNameTemplate": "catchorg/Catch2"
+    }
+  ],
+  "separateMajorMinor": false,
+  "packageRules": [
+    {
+      "groupName": "C++ FetchContent dependencies",
+      "matchManagers": [
+        "custom.regex"
+      ],
+      "matchFileNames": [
+        "cmake/dependencies/**"
+      ]
+    },
+    {
+      "groupName": "GitHub Actions",
+      "matchManagers": [
+        "github-actions"
+      ]
+    },
+    {
+      "groupName": "Python dependencies",
+      "matchManagers": [
+        "poetry"
+      ],
+      "rangeStrategy": "widen"
+    },
+    {
+      "groupName": "pre-commit hooks",
+      "matchManagers": [
+        "pre-commit"
+      ]
+    }
+  ],
+  "labels": [
+    "dependencies"
+  ]
+}
