@@ -161,6 +161,9 @@ BaseNode::BaseNode(const std::string& node_name, const rclcpp::NodeOptions& opti
                          << (publish_deskewed_scan ? (" Publishing deskewed_cloud to " + deskewed_scan_topic + ".")
                                                    : ""));
 
+  reset_on_registration_error =
+      node->declare_parameter<bool>("reset_on_registration_error", reset_on_registration_error);
+
   // disk logging
   dump_results = node->declare_parameter<bool>("dump_results", dump_results);
   results_dir = node->declare_parameter<std::string>("results_dir", results_dir);
@@ -332,6 +335,20 @@ void BaseNode::publish_map_loop() {
 
 BaseNode::~BaseNode() { atomic_node_running = false; }
 
+void BaseNode::reset_odometry() {
+  const bool forced_init_off = lio->config.initialization_phase;
+  std::unique_lock lock(local_map_mutex, std::defer_lock);
+  if (publish_local_map) {
+    lock.lock();
+  }
+  lio->reset();
+  RCLCPP_WARN_STREAM(node->get_logger(), "Odometry reset count: " << lio->reset_count);
+  if (forced_init_off) {
+    RCLCPP_WARN(node->get_logger(),
+                "initialization_phase was enabled; it is off after reset because static start is not guaranteed.");
+  }
+}
+
 void BaseNode::dump_results_to_disk(const std::filesystem::path& results_dir, const std::string& run_name) const {
   try {
     std::filesystem::create_directories(results_dir); // no error if exists
@@ -342,7 +359,11 @@ void BaseNode::dump_results_to_disk(const std::filesystem::path& results_dir, co
       output_dir = results_dir / (run_name + "_" + std::to_string(index));
     }
     std::filesystem::create_directory(output_dir);
-    const std::filesystem::path output_file = output_dir / (run_name + "_tum_" + std::to_string(index) + ".txt");
+    std::string tum_name = run_name + "_tum_" + std::to_string(index);
+    if (lio->reset_count > 0) {
+      tum_name += "_resets" + std::to_string(lio->reset_count);
+    }
+    const std::filesystem::path output_file = output_dir / (tum_name + ".txt");
     // dump poses
     if (std::ofstream file(output_file); file.is_open()) {
       for (const auto& [timestamp, pose] : lio->poses_with_timestamps) {

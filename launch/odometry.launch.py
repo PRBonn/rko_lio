@@ -110,6 +110,12 @@ configurable_parameters = [
         "description": "Invert odometry transform if required so that the base frame is the parent and odom frame is the child in the TF tree",
     },
     {
+        "name": "reset_on_registration_error",
+        "default": "false",
+        "type": "bool",
+        "description": "Reset odometry on scan registration failure",
+    },
+    {
         "name": "publish_local_map",
         "default": "False",
         "type": "bool",

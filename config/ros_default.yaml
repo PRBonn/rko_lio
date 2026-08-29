@@ -13,6 +13,7 @@
 odom_topic: /rko_lio/odom
 odom_frame: odom
 invert_odom_tf: false
+# reset_on_registration_error: false
 publish_local_map: true
 map_topic: /rko_lio/local_map
 publish_deskewed_scan: true

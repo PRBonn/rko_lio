@@ -92,6 +92,7 @@ public:
   bool publish_deskewed_scan = false;
   bool publish_local_map = false;
   bool extrinsics_set = false;
+  bool reset_on_registration_error = false;
 
   std::atomic<bool> atomic_node_running = true;
   std::jthread map_publish_thread;
@@ -119,6 +120,8 @@ public:
   void publish_lidar_accel(const core::State& state) const;
   void publish_map_loop();
   void dump_results_to_disk(const std::filesystem::path& results_dir, const std::string& run_name) const;
+
+  void reset_odometry();
 
   ~BaseNode();
   BaseNode(const BaseNode&) = delete;

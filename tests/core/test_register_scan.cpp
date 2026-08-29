@@ -403,3 +403,39 @@ TEST_CASE("register_scan: zero correspondences throws RegistrationError", "[regi
   REQUIRE(lio.poses_with_timestamps.size() == n_poses);
   REQUIRE(lio.lidar_state.time == time_before);
 }
+
+TEST_CASE("reset after RegistrationError: next scan bootstraps like a first scan", "[register_scan]") {
+  LIO::Config cfg{};
+  cfg.initialization_phase = true;
+  LIO lio(cfg);
+  const auto cloud = make_hollow_cube();
+
+  lio.reset();
+  REQUIRE(lio.reset_count == 1);
+  REQUIRE_FALSE(lio.config.initialization_phase);
+
+  lio.register_scan(cloud, linspace_timestamps(cloud.size(), 0.0, FIRST_SCAN_END));
+  REQUIRE_FALSE(lio.map.empty());
+
+  feed_static_imu(lio, FIRST_SCAN_END, SECOND_SCAN_END, 10);
+  auto cloud2 = cloud;
+  for (auto& p : cloud2) {
+    p.x() += 20.0;
+  }
+  REQUIRE_THROWS_AS(lio.register_scan(cloud2, instant_timestamps(cloud2.size(), SECOND_SCAN_END)), RegistrationError);
+
+  lio.reset();
+  REQUIRE(lio.reset_count == 2);
+  REQUIRE(lio.map.empty());
+  REQUIRE(lio.poses_with_timestamps.size() == 1);
+  REQUIRE(lio.lidar_state.time == Nsec{0});
+  REQUIRE(lio.interval_stats.imu_count == 0);
+  REQUIRE(approx_equal(lio.lidar_state.pose, Sophus::SE3s{}, EXACT_TOL));
+
+  constexpr double third_scan_end = SECOND_SCAN_END + DT;
+  lio.register_scan(cloud, instant_timestamps(cloud.size(), third_scan_end));
+  REQUIRE_FALSE(lio.map.empty());
+  REQUIRE(lio.poses_with_timestamps.size() == 2);
+  REQUIRE(approx_equal(lio.poses_with_timestamps.back().second, Sophus::SE3s{}, EXACT_TOL));
+  REQUIRE(approx_equal(lio.lidar_state.pose, Sophus::SE3s{}, EXACT_TOL));
+}
