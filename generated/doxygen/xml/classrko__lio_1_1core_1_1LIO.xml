@@ -329,7 +329,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="128" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" bodystart="464" bodyend="545"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="128" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" bodystart="464" bodyend="546"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1core_1_1LIO_1a68d76c941b7c008f86e6bf709236b5b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Vector3sVector</type>
@@ -384,7 +384,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="140" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" bodystart="548" bodyend="557"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="140" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" bodystart="549" bodyend="558"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
