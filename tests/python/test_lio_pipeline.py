@@ -5,6 +5,7 @@ from rko_lio.lio_pipeline import LIOPipeline
 
 GRAVITY = 9.81
 EPSILON = 1e-8
+IDENTITY_EXTRINSIC = [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0]
 
 
 @pytest.fixture
@@ -17,11 +18,6 @@ def simple_point_cloud():
 
 
 @pytest.fixture
-def identity_extrinsics():
-    return np.eye(4)
-
-
-@pytest.fixture
 def static_imu_measurement():
     acceleration = np.array([0.0, 0.0, GRAVITY], dtype=np.float32)
     angular_velocity = np.zeros(3, dtype=np.float32)
@@ -29,10 +25,10 @@ def static_imu_measurement():
 
 
 @pytest.fixture
-def pipeline(identity_extrinsics):
+def pipeline():
     config = PipelineConfig()
-    config.extrinsic_imu2base = identity_extrinsics
-    config.extrinsic_lidar2base = identity_extrinsics
+    config.extrinsic_imu2base_quat_xyzw_xyz = IDENTITY_EXTRINSIC
+    config.extrinsic_lidar2base_quat_xyzw_xyz = IDENTITY_EXTRINSIC
     return LIOPipeline(config)
 
 
@@ -42,6 +38,8 @@ def create_lidar_timestamps(n):
 
 def test_pipeline_creation(pipeline):
     assert pipeline is not None
+    np.testing.assert_array_equal(pipeline.extrinsic_imu2base, np.eye(4))
+    np.testing.assert_array_equal(pipeline.extrinsic_lidar2base, np.eye(4))
 
 
 def test_add_imu(pipeline, static_imu_measurement):
@@ -64,15 +62,14 @@ def test_register_scan(pipeline, simple_point_cloud):
 
 @pytest.mark.parametrize("initialization_phase", [True, False])
 def test_identity_registration(
-    identity_extrinsics,
     simple_point_cloud,
     static_imu_measurement,
     initialization_phase,
 ):
     def pipeline_with_init_phase():
         config = PipelineConfig()
-        config.extrinsic_imu2base = identity_extrinsics
-        config.extrinsic_lidar2base = identity_extrinsics
+        config.extrinsic_imu2base_quat_xyzw_xyz = IDENTITY_EXTRINSIC
+        config.extrinsic_lidar2base_quat_xyzw_xyz = IDENTITY_EXTRINSIC
         config.lio.initialization_phase = initialization_phase
         return LIOPipeline(config)
 
