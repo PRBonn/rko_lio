@@ -24,13 +24,11 @@
 The C++ backend (`rko_lio::core::process_timestamps`) tries to automatically
 decide whether a LiDAR timestamp sequence is **absolute** (already aligned to
 wall-clock time) or **relative** (offsets that must be shifted by the message
-header time). If the data cannot be confidently classified as either, a
-`std::runtime_error` is thrown:
+header time). If the data cannot be confidently classified as either, this error is thrown:
 
 .. code-block::
 
-    Runtime Error: TimestampProcessingConfig does not cover this particular
-    case of data. Please investigate, modify the config, or open an issue.
+    Cannot classify LiDAR timestamps as absolute or relative.
 
 
 When this error occurs, you can potentially adjust the `timestamps` section of your

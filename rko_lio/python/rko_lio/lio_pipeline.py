@@ -31,11 +31,13 @@ import yaml
 
 from .config import PipelineConfig
 from .lio import LIO
+from .rko_lio_pybind import InputError
 from .scoped_profiler import profile_func
 from .util import (
     info,
     quat_xyzw_xyz_to_transform,
     save_scan_as_ply,
+    warning,
 )
 
 
@@ -160,11 +162,8 @@ class LIOPipeline:
                 start_time_ns=start_time_ns,
                 end_time_ns=end_time_ns,
             )
-        except ValueError as e:
-            print(
-                "ERROR: Dropping LiDAR frame as there was an error. Odometry might suffer. Error:",
-                e,
-            )
+        except InputError as e:
+            warning("Dropping scan:", e)
             return None
 
         if self.config.dump_deskewed_scans:

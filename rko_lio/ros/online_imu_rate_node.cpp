@@ -23,15 +23,9 @@
  */
 
 #include "base_node.hpp"
-#include "rko_lio/core/process_timestamps.hpp"
+#include "rko_lio/core/error.hpp"
 #include "rko_lio/core/profiler.hpp"
 #include "rko_lio/ros/utils/utils.hpp"
-// ros
-#include <nav_msgs/msg/odometry.hpp>
-#include <sensor_msgs/msg/imu.hpp>
-#include <sensor_msgs/msg/point_cloud2.hpp>
-// other
-#include <stdexcept>
 
 namespace rko_lio::ros {
 namespace {
@@ -117,8 +111,8 @@ public:
       }
       publish_lidar_outputs(deskewed_scan);
       publish_tf(lio->lidar_state);
-    } catch (const std::invalid_argument& ex) {
-      RCLCPP_ERROR_STREAM(node->get_logger(), "Encountered error, dropping scan. Error: " << ex.what());
+    } catch (const core::InputError& ex) {
+      RCLCPP_ERROR_STREAM(node->get_logger(), "Dropping scan: " << ex.what());
     }
   }
 };

@@ -24,6 +24,7 @@
 
 #include <spdlog/spdlog.h>
 
+#include "error.hpp"
 #include "lio.hpp"
 #include "preprocess_scan.hpp"
 #include "profiler.hpp"
@@ -40,7 +41,6 @@
 #include <numeric>
 #include <optional>
 #include <sstream>
-#include <stdexcept>
 
 namespace {
 using namespace rko_lio::core;
@@ -207,8 +207,7 @@ LinearSystem build_icp_linear_system(const Sophus::SE3s& current_pose,
       });
 
   if (correspondences_counter == 0) {
-    // TODO: std::expected with tl::expected (because ros humble)
-    throw std::runtime_error("Number of correspondences are 0.");
+    throw RegistrationError("ICP found no correspondences");
   }
 
   return {H_icp / correspondences_counter, b_icp / correspondences_counter, 0.5 * chi_icp / correspondences_counter};
@@ -465,7 +464,7 @@ void LIO::add_imu_measurement(const Sophus::SE3s& extrinsic_imu2base, const ImuC
 
 Vector3sVector LIO::register_scan(Vector3sVector scan, const Timestamps& timestamps) {
   if (timestamps.per_point.empty()) {
-    throw std::invalid_argument("LIO::register_scan: timestamps must not be empty.");
+    throw InputError("LiDAR timestamps are empty.");
   }
   const Nsec current_lidar_time = timestamps.max;
 
@@ -505,12 +504,11 @@ Vector3sVector LIO::register_scan(Vector3sVector scan, const Timestamps& timesta
   auto preproc_result = preprocess_scan(std::move(scan), config);
 
   if (preproc_result.keypoints.size() < 10) {
-    const std::string error_msg =
-        "Keypoints for ICP registration = " + std::to_string(preproc_result.keypoints.size()) +
-        ", this is too little for ICP and likely unintended. Input scan size = " + std::to_string(input_scan_size) +
-        ". Config voxel size = " + std::to_string(config.voxel_size) +
-        ". Either the input scan is corrupt (empty) or the downsampling is too aggressive.";
-    throw std::invalid_argument(error_msg);
+    const std::string error_msg = "Too few ICP keypoints: " + std::to_string(preproc_result.keypoints.size()) +
+                                  " (input scan size: " + std::to_string(input_scan_size) +
+                                  ", voxel_size: " + std::to_string(config.voxel_size) +
+                                  "). Scan empty/corrupt, or downsampling is too aggressive.";
+    throw InputError(error_msg);
   }
 
   const Vector3sVector& map_input = config.double_downsample ? preproc_result.map_points : preproc_result.keypoints;

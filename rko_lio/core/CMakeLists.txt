@@ -37,7 +37,8 @@ compat_target_sources(
   PUBLIC
   FILE_SET
   HEADERS
-  FILES ../../rko_lio/core/lio.hpp
+  FILES ../../rko_lio/core/error.hpp
+        ../../rko_lio/core/lio.hpp
         ../../rko_lio/core/preprocess_scan.hpp
         ../../rko_lio/core/process_timestamps.hpp
         ../../rko_lio/core/profiler.hpp
