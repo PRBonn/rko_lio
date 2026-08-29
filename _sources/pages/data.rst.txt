@@ -56,5 +56,5 @@ I try to handle the different ways drivers encode per-point timestamps automatic
 The heuristic is at `rko_lio/core/process_timestamps.cpp <https://github.com/PRBonn/rko_lio/blob/master/rko_lio/core/process_timestamps.cpp>`_.
 
 If the heuristic can't classify your data, the system throws ``Cannot classify LiDAR timestamps as absolute or relative``.
-You can override the behaviour via the ``timestamps:`` block in your config (Python) or the ``lidar_timestamps.*`` parameters (ROS) -- see :ref:`Configuring -> LiDAR per-point timestamps <config-lidar-timestamps>`.
+You can override the behaviour via the ``lidar_timestamps:`` block in your config -- see :ref:`Configuring -> LiDAR per-point timestamps <config-lidar-timestamps>`.
 And if your sensor is different and you think the heuristic should handle it, please open an issue (or a PR).
