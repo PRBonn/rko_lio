@@ -14,7 +14,6 @@
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a06912bbf34df92839933ade4c68586a0" kind="variable"><name>frame_publisher</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1aea83b9c5a547999ee0dc1ae096e92009" kind="variable"><name>map_publisher</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1acbf1e9c305d415f4fce37874e2b4f585" kind="variable"><name>lidar_accel_publisher</name></member>
-    <member refid="classrko__lio_1_1ros_1_1BaseNode_1aebf05b589391fc4c4ca97de6acbad630" kind="variable"><name>map_publish_thread</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a5fa18b17bd57a3db3e4679504fe32e2e" kind="variable"><name>imu_topic</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a1593d0b0267fc265d9a8cc78d435c29d" kind="variable"><name>imu_frame</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a14b98efbded9dfa784e0aa795f785bbf" kind="variable"><name>lidar_topic</name></member>
@@ -34,6 +33,7 @@
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a28f3994bca8ca065b3196725c000b44a" kind="variable"><name>publish_local_map</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1afbeabe15939267091aa36d19c7525c36" kind="variable"><name>extrinsics_set</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a38281b7e81e2292088a68b2fd2716003" kind="variable"><name>atomic_node_running</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1aebf05b589391fc4c4ca97de6acbad630" kind="variable"><name>map_publish_thread</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1aff39f656667853f6bd7b46c26be0eeab" kind="function"><name>BaseNode</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1ad3fac1c1fc245199be7e5c8cb9b264f9" kind="function"><name>BaseNode</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a30875a75d450b8900c08ee0dbe11e62c" kind="function"><name>parse_cli_extrinsics</name></member>
@@ -204,7 +204,6 @@
     <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1aeac9890a3f2e78599763cfeceabc57ac" kind="function"><name>ProcessTFMessage</name></member>
   </compound>
   <compound refid="classrko__lio_1_1ros_1_1ThreadedNode" kind="class"><name>rko_lio::ros::ThreadedNode</name>
-    <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a512b61e767463397837452326c17148b" kind="variable"><name>registration_thread</name></member>
     <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1adf509dda81461d07b6b4c5ced261e6f8" kind="variable"><name>buffer_mutex</name></member>
     <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a49a44ab8e76da2f0e3c2bfcaf3d30f43" kind="variable"><name>sync_condition_variable</name></member>
     <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1aa7d03cd98d1ec527ba1c880124b31f2a" kind="variable"><name>atomic_can_process</name></member>
@@ -212,6 +211,7 @@
     <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a09d516903f9d9f37ffe29911bb64c1cf" kind="variable"><name>imu_buffer</name></member>
     <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a43564aa6984361f38dac7476740bc5a3" kind="variable"><name>lidar_buffer</name></member>
     <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a92613c234c6aed7ecba316bb4fd70650" kind="variable"><name>max_lidar_buffer_size</name></member>
+    <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a512b61e767463397837452326c17148b" kind="variable"><name>registration_thread</name></member>
     <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1ac36e66329da614bd0d6e3d2124980659" kind="function"><name>ThreadedNode</name></member>
     <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a63a9d24643fa02f0136de7f92df5fbbb" kind="function"><name>ThreadedNode</name></member>
     <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1afc2d3357db29442fe8df2b31d6fdd7d4" kind="function"><name>imu_callback</name></member>

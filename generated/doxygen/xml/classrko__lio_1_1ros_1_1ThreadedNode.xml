@@ -4,20 +4,6 @@
     <compoundname>rko_lio::ros::ThreadedNode</compoundname>
     <basecompoundref refid="classrko__lio_1_1ros_1_1BaseNode" prot="public" virt="non-virtual">rko_lio::ros::BaseNode</basecompoundref>
     <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1ThreadedNode_1a512b61e767463397837452326c17148b" prot="public" static="no" mutable="no">
-        <type>std::jthread</type>
-        <definition>std::jthread rko_lio::ros::ThreadedNode::registration_thread</definition>
-        <argsstring></argsstring>
-        <name>registration_thread</name>
-        <qualifiedname>rko_lio::ros::ThreadedNode::registration_thread</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="41" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="41" bodyend="-1"/>
-      </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1ThreadedNode_1adf509dda81461d07b6b4c5ced261e6f8" prot="public" static="no" mutable="no">
         <type>std::mutex</type>
         <definition>std::mutex rko_lio::ros::ThreadedNode::buffer_mutex</definition>
@@ -30,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="42" column="14" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="42" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="41" column="14" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="41" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1ThreadedNode_1a49a44ab8e76da2f0e3c2bfcaf3d30f43" prot="public" static="no" mutable="no">
         <type>std::condition_variable</type>
@@ -44,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="43" column="27" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="43" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="42" column="27" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="42" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1ThreadedNode_1aa7d03cd98d1ec527ba1c880124b31f2a" prot="public" static="no" mutable="no">
         <type>std::atomic&lt; bool &gt;</type>
@@ -59,7 +45,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="44" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="44" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="43" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="43" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1ThreadedNode_1a6f35b0ecc638e5cfa6ce57f2a6c74689" prot="public" static="no" mutable="no">
         <type>std::atomic&lt; bool &gt;</type>
@@ -74,7 +60,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="45" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="45" bodyend="45"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="44" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="44" bodyend="44"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1ThreadedNode_1a09d516903f9d9f37ffe29911bb64c1cf" prot="public" static="no" mutable="no">
         <type>std::queue&lt; <ref refid="structrko__lio_1_1core_1_1ImuControl" kindref="compound">core::ImuControl</ref> &gt;</type>
@@ -88,7 +74,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="46" column="14" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="46" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="45" column="14" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="45" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1ThreadedNode_1a43564aa6984361f38dac7476740bc5a3" prot="public" static="no" mutable="no">
         <type>std::queue&lt; <ref refid="structrko__lio_1_1ros_1_1LidarScan" kindref="compound">LidarScan</ref> &gt;</type>
@@ -102,7 +88,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="47" column="14" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="47" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="46" column="14" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="46" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrko__lio_1_1ros_1_1ThreadedNode_1a92613c234c6aed7ecba316bb4fd70650" prot="public" static="no" mutable="no">
         <type>size_t</type>
@@ -117,7 +103,21 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="48" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="48" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="47" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1ThreadedNode_1a512b61e767463397837452326c17148b" prot="public" static="no" mutable="no">
+        <type>std::jthread</type>
+        <definition>std::jthread rko_lio::ros::ThreadedNode::registration_thread</definition>
+        <argsstring></argsstring>
+        <name>registration_thread</name>
+        <qualifiedname>rko_lio::ros::ThreadedNode::registration_thread</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="48" column="16" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" bodystart="48" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
