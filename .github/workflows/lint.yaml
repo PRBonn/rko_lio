@@ -48,7 +48,7 @@ jobs:
           cmake -G Ninja -S . -B build/ros \
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
-            -DRKO_LIO_FETCH_CONTENT_DEPS=OFF \
+            -DRKO_LIO_FETCH_CONTENT_DEPS=ON \
             -DRKO_LIO_BUILD_ROS=ON
           cmake -G Ninja -S rko_lio/python/pybind -B build/python \
             -DCMAKE_BUILD_TYPE=Release \

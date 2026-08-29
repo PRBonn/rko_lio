@@ -33,6 +33,7 @@ find_package(Eigen3 3.4 REQUIRED CONFIG)
 find_package(Sophus REQUIRED CONFIG)
 find_package(TBB REQUIRED CONFIG)
 find_package(tsl-robin-map REQUIRED CONFIG)
+find_package(spdlog REQUIRED CONFIG)
 
 add_subdirectory(rko_lio/core)
 
@@ -81,6 +82,7 @@ else()
       Eigen3
       Sophus
       tsl-robin-map
+      spdlog
       rclcpp
       std_msgs
       tf2

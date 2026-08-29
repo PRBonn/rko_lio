@@ -24,12 +24,13 @@
 
 #include "base_node.hpp"
 #include "rko_lio/core/process_timestamps.hpp"
+#include "rko_lio/ros/utils/spdlog_sink.hpp"
 #include "rko_lio/ros/utils/utils.hpp"
 // other
 #include <fstream>
 #include <iomanip>
-#include <iostream>
 #include <limits>
+#include <spdlog/spdlog.h>
 #include <sstream>
 #include <stdexcept>
 
@@ -67,6 +68,9 @@ core::ImuControl imu_msg_to_imu_data(const sensor_msgs::msg::Imu& imu_msg) {
 
 BaseNode::BaseNode(const std::string& node_name, const rclcpp::NodeOptions& options) {
   node = rclcpp::Node::make_shared(node_name, options);
+  spdlog::set_default_logger(
+      std::make_shared<spdlog::logger>("rko_lio", std::make_shared<utils::RclcppSink>(node->get_logger())));
+
   imu_topic = node->declare_parameter<std::string>("imu_topic");     // required
   lidar_topic = node->declare_parameter<std::string>("lidar_topic"); // required
   base_frame = node->declare_parameter<std::string>("base_frame");   // required
@@ -347,16 +351,16 @@ void BaseNode::dump_results_to_disk(const std::filesystem::path& results_dir, co
              << translation.y() << " " << translation.z() << " " << quaternion.x() << " " << quaternion.y() << " "
              << quaternion.z() << " " << quaternion.w() << "\n";
       }
-      std::cout << "Poses written to " << std::filesystem::absolute(output_file) << "\n";
+      spdlog::info("Poses written to {}", std::filesystem::absolute(output_file).string());
     }
     // dump config
     const std::filesystem::path config_file = output_dir / "config.yaml";
     if (std::ofstream file(config_file); file.is_open()) {
       file << config_to_yaml(lio->config);
-      std::cout << "Configuration written to " << config_file << "\n";
+      spdlog::info("Configuration written to {}", config_file.string());
     }
   } catch (const std::filesystem::filesystem_error& ex) {
-    std::cerr << "[WARNING] Cannot write files to disk, encountered filesystem error: " << ex.what() << "\n";
+    spdlog::warn("Cannot write files to disk, encountered filesystem error: {}", ex.what());
   }
 }
 

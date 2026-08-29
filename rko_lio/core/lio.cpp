@@ -22,6 +22,8 @@
  * SOFTWARE.
  */
 
+#include <spdlog/spdlog.h>
+
 #include "lio.hpp"
 #include "preprocess_scan.hpp"
 #include "profiler.hpp"
@@ -35,9 +37,9 @@
 // stl
 #include <algorithm>
 #include <functional>
-#include <iostream>
 #include <numeric>
 #include <optional>
+#include <sstream>
 #include <stdexcept>
 
 namespace {
@@ -46,6 +48,13 @@ using namespace rko_lio::core;
 constexpr Scalar NEGLIGIBLE_EXTRINSIC = 1e-6;
 constexpr auto EPSILON_TIME = std::chrono::nanoseconds(10);
 constexpr auto MAX_SCAN_TO_SCAN_DELTA = std::chrono::seconds(1);
+
+template <typename T>
+inline std::string streamed(const T& value) {
+  std::ostringstream oss;
+  oss << value;
+  return oss.str();
+}
 
 inline void transform_points(const Sophus::SE3s& T, Vector3sVector& points) {
   std::transform(points.begin(), points.end(), points.begin(), [&](const auto& point) { return T * point; });
@@ -72,10 +81,10 @@ AccelFilterStep step_body_accel_filter(const BodyAccelKF& prev,
                                        const Nsec dt,
                                        const Scalar max_expected_jerk) {
   if (stats.imu_count <= 1) {
-    std::cerr << "[WARNING] " << stats.imu_count
-              << " IMU message(s) in interval between two lidar scans. Cannot compute "
-                 "acceleration statistics for orientation regularisation. Please check your data and its "
-                 "timestamping as likely there should not be so few IMU measurements between two LiDAR scans.\n";
+    spdlog::warn("{} IMU message(s) in interval between two lidar scans. Cannot compute acceleration statistics "
+                 "for orientation regularisation. Please check your data and its timestamping as likely there "
+                 "should not be so few IMU measurements between two LiDAR scans.",
+                 stats.imu_count);
     return {.info = std::nullopt, .updated = prev};
   }
 
@@ -287,7 +296,7 @@ LIO::LIO(const Config& config_)
 
 void LIO::initialize(const Nsec lidar_time) {
   if (interval_stats.imu_count == 0) {
-    std::cerr << "[WARNING] Cannot initialize. No imu measurements received.\n";
+    spdlog::warn("Cannot initialize. No imu measurements received.");
     // lidar_state.time has the time from the previous lidar, which we didn't log if init_phase was on
     poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
     initialized_ = true;
@@ -313,11 +322,10 @@ void LIO::initialize(const Nsec lidar_time) {
   imu_bias.gyroscope = avg_gyro;
 
   initialized_ = true;
-  std::cout << "[INFO] Odometry map frame initialized using " << interval_stats.imu_count
-            << " IMU measurements. Estimated initial rotation [se(3)] is " << imu_state.pose.so3().log().transpose()
-            << "\n";
-  std::cout << "[INFO] Estimated accel bias: " << imu_bias.accelerometer.transpose()
-            << ", gyro bias: " << imu_bias.gyroscope.transpose() << "\n";
+  spdlog::info("Odometry map frame initialized using {} IMU measurements. Estimated initial rotation [se(3)] is {}",
+               interval_stats.imu_count, streamed(imu_state.pose.so3().log().transpose()));
+  spdlog::info("Estimated accel bias: {}, gyro bias: {}", streamed(imu_bias.accelerometer.transpose()),
+               streamed(imu_bias.gyroscope.transpose()));
 }
 
 Vector3sVector LIO::bootstrap_first_scan(const Vector3sVector& scan, const Nsec current_lidar_time) {
@@ -327,7 +335,7 @@ Vector3sVector LIO::bootstrap_first_scan(const Vector3sVector& scan, const Nsec 
   if (!config.initialization_phase) {
     map.update(config.double_downsample ? preproc.map_points : preproc.keypoints, lidar_state.pose);
     poses_with_timestamps.emplace_back(lidar_state.time, lidar_state.pose);
-    std::cout << "[INFO] Odometry map frame initialized with first lidar scan.\n";
+    spdlog::info("Odometry map frame initialized with first lidar scan.");
   }
   return std::move(preproc.filtered_scan);
 }
@@ -341,14 +349,14 @@ MotionPrior LIO::motion_prior_from_imu(const Nsec current_lidar_time) {
     return {.start_time = start, .linear_velocity = linear_velocity};
   }
   if (interval_stats.imu_count == 0) {
-    std::cerr << "[WARNING] No Imu measurements in interval to average. Assuming constant velocity motion.\n";
+    spdlog::warn("No Imu measurements in interval to average. Assuming constant velocity motion.");
     return {.start_time = start, .linear_velocity = linear_velocity, .angular_velocity = lidar_state.angular_velocity};
   }
   const Eigen::Vector3s avg_body_accel = interval_stats.body_acceleration_sum / interval_stats.imu_count;
   const Eigen::Vector3s avg_ang_vel = interval_stats.angular_velocity_sum / interval_stats.imu_count;
   if (avg_body_accel.norm() > 50.0) {
-    std::cerr << "[WARNING] Erratic body acceleration computed, norm > 50 m/s2. Either IMU data is corrupted, or you "
-                 "should report an issue.";
+    spdlog::warn("Erratic body acceleration computed, norm > 50 m/s2. Either IMU data is corrupted, or you should "
+                 "report an issue.");
   }
   return {
       .start_time = start,
@@ -368,7 +376,7 @@ void LIO::add_imu_measurement(const ImuControl& base_imu) {
   if (lidar_state.time < EPSILON_TIME) {
     static bool warning_skip_till_first_lidar = false;
     if (!warning_skip_till_first_lidar) {
-      std::cerr << "[WARNING - ONCE] Skipping IMU, waiting for first LiDAR message.\n";
+      spdlog::warn("Skipping IMU, waiting for first LiDAR message.");
       warning_skip_till_first_lidar = true;
     }
     last_real_imu_time_ = base_imu.time;
@@ -384,7 +392,7 @@ void LIO::add_imu_measurement(const ImuControl& base_imu) {
 
   if (dt < 0.0) {
     // messages are out of sync. that is a problem, since we integrate gyro from last lidar time onwards
-    std::cerr << "[WARNING] Received IMU message from the past. Can result in errors.\n";
+    spdlog::warn("Received IMU message from the past. Can result in errors.");
     // maybe skip this imu reading?
   }
 
@@ -435,8 +443,8 @@ void LIO::add_imu_measurement(const Sophus::SE3s& extrinsic_imu2base, const ImuC
       // causes numerical issues otherwise
       static bool warning_imu_too_close = false;
       if (!warning_imu_too_close) {
-        std::cerr << "[WARNING - ONCE] Received IMU message with a very short delta to previous IMU message. Ignoring "
-                     "all such messages.\n";
+        spdlog::warn("Received IMU message with a very short delta to previous IMU message. Ignoring all such "
+                     "messages.");
         warning_imu_too_close = true;
       }
       return Eigen::Vector3s::Zero();
@@ -467,8 +475,8 @@ Vector3sVector LIO::register_scan(Vector3sVector scan, const Timestamps& timesta
 
   if (std::chrono::abs(current_lidar_time - lidar_state.time) > MAX_SCAN_TO_SCAN_DELTA) {
     // the imu prior below extrapolates across the gap, and falls back to constant velocity if the imu dropped out too
-    std::cerr << "[WARNING] " << to_seconds(current_lidar_time - lidar_state.time)
-              << " seconds delta to the previous scan. Extrapolating the motion prior across it.\n";
+    spdlog::warn("{} seconds delta to the previous scan. Extrapolating the motion prior across it.",
+                 to_seconds(current_lidar_time - lidar_state.time));
   }
 
   const MotionPrior motion = motion_prior_from_imu(current_lidar_time);

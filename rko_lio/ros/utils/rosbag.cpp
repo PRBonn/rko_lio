@@ -28,6 +28,8 @@
 #include <rclcpp/version.h>
 #include <rosbag2_storage/bag_metadata.hpp>
 #include <tf2_msgs/msg/tf_message.hpp>
+// other
+#include <spdlog/spdlog.h>
 // stl
 #include <algorithm>
 
@@ -92,12 +94,12 @@ BufferableBag::BufferableBag(const std::string& bag_path,
     }
     return message_count;
   }();
-  std::cout << "Bag reader initialized with total message count: " << message_count_ << '\n';
+  spdlog::info("Bag reader initialized with total message count: {}", message_count_);
   BufferMessages();
 }
 
 void BufferableBag::publish_tf_static(const std::string& bag_path) {
-  std::cout << "Opening the bag first to publish all the tf_static messages\n";
+  spdlog::info("Opening the bag first to publish all the tf_static messages");
   rosbag2_cpp::Reader tf_reader;
   tf_reader.open(bag_path);
   tf_reader.set_filter(rosbag2_storage::StorageFilter{.topics = {"/tf_static"}});
@@ -106,7 +108,7 @@ void BufferableBag::publish_tf_static(const std::string& bag_path) {
     tf_bridge_->ProcessTFMessage(msg);
   }
   tf_reader.close();
-  std::cout << "tf_static published, if any. Closing the bag...\n";
+  spdlog::info("tf_static published, if any. Closing the bag...");
 }
 
 bool BufferableBag::finished() const { return !bag_reader_->has_next() && buffer_.empty(); };

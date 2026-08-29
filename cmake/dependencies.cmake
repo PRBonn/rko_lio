@@ -35,6 +35,7 @@ if(RKO_LIO_FETCH_CONTENT_DEPS)
   include(${CMAKE_CURRENT_LIST_DIR}/dependencies/eigen/eigen.cmake)
   include(${CMAKE_CURRENT_LIST_DIR}/dependencies/sophus/sophus.cmake)
   include(${CMAKE_CURRENT_LIST_DIR}/dependencies/tbb/tbb.cmake)
+  include(${CMAKE_CURRENT_LIST_DIR}/dependencies/spdlog/spdlog.cmake)
 endif()
 
 if(RKO_LIO_BUILD_TESTS)

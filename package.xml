@@ -13,6 +13,7 @@
   <depend>sophus</depend>
   <depend>tbb</depend>
   <depend>robin-map-dev</depend>
+  <depend>spdlog</depend>
   <!-- ros dependencies -->
   <depend>rclcpp</depend>
   <depend>std_msgs</depend>

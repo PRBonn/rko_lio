@@ -32,7 +32,7 @@ Build from source
 The system dependencies are:
 
 - CMake, a ROS environment.
-- Optionally: Eigen, Sophus, TBB, robin-map.
+- Optionally: Eigen, Sophus, TBB, robin-map, spdlog.
 
 Clone the repository into a colcon workspace's ``src``.
 

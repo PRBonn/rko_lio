@@ -25,6 +25,7 @@
 #include "rko_lio/core/profiler.hpp"
 #include "rko_lio/ros/utils/rosbag.hpp"
 #include "threaded_node.hpp"
+#include <spdlog/spdlog.h>
 // other
 #include <std_msgs/msg/float32_multi_array.hpp>
 
@@ -144,7 +145,7 @@ int main(int argc, char* const* argv) {
     node.run();
     rclcpp::shutdown();
   } catch (const std::exception& error) {
-    std::cerr << "[FATAL] " << error.what() << "\n";
+    spdlog::critical("{}", error.what());
     return 1;
   }
   return 0;
