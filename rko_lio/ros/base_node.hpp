@@ -72,9 +72,6 @@ public:
   rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr map_publisher;
   rclcpp::Publisher<geometry_msgs::msg::AccelStamped>::SharedPtr lidar_accel_publisher;
 
-  // map publish thread
-  std::jthread map_publish_thread;
-
   std::string imu_topic;
   std::string imu_frame; // default: get from the first imu message
   std::string lidar_topic;
@@ -96,8 +93,8 @@ public:
   bool publish_local_map = false;
   bool extrinsics_set = false;
 
-  // shutdown flag
   std::atomic<bool> atomic_node_running = true;
+  std::jthread map_publish_thread;
 
   BaseNode() = delete;
   BaseNode(const std::string& node_name, const rclcpp::NodeOptions& options);

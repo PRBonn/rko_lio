@@ -38,7 +38,6 @@ namespace rko_lio::ros {
 
 class ThreadedNode : public BaseNode {
 public:
-  std::jthread registration_thread;
   std::mutex buffer_mutex;
   std::condition_variable sync_condition_variable;
   std::atomic<bool> atomic_can_process = false;
@@ -46,6 +45,7 @@ public:
   std::queue<core::ImuControl> imu_buffer;
   std::queue<LidarScan> lidar_buffer;
   size_t max_lidar_buffer_size = 10;
+  std::jthread registration_thread;
 
   ThreadedNode() = delete;
   ThreadedNode(const std::string& node_name, const rclcpp::NodeOptions& options);
