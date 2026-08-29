@@ -486,9 +486,8 @@
 <span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">to_seconds</span><span class="o">&lt;</span><span class="n">Scalar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">base_imu</span><span class="p">.</span><span class="n">time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">imu_state</span><span class="p">.</span><span class="n">time</span><span class="p">);</span>
 
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dt</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// messages are out of sync. that is a problem, since we integrate gyro from last lidar time onwards</span>
-<span class="w">    </span><span class="n">spdlog</span><span class="o">::</span><span class="n">warn</span><span class="p">(</span><span class="s">"Received IMU message from the past. Can result in errors."</span><span class="p">);</span>
-<span class="w">    </span><span class="c1">// maybe skip this imu reading?</span>
+<span class="w">    </span><span class="n">spdlog</span><span class="o">::</span><span class="n">warn</span><span class="p">(</span><span class="s">"Skipping IMU message from the past."</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3s</span><span class="w"> </span><span class="n">unbiased_ang_vel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base_imu</span><span class="p">.</span><span class="n">angular_velocity</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">imu_bias</span><span class="p">.</span><span class="n">gyroscope</span><span class="p">;</span>
