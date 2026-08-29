@@ -71,13 +71,14 @@ Program Listing for File point_cloud_read.cpp
    
      const auto& timestamp_field = std::invoke([&msg]() -> PointField {
        for (const PointField& field : msg->fields) {
-         if ((field.name == "t" || field.name == "timestamp" || field.name == "time" || field.name == "stamps") &&
+         if ((field.name == "t" || field.name == "time" || field.name == "timestamp" || field.name == "timestamps" ||
+              field.name == "stamps") &&
              field.count != 0U) {
            return field;
          }
        }
        throw core::InputError(
-           "No per-point timestamp field (t/time/timestamp/stamps). Disable deskew, or add timestamps.");
+           "No per-point timestamp field (t/time/timestamp/timestamps/stamps). Disable deskew, or add timestamps.");
      });
    
      // templated lambda (auto) ftw

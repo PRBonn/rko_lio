@@ -130,7 +130,7 @@ If you cannot supply per-point timestamps, you must disable deskewing and take t
 <p>For ROS, this translates to:</p>
 <ul class="simple">
 <li><p>A timestamp in the <code class="docutils literal notranslate"><span class="pre">PointCloud2</span></code> message header (the standard sensor driver pattern).</p></li>
-<li><p>A time field per point inside the cloud. Common field names are accepted (<code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">timestamp</span></code>, <code class="docutils literal notranslate"><span class="pre">timestamps</span></code>, <code class="docutils literal notranslate"><span class="pre">t</span></code>).</p></li>
+<li><p>A time field per point inside the cloud. Common field names are accepted (<code class="docutils literal notranslate"><span class="pre">t</span></code>, <code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">timestamp</span></code>, <code class="docutils literal notranslate"><span class="pre">timestamps</span></code>, <code class="docutils literal notranslate"><span class="pre">stamps</span></code>).</p></li>
 </ul>
 <p>I try to handle the different ways drivers encode per-point timestamps automatically – absolute (already aligned with wall-clock time) vs. relative (offsets from the message header time), seconds vs. nanoseconds, and so on.
 The heuristic is at <a class="reference external" href="https://github.com/PRBonn/rko_lio/blob/master/rko_lio/core/process_timestamps.cpp">rko_lio/core/process_timestamps.cpp</a>.</p>
