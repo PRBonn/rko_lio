@@ -1,4 +1,5 @@
 #include "eigen_approx.hpp"
+#include "rko_lio/core/error.hpp"
 #include "rko_lio/core/lio.hpp"
 #include "synthetic_clouds.hpp"
 #include <catch2/catch_test_macros.hpp>
@@ -6,13 +7,14 @@
 #include <cmath>
 #include <cstdint>
 #include <random>
-#include <stdexcept>
 
 using Catch::Matchers::WithinAbs;
 using rko_lio::core::GRAVITY_MAG;
 using rko_lio::core::ImuControl;
+using rko_lio::core::InputError;
 using rko_lio::core::LIO;
 using rko_lio::core::Nsec;
+using rko_lio::core::RegistrationError;
 using rko_lio::core::Timestamps;
 using rko_lio::core::TimestampVector;
 using rko_lio::core::to_seconds;
@@ -377,5 +379,25 @@ TEST_CASE("register_scan: empty timestamps throws instead of UB", "[register_sca
   LIO lio((LIO::Config{}));
   const auto cloud = make_hollow_cube();
   const Timestamps empty_timestamps{};
-  REQUIRE_THROWS_AS(lio.register_scan(cloud, empty_timestamps), std::invalid_argument);
+  REQUIRE_THROWS_AS(lio.register_scan(cloud, empty_timestamps), InputError);
+}
+
+TEST_CASE("register_scan: zero correspondences throws RegistrationError", "[register_scan]") {
+  LIO lio((LIO::Config{}));
+  const auto cloud = make_hollow_cube();
+  lio.register_scan(cloud, linspace_timestamps(cloud.size(), 0.0, FIRST_SCAN_END));
+  const auto pose_before = lio.lidar_state.pose;
+  const auto n_poses = lio.poses_with_timestamps.size();
+  const auto time_before = lio.lidar_state.time;
+
+  feed_static_imu(lio, FIRST_SCAN_END, SECOND_SCAN_END, 10);
+  auto cloud2 = cloud;
+  for (auto& p : cloud2) {
+    p.x() += 20.0;
+  }
+
+  REQUIRE_THROWS_AS(lio.register_scan(cloud2, instant_timestamps(cloud2.size(), SECOND_SCAN_END)), RegistrationError);
+  REQUIRE(approx_equal(lio.lidar_state.pose, pose_before, EXACT_TOL));
+  REQUIRE(lio.poses_with_timestamps.size() == n_poses);
+  REQUIRE(lio.lidar_state.time == time_before);
 }

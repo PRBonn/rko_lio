@@ -260,9 +260,9 @@ class RawDataLoader:
                     }
                 try:
                     return "lidar", self._read_lidar(data)
-                except RuntimeError as e:
+                except rko_lio_pybind.InputError as e:
                     # _process_timestamps can throw; skip the frame like rosbag.
-                    warning("Error processing lidar frame.", e)
+                    warning("Skipping lidar frame:", e)
                     continue
 
     def _read_lidar(self, data: dict) -> dict:

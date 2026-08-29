@@ -22,6 +22,7 @@
  * SOFTWARE.
  */
 
+#include "rko_lio/core/error.hpp"
 #include "rko_lio/core/lio.hpp"
 #include "rko_lio/core/process_timestamps.hpp"
 #include "stl_vector_eigen.hpp"
@@ -42,6 +43,9 @@ PYBIND11_MAKE_OPAQUE(std::vector<double>);
 PYBIND11_MAKE_OPAQUE(std::vector<int64_t>);
 
 PYBIND11_MODULE(rko_lio_pybind, m) {
+  py::register_exception<InputError>(m, "InputError");
+  py::register_exception<RegistrationError>(m, "RegistrationError");
+
   const auto vector3svector = pybind_eigen_vector_of_vector<Eigen::Vector3s>(
       m, "_Vector3sVector", "std::vector<Eigen::Vector3s>", py::py_array_to_vectors<Eigen::Vector3s>);
   py::bind_vector<std::vector<double>>(m, "_VectorDouble");

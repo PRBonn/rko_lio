@@ -165,9 +165,9 @@ class RosbagDataLoader:
                 elif connection.topic == self.lidar_topic:
                     try:
                         return "lidar", self.read_point_cloud(deserialized_data)
-                    except RuntimeError as e:
+                    except rko_lio_pybind.InputError as e:
                         # pybinded cpp side can throw on _process_timestamps
-                        warning("Error processing lidar frame.", e)
+                        warning("Skipping lidar frame:", e)
                         continue
 
     def read_imu(self, data):

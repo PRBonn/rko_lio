@@ -1,12 +1,13 @@
+#include "rko_lio/core/error.hpp"
 #include "rko_lio/core/process_timestamps.hpp"
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
 #include <chrono>
 #include <cmath>
 #include <cstdint>
-#include <stdexcept>
 
 using Catch::Matchers::WithinAbs;
+using rko_lio::core::InputError;
 using rko_lio::core::Nsec;
 using rko_lio::core::process_timestamps;
 using rko_lio::core::TimestampProcessingConfig;
@@ -109,11 +110,11 @@ TEST_CASE("process_timestamps: custom multiplier_to_seconds is honored", "[proce
 TEST_CASE("process_timestamps: ambiguous case throws", "[process_timestamps]") {
   const auto raw = linspace(50.0, 50.1, 100);
   const Nsec header = ns_from_seconds(1000.0);
-  REQUIRE_THROWS_AS(process_timestamps(raw, header, {}), std::runtime_error);
+  REQUIRE_THROWS_AS(process_timestamps(raw, header, {}), InputError);
 }
 
 TEST_CASE("process_timestamps: empty raw_timestamps throws instead of UB", "[process_timestamps]") {
   const std::vector<double> empty;
   const Nsec header = ns_from_seconds(1234.0);
-  REQUIRE_THROWS_AS(process_timestamps(empty, header, {}), std::invalid_argument);
+  REQUIRE_THROWS_AS(process_timestamps(empty, header, {}), InputError);
 }

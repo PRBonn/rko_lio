@@ -23,10 +23,11 @@
  */
 
 #include "point_cloud_read.hpp"
+#include "rko_lio/core/error.hpp"
 // stl
 #include <cstddef>
 #include <functional>
-#include <stdexcept>
+#include <string>
 
 namespace rko_lio::ros::utils {
 using sensor_msgs::msg::PointCloud2;
@@ -63,7 +64,8 @@ RawScan point_cloud2_to_eigen_with_timestamps(const PointCloud2::ConstSharedPtr&
         return field;
       }
     }
-    throw std::invalid_argument("Point cloud needs timestamps for deskewing");
+    throw core::InputError(
+        "No per-point timestamp field (t/time/timestamp/stamps). Disable deskew, or add timestamps.");
   });
 
   // templated lambda (auto) ftw
@@ -91,7 +93,8 @@ RawScan point_cloud2_to_eigen_with_timestamps(const PointCloud2::ConstSharedPtr&
     break;
   }
   default:
-    throw std::invalid_argument("Unsupported timestamp field datatype. Please open an issue.");
+    throw core::InputError("Unsupported timestamp field datatype " + std::to_string(timestamp_field.datatype) +
+                           ". Please open an issue.");
   }
 
   return scan;
