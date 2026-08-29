@@ -142,8 +142,8 @@ public:
   Vector3sVector
   register_scan(const Sophus::SE3s& extrinsic_lidar2base, Vector3sVector scan, const Timestamps& timestamps);
 
-  /** Reset to a fresh start. Forces `config.initialization_phase` off. */
-  void reset();
+  /** Restart, treating the next scan as if it were the first. Forces `config.initialization_phase` off. */
+  void restart();
 
   /** Sequence of registered scan poses with corresponding timestamps. */
   std::vector<std::pair<Nsec, Sophus::SE3s>> poses_with_timestamps;

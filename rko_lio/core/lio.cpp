@@ -557,7 +557,7 @@ LIO::register_scan(const Sophus::SE3s& extrinsic_lidar2base, Vector3sVector scan
   return filtered_scan;
 }
 
-void LIO::reset() {
+void LIO::restart() {
   ++reset_count;
   config.initialization_phase = false;
   map.clear();

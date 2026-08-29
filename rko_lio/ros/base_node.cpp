@@ -344,7 +344,7 @@ void BaseNode::reset_odometry() {
   if (publish_local_map) {
     lock.lock();
   }
-  lio->reset();
+  lio->restart();
   RCLCPP_WARN_STREAM(node->get_logger(), "Odometry reset count: " << lio->reset_count);
   std_msgs::msg::UInt32 reset_count_msg;
   reset_count_msg.data = static_cast<std::uint32_t>(lio->reset_count);

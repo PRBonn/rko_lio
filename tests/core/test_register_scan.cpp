@@ -410,7 +410,7 @@ TEST_CASE("reset after RegistrationError: next scan bootstraps like a first scan
   LIO lio(cfg);
   const auto cloud = make_hollow_cube();
 
-  lio.reset();
+  lio.restart();
   REQUIRE(lio.reset_count == 1);
   REQUIRE_FALSE(lio.config.initialization_phase);
 
@@ -424,7 +424,7 @@ TEST_CASE("reset after RegistrationError: next scan bootstraps like a first scan
   }
   REQUIRE_THROWS_AS(lio.register_scan(cloud2, instant_timestamps(cloud2.size(), SECOND_SCAN_END)), RegistrationError);
 
-  lio.reset();
+  lio.restart();
   REQUIRE(lio.reset_count == 2);
   REQUIRE(lio.map.empty());
   REQUIRE(lio.poses_with_timestamps.size() == 1);
