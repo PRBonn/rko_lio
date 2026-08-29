@@ -462,8 +462,9 @@ void LIO::add_imu_measurement(const Sophus::SE3s& extrinsic_imu2base, const ImuC
 // ============================ lidar ===============================
 
 Vector3sVector LIO::register_scan(Vector3sVector scan, const Timestamps& timestamps) {
-  if (timestamps.per_point.empty()) {
-    throw InputError("LiDAR timestamps are empty.");
+  if (scan.size() != timestamps.per_point.size()) {
+    throw InputError("LiDAR timestamps size (" + std::to_string(timestamps.per_point.size()) +
+                     ") does not match scan (" + std::to_string(scan.size()) + ").");
   }
   const Nsec current_lidar_time = timestamps.max;
 

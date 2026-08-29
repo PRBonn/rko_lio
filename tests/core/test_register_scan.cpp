@@ -375,11 +375,13 @@ TEST_CASE("Noisy: full SE(3) translation + rotation", "[register_scan][!mayfail]
   CHECK(approx_equal(lio.lidar_state.pose, T_expected, 1e-2));
 }
 
-TEST_CASE("register_scan: empty timestamps throws instead of UB", "[register_scan]") {
+TEST_CASE("register_scan: timestamp count mismatch throws instead of UB", "[register_scan]") {
   LIO lio((LIO::Config{}));
   const auto cloud = make_hollow_cube();
-  const Timestamps empty_timestamps{};
-  REQUIRE_THROWS_AS(lio.register_scan(cloud, empty_timestamps), InputError);
+  REQUIRE_THROWS_AS(lio.register_scan(cloud, Timestamps{}), InputError);
+  auto ts = linspace_timestamps(cloud.size(), 0.0, FIRST_SCAN_END);
+  ts.per_point.pop_back();
+  REQUIRE_THROWS_AS(lio.register_scan(cloud, ts), InputError);
 }
 
 TEST_CASE("register_scan: zero correspondences throws RegistrationError", "[register_scan]") {
