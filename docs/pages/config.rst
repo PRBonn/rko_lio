@@ -140,7 +140,7 @@ When are these required?
 
 - **ROS**: only if the TF tree isn't well defined or topic ``frame_id``\s don't match the TF tree. With a clean TF tree, the extrinsics are looked up automatically.
 - **Python rosbag dataloader**: only if the bag has no static TF tree. With a tree, the extrinsics are pulled from it.
-- **Python raw / HeLiPR dataloaders**: always required, supplied via the dataloader's own configuration mechanism (``transforms.yaml`` for raw, etc.).
+- **Python raw dataloader**: always required, supplied via the dataloader's own configuration mechanism (``transforms.yaml``).
 
 If you specify the extrinsics in a config but the dataloader / TF tree could also provide them, the config values take priority.
 

@@ -24,7 +24,7 @@ from pathlib import Path
 
 
 def available_dataloaders():
-    return ["rosbag", "raw", "helipr"]
+    return ["rosbag", "raw"]
 
 
 def dataloader_factory(name: str | None, data_path: Path, *args, **kwargs):
@@ -40,11 +40,6 @@ def dataloader_factory(name: str | None, data_path: Path, *args, **kwargs):
         from .raw import RawDataLoader
 
         return RawDataLoader(data_path, *args, **kwargs)
-
-    elif name == "helipr":
-        from .helipr import HeliprDataLoader
-
-        return HeliprDataLoader(data_path, *args, **kwargs)
 
     raise ValueError(f"Unknown dataloader: {name}")
 
@@ -70,14 +65,6 @@ def guess_dataloader(data_path: Path, *args, **kwargs):
     if rko_lio_settings_file.exists() or (lidar_folder.is_dir() and (txt_files or csv_files)):
         info("Guessed dataloader as raw!")
         return dataloader_factory("raw", data_path, *args, **kwargs)
-
-    # helipr has a dataset specified file layout
-    xsens_imu_path = data_path / "Inertial_data" / "xsens_imu.csv"
-    lidar_folder = data_path / "LiDAR"
-
-    if xsens_imu_path.is_file() and lidar_folder.is_dir():
-        info("Guessed dataloader as Helipr!")
-        return dataloader_factory("helipr", data_path, *args, **kwargs)
 
     # nothing guessed
     error_and_exit(f"Could not guess dataloader for path: {data_path}, please pass the loader with --dataloader or -d")
