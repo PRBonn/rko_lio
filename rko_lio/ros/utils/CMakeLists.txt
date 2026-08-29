@@ -27,6 +27,7 @@ compat_target_sources(
         ../../../rko_lio/ros/utils/point_cloud_write.hpp
         ../../../rko_lio/ros/utils/ros_vectors.hpp
         ../../../rko_lio/ros/utils/rosbag.hpp
+        ../../../rko_lio/ros/utils/spdlog_sink.hpp
         ../../../rko_lio/ros/utils/time.hpp
         ../../../rko_lio/ros/utils/transforms.hpp
         ../../../rko_lio/ros/utils/utils.hpp

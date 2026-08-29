@@ -62,7 +62,13 @@ else()
   target_include_directories(rko_lio.core PUBLIC $<BUILD_INTERFACE:${GENERATED_INCLUDE_DIR}>)
 endif()
 
-target_link_libraries(rko_lio.core PUBLIC TBB::tbb tsl::robin_map Sophus::Sophus Eigen3::Eigen)
+target_link_libraries(
+  rko_lio.core
+  PUBLIC TBB::tbb
+         tsl::robin_map
+         Sophus::Sophus
+         Eigen3::Eigen
+         spdlog::spdlog)
 
 target_compile_features(rko_lio.core PUBLIC cxx_std_20)
 
