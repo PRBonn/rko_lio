@@ -101,7 +101,7 @@ def cli(
         None,
         "--dataloader",
         "-d",
-        help=r"Specify a dataloader: \[rosbag, raw, helipr]. Leave empty to guess one",
+        help=r"Specify a dataloader: \[rosbag, raw]. Leave empty to guess one",
         show_choices=True,
         callback=dataloader_name_callback,
         case_sensitive=False,
@@ -159,12 +159,6 @@ def cli(
         "--dump_deskewed",
         help="Dump each deskewed/motion-undistorted scan as a .ply file under log_dir/run_name, only if logging with --log",
         rich_help_panel="Disk logging options",
-    ),
-    sequence: str | None = typer.Option(
-        None,
-        "--sequence",
-        help="Extra dataloader argument: sensor sequence",
-        rich_help_panel="HeLiPR dataloader options",
     ),
     imu_topic: str | None = typer.Option(
         None,
@@ -244,7 +238,6 @@ def cli(
         dataloader_factory(
             name=dataloader_name,
             data_path=data_path,
-            sequence=sequence,
             imu_topic=imu_topic,
             lidar_topic=lidar_topic,
             imu_frame_id=imu_frame,

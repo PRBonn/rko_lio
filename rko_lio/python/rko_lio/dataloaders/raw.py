@@ -261,7 +261,7 @@ class RawDataLoader:
                 try:
                     return "lidar", self._read_lidar(data)
                 except RuntimeError as e:
-                    # _process_timestamps can throw; skip the frame like rosbag/helipr.
+                    # _process_timestamps can throw; skip the frame like rosbag.
                     warning("Error processing lidar frame.", e)
                     continue
 
