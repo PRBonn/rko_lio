@@ -68,8 +68,9 @@ core::ImuControl imu_msg_to_imu_data(const sensor_msgs::msg::Imu& imu_msg) {
 
 BaseNode::BaseNode(const std::string& node_name, const rclcpp::NodeOptions& options) {
   node = rclcpp::Node::make_shared(node_name, options);
-  spdlog::set_default_logger(
-      std::make_shared<spdlog::logger>("rko_lio", std::make_shared<utils::RclcppSink>(node->get_logger())));
+  auto logger = std::make_shared<spdlog::logger>("rko_lio", std::make_shared<utils::RclcppSink>(node->get_logger()));
+  logger->set_level(spdlog::level::trace);
+  spdlog::set_default_logger(std::move(logger));
 
   imu_topic = node->declare_parameter<std::string>("imu_topic");     // required
   lidar_topic = node->declare_parameter<std::string>("lidar_topic"); // required
