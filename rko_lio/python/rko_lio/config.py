@@ -31,7 +31,7 @@ header time). If the data cannot be confidently classified as either, this error
     Cannot classify LiDAR timestamps as absolute or relative.
 
 
-When this error occurs, you can potentially adjust the `timestamps` section of your
+When this error occurs, you can potentially adjust the `lidar_timestamps` section of your
 configuration file to fix the issue. Specifying one of `force_absolute` or `force_relative` should do the trick.
 
 Example (default configuration)
@@ -40,7 +40,7 @@ Example (default configuration)
 .. code-block:: yaml
 
     your other configuration keys here
-    timestamps:
+    lidar_timestamps:
       multiplier_to_seconds: 0.0
       force_absolute: false
       force_relative: false
@@ -158,7 +158,7 @@ class PipelineConfig:
     Parameters
     ----------
     lio : dict or LIOConfig
-    timestamps : dict or TimestampConfig
+    lidar_timestamps : dict or TimestampConfig
         Configuration for timestamp preprocessing.
     extrinsic_imu2base_quat_xyzw_xyz : list or None, optional
         Extrinsic from IMU to base as ``[qx, qy, qz, qw, x, y, z]``.
@@ -175,7 +175,7 @@ class PipelineConfig:
     """
 
     lio: LIOConfig | None = None
-    timestamps: TimestampConfig | None = None
+    lidar_timestamps: TimestampConfig | None = None
     extrinsic_imu2base_quat_xyzw_xyz: list | None = None
     extrinsic_lidar2base_quat_xyzw_xyz: list | None = None
     viz: bool = False
@@ -186,19 +186,19 @@ class PipelineConfig:
     def __post_init__(self):
         if self.lio is None:
             self.lio = LIOConfig()
-        if self.timestamps is None:
-            self.timestamps = TimestampConfig()
+        if self.lidar_timestamps is None:
+            self.lidar_timestamps = TimestampConfig()
         self.log_dir = Path(self.log_dir)
 
     @classmethod
     def from_dict(cls, args: dict):
         lio_args = args.pop("lio", {})
-        ts_args = args.pop("timestamps", {})
+        ts_args = args.pop("lidar_timestamps", {})
 
         pipeline_args = {}
         for field in fields(cls):
             fname = field.name
-            if fname in ("lio", "timestamps"):
+            if fname in ("lio", "lidar_timestamps"):
                 continue
             if fname in args:
                 pipeline_args[fname] = args.pop(fname)
@@ -218,7 +218,7 @@ class PipelineConfig:
 
         return cls(
             lio=LIOConfig(**lio_args),
-            timestamps=TimestampConfig(**ts_args),
+            lidar_timestamps=TimestampConfig(**ts_args),
             **pipeline_args,
         )
 
