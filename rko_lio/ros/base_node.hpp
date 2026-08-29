@@ -40,6 +40,7 @@
 #include <rclcpp/node_options.hpp>
 #include <sensor_msgs/msg/imu.hpp>
 #include <sensor_msgs/msg/point_cloud2.hpp>
+#include <std_msgs/msg/u_int32.hpp>
 #include <tf2_ros/buffer.hpp>
 #include <tf2_ros/transform_broadcaster.hpp>
 #include <tf2_ros/transform_listener.hpp>
@@ -71,6 +72,7 @@ public:
   rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr frame_publisher;
   rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr map_publisher;
   rclcpp::Publisher<geometry_msgs::msg::AccelStamped>::SharedPtr lidar_accel_publisher;
+  rclcpp::Publisher<std_msgs::msg::UInt32>::SharedPtr reset_count_publisher;
 
   std::string imu_topic;
   std::string imu_frame; // default: get from the first imu message
@@ -92,6 +94,7 @@ public:
   bool publish_deskewed_scan = false;
   bool publish_local_map = false;
   bool extrinsics_set = false;
+  bool reset_on_registration_error = false;
 
   std::atomic<bool> atomic_node_running = true;
   std::jthread map_publish_thread;
@@ -119,6 +122,8 @@ public:
   void publish_lidar_accel(const core::State& state) const;
   void publish_map_loop();
   void dump_results_to_disk(const std::filesystem::path& results_dir, const std::string& run_name) const;
+
+  void reset_odometry();
 
   ~BaseNode();
   BaseNode(const BaseNode&) = delete;

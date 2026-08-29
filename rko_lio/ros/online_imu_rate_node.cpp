@@ -113,6 +113,14 @@ public:
       publish_tf(lio->lidar_state);
     } catch (const core::InputError& ex) {
       RCLCPP_ERROR_STREAM(node->get_logger(), "Dropping scan: " << ex.what());
+    } catch (const core::RegistrationError& ex) {
+      RCLCPP_ERROR_STREAM(node->get_logger(), "Registration failed (" << ex.what() << ").");
+      if (reset_on_registration_error) {
+        reset_odometry();
+      } else {
+        RCLCPP_WARN(node->get_logger(), "Set reset_on_registration_error:=true to reset odometry and continue.");
+        throw;
+      }
     }
   }
 };

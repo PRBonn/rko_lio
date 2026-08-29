@@ -556,4 +556,17 @@ LIO::register_scan(const Sophus::SE3s& extrinsic_lidar2base, Vector3sVector scan
   transform_points(extrinsic_lidar2base.inverse(), filtered_scan);
   return filtered_scan;
 }
+
+void LIO::restart() {
+  ++reset_count;
+  config.initialization_phase = false;
+  map.clear();
+  lidar_state = {};
+  imu_state = {};
+  imu_bias = {};
+  mean_body_acceleration.setZero();
+  body_acceleration_covariance = Eigen::Matrix3s::Identity();
+  interval_stats.reset();
+  initialized_ = false;
+}
 } // namespace rko_lio::core
