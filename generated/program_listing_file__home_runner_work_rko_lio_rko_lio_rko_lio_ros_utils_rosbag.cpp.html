@@ -124,6 +124,8 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;rclcpp/version.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;rosbag2_storage/bag_metadata.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;tf2_msgs/msg/tf_message.hpp&gt;</span>
+<span class="c1">// other</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;spdlog/spdlog.h&gt;</span>
 <span class="c1">// stl</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
 
@@ -188,12 +190,12 @@
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">message_count</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}();</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Bag reader initialized with total message count: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">message_count_</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">'\n'</span><span class="p">;</span>
+<span class="w">  </span><span class="n">spdlog</span><span class="o">::</span><span class="n">info</span><span class="p">(</span><span class="s">"Bag reader initialized with total message count: {}"</span><span class="p">,</span><span class="w"> </span><span class="n">message_count_</span><span class="p">);</span>
 <span class="w">  </span><span class="n">BufferMessages</span><span class="p">();</span>
 <span class="p">}</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="n">BufferableBag</span><span class="o">::</span><span class="n">publish_tf_static</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">bag_path</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Opening the bag first to publish all the tf_static messages</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">  </span><span class="n">spdlog</span><span class="o">::</span><span class="n">info</span><span class="p">(</span><span class="s">"Opening the bag first to publish all the tf_static messages"</span><span class="p">);</span>
 <span class="w">  </span><span class="n">rosbag2_cpp</span><span class="o">::</span><span class="n">Reader</span><span class="w"> </span><span class="n">tf_reader</span><span class="p">;</span>
 <span class="w">  </span><span class="n">tf_reader</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">bag_path</span><span class="p">);</span>
 <span class="w">  </span><span class="n">tf_reader</span><span class="p">.</span><span class="n">set_filter</span><span class="p">(</span><span class="n">rosbag2_storage</span><span class="o">::</span><span class="n">StorageFilter</span><span class="p">{.</span><span class="n">topics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">"/tf_static"</span><span class="p">}});</span>
@@ -202,7 +204,7 @@
 <span class="w">    </span><span class="n">tf_bridge_</span><span class="o">-&gt;</span><span class="n">ProcessTFMessage</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="w">  </span><span class="n">tf_reader</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"tf_static published, if any. Closing the bag...</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">  </span><span class="n">spdlog</span><span class="o">::</span><span class="n">info</span><span class="p">(</span><span class="s">"tf_static published, if any. Closing the bag..."</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kt">bool</span><span class="w"> </span><span class="n">BufferableBag</span><span class="o">::</span><span class="n">finished</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">!</span><span class="n">bag_reader_</span><span class="o">-&gt;</span><span class="n">has_next</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">buffer_</span><span class="p">.</span><span class="n">empty</span><span class="p">();</span><span class="w"> </span><span class="p">};</span>

@@ -1,0 +1,20 @@
+
+.. _namespace_spdlog:
+
+Namespace spdlog
+================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_spdlog__sinks`

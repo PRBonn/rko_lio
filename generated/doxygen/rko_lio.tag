@@ -308,6 +308,10 @@
     <filename>structrko__lio_1_1ros_1_1utils_1_1RawScan.html</filename>
   </compound>
   <compound kind="class">
+    <name>rko_lio::ros::utils::RclcppSink</name>
+    <filename>classrko__lio_1_1ros_1_1utils_1_1RclcppSink.html</filename>
+  </compound>
+  <compound kind="class">
     <name>rko_lio::core::ScopedProfiler</name>
     <filename>classrko__lio_1_1core_1_1ScopedProfiler.html</filename>
     <member kind="function">

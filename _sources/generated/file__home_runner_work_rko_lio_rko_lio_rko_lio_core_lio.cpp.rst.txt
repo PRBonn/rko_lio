@@ -34,8 +34,6 @@ Includes
 
 - ``functional``
 
-- ``iostream``
-
 - ``lio.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_lio.hpp`)
 
 - ``numeric``
@@ -47,6 +45,10 @@ Includes
 - ``profiler.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_profiler.hpp`)
 
 - ``sophus/se3.hpp``
+
+- ``spdlog/spdlog.h``
+
+- ``sstream``
 
 - ``stdexcept``
 

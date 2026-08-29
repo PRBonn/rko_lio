@@ -23,14 +23,16 @@ Classes
 
 - :ref:`exhale_class_classrko__lio_1_1ros_1_1utils_1_1BufferableBag`
 
+- :ref:`exhale_class_classrko__lio_1_1ros_1_1utils_1_1RclcppSink`
+
 
 Functions
 ---------
 
 
-- :ref:`exhale_function_point__cloud__write_8cpp_1abc355982206b665ccf8d223ef1a85d5f`
-
 - :ref:`exhale_function_point__cloud__write_8hpp_1a23726637c0f702f265b6aa8f649dc99f`
+
+- :ref:`exhale_function_point__cloud__write_8cpp_1abc355982206b665ccf8d223ef1a85d5f`
 
 - :ref:`exhale_function_ros__vectors_8hpp_1a1ec41d7121199c6a747035f9b7ac87b6`
 
@@ -48,9 +50,9 @@ Functions
 
 - :ref:`exhale_function_transforms_8hpp_1ad3812e51b74a4b693e5a2f02c01b9bdb`
 
-- :ref:`exhale_function_time_8hpp_1a77db31ee58500b510902643bd9f7bc97`
-
 - :ref:`exhale_function_time_8hpp_1ac8836828d9bdda7dadc9f125f03b2154`
+
+- :ref:`exhale_function_time_8hpp_1a77db31ee58500b510902643bd9f7bc97`
 
 - :ref:`exhale_function_time_8hpp_1ac0334fa598ca2d1a236b10d23db3ff0f`
 

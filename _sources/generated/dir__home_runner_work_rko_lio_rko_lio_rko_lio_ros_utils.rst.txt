@@ -23,6 +23,7 @@ Files
 - :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_ros_vectors.hpp`
 - :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_rosbag.cpp`
 - :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_rosbag.hpp`
+- :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_spdlog_sink.hpp`
 - :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_time.hpp`
 - :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_transforms.hpp`
 - :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_utils.hpp`

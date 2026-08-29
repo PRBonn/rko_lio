@@ -161,6 +161,12 @@
     <member refid="structrko__lio_1_1ros_1_1utils_1_1RawScan_1a1a6c139a89e1f1b0b570c8f981ad3a33" kind="variable"><name>points</name></member>
     <member refid="structrko__lio_1_1ros_1_1utils_1_1RawScan_1a610f1788114761e615eba5c4d571bd68" kind="variable"><name>timestamps</name></member>
   </compound>
+  <compound refid="classrko__lio_1_1ros_1_1utils_1_1RclcppSink" kind="class"><name>rko_lio::ros::utils::RclcppSink</name>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1RclcppSink_1a41ec0e7898994f2a075c9b617cc5ab8d" kind="variable"><name>logger_</name></member>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1RclcppSink_1a2203639a0ee99ec606a4e724c839696a" kind="function"><name>RclcppSink</name></member>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1RclcppSink_1a4b48aac50974245550366d76203226b4" kind="function"><name>sink_it_</name></member>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1RclcppSink_1ad895ab3ec4577963198e508121af29f4" kind="function"><name>flush_</name></member>
+  </compound>
   <compound refid="classrko__lio_1_1core_1_1ScopedProfiler" kind="class"><name>rko_lio::core::ScopedProfiler</name>
     <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1a65e007b49e0b806ae940a86973be9c62" kind="typedef"><name>Clock</name></member>
     <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1a344e4d74871cdbd8df3e2e3f2434dace" kind="typedef"><name>TimePoint</name></member>
@@ -339,6 +345,10 @@
     <member refid="util_8hpp_1aeff68517fe50f9fd3ebbc4ea4b54c52a" kind="typedef"><name>SE3s</name></member>
     <member refid="util_8hpp_1aa20d225c07e7352bad174ebddb76c4fc" kind="typedef"><name>SO3s</name></member>
   </compound>
+  <compound refid="namespacespdlog" kind="namespace"><name>spdlog</name>
+  </compound>
+  <compound refid="namespacespdlog_1_1sinks" kind="namespace"><name>spdlog::sinks</name>
+  </compound>
   <compound refid="namespacestd_1_1chrono__literals" kind="namespace"><name>std::chrono_literals</name>
   </compound>
   <compound refid="namespacestd_1_1literals" kind="namespace"><name>std::literals</name>
@@ -412,6 +422,8 @@
   <compound refid="rosbag_8cpp" kind="file"><name>rosbag.cpp</name>
   </compound>
   <compound refid="rosbag_8hpp" kind="file"><name>rosbag.hpp</name>
+  </compound>
+  <compound refid="spdlog__sink_8hpp" kind="file"><name>spdlog_sink.hpp</name>
   </compound>
   <compound refid="time_8hpp" kind="file"><name>time.hpp</name>
   </compound>

@@ -1,0 +1,72 @@
+
+.. _file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_spdlog_sink.hpp:
+
+File spdlog_sink.hpp
+====================
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils>` (``/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/spdlog_sink.hpp``)
+------------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_spdlog_sink.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``mutex``
+
+- ``rclcpp/logger.hpp``
+
+- ``rclcpp/logging.hpp``
+
+- ``spdlog/sinks/base_sink.h``
+
+- ``spdlog/spdlog.h``
+
+- ``string``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_base_node.cpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_rko_lio`
+
+- :ref:`namespace_rko_lio__ros`
+
+- :ref:`namespace_rko_lio__ros__utils`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classrko__lio_1_1ros_1_1utils_1_1RclcppSink`
+

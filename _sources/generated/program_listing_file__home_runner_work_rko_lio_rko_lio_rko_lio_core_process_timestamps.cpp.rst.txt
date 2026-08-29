@@ -35,12 +35,12 @@ Program Listing for File process_timestamps.cpp
     */
    
    #include "process_timestamps.hpp"
+   #include <spdlog/spdlog.h>
+   // stl
    #include <algorithm>
    #include <cmath>
    #include <cstdint>
    #include <functional>
-   #include <iomanip>
-   #include <iostream>
    #include <stdexcept>
    
    namespace {
@@ -114,19 +114,19 @@ Program Listing for File process_timestamps.cpp
      }
    
      // Error-out for unique/unsupported cases
-     std::cout << std::setprecision(18);
-     std::cout << "is_absolute: " << absolute_stamps << "\n";
-     std::cout << "is_relative: " << relative_stamps << "\n";
-     std::cout << "point times min (ns): " << timestamps.min.count() << "\n";
-     std::cout << "point times max (ns): " << timestamps.max.count() << "\n";
-     std::cout << "header_stamp (ns): " << header_stamp.count() << "\n";
-     std::cout << "TimestampProcessingConfig:\n"
-               << "  multiplier_to_seconds: " << config.multiplier_to_seconds << "\n"
-               << "  force_absolute: " << std::boolalpha << config.force_absolute << "\n"
-               << "  force_relative: " << std::boolalpha << config.force_relative << "\n"
-               << "  start and end difference thresholds to header time are 1 and 10 milliseconds. Please force a case if "
-                  "those thresholds don't suit your sensor.\n"
-               << std::noboolalpha;
+     spdlog::error("is_absolute: {}\n"
+                   "is_relative: {}\n"
+                   "point times min (ns): {}\n"
+                   "point times max (ns): {}\n"
+                   "header_stamp (ns): {}\n"
+                   "TimestampProcessingConfig:\n"
+                   "  multiplier_to_seconds: {}\n"
+                   "  force_absolute: {}\n"
+                   "  force_relative: {}\n"
+                   "  start and end difference thresholds to header time are 1 and 10 milliseconds. Please force a "
+                   "case if those thresholds don't suit your sensor.",
+                   absolute_stamps, relative_stamps, timestamps.min.count(), timestamps.max.count(), header_stamp.count(),
+                   config.multiplier_to_seconds, config.force_absolute, config.force_relative);
      throw std::runtime_error(
          "TimestampProcessingConfig does not cover this particular case of data. Please investigate, modify "
          "the config, or open an issue.");

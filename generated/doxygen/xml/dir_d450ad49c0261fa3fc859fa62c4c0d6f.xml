@@ -9,6 +9,7 @@
     <innerfile refid="ros__vectors_8hpp">ros_vectors.hpp</innerfile>
     <innerfile refid="rosbag_8cpp">rosbag.cpp</innerfile>
     <innerfile refid="rosbag_8hpp">rosbag.hpp</innerfile>
+    <innerfile refid="spdlog__sink_8hpp">spdlog_sink.hpp</innerfile>
     <innerfile refid="time_8hpp">time.hpp</innerfile>
     <innerfile refid="transforms_8hpp">transforms.hpp</innerfile>
     <innerfile refid="utils_8hpp">utils.hpp</innerfile>

@@ -63,7 +63,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" line="49" column="14" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.cpp" bodystart="46" bodyend="50"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" line="49" column="14" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.cpp" bodystart="48" bodyend="52"/>
       </memberdef>
       <memberdef kind="function" id="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1aeac9890a3f2e78599763cfeceabc57ac" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -81,7 +81,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" line="50" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.cpp" bodystart="52" bodyend="65"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" line="50" column="10" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.cpp" bodystart="54" bodyend="67"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

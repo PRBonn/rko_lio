@@ -121,6 +121,7 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">"rko_lio/core/profiler.hpp"</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">"rko_lio/ros/utils/rosbag.hpp"</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">"threaded_node.hpp"</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;spdlog/spdlog.h&gt;</span>
 <span class="c1">// other</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;std_msgs/msg/float32_multi_array.hpp&gt;</span>
 
@@ -240,7 +241,7 @@
 <span class="w">    </span><span class="n">node</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
 <span class="w">    </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">shutdown</span><span class="p">();</span>
 <span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="o">&amp;</span><span class="w"> </span><span class="n">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"[FATAL] "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">error</span><span class="p">.</span><span class="n">what</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">spdlog</span><span class="o">::</span><span class="n">critical</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span><span class="w"> </span><span class="n">error</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>

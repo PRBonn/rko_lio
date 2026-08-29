@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classrko__lio_1_1ros_1_1utils_1_1RclcppSink" kind="class" language="C++" prot="public">
+    <compoundname>rko_lio::ros::utils::RclcppSink</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">spdlog::sinks::base_sink&lt; std::mutex &gt;</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classrko__lio_1_1ros_1_1utils_1_1RclcppSink_1a41ec0e7898994f2a075c9b617cc5ab8d" prot="private" static="no" mutable="no">
+        <type>rclcpp::Logger</type>
+        <definition>rclcpp::Logger rko_lio::ros::utils::RclcppSink::logger_</definition>
+        <argsstring></argsstring>
+        <name>logger_</name>
+        <qualifiedname>rko_lio::ros::utils::RclcppSink::logger_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/spdlog_sink.hpp" line="43" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/spdlog_sink.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1utils_1_1RclcppSink_1a2203639a0ee99ec606a4e724c839696a" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::ros::utils::RclcppSink::RclcppSink</definition>
+        <argsstring>(rclcpp::Logger logger)</argsstring>
+        <name>RclcppSink</name>
+        <qualifiedname>rko_lio::ros::utils::RclcppSink::RclcppSink</qualifiedname>
+        <param>
+          <type>rclcpp::Logger</type>
+          <declname>logger</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/spdlog_sink.hpp" line="13" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/spdlog_sink.hpp" bodystart="13" bodyend="13"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1utils_1_1RclcppSink_1a4b48aac50974245550366d76203226b4" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::ros::utils::RclcppSink::sink_it_</definition>
+        <argsstring>(const spdlog::details::log_msg &amp;msg) override</argsstring>
+        <name>sink_it_</name>
+        <qualifiedname>rko_lio::ros::utils::RclcppSink::sink_it_</qualifiedname>
+        <param>
+          <type>const spdlog::details::log_msg &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/spdlog_sink.hpp" line="16" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/spdlog_sink.hpp" bodystart="16" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classrko__lio_1_1ros_1_1utils_1_1RclcppSink_1ad895ab3ec4577963198e508121af29f4" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::ros::utils::RclcppSink::flush_</definition>
+        <argsstring>() override</argsstring>
+        <name>flush_</name>
+        <qualifiedname>rko_lio::ros::utils::RclcppSink::flush_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/spdlog_sink.hpp" line="40" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/spdlog_sink.hpp" bodystart="40" bodyend="40"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>rko_lio::ros::utils::RclcppSink</label>
+        <link refid="classrko__lio_1_1ros_1_1utils_1_1RclcppSink"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>spdlog::sinks::base_sink&lt; std::mutex &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>rko_lio::ros::utils::RclcppSink</label>
+        <link refid="classrko__lio_1_1ros_1_1utils_1_1RclcppSink"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>spdlog::sinks::base_sink&lt; std::mutex &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/spdlog_sink.hpp" line="11" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/spdlog_sink.hpp" bodystart="11" bodyend="44"/>
+    <listofallmembers>
+      <member refid="classrko__lio_1_1ros_1_1utils_1_1RclcppSink_1ad895ab3ec4577963198e508121af29f4" prot="protected" virt="non-virtual"><scope>rko_lio::ros::utils::RclcppSink</scope><name>flush_</name></member>
+      <member refid="classrko__lio_1_1ros_1_1utils_1_1RclcppSink_1a41ec0e7898994f2a075c9b617cc5ab8d" prot="private" virt="non-virtual"><scope>rko_lio::ros::utils::RclcppSink</scope><name>logger_</name></member>
+      <member refid="classrko__lio_1_1ros_1_1utils_1_1RclcppSink_1a2203639a0ee99ec606a4e724c839696a" prot="public" virt="non-virtual"><scope>rko_lio::ros::utils::RclcppSink</scope><name>RclcppSink</name></member>
+      <member refid="classrko__lio_1_1ros_1_1utils_1_1RclcppSink_1a4b48aac50974245550366d76203226b4" prot="protected" virt="non-virtual"><scope>rko_lio::ros::utils::RclcppSink</scope><name>sink_it_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -4,6 +4,7 @@
     <compoundname>rko_lio::ros::utils</compoundname>
     <innerclass refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag" prot="public">rko_lio::ros::utils::BufferableBag</innerclass>
     <innerclass refid="structrko__lio_1_1ros_1_1utils_1_1RawScan" prot="public">rko_lio::ros::utils::RawScan</innerclass>
+    <innerclass refid="classrko__lio_1_1ros_1_1utils_1_1RclcppSink" prot="public">rko_lio::ros::utils::RclcppSink</innerclass>
     <sectiondef kind="func">
       <memberdef kind="function" id="point__cloud__read_8cpp_1a77975e01f058823f8615a43bba6396a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>core::Vector3sVector</type>

@@ -40,6 +40,8 @@ Includes
 
 - ``rosbag2_storage/bag_metadata.hpp``
 
+- ``spdlog/spdlog.h``
+
 - ``tf2_msgs/msg/tf_message.hpp``
 
 

@@ -36,13 +36,15 @@ Includes
 
 - ``iomanip``
 
-- ``iostream``
-
 - ``limits``
 
 - ``rko_lio/core/process_timestamps.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_process_timestamps.hpp`)
 
+- ``rko_lio/ros/utils/spdlog_sink.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_spdlog_sink.hpp`)
+
 - ``rko_lio/ros/utils/utils.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_utils.hpp`)
+
+- ``spdlog/spdlog.h``
 
 - ``sstream``
 

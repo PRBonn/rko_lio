@@ -34,6 +34,8 @@ Includes
 
 - ``rko_lio/ros/utils/rosbag.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_rosbag.hpp`)
 
+- ``spdlog/spdlog.h``
+
 - ``std_msgs/msg/float32_multi_array.hpp``
 
 - ``threaded_node.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_threaded_node.hpp`)

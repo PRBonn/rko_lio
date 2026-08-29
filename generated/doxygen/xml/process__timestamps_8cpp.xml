@@ -3,12 +3,11 @@
   <compounddef id="process__timestamps_8cpp" kind="file" language="C++">
     <compoundname>process_timestamps.cpp</compoundname>
     <includes refid="process__timestamps_8hpp" local="yes">process_timestamps.hpp</includes>
+    <includes local="no">spdlog/spdlog.h</includes>
     <includes local="no">algorithm</includes>
     <includes local="no">cmath</includes>
     <includes local="no">cstdint</includes>
     <includes local="no">functional</includes>
-    <includes local="no">iomanip</includes>
-    <includes local="no">iostream</includes>
     <includes local="no">stdexcept</includes>
     <incdepgraph>
       <node id="1">
@@ -27,8 +26,6 @@
         <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -56,26 +53,20 @@
       <node id="5">
         <label>Eigen/Core</label>
       </node>
-      <node id="10">
+      <node id="11">
         <label>algorithm</label>
       </node>
       <node id="6">
         <label>chrono</label>
       </node>
-      <node id="11">
+      <node id="12">
         <label>cmath</label>
       </node>
-      <node id="12">
+      <node id="13">
         <label>cstdint</label>
       </node>
-      <node id="13">
-        <label>functional</label>
-      </node>
       <node id="14">
-        <label>iomanip</label>
-      </node>
-      <node id="15">
-        <label>iostream</label>
+        <label>functional</label>
       </node>
       <node id="4">
         <label>rko_lio/core/scalar.hpp</label>
@@ -83,7 +74,10 @@
       <node id="7">
         <label>sophus/se3.hpp</label>
       </node>
-      <node id="16">
+      <node id="10">
+        <label>spdlog/spdlog.h</label>
+      </node>
+      <node id="15">
         <label>stdexcept</label>
       </node>
       <node id="8">
@@ -126,12 +120,12 @@
 <codeline lineno="23"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;process_timestamps.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstdint&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;functional&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iomanip&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;spdlog/spdlog.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>stl</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstdint&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;functional&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdexcept&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">{</highlight></codeline>
@@ -205,19 +199,19 @@
 <codeline lineno="102"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="103"><highlight class="normal"></highlight></codeline>
 <codeline lineno="104"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Error-out<sp/>for<sp/>unique/unsupported<sp/>cases</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="105"><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/>std::setprecision(18);</highlight></codeline>
-<codeline lineno="106"><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;is_absolute:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>absolute_stamps<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="107"><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;is_relative:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>relative_stamps<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="108"><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;point<sp/>times<sp/>min<sp/>(ns):<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>timestamps.min.count()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="109"><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;point<sp/>times<sp/>max<sp/>(ns):<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>timestamps.max.count()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="110"><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;header_stamp<sp/>(ns):<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>header_stamp.count()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="111"><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;TimestampProcessingConfig:\n&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/>multiplier_to_seconds:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>config.multiplier_to_seconds<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/>force_absolute:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std::boolalpha<sp/>&lt;&lt;<sp/>config.force_absolute<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/>force_relative:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std::boolalpha<sp/>&lt;&lt;<sp/>config.force_relative<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/>start<sp/>and<sp/>end<sp/>difference<sp/>thresholds<sp/>to<sp/>header<sp/>time<sp/>are<sp/>1<sp/>and<sp/>10<sp/>milliseconds.<sp/>Please<sp/>force<sp/>a<sp/>case<sp/>if<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;those<sp/>thresholds<sp/>don&apos;t<sp/>suit<sp/>your<sp/>sensor.\n&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>std::noboolalpha;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/>spdlog::error(</highlight><highlight class="stringliteral">&quot;is_absolute:<sp/>{}\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;is_relative:<sp/>{}\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;point<sp/>times<sp/>min<sp/>(ns):<sp/>{}\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;point<sp/>times<sp/>max<sp/>(ns):<sp/>{}\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;header_stamp<sp/>(ns):<sp/>{}\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;TimestampProcessingConfig:\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/>multiplier_to_seconds:<sp/>{}\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/>force_absolute:<sp/>{}\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/>force_relative:<sp/>{}\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/>start<sp/>and<sp/>end<sp/>difference<sp/>thresholds<sp/>to<sp/>header<sp/>time<sp/>are<sp/>1<sp/>and<sp/>10<sp/>milliseconds.<sp/>Please<sp/>force<sp/>a<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;case<sp/>if<sp/>those<sp/>thresholds<sp/>don&apos;t<sp/>suit<sp/>your<sp/>sensor.&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>absolute_stamps,<sp/>relative_stamps,<sp/>timestamps.min.count(),<sp/>timestamps.max.count(),<sp/>header_stamp.count(),</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>config.multiplier_to_seconds,<sp/>config.force_absolute,<sp/>config.force_relative);</highlight></codeline>
 <codeline lineno="118"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight></codeline>
 <codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;TimestampProcessingConfig<sp/>does<sp/>not<sp/>cover<sp/>this<sp/>particular<sp/>case<sp/>of<sp/>data.<sp/>Please<sp/>investigate,<sp/>modify<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;the<sp/>config,<sp/>or<sp/>open<sp/>an<sp/>issue.&quot;</highlight><highlight class="normal">);</highlight></codeline>

@@ -36,12 +36,13 @@ Program Listing for File base_node.cpp
    
    #include "base_node.hpp"
    #include "rko_lio/core/process_timestamps.hpp"
+   #include "rko_lio/ros/utils/spdlog_sink.hpp"
    #include "rko_lio/ros/utils/utils.hpp"
    // other
    #include <fstream>
    #include <iomanip>
-   #include <iostream>
    #include <limits>
+   #include <spdlog/spdlog.h>
    #include <sstream>
    #include <stdexcept>
    
@@ -79,6 +80,10 @@ Program Listing for File base_node.cpp
    
    BaseNode::BaseNode(const std::string& node_name, const rclcpp::NodeOptions& options) {
      node = rclcpp::Node::make_shared(node_name, options);
+     auto logger = std::make_shared<spdlog::logger>("rko_lio", std::make_shared<utils::RclcppSink>(node->get_logger()));
+     logger->set_level(spdlog::level::trace);
+     spdlog::set_default_logger(std::move(logger));
+   
      imu_topic = node->declare_parameter<std::string>("imu_topic");     // required
      lidar_topic = node->declare_parameter<std::string>("lidar_topic"); // required
      base_frame = node->declare_parameter<std::string>("base_frame");   // required
@@ -359,16 +364,16 @@ Program Listing for File base_node.cpp
                 << translation.y() << " " << translation.z() << " " << quaternion.x() << " " << quaternion.y() << " "
                 << quaternion.z() << " " << quaternion.w() << "\n";
          }
-         std::cout << "Poses written to " << std::filesystem::absolute(output_file) << "\n";
+         spdlog::info("Poses written to {}", std::filesystem::absolute(output_file).string());
        }
        // dump config
        const std::filesystem::path config_file = output_dir / "config.yaml";
        if (std::ofstream file(config_file); file.is_open()) {
          file << config_to_yaml(lio->config);
-         std::cout << "Configuration written to " << config_file << "\n";
+         spdlog::info("Configuration written to {}", config_file.string());
        }
      } catch (const std::filesystem::filesystem_error& ex) {
-       std::cerr << "[WARNING] Cannot write files to disk, encountered filesystem error: " << ex.what() << "\n";
+       spdlog::warn("Cannot write files to disk, encountered filesystem error: {}", ex.what());
      }
    }
    

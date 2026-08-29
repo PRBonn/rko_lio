@@ -1,11 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
-  <compounddef id="namespacerko__lio_1_1ros_1_1_0d14" kind="namespace" language="C++">
-    <compoundname>rko_lio::ros</compoundname>
+  <compounddef id="namespacespdlog" kind="namespace" language="C++">
+    <compoundname>spdlog</compoundname>
+    <innernamespace refid="namespacespdlog_1_1sinks">spdlog::sinks</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" line="45" column="1"/>
+    <location file="[generated]" line="1" column="1"/>
   </compounddef>
 </doxygen>
