@@ -158,12 +158,12 @@ class PipelineConfig:
     Parameters
     ----------
     lio : dict or LIOConfig
-    timestamps : dict or TimestampProcessingConfig
+    timestamps : dict or TimestampConfig
         Configuration for timestamp preprocessing.
-    extrinsic_imu2base : np.ndarray[4,4] or None, optional
-        Extrinsic transform from IMU frame to base frame.
-    extrinsic_lidar2base : np.ndarray[4,4] or None, optional
-        Extrinsic transform from lidar frame to base frame.
+    extrinsic_imu2base_quat_xyzw_xyz : list or None, optional
+        Extrinsic from IMU to base as ``[qx, qy, qz, qw, x, y, z]``.
+    extrinsic_lidar2base_quat_xyzw_xyz : list or None, optional
+        Extrinsic from lidar to base as ``[qx, qy, qz, qw, x, y, z]``.
     viz : bool, default False
         Enable visualization using rerun.
     dump_deskewed_scans : bool, default False
