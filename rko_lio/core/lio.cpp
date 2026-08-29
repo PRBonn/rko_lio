@@ -390,9 +390,8 @@ void LIO::add_imu_measurement(const ImuControl& base_imu) {
   const auto dt = to_seconds<Scalar>(base_imu.time - imu_state.time);
 
   if (dt < 0.0) {
-    // messages are out of sync. that is a problem, since we integrate gyro from last lidar time onwards
-    spdlog::warn("Received IMU message from the past. Can result in errors.");
-    // maybe skip this imu reading?
+    spdlog::warn("Skipping IMU message from the past.");
+    return;
   }
 
   const Eigen::Vector3s unbiased_ang_vel = base_imu.angular_velocity - imu_bias.gyroscope;

@@ -48,6 +48,28 @@ TEST_CASE("IMU before first LiDAR is silently dropped", "[imu_integration]") {
   REQUIRE(lio.interval_stats.imu_count == 0);
 }
 
+TEST_CASE("IMU from the past is dropped", "[imu_integration]") {
+  LIO lio(default_config());
+  lio.lidar_state.time = ns_from_seconds(1.0);
+
+  ImuControl m;
+  m.time = ns_from_seconds(1.1);
+  m.acceleration = {0.0, 0.0, GRAVITY_MAG};
+  m.angular_velocity = Eigen::Vector3s::Zero();
+  lio.add_imu_measurement(m);
+
+  const auto pose = lio.imu_state.pose;
+  const auto time = lio.imu_state.time;
+  const auto count = lio.interval_stats.imu_count;
+
+  m.time = ns_from_seconds(0.5);
+  lio.add_imu_measurement(m);
+
+  REQUIRE(lio.interval_stats.imu_count == count);
+  REQUIRE(approx_equal(lio.imu_state.pose, pose, EXACT_TOL));
+  REQUIRE(lio.imu_state.time == time);
+}
+
 TEST_CASE("Static IMU at rest: gravity is compensated", "[imu_integration]") {
   LIO lio(default_config());
   // Bootstrap as if a first lidar scan had been registered.
