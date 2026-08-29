@@ -272,7 +272,7 @@ Disk dumping and visualization
 
   On shutdown, dump the resolved configuration and the full trajectory under ``<results_dir>/<run_name>``. The folder name is auto-incremented to avoid overwrites.
 
-- **results_dir** (default ``results``), **run_name** (default ``rko_lio_odometry_run``)
+- **results_dir** (default ``results``), **run_name** (default ``rko_lio_run``)
 
   Where the dump goes and the subdirectory name within.
 

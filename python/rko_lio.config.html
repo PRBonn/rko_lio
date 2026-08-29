@@ -243,9 +243,9 @@ For example, if timestamps are in microseconds, use <code class="docutils litera
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>lio</strong> (<em>dict</em><em> or </em><a class="reference internal" href="#rko_lio.config.LIOConfig" title="rko_lio.config.LIOConfig"><em>LIOConfig</em></a>)</p></li>
-<li><p><strong>timestamps</strong> (<em>dict</em><em> or </em><em>TimestampProcessingConfig</em>) – Configuration for timestamp preprocessing.</p></li>
-<li><p><strong>extrinsic_imu2base</strong> (<em>np.ndarray</em><em>[</em><em>4</em><em>,</em><em>4</em><em>] or </em><em>None</em><em>, </em><em>optional</em>) – Extrinsic transform from IMU frame to base frame.</p></li>
-<li><p><strong>extrinsic_lidar2base</strong> (<em>np.ndarray</em><em>[</em><em>4</em><em>,</em><em>4</em><em>] or </em><em>None</em><em>, </em><em>optional</em>) – Extrinsic transform from lidar frame to base frame.</p></li>
+<li><p><strong>timestamps</strong> (<em>dict</em><em> or </em><a class="reference internal" href="#rko_lio.config.TimestampConfig" title="rko_lio.config.TimestampConfig"><em>TimestampConfig</em></a>) – Configuration for timestamp preprocessing.</p></li>
+<li><p><strong>extrinsic_imu2base_quat_xyzw_xyz</strong> (<em>list</em><em> or </em><em>None</em><em>, </em><em>optional</em>) – Extrinsic from IMU to base as <code class="docutils literal notranslate"><span class="pre">[qx,</span> <span class="pre">qy,</span> <span class="pre">qz,</span> <span class="pre">qw,</span> <span class="pre">x,</span> <span class="pre">y,</span> <span class="pre">z]</span></code>.</p></li>
+<li><p><strong>extrinsic_lidar2base_quat_xyzw_xyz</strong> (<em>list</em><em> or </em><em>None</em><em>, </em><em>optional</em>) – Extrinsic from lidar to base as <code class="docutils literal notranslate"><span class="pre">[qx,</span> <span class="pre">qy,</span> <span class="pre">qz,</span> <span class="pre">qw,</span> <span class="pre">x,</span> <span class="pre">y,</span> <span class="pre">z]</span></code>.</p></li>
 <li><p><strong>viz</strong> (<em>bool</em><em>, </em><em>default False</em>) – Enable visualization using rerun.</p></li>
 <li><p><strong>dump_deskewed_scans</strong> (<em>bool</em><em>, </em><em>default False</em>) – Save deskewed scans to disk.</p></li>
 <li><p><strong>log_dir</strong> (<em>Path</em><em>, </em><em>default &quot;results&quot;</em>) – Directory to store trajectory results.</p></li>
