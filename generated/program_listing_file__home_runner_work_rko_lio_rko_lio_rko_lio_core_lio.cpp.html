@@ -652,6 +652,19 @@
 <span class="w">  </span><span class="n">transform_points</span><span class="p">(</span><span class="n">extrinsic_lidar2base</span><span class="p">.</span><span class="n">inverse</span><span class="p">(),</span><span class="w"> </span><span class="n">filtered_scan</span><span class="p">);</span>
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">filtered_scan</span><span class="p">;</span>
 <span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">LIO</span><span class="o">::</span><span class="n">restart</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="o">++</span><span class="n">reset_count</span><span class="p">;</span>
+<span class="w">  </span><span class="n">config</span><span class="p">.</span><span class="n">initialization_phase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">  </span><span class="n">map</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+<span class="w">  </span><span class="n">lidar_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">  </span><span class="n">imu_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">  </span><span class="n">imu_bias</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">  </span><span class="n">mean_body_acceleration</span><span class="p">.</span><span class="n">setZero</span><span class="p">();</span>
+<span class="w">  </span><span class="n">body_acceleration_covariance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Matrix3s</span><span class="o">::</span><span class="n">Identity</span><span class="p">();</span>
+<span class="w">  </span><span class="n">interval_stats</span><span class="p">.</span><span class="n">reset</span><span class="p">();</span>
+<span class="w">  </span><span class="n">initialized_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace rko_lio::core</span>
 </pre></div>
 </div>

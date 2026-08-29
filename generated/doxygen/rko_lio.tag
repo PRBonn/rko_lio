@@ -228,6 +228,13 @@
       <anchor>a68d76c941b7c008f86e6bf709236b5b6</anchor>
       <arglist>(const Sophus::SE3s &amp;extrinsic_lidar2base, Vector3sVector scan, const Timestamps &amp;timestamps)</arglist>
     </member>
+    <member kind="function">
+      <type>void</type>
+      <name>restart</name>
+      <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
+      <anchor>a78e307def8ee46ebe82a6de7a33c7bf6</anchor>
+      <arglist>()</arglist>
+    </member>
     <member kind="variable">
       <type>Config</type>
       <name>config</name>
@@ -282,6 +289,13 @@
       <name>interval_stats</name>
       <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
       <anchor>a9b89efdfdcc0ab01ef3fd6caaadb69d2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::size_t</type>
+      <name>reset_count</name>
+      <anchorfile>classrko__lio_1_1core_1_1LIO.html</anchorfile>
+      <anchor>ade4c3c3fdebb0625fcc1091c737b73d9</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">

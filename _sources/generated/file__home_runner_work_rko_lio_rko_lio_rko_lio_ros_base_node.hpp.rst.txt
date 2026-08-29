@@ -54,6 +54,8 @@ Includes
 
 - ``sensor_msgs/msg/point_cloud2.hpp``
 
+- ``std_msgs/msg/u_int32.hpp``
+
 - ``string``
 
 - ``string_view``

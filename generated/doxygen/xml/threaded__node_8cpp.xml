@@ -7,7 +7,7 @@
     <includes refid="profiler_8hpp" local="yes">rko_lio/core/profiler.hpp</includes>
     <includes refid="utils_8hpp" local="yes">rko_lio/ros/utils/utils.hpp</includes>
     <incdepgraph>
-      <node id="42">
+      <node id="43">
         <label>rko_lio/core/error.hpp</label>
         <link refid="error_8hpp_source"/>
         <childnode refid="20" relation="include">
@@ -35,22 +35,22 @@
         <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="43">
+      <node id="44">
         <label>rko_lio/core/profiler.hpp</label>
         <link refid="profiler_8hpp"/>
         <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
         </childnode>
         <childnode refid="45" relation="include">
         </childnode>
         <childnode refid="46" relation="include">
         </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
         <childnode refid="47" relation="include">
         </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
         <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
         </childnode>
       </node>
       <node id="6">
@@ -144,17 +144,19 @@
         </childnode>
         <childnode refid="39" relation="include">
         </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
       </node>
       <node id="1">
         <label>/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.cpp</label>
         <link refid="threaded__node_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
         <childnode refid="43" relation="include">
         </childnode>
-        <childnode refid="49" relation="include">
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -164,11 +166,11 @@
         </childnode>
         <childnode refid="23" relation="include">
         </childnode>
-        <childnode refid="40" relation="include">
+        <childnode refid="41" relation="include">
         </childnode>
         <childnode refid="26" relation="include">
         </childnode>
-        <childnode refid="41" relation="include">
+        <childnode refid="42" relation="include">
         </childnode>
         <childnode refid="29" relation="include">
         </childnode>
@@ -177,7 +179,7 @@
         <childnode refid="36" relation="include">
         </childnode>
       </node>
-      <node id="50">
+      <node id="51">
         <label>point_cloud_read.hpp</label>
         <link refid="point__cloud__read_8hpp_source"/>
         <childnode refid="6" relation="include">
@@ -188,10 +190,10 @@
         </childnode>
         <childnode refid="36" relation="include">
         </childnode>
-        <childnode refid="51" relation="include">
+        <childnode refid="52" relation="include">
         </childnode>
       </node>
-      <node id="52">
+      <node id="53">
         <label>point_cloud_write.hpp</label>
         <link refid="point__cloud__write_8hpp_source"/>
         <childnode refid="6" relation="include">
@@ -203,60 +205,60 @@
         <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="53">
+      <node id="54">
         <label>ros_vectors.hpp</label>
         <link refid="ros__vectors_8hpp_source"/>
         <childnode refid="8" relation="include">
         </childnode>
       </node>
-      <node id="54">
+      <node id="55">
         <label>time.hpp</label>
         <link refid="time_8hpp_source"/>
-        <childnode refid="55" relation="include">
+        <childnode refid="56" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="56" relation="include">
+        <childnode refid="57" relation="include">
         </childnode>
       </node>
-      <node id="57">
+      <node id="58">
         <label>transforms.hpp</label>
         <link refid="transforms_8hpp_source"/>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="58" relation="include">
-        </childnode>
         <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="60" relation="include">
-        </childnode>
         <childnode refid="61" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="62" relation="include">
         </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
         <childnode refid="63" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
         </childnode>
       </node>
-      <node id="49">
+      <node id="50">
         <label>rko_lio/ros/utils/utils.hpp</label>
         <link refid="utils_8hpp_source"/>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="52" relation="include">
+        <childnode refid="51" relation="include">
         </childnode>
         <childnode refid="53" relation="include">
         </childnode>
         <childnode refid="54" relation="include">
         </childnode>
-        <childnode refid="57" relation="include">
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
         </childnode>
       </node>
       <node id="8">
@@ -268,16 +270,16 @@
       <node id="23">
         <label>atomic</label>
       </node>
-      <node id="55">
+      <node id="56">
         <label>builtin_interfaces/msg/time.hpp</label>
       </node>
       <node id="9">
         <label>chrono</label>
       </node>
-      <node id="44">
+      <node id="45">
         <label>cmath</label>
       </node>
-      <node id="40">
+      <node id="41">
         <label>condition_variable</label>
       </node>
       <node id="15">
@@ -292,16 +294,16 @@
       <node id="31">
         <label>geometry_msgs/msg/accel_with_covariance_stamped.hpp</label>
       </node>
-      <node id="58">
+      <node id="59">
         <label>geometry_msgs/msg/pose.hpp</label>
       </node>
-      <node id="59">
+      <node id="60">
         <label>geometry_msgs/msg/transform_stamped.hpp</label>
       </node>
-      <node id="45">
+      <node id="46">
         <label>iomanip</label>
       </node>
-      <node id="46">
+      <node id="47">
         <label>iostream</label>
       </node>
       <node id="17">
@@ -322,13 +324,13 @@
       <node id="19">
         <label>optional</label>
       </node>
-      <node id="41">
+      <node id="42">
         <label>queue</label>
       </node>
-      <node id="60">
+      <node id="61">
         <label>rclcpp/logger.hpp</label>
       </node>
-      <node id="61">
+      <node id="62">
         <label>rclcpp/logging.hpp</label>
       </node>
       <node id="33">
@@ -337,7 +339,7 @@
       <node id="34">
         <label>rclcpp/node_options.hpp</label>
       </node>
-      <node id="56">
+      <node id="57">
         <label>rclcpp/time.hpp</label>
       </node>
       <node id="7">
@@ -349,11 +351,14 @@
       <node id="36">
         <label>sensor_msgs/msg/point_cloud2.hpp</label>
       </node>
-      <node id="51">
+      <node id="52">
         <label>sensor_msgs/point_cloud2_iterator.hpp</label>
       </node>
       <node id="10">
         <label>sophus/se3.hpp</label>
+      </node>
+      <node id="37">
+        <label>std_msgs/msg/u_int32.hpp</label>
       </node>
       <node id="20">
         <label>stdexcept</label>
@@ -367,19 +372,19 @@
       <node id="22">
         <label>tbb/task_arena.h</label>
       </node>
-      <node id="62">
+      <node id="63">
         <label>tf2/exceptions.hpp</label>
       </node>
-      <node id="63">
+      <node id="64">
         <label>tf2/time.hpp</label>
       </node>
-      <node id="37">
+      <node id="38">
         <label>tf2_ros/buffer.hpp</label>
       </node>
-      <node id="38">
+      <node id="39">
         <label>tf2_ros/transform_broadcaster.hpp</label>
       </node>
-      <node id="39">
+      <node id="40">
         <label>tf2_ros/transform_listener.hpp</label>
       </node>
       <node id="29">
@@ -391,10 +396,10 @@
       <node id="11">
         <label>tuple</label>
       </node>
-      <node id="47">
+      <node id="48">
         <label>unordered_map</label>
       </node>
-      <node id="48">
+      <node id="49">
         <label>utility</label>
       </node>
       <node id="12">
@@ -519,18 +524,26 @@
 <codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::InputError&amp;<sp/>ex)<sp/>{</highlight></codeline>
 <codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>RCLCPP_ERROR_STREAM(node-&gt;get_logger(),<sp/></highlight><highlight class="stringliteral">&quot;Dropping<sp/>scan:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>ex.what());</highlight></codeline>
-<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>registration_busy<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="114"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="115"><highlight class="normal"><sp/><sp/>atomic_node_running<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="116"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="117"><highlight class="normal"></highlight></codeline>
-<codeline lineno="118"><highlight class="normal">ThreadedNode::~ThreadedNode()<sp/>{</highlight></codeline>
-<codeline lineno="119"><highlight class="normal"><sp/><sp/>atomic_node_running<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/>sync_condition_variable.notify_all();</highlight></codeline>
-<codeline lineno="121"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="122"><highlight class="normal"></highlight></codeline>
-<codeline lineno="123"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>core::RegistrationError&amp;<sp/>ex)<sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>RCLCPP_ERROR_STREAM(node-&gt;get_logger(),<sp/></highlight><highlight class="stringliteral">&quot;Registration<sp/>failed<sp/>(&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>ex.what()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;).&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(reset_on_registration_error)<sp/>{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reset_odometry();</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RCLCPP_WARN(node-&gt;get_logger(),<sp/></highlight><highlight class="stringliteral">&quot;Set<sp/>reset_on_registration_error:=true<sp/>to<sp/>reset<sp/>odometry<sp/>and<sp/>continue.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>registration_busy<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/>atomic_node_running<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal">ThreadedNode::~ThreadedNode()<sp/>{</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/>atomic_node_running<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/>sync_condition_variable.notify_all();</highlight></codeline>
+<codeline lineno="129"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::ros</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.cpp"/>
   </compounddef>

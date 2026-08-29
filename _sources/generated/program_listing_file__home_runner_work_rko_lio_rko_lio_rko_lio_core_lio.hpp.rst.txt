@@ -86,6 +86,8 @@ Program Listing for File lio.hpp
    
      IntervalStats interval_stats;
    
+     std::size_t reset_count = 0;
+   
      explicit LIO(const Config& config_);
    
      void add_imu_measurement(const ImuControl& base_imu);
@@ -96,6 +98,8 @@ Program Listing for File lio.hpp
    
      Vector3sVector
      register_scan(const Sophus::SE3s& extrinsic_lidar2base, Vector3sVector scan, const Timestamps& timestamps);
+   
+     void restart();
    
      std::vector<std::pair<Nsec, Sophus::SE3s>> poses_with_timestamps;
    

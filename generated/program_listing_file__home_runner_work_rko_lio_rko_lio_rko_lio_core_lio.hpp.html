@@ -170,6 +170,8 @@
 
 <span class="w">  </span><span class="n">IntervalStats</span><span class="w"> </span><span class="n">interval_stats</span><span class="p">;</span>
 
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">reset_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
 <span class="w">  </span><span class="k">explicit</span><span class="w"> </span><span class="n">LIO</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Config</span><span class="o">&amp;</span><span class="w"> </span><span class="n">config_</span><span class="p">);</span>
 
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">add_imu_measurement</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">ImuControl</span><span class="o">&amp;</span><span class="w"> </span><span class="n">base_imu</span><span class="p">);</span>
@@ -180,6 +182,8 @@
 
 <span class="w">  </span><span class="n">Vector3sVector</span>
 <span class="w">  </span><span class="nf">register_scan</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Sophus</span><span class="o">::</span><span class="n">SE3s</span><span class="o">&amp;</span><span class="w"> </span><span class="n">extrinsic_lidar2base</span><span class="p">,</span><span class="w"> </span><span class="n">Vector3sVector</span><span class="w"> </span><span class="n">scan</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Timestamps</span><span class="o">&amp;</span><span class="w"> </span><span class="n">timestamps</span><span class="p">);</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">restart</span><span class="p">();</span>
 
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">Nsec</span><span class="p">,</span><span class="w"> </span><span class="n">Sophus</span><span class="o">::</span><span class="n">SE3s</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">poses_with_timestamps</span><span class="p">;</span>
 
