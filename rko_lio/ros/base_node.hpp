@@ -40,6 +40,7 @@
 #include <rclcpp/node_options.hpp>
 #include <sensor_msgs/msg/imu.hpp>
 #include <sensor_msgs/msg/point_cloud2.hpp>
+#include <std_msgs/msg/u_int32.hpp>
 #include <tf2_ros/buffer.hpp>
 #include <tf2_ros/transform_broadcaster.hpp>
 #include <tf2_ros/transform_listener.hpp>
@@ -71,6 +72,7 @@ public:
   rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr frame_publisher;
   rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr map_publisher;
   rclcpp::Publisher<geometry_msgs::msg::AccelStamped>::SharedPtr lidar_accel_publisher;
+  rclcpp::Publisher<std_msgs::msg::UInt32>::SharedPtr reset_count_publisher;
 
   std::string imu_topic;
   std::string imu_frame; // default: get from the first imu message

@@ -88,6 +88,9 @@ BaseNode::BaseNode(const std::string& node_name, const rclcpp::NodeOptions& opti
   // publishing
   const rclcpp::QoS publisher_qos(rclcpp::SystemDefaultsQoS().keep_last(1).durability_volatile());
   odom_publisher = node->create_publisher<nav_msgs::msg::Odometry>(odom_topic, publisher_qos);
+  reset_count_publisher = node->create_publisher<std_msgs::msg::UInt32>(
+      "rko_lio/reset_count", rclcpp::SystemDefaultsQoS().keep_last(1).transient_local());
+  reset_count_publisher->publish(std_msgs::msg::UInt32());
 
   publish_lidar_acceleration = node->declare_parameter<bool>("publish_lidar_acceleration", publish_lidar_acceleration);
   if (publish_lidar_acceleration) {
@@ -343,6 +346,9 @@ void BaseNode::reset_odometry() {
   }
   lio->reset();
   RCLCPP_WARN_STREAM(node->get_logger(), "Odometry reset count: " << lio->reset_count);
+  std_msgs::msg::UInt32 reset_count_msg;
+  reset_count_msg.data = static_cast<std::uint32_t>(lio->reset_count);
+  reset_count_publisher->publish(reset_count_msg);
   if (forced_init_off) {
     RCLCPP_WARN(node->get_logger(),
                 "initialization_phase was enabled; it is off after reset because static start is not guaranteed.");
