@@ -16,6 +16,7 @@ Directory core
 Files
 -----
 
+- :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_error.hpp`
 - :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_lio.cpp`
 - :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_lio.hpp`
 - :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_preprocess_scan.cpp`

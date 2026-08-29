@@ -30,13 +30,11 @@ Includes
 --------
 
 
-- ``rko_lio/core/process_timestamps.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_process_timestamps.hpp`)
+- ``rko_lio/core/error.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_error.hpp`)
 
 - ``rko_lio/core/profiler.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_profiler.hpp`)
 
 - ``rko_lio/ros/utils/utils.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_utils.hpp`)
-
-- ``stdexcept``
 
 - ``threaded_node.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_threaded_node.hpp`)
 

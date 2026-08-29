@@ -271,7 +271,7 @@ A typical invocation:
 If your LiDAR per-point timestamps confuse the heuristic
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If startup throws ``Runtime Error: TimestampProcessingConfig does not cover this particular case of data``, see :ref:`Configuring -> LiDAR per-point timestamps <config-lidar-timestamps>` for the override knobs.
+If startup throws ``Cannot classify LiDAR timestamps as absolute or relative``, see :ref:`Configuring -> LiDAR per-point timestamps <config-lidar-timestamps>` for the override knobs.
 The ROS parameters are ``lidar_timestamps.multiplier_to_seconds`` / ``lidar_timestamps.force_absolute`` / ``lidar_timestamps.force_relative``.
 
 References

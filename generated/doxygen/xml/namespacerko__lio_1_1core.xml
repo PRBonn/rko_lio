@@ -4,10 +4,12 @@
     <compoundname>rko_lio::core</compoundname>
     <innerclass refid="structrko__lio_1_1core_1_1ImuBias" prot="public">rko_lio::core::ImuBias</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1ImuControl" prot="public">rko_lio::core::ImuControl</innerclass>
+    <innerclass refid="classrko__lio_1_1core_1_1InputError" prot="public">rko_lio::core::InputError</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1IntervalStats" prot="public">rko_lio::core::IntervalStats</innerclass>
     <innerclass refid="classrko__lio_1_1core_1_1LIO" prot="public">rko_lio::core::LIO</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1MotionPrior" prot="public">rko_lio::core::MotionPrior</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1PreprocessingResult" prot="public">rko_lio::core::PreprocessingResult</innerclass>
+    <innerclass refid="classrko__lio_1_1core_1_1RegistrationError" prot="public">rko_lio::core::RegistrationError</innerclass>
     <innerclass refid="classrko__lio_1_1core_1_1ScopedProfiler" prot="public">rko_lio::core::ScopedProfiler</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1State" prot="public">rko_lio::core::State</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1Timer" prot="public">rko_lio::core::Timer</innerclass>
@@ -183,7 +185,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.cpp" line="78" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.cpp" bodystart="78" bodyend="121" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" declline="76" declcolumn="12"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.cpp" line="78" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.cpp" bodystart="78" bodyend="120" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" declline="76" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacerko__lio_1_1core_1a1606d7b4fe5b32a257501d8079c968ca" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>constexpr Scalar</type>
@@ -315,6 +317,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp" line="286" column="1"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/error.hpp" line="5" column="1"/>
   </compounddef>
 </doxygen>

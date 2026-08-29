@@ -91,6 +91,8 @@
     <member refid="structrko__lio_1_1core_1_1ImuControl_1aa464e612c2c4b1435915cdb079f60753" kind="variable"><name>acceleration</name></member>
     <member refid="structrko__lio_1_1core_1_1ImuControl_1a28f04573d1fc420e9701cf615b4fb1b1" kind="variable"><name>angular_velocity</name></member>
   </compound>
+  <compound refid="classrko__lio_1_1core_1_1InputError" kind="class"><name>rko_lio::core::InputError</name>
+  </compound>
   <compound refid="structrko__lio_1_1core_1_1IntervalStats" kind="struct"><name>rko_lio::core::IntervalStats</name>
     <member refid="structrko__lio_1_1core_1_1IntervalStats_1ad03a2f9676e4eb163dc180dd707fd26c" kind="variable"><name>imu_count</name></member>
     <member refid="structrko__lio_1_1core_1_1IntervalStats_1a4e2966e0e84a6b5824b24f3b7a63fc02" kind="variable"><name>angular_velocity_sum</name></member>
@@ -166,6 +168,8 @@
     <member refid="classrko__lio_1_1ros_1_1utils_1_1RclcppSink_1a2203639a0ee99ec606a4e724c839696a" kind="function"><name>RclcppSink</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1RclcppSink_1a4b48aac50974245550366d76203226b4" kind="function"><name>sink_it_</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1RclcppSink_1ad895ab3ec4577963198e508121af29f4" kind="function"><name>flush_</name></member>
+  </compound>
+  <compound refid="classrko__lio_1_1core_1_1RegistrationError" kind="class"><name>rko_lio::core::RegistrationError</name>
   </compound>
   <compound refid="classrko__lio_1_1core_1_1ScopedProfiler" kind="class"><name>rko_lio::core::ScopedProfiler</name>
     <member refid="classrko__lio_1_1core_1_1ScopedProfiler_1a65e007b49e0b806ae940a86973be9c62" kind="typedef"><name>Clock</name></member>
@@ -272,21 +276,21 @@
     <member refid="classrko__lio_1_1core_1_1VoxelHashMap_1a6c6f82cee6f889756a899db6c7ddfaaf" kind="function"><name>points</name></member>
     <member refid="classrko__lio_1_1core_1_1VoxelHashMap_1a135adfd73ddcd2d39fd357062119acdf" kind="function"><name>get_closest_neighbor</name></member>
   </compound>
-  <compound refid="namespace_0d0" kind="namespace"><name>@0</name>
+  <compound refid="namespace_0d1" kind="namespace"><name>@1</name>
   </compound>
-  <compound refid="namespace_0d10" kind="namespace"><name>@10</name>
+  <compound refid="namespace_0d11" kind="namespace"><name>@11</name>
   </compound>
-  <compound refid="namespace_0d12" kind="namespace"><name>@12</name>
+  <compound refid="namespace_0d13" kind="namespace"><name>@13</name>
   </compound>
-  <compound refid="namespace_0d14" kind="namespace"><name>@14</name>
+  <compound refid="namespace_0d15" kind="namespace"><name>@15</name>
   </compound>
-  <compound refid="namespace_0d17" kind="namespace"><name>@17</name>
+  <compound refid="namespace_0d18" kind="namespace"><name>@18</name>
   </compound>
-  <compound refid="namespace_0d21" kind="namespace"><name>@21</name>
+  <compound refid="namespace_0d22" kind="namespace"><name>@22</name>
   </compound>
-  <compound refid="namespace_0d24" kind="namespace"><name>@24</name>
+  <compound refid="namespace_0d25" kind="namespace"><name>@25</name>
   </compound>
-  <compound refid="namespace_0d4" kind="namespace"><name>@4</name>
+  <compound refid="namespace_0d5" kind="namespace"><name>@5</name>
   </compound>
   <compound refid="namespaceEigen" kind="namespace"><name>Eigen</name>
     <member refid="util_8hpp_1acbe7c0b7d2256e5520e0672cc1f453a5" kind="typedef"><name>Vector3s</name></member>
@@ -319,11 +323,11 @@
   <compound refid="namespacerko__lio_1_1ros" kind="namespace"><name>rko_lio::ros</name>
     <member refid="base__node_8cpp_1afae6f65417b908b3b2a34c5a6261c7d1" kind="function"><name>imu_msg_to_imu_data</name></member>
   </compound>
-  <compound refid="namespacerko__lio_1_1ros_1_1_0d14" kind="namespace"><name>rko_lio::ros::@14</name>
-  </compound>
   <compound refid="namespacerko__lio_1_1ros_1_1_0d15" kind="namespace"><name>rko_lio::ros::@15</name>
   </compound>
   <compound refid="namespacerko__lio_1_1ros_1_1_0d16" kind="namespace"><name>rko_lio::ros::@16</name>
+  </compound>
+  <compound refid="namespacerko__lio_1_1ros_1_1_0d17" kind="namespace"><name>rko_lio::ros::@17</name>
   </compound>
   <compound refid="namespacerko__lio_1_1ros_1_1utils" kind="namespace"><name>rko_lio::ros::utils</name>
     <member refid="point__cloud__read_8cpp_1a77975e01f058823f8615a43bba6396a5" kind="function"><name>point_cloud2_to_eigen</name></member>
@@ -349,9 +353,13 @@
   </compound>
   <compound refid="namespacespdlog_1_1sinks" kind="namespace"><name>spdlog::sinks</name>
   </compound>
+  <compound refid="namespacestd" kind="namespace"><name>std</name>
+  </compound>
   <compound refid="namespacestd_1_1chrono__literals" kind="namespace"><name>std::chrono_literals</name>
   </compound>
   <compound refid="namespacestd_1_1literals" kind="namespace"><name>std::literals</name>
+  </compound>
+  <compound refid="error_8hpp" kind="file"><name>error.hpp</name>
   </compound>
   <compound refid="lio_8cpp" kind="file"><name>lio.cpp</name>
   </compound>

@@ -32,21 +32,13 @@ Includes
 
 - ``base_node.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_base_node.hpp`)
 
-- ``nav_msgs/msg/odometry.hpp``
-
 - ``rclcpp_components/register_node_macro.hpp``
 
-- ``rko_lio/core/process_timestamps.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_process_timestamps.hpp`)
+- ``rko_lio/core/error.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_error.hpp`)
 
 - ``rko_lio/core/profiler.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_profiler.hpp`)
 
 - ``rko_lio/ros/utils/utils.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_utils.hpp`)
-
-- ``sensor_msgs/msg/imu.hpp``
-
-- ``sensor_msgs/msg/point_cloud2.hpp``
-
-- ``stdexcept``
 
 
 

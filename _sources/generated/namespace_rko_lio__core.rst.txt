@@ -48,7 +48,11 @@ Classes
 
 - :ref:`exhale_struct_structrko__lio_1_1core_1_1VoxelHash`
 
+- :ref:`exhale_class_classrko__lio_1_1core_1_1InputError`
+
 - :ref:`exhale_class_classrko__lio_1_1core_1_1LIO`
+
+- :ref:`exhale_class_classrko__lio_1_1core_1_1RegistrationError`
 
 - :ref:`exhale_class_classrko__lio_1_1core_1_1ScopedProfiler`
 

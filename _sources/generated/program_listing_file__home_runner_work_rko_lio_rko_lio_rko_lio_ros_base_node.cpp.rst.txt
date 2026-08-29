@@ -35,7 +35,6 @@ Program Listing for File base_node.cpp
     */
    
    #include "base_node.hpp"
-   #include "rko_lio/core/process_timestamps.hpp"
    #include "rko_lio/ros/utils/spdlog_sink.hpp"
    #include "rko_lio/ros/utils/utils.hpp"
    // other
@@ -132,7 +131,7 @@ Program Listing for File base_node.cpp
      lio_config.voxel_size =
          static_cast<core::Scalar>(node->declare_parameter<double>("voxel_size", lio_config.voxel_size));
      if (node->declare_parameter<int>("max_points_per_voxel", -1) != -1) {
-       throw std::runtime_error(
+       throw std::invalid_argument(
            "max_points_per_voxel was removed, it is now fixed at compile time so the map can store points inline. "
            "Use voxel_size to control map density instead: smaller keeps more points overall, larger keeps fewer.");
      }
@@ -207,7 +206,8 @@ Program Listing for File base_node.cpp
        }
        const Eigen::Quaternions q = Eigen::Quaterniond(vec.at(3), vec.at(0), vec.at(1), vec.at(2)).cast<core::Scalar>();
        if (q.norm() < 1e-6) {
-         throw std::runtime_error(name + " extrinsic quaternion has zero norm");
+         throw std::invalid_argument(name + " extrinsic quaternion has zero norm (extrinsic_" + name +
+                                     "2base_quat_xyzw_xyz).");
        }
        extrinsic = Sophus::SE3s(q, Eigen::Vector3d(vec.at(4), vec.at(5), vec.at(6)).cast<core::Scalar>());
        RCLCPP_INFO_STREAM(node->get_logger(), "Parsed " << name << " extrinsic as: " << extrinsic.log().transpose());
@@ -223,9 +223,9 @@ Program Listing for File base_node.cpp
                                               std::string_view kind) {
      if (target_frame.empty()) {
        if (msg_frame.empty() && !extrinsics_set) {
-         throw std::runtime_error(std::string(kind) +
-                                  " message header has no frame id and we need it to query TF for the extrinsics. "
-                                  "Either specify the frame id or the extrinsic manually.");
+         throw std::invalid_argument(std::string(kind) +
+                                     " message header has no frame id and we need it to query TF for the extrinsics. "
+                                     "Either specify the frame id or the extrinsic manually.");
        }
        target_frame = msg_frame;
        RCLCPP_INFO_STREAM(node->get_logger(), "Parsed the " << kind << " frame id as: " << target_frame);

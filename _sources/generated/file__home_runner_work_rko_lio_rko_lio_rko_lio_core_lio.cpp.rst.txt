@@ -32,6 +32,8 @@ Includes
 
 - ``algorithm``
 
+- ``error.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_error.hpp`)
+
 - ``functional``
 
 - ``lio.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_lio.hpp`)
@@ -49,8 +51,6 @@ Includes
 - ``spdlog/spdlog.h``
 
 - ``sstream``
-
-- ``stdexcept``
 
 - ``tbb/blocked_range.h``
 

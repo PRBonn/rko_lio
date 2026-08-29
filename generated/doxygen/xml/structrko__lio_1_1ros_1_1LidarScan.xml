@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="51" column="20" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="51" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="50" column="20" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="50" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structrko__lio_1_1ros_1_1LidarScan_1a06f350e8ad2802904408db1c04f9bda8" prot="public" static="no" mutable="no">
         <type>core::Vector3sVector</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="52" column="24" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="52" bodyend="-1"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="51" column="24" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="51" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -49,7 +49,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="50" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="50" bodyend="53"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" line="49" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" bodystart="49" bodyend="52"/>
     <listofallmembers>
       <member refid="structrko__lio_1_1ros_1_1LidarScan_1a06f350e8ad2802904408db1c04f9bda8" prot="public" virt="non-virtual"><scope>rko_lio::ros::LidarScan</scope><name>points</name></member>
       <member refid="structrko__lio_1_1ros_1_1LidarScan_1ab5e03b44875bf98c7210b134d55b17a1" prot="public" virt="non-virtual"><scope>rko_lio::ros::LidarScan</scope><name>timestamps</name></member>

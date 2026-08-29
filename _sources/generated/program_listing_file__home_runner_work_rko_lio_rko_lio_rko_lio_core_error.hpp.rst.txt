@@ -1,0 +1,27 @@
+
+.. _program_listing_file__home_runner_work_rko_lio_rko_lio_rko_lio_core_error.hpp:
+
+Program Listing for File error.hpp
+==================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file__home_runner_work_rko_lio_rko_lio_rko_lio_core_error.hpp>` (``/home/runner/work/rko_lio/rko_lio/rko_lio/core/error.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #pragma once
+   
+   #include <stdexcept>
+   
+   namespace rko_lio::core {
+   
+   class InputError : public std::runtime_error {
+     using std::runtime_error::runtime_error;
+   };
+   
+   class RegistrationError : public std::runtime_error {
+     using std::runtime_error::runtime_error;
+   };
+   
+   } // namespace rko_lio::core

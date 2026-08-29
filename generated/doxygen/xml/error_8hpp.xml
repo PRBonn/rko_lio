@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="error_8hpp" kind="file" language="C++">
+    <compoundname>error.hpp</compoundname>
+    <includes local="no">stdexcept</includes>
+    <includedby refid="lio_8cpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp</includedby>
+    <includedby refid="process__timestamps_8cpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.cpp</includedby>
+    <includedby refid="online__imu__rate__node_8cpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp</includedby>
+    <includedby refid="threaded__node_8cpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.cpp</includedby>
+    <includedby refid="point__cloud__read_8cpp" local="yes">/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/home/runner/work/rko_lio/rko_lio/rko_lio/core/error.hpp</label>
+        <link refid="error_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdexcept</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classrko__lio_1_1core_1_1InputError" prot="public">rko_lio::core::InputError</innerclass>
+    <innerclass refid="classrko__lio_1_1core_1_1RegistrationError" prot="public">rko_lio::core::RegistrationError</innerclass>
+    <innernamespace refid="namespacerko__lio">rko_lio</innernamespace>
+    <innernamespace refid="namespacerko__lio_1_1core">rko_lio::core</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdexcept&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="namespacerko__lio_1_1core" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacerko__lio_1_1core" kindref="compound">rko_lio::core</ref><sp/>{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="classrko__lio_1_1core_1_1InputError" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrko__lio_1_1core_1_1InputError" kindref="compound">InputError</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>std::runtime_error<sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">std::runtime_error::runtime_error;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="classrko__lio_1_1core_1_1RegistrationError" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrko__lio_1_1core_1_1RegistrationError" kindref="compound">RegistrationError</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>std::runtime_error<sp/>{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">std::runtime_error::runtime_error;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/error.hpp"/>
+  </compounddef>
+</doxygen>

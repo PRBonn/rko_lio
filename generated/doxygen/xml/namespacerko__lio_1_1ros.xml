@@ -23,13 +23,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" line="61" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="61" bodyend="67" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" declline="55" declcolumn="18"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" line="60" column="18" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" bodystart="60" bodyend="66" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.hpp" declline="54" declcolumn="18"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" line="59" column="1"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/base_node.cpp" line="58" column="1"/>
   </compounddef>
 </doxygen>

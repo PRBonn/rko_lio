@@ -119,13 +119,13 @@
 <span class="cm"> */</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">"process_timestamps.hpp"</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"error.hpp"</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;spdlog/spdlog.h&gt;</span>
 <span class="c1">// stl</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdint&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;functional&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdexcept&gt;</span>
 
 <span class="k">namespace</span><span class="w"> </span><span class="p">{</span>
 <span class="k">using</span><span class="w"> </span><span class="n">rko_lio</span><span class="o">::</span><span class="n">core</span><span class="o">::</span><span class="n">Nsec</span><span class="p">;</span>
@@ -175,7 +175,7 @@
 <span class="w">                              </span><span class="k">const</span><span class="w"> </span><span class="n">Nsec</span><span class="w"> </span><span class="n">header_stamp</span><span class="p">,</span>
 <span class="w">                              </span><span class="k">const</span><span class="w"> </span><span class="n">TimestampProcessingConfig</span><span class="o">&amp;</span><span class="w"> </span><span class="n">config</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">raw_timestamps</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">invalid_argument</span><span class="p">(</span><span class="s">"process_timestamps: raw_timestamps must not be empty."</span><span class="p">);</span>
+<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="n">InputError</span><span class="p">(</span><span class="s">"LiDAR timestamps are empty."</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="w">  </span><span class="n">Timestamps</span><span class="w"> </span><span class="n">timestamps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">timestamps_from_raw</span><span class="p">(</span><span class="n">raw_timestamps</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">multiplier_to_seconds</span><span class="p">);</span>
 
@@ -198,22 +198,21 @@
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="c1">// Error-out for unique/unsupported cases</span>
-<span class="w">  </span><span class="n">spdlog</span><span class="o">::</span><span class="n">error</span><span class="p">(</span><span class="s">"is_absolute: {}</span><span class="se">\n</span><span class="s">"</span>
-<span class="w">                </span><span class="s">"is_relative: {}</span><span class="se">\n</span><span class="s">"</span>
-<span class="w">                </span><span class="s">"point times min (ns): {}</span><span class="se">\n</span><span class="s">"</span>
-<span class="w">                </span><span class="s">"point times max (ns): {}</span><span class="se">\n</span><span class="s">"</span>
-<span class="w">                </span><span class="s">"header_stamp (ns): {}</span><span class="se">\n</span><span class="s">"</span>
-<span class="w">                </span><span class="s">"TimestampProcessingConfig:</span><span class="se">\n</span><span class="s">"</span>
-<span class="w">                </span><span class="s">"  multiplier_to_seconds: {}</span><span class="se">\n</span><span class="s">"</span>
-<span class="w">                </span><span class="s">"  force_absolute: {}</span><span class="se">\n</span><span class="s">"</span>
-<span class="w">                </span><span class="s">"  force_relative: {}</span><span class="se">\n</span><span class="s">"</span>
-<span class="w">                </span><span class="s">"  start and end difference thresholds to header time are 1 and 10 milliseconds. Please force a "</span>
-<span class="w">                </span><span class="s">"case if those thresholds don't suit your sensor."</span><span class="p">,</span>
-<span class="w">                </span><span class="n">absolute_stamps</span><span class="p">,</span><span class="w"> </span><span class="n">relative_stamps</span><span class="p">,</span><span class="w"> </span><span class="n">timestamps</span><span class="p">.</span><span class="n">min</span><span class="p">.</span><span class="n">count</span><span class="p">(),</span><span class="w"> </span><span class="n">timestamps</span><span class="p">.</span><span class="n">max</span><span class="p">.</span><span class="n">count</span><span class="p">(),</span><span class="w"> </span><span class="n">header_stamp</span><span class="p">.</span><span class="n">count</span><span class="p">(),</span>
-<span class="w">                </span><span class="n">config</span><span class="p">.</span><span class="n">multiplier_to_seconds</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">force_absolute</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">force_relative</span><span class="p">);</span>
-<span class="w">  </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span>
-<span class="w">      </span><span class="s">"TimestampProcessingConfig does not cover this particular case of data. Please investigate, modify "</span>
-<span class="w">      </span><span class="s">"the config, or open an issue."</span><span class="p">);</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">header_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">to_seconds</span><span class="p">(</span><span class="n">header_stamp</span><span class="p">);</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">min_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">to_seconds</span><span class="p">(</span><span class="n">timestamps</span><span class="p">.</span><span class="n">min</span><span class="p">);</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">max_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">to_seconds</span><span class="p">(</span><span class="n">timestamps</span><span class="p">.</span><span class="n">max</span><span class="p">);</span>
+<span class="w">  </span><span class="n">spdlog</span><span class="o">::</span><span class="n">error</span><span class="p">(</span><span class="s">"header: {:.6f} s</span><span class="se">\n</span><span class="s">"</span>
+<span class="w">                </span><span class="s">"points: {:.6f} .. {:.6f} s  (span {:.4f} s)</span><span class="se">\n</span><span class="s">"</span>
+<span class="w">                </span><span class="s">"|header-min| = {:.4f} s  (absolute if &lt; 0.001 s)</span><span class="se">\n</span><span class="s">"</span>
+<span class="w">                </span><span class="s">"|header-max| = {:.4f} s  (absolute if &lt; 0.010 s)</span><span class="se">\n</span><span class="s">"</span>
+<span class="w">                </span><span class="s">"|min| = {:.4f} s  (relative if &lt; 0.001 s)</span><span class="se">\n</span><span class="s">"</span>
+<span class="w">                </span><span class="s">"|max| = {:.4f} s  (relative if &lt; 0.010 s)</span><span class="se">\n</span><span class="s">"</span>
+<span class="w">                </span><span class="s">"multiplier_to_seconds: {}  (0 = autodetect)</span><span class="se">\n</span><span class="s">"</span>
+<span class="w">                </span><span class="s">"Set force_absolute if point times share the header clock; "</span>
+<span class="w">                </span><span class="s">"force_relative if they are offsets within the scan."</span><span class="p">,</span>
+<span class="w">                </span><span class="n">header_s</span><span class="p">,</span><span class="w"> </span><span class="n">min_s</span><span class="p">,</span><span class="w"> </span><span class="n">max_s</span><span class="p">,</span><span class="w"> </span><span class="n">max_s</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">min_s</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">header_s</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">min_s</span><span class="p">),</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">header_s</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">max_s</span><span class="p">),</span>
+<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">min_s</span><span class="p">),</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">max_s</span><span class="p">),</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">multiplier_to_seconds</span><span class="p">);</span>
+<span class="w">  </span><span class="k">throw</span><span class="w"> </span><span class="n">InputError</span><span class="p">(</span><span class="s">"Cannot classify LiDAR timestamps as absolute or relative."</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace rko_lio::core</span>
 </pre></div>

@@ -1,0 +1,26 @@
+.. _exhale_class_classrko__lio_1_1core_1_1InputError:
+
+Class InputError
+================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_error.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public std::runtime_error``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: rko_lio::core::InputError
+   :project: rko_lio Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

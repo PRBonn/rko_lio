@@ -232,10 +232,8 @@ The convention is described under <a class="reference internal" href="data.html#
 <p>The C++ backend (<cite>rko_lio::core::process_timestamps</cite>) tries to automatically
 decide whether a LiDAR timestamp sequence is <strong>absolute</strong> (already aligned to
 wall-clock time) or <strong>relative</strong> (offsets that must be shifted by the message
-header time). If the data cannot be confidently classified as either, a
-<cite>std::runtime_error</cite> is thrown:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Runtime</span> <span class="n">Error</span><span class="p">:</span> <span class="n">TimestampProcessingConfig</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">cover</span> <span class="n">this</span> <span class="n">particular</span>
-<span class="k">case</span> <span class="n">of</span> <span class="n">data</span><span class="o">.</span> <span class="n">Please</span> <span class="n">investigate</span><span class="p">,</span> <span class="n">modify</span> <span class="n">the</span> <span class="n">config</span><span class="p">,</span> <span class="ow">or</span> <span class="nb">open</span> <span class="n">an</span> <span class="n">issue</span><span class="o">.</span>
+header time). If the data cannot be confidently classified as either, this error is thrown:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Cannot</span> <span class="n">classify</span> <span class="n">LiDAR</span> <span class="n">timestamps</span> <span class="k">as</span> <span class="n">absolute</span> <span class="ow">or</span> <span class="n">relative</span><span class="o">.</span>
 </pre></div>
 </div>
 <p>When this error occurs, you can potentially adjust the <cite>timestamps</cite> section of your

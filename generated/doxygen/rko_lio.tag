@@ -128,6 +128,10 @@
     <name>rko_lio::core::ImuControl</name>
     <filename>structrko__lio_1_1core_1_1ImuControl.html</filename>
   </compound>
+  <compound kind="class">
+    <name>rko_lio::core::InputError</name>
+    <filename>classrko__lio_1_1core_1_1InputError.html</filename>
+  </compound>
   <compound kind="struct">
     <name>rko_lio::core::IntervalStats</name>
     <filename>structrko__lio_1_1core_1_1IntervalStats.html</filename>
@@ -312,6 +316,10 @@
     <filename>classrko__lio_1_1ros_1_1utils_1_1RclcppSink.html</filename>
   </compound>
   <compound kind="class">
+    <name>rko_lio::core::RegistrationError</name>
+    <filename>classrko__lio_1_1core_1_1RegistrationError.html</filename>
+  </compound>
+  <compound kind="class">
     <name>rko_lio::core::ScopedProfiler</name>
     <filename>classrko__lio_1_1core_1_1ScopedProfiler.html</filename>
     <member kind="function">
@@ -385,10 +393,12 @@
     <filename>namespacerko__lio_1_1core.html</filename>
     <class kind="struct">rko_lio::core::ImuBias</class>
     <class kind="struct">rko_lio::core::ImuControl</class>
+    <class kind="class">rko_lio::core::InputError</class>
     <class kind="struct">rko_lio::core::IntervalStats</class>
     <class kind="class">rko_lio::core::LIO</class>
     <class kind="struct">rko_lio::core::MotionPrior</class>
     <class kind="struct">rko_lio::core::PreprocessingResult</class>
+    <class kind="class">rko_lio::core::RegistrationError</class>
     <class kind="class">rko_lio::core::ScopedProfiler</class>
     <class kind="struct">rko_lio::core::State</class>
     <class kind="struct">rko_lio::core::Timer</class>

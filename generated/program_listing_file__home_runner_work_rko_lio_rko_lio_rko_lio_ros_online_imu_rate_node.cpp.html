@@ -119,15 +119,9 @@
 <span class="cm"> */</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">"base_node.hpp"</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">"rko_lio/core/process_timestamps.hpp"</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"rko_lio/core/error.hpp"</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">"rko_lio/core/profiler.hpp"</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">"rko_lio/ros/utils/utils.hpp"</span>
-<span class="c1">// ros</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;nav_msgs/msg/odometry.hpp&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sensor_msgs/msg/imu.hpp&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span>
-<span class="c1">// other</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdexcept&gt;</span>
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">rko_lio</span><span class="o">::</span><span class="nn">ros</span><span class="w"> </span><span class="p">{</span>
 <span class="k">namespace</span><span class="w"> </span><span class="p">{</span>
@@ -213,8 +207,8 @@
 <span class="w">      </span><span class="p">}</span>
 <span class="w">      </span><span class="n">publish_lidar_outputs</span><span class="p">(</span><span class="n">deskewed_scan</span><span class="p">);</span>
 <span class="w">      </span><span class="n">publish_tf</span><span class="p">(</span><span class="n">lio</span><span class="o">-&gt;</span><span class="n">lidar_state</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">invalid_argument</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">RCLCPP_ERROR_STREAM</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">"Encountered error, dropping scan. Error: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ex</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">core</span><span class="o">::</span><span class="n">InputError</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">RCLCPP_ERROR_STREAM</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">"Dropping scan: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ex</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">};</span>

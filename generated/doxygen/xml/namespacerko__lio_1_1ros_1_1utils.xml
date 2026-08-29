@@ -22,7 +22,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" line="35" column="22" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" bodystart="35" bodyend="46" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" declline="35" declcolumn="22"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" line="36" column="22" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" bodystart="36" bodyend="47" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" declline="35" declcolumn="22"/>
       </memberdef>
       <memberdef kind="function" id="point__cloud__read_8cpp_1ac97c323cb1b6bab04e1f5a2766731cd8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structrko__lio_1_1ros_1_1utils_1_1RawScan" kindref="compound">RawScan</ref></type>
@@ -40,7 +40,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" line="48" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" bodystart="48" bodyend="98"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" line="49" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" bodystart="49" bodyend="101"/>
       </memberdef>
       <memberdef kind="function" id="point__cloud__read_8hpp_1a77d7ba00ca1501f61934151103ed9af2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structrko__lio_1_1ros_1_1utils_1_1RawScan" kindref="compound">RawScan</ref></type>
@@ -298,6 +298,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" line="31" column="1"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" line="32" column="1"/>
   </compounddef>
 </doxygen>
