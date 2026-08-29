@@ -86,7 +86,7 @@ The most common invocation is just:
 
 Add ``-v`` to enable visualization (uses `rerun <https://rerun.io>`_; install the ``rerun-sdk`` extra).
 
-There are three dataloaders: ``rosbag`` (ROS1 or ROS2), ``raw``, and ``HeLiPR`` (deprecated). The system tries to detect the right one from the data path; choose explicitly with ``-d``.
+There are two dataloaders: ``rosbag`` (ROS1 or ROS2) and ``raw``. The system tries to detect the right one from the data path; choose explicitly with ``-d``.
 
 A config file is passed with ``--config`` / ``-c``.
 Dump a default config to inspect or edit:
@@ -121,9 +121,6 @@ Dataloaders
    :no-index:
 
 .. automodule:: rko_lio.dataloaders.raw
-   :no-index:
-
-.. automodule:: rko_lio.dataloaders.helipr
    :no-index:
 
 Python API

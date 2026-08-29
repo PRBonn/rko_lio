@@ -16,7 +16,6 @@ Submodules
    :maxdepth: 4
 
    rko_lio.dataloaders.get_dataloader
-   rko_lio.dataloaders.helipr
    rko_lio.dataloaders.raw
    rko_lio.dataloaders.rosbag
    rko_lio.dataloaders.sequencer

@@ -223,7 +223,7 @@ The convention is described under <a class="reference internal" href="data.html#
 <ul class="simple">
 <li><p><strong>ROS</strong>: only if the TF tree isn’t well defined or topic <code class="docutils literal notranslate"><span class="pre">frame_id</span></code>s don’t match the TF tree. With a clean TF tree, the extrinsics are looked up automatically.</p></li>
 <li><p><strong>Python rosbag dataloader</strong>: only if the bag has no static TF tree. With a tree, the extrinsics are pulled from it.</p></li>
-<li><p><strong>Python raw / HeLiPR dataloaders</strong>: always required, supplied via the dataloader’s own configuration mechanism (<code class="docutils literal notranslate"><span class="pre">transforms.yaml</span></code> for raw, etc.).</p></li>
+<li><p><strong>Python raw dataloader</strong>: always required, supplied via the dataloader’s own configuration mechanism (<code class="docutils literal notranslate"><span class="pre">transforms.yaml</span></code>).</p></li>
 </ul>
 <p>If you specify the extrinsics in a config but the dataloader / TF tree could also provide them, the config values take priority.</p>
 </section>

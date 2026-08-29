@@ -112,10 +112,9 @@
 <ul>
 <li><p><a class="reference internal" href="#rosbag-dataloader" id="id6">Rosbag Dataloader</a></p></li>
 <li><p><a class="reference internal" href="#raw-dataloader" id="id7">Raw Dataloader</a></p></li>
-<li><p><a class="reference internal" href="#helipr-dataloader" id="id8">HeLiPR Dataloader</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#python-api" id="id9">Python API</a></p></li>
+<li><p><a class="reference internal" href="#python-api" id="id8">Python API</a></p></li>
 </ul>
 </nav>
 <section id="setup">
@@ -169,7 +168,7 @@ If you want to build against system libraries instead, set <code class="docutils
 </pre></div>
 </div>
 <p>Add <code class="docutils literal notranslate"><span class="pre">-v</span></code> to enable visualization (uses <a class="reference external" href="https://rerun.io">rerun</a>; install the <code class="docutils literal notranslate"><span class="pre">rerun-sdk</span></code> extra).</p>
-<p>There are three dataloaders: <code class="docutils literal notranslate"><span class="pre">rosbag</span></code> (ROS1 or ROS2), <code class="docutils literal notranslate"><span class="pre">raw</span></code>, and <code class="docutils literal notranslate"><span class="pre">HeLiPR</span></code> (deprecated). The system tries to detect the right one from the data path; choose explicitly with <code class="docutils literal notranslate"><span class="pre">-d</span></code>.</p>
+<p>There are two dataloaders: <code class="docutils literal notranslate"><span class="pre">rosbag</span></code> (ROS1 or ROS2) and <code class="docutils literal notranslate"><span class="pre">raw</span></code>. The system tries to detect the right one from the data path; choose explicitly with <code class="docutils literal notranslate"><span class="pre">-d</span></code>.</p>
 <p>A config file is passed with <code class="docutils literal notranslate"><span class="pre">--config</span></code> / <code class="docutils literal notranslate"><span class="pre">-c</span></code>.
 Dump a default config to inspect or edit:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rko_lio<span class="w"> </span>--dump_config
@@ -253,13 +252,9 @@ filename stamp (disable deskewing with <code class="docutils literal notranslate
 </pre></div>
 </div>
 </section>
-<section id="helipr-dataloader">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">HeLiPR Dataloader</a><a class="headerlink" href="#helipr-dataloader" title="Link to this heading">¶</a></h3>
-<p>This loader is deprecated and will be removed in a future release. If you need it supported, please open an issue.</p>
-</section>
 </section>
 <section id="python-api">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">Python API</a><a class="headerlink" href="#python-api" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Python API</a><a class="headerlink" href="#python-api" title="Link to this heading">¶</a></h2>
 <p>The full module-level API reference is auto-generated: see <a class="reference internal" href="../python/modules.html"><span class="doc">python</span></a>.</p>
 <div class="toctree-wrapper compound">
 </div>
