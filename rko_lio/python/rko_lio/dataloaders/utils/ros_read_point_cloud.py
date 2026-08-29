@@ -8,7 +8,7 @@ from collections.abc import Iterable
 
 import numpy as np
 
-__TIMESTAMP_ATTRIBUTE_NAMES__ = ["time", "timestamps", "timestamp", "t"]
+__TIMESTAMP_ATTRIBUTE_NAMES__ = ["t", "time", "timestamp", "timestamps", "stamps"]
 
 _DATATYPES = {
     "int8": np.dtype(np.int8),

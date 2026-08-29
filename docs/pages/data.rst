@@ -50,7 +50,7 @@ If you cannot supply per-point timestamps, you must disable deskewing and take t
 For ROS, this translates to:
 
 - A timestamp in the ``PointCloud2`` message header (the standard sensor driver pattern).
-- A time field per point inside the cloud. Common field names are accepted (``time``, ``timestamp``, ``timestamps``, ``t``).
+- A time field per point inside the cloud. Common field names are accepted (``t``, ``time``, ``timestamp``, ``timestamps``, ``stamps``).
 
 I try to handle the different ways drivers encode per-point timestamps automatically -- absolute (already aligned with wall-clock time) vs. relative (offsets from the message header time), seconds vs. nanoseconds, and so on.
 The heuristic is at `rko_lio/core/process_timestamps.cpp <https://github.com/PRBonn/rko_lio/blob/master/rko_lio/core/process_timestamps.cpp>`_.

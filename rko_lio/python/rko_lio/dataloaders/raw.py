@@ -43,7 +43,7 @@ A file-based dataloader for datasets laid out as plain files:
   Extra columns are ignored.
 - ``lidar/`` holds one ``.ply`` per scan; the filename stem is the scan
   timestamp in **nanoseconds**. A per-point time field (``time``, ``timestamps``,
-  ``timestamp`` or ``t``) is used for deskewing when present, with units and
+  ``timestamp``, ``t`` or ``stamps``) is used for deskewing when present, with units and
   absolute/relative detected automatically; clouds without one fall back to the
   filename stamp (disable deskewing with ``deskew: false`` in a ``-c`` config).
 
