@@ -2,8 +2,8 @@
 Changelog for package rko_lio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.0 (2026-09-01)
+------------------
 * core, ros: reset odometry on fatal registration error (`#183 <https://github.com/PRBonn/rko_lio/issues/183>`_)
   adds a reset count publisher for downstream subscribers
 * core: widen the size check on register scan entry to catch more possible
