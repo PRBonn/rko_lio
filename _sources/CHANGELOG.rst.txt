@@ -2,6 +2,52 @@
 Changelog for package rko_lio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.4.0 (2026-09-01)
+------------------
+* core, ros: reset odometry on fatal registration error (`#183 <https://github.com/PRBonn/rko_lio/issues/183>`_)
+  adds a reset count publisher for downstream subscribers
+* core: widen the size check on register scan entry to catch more possible
+  errors
+* core: drop imu messages with negative dt
+* ros: reorder declaration of jthreads to avoid a possible race
+* core: use typed exceptions and clean up error handling (`#182 <https://github.com/PRBonn/rko_lio/issues/182>`_)
+  frame drops and fatal errors can now be distinguished
+* core: switch to an spdlog sink instead of cout/cerr for core logs (`#180 <https://github.com/PRBonn/rko_lio/issues/180>`_)
+  on ros, spdlog is redirected to an rclcpp sink so ros log levels are respected
+* core, ci: bump clang tidy to latest, clean up linter warnings (`#179 <https://github.com/PRBonn/rko_lio/issues/179>`_)
+* core, ros: remove nlohmann_json as a dep, dump config as yaml instead (`#177 <https://github.com/PRBonn/rko_lio/issues/177>`_)
+* ros: drop the oldest frame on the online node instead of the latest scan (`#155 <https://github.com/PRBonn/rko_lio/issues/155>`_)
+* core: extrapolate the motion prior across a lidar gap instead of throwing (`#174 <https://github.com/PRBonn/rko_lio/issues/174>`_)
+  a gap longer than the allowed scan delta used to permanently stop odometry instead of just the one scan spanning it
+* core: timestamp struct handling cleanup, min/max computed once (`#175 <https://github.com/PRBonn/rko_lio/issues/175>`_)
+* core, ros: consistent naming, and make the voxel map's state private (`#171 <https://github.com/PRBonn/rko_lio/issues/171>`_)
+  breaking core api renames: VoxelHashMap::pointcloud() -> points(), ros::LidarFrame -> LidarScan
+* core: deskew without a per-point SE3 exp (`#172 <https://github.com/PRBonn/rko_lio/issues/172>`_)
+* ros: fix a deadlock on the offline node bag read
+* ros, config: limit max iterations to 50 by default
+  was 500
+* ros: change default num threads to 1, and reduce the lidar buffer size
+* core: quantise the voxel map to int8 offsets with fixed-size inline blocks (`#170 <https://github.com/PRBonn/rko_lio/issues/170>`_)
+  cuts local map memory footprint
+* core: use pmr for voxel down sample to reduce allocations
+* core: switch icp to right perturbation (`#163 <https://github.com/PRBonn/rko_lio/issues/163>`_)
+  theoretically better conditioning at very large scales
+* chore: enforce formatters and linters through pre-commit, various lint fixes (`#162 <https://github.com/PRBonn/rko_lio/issues/162>`_)
+  clang-format, ruff, cmake-format, clang-tidy and codespell across the repo. also scopes
+  BUILD_SHARED_LIBS to the python wheel build: it was set globally from TBB's dependency
+  file, so a ROS user building with FetchContent hit oneTBB's static-build warning meant
+  only for the wheel
+* core: redo tbb threading control using task arena instead of global
+  allows multiple components in a process to use tbb independently. also fixes a build
+  breakage where tbb needed to be a public link, not private
+* core: better icp convergence criterion, function tolerance over param delta (`#161 <https://github.com/PRBonn/rko_lio/issues/161>`_)
+* floating point type is now configurable to float or double (`#160 <https://github.com/PRBonn/rko_lio/issues/160>`_)
+  across core, py, ros; a build-time switch, no runtime cost
+* core, perf: reducing scan copies (`#159 <https://github.com/PRBonn/rko_lio/issues/159>`_)
+* core, cleanup: linear system build cleanup, and voxel map op unification (`#158 <https://github.com/PRBonn/rko_lio/issues/158>`_)
+* core, perf: improve closest neighbour search by early pruning voxels (`#157 <https://github.com/PRBonn/rko_lio/issues/157>`_)
+* Contributors: Dhagash Desai, Meher Malladi
+
 0.3.2 (2026-07-28)
 ------------------
 * ros, launch: autodetect topics and frames (`#152 <https://github.com/PRBonn/rko_lio/issues/152>`_)
