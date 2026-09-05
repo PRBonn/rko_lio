@@ -219,7 +219,7 @@ Visualization Manager:
       Name: Current View
       Near Clip Distance: 0.009999999776482582
       Pitch: 0.7947956323623657
-      Target Frame: hor/os_lidar
+      Target Frame: base_link
       Value: Orbit (rviz)
       Yaw: 0.7267590761184692
     Saved: ~
