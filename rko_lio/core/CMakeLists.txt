@@ -30,6 +30,7 @@ add_library(rko_lio::core ALIAS rko_lio.core)
 compat_target_sources(
   rko_lio.core
   PRIVATE lio.cpp
+          deskew.cpp
           voxel_hash_map.cpp
           voxel_down_sample.cpp
           process_timestamps.cpp
@@ -37,7 +38,8 @@ compat_target_sources(
   PUBLIC
   FILE_SET
   HEADERS
-  FILES ../../rko_lio/core/error.hpp
+  FILES ../../rko_lio/core/deskew.hpp
+        ../../rko_lio/core/error.hpp
         ../../rko_lio/core/lio.hpp
         ../../rko_lio/core/preprocess_scan.hpp
         ../../rko_lio/core/process_timestamps.hpp
