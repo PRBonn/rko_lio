@@ -65,6 +65,8 @@ Functions
 ---------
 
 
+- :ref:`exhale_function_namespacerko__lio_1_1core_1a80af781c058721a54b1f0e6f518ab4be`
+
 - :ref:`exhale_function_namespacerko__lio_1_1core_1aadd9f1f2b2b1bc30166c6e4e6228841c`
 
 - :ref:`exhale_function_namespacerko__lio_1_1core_1a20e41beba0ec902b7c78dcdb29899f33`

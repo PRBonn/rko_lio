@@ -32,6 +32,8 @@ Includes
 
 - ``algorithm``
 
+- ``deskew.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_deskew.hpp`)
+
 - ``error.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_error.hpp`)
 
 - ``functional``

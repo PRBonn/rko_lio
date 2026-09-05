@@ -94,6 +94,59 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="func">
+      <memberdef kind="function" id="namespacerko__lio_1_1core_1a80af781c058721a54b1f0e6f518ab4be" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rko_lio::core::deskew_scan</definition>
+        <argsstring>(Vector3sVector &amp;scan, const Timestamps &amp;timestamps, const MotionPrior &amp;motion)</argsstring>
+        <name>deskew_scan</name>
+        <qualifiedname>rko_lio::core::deskew_scan</qualifiedname>
+        <param>
+          <type>Vector3sVector &amp;</type>
+          <declname>scan</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structrko__lio_1_1core_1_1Timestamps" kindref="compound">Timestamps</ref> &amp;</type>
+          <declname>timestamps</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structrko__lio_1_1core_1_1MotionPrior" kindref="compound">MotionPrior</ref> &amp;</type>
+          <declname>motion</declname>
+        </param>
+        <briefdescription>
+<para>Deskew a scan in place, referring every point to timestamps.max. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scan</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Point cloud to deskew in place. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>timestamps</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Absolute per-point timestamps, plus the scan&apos;s own min/max. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>motion</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Motion prior spanning the scan. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/deskew.cpp" line="32" column="6" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/deskew.cpp" bodystart="32" bodyend="66" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/deskew.hpp" declline="43" declcolumn="6"/>
+      </memberdef>
       <memberdef kind="function" id="namespacerko__lio_1_1core_1a15ad77d57e545f66d0ff5d0843b797e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structrko__lio_1_1core_1_1PreprocessingResult" kindref="compound">PreprocessingResult</ref></type>
         <definition>PreprocessingResult rko_lio::core::preprocess_scan</definition>
@@ -317,6 +370,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/error.hpp" line="5" column="1"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/deskew.cpp" line="31" column="1"/>
   </compounddef>
 </doxygen>

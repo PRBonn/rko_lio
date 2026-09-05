@@ -1,6 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
 <tagfile doxygen_version="1.9.8">
   <compound kind="file">
+    <name>deskew.hpp</name>
+    <path>/home/runner/work/rko_lio/rko_lio/rko_lio/core/</path>
+    <filename>deskew_8hpp.html</filename>
+    <namespace>rko_lio::core</namespace>
+  </compound>
+  <compound kind="file">
     <name>lio.hpp</name>
     <path>/home/runner/work/rko_lio/rko_lio/rko_lio/core/</path>
     <filename>lio_8hpp.html</filename>
@@ -416,6 +422,13 @@
     <class kind="struct">rko_lio::core::VoxelBlock</class>
     <class kind="struct">rko_lio::core::VoxelHash</class>
     <class kind="class">rko_lio::core::VoxelHashMap</class>
+    <member kind="function">
+      <type>void</type>
+      <name>deskew_scan</name>
+      <anchorfile>namespacerko__lio_1_1core.html</anchorfile>
+      <anchor>a80af781c058721a54b1f0e6f518ab4be</anchor>
+      <arglist>(Vector3sVector &amp;scan, const Timestamps &amp;timestamps, const MotionPrior &amp;motion)</arglist>
+    </member>
     <member kind="function">
       <type>Timestamps</type>
       <name>process_timestamps</name>

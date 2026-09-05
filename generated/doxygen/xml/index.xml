@@ -276,21 +276,21 @@
     <member refid="classrko__lio_1_1core_1_1VoxelHashMap_1a6c6f82cee6f889756a899db6c7ddfaaf" kind="function"><name>points</name></member>
     <member refid="classrko__lio_1_1core_1_1VoxelHashMap_1a135adfd73ddcd2d39fd357062119acdf" kind="function"><name>get_closest_neighbor</name></member>
   </compound>
-  <compound refid="namespace_0d1" kind="namespace"><name>@1</name>
-  </compound>
-  <compound refid="namespace_0d11" kind="namespace"><name>@11</name>
-  </compound>
   <compound refid="namespace_0d13" kind="namespace"><name>@13</name>
   </compound>
   <compound refid="namespace_0d15" kind="namespace"><name>@15</name>
   </compound>
-  <compound refid="namespace_0d18" kind="namespace"><name>@18</name>
+  <compound refid="namespace_0d17" kind="namespace"><name>@17</name>
   </compound>
-  <compound refid="namespace_0d22" kind="namespace"><name>@22</name>
+  <compound refid="namespace_0d20" kind="namespace"><name>@20</name>
   </compound>
-  <compound refid="namespace_0d25" kind="namespace"><name>@25</name>
+  <compound refid="namespace_0d24" kind="namespace"><name>@24</name>
   </compound>
-  <compound refid="namespace_0d5" kind="namespace"><name>@5</name>
+  <compound refid="namespace_0d27" kind="namespace"><name>@27</name>
+  </compound>
+  <compound refid="namespace_0d3" kind="namespace"><name>@3</name>
+  </compound>
+  <compound refid="namespace_0d7" kind="namespace"><name>@7</name>
   </compound>
   <compound refid="namespaceEigen" kind="namespace"><name>Eigen</name>
     <member refid="util_8hpp_1acbe7c0b7d2256e5520e0672cc1f453a5" kind="typedef"><name>Vector3s</name></member>
@@ -311,6 +311,7 @@
     <member refid="namespacerko__lio_1_1core_1ad6796ca63cae68d67a3963e198336a1e" kind="typedef"><name>TimestampVector</name></member>
     <member refid="namespacerko__lio_1_1core_1adbcc16d5b9b09c370ce6c889b6356bda" kind="typedef"><name>Voxel</name></member>
     <member refid="namespacerko__lio_1_1core_1a54f88ad3bc44e0104ea7c3aae878b3ba" kind="variable"><name>GRAVITY_MAG</name></member>
+    <member refid="namespacerko__lio_1_1core_1a80af781c058721a54b1f0e6f518ab4be" kind="function"><name>deskew_scan</name></member>
     <member refid="namespacerko__lio_1_1core_1a15ad77d57e545f66d0ff5d0843b797e8" kind="function"><name>preprocess_scan</name></member>
     <member refid="namespacerko__lio_1_1core_1ac1fb80bf51f668bd3442bcb18044a57c" kind="function"><name>process_timestamps</name></member>
     <member refid="namespacerko__lio_1_1core_1a1606d7b4fe5b32a257501d8079c968ca" kind="function"><name>square</name></member>
@@ -323,11 +324,11 @@
   <compound refid="namespacerko__lio_1_1ros" kind="namespace"><name>rko_lio::ros</name>
     <member refid="base__node_8cpp_1afae6f65417b908b3b2a34c5a6261c7d1" kind="function"><name>imu_msg_to_imu_data</name></member>
   </compound>
-  <compound refid="namespacerko__lio_1_1ros_1_1_0d15" kind="namespace"><name>rko_lio::ros::@15</name>
-  </compound>
-  <compound refid="namespacerko__lio_1_1ros_1_1_0d16" kind="namespace"><name>rko_lio::ros::@16</name>
-  </compound>
   <compound refid="namespacerko__lio_1_1ros_1_1_0d17" kind="namespace"><name>rko_lio::ros::@17</name>
+  </compound>
+  <compound refid="namespacerko__lio_1_1ros_1_1_0d18" kind="namespace"><name>rko_lio::ros::@18</name>
+  </compound>
+  <compound refid="namespacerko__lio_1_1ros_1_1_0d19" kind="namespace"><name>rko_lio::ros::@19</name>
   </compound>
   <compound refid="namespacerko__lio_1_1ros_1_1utils" kind="namespace"><name>rko_lio::ros::utils</name>
     <member refid="point__cloud__read_8cpp_1a77975e01f058823f8615a43bba6396a5" kind="function"><name>point_cloud2_to_eigen</name></member>
@@ -359,6 +360,10 @@
   <compound refid="namespacestd_1_1chrono__literals" kind="namespace"><name>std::chrono_literals</name>
   </compound>
   <compound refid="namespacestd_1_1literals" kind="namespace"><name>std::literals</name>
+  </compound>
+  <compound refid="deskew_8cpp" kind="file"><name>deskew.cpp</name>
+  </compound>
+  <compound refid="deskew_8hpp" kind="file"><name>deskew.hpp</name>
   </compound>
   <compound refid="error_8hpp" kind="file"><name>error.hpp</name>
   </compound>
