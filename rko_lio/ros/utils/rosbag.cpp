@@ -49,7 +49,8 @@ BufferableBag::BufferableBag(const std::string& bag_path,
                              const std::vector<std::string>& topics,
                              std::shared_ptr<tf2::BufferCore> tf_buffer,
                              const tf2::Duration skip_from_start,
-                             const std::chrono::seconds buffer_size)
+                             const std::chrono::seconds buffer_size,
+                             const bool ingest_dynamic_tf)
     : tf_buffer_(std::move(tf_buffer)),
       bag_reader_(std::make_unique<rosbag2_cpp::Reader>()),
       buffer_size_(buffer_size),
@@ -57,7 +58,9 @@ BufferableBag::BufferableBag(const std::string& bag_path,
   load_tf_static(bag_path);
   bag_reader_->open(bag_path);
   std::vector<std::string> filter_topics = topics_;
-  filter_topics.emplace_back("/tf");
+  if (ingest_dynamic_tf) {
+    filter_topics.emplace_back("/tf");
+  }
   bag_reader_->set_filter(rosbag2_storage::StorageFilter{.topics = filter_topics});
   const auto& metadata = bag_reader_->get_metadata();
   const auto bag_start = std::chrono::duration_cast<tf2::Duration>(metadata.starting_time.time_since_epoch());

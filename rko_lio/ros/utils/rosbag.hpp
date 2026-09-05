@@ -44,12 +44,14 @@ namespace rko_lio::ros::utils {
 class BufferableBag {
 public:
   // `topics` are returned by PopNextMessage. /tf_static is loaded into `tf_buffer` up front, ignoring
-  // `skip_from_start`, then /tf is streamed in as the bag is read. `skip_from_start` is an offset from the bag start.
+  // `skip_from_start`, and /tf is streamed in as the bag is read unless `ingest_dynamic_tf` is false.
+  // `skip_from_start` is an offset from the bag start.
   BufferableBag(const std::string& bag_path,
                 const std::vector<std::string>& topics,
                 std::shared_ptr<tf2::BufferCore> tf_buffer,
                 const tf2::Duration skip_from_start = tf2::durationFromSec(0.0),
-                const std::chrono::seconds buffer_size = std::chrono::seconds(1));
+                const std::chrono::seconds buffer_size = std::chrono::seconds(1),
+                const bool ingest_dynamic_tf = true);
 
   size_t message_count() const;
   void BufferMessages();
