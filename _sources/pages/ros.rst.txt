@@ -201,9 +201,9 @@ Published topics
   The twist is in ``base_frame`` coordinates and estimated from scan registration.
   A TF ``base_frame`` -> ``odom_frame`` is also broadcast alongside this topic; see ``invert_odom_tf`` if your TF tree needs the opposite parent/child relationship.
 
-- ``rko_lio/frame`` -- ``sensor_msgs/PointCloud2``, only published if ``publish_deskewed_scan:=true``.
+- ``rko_lio/deskewed_scan`` -- ``sensor_msgs/PointCloud2``, only published if ``publish_deskewed_scan:=true``.
 
-  The input scan after deskewing.
+  The input scan after deskewing, in ``base_frame`` coordinates, which is the frame registration runs in.
   Renamable via ``deskewed_scan_topic``.
 
 - ``rko_lio/local_map`` -- ``sensor_msgs/PointCloud2``, only published if ``publish_local_map:=true``.

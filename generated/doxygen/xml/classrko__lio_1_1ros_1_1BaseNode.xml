@@ -322,7 +322,7 @@
         <argsstring></argsstring>
         <name>deskewed_scan_topic</name>
         <qualifiedname>rko_lio::ros::BaseNode::deskewed_scan_topic</qualifiedname>
-        <initializer>= &quot;rko_lio/frame&quot;</initializer>
+        <initializer>= &quot;rko_lio/deskewed_scan&quot;</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>

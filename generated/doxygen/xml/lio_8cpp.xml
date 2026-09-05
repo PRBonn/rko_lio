@@ -801,29 +801,25 @@
 <codeline lineno="547"><highlight class="normal"></highlight></codeline>
 <codeline lineno="548"><highlight class="normal">Vector3sVector</highlight></codeline>
 <codeline lineno="549"><highlight class="normal"><ref refid="classrko__lio_1_1core_1_1LIO_1a44779bec63fb5044b23507a0e7984a38" kindref="member">LIO::register_scan</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Sophus::SE3s&amp;<sp/>extrinsic_lidar2base,<sp/>Vector3sVector<sp/>scan,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1Timestamps" kindref="compound">Timestamps</ref>&amp;<sp/>timestamps)<sp/>{</highlight></codeline>
-<codeline lineno="550"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(extrinsic_lidar2base.log().norm()<sp/>&lt;<sp/>NEGLIGIBLE_EXTRINSIC)<sp/>{</highlight></codeline>
-<codeline lineno="551"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a44779bec63fb5044b23507a0e7984a38" kindref="member">register_scan</ref>(std::move(scan),<sp/>timestamps);</highlight></codeline>
+<codeline lineno="550"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(extrinsic_lidar2base.log().norm()<sp/>&gt;=<sp/>NEGLIGIBLE_EXTRINSIC)<sp/>{</highlight></codeline>
+<codeline lineno="551"><highlight class="normal"><sp/><sp/><sp/><sp/>transform_points(extrinsic_lidar2base,<sp/>scan);</highlight></codeline>
 <codeline lineno="552"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="553"><highlight class="normal"></highlight></codeline>
-<codeline lineno="554"><highlight class="normal"><sp/><sp/>transform_points(extrinsic_lidar2base,<sp/>scan);</highlight></codeline>
-<codeline lineno="555"><highlight class="normal"><sp/><sp/>Vector3sVector<sp/>filtered_scan<sp/>=<sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a44779bec63fb5044b23507a0e7984a38" kindref="member">register_scan</ref>(std::move(scan),<sp/>timestamps);</highlight></codeline>
-<codeline lineno="556"><highlight class="normal"><sp/><sp/>transform_points(extrinsic_lidar2base.inverse(),<sp/>filtered_scan);</highlight></codeline>
-<codeline lineno="557"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>filtered_scan;</highlight></codeline>
-<codeline lineno="558"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="559"><highlight class="normal"></highlight></codeline>
-<codeline lineno="560"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a78e307def8ee46ebe82a6de7a33c7bf6" kindref="member">LIO::restart</ref>()<sp/>{</highlight></codeline>
-<codeline lineno="561"><highlight class="normal"><sp/><sp/>++<ref refid="classrko__lio_1_1core_1_1LIO_1ade4c3c3fdebb0625fcc1091c737b73d9" kindref="member">reset_count</ref>;</highlight></codeline>
-<codeline lineno="562"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" kindref="member">config</ref>.<ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a2d65fe516d188013b626c20f1bc583e2" kindref="member">initialization_phase</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="563"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" kindref="member">map</ref>.clear();</highlight></codeline>
-<codeline lineno="564"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref><sp/>=<sp/>{};</highlight></codeline>
-<codeline lineno="565"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a582d6fd74013b8c85784326bc45fb7c0" kindref="member">imu_state</ref><sp/>=<sp/>{};</highlight></codeline>
-<codeline lineno="566"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1aedab30ea81941b951314113cd9d3166a" kindref="member">imu_bias</ref><sp/>=<sp/>{};</highlight></codeline>
-<codeline lineno="567"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1acaef58557031dd11624aea7cc84e0c2e" kindref="member">mean_body_acceleration</ref>.setZero();</highlight></codeline>
-<codeline lineno="568"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a81ef741f00c23279b2f1dcf08cc20e29" kindref="member">body_acceleration_covariance</ref><sp/>=<sp/>Eigen::Matrix3s::Identity();</highlight></codeline>
-<codeline lineno="569"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a9b89efdfdcc0ab01ef3fd6caaadb69d2" kindref="member">interval_stats</ref>.<ref refid="structrko__lio_1_1core_1_1IntervalStats_1a93353da910829b6fc1525b55d99fd280" kindref="member">reset</ref>();</highlight></codeline>
-<codeline lineno="570"><highlight class="normal"><sp/><sp/>initialized_<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="571"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="572"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="553"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a44779bec63fb5044b23507a0e7984a38" kindref="member">register_scan</ref>(std::move(scan),<sp/>timestamps);</highlight></codeline>
+<codeline lineno="554"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="555"><highlight class="normal"></highlight></codeline>
+<codeline lineno="556"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a78e307def8ee46ebe82a6de7a33c7bf6" kindref="member">LIO::restart</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="557"><highlight class="normal"><sp/><sp/>++<ref refid="classrko__lio_1_1core_1_1LIO_1ade4c3c3fdebb0625fcc1091c737b73d9" kindref="member">reset_count</ref>;</highlight></codeline>
+<codeline lineno="558"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a1f4be69c50c49c4290265d8ad6058a66" kindref="member">config</ref>.<ref refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a2d65fe516d188013b626c20f1bc583e2" kindref="member">initialization_phase</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="559"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a30d4d61c9e0261e0e07bb3aff06710c8" kindref="member">map</ref>.clear();</highlight></codeline>
+<codeline lineno="560"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref><sp/>=<sp/>{};</highlight></codeline>
+<codeline lineno="561"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a582d6fd74013b8c85784326bc45fb7c0" kindref="member">imu_state</ref><sp/>=<sp/>{};</highlight></codeline>
+<codeline lineno="562"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1aedab30ea81941b951314113cd9d3166a" kindref="member">imu_bias</ref><sp/>=<sp/>{};</highlight></codeline>
+<codeline lineno="563"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1acaef58557031dd11624aea7cc84e0c2e" kindref="member">mean_body_acceleration</ref>.setZero();</highlight></codeline>
+<codeline lineno="564"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a81ef741f00c23279b2f1dcf08cc20e29" kindref="member">body_acceleration_covariance</ref><sp/>=<sp/>Eigen::Matrix3s::Identity();</highlight></codeline>
+<codeline lineno="565"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1core_1_1LIO_1a9b89efdfdcc0ab01ef3fd6caaadb69d2" kindref="member">interval_stats</ref>.<ref refid="structrko__lio_1_1core_1_1IntervalStats_1a93353da910829b6fc1525b55d99fd280" kindref="member">reset</ref>();</highlight></codeline>
+<codeline lineno="566"><highlight class="normal"><sp/><sp/>initialized_<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="567"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="568"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>rko_lio::core</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.cpp"/>
   </compounddef>

@@ -343,7 +343,7 @@
 <codeline lineno="82"><highlight class="normal"><sp/><sp/>std::string<sp/>odom_frame<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;odom&quot;</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="83"><highlight class="normal"><sp/><sp/>std::string<sp/>odom_topic<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;rko_lio/odom&quot;</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="84"><highlight class="normal"><sp/><sp/>std::string<sp/>map_topic<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;rko_lio/local_map&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/>std::string<sp/>deskewed_scan_topic<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;rko_lio/frame&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/>std::string<sp/>deskewed_scan_topic<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;rko_lio/deskewed_scan&quot;</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="86"><highlight class="normal"><sp/><sp/>std::string<sp/>results_dir<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;results&quot;</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="87"><highlight class="normal"><sp/><sp/>std::string<sp/>run_name<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;rko_lio_run&quot;</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="88"><highlight class="normal"></highlight></codeline>

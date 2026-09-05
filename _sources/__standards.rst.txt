@@ -6,6 +6,6 @@ Standard Documents
 
    __PACKAGE
    __README
-   __LICENSE
    __CHANGELOG
+   __LICENSE
 

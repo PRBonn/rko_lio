@@ -290,7 +290,7 @@ For example, if timestamps are in microseconds, use <code class="docutils litera
 Without it, <code class="docutils literal notranslate"><span class="pre">log_dir</span></code>, <code class="docutils literal notranslate"><span class="pre">run_name</span></code>, and <code class="docutils literal notranslate"><span class="pre">dump_deskewed_scans</span></code> have no effect.</p>
 <ul>
 <li><p><strong>dump_deskewed_scans</strong> (<cite>bool</cite>, default <code class="docutils literal notranslate"><span class="pre">False</span></code>)</p>
-<p>Save each deskewed scan to disk under <code class="docutils literal notranslate"><span class="pre">log_dir</span></code> as PLY. Useful for debugging the deskewing step or for reuse downstream. Off by default since it generates a lot of data.</p>
+<p>Save each deskewed scan to disk under <code class="docutils literal notranslate"><span class="pre">log_dir</span></code> as PLY, in the base frame. Useful for debugging the deskewing step or for reuse downstream. Off by default since it generates a lot of data.</p>
 </li>
 <li><p><strong>log_dir</strong> (<cite>Path</cite>, default <code class="docutils literal notranslate"><span class="pre">&quot;results&quot;</span></code>)</p>
 <p>Where the trajectory file (and dumped scans, if enabled) gets written.</p>
@@ -350,8 +350,8 @@ See <a class="reference internal" href="ros.html#autodetection"><span class="std
 <li><p><strong>publish_local_map</strong> (<cite>bool</cite>, default <code class="docutils literal notranslate"><span class="pre">false</span></code>), <strong>map_topic</strong> (default <code class="docutils literal notranslate"><span class="pre">rko_lio/local_map</span></code>), <strong>publish_map_after</strong> (<cite>float</cite>, default <code class="docutils literal notranslate"><span class="pre">1.0</span></code>)</p>
 <p>Whether to publish the local map, the topic name, and the republish cadence in seconds.</p>
 </li>
-<li><p><strong>publish_deskewed_scan</strong> (<cite>bool</cite>, default <code class="docutils literal notranslate"><span class="pre">false</span></code>), <strong>deskewed_scan_topic</strong> (default <code class="docutils literal notranslate"><span class="pre">rko_lio/frame</span></code>)</p>
-<p>Whether to publish the deskewed scan, and the topic name.</p>
+<li><p><strong>publish_deskewed_scan</strong> (<cite>bool</cite>, default <code class="docutils literal notranslate"><span class="pre">false</span></code>), <strong>deskewed_scan_topic</strong> (default <code class="docutils literal notranslate"><span class="pre">rko_lio/deskewed_scan</span></code>)</p>
+<p>Whether to publish the deskewed scan, and the topic name. The scan is published in <code class="docutils literal notranslate"><span class="pre">base_frame</span></code>.</p>
 </li>
 <li><p><strong>publish_lidar_acceleration</strong> (<cite>bool</cite>, default <code class="docutils literal notranslate"><span class="pre">false</span></code>)</p>
 <p>Publish a noisy linear acceleration estimate on <code class="docutils literal notranslate"><span class="pre">rko_lio/lidar_acceleration</span></code> (the topic name is fixed, not configurable).</p>

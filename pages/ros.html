@@ -266,8 +266,8 @@ The system uses the IMU between the first two scans to initialise roll / pitch a
 The twist is in <code class="docutils literal notranslate"><span class="pre">base_frame</span></code> coordinates and estimated from scan registration.
 A TF <code class="docutils literal notranslate"><span class="pre">base_frame</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">odom_frame</span></code> is also broadcast alongside this topic; see <code class="docutils literal notranslate"><span class="pre">invert_odom_tf</span></code> if your TF tree needs the opposite parent/child relationship.</p>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">rko_lio/frame</span></code> – <code class="docutils literal notranslate"><span class="pre">sensor_msgs/PointCloud2</span></code>, only published if <code class="docutils literal notranslate"><span class="pre">publish_deskewed_scan:=true</span></code>.</p>
-<p>The input scan after deskewing.
+<li><p><code class="docutils literal notranslate"><span class="pre">rko_lio/deskewed_scan</span></code> – <code class="docutils literal notranslate"><span class="pre">sensor_msgs/PointCloud2</span></code>, only published if <code class="docutils literal notranslate"><span class="pre">publish_deskewed_scan:=true</span></code>.</p>
+<p>The input scan after deskewing, in <code class="docutils literal notranslate"><span class="pre">base_frame</span></code> coordinates, which is the frame registration runs in.
 Renamable via <code class="docutils literal notranslate"><span class="pre">deskewed_scan_topic</span></code>.</p>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">rko_lio/local_map</span></code> – <code class="docutils literal notranslate"><span class="pre">sensor_msgs/PointCloud2</span></code>, only published if <code class="docutils literal notranslate"><span class="pre">publish_local_map:=true</span></code>.</p>
