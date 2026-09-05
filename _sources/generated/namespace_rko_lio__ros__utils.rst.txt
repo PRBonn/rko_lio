@@ -54,4 +54,6 @@ Functions
 
 - :ref:`exhale_function_time_8hpp_1ac0334fa598ca2d1a236b10d23db3ff0f`
 
+- :ref:`exhale_function_transforms_8hpp_1aaff2952ef473cbf8a09f6ee3954ab078`
+
 - :ref:`exhale_function_transforms_8hpp_1a58cdd22e9dad87455b7bc02f654031c3`

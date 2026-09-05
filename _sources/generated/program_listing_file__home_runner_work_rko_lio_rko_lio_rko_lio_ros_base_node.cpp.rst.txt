@@ -41,6 +41,7 @@ Program Listing for File base_node.cpp
    #include <fstream>
    #include <iomanip>
    #include <limits>
+   #include <optional>
    #include <spdlog/spdlog.h>
    #include <sstream>
    #include <stdexcept>
@@ -199,23 +200,14 @@ Program Listing for File base_node.cpp
      const auto parse_extrinsic = [this](const std::string& name, Sophus::SE3s& extrinsic) {
        const std::string param_name = "extrinsic_" + name + "2base_quat_xyzw_xyz";
        const std::vector<double> vec = node->declare_parameter<std::vector<double>>(param_name, std::vector<double>{});
-   
-       if (vec.size() != 7) {
-         if (!vec.empty()) {
-           RCLCPP_WARN_STREAM(node->get_logger(),
-                              "Parameter 'extrinsic_"
-                                  << name << "2base_quat_xyzw_xyz' is set but has wrong size: " << vec.size()
-                                  << ". Expected 7 (qx, qy, qz, qw, x, y, z). check the value: "
-                                  << Eigen::Map<const Eigen::VectorXd>(vec.data(), vec.size()).transpose());
-         }
+       if (vec.empty()) {
          return false;
        }
-       const Eigen::Quaternions q = Eigen::Quaterniond(vec.at(3), vec.at(0), vec.at(1), vec.at(2)).cast<core::Scalar>();
-       if (q.norm() < 1e-6) {
-         throw std::invalid_argument(name + " extrinsic quaternion has zero norm (extrinsic_" + name +
-                                     "2base_quat_xyzw_xyz).");
+       try {
+         extrinsic = utils::to_se3(vec);
+       } catch (const core::InputError& error) {
+         throw core::InputError("Parameter '" + param_name + "' is invalid. " + error.what());
        }
-       extrinsic = Sophus::SE3s(q, Eigen::Vector3d(vec.at(4), vec.at(5), vec.at(6)).cast<core::Scalar>());
        RCLCPP_INFO_STREAM(node->get_logger(), "Parsed " << name << " extrinsic as: " << extrinsic.log().transpose());
        return true;
      };

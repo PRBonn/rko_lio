@@ -220,7 +220,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" line="41" column="33" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" bodystart="41" bodyend="54"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" line="44" column="33" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" bodystart="44" bodyend="57"/>
       </memberdef>
       <memberdef kind="function" id="transforms_8hpp_1ad3812e51b74a4b693e5a2f02c01b9bdb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>geometry_msgs::msg::Transform</type>
@@ -238,7 +238,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" line="56" column="38" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" bodystart="56" bodyend="69"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" line="59" column="38" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" bodystart="59" bodyend="72"/>
       </memberdef>
       <memberdef kind="function" id="transforms_8hpp_1a58cdd22e9dad87455b7bc02f654031c3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Sophus::SE3s</type>
@@ -256,7 +256,25 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" line="71" column="21" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" bodystart="71" bodyend="75"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" line="74" column="21" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" bodystart="74" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="transforms_8hpp_1aaff2952ef473cbf8a09f6ee3954ab078" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Sophus::SE3s</type>
+        <definition>Sophus::SE3s rko_lio::ros::utils::to_se3</definition>
+        <argsstring>(const std::vector&lt; double &gt; &amp;quat_xyzw_xyz)</argsstring>
+        <name>to_se3</name>
+        <qualifiedname>rko_lio::ros::utils::to_se3</qualifiedname>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>quat_xyzw_xyz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" line="81" column="21" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" bodystart="81" bodyend="92"/>
       </memberdef>
       <memberdef kind="function" id="transforms_8hpp_1ad4bae1c0f70b136663501a218e0095e2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::optional&lt; Sophus::SE3s &gt;</type>
@@ -291,7 +309,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" line="77" column="22" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" bodystart="77" bodyend="110"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" line="94" column="22" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" bodystart="94" bodyend="127"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
