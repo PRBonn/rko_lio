@@ -40,10 +40,10 @@ offline_only_parameters = [
         "required": True,
     },
     {
-        "name": "skip_to_time",
+        "name": "skip_first_seconds",
         "default": "0.0",
         "type": "float",
-        "description": "[offline only] Skip to timestamp in the bag (seconds)",
+        "description": "[offline only] Skip this many seconds from the start of the bag",
     },
 ]
 

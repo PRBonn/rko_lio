@@ -57,9 +57,9 @@ public:
       : ThreadedNode("rko_lio_offline_node", options),
         bag(std::make_unique<utils::BufferableBag>(
             node->declare_parameter<std::string>("bag_path"),
-            std::make_shared<utils::BufferableBag::TFBridge>(*node),
             std::vector<std::string>{imu_topic, lidar_topic},
-            tf2::durationFromSec(node->declare_parameter<double>("skip_to_time", 0.0)))),
+            tf_buffer,
+            tf2::durationFromSec(node->declare_parameter<double>("skip_first_seconds", 0.0)))),
         total_bag_msgs(static_cast<float>(bag->message_count())),
         bag_start_time(std::chrono::steady_clock::now()) {
     bag_progress_publisher = node->create_publisher<std_msgs::msg::Float32MultiArray>("rko_lio/bag_progress", 10);
