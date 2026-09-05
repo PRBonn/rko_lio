@@ -235,7 +235,6 @@ class Viz:
         time_ns: int,
         pose: np.ndarray,
         deskewed_scan: np.ndarray,
-        extrinsic_lidar2base: np.ndarray,
         local_map: np.ndarray | None,
     ):
         scan_time_s = time_ns * 1e-9
@@ -257,12 +256,12 @@ class Viz:
         else:
             local_map = None
 
-        self.cloud_box.put((scan_time_s, deskewed_scan, pose @ extrinsic_lidar2base, local_map))
+        self.cloud_box.put((scan_time_s, deskewed_scan, pose, local_map))
 
     def cloud_log_loop(self):
         for item in iter(self.cloud_box.get, None):
-            scan_time_s, deskewed_scan, T_lidar2world, local_map = item
-            scan_world = (T_lidar2world[:3, :3] @ deskewed_scan.T).T + T_lidar2world[:3, 3]
+            scan_time_s, deskewed_scan, T_base2world, local_map = item
+            scan_world = (T_base2world[:3, :3] @ deskewed_scan.T).T + T_base2world[:3, 3]
             time_idx = [rerun.TimeColumn("data_time", timestamp=[scan_time_s])]
             rerun.send_columns(
                 "world/deskewed_scan",

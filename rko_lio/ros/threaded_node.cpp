@@ -104,8 +104,8 @@ void ThreadedNode::registration_loop() {
       const core::Vector3sVector deskewed_scan = register_scan_locked(std::move(scan.points), scan.timestamps);
       if (!deskewed_scan.empty()) {
         // TODO: first scan is skipped and an empty scan is returned. improve how we handle this
-        publish_lidar_outputs(deskewed_scan);
         publish_tf(lio->lidar_state);
+        publish_lidar_outputs(deskewed_scan);
       }
     } catch (const core::InputError& ex) {
       RCLCPP_ERROR_STREAM(node->get_logger(), "Dropping scan: " << ex.what());

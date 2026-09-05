@@ -114,7 +114,7 @@ Visualization Manager:
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /rko_lio/frame
+        Value: /rko_lio/deskewed_scan
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
@@ -219,7 +219,7 @@ Visualization Manager:
       Name: Current View
       Near Clip Distance: 0.009999999776482582
       Pitch: 0.7947956323623657
-      Target Frame: hor/os_lidar
+      Target Frame: base_link
       Value: Orbit (rviz)
       Yaw: 0.7267590761184692
     Saved: ~

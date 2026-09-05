@@ -167,7 +167,7 @@ class PipelineConfig:
     viz : bool, default False
         Enable visualization using rerun.
     dump_deskewed_scans : bool, default False
-        Save deskewed scans to disk.
+        Save deskewed scans to disk, in the base frame.
     log_dir : Path, default "results"
         Directory to store trajectory results.
     run_name : str, default "rko_lio_run"

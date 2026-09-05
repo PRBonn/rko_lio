@@ -69,7 +69,7 @@ def save_scan_as_ply(
     output_dir: Path,
 ):
     """
-    dumps the scan as PLY.
+    dumps the scan as PLY, in the base frame, matching the dumped trajectory.
     The filename is <nanoseconds_as_int>.ply.
     """
     if scan is None or len(scan) == 0:

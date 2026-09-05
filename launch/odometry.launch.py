@@ -189,7 +189,7 @@ configurable_parameters = [
     },
     {
         "name": "deskewed_scan_topic",
-        "default": "rko_lio/frame",
+        "default": "rko_lio/deskewed_scan",
         "description": "Deskewed scan topic. Published if publish_deskewed_scan is true",
     },
     {
