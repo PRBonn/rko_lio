@@ -27,15 +27,18 @@
 #include <Eigen/Core>
 #include <geometry_msgs/msg/pose.hpp>
 #include <geometry_msgs/msg/transform_stamped.hpp>
+#include <rko_lio/core/error.hpp>
 #include <rko_lio/core/util.hpp>
 
 #include <optional>
 #include <rclcpp/logger.hpp>
 #include <rclcpp/logging.hpp>
 #include <sophus/se3.hpp>
+#include <string>
 #include <tf2/exceptions.hpp>
 #include <tf2/time.hpp>
 #include <tf2_ros/buffer.hpp>
+#include <vector>
 
 namespace rko_lio::ros::utils {
 inline geometry_msgs::msg::Pose sophus_to_pose(const Sophus::SE3s& T) {
@@ -72,6 +75,20 @@ inline Sophus::SE3s transform_to_sophus(const geometry_msgs::msg::TransformStamp
   const auto& t = transform.transform;
   return {Eigen::Quaterniond(t.rotation.w, t.rotation.x, t.rotation.y, t.rotation.z).cast<core::Scalar>(),
           Eigen::Vector3d(t.translation.x, t.translation.y, t.translation.z).cast<core::Scalar>()};
+}
+
+// [qx, qy, qz, qw, tx, ty, tz]. Throws core::InputError on any other size or a degenerate quaternion.
+inline Sophus::SE3s to_se3(const std::vector<double>& quat_xyzw_xyz) {
+  if (quat_xyzw_xyz.size() != 7) {
+    throw core::InputError("Expected 7 values (qx, qy, qz, qw, x, y, z) but got " +
+                           std::to_string(quat_xyzw_xyz.size()) + ".");
+  }
+  const Eigen::Quaterniond quat(quat_xyzw_xyz.at(3), quat_xyzw_xyz.at(0), quat_xyzw_xyz.at(1), quat_xyzw_xyz.at(2));
+  if (quat.norm() < 1e-6) {
+    throw core::InputError("Quaternion is degenerate (norm is close to zero).");
+  }
+  return {quat.normalized().cast<core::Scalar>(),
+          Eigen::Vector3d(quat_xyzw_xyz.at(4), quat_xyzw_xyz.at(5), quat_xyzw_xyz.at(6)).cast<core::Scalar>()};
 }
 
 inline std::optional<Sophus::SE3s> get_transform(const std::shared_ptr<tf2_ros::Buffer>& tf_buffer,
