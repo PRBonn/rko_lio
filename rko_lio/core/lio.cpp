@@ -547,14 +547,10 @@ Vector3sVector LIO::register_scan(Vector3sVector scan, const Timestamps& timesta
 
 Vector3sVector
 LIO::register_scan(const Sophus::SE3s& extrinsic_lidar2base, Vector3sVector scan, const Timestamps& timestamps) {
-  if (extrinsic_lidar2base.log().norm() < NEGLIGIBLE_EXTRINSIC) {
-    return register_scan(std::move(scan), timestamps);
+  if (extrinsic_lidar2base.log().norm() >= NEGLIGIBLE_EXTRINSIC) {
+    transform_points(extrinsic_lidar2base, scan);
   }
-
-  transform_points(extrinsic_lidar2base, scan);
-  Vector3sVector filtered_scan = register_scan(std::move(scan), timestamps);
-  transform_points(extrinsic_lidar2base.inverse(), filtered_scan);
-  return filtered_scan;
+  return register_scan(std::move(scan), timestamps);
 }
 
 void LIO::restart() {

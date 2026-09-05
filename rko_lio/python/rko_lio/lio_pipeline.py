@@ -148,7 +148,7 @@ class LIOPipeline:
         Returns
         -------
         np.ndarray or None
-            Deskewed scan if successful, None if registration failed
+            Deskewed scan in the base frame if successful, None if registration failed
         """
         if self.viz:
             # needs to be logged before the pybinded register function is called
@@ -180,7 +180,6 @@ class LIOPipeline:
                 end_time_ns,
                 self.lio.pose(),
                 deskewed_scan,
-                self.extrinsic_lidar2base,
                 local_map,
             )
 

@@ -172,7 +172,7 @@ Without it, ``log_dir``, ``run_name``, and ``dump_deskewed_scans`` have no effec
 
 - **dump_deskewed_scans** (`bool`, default ``False``)
 
-  Save each deskewed scan to disk under ``log_dir`` as PLY. Useful for debugging the deskewing step or for reuse downstream. Off by default since it generates a lot of data.
+  Save each deskewed scan to disk under ``log_dir`` as PLY, in the base frame. Useful for debugging the deskewing step or for reuse downstream. Off by default since it generates a lot of data.
 
 - **log_dir** (`Path`, default ``"results"``)
 
@@ -240,9 +240,9 @@ Publishing toggles
 
   Whether to publish the local map, the topic name, and the republish cadence in seconds.
 
-- **publish_deskewed_scan** (`bool`, default ``false``), **deskewed_scan_topic** (default ``rko_lio/frame``)
+- **publish_deskewed_scan** (`bool`, default ``false``), **deskewed_scan_topic** (default ``rko_lio/deskewed_scan``)
 
-  Whether to publish the deskewed scan, and the topic name.
+  Whether to publish the deskewed scan, and the topic name. The scan is published in ``base_frame``.
 
 - **publish_lidar_acceleration** (`bool`, default ``false``)
 

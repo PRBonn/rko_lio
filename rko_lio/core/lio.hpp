@@ -137,7 +137,7 @@ public:
    * @param scan Input raw point cloud.
    * @param timestamps Absolute per-point timestamps, plus the scan's own min/max, as already
    *   computed by process_timestamps.
-   * @return Deskewed and clipped scan in the original lidar frame.
+   * @return Deskewed and clipped scan, in the base frame.
    */
   Vector3sVector
   register_scan(const Sophus::SE3s& extrinsic_lidar2base, Vector3sVector scan, const Timestamps& timestamps);

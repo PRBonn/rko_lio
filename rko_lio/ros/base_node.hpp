@@ -82,7 +82,7 @@ public:
   std::string odom_frame = "odom";
   std::string odom_topic = "rko_lio/odom";
   std::string map_topic = "rko_lio/local_map";
-  std::string deskewed_scan_topic = "rko_lio/frame";
+  std::string deskewed_scan_topic = "rko_lio/deskewed_scan";
   std::string results_dir = "results";
   std::string run_name = "rko_lio_run";
 

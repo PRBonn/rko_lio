@@ -161,7 +161,7 @@ BaseNode::BaseNode(const std::string& node_name, const rclcpp::NodeOptions& opti
                          << " ) and acceleration "
                             "estimates to rko_lio/lidar_acceleration. Deskewing is "
                          << (lio->config.deskew ? "enabled" : "disabled") << "."
-                         << (publish_deskewed_scan ? (" Publishing deskewed_cloud to " + deskewed_scan_topic + ".")
+                         << (publish_deskewed_scan ? (" Publishing the deskewed scan to " + deskewed_scan_topic + ".")
                                                    : ""));
 
   reset_on_registration_error =
@@ -274,7 +274,7 @@ core::Vector3sVector BaseNode::register_scan_locked(core::Vector3sVector scan, c
 void BaseNode::publish_lidar_outputs(const core::Vector3sVector& deskewed_scan) const {
   if (publish_deskewed_scan) {
     std_msgs::msg::Header header;
-    header.frame_id = lidar_frame;
+    header.frame_id = base_frame;
     header.stamp = utils::to_ros_time(lio->lidar_state.time);
     frame_publisher->publish(utils::eigen_to_point_cloud2(deskewed_scan, header));
   }

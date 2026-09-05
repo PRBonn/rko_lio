@@ -109,8 +109,8 @@ public:
         // first scan is skipped and an empty scan is returned. nothing to publish.
         return;
       }
-      publish_lidar_outputs(deskewed_scan);
       publish_tf(lio->lidar_state);
+      publish_lidar_outputs(deskewed_scan);
     } catch (const core::InputError& ex) {
       RCLCPP_ERROR_STREAM(node->get_logger(), "Dropping scan: " << ex.what());
     } catch (const core::RegistrationError& ex) {
