@@ -64,7 +64,7 @@
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a9ffbf02e26f537eb15e0145d817eaacf" kind="variable"><name>buffer_size_</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1adf970f1c1e8c83d1c2e29b85d173d1cb" kind="variable"><name>topics_</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a1aece11fbc2332f540154a0e5f756fc1" kind="variable"><name>message_count_</name></member>
-    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a53d8e62ba89526d20629eab6069d5410" kind="function"><name>BufferableBag</name></member>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a020669f82be9ba6afacf59fac90e1412" kind="function"><name>BufferableBag</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1ac3a399562a403b1635a637d7782cb876" kind="function"><name>message_count</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1af7576b488166fddaa1ab0fdb1dc0e4fe" kind="function"><name>BufferMessages</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a3c912f950a8411715d2194b6cbe04866" kind="function"><name>PopNextMessage</name></member>
