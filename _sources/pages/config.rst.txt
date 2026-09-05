@@ -203,9 +203,9 @@ Mode selection
 
   Path to the bag directory.
 
-- **skip_to_time** (`float`, offline only, default ``0.0``)
+- **skip_first_seconds** (`float`, offline only, default ``0.0``)
 
-  Skip ahead in the bag to this absolute time (seconds) before starting registration.
+  Skip this many seconds from the start of the bag before starting registration.
 
 Topic and frame configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -38,8 +38,6 @@ Includes
 
 - ``queue``
 
-- ``rclcpp/rclcpp.hpp``
-
 - ``rclcpp/serialization.hpp``
 
 - ``rosbag2_cpp/reader.hpp``
@@ -48,11 +46,11 @@ Includes
 
 - ``string``
 
+- ``tf2/buffer_core.hpp``
+
 - ``tf2/time.hpp``
 
-- ``tf2_ros/static_transform_broadcaster.hpp``
-
-- ``tf2_ros/transform_broadcaster.hpp``
+- ``tf2_msgs/msg/tf_message.hpp``
 
 - ``vector`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_ros_vectors.hpp`)
 
@@ -83,8 +81,6 @@ Namespaces
 Classes
 -------
 
-
-- :ref:`exhale_struct_structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge`
 
 - :ref:`exhale_class_classrko__lio_1_1ros_1_1utils_1_1BufferableBag`
 

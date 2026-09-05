@@ -57,19 +57,21 @@
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1ab7033afa34770e24f465bbe2a73444ca" kind="function"><name>operator=</name></member>
   </compound>
   <compound refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag" kind="class"><name>rko_lio::ros::utils::BufferableBag</name>
-    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a669e909f5143f5d617647cc657c39ec6" kind="variable"><name>tf_bridge_</name></member>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a003760041048b1ee1644dd28e55247ee" kind="variable"><name>tf_buffer_</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a4601dd851dfca3b4d52866b70fea8402" kind="variable"><name>bag_reader_</name></member>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a8ed2f6056433094702638f3fc0982f92" kind="variable"><name>serializer_</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1adabaf3c114aca738bc1c57234107aca7" kind="variable"><name>buffer_</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a9ffbf02e26f537eb15e0145d817eaacf" kind="variable"><name>buffer_size_</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1adf970f1c1e8c83d1c2e29b85d173d1cb" kind="variable"><name>topics_</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a1aece11fbc2332f540154a0e5f756fc1" kind="variable"><name>message_count_</name></member>
-    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a288fbc975677e9cf92e280f7db01f909" kind="function"><name>BufferableBag</name></member>
-    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1aaa50d6e8b4d549370be1939d4e8aea4f" kind="function"><name>publish_tf_static</name></member>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a53d8e62ba89526d20629eab6069d5410" kind="function"><name>BufferableBag</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1ac3a399562a403b1635a637d7782cb876" kind="function"><name>message_count</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1af7576b488166fddaa1ab0fdb1dc0e4fe" kind="function"><name>BufferMessages</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a3c912f950a8411715d2194b6cbe04866" kind="function"><name>PopNextMessage</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a67df53ba64b89ba36905b177a7ab2463" kind="function"><name>finished</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a7498145b5a13543c1f920f416034f970" kind="function"><name>close</name></member>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a9833613f940108d40a942a154e4a7d96" kind="function"><name>load_tf_static</name></member>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a84e4a99fb3e17a59b6b76ee3a7b5d4f1" kind="function"><name>apply_tf_message</name></member>
   </compound>
   <compound refid="structrko__lio_1_1core_1_1LIO_1_1Config" kind="struct"><name>rko_lio::core::LIO::Config</name>
     <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a047439a48b3c8afebe95407926efbada" kind="variable"><name>deskew</name></member>
@@ -200,13 +202,6 @@
     <member refid="structrko__lio_1_1core_1_1State_1a20339fedc7af99c7c773a8bb2f4d3639" kind="variable"><name>linear_velocity</name></member>
     <member refid="structrko__lio_1_1core_1_1State_1aa154566d6494b7af5c741e426e89a055" kind="variable"><name>angular_velocity</name></member>
     <member refid="structrko__lio_1_1core_1_1State_1a151759a0ab95cbf7c0e036b30381f44e" kind="variable"><name>linear_acceleration</name></member>
-  </compound>
-  <compound refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge" kind="struct"><name>rko_lio::ros::utils::BufferableBag::TFBridge</name>
-    <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1a16269296f55efbb230771f82c1ef41b7" kind="variable"><name>tf_broadcaster</name></member>
-    <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1a8bb752d6cf1909fa19b31081a0825c84" kind="variable"><name>tf_static_broadcaster</name></member>
-    <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1a6debf60fdb1f7f3ce4a492292b8d05c0" kind="variable"><name>serializer</name></member>
-    <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1aa22a87a56d2b91bd6cf2135567272ca8" kind="function"><name>TFBridge</name></member>
-    <member refid="structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge_1aeac9890a3f2e78599763cfeceabc57ac" kind="function"><name>ProcessTFMessage</name></member>
   </compound>
   <compound refid="classrko__lio_1_1ros_1_1ThreadedNode" kind="class"><name>rko_lio::ros::ThreadedNode</name>
     <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1adf509dda81461d07b6b4c5ced261e6f8" kind="variable"><name>buffer_mutex</name></member>

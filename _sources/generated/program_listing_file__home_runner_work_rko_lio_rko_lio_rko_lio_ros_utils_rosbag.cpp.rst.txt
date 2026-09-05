@@ -39,11 +39,12 @@ Program Listing for File rosbag.cpp
    #include <rclcpp/serialized_message.hpp>
    #include <rclcpp/version.h>
    #include <rosbag2_storage/bag_metadata.hpp>
-   #include <tf2_msgs/msg/tf_message.hpp>
    // other
    #include <spdlog/spdlog.h>
    // stl
    #include <algorithm>
+   #include <functional>
+   #include <utility>
    
    namespace {
    inline auto GetTimestampsFromRosbagSerializedMsg(const rosbag2_storage::SerializedBagMessage& msg) {
@@ -56,47 +57,26 @@ Program Listing for File rosbag.cpp
    } // namespace
    
    namespace rko_lio::ros::utils {
-   // TFBridge----------------------------------------------------------------------------------------
-   BufferableBag::TFBridge::TFBridge(rclcpp::Node& node) {
-     tf_broadcaster = std::make_unique<tf2_ros::TransformBroadcaster>(node);
-     tf_static_broadcaster = std::make_unique<tf2_ros::StaticTransformBroadcaster>(node);
-     serializer = rclcpp::Serialization<tf2_msgs::msg::TFMessage>();
-   }
-   
-   void BufferableBag::TFBridge::ProcessTFMessage(
-       const std::shared_ptr<rosbag2_storage::SerializedBagMessage>& msg) const {
-     tf2_msgs::msg::TFMessage tf_message;
-     const rclcpp::SerializedMessage serialized_msg(*msg->serialized_data);
-     serializer.deserialize_message(&serialized_msg, &tf_message);
-     // Broadcast transforms to /tf and /tf_static topics
-     for (const auto& transform : tf_message.transforms) {
-       if (msg->topic_name == "/tf_static") {
-         tf_static_broadcaster->sendTransform(transform);
-       } else {
-         tf_broadcaster->sendTransform(transform);
-       }
-     }
-   }
-   
-   // BufferableBag-----------------------------------------------------------------------------------
    BufferableBag::BufferableBag(const std::string& bag_path,
-                                const std::shared_ptr<TFBridge>& tf_bridge,
                                 const std::vector<std::string>& topics,
-                                const tf2::Duration seek,
+                                std::shared_ptr<tf2::BufferCore> tf_buffer,
+                                const tf2::Duration skip_from_start,
                                 const std::chrono::seconds buffer_size)
-       : tf_bridge_(tf_bridge),
+       : tf_buffer_(std::move(tf_buffer)),
          bag_reader_(std::make_unique<rosbag2_cpp::Reader>()),
          buffer_size_(buffer_size),
          topics_(topics) {
-     publish_tf_static(bag_path);
+     load_tf_static(bag_path);
      bag_reader_->open(bag_path);
-     bag_reader_->seek(seek.count());
-     bag_reader_->set_filter(rosbag2_storage::StorageFilter{.topics = topics_});
-     message_count_ = [&] {
+     std::vector<std::string> filter_topics = topics_;
+     filter_topics.emplace_back("/tf");
+     bag_reader_->set_filter(rosbag2_storage::StorageFilter{.topics = filter_topics});
+     const auto& metadata = bag_reader_->get_metadata();
+     const auto bag_start = std::chrono::duration_cast<tf2::Duration>(metadata.starting_time.time_since_epoch());
+     bag_reader_->seek((bag_start + skip_from_start).count());
+     message_count_ = std::invoke([&] {
        size_t message_count = 0;
-       const auto& metadata = bag_reader_->get_metadata();
        const auto topic_info = metadata.topics_with_message_count;
-       // iterate over all topics
        for (const auto& topic : topics_) {
          const auto it = std::find_if(topic_info.cbegin(), topic_info.cend(),
                                       [&](const auto& info) { return info.topic_metadata.name == topic; });
@@ -105,22 +85,20 @@ Program Listing for File rosbag.cpp
          }
        }
        return message_count;
-     }();
+     });
      spdlog::info("Bag reader initialized with total message count: {}", message_count_);
      BufferMessages();
    }
    
-   void BufferableBag::publish_tf_static(const std::string& bag_path) {
-     spdlog::info("Opening the bag first to publish all the tf_static messages");
+   void BufferableBag::load_tf_static(const std::string& bag_path) {
+     spdlog::info("Loading /tf_static into the tf buffer");
      rosbag2_cpp::Reader tf_reader;
      tf_reader.open(bag_path);
      tf_reader.set_filter(rosbag2_storage::StorageFilter{.topics = {"/tf_static"}});
      while (tf_reader.has_next()) {
-       const auto msg = tf_reader.read_next();
-       tf_bridge_->ProcessTFMessage(msg);
+       apply_tf_message(tf_reader.read_next());
      }
      tf_reader.close();
-     spdlog::info("tf_static published, if any. Closing the bag...");
    }
    
    bool BufferableBag::finished() const { return !bag_reader_->has_next() && buffer_.empty(); };
@@ -138,17 +116,11 @@ Program Listing for File rosbag.cpp
        return (last_stamp - first_stamp) > buffer_size_;
      };
    
-     // Advance reading one message until the buffer is filled or we finish the bagfile
      while (!buffer_is_filled() && bag_reader_->has_next()) {
-       // Fetch next message from bagfile, could be anything
        const auto msg = bag_reader_->read_next();
-       // If the msg is TFMessage, fill the tf_buffer and broadcast the transformation and don't
-       // populate the buffered_messages_ as we already processed it
        if (msg->topic_name == "/tf") {
-         tf_bridge_->ProcessTFMessage(msg);
+         apply_tf_message(msg);
        } else if (std::find(topics_.cbegin(), topics_.cend(), msg->topic_name) != topics_.end()) {
-         // If the msg is not a TFMessage and matches any topic in topics_, push it to the internal
-         // buffer
          buffer_.push(*msg);
        }
      }
@@ -161,5 +133,15 @@ Program Listing for File rosbag.cpp
        BufferMessages();
      }
      return msg;
+   }
+   
+   void BufferableBag::apply_tf_message(const std::shared_ptr<rosbag2_storage::SerializedBagMessage>& msg) const {
+     tf2_msgs::msg::TFMessage tf_message;
+     const rclcpp::SerializedMessage serialized_msg(*msg->serialized_data);
+     serializer_.deserialize_message(&serialized_msg, &tf_message);
+     const bool is_static = msg->topic_name == "/tf_static";
+     for (const auto& transform : tf_message.transforms) {
+       tf_buffer_->setTransform(transform, "bag", is_static);
+     }
    }
    } // namespace rko_lio::ros::utils

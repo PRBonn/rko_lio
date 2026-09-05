@@ -32,6 +32,8 @@ Includes
 
 - ``algorithm``
 
+- ``functional``
+
 - ``rclcpp/serialized_message.hpp``
 
 - ``rclcpp/version.h``
@@ -42,7 +44,7 @@ Includes
 
 - ``spdlog/spdlog.h``
 
-- ``tf2_msgs/msg/tf_message.hpp``
+- ``utility``
 
 
 

@@ -30,7 +30,6 @@
   <compound kind="class">
     <name>rko_lio::ros::utils::BufferableBag</name>
     <filename>classrko__lio_1_1ros_1_1utils_1_1BufferableBag.html</filename>
-    <class kind="struct">rko_lio::ros::utils::BufferableBag::TFBridge</class>
   </compound>
   <compound kind="struct">
     <name>rko_lio::core::LIO::Config</name>
@@ -361,10 +360,6 @@
   <compound kind="struct">
     <name>rko_lio::core::State</name>
     <filename>structrko__lio_1_1core_1_1State.html</filename>
-  </compound>
-  <compound kind="struct">
-    <name>rko_lio::ros::utils::BufferableBag::TFBridge</name>
-    <filename>structrko__lio_1_1ros_1_1utils_1_1BufferableBag_1_1TFBridge.html</filename>
   </compound>
   <compound kind="class">
     <name>rko_lio::ros::ThreadedNode</name>
