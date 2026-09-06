@@ -66,5 +66,7 @@ Functions
 ---------
 
 
+- :ref:`exhale_function_point__cloud__write_8hpp_1abd6dfd4bba303ce3ee6e769328ba4595`
+
 - :ref:`exhale_function_point__cloud__write_8hpp_1a23726637c0f702f265b6aa8f649dc99f`
 

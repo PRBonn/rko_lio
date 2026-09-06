@@ -335,7 +335,9 @@
     <member refid="point__cloud__read_8cpp_1ac97c323cb1b6bab04e1f5a2766731cd8" kind="function"><name>point_cloud2_to_eigen_with_timestamps</name></member>
     <member refid="point__cloud__read_8hpp_1a77d7ba00ca1501f61934151103ed9af2" kind="function"><name>point_cloud2_to_eigen_with_timestamps</name></member>
     <member refid="point__cloud__write_8cpp_1abc355982206b665ccf8d223ef1a85d5f" kind="function"><name>eigen_to_point_cloud2</name></member>
+    <member refid="point__cloud__write_8cpp_1aa1afddc575785b6c7c18a028bf689ab8" kind="function"><name>eigen_to_point_cloud2</name></member>
     <member refid="point__cloud__write_8hpp_1a23726637c0f702f265b6aa8f649dc99f" kind="function"><name>eigen_to_point_cloud2</name></member>
+    <member refid="point__cloud__write_8hpp_1abd6dfd4bba303ce3ee6e769328ba4595" kind="function"><name>eigen_to_point_cloud2</name></member>
     <member refid="ros__vectors_8hpp_1a1ec41d7121199c6a747035f9b7ac87b6" kind="function"><name>eigen_vector_to_ros_xyz</name></member>
     <member refid="ros__vectors_8hpp_1ae723899a59eb320ecfecaf27e4a2404b" kind="function"><name>ros_xyz_to_eigen_vector</name></member>
     <member refid="time_8hpp_1ac8836828d9bdda7dadc9f125f03b2154" kind="function"><name>to_ns</name></member>

@@ -34,6 +34,8 @@ Includes
 
 - ``regex``
 
+- ``rko_lio/core/error.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_error.hpp`)
+
 - ``sensor_msgs/msg/point_cloud2.hpp``
 
 - ``sensor_msgs/msg/point_field.hpp``
@@ -59,6 +61,8 @@ Namespaces
 Functions
 ---------
 
+
+- :ref:`exhale_function_point__cloud__write_8cpp_1aa1afddc575785b6c7c18a028bf689ab8`
 
 - :ref:`exhale_function_point__cloud__write_8cpp_1abc355982206b665ccf8d223ef1a85d5f`
 

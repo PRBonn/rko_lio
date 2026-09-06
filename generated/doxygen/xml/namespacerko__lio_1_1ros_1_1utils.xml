@@ -80,7 +80,33 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_write.cpp" line="77" column="24" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_write.cpp" bodystart="77" bodyend="81"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_write.cpp" line="90" column="24" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_write.cpp" bodystart="90" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="point__cloud__write_8cpp_1aa1afddc575785b6c7c18a028bf689ab8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PointCloud2::UniquePtr</type>
+        <definition>PointCloud2::UniquePtr rko_lio::ros::utils::eigen_to_point_cloud2</definition>
+        <argsstring>(const rko_lio::core::Vector3sVector &amp;points, const std::vector&lt; float &gt; &amp;intensities, const Header &amp;header)</argsstring>
+        <name>eigen_to_point_cloud2</name>
+        <qualifiedname>rko_lio::ros::utils::eigen_to_point_cloud2</qualifiedname>
+        <param>
+          <type>const rko_lio::core::Vector3sVector &amp;</type>
+          <declname>points</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; float &gt; &amp;</type>
+          <declname>intensities</declname>
+        </param>
+        <param>
+          <type>const Header &amp;</type>
+          <declname>header</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_write.cpp" line="96" column="24" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_write.cpp" bodystart="96" bodyend="107"/>
       </memberdef>
       <memberdef kind="function" id="point__cloud__write_8hpp_1a23726637c0f702f265b6aa8f649dc99f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::unique_ptr&lt; sensor_msgs::msg::PointCloud2 &gt;</type>
@@ -103,6 +129,32 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_write.hpp" line="32" column="17" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_write.hpp" declline="32" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="point__cloud__write_8hpp_1abd6dfd4bba303ce3ee6e769328ba4595" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::unique_ptr&lt; sensor_msgs::msg::PointCloud2 &gt;</type>
+        <definition>std::unique_ptr&lt; sensor_msgs::msg::PointCloud2 &gt; rko_lio::ros::utils::eigen_to_point_cloud2</definition>
+        <argsstring>(const core::Vector3sVector &amp;points, const std::vector&lt; float &gt; &amp;intensities, const std_msgs::msg::Header &amp;header)</argsstring>
+        <name>eigen_to_point_cloud2</name>
+        <qualifiedname>rko_lio::ros::utils::eigen_to_point_cloud2</qualifiedname>
+        <param>
+          <type>const core::Vector3sVector &amp;</type>
+          <declname>points</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; float &gt; &amp;</type>
+          <declname>intensities</declname>
+        </param>
+        <param>
+          <type>const std_msgs::msg::Header &amp;</type>
+          <declname>header</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_write.hpp" line="36" column="17" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_write.hpp" declline="36" declcolumn="17"/>
       </memberdef>
       <memberdef kind="function" id="ros__vectors_8hpp_1a1ec41d7121199c6a747035f9b7ac87b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
