@@ -388,6 +388,7 @@
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1a0e7f3a1d69b1a3e0c9260abe4cb2384b" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>reset_on_registration_error</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1adf575671c2b74582e831e5d9a8fefe36" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>results_dir</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1ac4aa545318868ed459b328398e5b39de" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>run_name</name></member>
+      <member refid="classrko__lio_1_1ros_1_1BaseNode_1a79af533f4aa1e9288d11ba3886abca4b" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>shutdown_handle</name></member>
       <member refid="classrko__lio_1_1ros_1_1ThreadedNode_1a49a44ab8e76da2f0e3c2bfcaf3d30f43" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>sync_condition_variable</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1af1793fd089d51bc4c418d7263d586562" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>tf_broadcaster</name></member>
       <member refid="classrko__lio_1_1ros_1_1BaseNode_1a16ceefdd48a159e21f6e58ba0fef1a75" prot="public" virt="non-virtual"><scope>rko_lio::ros::ThreadedNode</scope><name>tf_buffer</name></member>

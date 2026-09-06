@@ -44,6 +44,8 @@ Includes
 
 - ``nav_msgs/msg/odometry.hpp``
 
+- ``rclcpp/context.hpp``
+
 - ``rclcpp/node.hpp``
 
 - ``rclcpp/node_options.hpp``

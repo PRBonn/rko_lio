@@ -132,6 +132,7 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;geometry_msgs/msg/accel_stamped.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;geometry_msgs/msg/accel_with_covariance_stamped.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;nav_msgs/msg/odometry.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;rclcpp/context.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;rclcpp/node.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;rclcpp/node_options.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sensor_msgs/msg/imu.hpp&gt;</span>
@@ -193,6 +194,7 @@
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">reset_on_registration_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">atomic_node_running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">  </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">OnShutdownCallbackHandle</span><span class="w"> </span><span class="n">shutdown_handle</span><span class="p">;</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">jthread</span><span class="w"> </span><span class="n">map_publish_thread</span><span class="p">;</span>
 
 <span class="w">  </span><span class="n">BaseNode</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">delete</span><span class="p">;</span>

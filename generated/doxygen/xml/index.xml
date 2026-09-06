@@ -35,6 +35,7 @@
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1afbeabe15939267091aa36d19c7525c36" kind="variable"><name>extrinsics_set</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a0e7f3a1d69b1a3e0c9260abe4cb2384b" kind="variable"><name>reset_on_registration_error</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a38281b7e81e2292088a68b2fd2716003" kind="variable"><name>atomic_node_running</name></member>
+    <member refid="classrko__lio_1_1ros_1_1BaseNode_1a79af533f4aa1e9288d11ba3886abca4b" kind="variable"><name>shutdown_handle</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1aebf05b589391fc4c4ca97de6acbad630" kind="variable"><name>map_publish_thread</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1aff39f656667853f6bd7b46c26be0eeab" kind="function"><name>BaseNode</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1ad3fac1c1fc245199be7e5c8cb9b264f9" kind="function"><name>BaseNode</name></member>
