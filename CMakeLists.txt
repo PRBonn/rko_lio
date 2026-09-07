@@ -81,6 +81,7 @@ else()
     ament_export_dependencies(
       Eigen3
       Sophus
+      TBB
       tsl-robin-map
       spdlog
       rclcpp
