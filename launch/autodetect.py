@@ -17,6 +17,7 @@ IMU_TYPE = "sensor_msgs/msg/Imu"
 LIDAR_TYPE = "sensor_msgs/msg/PointCloud2"
 BASE_FRAME_CANDIDATES = ("base_link", "base_footprint", "base")
 AUTODETECTED = ("imu_topic", "lidar_topic", "imu_frame", "lidar_frame", "base_frame")
+DEFAULT_WANTED = (*AUTODETECTED, "invert_odom_tf")
 TF_SCAN_WINDOW_NS = 5 * 10**9
 
 
@@ -136,40 +137,38 @@ def pick_topic(graph, msgtype, argument):
     return candidates[0]
 
 
-def resolve(graph, params):
+def resolve(graph, params, wanted=DEFAULT_WANTED):
+    """Detect whatever in `wanted` the caller left unset. Lidar is always needed, the IMU only if asked for."""
     found = {}
 
-    imu_topic = params.get("imu_topic")
-    if not imu_topic:
-        imu_topic = pick_topic(graph, IMU_TYPE, "imu_topic")
-        found["imu_topic"] = imu_topic
+    def settle(name, detect):
+        given = params.get(name)
+        if given:
+            return given
+        value = detect()
+        if name in wanted:
+            found[name] = value
+        return value
 
-    lidar_topic = params.get("lidar_topic")
-    if not lidar_topic:
-        lidar_topic = pick_topic(graph, LIDAR_TYPE, "lidar_topic")
-        found["lidar_topic"] = lidar_topic
-
-    imu_frame = params.get("imu_frame")
-    if not imu_frame:
-        imu_frame = graph.frame_id(imu_topic, IMU_TYPE)
-        found["imu_frame"] = imu_frame
-
-    lidar_frame = params.get("lidar_frame")
-    if not lidar_frame:
-        lidar_frame = graph.frame_id(lidar_topic, LIDAR_TYPE)
-        found["lidar_frame"] = lidar_frame
+    uses_imu = "imu_topic" in wanted or "imu_frame" in wanted
+    imu_topic = settle("imu_topic", lambda: pick_topic(graph, IMU_TYPE, "imu_topic")) if uses_imu else None
+    lidar_topic = settle("lidar_topic", lambda: pick_topic(graph, LIDAR_TYPE, "lidar_topic"))
+    imu_frame = settle("imu_frame", lambda: graph.frame_id(imu_topic, IMU_TYPE)) if uses_imu else None
+    # settled even when unwanted, base_frame falls back to it
+    lidar_frame = settle("lidar_frame", lambda: graph.frame_id(lidar_topic, LIDAR_TYPE))
 
     known_frames = graph.frames()
     base_frame = params.get("base_frame")
     if not base_frame:
         guessed = next((f for f in BASE_FRAME_CANDIDATES if f in known_frames), None)
         base_frame = guessed or lidar_frame
-        found["base_frame"] = base_frame
-        if not guessed and "invert_odom_tf" not in params:
+        if "base_frame" in wanted:
+            found["base_frame"] = base_frame
+        if not guessed and "invert_odom_tf" in wanted and "invert_odom_tf" not in params:
             found["invert_odom_tf"] = True
 
     for name, frame in (("imu_frame", imu_frame), ("lidar_frame", lidar_frame)):
-        if frame == base_frame:
+        if frame is None or frame == base_frame:
             continue
         if not graph.buffer.can_transform(base_frame, frame, Time()):
             raise AutodetectError(
@@ -184,8 +183,9 @@ def resolve(graph, params):
     return found
 
 
-def autodetect_or_exit(params, mode, bag_path, timeout):
-    if all(params.get(name) for name in AUTODETECTED):
+def autodetect_or_exit(params, mode, bag_path, timeout, wanted=DEFAULT_WANTED):
+    # wanted may name outputs like invert_odom_tf, which are never inputs, hence the filter
+    if all(params.get(name) for name in wanted if name in AUTODETECTED):
         return params
     if mode == "offline" and not bag_path:
         return params
@@ -204,7 +204,7 @@ def autodetect_or_exit(params, mode, bag_path, timeout):
                 graph = LiveGraph(node, buffer, executor, timeout)
                 # held only to keep the listener alive, it stops filling the buffer if collected
                 _listener = tf2_ros.TransformListener(buffer, node, spin_thread=False)
-            found = resolve(graph, params)
+            found = resolve(graph, params, wanted)
         except AutodetectError as error:
             print("\n" + "=" * 40)
             print("[ERROR] autodetect failed:")
