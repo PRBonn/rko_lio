@@ -500,7 +500,7 @@
 <codeline lineno="83"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>tf</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="84"><highlight class="normal"><sp/><sp/>invert_odom_tf<sp/>=<sp/>node-&gt;declare_parameter&lt;</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">&gt;(</highlight><highlight class="stringliteral">&quot;invert_odom_tf&quot;</highlight><highlight class="normal">,<sp/>invert_odom_tf);</highlight></codeline>
 <codeline lineno="85"><highlight class="normal"><sp/><sp/>tf_buffer<sp/>=<sp/>std::make_shared&lt;tf2_ros::Buffer&gt;(node-&gt;get_clock());</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/>tf_listener<sp/>=<sp/>std::make_shared&lt;tf2_ros::TransformListener&gt;(*tf_buffer);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/>tf_listener<sp/>=<sp/>std::make_shared&lt;tf2_ros::TransformListener&gt;(*tf_buffer,<sp/>node);</highlight></codeline>
 <codeline lineno="87"><highlight class="normal"><sp/><sp/>tf_broadcaster<sp/>=<sp/>std::make_unique&lt;tf2_ros::TransformBroadcaster&gt;(*node);</highlight></codeline>
 <codeline lineno="88"><highlight class="normal"></highlight></codeline>
 <codeline lineno="89"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>publishing</highlight><highlight class="normal"></highlight></codeline>
