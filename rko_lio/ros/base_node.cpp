@@ -30,6 +30,7 @@
 #include <iomanip>
 #include <limits>
 #include <optional>
+#include <rclcpp/version.h>
 #include <spdlog/spdlog.h>
 #include <sstream>
 #include <stdexcept>
@@ -83,7 +84,11 @@ BaseNode::BaseNode(const std::string& node_name, const rclcpp::NodeOptions& opti
   // tf
   invert_odom_tf = node->declare_parameter<bool>("invert_odom_tf", invert_odom_tf);
   tf_buffer = std::make_shared<tf2_ros::Buffer>(node->get_clock());
+#if RCLCPP_VERSION_MAJOR >= 30
   tf_listener = std::make_shared<tf2_ros::TransformListener>(*tf_buffer, *node);
+#else
+  tf_listener = std::make_shared<tf2_ros::TransformListener>(*tf_buffer, node);
+#endif
   tf_broadcaster = std::make_unique<tf2_ros::TransformBroadcaster>(*node);
 
   // publishing
