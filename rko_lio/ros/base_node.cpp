@@ -323,9 +323,10 @@ void BaseNode::publish_map_loop() {
       continue;
     }
     const core::Vector3sVector map_points = lio->map.points();
+    const core::Nsec map_time = lio->lidar_state.time;
     lock.unlock(); // we don't access the local map anymore
     std_msgs::msg::Header map_header;
-    map_header.stamp = node->now();
+    map_header.stamp = utils::to_ros_time(map_time);
     map_header.frame_id = odom_frame;
     map_publisher->publish(utils::eigen_to_point_cloud2(map_points, map_header));
   }
