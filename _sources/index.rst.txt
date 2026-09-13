@@ -29,6 +29,8 @@ You don't need to look up manufacturer spec sheets to provide noise specificatio
 
 All you need to provide is the extrinsic transformation between the IMU and LiDAR and you can start using the system for your LiDAR-inertial odometry needs!
 
+Still early days, but if you want drift correction on top of the odometry, have a look at `rko_slam <https://github.com/PRBonn/rko_slam>`_.
+
 .. note::
    This documentation is still under construction. If you see something you can improve, I'd greatly appreciate any help. Please make an issue or a PR on `GitHub <https://github.com/PRBonn/rko_lio>`__!
 
