@@ -75,11 +75,6 @@ inline Eigen::Vector3s voxel_corner(const Voxel& voxel, const Scalar voxel_size)
   return voxel.cast<Scalar>() * voxel_size;
 }
 
-/// centre of `voxel`, in metres
-inline Eigen::Vector3s voxel_centre(const Voxel& voxel, const Scalar voxel_size) {
-  return (voxel.cast<Scalar>() + Eigen::Vector3s::Constant(static_cast<Scalar>(0.5))) * voxel_size;
-}
-
 /// `point` from the voxel corner, in quanta. Runs 0 to QUANTA_PER_VOXEL
 inline Eigen::Vector3s quanta_from_corner(const Eigen::Vector3s& point,
                                           const Voxel& voxel,
@@ -89,11 +84,9 @@ inline Eigen::Vector3s quanta_from_corner(const Eigen::Vector3s& point,
 }
 
 /// `point` from the voxel centre, in quanta. Stored offsets live in this frame
-inline Eigen::Vector3s quanta_from_centre(const Eigen::Vector3s& point,
-                                          const Voxel& voxel,
-                                          const Scalar voxel_size,
-                                          const Scalar inv_quantum) {
-  return to_quanta(point - voxel_centre(voxel, voxel_size), inv_quantum);
+inline Eigen::Vector3s
+quanta_from_centre(const Eigen::Vector3s& point, const Eigen::Vector3s& centre, const Scalar inv_quantum) {
+  return to_quanta(point - centre, inv_quantum);
 }
 
 /// re-origin quanta from the corner to the centre. Half a voxel is MAX_OFFSET quanta
@@ -126,9 +119,9 @@ inline Eigen::Vector3i8 to_stored_offset(const Eigen::Vector3s& quanta) {
 namespace rko_lio::core {
 
 VoxelHashMap::VoxelHashMap(const Scalar voxel_size, const Scalar clipping_distance)
-    : voxel_size_(voxel_size),
+    : voxel_size(voxel_size),
+      quantum(voxel_size / QUANTA_PER_VOXEL),
       inv_voxel_size_(static_cast<Scalar>(1.0 / voxel_size)),
-      quantum_(voxel_size / QUANTA_PER_VOXEL),
       inv_quantum_(QUANTA_PER_VOXEL / voxel_size),
       clipping_distance_(clipping_distance) {
   if (voxel_size <= 0 || voxel_size > MAX_VOXEL_SIZE) {
@@ -139,7 +132,7 @@ VoxelHashMap::VoxelHashMap(const Scalar voxel_size, const Scalar clipping_distan
 std::optional<Eigen::Vector3s> VoxelHashMap::get_closest_neighbor(const Eigen::Vector3s& query,
                                                                   const Scalar max_distance) const {
   const Voxel voxel = point_to_voxel(query, inv_voxel_size_);
-  const Eigen::Vector3s query_quanta_from_corner = quanta_from_corner(query, voxel, voxel_size_, inv_quantum_);
+  const Eigen::Vector3s query_quanta_from_corner = quanta_from_corner(query, voxel, voxel_size, inv_quantum_);
   const Eigen::Vector3s query_quanta_from_centre = corner_to_centre(query_quanta_from_corner);
   const Eigen::Matrix3s lower_bounds = face_bounds(query_quanta_from_corner);
 
@@ -155,8 +148,8 @@ std::optional<Eigen::Vector3s> VoxelHashMap::get_closest_neighbor(const Eigen::V
     if (lower_bound_sq >= closest_distance_sq) {
       continue;
     }
-    const auto search = voxels_.find(voxel + shift);
-    if (search == voxels_.end()) {
+    const auto search = voxels.find(voxel + shift);
+    if (search == voxels.end()) {
       continue;
     }
     const Eigen::Vector3s query_quanta_from_neighbour = quanta_from_neighbour_centre(query_quanta_from_centre, shift);
@@ -177,7 +170,7 @@ std::optional<Eigen::Vector3s> VoxelHashMap::get_closest_neighbor(const Eigen::V
   }
   const Eigen::Vector3s query_quanta_from_neighbour =
       quanta_from_neighbour_centre(query_quanta_from_centre, closest_shift);
-  return query + (closest_offset.cast<Scalar>() - query_quanta_from_neighbour) * quantum_;
+  return query + (closest_offset.cast<Scalar>() - query_quanta_from_neighbour) * quantum;
 }
 
 void VoxelHashMap::add_points(const std::vector<Eigen::Vector3s>& points, const Sophus::SE3s& pose) {
@@ -187,8 +180,8 @@ void VoxelHashMap::add_points(const std::vector<Eigen::Vector3s>& points, const 
     const Eigen::Vector3s p = pose * point;
     const Voxel voxel = point_to_voxel(p, inv_voxel_size_);
     // quantise before the spacing test, so the test sees the offset that would actually be stored
-    const Eigen::Vector3i8 offset = to_stored_offset(quanta_from_centre(p, voxel, voxel_size_, inv_quantum_));
-    const auto it = voxels_.try_emplace(voxel).first;
+    const Eigen::Vector3i8 offset = to_stored_offset(quanta_from_centre(p, center_of_voxel(voxel), inv_quantum_));
+    const auto it = voxels.try_emplace(voxel).first;
     VoxelBlock& voxel_points = it.value();
     if (voxel_points.full() ||
         std::any_of(voxel_points.begin(), voxel_points.end(), [&](const Eigen::Vector3i8& voxel_point) {
@@ -202,11 +195,10 @@ void VoxelHashMap::add_points(const std::vector<Eigen::Vector3s>& points, const 
 
 void VoxelHashMap::remove_points_far_from_location(const Eigen::Vector3s& location) {
   // a centre is within half a diagonal of every point it holds, so widening by that keeps a superset
-  const Scalar half_diagonal = static_cast<Scalar>(0.5) * std::numbers::sqrt3_v<Scalar> * voxel_size_;
+  const Scalar half_diagonal = static_cast<Scalar>(0.5) * std::numbers::sqrt3_v<Scalar> * voxel_size;
   const Scalar max_distance_sq = square(clipping_distance_ + half_diagonal);
-  for (auto it = voxels_.begin(); it != voxels_.end();) {
-    it = (voxel_centre(it->first, voxel_size_) - location).squaredNorm() > max_distance_sq ? voxels_.erase(it)
-                                                                                           : std::next(it);
+  for (auto it = voxels.begin(); it != voxels.end();) {
+    it = (center_of_voxel(it->first) - location).squaredNorm() > max_distance_sq ? voxels.erase(it) : std::next(it);
   }
 }
 
@@ -217,11 +209,11 @@ void VoxelHashMap::update(const std::vector<Eigen::Vector3s>& points, const Soph
 
 std::vector<Eigen::Vector3s> VoxelHashMap::points() const {
   std::vector<Eigen::Vector3s> map_points;
-  map_points.reserve(voxels_.size() * VoxelBlock::max_points);
-  for (const auto& [voxel, block] : voxels_) {
-    const Eigen::Vector3s centre = voxel_centre(voxel, voxel_size_);
+  map_points.reserve(voxels.size() * VoxelBlock::max_points);
+  for (const auto& [voxel, block] : voxels) {
+    const Eigen::Vector3s centre = center_of_voxel(voxel);
     for (const Eigen::Vector3i8& offset : block) {
-      map_points.emplace_back(centre + offset.cast<Scalar>() * quantum_);
+      map_points.emplace_back(centre + offset.cast<Scalar>() * quantum);
     }
   }
   return map_points;
