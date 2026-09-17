@@ -553,6 +553,10 @@
       <node id="4">
         <label>rko_lio::core::VoxelHashMap</label>
         <link refid="classrko__lio_1_1core_1_1VoxelHashMap"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>quantum</edgelabel>
+          <edgelabel>voxel_size</edgelabel>
+        </childnode>
       </node>
     </collaborationgraph>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="40" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="40" bodyend="178"/>

@@ -402,6 +402,13 @@
       <anchor>a135adfd73ddcd2d39fd357062119acdf</anchor>
       <arglist>(const Eigen::Vector3s &amp;query, const Scalar max_distance) const</arglist>
     </member>
+    <member kind="function">
+      <type>Eigen::Vector3s</type>
+      <name>center_of_voxel</name>
+      <anchorfile>classrko__lio_1_1core_1_1VoxelHashMap.html</anchorfile>
+      <anchor>a599cf0c22fce646580c2f4bfeef71f76</anchor>
+      <arglist>(const Voxel &amp;voxel) const</arglist>
+    </member>
   </compound>
   <compound kind="namespace">
     <name>rko_lio::core</name>

@@ -262,12 +262,12 @@
     <member refid="structrko__lio_1_1core_1_1VoxelHash_1afb0b39696a21b88ce047315a95543d5a" kind="function"><name>operator()</name></member>
   </compound>
   <compound refid="classrko__lio_1_1core_1_1VoxelHashMap" kind="class"><name>rko_lio::core::VoxelHashMap</name>
-    <member refid="classrko__lio_1_1core_1_1VoxelHashMap_1a2ce3b53c91c23d83e78234a6eb59b9aa" kind="variable"><name>voxel_size_</name></member>
+    <member refid="classrko__lio_1_1core_1_1VoxelHashMap_1ad8880faaf1b94fc3077131fa268f18df" kind="variable"><name>voxel_size</name></member>
+    <member refid="classrko__lio_1_1core_1_1VoxelHashMap_1a380f5146ab97316204483997ff0ce125" kind="variable"><name>quantum</name></member>
+    <member refid="classrko__lio_1_1core_1_1VoxelHashMap_1aee1a070d40fcb7cc1459601ab892714d" kind="variable"><name>voxels</name></member>
     <member refid="classrko__lio_1_1core_1_1VoxelHashMap_1a5c6f227a3a9115f0ed870ee377cbef59" kind="variable"><name>inv_voxel_size_</name></member>
-    <member refid="classrko__lio_1_1core_1_1VoxelHashMap_1a9ce9c2e734e8cc926f5a7828ad6d353a" kind="variable"><name>quantum_</name></member>
     <member refid="classrko__lio_1_1core_1_1VoxelHashMap_1a6fc094bce2f1fcd02635909095cdd188" kind="variable"><name>inv_quantum_</name></member>
     <member refid="classrko__lio_1_1core_1_1VoxelHashMap_1a74ce269eff642797c0e41cbf0a81ec5e" kind="variable"><name>clipping_distance_</name></member>
-    <member refid="classrko__lio_1_1core_1_1VoxelHashMap_1a9b3c371b6737ccbf3b56ffc8464c8be7" kind="variable"><name>voxels_</name></member>
     <member refid="classrko__lio_1_1core_1_1VoxelHashMap_1ae6726c68c556e39c4840a2a510af121b" kind="function"><name>VoxelHashMap</name></member>
     <member refid="classrko__lio_1_1core_1_1VoxelHashMap_1ac0a85829fa563836a01b77ceff59cabe" kind="function"><name>clear</name></member>
     <member refid="classrko__lio_1_1core_1_1VoxelHashMap_1acf441a271ba571fd0c44bd7742030348" kind="function"><name>empty</name></member>
@@ -276,6 +276,7 @@
     <member refid="classrko__lio_1_1core_1_1VoxelHashMap_1ab82e09d130d5a7b8e0c116fd28e8ac79" kind="function"><name>remove_points_far_from_location</name></member>
     <member refid="classrko__lio_1_1core_1_1VoxelHashMap_1a6c6f82cee6f889756a899db6c7ddfaaf" kind="function"><name>points</name></member>
     <member refid="classrko__lio_1_1core_1_1VoxelHashMap_1a135adfd73ddcd2d39fd357062119acdf" kind="function"><name>get_closest_neighbor</name></member>
+    <member refid="classrko__lio_1_1core_1_1VoxelHashMap_1a599cf0c22fce646580c2f4bfeef71f76" kind="function"><name>center_of_voxel</name></member>
   </compound>
   <compound refid="namespace_0d13" kind="namespace"><name>@13</name>
   </compound>
