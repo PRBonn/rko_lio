@@ -59,9 +59,12 @@ const std::array<Voxel, 27> shifts{
 };
 
 // Fixed point layout. A voxel is cut into QUANTA_PER_VOXEL steps per axis and a point is stored as its offset
-// from the centre in those steps, spanning [-127, 127], i.e. int8_t. One step is voxel_size / QUANTA_PER_VOXEL m.
+// from the centre in those steps, spanning int8_t. One step is voxel_size / QUANTA_PER_VOXEL m. Half a voxel is
+// -MIN_OFFSET steps, so a point stores on the lower face but never on the upper one, which the next voxel owns.
 constexpr Scalar MAX_OFFSET = std::numeric_limits<std::int8_t>::max();
-constexpr Scalar QUANTA_PER_VOXEL = 2 * MAX_OFFSET;
+constexpr Scalar MIN_OFFSET = std::numeric_limits<std::int8_t>::min();
+constexpr Scalar QUANTA_PER_VOXEL = MAX_OFFSET - MIN_OFFSET + 1;
+constexpr Scalar HALF_VOXEL = -MIN_OFFSET;
 // past this a quantum is coarser than ~2 cm, which is the order of lidar range noise
 constexpr Scalar MAX_VOXEL_SIZE = 5.0;
 
@@ -89,9 +92,9 @@ quanta_from_centre(const Eigen::Vector3s& point, const Eigen::Vector3s& centre, 
   return to_quanta(point - centre, inv_quantum);
 }
 
-/// re-origin quanta from the corner to the centre. Half a voxel is MAX_OFFSET quanta
+/// re-origin quanta from the corner to the centre. Half a voxel is HALF_VOXEL quanta
 inline Eigen::Vector3s corner_to_centre(const Eigen::Vector3s& quanta) {
-  return quanta - Eigen::Vector3s::Constant(MAX_OFFSET);
+  return quanta - Eigen::Vector3s::Constant(HALF_VOXEL);
 }
 
 /// against the centre of the voxel one `shift` away. A shift is a whole voxel, so QUANTA_PER_VOXEL per axis
@@ -112,7 +115,7 @@ inline Eigen::Matrix3s face_bounds(const Eigen::Vector3s& from_corner) {
 
 /// round Scalar into int8 for storage. clamp prevents wrapping on type casts
 inline Eigen::Vector3i8 to_stored_offset(const Eigen::Vector3s& quanta) {
-  return quanta.array().round().min(MAX_OFFSET).max(-MAX_OFFSET).matrix().cast<std::int8_t>();
+  return quanta.array().round().min(MAX_OFFSET).max(MIN_OFFSET).matrix().cast<std::int8_t>();
 }
 } // namespace
 
