@@ -1,6 +1,5 @@
 # all hail the power of vibe coding
 
-import sys
 import time
 
 import rclpy
@@ -16,8 +15,7 @@ from rosidl_runtime_py.utilities import get_message
 IMU_TYPE = "sensor_msgs/msg/Imu"
 LIDAR_TYPE = "sensor_msgs/msg/PointCloud2"
 BASE_FRAME_CANDIDATES = ("base_link", "base_footprint", "base")
-AUTODETECTED = ("imu_topic", "lidar_topic", "imu_frame", "lidar_frame", "base_frame")
-DEFAULT_WANTED = (*AUTODETECTED, "invert_odom_tf")
+REQUIRED = ("imu_topic", "lidar_topic", "base_frame")
 TF_SCAN_WINDOW_NS = 5 * 10**9
 
 
@@ -25,6 +23,10 @@ class AutodetectError(Exception):
     def __init__(self, message, param=None):
         super().__init__(message)
         self.param = param
+
+
+class AutodetectTimeout(AutodetectError):
+    pass
 
 
 def tf_frames(buffer):
@@ -46,10 +48,7 @@ class LiveGraph:
             result = predicate()
             if result:
                 return result
-        raise AutodetectError(
-            f"timed out after {self.timeout:.0f}s waiting for {what}. "
-            "Is the data flowing? Raise autodetect_timeout, or pass the values explicitly."
-        )
+        raise AutodetectTimeout(f"timed out after {self.timeout:.0f}s waiting for {what}. Is the data flowing?")
 
     def topics(self, msgtype):
         return self.spin_until(
@@ -130,62 +129,53 @@ def pick_topic(graph, msgtype, argument):
         raise AutodetectError(f"found no {msgtype} topic to use for {argument}", argument)
     if len(candidates) > 1:
         raise AutodetectError(
-            f"found several {msgtype} topics, so {argument} cannot be guessed.\n"
-            "Pass one of:\n" + "\n".join(f"  - {c}" for c in candidates),
+            f"found several {msgtype} topics, so {argument} cannot be guessed:\n"
+            + "\n".join(f"  - {c}" for c in candidates),
             argument,
         )
     return candidates[0]
 
 
-def resolve(graph, params, wanted=DEFAULT_WANTED):
-    """Detect whatever in `wanted` the caller left unset. Lidar is always needed, the IMU only if asked for."""
+def resolve(graph, params):
     found = {}
 
     def settle(name, detect):
         given = params.get(name)
         if given:
             return given
-        value = detect()
-        if name in wanted:
-            found[name] = value
-        return value
+        found[name] = detect()
+        return found[name]
 
-    uses_imu = "imu_topic" in wanted or "imu_frame" in wanted
-    imu_topic = settle("imu_topic", lambda: pick_topic(graph, IMU_TYPE, "imu_topic")) if uses_imu else None
+    imu_topic = settle("imu_topic", lambda: pick_topic(graph, IMU_TYPE, "imu_topic"))
     lidar_topic = settle("lidar_topic", lambda: pick_topic(graph, LIDAR_TYPE, "lidar_topic"))
-    imu_frame = settle("imu_frame", lambda: graph.frame_id(imu_topic, IMU_TYPE)) if uses_imu else None
-    # settled even when unwanted, base_frame falls back to it
-    lidar_frame = settle("lidar_frame", lambda: graph.frame_id(lidar_topic, LIDAR_TYPE))
+    if params.get("base_frame"):
+        # the lookups below block until a TF tree and a message on each topic arrive
+        return found
 
     known_frames = graph.frames()
-    base_frame = params.get("base_frame")
-    if not base_frame:
-        guessed = next((f for f in BASE_FRAME_CANDIDATES if f in known_frames), None)
-        base_frame = guessed or lidar_frame
-        if "base_frame" in wanted:
-            found["base_frame"] = base_frame
-        if not guessed and "invert_odom_tf" in wanted and "invert_odom_tf" not in params:
-            found["invert_odom_tf"] = True
+    imu_frame = settle("imu_frame", lambda: graph.frame_id(imu_topic, IMU_TYPE))
+    lidar_frame = settle("lidar_frame", lambda: graph.frame_id(lidar_topic, LIDAR_TYPE))
+    guessed = next((f for f in BASE_FRAME_CANDIDATES if f in known_frames), None)
+    base_frame = guessed or lidar_frame
+    found["base_frame"] = base_frame
+    if not guessed and "invert_odom_tf" not in params:
+        found["invert_odom_tf"] = True
 
-    for name, frame in (("imu_frame", imu_frame), ("lidar_frame", lidar_frame)):
-        if frame is None or frame == base_frame:
+    for frame in (imu_frame, lidar_frame):
+        if frame == base_frame:
             continue
         if not graph.buffer.can_transform(base_frame, frame, Time()):
             raise AutodetectError(
                 f"the TF tree has no transform between {frame} and the base frame "
                 f"{base_frame}, which the odometry needs.\n"
-                "Known frames:\n"
-                + "\n".join(f"  - {f}" for f in sorted(known_frames) or ["<none>"])
-                + f"\nPublish the transform, override {name}, or give the extrinsics "
-                "in a config file.",
+                "Known frames:\n" + "\n".join(f"  - {f}" for f in sorted(known_frames) or ["<none>"]),
                 "base_frame",
             )
     return found
 
 
-def autodetect_or_exit(params, mode, bag_path, timeout, wanted=DEFAULT_WANTED):
-    # wanted may name outputs like invert_odom_tf, which are never inputs, hence the filter
-    if all(params.get(name) for name in wanted if name in AUTODETECTED):
+def autodetect(params, mode, bag_path, timeout):
+    if all(params.get(name) for name in REQUIRED):
         return params
     if mode == "offline" and not bag_path:
         return params
@@ -204,15 +194,7 @@ def autodetect_or_exit(params, mode, bag_path, timeout, wanted=DEFAULT_WANTED):
                 graph = LiveGraph(node, buffer, executor, timeout)
                 # held only to keep the listener alive, it stops filling the buffer if collected
                 _listener = tf2_ros.TransformListener(buffer, node, spin_thread=False)
-            found = resolve(graph, params, wanted)
-        except AutodetectError as error:
-            print("\n" + "=" * 40)
-            print("[ERROR] autodetect failed:")
-            print(error)
-            hint = f" as {error.param}:=<value>" if error.param else ""
-            print(f"Pass the values explicitly{hint}, or set autodetect:=false.")
-            print("=" * 40 + "\n")
-            sys.exit(1)
+            found = resolve(graph, params)
         finally:
             node.destroy_node()
     finally:
