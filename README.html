@@ -94,8 +94,16 @@
 </h1>
 <h3 align="center">Robust LiDAR-Inertial Odometry Without Sensor-Specific Modelling</h3>
 <div align="center">
-<p><a class="reference external" href="https://doi.org/10.1109/LRA.2026.3685966"><img alt="IEEE RA-L" src="https://img.shields.io/badge/IEEE_RA--L-10.1109%2FLRA.2026.3685966-00629B.svg" /></a> <a class="reference external" href="https://arxiv.org/abs/2509.06593"><img alt="arXiv" src="https://img.shields.io/badge/arXiv-2509.06593-b31b1b.svg" /></a> <a class="reference download internal" download="" href="_downloads/9879d6db96fd29134fc802214163b95a/LICENSE"><span class="xref download myst"><img alt="GitHub License" src="https://img.shields.io/github/license/PRBonn/rko_lio" /></span></a> <a class="reference internal" href="#/"><span class="xref myst"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/PRBonn/rko_lio" /></span></a></p>
-<p><a class="reference external" href="https://pypi.org/project/rko-lio/"><img alt="PyPI - Version" src="https://img.shields.io/pypi/v/rko_lio?color=blue" /></a> <a class="reference external" href="https://index.ros.org/p/rko_lio/#humble"><img alt="ROS Package Index" src="https://img.shields.io/ros/v/humble/rko_lio?color=blue" /></a> <a class="reference external" href="https://index.ros.org/p/rko_lio/#jazzy"><img alt="ROS Package Index" src="https://img.shields.io/ros/v/jazzy/rko_lio?color=blue" /></a> <a class="reference external" href="https://index.ros.org/p/rko_lio/#kilted"><img alt="ROS Package Index" src="https://img.shields.io/ros/v/kilted/rko_lio?color=blue" /></a> <a class="reference external" href="https://index.ros.org/p/rko_lio/#lyrical"><img alt="ROS Package Index" src="https://img.shields.io/ros/v/lyrical/rko_lio?color=blue" /></a> <a class="reference external" href="https://index.ros.org/p/rko_lio/#rolling"><img alt="ROS Package Index" src="https://img.shields.io/ros/v/rolling/rko_lio?color=blue" /></a></p>
+<p><a class="reference external" href="https://doi.org/10.1109/LRA.2026.3685966"><img alt="IEEE RA-L" src="https://img.shields.io/badge/IEEE_RA--L-10.1109%2FLRA.2026.3685966-00629B.svg" /></a>
+<a class="reference external" href="https://arxiv.org/abs/2509.06593"><img alt="arXiv" src="https://img.shields.io/badge/arXiv-2509.06593-b31b1b.svg" /></a>
+<a class="reference download internal" download="" href="_downloads/9879d6db96fd29134fc802214163b95a/LICENSE"><span class="xref download myst"><img alt="GitHub License" src="https://img.shields.io/github/license/PRBonn/rko_lio" /></span></a>
+<a class="reference internal" href="#/"><span class="xref myst"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/PRBonn/rko_lio" /></span></a></p>
+<p><a class="reference external" href="https://pypi.org/project/rko-lio/"><img alt="PyPI - Version" src="https://img.shields.io/pypi/v/rko_lio?color=blue" /></a>
+<a class="reference external" href="https://index.ros.org/p/rko_lio/#humble"><img alt="ROS Package Index" src="https://img.shields.io/ros/v/humble/rko_lio?color=blue" /></a>
+<a class="reference external" href="https://index.ros.org/p/rko_lio/#jazzy"><img alt="ROS Package Index" src="https://img.shields.io/ros/v/jazzy/rko_lio?color=blue" /></a>
+<a class="reference external" href="https://index.ros.org/p/rko_lio/#kilted"><img alt="ROS Package Index" src="https://img.shields.io/ros/v/kilted/rko_lio?color=blue" /></a>
+<a class="reference external" href="https://index.ros.org/p/rko_lio/#lyrical"><img alt="ROS Package Index" src="https://img.shields.io/ros/v/lyrical/rko_lio?color=blue" /></a>
+<a class="reference external" href="https://index.ros.org/p/rko_lio/#rolling"><img alt="ROS Package Index" src="https://img.shields.io/ros/v/rolling/rko_lio?color=blue" /></a></p>
 </div>
 <p align="center">
   <a href="https://www.youtube.com/watch?v=NNpzXdf9XmU" target="_blank">
@@ -131,15 +139,20 @@ rko_lio<span class="w"> </span>-v<span class="w"> </span>/path/to/data
 <p>More details are available in the <a class="reference external" href="https://prbonn.github.io/rko_lio/pages/python.html">Python docs</a>.</p>
 <section id="extrinsics-and-convention">
 <h2>Extrinsics and convention<a class="headerlink" href="#extrinsics-and-convention" title="Link to this heading">¶</a></h2>
-<p>Please note that the system needs the extrinsic to be specified between IMU and LiDAR. Either your data includes this in some format, and then the dataloaders try to automatically read it, or otherwise you can specify it in a config file (required if it’s missing in the data).
-Pass the config file with</p>
+<p>Please note that the system needs the extrinsic to be specified between IMU and LiDAR. Either your data includes this in
+some format, and then the dataloaders try to automatically read it, or otherwise you can specify it in a config file
+(required if it’s missing in the data). Pass the config file with</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rko_lio<span class="w"> </span>--config<span class="w"> </span>config_file.yaml
 </pre></div>
 </div>
-<p>This file needs two keys: <code class="docutils literal notranslate"><span class="pre">extrinsic_imu2base_quat_xyzw_xyz</span></code> and <code class="docutils literal notranslate"><span class="pre">extrinsic_lidar2base_quat_xyzw_xyz</span></code>, which must each be a list. For example: <code class="docutils literal notranslate"><span class="pre">[0,0,0,1,0,0,0]</span></code> for identity. Both keys are required.</p>
-<p>Throughout this package, I refer to transformations using <code class="docutils literal notranslate"><span class="pre">transform_&lt;from-frame&gt;2&lt;to-frame&gt;</span></code>. By this, I mean a transformation that converts a vector expressed in the <code class="docutils literal notranslate"><span class="pre">&lt;from-frame&gt;</span></code> coordinate system to the <code class="docutils literal notranslate"><span class="pre">&lt;to-frame&gt;</span></code> coordinate system. Mathematically, this translates to:</p>
+<p>This file needs two keys: <code class="docutils literal notranslate"><span class="pre">extrinsic_imu2base_quat_xyzw_xyz</span></code> and <code class="docutils literal notranslate"><span class="pre">extrinsic_lidar2base_quat_xyzw_xyz</span></code>, which must each
+be a list. For example: <code class="docutils literal notranslate"><span class="pre">[0,0,0,1,0,0,0]</span></code> for identity. Both keys are required.</p>
+<p>Throughout this package, I refer to transformations using <code class="docutils literal notranslate"><span class="pre">transform_&lt;from-frame&gt;2&lt;to-frame&gt;</span></code>. By this, I mean a
+transformation that converts a vector expressed in the <code class="docutils literal notranslate"><span class="pre">&lt;from-frame&gt;</span></code> coordinate system to the <code class="docutils literal notranslate"><span class="pre">&lt;to-frame&gt;</span></code> coordinate
+system. Mathematically, this translates to:</p>
 <p>$$ \mathbf{v}^{\mathrm{to}} = {}^{\mathrm{to}}\mathbf{T}_{\mathrm{from}} \mathbf{v}^{\mathrm{from}} $$</p>
-<p>The superscript on the vector indicates the frame in which the vector is expressed, and $^{ \mathrm{to} }\mathbf{T}_{\mathrm{from}}$ corresponds to <code class="docutils literal notranslate"><span class="pre">transform_&lt;from-frame&gt;_to_&lt;to-frame&gt;</span></code>.</p>
+<p>The superscript on the vector indicates the frame in which the vector is expressed, and
+$^{ \mathrm{to} }\mathbf{T}_{\mathrm{from}}$ corresponds to <code class="docutils literal notranslate"><span class="pre">transform_&lt;from-frame&gt;_to_&lt;to-frame&gt;</span></code>.</p>
 </section>
 </section>
 <section id="ros">
@@ -153,7 +166,8 @@ Pass the config file with</p>
 colcon<span class="w"> </span>build<span class="w"> </span>--packages-select<span class="w"> </span>rko_lio<span class="w">  </span><span class="c1"># --symlink-install --event-handlers console_direct+</span>
 </pre></div>
 </div>
-<p>In case you cannot system install the necessary dependencies through rosdep, you can also build the dependencies while building RKO-LIO</p>
+<p>In case you cannot system install the necessary dependencies through rosdep, you can also build the dependencies while
+building RKO-LIO</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>colcon<span class="w"> </span>build<span class="w"> </span>--packages-select<span class="w"> </span>rko_lio<span class="w"> </span>--cmake-args<span class="w"> </span>-DRKO_LIO_FETCH_CONTENT_DEPS<span class="o">=</span>ON
 </pre></div>
 </div>
@@ -166,14 +180,17 @@ colcon<span class="w"> </span>build<span class="w"> </span>--packages-select<spa
 <span class="w">    </span>imu_topic:<span class="o">=</span>&lt;topic&gt;<span class="w"> </span>lidar_topic:<span class="o">=</span>&lt;topic&gt;<span class="w"> </span>base_frame:<span class="o">=</span>base_link
 </pre></div>
 </div>
-<p>Those three are then the minimum you need to specify. You can specify them and other options all at once in a config file passed with <code class="docutils literal notranslate"><span class="pre">config_file:=file.yaml</span></code>.</p>
+<p>Those three are then the minimum you need to specify. You can specify them and other options all at once in a config
+file passed with <code class="docutils literal notranslate"><span class="pre">config_file:=file.yaml</span></code>.</p>
 <p>Check further launch configuration options through <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">launch</span> <span class="pre">rko_lio</span> <span class="pre">odometry.launch.py</span> <span class="pre">-s</span></code></p>
 <p>More details are available in the <a class="reference external" href="https://prbonn.github.io/rko_lio/pages/ros.html">ROS docs</a>.</p>
-<p>The same note <a class="reference internal" href="#extrinsics-and-convention"><span class="xref myst">above about extrinsics</span></a> applies here as well. Though you probably have a well defined TF tree and need not concern yourself with this (I hope).</p>
+<p>The same note <a class="reference internal" href="#extrinsics-and-convention"><span class="xref myst">above about extrinsics</span></a> applies here as well. Though you probably have a well
+defined TF tree and need not concern yourself with this (I hope).</p>
 </section>
 <section id="citation">
 <h1>Citation<a class="headerlink" href="#citation" title="Link to this heading">¶</a></h1>
-<p>If you found this work useful, please consider leaving a star :star: on this repository and citing our paper (<a class="reference external" href="https://doi.org/10.1109/LRA.2026.3685966">RA-L</a> | <a class="reference external" href="https://arxiv.org/abs/2509.06593">arXiv</a>):</p>
+<p>If you found this work useful, please consider leaving a star :star: on this repository and citing our paper
+(<a class="reference external" href="https://doi.org/10.1109/LRA.2026.3685966">RA-L</a> | <a class="reference external" href="https://arxiv.org/abs/2509.06593">arXiv</a>):</p>
 <div class="highlight-bib notranslate"><div class="highlight"><pre><span></span><span class="nc">@article</span><span class="p">{</span><span class="nl">malladi2026ral</span><span class="p">,</span>
 <span class="w">  </span><span class="na">author</span><span class="w">      </span><span class="p">=</span><span class="w"> </span><span class="s">{M.V.R. Malladi and T. Guadagnino and L. Lobefaro and C. Stachniss}</span><span class="p">,</span>
 <span class="w">  </span><span class="na">title</span><span class="w">       </span><span class="p">=</span><span class="w"> </span><span class="s">{A Robust Approach for LiDAR-Inertial Odometry Without Sensor-Specific Modeling}</span><span class="p">,</span>
@@ -186,12 +203,17 @@ colcon<span class="w"> </span>build<span class="w"> </span>--packages-select<spa
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The <a class="reference external" href="https://prbonn.github.io/rko_lio/suppl.html">paper supplementary material</a> page collects extra figures and explanations pertaining to the same paper.</p>
-<p>You can check out the branch <code class="docutils literal notranslate"><span class="pre">ral_submission</span></code> for the version of the code used for submission to RA-L. Please note that that branch is meant to be an as-is reproduction of the code used during submission and is not supported. The <code class="docutils literal notranslate"><span class="pre">master</span></code> and release versions are vastly improved, supported, and are the recommended way to use this system.</p>
+<p>The <a class="reference external" href="https://prbonn.github.io/rko_lio/suppl.html">paper supplementary material</a> page collects extra figures and
+explanations pertaining to the same paper.</p>
+<p>You can check out the branch <code class="docutils literal notranslate"><span class="pre">ral_submission</span></code> for the version of the code used for submission to RA-L. Please note that
+that branch is meant to be an as-is reproduction of the code used during submission and is not supported. The <code class="docutils literal notranslate"><span class="pre">master</span></code>
+and release versions are vastly improved, supported, and are the recommended way to use this system.</p>
 </section>
 <section id="contributing">
 <h1>Contributing<a class="headerlink" href="#contributing" title="Link to this heading">¶</a></h1>
-<p>My goal with this project is to have a simple LiDAR-Inertial odometry system that can work with minimal friction, in the lines of <a class="reference external" href="https://youtu.be/nVqcxarP9J4?si=LvTfV4m0NkNC62Tf&amp;t=6">“it just works”</a>. I gladly welcome any contribution or feedback you think would help in this direction. Performance improvements or bug fixes are of course always appreciated.</p>
+<p>My goal with this project is to have a simple LiDAR-Inertial odometry system that can work with minimal friction, in the
+lines of <a class="reference external" href="https://youtu.be/nVqcxarP9J4?si=LvTfV4m0NkNC62Tf&amp;t=6">“it just works”</a>. I gladly welcome any contribution or
+feedback you think would help in this direction. Performance improvements or bug fixes are of course always appreciated.</p>
 <p>Thanks to the following contributors</p>
 <a href="https://github.com/PRBonn/rko_lio/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=PRBonn/rko_lio" />
@@ -201,9 +223,12 @@ colcon<span class="w"> </span>build<span class="w"> </span>--packages-select<spa
 <h1>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading">¶</a></h1>
 <details>
 <summary>KISS-ICP, Kinematic-ICP, PlotJuggler, Rerun</summary>
-<p>This package is inspired by and would not be possible without the work of <a class="reference external" href="https://github.com/PRBonn/kiss-icp">KISS-ICP</a> and <a class="reference external" href="https://github.com/PRBonn/kinematic-icp">Kinematic-ICP</a>.
-Additionally, we use and rely heavily on, either in the package itself or during development, <a class="reference external" href="https://github.com/facontidavide/PlotJuggler">PlotJuggler</a>, <a class="reference external" href="https://github.com/rerun-io/rerun">Rerun</a>, and of course ROS itself.</p>
-<p>A special mention goes out to <a class="reference external" href="https://rerun.io/">Rerun</a> for providing an extremely easy-to-use but highly performative visualization system. Without this, I probably would not have made a python interface at all.</p>
+<p>This package is inspired by and would not be possible without the work of <a class="reference external" href="https://github.com/PRBonn/kiss-icp">KISS-ICP</a>
+and <a class="reference external" href="https://github.com/PRBonn/kinematic-icp">Kinematic-ICP</a>. Additionally, we use and rely heavily on, either in the
+package itself or during development, <a class="reference external" href="https://github.com/facontidavide/PlotJuggler">PlotJuggler</a>,
+<a class="reference external" href="https://github.com/rerun-io/rerun">Rerun</a>, and of course ROS itself.</p>
+<p>A special mention goes out to <a class="reference external" href="https://rerun.io/">Rerun</a> for providing an extremely easy-to-use but highly performative
+visualization system. Without this, I probably would not have made a python interface at all.</p>
 </details>
 </section>
 <section id="license">

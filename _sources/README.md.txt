@@ -5,9 +5,17 @@
 
 <div align="center">
 
-[![IEEE RA-L](https://img.shields.io/badge/IEEE_RA--L-10.1109%2FLRA.2026.3685966-00629B.svg)](https://doi.org/10.1109/LRA.2026.3685966) [![arXiv](https://img.shields.io/badge/arXiv-2509.06593-b31b1b.svg)](https://arxiv.org/abs/2509.06593) [![GitHub License](https://img.shields.io/github/license/PRBonn/rko_lio)](/LICENSE) [![GitHub last commit](https://img.shields.io/github/last-commit/PRBonn/rko_lio)](/)
+[![IEEE RA-L](https://img.shields.io/badge/IEEE_RA--L-10.1109%2FLRA.2026.3685966-00629B.svg)](https://doi.org/10.1109/LRA.2026.3685966)
+[![arXiv](https://img.shields.io/badge/arXiv-2509.06593-b31b1b.svg)](https://arxiv.org/abs/2509.06593)
+[![GitHub License](https://img.shields.io/github/license/PRBonn/rko_lio)](/LICENSE)
+[![GitHub last commit](https://img.shields.io/github/last-commit/PRBonn/rko_lio)](/)
 
-[![PyPI - Version](https://img.shields.io/pypi/v/rko_lio?color=blue)](https://pypi.org/project/rko-lio/) [![ROS Package Index](https://img.shields.io/ros/v/humble/rko_lio?color=blue)](https://index.ros.org/p/rko_lio/#humble) [![ROS Package Index](https://img.shields.io/ros/v/jazzy/rko_lio?color=blue)](https://index.ros.org/p/rko_lio/#jazzy) [![ROS Package Index](https://img.shields.io/ros/v/kilted/rko_lio?color=blue)](https://index.ros.org/p/rko_lio/#kilted) [![ROS Package Index](https://img.shields.io/ros/v/lyrical/rko_lio?color=blue)](https://index.ros.org/p/rko_lio/#lyrical) [![ROS Package Index](https://img.shields.io/ros/v/rolling/rko_lio?color=blue)](https://index.ros.org/p/rko_lio/#rolling)
+[![PyPI - Version](https://img.shields.io/pypi/v/rko_lio?color=blue)](https://pypi.org/project/rko-lio/)
+[![ROS Package Index](https://img.shields.io/ros/v/humble/rko_lio?color=blue)](https://index.ros.org/p/rko_lio/#humble)
+[![ROS Package Index](https://img.shields.io/ros/v/jazzy/rko_lio?color=blue)](https://index.ros.org/p/rko_lio/#jazzy)
+[![ROS Package Index](https://img.shields.io/ros/v/kilted/rko_lio?color=blue)](https://index.ros.org/p/rko_lio/#kilted)
+[![ROS Package Index](https://img.shields.io/ros/v/lyrical/rko_lio?color=blue)](https://index.ros.org/p/rko_lio/#lyrical)
+[![ROS Package Index](https://img.shields.io/ros/v/rolling/rko_lio?color=blue)](https://index.ros.org/p/rko_lio/#rolling)
 
 </div>
 
@@ -40,6 +48,7 @@ rko_lio -v /path/to/data
 ```
 
 Why `pip install` those three packages?
+
 - `rko_lio` -> the odometry package
 - `rosbags` -> required for the rosbag dataloader. Both ros1 and ros2 bags are supported!
 - `rerun-sdk` -> required for the optional visualizer (`-v` flag)
@@ -54,20 +63,25 @@ More details are available in the [Python docs](https://prbonn.github.io/rko_lio
 
 ### Extrinsics and convention
 
-Please note that the system needs the extrinsic to be specified between IMU and LiDAR. Either your data includes this in some format, and then the dataloaders try to automatically read it, or otherwise you can specify it in a config file (required if it's missing in the data).
-Pass the config file with
+Please note that the system needs the extrinsic to be specified between IMU and LiDAR. Either your data includes this in
+some format, and then the dataloaders try to automatically read it, or otherwise you can specify it in a config file
+(required if it's missing in the data). Pass the config file with
 
 ```bash
 rko_lio --config config_file.yaml
 ```
 
-This file needs two keys: `extrinsic_imu2base_quat_xyzw_xyz` and `extrinsic_lidar2base_quat_xyzw_xyz`, which must each be a list. For example: `[0,0,0,1,0,0,0]` for identity. Both keys are required.
+This file needs two keys: `extrinsic_imu2base_quat_xyzw_xyz` and `extrinsic_lidar2base_quat_xyzw_xyz`, which must each
+be a list. For example: `[0,0,0,1,0,0,0]` for identity. Both keys are required.
 
-Throughout this package, I refer to transformations using `transform_<from-frame>2<to-frame>`. By this, I mean a transformation that converts a vector expressed in the `<from-frame>` coordinate system to the `<to-frame>` coordinate system. Mathematically, this translates to:
+Throughout this package, I refer to transformations using `transform_<from-frame>2<to-frame>`. By this, I mean a
+transformation that converts a vector expressed in the `<from-frame>` coordinate system to the `<to-frame>` coordinate
+system. Mathematically, this translates to:
 
 $$ \mathbf{v}^{\mathrm{to}} = {}^{\mathrm{to}}\mathbf{T}_{\mathrm{from}} \mathbf{v}^{\mathrm{from}} $$
 
-The superscript on the vector indicates the frame in which the vector is expressed, and $^{ \mathrm{to} }\mathbf{T}_{\mathrm{from}}$ corresponds to `transform_<from-frame>_to_<to-frame>`.
+The superscript on the vector indicates the frame in which the vector is expressed, and
+$^{ \mathrm{to} }\mathbf{T}_{\mathrm{from}}$ corresponds to `transform_<from-frame>_to_<to-frame>`.
 
 ## ROS
 
@@ -84,7 +98,8 @@ rosdep install --from-paths src --ignore-src -r -y
 colcon build --packages-select rko_lio  # --symlink-install --event-handlers console_direct+
 ```
 
-In case you cannot system install the necessary dependencies through rosdep, you can also build the dependencies while building RKO-LIO
+In case you cannot system install the necessary dependencies through rosdep, you can also build the dependencies while
+building RKO-LIO
 
 ```bash
 colcon build --packages-select rko_lio --cmake-args -DRKO_LIO_FETCH_CONTENT_DEPS=ON
@@ -103,17 +118,20 @@ ros2 launch rko_lio odometry.launch.py autodetect:=false \
     imu_topic:=<topic> lidar_topic:=<topic> base_frame:=base_link
 ```
 
-Those three are then the minimum you need to specify. You can specify them and other options all at once in a config file passed with `config_file:=file.yaml`.
+Those three are then the minimum you need to specify. You can specify them and other options all at once in a config
+file passed with `config_file:=file.yaml`.
 
 Check further launch configuration options through `ros2 launch rko_lio odometry.launch.py -s`
 
 More details are available in the [ROS docs](https://prbonn.github.io/rko_lio/pages/ros.html).
 
-The same note [above about extrinsics](#extrinsics-and-convention) applies here as well. Though you probably have a well defined TF tree and need not concern yourself with this (I hope).
+The same note [above about extrinsics](#extrinsics-and-convention) applies here as well. Though you probably have a well
+defined TF tree and need not concern yourself with this (I hope).
 
 ## Citation
 
-If you found this work useful, please consider leaving a star :star: on this repository and citing our paper ([RA-L](https://doi.org/10.1109/LRA.2026.3685966) | [arXiv](https://arxiv.org/abs/2509.06593)):
+If you found this work useful, please consider leaving a star :star: on this repository and citing our paper
+([RA-L](https://doi.org/10.1109/LRA.2026.3685966) | [arXiv](https://arxiv.org/abs/2509.06593)):
 
 ```bib
 @article{malladi2026ral,
@@ -128,13 +146,18 @@ If you found this work useful, please consider leaving a star :star: on this rep
 }
 ```
 
-The [paper supplementary material](https://prbonn.github.io/rko_lio/suppl.html) page collects extra figures and explanations pertaining to the same paper.
+The [paper supplementary material](https://prbonn.github.io/rko_lio/suppl.html) page collects extra figures and
+explanations pertaining to the same paper.
 
-You can check out the branch `ral_submission` for the version of the code used for submission to RA-L. Please note that that branch is meant to be an as-is reproduction of the code used during submission and is not supported. The `master` and release versions are vastly improved, supported, and are the recommended way to use this system.
+You can check out the branch `ral_submission` for the version of the code used for submission to RA-L. Please note that
+that branch is meant to be an as-is reproduction of the code used during submission and is not supported. The `master`
+and release versions are vastly improved, supported, and are the recommended way to use this system.
 
 ## Contributing
 
-My goal with this project is to have a simple LiDAR-Inertial odometry system that can work with minimal friction, in the lines of ["it just works"](https://youtu.be/nVqcxarP9J4?si=LvTfV4m0NkNC62Tf&t=6). I gladly welcome any contribution or feedback you think would help in this direction. Performance improvements or bug fixes are of course always appreciated.
+My goal with this project is to have a simple LiDAR-Inertial odometry system that can work with minimal friction, in the
+lines of ["it just works"](https://youtu.be/nVqcxarP9J4?si=LvTfV4m0NkNC62Tf&t=6). I gladly welcome any contribution or
+feedback you think would help in this direction. Performance improvements or bug fixes are of course always appreciated.
 
 Thanks to the following contributors
 
@@ -147,10 +170,13 @@ Thanks to the following contributors
 <details>
 <summary>KISS-ICP, Kinematic-ICP, PlotJuggler, Rerun</summary>
 
-This package is inspired by and would not be possible without the work of [KISS-ICP](https://github.com/PRBonn/kiss-icp) and [Kinematic-ICP](https://github.com/PRBonn/kinematic-icp).
-Additionally, we use and rely heavily on, either in the package itself or during development, [PlotJuggler](https://github.com/facontidavide/PlotJuggler), [Rerun](https://github.com/rerun-io/rerun), and of course ROS itself.
+This package is inspired by and would not be possible without the work of [KISS-ICP](https://github.com/PRBonn/kiss-icp)
+and [Kinematic-ICP](https://github.com/PRBonn/kinematic-icp). Additionally, we use and rely heavily on, either in the
+package itself or during development, [PlotJuggler](https://github.com/facontidavide/PlotJuggler),
+[Rerun](https://github.com/rerun-io/rerun), and of course ROS itself.
 
-A special mention goes out to [Rerun](https://rerun.io/) for providing an extremely easy-to-use but highly performative visualization system. Without this, I probably would not have made a python interface at all.
+A special mention goes out to [Rerun](https://rerun.io/) for providing an extremely easy-to-use but highly performative
+visualization system. Without this, I probably would not have made a python interface at all.
 
 </details>
 
