@@ -33,6 +33,12 @@ repos:
     rev: v1.7.12
     hooks:
       - id: actionlint
+  - repo: https://github.com/hukkin/mdformat
+    rev: 1.0.0
+    hooks:
+      - id: mdformat
+        args: [--wrap, "120"]
+        additional_dependencies: [mdformat-myst, mdformat-gfm]
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.3
     hooks:
