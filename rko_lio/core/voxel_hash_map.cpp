@@ -58,13 +58,12 @@ const std::array<Voxel, 27> shifts{
     Voxel{-1, 1, 1},   Voxel{1, -1, -1}, Voxel{1, -1, 1},  Voxel{1, 1, -1}, Voxel{1, 1, 1},
 };
 
-// Fixed point layout. A voxel is cut into QUANTA_PER_VOXEL steps per axis and a point is stored as its offset
-// from the centre in those steps, spanning int8_t. One step is voxel_size / QUANTA_PER_VOXEL m. Half a voxel is
-// -MIN_OFFSET steps, so a point stores on the lower face but never on the upper one, which the next voxel owns.
 constexpr Scalar MAX_OFFSET = std::numeric_limits<std::int8_t>::max();
 constexpr Scalar MIN_OFFSET = std::numeric_limits<std::int8_t>::min();
+// the voxel centre lands at -MIN_OFFSET steps, so a point stores on the lower face but never on the upper one,
+// which the next voxel owns
 constexpr Scalar QUANTA_PER_VOXEL = MAX_OFFSET - MIN_OFFSET + 1;
-constexpr Scalar HALF_VOXEL = -MIN_OFFSET;
+constexpr Scalar HALF_VOXEL = QUANTA_PER_VOXEL / 2;
 // past this a quantum is coarser than ~2 cm, which is the order of lidar range noise
 constexpr Scalar MAX_VOXEL_SIZE = 5.0;
 
@@ -92,7 +91,7 @@ quanta_from_centre(const Eigen::Vector3s& point, const Eigen::Vector3s& centre, 
   return to_quanta(point - centre, inv_quantum);
 }
 
-/// re-origin quanta from the corner to the centre. Half a voxel is HALF_VOXEL quanta
+/// re-origin quanta from the corner to the centre
 inline Eigen::Vector3s corner_to_centre(const Eigen::Vector3s& quanta) {
   return quanta - Eigen::Vector3s::Constant(HALF_VOXEL);
 }
@@ -113,7 +112,8 @@ inline Eigen::Matrix3s face_bounds(const Eigen::Vector3s& from_corner) {
   return bounds;
 }
 
-/// round Scalar into int8 for storage. clamp prevents wrapping on type casts
+/// round Scalar into int8 for storage. MAX_OFFSET is what keeps a point off the upper face, MIN_OFFSET guards the
+/// cast against coordinates far enough out that point_to_voxel picks a voxel one off
 inline Eigen::Vector3i8 to_stored_offset(const Eigen::Vector3s& quanta) {
   return quanta.array().round().min(MAX_OFFSET).max(MIN_OFFSET).matrix().cast<std::int8_t>();
 }
