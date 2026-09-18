@@ -310,6 +310,12 @@ configurable_parameters = [
         "description": "RViz config file path. If it's not the default value, note that it will be passed to rviz as is.",
     },
     {
+        "name": "use_sim_time",
+        "default": "false",
+        "type": "bool",
+        "description": "Use the /clock topic (bag replay with --clock)",
+    },
+    {
         "launch_only": True,
         "name": "log_level",
         "default": "info",
