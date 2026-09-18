@@ -280,6 +280,11 @@ Disk dumping and visualization
 
   Launch RViz alongside the odometry. If you leave the rviz config at the default, the launch file patches it with your ``base_frame`` / ``odom_frame`` and enables ``publish_deskewed_scan`` / ``publish_local_map`` so the visualizer has something to show.
 
+- **use_sim_time** (`bool`, default ``false``)
+
+  Take time from the ``/clock`` topic, which is what a bag replayed with ``--clock`` publishes.
+  Offline mode drains the bag itself and does not need it.
+
 - **log_level** (default ``info``)
 
   ROS log level.

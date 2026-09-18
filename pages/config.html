@@ -385,6 +385,10 @@ See <a class="reference internal" href="ros.html#autodetection"><span class="std
 <li><p><strong>rviz</strong> (<cite>bool</cite>, default <code class="docutils literal notranslate"><span class="pre">false</span></code>), <strong>rviz_config_file</strong> (default <code class="docutils literal notranslate"><span class="pre">config/default.rviz</span></code>)</p>
 <p>Launch RViz alongside the odometry. If you leave the rviz config at the default, the launch file patches it with your <code class="docutils literal notranslate"><span class="pre">base_frame</span></code> / <code class="docutils literal notranslate"><span class="pre">odom_frame</span></code> and enables <code class="docutils literal notranslate"><span class="pre">publish_deskewed_scan</span></code> / <code class="docutils literal notranslate"><span class="pre">publish_local_map</span></code> so the visualizer has something to show.</p>
 </li>
+<li><p><strong>use_sim_time</strong> (<cite>bool</cite>, default <code class="docutils literal notranslate"><span class="pre">false</span></code>)</p>
+<p>Take time from the <code class="docutils literal notranslate"><span class="pre">/clock</span></code> topic, which is what a bag replayed with <code class="docutils literal notranslate"><span class="pre">--clock</span></code> publishes.
+Offline mode drains the bag itself and does not need it.</p>
+</li>
 <li><p><strong>log_level</strong> (default <code class="docutils literal notranslate"><span class="pre">info</span></code>)</p>
 <p>ROS log level.</p>
 </li>
