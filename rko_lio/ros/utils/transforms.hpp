@@ -95,7 +95,8 @@ inline std::optional<Sophus::SE3s> get_transform(const std::shared_ptr<tf2_ros::
                                                  const std::string& from_frame,
                                                  const std::string& to_frame,
                                                  const std::chrono::nanoseconds time,
-                                                 const std::chrono::nanoseconds timeout = std::chrono::nanoseconds(0)) {
+                                                 const std::chrono::nanoseconds timeout = std::chrono::nanoseconds(0),
+                                                 const bool warn_when_unavailable = true) {
   geometry_msgs::msg::TransformStamped from_to_transform;
   const tf2::TimePoint tf_time{time};
   const tf2::Duration tf_timeout{timeout};
@@ -104,9 +105,11 @@ inline std::optional<Sophus::SE3s> get_transform(const std::shared_ptr<tf2_ros::
     tf_buffer->_validateFrameId("to frame", to_frame);
     const std::unique_ptr<std::string> error_str = std::make_unique<std::string>();
     if (!tf_buffer->canTransform(to_frame, from_frame, tf_time, tf_timeout, error_str.get())) {
-      RCLCPP_WARN_STREAM(rclcpp::get_logger("transform lookup"),
-                         "Cannot transform from: " << from_frame << " -> to: " << to_frame
-                                                   << " at time: " << time.count() << "ns because of: " << *error_str);
+      if (warn_when_unavailable) {
+        RCLCPP_WARN_STREAM(rclcpp::get_logger("transform lookup"),
+                           "Cannot transform from: " << from_frame << " -> to: " << to_frame << " at time: "
+                                                     << time.count() << "ns because of: " << *error_str);
+      }
       return std::nullopt;
     }
     from_to_transform = tf_buffer->lookupTransform(to_frame, from_frame, tf_time);
