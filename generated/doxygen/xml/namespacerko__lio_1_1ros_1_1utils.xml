@@ -328,10 +328,10 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" line="81" column="21" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" bodystart="81" bodyend="92"/>
       </memberdef>
-      <memberdef kind="function" id="transforms_8hpp_1ad4bae1c0f70b136663501a218e0095e2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="transforms_8hpp_1ac35957a865541c33d4fbc1f59b6ae40e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::optional&lt; Sophus::SE3s &gt;</type>
         <definition>std::optional&lt; Sophus::SE3s &gt; rko_lio::ros::utils::get_transform</definition>
-        <argsstring>(const std::shared_ptr&lt; tf2_ros::Buffer &gt; &amp;tf_buffer, const std::string &amp;from_frame, const std::string &amp;to_frame, const std::chrono::nanoseconds time, const std::chrono::nanoseconds timeout=std::chrono::nanoseconds(0))</argsstring>
+        <argsstring>(const std::shared_ptr&lt; tf2_ros::Buffer &gt; &amp;tf_buffer, const std::string &amp;from_frame, const std::string &amp;to_frame, const std::chrono::nanoseconds time, const std::chrono::nanoseconds timeout=std::chrono::nanoseconds(0), const bool warn_when_unavailable=true)</argsstring>
         <name>get_transform</name>
         <qualifiedname>rko_lio::ros::utils::get_transform</qualifiedname>
         <param>
@@ -355,13 +355,18 @@
           <declname>timeout</declname>
           <defval>std::chrono::nanoseconds(0)</defval>
         </param>
+        <param>
+          <type>const bool</type>
+          <declname>warn_when_unavailable</declname>
+          <defval>true</defval>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" line="94" column="22" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" bodystart="94" bodyend="127"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" line="94" column="22" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/transforms.hpp" bodystart="94" bodyend="130"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

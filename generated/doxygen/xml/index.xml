@@ -349,7 +349,7 @@
     <member refid="transforms_8hpp_1ad3812e51b74a4b693e5a2f02c01b9bdb" kind="function"><name>sophus_to_transform</name></member>
     <member refid="transforms_8hpp_1a58cdd22e9dad87455b7bc02f654031c3" kind="function"><name>transform_to_sophus</name></member>
     <member refid="transforms_8hpp_1aaff2952ef473cbf8a09f6ee3954ab078" kind="function"><name>to_se3</name></member>
-    <member refid="transforms_8hpp_1ad4bae1c0f70b136663501a218e0095e2" kind="function"><name>get_transform</name></member>
+    <member refid="transforms_8hpp_1ac35957a865541c33d4fbc1f59b6ae40e" kind="function"><name>get_transform</name></member>
   </compound>
   <compound refid="namespaceSophus" kind="namespace"><name>Sophus</name>
     <member refid="util_8hpp_1aeff68517fe50f9fd3ebbc4ea4b54c52a" kind="typedef"><name>SE3s</name></member>
