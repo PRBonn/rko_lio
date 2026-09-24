@@ -2,6 +2,40 @@
 Changelog for package rko_lio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.4.1 (2026-09-25)
+------------------
+* core, api break: publish deskewed scan in base frame, change topic name (`#185 <https://github.com/PRBonn/rko_lio/issues/185>`_)
+  topic renamed from rko_lio/frame to rko_lio/deskewed_scan, previously in the lidar frame
+* ros, utils: log transform lookup failures only behind a flag
+* ros, launch: clean up autodetect again
+* ros: add use_sim_time param to launch
+* core, fix: voxel map quantisation cleanup
+  the full int8 range is used now. and an issue with round tripping point
+  to quanta to point landing in a different voxel (the upper face) is
+  fixed by changing the min and max bounds. approximation error goes up
+  near the upper face of a voxel, mm level at typical voxel sizes
+* core: make voxel center public api
+* ros, fix: stamp the local map publish with the latest scan time and not
+  now()
+* ros, fix: the listener was changed in lyrical, breaks before that
+  ugly macro but what can one do. i do want the cleanup in behavior
+* ros, fix: clean up how the tf listener is made, fixes creation on rolling
+* ros, launch: make autodetect suitable for use in other libs
+* ros, fix: tbb was missed in the export list after the public link
+  change
+* ros, fix: node shutdown callback cleanup
+* ros, utils: add a point cloud write version that includes intensities
+* core: move deskew to its own TU. enables reuse in other projects
+  should essentially be a no-op for all use cases. just adds a new
+  function to the public api
+* ros, utils: add a to_se3 free func, cleans up extrinsic handling
+* ros, utils: make ingesting dynamic tf optional (default true)
+* ros: cleaning up offline bag reader
+  seek on bag becomes seek from start in relative instead of absolute
+  time, to make it more convenient.
+  tf is directly read into the tf buffers instead of a doing a round trip
+  via the rmw.
+
 0.4.0 (2026-09-01)
 ------------------
 * core, ros: reset odometry on fatal registration error (`#183 <https://github.com/PRBonn/rko_lio/issues/183>`_)

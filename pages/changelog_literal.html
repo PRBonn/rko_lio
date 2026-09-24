@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=f6a572b4" />
     <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=adc50415" />
-    <script src="../_static/documentation_options.js?v=6c02275b"></script>
+    <script src="../_static/documentation_options.js?v=c87aa342"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
@@ -96,6 +96,40 @@
 <div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
 <span class="gh">Changelog for package rko_lio</span>
 <span class="gh">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+
+<span class="gh">0.4.1 (2026-09-25)</span>
+<span class="gh">------------------</span>
+<span class="m">*</span> core, api break: publish deskewed scan in base frame, change topic name (<span class="s">`#185 </span><span class="si">&lt;https://github.com/PRBonn/rko_lio/issues/185&gt;</span><span class="s">`_</span>)
+  topic renamed from rko_lio/frame to rko_lio/deskewed_scan, previously in the lidar frame
+<span class="m">*</span> ros, utils: log transform lookup failures only behind a flag
+<span class="m">*</span> ros, launch: clean up autodetect again
+<span class="m">*</span> ros: add use_sim_time param to launch
+<span class="m">*</span> core, fix: voxel map quantisation cleanup
+  the full int8 range is used now. and an issue with round tripping point
+  to quanta to point landing in a different voxel (the upper face) is
+  fixed by changing the min and max bounds. approximation error goes up
+  near the upper face of a voxel, mm level at typical voxel sizes
+<span class="m">*</span> core: make voxel center public api
+<span class="m">*</span> ros, fix: stamp the local map publish with the latest scan time and not
+  now()
+<span class="m">*</span> ros, fix: the listener was changed in lyrical, breaks before that
+  ugly macro but what can one do. i do want the cleanup in behavior
+<span class="m">*</span> ros, fix: clean up how the tf listener is made, fixes creation on rolling
+<span class="m">*</span> ros, launch: make autodetect suitable for use in other libs
+<span class="m">*</span> ros, fix: tbb was missed in the export list after the public link
+  change
+<span class="m">*</span> ros, fix: node shutdown callback cleanup
+<span class="m">*</span> ros, utils: add a point cloud write version that includes intensities
+<span class="m">*</span> core: move deskew to its own TU. enables reuse in other projects
+  should essentially be a no-op for all use cases. just adds a new
+  function to the public api
+<span class="m">*</span> ros, utils: add a to_se3 free func, cleans up extrinsic handling
+<span class="m">*</span> ros, utils: make ingesting dynamic tf optional (default true)
+<span class="m">*</span> ros: cleaning up offline bag reader
+  seek on bag becomes seek from start in relative instead of absolute
+  time, to make it more convenient.
+  tf is directly read into the tf buffers instead of a doing a round trip
+  via the rmw.
 
 <span class="gh">0.4.0 (2026-09-01)</span>
 <span class="gh">------------------</span>
