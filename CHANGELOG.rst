@@ -2,8 +2,8 @@
 Changelog for package rko_lio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.1 (2026-09-25)
+------------------
 * core, api break: publish deskewed scan in base frame, change topic name (`#185 <https://github.com/PRBonn/rko_lio/issues/185>`_)
   topic renamed from rko_lio/frame to rko_lio/deskewed_scan, previously in the lidar frame
 * ros, utils: log transform lookup failures only behind a flag
