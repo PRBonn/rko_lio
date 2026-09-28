@@ -25,6 +25,8 @@
   <depend>rosbag2_cpp</depend>
   <depend>rosbag2_storage</depend>
   <depend>rclcpp_components</depend>
+  <depend>point_cloud_transport</depend>
+  <depend>point_cloud_interfaces</depend>
   <!-- launch-time autodetection of topics and the tf tree -->
   <exec_depend>rclpy</exec_depend>
   <exec_depend>tf2_ros_py</exec_depend>

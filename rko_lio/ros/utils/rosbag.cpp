@@ -97,6 +97,15 @@ void BufferableBag::close() const { bag_reader_->close(); }
 
 size_t BufferableBag::message_count() const { return message_count_; }
 
+std::string BufferableBag::topic_type(const std::string& topic) const {
+  for (const auto& metadata : bag_reader_->get_all_topics_and_types()) {
+    if (metadata.name == topic) {
+      return metadata.type;
+    }
+  }
+  return {};
+}
+
 void BufferableBag::BufferMessages() {
   const auto buffer_is_filled = [&]() -> bool {
     if (buffer_.empty()) {

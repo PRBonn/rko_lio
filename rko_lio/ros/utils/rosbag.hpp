@@ -41,6 +41,13 @@
 #include <vector>
 
 namespace rko_lio::ros::utils {
+template <typename T>
+std::shared_ptr<T> deserialize(const rclcpp::SerializedMessage& serialized_msg) {
+  auto msg = std::make_shared<T>();
+  rclcpp::Serialization<T>().deserialize_message(&serialized_msg, msg.get());
+  return msg;
+}
+
 class BufferableBag {
 public:
   // `topics` are returned by PopNextMessage. /tf_static is loaded into `tf_buffer` up front, ignoring
@@ -54,6 +61,8 @@ public:
                 const bool ingest_dynamic_tf = true);
 
   size_t message_count() const;
+  // empty if the bag does not hold `topic`
+  std::string topic_type(const std::string& topic) const;
   void BufferMessages();
   rosbag2_storage::SerializedBagMessage PopNextMessage();
   bool finished() const;

@@ -53,6 +53,8 @@ else()
   find_package(rosbag2_cpp REQUIRED CONFIG)
   find_package(rosbag2_storage REQUIRED CONFIG)
   find_package(rclcpp_components REQUIRED CONFIG)
+  find_package(point_cloud_transport REQUIRED CONFIG)
+  find_package(point_cloud_interfaces REQUIRED CONFIG)
 
   add_subdirectory(rko_lio/ros)
 
@@ -92,7 +94,9 @@ else()
       nav_msgs
       geometry_msgs
       rosbag2_cpp
-      rosbag2_storage)
+      rosbag2_storage
+      point_cloud_transport
+      point_cloud_interfaces)
   endif()
 
   install(
