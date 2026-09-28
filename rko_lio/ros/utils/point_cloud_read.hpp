@@ -58,7 +58,8 @@ struct LidarDeserializer {
   mutable std::shared_ptr<point_cloud_transport::SubscriberPlugin> decoder;
 };
 
-// Waits until `topic` has a publisher, then subscribes as the type that publisher advertises.
+// Waits until `topic` has a publisher, then subscribes as PointCloud2, or as CompressedPointCloud2 if that publisher
+// advertises it.
 // nullptr if ROS shuts down while waiting.
 rclcpp::SubscriptionBase::SharedPtr
 create_lidar_subscription(const rclcpp::Node::SharedPtr& node,

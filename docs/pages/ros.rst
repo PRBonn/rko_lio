@@ -156,6 +156,7 @@ Launch parameter autodetection
 Online, from the running graph. With ``mode:=offline``, from the bag at ``bag_path``.
 
 - The topics, if exactly one ``sensor_msgs/msg/Imu`` and one ``sensor_msgs/msg/PointCloud2`` topic exists. Otherwise you get the candidates listed and nothing is launched.
+  With no ``PointCloud2`` topic (online, none within ``autodetect_timeout``), a single ``point_cloud_interfaces/msg/CompressedPointCloud2`` topic is used instead.
 - The sensor frames, from the message ``frame_id``.
 - ``base_frame``, as whichever of ``base_link``, ``base_footprint`` or ``base`` is in the TF tree. If none is, the lidar frame is used instead and ``invert_odom_tf`` is turned on so the odometry TF still attaches to your tree.
 - A check that TF actually connects the sensor frames to the base frame. Otherwise you get the known frames listed, instead of finding out once the odometry is already running.
