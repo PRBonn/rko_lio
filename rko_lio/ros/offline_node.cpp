@@ -77,7 +77,7 @@ public:
   }
 
   void run() {
-    utils::LidarDeserializer deserialize_lidar(bag->topic_type(lidar_topic));
+    const utils::LidarDeserializer deserialize_lidar(bag->topic_type(lidar_topic));
     while (rclcpp::ok() && !bag->finished()) {
       {
         size_t buffered_frames = 0;

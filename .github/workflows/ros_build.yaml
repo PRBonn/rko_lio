@@ -60,7 +60,8 @@ jobs:
       - name: Install build tools
         run: |
           apt-get update
-          apt-get install -y build-essential cmake git
+          apt-get install -y build-essential cmake git \
+            ros-${{ matrix.ros_distro }}-point-cloud-transport ros-${{ matrix.ros_distro }}-point-cloud-interfaces
       - name: Source ROS environment and build with extra CMake args
         run: |
           . /opt/ros/${{ matrix.ros_distro }}/setup.sh

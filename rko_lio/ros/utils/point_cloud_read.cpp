@@ -27,12 +27,14 @@
 #include "rosbag.hpp"
 #include <point_cloud_interfaces/msg/compressed_point_cloud2.hpp>
 #include <rclcpp/utilities.hpp>
+#include <rclcpp/version.h>
 #include <spdlog/spdlog.h>
 // stl
 #include <chrono>
 #include <cstddef>
 #include <functional>
 #include <string>
+#include <utility>
 
 namespace rko_lio::ros::utils {
 using point_cloud_interfaces::msg::CompressedPointCloud2;
@@ -151,8 +153,13 @@ create_lidar_subscription(const rclcpp::Node::SharedPtr& node,
   if (type == rosidl_generator_traits::name<CompressedPointCloud2>()) {
     return node->create_generic_subscription(
         topic, type, qos,
+#if RCLCPP_VERSION_MAJOR >= 28
+        [deserialize_lidar = LidarDeserializer(type), callback](std::unique_ptr<rclcpp::SerializedMessage> msg) {
+          if (const auto cloud = deserialize_lidar(std::move(msg))) {
+#else
         [deserialize_lidar = LidarDeserializer(type), callback](std::shared_ptr<rclcpp::SerializedMessage> msg) {
           if (const auto cloud = deserialize_lidar(msg)) {
+#endif
             callback(cloud);
           }
         });
