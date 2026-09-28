@@ -188,14 +188,32 @@
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
         <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
         </childnode>
         <childnode refid="37" relation="include">
         </childnode>
-        <childnode refid="53" relation="include">
+        <childnode refid="57" relation="include">
         </childnode>
       </node>
-      <node id="54">
+      <node id="58">
         <label>point_cloud_write.hpp</label>
         <link refid="point__cloud__write_8hpp_source"/>
         <childnode refid="6" relation="include">
@@ -207,30 +225,30 @@
         <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="55">
+      <node id="59">
         <label>ros_vectors.hpp</label>
         <link refid="ros__vectors_8hpp_source"/>
         <childnode refid="8" relation="include">
         </childnode>
       </node>
-      <node id="56">
+      <node id="60">
         <label>time.hpp</label>
         <link refid="time_8hpp_source"/>
-        <childnode refid="57" relation="include">
+        <childnode refid="61" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="58" relation="include">
+        <childnode refid="62" relation="include">
         </childnode>
       </node>
-      <node id="59">
+      <node id="63">
         <label>transforms.hpp</label>
         <link refid="transforms_8hpp_source"/>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="60" relation="include">
+        <childnode refid="64" relation="include">
         </childnode>
-        <childnode refid="61" relation="include">
+        <childnode refid="65" relation="include">
         </childnode>
         <childnode refid="44" relation="include">
         </childnode>
@@ -238,17 +256,17 @@
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="62" relation="include">
+        <childnode refid="66" relation="include">
         </childnode>
-        <childnode refid="63" relation="include">
+        <childnode refid="67" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="27" relation="include">
         </childnode>
-        <childnode refid="64" relation="include">
+        <childnode refid="68" relation="include">
         </childnode>
-        <childnode refid="65" relation="include">
+        <childnode refid="69" relation="include">
         </childnode>
         <childnode refid="39" relation="include">
         </childnode>
@@ -260,13 +278,13 @@
         <link refid="utils_8hpp_source"/>
         <childnode refid="52" relation="include">
         </childnode>
-        <childnode refid="54" relation="include">
-        </childnode>
-        <childnode refid="55" relation="include">
-        </childnode>
-        <childnode refid="56" relation="include">
+        <childnode refid="58" relation="include">
         </childnode>
         <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
         </childnode>
       </node>
       <node id="8">
@@ -278,7 +296,7 @@
       <node id="23">
         <label>atomic</label>
       </node>
-      <node id="57">
+      <node id="61">
         <label>builtin_interfaces/msg/time.hpp</label>
       </node>
       <node id="9">
@@ -296,16 +314,19 @@
       <node id="24">
         <label>filesystem</label>
       </node>
+      <node id="53">
+        <label>functional</label>
+      </node>
       <node id="30">
         <label>geometry_msgs/msg/accel_stamped.hpp</label>
       </node>
       <node id="31">
         <label>geometry_msgs/msg/accel_with_covariance_stamped.hpp</label>
       </node>
-      <node id="60">
+      <node id="64">
         <label>geometry_msgs/msg/pose.hpp</label>
       </node>
-      <node id="61">
+      <node id="65">
         <label>geometry_msgs/msg/transform_stamped.hpp</label>
       </node>
       <node id="47">
@@ -332,16 +353,22 @@
       <node id="19">
         <label>optional</label>
       </node>
+      <node id="54">
+        <label>point_cloud_transport/point_cloud_codec.hpp</label>
+      </node>
+      <node id="55">
+        <label>point_cloud_transport/subscriber_plugin.hpp</label>
+      </node>
       <node id="43">
         <label>queue</label>
       </node>
       <node id="33">
         <label>rclcpp/context.hpp</label>
       </node>
-      <node id="62">
+      <node id="66">
         <label>rclcpp/logger.hpp</label>
       </node>
-      <node id="63">
+      <node id="67">
         <label>rclcpp/logging.hpp</label>
       </node>
       <node id="34">
@@ -350,7 +377,10 @@
       <node id="35">
         <label>rclcpp/node_options.hpp</label>
       </node>
-      <node id="58">
+      <node id="56">
+        <label>rclcpp/serialized_message.hpp</label>
+      </node>
+      <node id="62">
         <label>rclcpp/time.hpp</label>
       </node>
       <node id="7">
@@ -362,7 +392,7 @@
       <node id="37">
         <label>sensor_msgs/msg/point_cloud2.hpp</label>
       </node>
-      <node id="53">
+      <node id="57">
         <label>sensor_msgs/point_cloud2_iterator.hpp</label>
       </node>
       <node id="10">
@@ -383,10 +413,10 @@
       <node id="22">
         <label>tbb/task_arena.h</label>
       </node>
-      <node id="64">
+      <node id="68">
         <label>tf2/exceptions.hpp</label>
       </node>
-      <node id="65">
+      <node id="69">
         <label>tf2/time.hpp</label>
       </node>
       <node id="39">

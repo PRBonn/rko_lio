@@ -198,6 +198,10 @@
     </member>
   </compound>
   <compound kind="struct">
+    <name>rko_lio::ros::utils::LidarDeserializer</name>
+    <filename>structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer.html</filename>
+  </compound>
+  <compound kind="struct">
     <name>rko_lio::ros::LidarScan</name>
     <filename>structrko__lio_1_1ros_1_1LidarScan.html</filename>
   </compound>

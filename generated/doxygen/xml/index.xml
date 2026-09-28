@@ -67,6 +67,7 @@
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a1aece11fbc2332f540154a0e5f756fc1" kind="variable"><name>message_count_</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a020669f82be9ba6afacf59fac90e1412" kind="function"><name>BufferableBag</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1ac3a399562a403b1635a637d7782cb876" kind="function"><name>message_count</name></member>
+    <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a741715b930eb62d75a7a75f4d698f7ce" kind="function"><name>topic_type</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1af7576b488166fddaa1ab0fdb1dc0e4fe" kind="function"><name>BufferMessages</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a3c912f950a8411715d2194b6cbe04866" kind="function"><name>PopNextMessage</name></member>
     <member refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag_1a67df53ba64b89ba36905b177a7ab2463" kind="function"><name>finished</name></member>
@@ -108,6 +109,12 @@
     <member refid="structrko__lio_1_1core_1_1IntervalStats_1af66327f9f7b18f90a4bb6d1a7be904f0" kind="variable"><name>welford_sum_of_squares</name></member>
     <member refid="structrko__lio_1_1core_1_1IntervalStats_1aa21405300771c69fea6e8393362d4903" kind="function"><name>update</name></member>
     <member refid="structrko__lio_1_1core_1_1IntervalStats_1a93353da910829b6fc1525b55d99fd280" kind="function"><name>reset</name></member>
+  </compound>
+  <compound refid="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer" kind="struct"><name>rko_lio::ros::utils::LidarDeserializer</name>
+    <member refid="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer_1a57f9a3df6715c4827e71fbd5037fd374" kind="variable"><name>codec</name></member>
+    <member refid="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer_1a59e9ed37ec468a627438149f1f587127" kind="variable"><name>decoder</name></member>
+    <member refid="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer_1af71f38eeb760971408e9792471449489" kind="function"><name>LidarDeserializer</name></member>
+    <member refid="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer_1a50457042a3c65aa3027c1a4c6873e3f9" kind="function"><name>operator()</name></member>
   </compound>
   <compound refid="structrko__lio_1_1ros_1_1LidarScan" kind="struct"><name>rko_lio::ros::LidarScan</name>
     <member refid="structrko__lio_1_1ros_1_1LidarScan_1ab5e03b44875bf98c7210b134d55b17a1" kind="variable"><name>timestamps</name></member>
@@ -335,13 +342,16 @@
   <compound refid="namespacerko__lio_1_1ros_1_1utils" kind="namespace"><name>rko_lio::ros::utils</name>
     <member refid="point__cloud__read_8cpp_1a77975e01f058823f8615a43bba6396a5" kind="function"><name>point_cloud2_to_eigen</name></member>
     <member refid="point__cloud__read_8cpp_1ac97c323cb1b6bab04e1f5a2766731cd8" kind="function"><name>point_cloud2_to_eigen_with_timestamps</name></member>
+    <member refid="point__cloud__read_8cpp_1a6a3226c19337ef684f4acf03e4ddc040" kind="function"><name>create_lidar_subscription</name></member>
     <member refid="point__cloud__read_8hpp_1a77d7ba00ca1501f61934151103ed9af2" kind="function"><name>point_cloud2_to_eigen_with_timestamps</name></member>
+    <member refid="point__cloud__read_8hpp_1ab01b9a44bccfd2ab4c63c5cd11bebfba" kind="function"><name>create_lidar_subscription</name></member>
     <member refid="point__cloud__write_8cpp_1abc355982206b665ccf8d223ef1a85d5f" kind="function"><name>eigen_to_point_cloud2</name></member>
     <member refid="point__cloud__write_8cpp_1aa1afddc575785b6c7c18a028bf689ab8" kind="function"><name>eigen_to_point_cloud2</name></member>
     <member refid="point__cloud__write_8hpp_1a23726637c0f702f265b6aa8f649dc99f" kind="function"><name>eigen_to_point_cloud2</name></member>
     <member refid="point__cloud__write_8hpp_1abd6dfd4bba303ce3ee6e769328ba4595" kind="function"><name>eigen_to_point_cloud2</name></member>
     <member refid="ros__vectors_8hpp_1a1ec41d7121199c6a747035f9b7ac87b6" kind="function"><name>eigen_vector_to_ros_xyz</name></member>
     <member refid="ros__vectors_8hpp_1ae723899a59eb320ecfecaf27e4a2404b" kind="function"><name>ros_xyz_to_eigen_vector</name></member>
+    <member refid="rosbag_8hpp_1af6596623fa5d51846ffc887017cce914" kind="function"><name>deserialize</name></member>
     <member refid="time_8hpp_1ac8836828d9bdda7dadc9f125f03b2154" kind="function"><name>to_ns</name></member>
     <member refid="time_8hpp_1a77db31ee58500b510902643bd9f7bc97" kind="function"><name>to_ns</name></member>
     <member refid="time_8hpp_1ac0334fa598ca2d1a236b10d23db3ff0f" kind="function"><name>to_ros_time</name></member>
@@ -413,14 +423,14 @@
   <compound refid="online__imu__rate__node_8cpp" kind="file"><name>online_imu_rate_node.cpp</name>
     <member refid="online__imu__rate__node_8cpp_1aacbe12345a9ca47e3872e572922e6a5f" kind="variable"><name>odom_at_imu_rate_publisher</name></member>
     <member refid="online__imu__rate__node_8cpp_1a99af4aad7b375dc52ceeabb68e5be2ef" kind="variable"><name>imu_sub</name></member>
-    <member refid="online__imu__rate__node_8cpp_1a5a129e80a6ca4335b1488d932e98601d" kind="variable"><name>lidar_sub</name></member>
+    <member refid="online__imu__rate__node_8cpp_1a30d1799d3fbb418f02eb0835e2a2acf5" kind="variable"><name>lidar_sub</name></member>
     <member refid="online__imu__rate__node_8cpp_1ab78a07be796aaebb5f7bad06b5e301e7" kind="variable"><name>timer</name></member>
     <member refid="online__imu__rate__node_8cpp_1aa48f161529ca3217def3fe5a8407e777" kind="variable"><name>odom_at_imu_rate_topic</name></member>
     <member refid="online__imu__rate__node_8cpp_1a70eec06ed2c7220f2a80ac9c9ab29b49" kind="variable"><name>tf_at_imu_rate</name></member>
   </compound>
   <compound refid="online__node_8cpp" kind="file"><name>online_node.cpp</name>
     <member refid="online__node_8cpp_1a99af4aad7b375dc52ceeabb68e5be2ef" kind="variable"><name>imu_sub</name></member>
-    <member refid="online__node_8cpp_1a5a129e80a6ca4335b1488d932e98601d" kind="variable"><name>lidar_sub</name></member>
+    <member refid="online__node_8cpp_1a30d1799d3fbb418f02eb0835e2a2acf5" kind="variable"><name>lidar_sub</name></member>
     <member refid="online__node_8cpp_1a65dc6c748af20a45bea7469712b724dd" kind="variable"><name>timer</name></member>
   </compound>
   <compound refid="threaded__node_8cpp" kind="file"><name>threaded_node.cpp</name>

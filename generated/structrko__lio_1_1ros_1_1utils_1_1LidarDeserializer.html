@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Struct LidarDeserializer &#8212; RKO-LIO: Lidar-inertial odometry without sensor-specific modeling</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=f6a572b4" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=adc50415" />
+    <script src="../_static/documentation_options.js?v=c87aa342"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Struct RawScan" href="structrko__lio_1_1ros_1_1utils_1_1RawScan.html" />
+    <link rel="prev" title="Struct LidarScan" href="structrko__lio_1_1ros_1_1LidarScan.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">RKO-LIO</a></h1>
+
+
+
+<p class="blurb">Lidar-inertial odometry</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=PRBonn&repo=rko_lio&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/data.html">Data</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pages/ros.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/config.html">Configuring rko_lio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/changelog_literal.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../__LICENSE.html">License</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://index.ros.org/p/rko_lio/">ROS Index</a></li>
+    
+    <li class="toctree-l1"><a href="https://pypi.org/project/rko-lio/">PyPI</a></li>
+    
+    <li class="toctree-l1"><a href="https://github.com/PRBonn/rko_lio">GitHub</a></li>
+    
+</ul>
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="struct-lidardeserializer">
+<span id="exhale-struct-structrko-lio-1-1ros-1-1utils-1-1lidardeserializer"></span><h1>Struct LidarDeserializer<a class="headerlink" href="#struct-lidardeserializer" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_point_cloud_read.hpp.html#file-home-runner-work-rko-lio-rko-lio-rko-lio-ros-utils-point-cloud-read-hpp"><span class="std std-ref">File point_cloud_read.hpp</span></a></p></li>
+</ul>
+<section id="struct-documentation">
+<h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Link to this heading">¶</a></h2>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros5utils17LidarDeserializerE">
+<span id="_CPPv3N7rko_lio3ros5utils17LidarDeserializerE"></span><span id="_CPPv2N7rko_lio3ros5utils17LidarDeserializerE"></span><span id="rko_lio::ros::utils::LidarDeserializer"></span><span class="target" id="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LidarDeserializer</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros5utils17LidarDeserializerE" title="Link to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros5utils17LidarDeserializer17LidarDeserializerENSt11string_viewE">
+<span id="_CPPv3N7rko_lio3ros5utils17LidarDeserializer17LidarDeserializerENSt11string_viewE"></span><span id="_CPPv2N7rko_lio3ros5utils17LidarDeserializer17LidarDeserializerENSt11string_viewE"></span><span id="rko_lio::ros::utils::LidarDeserializer::LidarDeserializer__std::string_view"></span><span class="target" id="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer_1af71f38eeb760971408e9792471449489"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LidarDeserializer</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string_view</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7rko_lio3ros5utils17LidarDeserializer17LidarDeserializerENSt11string_viewE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7rko_lio3ros5utils17LidarDeserializerclERKNSt10shared_ptrIN6rclcpp17SerializedMessageEEE">
+<span id="_CPPv3NK7rko_lio3ros5utils17LidarDeserializerclERKNSt10shared_ptrIN6rclcpp17SerializedMessageEEE"></span><span id="_CPPv2NK7rko_lio3ros5utils17LidarDeserializerclERKNSt10shared_ptrIN6rclcpp17SerializedMessageEEE"></span><span id="rko_lio::ros::utils::LidarDeserializer::call-operator__std::shared_ptr:rclcpp::SerializedMessage:CRC"></span><span class="target" id="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer_1a50457042a3c65aa3027c1a4c6873e3f9"></span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PointCloud2</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstSharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">()</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SerializedMessage</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">msg</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7rko_lio3ros5utils17LidarDeserializerclERKNSt10shared_ptrIN6rclcpp17SerializedMessageEEE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros5utils17LidarDeserializer5codecE">
+<span id="_CPPv3N7rko_lio3ros5utils17LidarDeserializer5codecE"></span><span id="_CPPv2N7rko_lio3ros5utils17LidarDeserializer5codecE"></span><span id="rko_lio::ros::utils::LidarDeserializer::codec__std::optional:point_cloud_transport::PointCloudCodec:"></span><span class="target" id="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer_1a57f9a3df6715c4827e71fbd5037fd374"></span><span class="k"><span class="pre">mutable</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">point_cloud_transport</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PointCloudCodec</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">codec</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros5utils17LidarDeserializer5codecE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7rko_lio3ros5utils17LidarDeserializer7decoderE">
+<span id="_CPPv3N7rko_lio3ros5utils17LidarDeserializer7decoderE"></span><span id="_CPPv2N7rko_lio3ros5utils17LidarDeserializer7decoderE"></span><span id="rko_lio::ros::utils::LidarDeserializer::decoder__std::shared_ptr:point_cloud_transport::SubscriberPlugin:"></span><span class="target" id="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer_1a59e9ed37ec468a627438149f1f587127"></span><span class="k"><span class="pre">mutable</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">point_cloud_transport</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SubscriberPlugin</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">decoder</span></span></span><a class="headerlink" href="#_CPPv4N7rko_lio3ros5utils17LidarDeserializer7decoderE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="structrko__lio_1_1ros_1_1LidarScan.html" title="Previous document">Struct LidarScan</a>
+        </li>
+        <li>
+          <a href="structrko__lio_1_1ros_1_1utils_1_1RawScan.html" title="Next document">Struct RawScan</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &#169;2026 Meher Malladi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/generated/structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

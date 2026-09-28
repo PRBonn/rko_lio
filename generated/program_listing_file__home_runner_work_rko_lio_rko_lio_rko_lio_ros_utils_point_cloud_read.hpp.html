@@ -122,8 +122,17 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;rko_lio/core/util.hpp&gt;</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Eigen/Core&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;functional&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;memory&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;optional&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sophus/se3.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string_view&gt;</span>
 <span class="c1">// ros</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;point_cloud_transport/point_cloud_codec.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;point_cloud_transport/subscriber_plugin.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;rclcpp/node.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;rclcpp/serialized_message.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sensor_msgs/msg/point_cloud2.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sensor_msgs/point_cloud2_iterator.hpp&gt;</span>
 
@@ -136,6 +145,23 @@
 <span class="p">};</span>
 
 <span class="n">RawScan</span><span class="w"> </span><span class="nf">point_cloud2_to_eigen_with_timestamps</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PointCloud2</span><span class="o">::</span><span class="n">ConstSharedPtr</span><span class="o">&amp;</span><span class="w"> </span><span class="n">msg</span><span class="p">);</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">LidarDeserializer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">explicit</span><span class="w"> </span><span class="n">LidarDeserializer</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string_view</span><span class="w"> </span><span class="n">type</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// nullptr if the compressed cloud does not decode</span>
+<span class="w">  </span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PointCloud2</span><span class="o">::</span><span class="n">ConstSharedPtr</span><span class="w"> </span><span class="nf">operator</span><span class="p">()(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">rclcpp</span><span class="o">::</span><span class="n">SerializedMessage</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">msg</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">  </span><span class="k">mutable</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">point_cloud_transport</span><span class="o">::</span><span class="n">PointCloudCodec</span><span class="o">&gt;</span><span class="w"> </span><span class="n">codec</span><span class="p">;</span>
+<span class="w">  </span><span class="k">mutable</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">point_cloud_transport</span><span class="o">::</span><span class="n">SubscriberPlugin</span><span class="o">&gt;</span><span class="w"> </span><span class="n">decoder</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// Waits until `topic` has a publisher, then subscribes as PointCloud2, or as CompressedPointCloud2 if that publisher</span>
+<span class="c1">// advertises it.</span>
+<span class="c1">// nullptr if ROS shuts down while waiting.</span>
+<span class="n">rclcpp</span><span class="o">::</span><span class="n">SubscriptionBase</span><span class="o">::</span><span class="n">SharedPtr</span>
+<span class="nf">create_lidar_subscription</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">Node</span><span class="o">::</span><span class="n">SharedPtr</span><span class="o">&amp;</span><span class="w"> </span><span class="n">node</span><span class="p">,</span>
+<span class="w">                          </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">topic</span><span class="p">,</span>
+<span class="w">                          </span><span class="k">const</span><span class="w"> </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">QoS</span><span class="o">&amp;</span><span class="w"> </span><span class="n">qos</span><span class="p">,</span>
+<span class="w">                          </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PointCloud2</span><span class="o">::</span><span class="n">ConstSharedPtr</span><span class="o">&amp;</span><span class="p">)</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">callback</span><span class="p">);</span>
 <span class="p">};</span><span class="w"> </span><span class="c1">// namespace rko_lio::ros::utils</span>
 </pre></div>
 </div>

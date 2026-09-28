@@ -3,6 +3,7 @@
   <compounddef id="namespacerko__lio_1_1ros_1_1utils" kind="namespace" language="C++">
     <compoundname>rko_lio::ros::utils</compoundname>
     <innerclass refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag" prot="public">rko_lio::ros::utils::BufferableBag</innerclass>
+    <innerclass refid="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer" prot="public">rko_lio::ros::utils::LidarDeserializer</innerclass>
     <innerclass refid="structrko__lio_1_1ros_1_1utils_1_1RawScan" prot="public">rko_lio::ros::utils::RawScan</innerclass>
     <innerclass refid="classrko__lio_1_1ros_1_1utils_1_1RclcppSink" prot="public">rko_lio::ros::utils::RclcppSink</innerclass>
     <sectiondef kind="func">
@@ -22,7 +23,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" line="36" column="22" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" bodystart="36" bodyend="47" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" declline="35" declcolumn="22"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" line="44" column="22" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" bodystart="44" bodyend="55" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" declline="44" declcolumn="22"/>
       </memberdef>
       <memberdef kind="function" id="point__cloud__read_8cpp_1ac97c323cb1b6bab04e1f5a2766731cd8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structrko__lio_1_1ros_1_1utils_1_1RawScan" kindref="compound">RawScan</ref></type>
@@ -40,7 +41,37 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" line="49" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" bodystart="49" bodyend="102"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" line="57" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" bodystart="57" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="point__cloud__read_8cpp_1a6a3226c19337ef684f4acf03e4ddc040" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>rclcpp::SubscriptionBase::SharedPtr</type>
+        <definition>rclcpp::SubscriptionBase::SharedPtr rko_lio::ros::utils::create_lidar_subscription</definition>
+        <argsstring>(const rclcpp::Node::SharedPtr &amp;node, const std::string &amp;topic, const rclcpp::QoS &amp;qos, const std::function&lt; void(const PointCloud2::ConstSharedPtr &amp;)&gt; &amp;callback)</argsstring>
+        <name>create_lidar_subscription</name>
+        <qualifiedname>rko_lio::ros::utils::create_lidar_subscription</qualifiedname>
+        <param>
+          <type>const rclcpp::Node::SharedPtr &amp;</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>topic</declname>
+        </param>
+        <param>
+          <type>const rclcpp::QoS &amp;</type>
+          <declname>qos</declname>
+        </param>
+        <param>
+          <type>const std::function&lt; void(const PointCloud2::ConstSharedPtr &amp;)&gt; &amp;</type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" line="138" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" bodystart="138" bodyend="168"/>
       </memberdef>
       <memberdef kind="function" id="point__cloud__read_8hpp_1a77d7ba00ca1501f61934151103ed9af2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structrko__lio_1_1ros_1_1utils_1_1RawScan" kindref="compound">RawScan</ref></type>
@@ -58,7 +89,37 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" line="42" column="9" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" declline="42" declcolumn="9"/>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" line="51" column="9" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" declline="51" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="point__cloud__read_8hpp_1ab01b9a44bccfd2ab4c63c5cd11bebfba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>rclcpp::SubscriptionBase::SharedPtr</type>
+        <definition>rclcpp::SubscriptionBase::SharedPtr rko_lio::ros::utils::create_lidar_subscription</definition>
+        <argsstring>(const rclcpp::Node::SharedPtr &amp;node, const std::string &amp;topic, const rclcpp::QoS &amp;qos, const std::function&lt; void(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &amp;)&gt; &amp;callback)</argsstring>
+        <name>create_lidar_subscription</name>
+        <qualifiedname>rko_lio::ros::utils::create_lidar_subscription</qualifiedname>
+        <param>
+          <type>const rclcpp::Node::SharedPtr &amp;</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>topic</declname>
+        </param>
+        <param>
+          <type>const rclcpp::QoS &amp;</type>
+          <declname>qos</declname>
+        </param>
+        <param>
+          <type>const std::function&lt; void(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &amp;)&gt; &amp;</type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" line="65" column="1" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" declline="65" declcolumn="1"/>
       </memberdef>
       <memberdef kind="function" id="point__cloud__write_8cpp_1abc355982206b665ccf8d223ef1a85d5f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>PointCloud2::UniquePtr</type>
@@ -201,6 +262,29 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/ros_vectors.hpp" line="45" column="17" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/ros_vectors.hpp" bodystart="45" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="rosbag_8hpp_1af6596623fa5d51846ffc887017cce914" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>std::shared_ptr&lt; T &gt;</type>
+        <definition>std::shared_ptr&lt; T &gt; rko_lio::ros::utils::deserialize</definition>
+        <argsstring>(const rclcpp::SerializedMessage &amp;serialized_msg)</argsstring>
+        <name>deserialize</name>
+        <qualifiedname>rko_lio::ros::utils::deserialize</qualifiedname>
+        <param>
+          <type>const rclcpp::SerializedMessage &amp;</type>
+          <declname>serialized_msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" line="45" column="17" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/rosbag.hpp" bodystart="45" bodyend="49"/>
       </memberdef>
       <memberdef kind="function" id="time_8hpp_1ac8836828d9bdda7dadc9f125f03b2154" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::chrono::nanoseconds</type>
@@ -373,6 +457,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" line="32" column="1"/>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" line="39" column="1"/>
   </compounddef>
 </doxygen>

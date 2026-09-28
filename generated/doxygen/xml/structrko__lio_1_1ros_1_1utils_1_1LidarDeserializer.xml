@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer" kind="struct" language="C++" prot="public">
+    <compoundname>rko_lio::ros::utils::LidarDeserializer</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer_1a57f9a3df6715c4827e71fbd5037fd374" prot="public" static="no" mutable="yes">
+        <type>std::optional&lt; point_cloud_transport::PointCloudCodec &gt;</type>
+        <definition>std::optional&lt;point_cloud_transport::PointCloudCodec&gt; rko_lio::ros::utils::LidarDeserializer::codec</definition>
+        <argsstring></argsstring>
+        <name>codec</name>
+        <qualifiedname>rko_lio::ros::utils::LidarDeserializer::codec</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" line="57" column="25" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer_1a59e9ed37ec468a627438149f1f587127" prot="public" static="no" mutable="yes">
+        <type>std::shared_ptr&lt; point_cloud_transport::SubscriberPlugin &gt;</type>
+        <definition>std::shared_ptr&lt;point_cloud_transport::SubscriberPlugin&gt; rko_lio::ros::utils::LidarDeserializer::decoder</definition>
+        <argsstring></argsstring>
+        <name>decoder</name>
+        <qualifiedname>rko_lio::ros::utils::LidarDeserializer::decoder</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" line="58" column="27" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer_1af71f38eeb760971408e9792471449489" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rko_lio::ros::utils::LidarDeserializer::LidarDeserializer</definition>
+        <argsstring>(std::string_view type)</argsstring>
+        <name>LidarDeserializer</name>
+        <qualifiedname>rko_lio::ros::utils::LidarDeserializer::LidarDeserializer</qualifiedname>
+        <param>
+          <type>std::string_view</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" line="54" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" bodystart="112" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer_1a50457042a3c65aa3027c1a4c6873e3f9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>sensor_msgs::msg::PointCloud2::ConstSharedPtr</type>
+        <definition>PointCloud2::ConstSharedPtr rko_lio::ros::utils::LidarDeserializer::operator()</definition>
+        <argsstring>(const std::shared_ptr&lt; rclcpp::SerializedMessage &gt; &amp;msg) const</argsstring>
+        <name>operator()</name>
+        <qualifiedname>rko_lio::ros::utils::LidarDeserializer::operator()</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; rclcpp::SerializedMessage &gt; &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" line="56" column="49" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.cpp" bodystart="118" bodyend="135"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" line="53" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/utils/point_cloud_read.hpp" bodystart="53" bodyend="59"/>
+    <listofallmembers>
+      <member refid="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer_1a57f9a3df6715c4827e71fbd5037fd374" prot="public" virt="non-virtual"><scope>rko_lio::ros::utils::LidarDeserializer</scope><name>codec</name></member>
+      <member refid="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer_1a59e9ed37ec468a627438149f1f587127" prot="public" virt="non-virtual"><scope>rko_lio::ros::utils::LidarDeserializer</scope><name>decoder</name></member>
+      <member refid="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer_1af71f38eeb760971408e9792471449489" prot="public" virt="non-virtual"><scope>rko_lio::ros::utils::LidarDeserializer</scope><name>LidarDeserializer</name></member>
+      <member refid="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer_1a50457042a3c65aa3027c1a4c6873e3f9" prot="public" virt="non-virtual"><scope>rko_lio::ros::utils::LidarDeserializer</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

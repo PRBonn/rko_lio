@@ -34,6 +34,8 @@ Includes
 
 - ``rko_lio/core/profiler.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_profiler.hpp`)
 
+- ``rko_lio/ros/utils/point_cloud_read.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_utils_point_cloud_read.hpp`)
+
 - ``threaded_node.hpp`` (:ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_ros_threaded_node.hpp`)
 
 
@@ -56,7 +58,7 @@ Variables
 
 - :ref:`exhale_variable_online__node_8cpp_1a99af4aad7b375dc52ceeabb68e5be2ef`
 
-- :ref:`exhale_variable_online__node_8cpp_1a5a129e80a6ca4335b1488d932e98601d`
+- :ref:`exhale_variable_online__node_8cpp_1a30d1799d3fbb418f02eb0835e2a2acf5`
 
 - :ref:`exhale_variable_online__node_8cpp_1a65dc6c748af20a45bea7469712b724dd`
 

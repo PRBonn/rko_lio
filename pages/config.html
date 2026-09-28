@@ -326,7 +326,8 @@ For the full list with descriptions, run <code class="docutils literal notransla
 <ul>
 <li><p><strong>imu_topic</strong>, <strong>lidar_topic</strong>, <strong>base_frame</strong> (via CLI or config, required with <code class="docutils literal notranslate"><span class="pre">autodetect:=false</span></code>)</p>
 <p>The IMU topic, the LiDAR topic, and the base frame of the robot.
-Autodetected when left unset. See <a class="reference internal" href="ros.html#autodetection"><span class="std std-ref">Launch parameter autodetection</span></a>.</p>
+Autodetected when left unset. See <a class="reference internal" href="ros.html#autodetection"><span class="std std-ref">Launch parameter autodetection</span></a>.
+A <code class="docutils literal notranslate"><span class="pre">point_cloud_interfaces/msg/CompressedPointCloud2</span></code> LiDAR topic is decoded by the <code class="docutils literal notranslate"><span class="pre">point_cloud_transport</span></code> plugin named in its <code class="docutils literal notranslate"><span class="pre">format</span></code> field.</p>
 </li>
 <li><p><strong>imu_frame</strong>, <strong>lidar_frame</strong> (optional)</p>
 <p>Override these only if the message <code class="docutils literal notranslate"><span class="pre">frame_id</span></code> doesn’t match the TF tree.

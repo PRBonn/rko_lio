@@ -62,7 +62,7 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_point__cloud__write_8cpp_1aa1afddc575785b6c7c18a028bf689ab8`
-
 - :ref:`exhale_function_point__cloud__write_8cpp_1abc355982206b665ccf8d223ef1a85d5f`
+
+- :ref:`exhale_function_point__cloud__write_8cpp_1aa1afddc575785b6c7c18a028bf689ab8`
 
