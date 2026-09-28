@@ -214,6 +214,8 @@ Topic and frame configuration
 
   The IMU topic, the LiDAR topic, and the base frame of the robot.
   Autodetected when left unset. See :ref:`autodetection`.
+  A ``point_cloud_interfaces/msg/CompressedPointCloud2`` LiDAR topic is not autodetected, so set ``lidar_topic`` to it.
+  It is decoded by the ``point_cloud_transport`` plugin named in its ``format`` field.
 
 - **imu_frame**, **lidar_frame** (optional)
 

@@ -23,6 +23,7 @@
  */
 
 #include "rko_lio/core/profiler.hpp"
+#include "rko_lio/ros/utils/point_cloud_read.hpp"
 #include "rko_lio/ros/utils/rosbag.hpp"
 #include "threaded_node.hpp"
 #include <spdlog/spdlog.h>
@@ -30,14 +31,6 @@
 #include <std_msgs/msg/float32_multi_array.hpp>
 
 namespace {
-template <typename T>
-std::shared_ptr<T> deserialize_next_msg(const rclcpp::SerializedMessage& serialized_msg) {
-  const auto msg = std::make_shared<T>();
-  const rclcpp::Serialization<T> serializer;
-  serializer.deserialize_message(&serialized_msg, msg.get());
-  return msg;
-}
-
 using BagProgressPublisher = rclcpp::Publisher<std_msgs::msg::Float32MultiArray>;
 } // namespace
 
@@ -84,6 +77,7 @@ public:
   }
 
   void run() {
+    utils::LidarDeserializer deserialize_lidar(bag->topic_type(lidar_topic));
     while (rclcpp::ok() && !bag->finished()) {
       {
         size_t buffered_frames = 0;
@@ -105,15 +99,16 @@ public:
       }
       const rosbag2_storage::SerializedBagMessage serialized_bag_msg = bag->PopNextMessage();
       const auto& topic_name = serialized_bag_msg.topic_name;
-      const rclcpp::SerializedMessage serialized_msg(*serialized_bag_msg.serialized_data);
 
       // check the topic and call the appropriate callback
       if (topic_name == imu_topic) {
-        const auto& imu_msg = deserialize_next_msg<sensor_msgs::msg::Imu>(serialized_msg);
-        imu_callback(imu_msg);
+        imu_callback(
+            utils::deserialize<sensor_msgs::msg::Imu>(rclcpp::SerializedMessage(*serialized_bag_msg.serialized_data)));
       } else if (topic_name == lidar_topic) {
-        const auto& lidar_msg = deserialize_next_msg<sensor_msgs::msg::PointCloud2>(serialized_msg);
-        lidar_callback(lidar_msg);
+        if (const auto lidar_msg =
+                deserialize_lidar(std::make_shared<rclcpp::SerializedMessage>(*serialized_bag_msg.serialized_data))) {
+          lidar_callback(lidar_msg);
+        }
       }
 
       processed_bag_msgs++;

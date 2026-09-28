@@ -35,6 +35,7 @@ compat_target_sources(
 target_link_libraries(
   rko_lio.ros.utils
   PUBLIC # ros deps
+         point_cloud_transport::point_cloud_transport
          ${sensor_msgs_TARGETS}
          rclcpp::rclcpp
          rosbag2_cpp::rosbag2_cpp
@@ -46,5 +47,6 @@ target_link_libraries(
          # ros deps end
          rko_lio::core
          Sophus::Sophus
-         Eigen3::Eigen)
+         Eigen3::Eigen
+  PRIVATE ${point_cloud_interfaces_TARGETS})
 set_target_properties(rko_lio.ros.utils PROPERTIES POSITION_INDEPENDENT_CODE ON EXPORT_NAME ros::utils)

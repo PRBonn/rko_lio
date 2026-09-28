@@ -38,7 +38,7 @@ class OnlineImuRateNode : public BaseNode {
 public:
   rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odom_at_imu_rate_publisher;
   rclcpp::Subscription<sensor_msgs::msg::Imu>::SharedPtr imu_sub;
-  rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr lidar_sub;
+  rclcpp::SubscriptionBase::SharedPtr lidar_sub;
   core::Timer timer;
 
   std::string odom_at_imu_rate_topic = "rko_lio/odom_at_imu_rate";
@@ -68,8 +68,8 @@ public:
     imu_sub = node->create_subscription<sensor_msgs::msg::Imu>(
         imu_topic, qos_imu, [this](const sensor_msgs::msg::Imu::ConstSharedPtr& imu_msg) { imu_callback(imu_msg); });
 
-    lidar_sub = node->create_subscription<sensor_msgs::msg::PointCloud2>(
-        lidar_topic, qos_lidar,
+    lidar_sub = utils::create_lidar_subscription(
+        node, lidar_topic, qos_lidar,
         [this](const sensor_msgs::msg::PointCloud2::ConstSharedPtr& lidar_msg) { lidar_callback(lidar_msg); });
   }
 

@@ -24,12 +24,18 @@
 
 #include "point_cloud_read.hpp"
 #include "rko_lio/core/error.hpp"
+#include "rosbag.hpp"
+#include <point_cloud_interfaces/msg/compressed_point_cloud2.hpp>
+#include <rclcpp/utilities.hpp>
+#include <spdlog/spdlog.h>
 // stl
+#include <chrono>
 #include <cstddef>
 #include <functional>
 #include <string>
 
 namespace rko_lio::ros::utils {
+using point_cloud_interfaces::msg::CompressedPointCloud2;
 using sensor_msgs::msg::PointCloud2;
 using sensor_msgs::msg::PointField;
 
@@ -100,4 +106,58 @@ RawScan point_cloud2_to_eigen_with_timestamps(const PointCloud2::ConstSharedPtr&
 
   return scan;
 }
+
+LidarDeserializer::LidarDeserializer(const std::string_view type) {
+  if (type == rosidl_generator_traits::name<CompressedPointCloud2>()) {
+    codec.emplace();
+  }
+}
+
+PointCloud2::ConstSharedPtr LidarDeserializer::operator()(const std::shared_ptr<rclcpp::SerializedMessage>& msg) const {
+  if (!codec) {
+    return deserialize<PointCloud2>(*msg);
+  }
+  if (!decoder) {
+    const std::string format = deserialize<CompressedPointCloud2>(*msg)->format;
+    decoder = codec->getDecoderByName(format);
+    if (!decoder) {
+      throw core::InputError("No point_cloud_transport plugin named '" + format + "' is installed.");
+    }
+  }
+  const auto decoded = decoder->decode(msg);
+  if (!decoded) {
+    spdlog::warn("Dropping scan: could not decode it: {}", decoded.error());
+    return nullptr;
+  }
+  return decoded->value_or(nullptr);
+}
+
+rclcpp::SubscriptionBase::SharedPtr
+create_lidar_subscription(const rclcpp::Node::SharedPtr& node,
+                          const std::string& topic,
+                          const rclcpp::QoS& qos,
+                          const std::function<void(const PointCloud2::ConstSharedPtr&)>& callback) {
+  auto publishers = node->get_publishers_info_by_topic(topic);
+  if (publishers.empty()) {
+    spdlog::info("Waiting for a publisher on {}.", topic);
+  }
+  while (publishers.empty()) {
+    if (!rclcpp::sleep_for(std::chrono::milliseconds(100), node->get_node_base_interface()->get_context())) {
+      return nullptr;
+    }
+    publishers = node->get_publishers_info_by_topic(topic);
+  }
+  const std::string& type = publishers.front().topic_type();
+  if (type == rosidl_generator_traits::name<CompressedPointCloud2>()) {
+    return node->create_generic_subscription(
+        topic, type, qos,
+        [deserialize_lidar = LidarDeserializer(type), callback](std::shared_ptr<rclcpp::SerializedMessage> msg) {
+          if (const auto cloud = deserialize_lidar(msg)) {
+            callback(cloud);
+          }
+        });
+  }
+  return node->create_subscription<PointCloud2>(topic, qos, callback);
+}
+
 } // namespace rko_lio::ros::utils

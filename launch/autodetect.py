@@ -14,6 +14,7 @@ from rosidl_runtime_py.utilities import get_message
 
 IMU_TYPE = "sensor_msgs/msg/Imu"
 LIDAR_TYPE = "sensor_msgs/msg/PointCloud2"
+COMPRESSED_LIDAR_TYPE = "point_cloud_interfaces/msg/CompressedPointCloud2"
 BASE_FRAME_CANDIDATES = ("base_link", "base_footprint", "base")
 REQUIRED = ("imu_topic", "lidar_topic", "base_frame")
 TF_SCAN_WINDOW_NS = 5 * 10**9
@@ -60,7 +61,11 @@ class LiveGraph:
             f"a {msgtype} publisher",
         )
 
-    def frame_id(self, topic, msgtype):
+    def frame_id(self, topic):
+        msgtype = self.spin_until(
+            lambda: next((info.topic_type for info in self.node.get_publishers_info_by_topic(topic)), None),
+            f"a publisher on {topic}",
+        )
         received = []
         subscription = self.node.create_subscription(
             get_message(msgtype),
@@ -95,7 +100,9 @@ class BagGraph:
         self.buffer = buffer
         self.frame_of = {}
 
-        wanted = {topic for topic, type_ in self.types.items() if type_ in (IMU_TYPE, LIDAR_TYPE)}
+        wanted = {
+            topic for topic, type_ in self.types.items() if type_ in (IMU_TYPE, LIDAR_TYPE, COMPRESSED_LIDAR_TYPE)
+        }
         tf_topics = {topic for topic, type_ in self.types.items() if type_ == "tf2_msgs/msg/TFMessage"}
         start = None
         while reader.has_next() and (wanted or tf_topics):
@@ -114,7 +121,7 @@ class BagGraph:
     def topics(self, msgtype):
         return sorted(topic for topic, type_ in self.types.items() if type_ == msgtype)
 
-    def frame_id(self, topic, msgtype):
+    def frame_id(self, topic):
         if topic not in self.frame_of:
             raise AutodetectError(f"the bag holds no messages on {topic}")
         return self.frame_of[topic]
@@ -153,8 +160,8 @@ def resolve(graph, params):
         return found
 
     known_frames = graph.frames()
-    imu_frame = settle("imu_frame", lambda: graph.frame_id(imu_topic, IMU_TYPE))
-    lidar_frame = settle("lidar_frame", lambda: graph.frame_id(lidar_topic, LIDAR_TYPE))
+    imu_frame = settle("imu_frame", lambda: graph.frame_id(imu_topic))
+    lidar_frame = settle("lidar_frame", lambda: graph.frame_id(lidar_topic))
     guessed = next((f for f in BASE_FRAME_CANDIDATES if f in known_frames), None)
     base_frame = guessed or lidar_frame
     found["base_frame"] = base_frame
