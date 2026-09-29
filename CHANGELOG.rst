@@ -2,8 +2,8 @@
 Changelog for package rko_lio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.2 (2026-09-29)
+------------------
 * ros: add support for compressed clouds (`#187 <https://github.com/PRBonn/rko_lio/issues/187>`_)
 * Contributors: Meher Malladi
 
