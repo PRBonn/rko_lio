@@ -2,6 +2,11 @@
 Changelog for package rko_lio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.4.2 (2026-09-29)
+------------------
+* ros: add support for compressed clouds (`#187 <https://github.com/PRBonn/rko_lio/issues/187>`_)
+* Contributors: Meher Malladi
+
 0.4.1 (2026-09-25)
 ------------------
 * core, api break: publish deskewed scan in base frame, change topic name (`#185 <https://github.com/PRBonn/rko_lio/issues/185>`_)
