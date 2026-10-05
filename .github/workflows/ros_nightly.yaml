@@ -16,8 +16,11 @@ jobs:
         run: |
           apt-get update
           apt-get install -y build-essential cmake git
+      - name: Fetch point_cloud_interfaces, which the nightly image lacks
+        run: git clone --depth 1 --branch rolling https://github.com/ros-perception/point_cloud_transport_plugins ../point_cloud_transport_plugins
       - name: Source ROS environment and build
         run: |
           . /opt/ros/rolling/setup.sh
           colcon build --event-handlers console_direct+ \
+            --base-paths . ../point_cloud_transport_plugins --packages-up-to rko_lio \
             --cmake-args -DRKO_LIO_FETCH_CONTENT_DEPS=ON
