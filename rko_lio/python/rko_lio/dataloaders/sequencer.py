@@ -54,6 +54,7 @@ class LidarIMUSequencer:
                 yield ("lidar", frame)
 
                 self.imu_buffer = [imu for imu in self.imu_buffer if imu["time"] >= frame["end_time_ns"]]
+                continue
 
             try:
                 # buffers dont have valid data to process so
