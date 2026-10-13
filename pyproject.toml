@@ -76,7 +76,7 @@ BUILD_SHARED_LIBS = "OFF"
 [tool.cibuildwheel]
 environment = { GIT_LFS_SKIP_SMUDGE = "1" }
 archs = ["auto64"]
-skip = ["*-musllinux*", "pp*", "cp38-*", "cp39-*"]
+skip = ["*-musllinux*", "cp39-*"]
 manylinux-x86_64-image = "manylinux_2_28"
 
 [tool.cibuildwheel.macos]
