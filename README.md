@@ -28,7 +28,7 @@
 </p>
 
 <p align="center">
-  Still early days, but if you want drift correction on top of the odometry, have a look at <a href="https://github.com/PRBonn/rko_slam"><b>rko_slam</b></a>.
+  Still early days, but if you want a SLAM system (loop closures, pose graph back-end, drift correction), have a look at <a href="https://github.com/PRBonn/rko_slam"><b>rko_slam</b></a>.
 </p>
 
 ## Quick Start
