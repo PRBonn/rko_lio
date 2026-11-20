@@ -13,3 +13,8 @@ jobs:
         with:
           configurationFile: renovate.json
           token: ${{ secrets.RENOVATE_TOKEN }}
+        env:
+          RENOVATE_REPOSITORIES: ${{ github.repository }}
+          RENOVATE_BASE_BRANCH_PATTERNS: '["bump-version"]'
+          RENOVATE_USE_BASE_BRANCH_CONFIG: merge
+          RENOVATE_PR_HOURLY_LIMIT: "0"

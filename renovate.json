@@ -97,7 +97,7 @@
     {
       "groupName": "Python dependencies",
       "matchManagers": [
-        "poetry"
+        "pep621"
       ],
       "rangeStrategy": "widen"
     },
