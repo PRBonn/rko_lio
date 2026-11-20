@@ -65,7 +65,7 @@ public:
     Scalar max_correspondence_distance = 0.5;
 
     /** Thread count for data association (0 = automatic). */
-    int max_num_threads = 0;
+    int max_num_threads = 1;
 
     /** Enable initialization phase. */
     bool initialization_phase = false;

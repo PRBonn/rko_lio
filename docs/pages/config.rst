@@ -82,7 +82,7 @@ These show up under the top level of a Python config and as ROS launch arguments
   fraction of itself between two iterations.
   Lower (stricter) values will requires more ICP iterations.
 
-- **max_num_threads** (`int`, default ``1`` in ROS, ``0`` in Python)
+- **max_num_threads** (`int`, default ``1``)
 
   Only used to parallelize data association for ICP.
   ``0`` means autodetect based on hardware.

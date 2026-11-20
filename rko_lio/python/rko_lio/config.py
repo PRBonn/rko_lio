@@ -115,8 +115,8 @@ class LIOConfig:
         Convergence threshold for optimization, on the relative change in cost per iteration.
     max_correspondence_distance : float, default 0.5
         Max distance for associating points (meters).
-    max_num_threads : int, default 0
-        Max thread count (0 = autodetect).
+    max_num_threads : int, default 1
+        Max thread count for ICP data association (0 = autodetect).
     initialization_phase : bool, default False
         Whether to initialize on the first two lidar message.
     max_expected_jerk : float, default 3.0
@@ -134,7 +134,7 @@ class LIOConfig:
     min_range: float = 1.0
     convergence_criterion: float = 1e-5
     max_correspondence_distance: float = 0.5
-    max_num_threads: int = 0
+    max_num_threads: int = 1
     initialization_phase: bool = False
     max_expected_jerk: float = 3.0
     double_downsample: bool = True
