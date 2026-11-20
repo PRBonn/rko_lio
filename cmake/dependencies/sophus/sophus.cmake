@@ -12,7 +12,7 @@ set(BUILD_PYTHON_BINDINGS
     CACHE BOOL "Don't build Sophus Python Bindings")
 
 if(CMAKE_VERSION VERSION_LESS "3.24")
-  set(SOPHUS_VERSION "1.22.10")
+  set(SOPHUS_VERSION "1.24.6")
 else()
   set(SOPHUS_VERSION "1.24.6")
 endif()

@@ -15,7 +15,7 @@
 # COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-FetchContent_Declare(tsl-robin-map URL https://github.com/Tessil/robin-map/archive/refs/tags/v1.4.0.tar.gz
+FetchContent_Declare(tsl-robin-map URL https://github.com/Tessil/robin-map/archive/refs/tags/v1.4.1.tar.gz
                                        ${RKO_LIO_FETCHCONTENT_COMMON_FLAGS})
 FetchContent_MakeAvailable(tsl-robin-map)
 
