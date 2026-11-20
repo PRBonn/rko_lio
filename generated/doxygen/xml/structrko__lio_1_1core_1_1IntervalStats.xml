@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="structrko__lio_1_1core_1_1IntervalStats" kind="struct" language="C++" prot="public">
     <compoundname>rko_lio::core::IntervalStats</compoundname>
     <includes refid="util_8hpp" local="no">util.hpp</includes>
@@ -176,19 +176,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1">
-        <label>rko_lio::core::IntervalStats</label>
-        <link refid="structrko__lio_1_1core_1_1IntervalStats"/>
-        <childnode refid="2" relation="usage">
-          <edgelabel>imu_accel_mag_mean</edgelabel>
-          <edgelabel>welford_sum_of_squares</edgelabel>
-        </childnode>
-      </node>
-      <node id="2">
-        <label>Scalar</label>
-      </node>
-    </collaborationgraph>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="104" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="104" bodyend="154"/>
     <listofallmembers>
       <member refid="structrko__lio_1_1core_1_1IntervalStats_1a4e2966e0e84a6b5824b24f3b7a63fc02" prot="public" virt="non-virtual"><scope>rko_lio::core::IntervalStats</scope><name>angular_velocity_sum</name></member>

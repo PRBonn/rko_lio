@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.8" xml:lang="en-US">
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.15.0" xml:lang="en-US">
   <compound refid="classrko__lio_1_1ros_1_1BaseNode" kind="class"><name>rko_lio::ros::BaseNode</name>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1ae08b9cf4d1ff260c8f4f0edc1636fa17" kind="variable"><name>extrinsic_imu2base</name></member>
     <member refid="classrko__lio_1_1ros_1_1BaseNode_1a29a338c38af9e74c24814a54b4205902" kind="variable"><name>extrinsic_lidar2base</name></member>
@@ -285,40 +285,40 @@
     <member refid="classrko__lio_1_1core_1_1VoxelHashMap_1a135adfd73ddcd2d39fd357062119acdf" kind="function"><name>get_closest_neighbor</name></member>
     <member refid="classrko__lio_1_1core_1_1VoxelHashMap_1a599cf0c22fce646580c2f4bfeef71f76" kind="function"><name>center_of_voxel</name></member>
   </compound>
-  <compound refid="namespace_0d13" kind="namespace"><name>@13</name>
+  <compound refid="namespace_0d020046077214163050165350143071172160314120202336" kind="namespace"><name>@020046077214163050165350143071172160314120202336</name>
   </compound>
-  <compound refid="namespace_0d15" kind="namespace"><name>@15</name>
+  <compound refid="namespace_0d023040341342327356117072054033115260145012263163" kind="namespace"><name>@023040341342327356117072054033115260145012263163</name>
   </compound>
-  <compound refid="namespace_0d17" kind="namespace"><name>@17</name>
+  <compound refid="namespace_0d135176053221210070107371133173356115203230146275" kind="namespace"><name>@135176053221210070107371133173356115203230146275</name>
   </compound>
-  <compound refid="namespace_0d20" kind="namespace"><name>@20</name>
+  <compound refid="namespace_0d152112316101104033206272363324225371361276217135" kind="namespace"><name>@152112316101104033206272363324225371361276217135</name>
   </compound>
-  <compound refid="namespace_0d24" kind="namespace"><name>@24</name>
+  <compound refid="namespace_0d152231023000247207206162156347014316202042154076" kind="namespace"><name>@152231023000247207206162156347014316202042154076</name>
   </compound>
-  <compound refid="namespace_0d27" kind="namespace"><name>@27</name>
+  <compound refid="namespace_0d233214131170102177146161114344111321005102262330" kind="namespace"><name>@233214131170102177146161114344111321005102262330</name>
   </compound>
-  <compound refid="namespace_0d3" kind="namespace"><name>@3</name>
+  <compound refid="namespace_0d302160106115042362247237246357206150236236327203" kind="namespace"><name>@302160106115042362247237246357206150236236327203</name>
   </compound>
-  <compound refid="namespace_0d7" kind="namespace"><name>@7</name>
+  <compound refid="namespace_0d360316017245126046200354337107214273043112037373" kind="namespace"><name>@360316017245126046200354337107214273043112037373</name>
   </compound>
   <compound refid="namespaceEigen" kind="namespace"><name>Eigen</name>
-    <member refid="util_8hpp_1acbe7c0b7d2256e5520e0672cc1f453a5" kind="typedef"><name>Vector3s</name></member>
-    <member refid="util_8hpp_1a352b146ace6235f1f17b8a7c63bc8676" kind="typedef"><name>Vector4s</name></member>
-    <member refid="util_8hpp_1a0420b6f93947a4b915651820beb39357" kind="typedef"><name>Matrix3s</name></member>
-    <member refid="util_8hpp_1a7e2f820d8f1353a1bf9bdf5f144b5864" kind="typedef"><name>Matrix4s</name></member>
-    <member refid="util_8hpp_1a8ff6bd9d4657f08d14ce6ffbaa5e459d" kind="typedef"><name>Matrix3_6s</name></member>
-    <member refid="util_8hpp_1ae00c895351e2248eb4d074825b8e6d85" kind="typedef"><name>Vector6s</name></member>
-    <member refid="util_8hpp_1ad4ddf471463f5bd25184c71e490b4ada" kind="typedef"><name>Matrix6s</name></member>
-    <member refid="util_8hpp_1a7e8c6a6baaf32a4e56f0a95ee9e288b3" kind="typedef"><name>Quaternions</name></member>
-    <member refid="util_8hpp_1a59225034936e018c9753ea0d23b377b2" kind="typedef"><name>Vector3i8</name></member>
+    <member refid="util_8hpp_1a1316a413866cbe1f5ede1fdbc3c102e8" kind="typedef"><name>Vector3s</name></member>
+    <member refid="util_8hpp_1ad970c9912ca559d662e6049379d85a60" kind="typedef"><name>Vector4s</name></member>
+    <member refid="util_8hpp_1a8b24d41ccacbaf4c30cb8c86bee9eea2" kind="typedef"><name>Matrix3s</name></member>
+    <member refid="util_8hpp_1a5380a64214559a24c1fbe915284ac79a" kind="typedef"><name>Matrix4s</name></member>
+    <member refid="util_8hpp_1a9d1a0a34bed5ea3ce873929f826a030d" kind="typedef"><name>Matrix3_6s</name></member>
+    <member refid="util_8hpp_1a3b0249a9a36fb333047b2c1ad062ed56" kind="typedef"><name>Vector6s</name></member>
+    <member refid="util_8hpp_1ae0f8f9553518634b210ad747fb4e5552" kind="typedef"><name>Matrix6s</name></member>
+    <member refid="util_8hpp_1a2dd24c167d93044f7de73d9f7837ea00" kind="typedef"><name>Quaternions</name></member>
+    <member refid="util_8hpp_1a25707a7f9f118068cf1b8cfdec2a455a" kind="typedef"><name>Vector3i8</name></member>
   </compound>
   <compound refid="namespacerko__lio" kind="namespace"><name>rko_lio</name>
   </compound>
   <compound refid="namespacerko__lio_1_1core" kind="namespace"><name>rko_lio::core</name>
-    <member refid="namespacerko__lio_1_1core_1ae207837473ce1623f13104a2b12fae3d" kind="typedef"><name>Vector3sVector</name></member>
-    <member refid="namespacerko__lio_1_1core_1a5a3f42fcc9e49ecd569baa31d940734f" kind="typedef"><name>Nsec</name></member>
-    <member refid="namespacerko__lio_1_1core_1ad6796ca63cae68d67a3963e198336a1e" kind="typedef"><name>TimestampVector</name></member>
-    <member refid="namespacerko__lio_1_1core_1adbcc16d5b9b09c370ce6c889b6356bda" kind="typedef"><name>Voxel</name></member>
+    <member refid="namespacerko__lio_1_1core_1a2d93dc5163036089284602b27131bf8a" kind="typedef"><name>Vector3sVector</name></member>
+    <member refid="namespacerko__lio_1_1core_1a7db9a3cc24453fe8750ab5fe17d4c5a6" kind="typedef"><name>Nsec</name></member>
+    <member refid="namespacerko__lio_1_1core_1a81a04846c8ed60cbedc1ef7f069f14f0" kind="typedef"><name>TimestampVector</name></member>
+    <member refid="namespacerko__lio_1_1core_1a593f6c9d4c75e441f6a90e5611397dd8" kind="typedef"><name>Voxel</name></member>
     <member refid="namespacerko__lio_1_1core_1a54f88ad3bc44e0104ea7c3aae878b3ba" kind="variable"><name>GRAVITY_MAG</name></member>
     <member refid="namespacerko__lio_1_1core_1a80af781c058721a54b1f0e6f518ab4be" kind="function"><name>deskew_scan</name></member>
     <member refid="namespacerko__lio_1_1core_1a15ad77d57e545f66d0ff5d0843b797e8" kind="function"><name>preprocess_scan</name></member>
@@ -333,11 +333,11 @@
   <compound refid="namespacerko__lio_1_1ros" kind="namespace"><name>rko_lio::ros</name>
     <member refid="base__node_8cpp_1afae6f65417b908b3b2a34c5a6261c7d1" kind="function"><name>imu_msg_to_imu_data</name></member>
   </compound>
-  <compound refid="namespacerko__lio_1_1ros_1_1_0d17" kind="namespace"><name>rko_lio::ros::@17</name>
+  <compound refid="namespacerko__lio_1_1ros_1_1_0d023040341342327356117072054033115260145012263163" kind="namespace"><name>rko_lio::ros::@023040341342327356117072054033115260145012263163</name>
   </compound>
-  <compound refid="namespacerko__lio_1_1ros_1_1_0d18" kind="namespace"><name>rko_lio::ros::@18</name>
+  <compound refid="namespacerko__lio_1_1ros_1_1_0d124372205131203234006040227256272316205027370071" kind="namespace"><name>rko_lio::ros::@124372205131203234006040227256272316205027370071</name>
   </compound>
-  <compound refid="namespacerko__lio_1_1ros_1_1_0d19" kind="namespace"><name>rko_lio::ros::@19</name>
+  <compound refid="namespacerko__lio_1_1ros_1_1_0d130305364261106116271260012373112012042036371174" kind="namespace"><name>rko_lio::ros::@130305364261106116271260012373112012042036371174</name>
   </compound>
   <compound refid="namespacerko__lio_1_1ros_1_1utils" kind="namespace"><name>rko_lio::ros::utils</name>
     <member refid="point__cloud__read_8cpp_1a77975e01f058823f8615a43bba6396a5" kind="function"><name>point_cloud2_to_eigen</name></member>
@@ -362,8 +362,8 @@
     <member refid="transforms_8hpp_1ac35957a865541c33d4fbc1f59b6ae40e" kind="function"><name>get_transform</name></member>
   </compound>
   <compound refid="namespaceSophus" kind="namespace"><name>Sophus</name>
-    <member refid="util_8hpp_1aeff68517fe50f9fd3ebbc4ea4b54c52a" kind="typedef"><name>SE3s</name></member>
-    <member refid="util_8hpp_1aa20d225c07e7352bad174ebddb76c4fc" kind="typedef"><name>SO3s</name></member>
+    <member refid="util_8hpp_1a21dbf83685c5a29f4829a5bcc2681bfd" kind="typedef"><name>SE3s</name></member>
+    <member refid="util_8hpp_1a3e90883c1230c89bafb043be1adb7a92" kind="typedef"><name>SO3s</name></member>
   </compound>
   <compound refid="namespacespdlog" kind="namespace"><name>spdlog</name>
   </compound>
@@ -413,25 +413,11 @@
   <compound refid="base__node_8hpp" kind="file"><name>base_node.hpp</name>
   </compound>
   <compound refid="offline__node_8cpp" kind="file"><name>offline_node.cpp</name>
-    <member refid="offline__node_8cpp_1a8e0b7a912b9d319d0789184b7ad08d69" kind="variable"><name>bag</name></member>
-    <member refid="offline__node_8cpp_1ade940662fda9df68bc05a8f3e310179e" kind="variable"><name>bag_progress_publisher</name></member>
-    <member refid="offline__node_8cpp_1a1bd5b286cc04a6febf7022cd11ae6d0f" kind="variable"><name>total_bag_msgs</name></member>
-    <member refid="offline__node_8cpp_1aa26a87ab7284ee48085b19d97eee7e8b" kind="variable"><name>processed_bag_msgs</name></member>
-    <member refid="offline__node_8cpp_1abccb066f3c0f5f8fdc47695d6cab4ecc" kind="variable"><name>bag_start_time</name></member>
     <member refid="offline__node_8cpp_1ad1835a0a190dc5fe4f925bb69443c770" kind="function"><name>main</name></member>
   </compound>
   <compound refid="online__imu__rate__node_8cpp" kind="file"><name>online_imu_rate_node.cpp</name>
-    <member refid="online__imu__rate__node_8cpp_1aacbe12345a9ca47e3872e572922e6a5f" kind="variable"><name>odom_at_imu_rate_publisher</name></member>
-    <member refid="online__imu__rate__node_8cpp_1a99af4aad7b375dc52ceeabb68e5be2ef" kind="variable"><name>imu_sub</name></member>
-    <member refid="online__imu__rate__node_8cpp_1a30d1799d3fbb418f02eb0835e2a2acf5" kind="variable"><name>lidar_sub</name></member>
-    <member refid="online__imu__rate__node_8cpp_1ab78a07be796aaebb5f7bad06b5e301e7" kind="variable"><name>timer</name></member>
-    <member refid="online__imu__rate__node_8cpp_1aa48f161529ca3217def3fe5a8407e777" kind="variable"><name>odom_at_imu_rate_topic</name></member>
-    <member refid="online__imu__rate__node_8cpp_1a70eec06ed2c7220f2a80ac9c9ab29b49" kind="variable"><name>tf_at_imu_rate</name></member>
   </compound>
   <compound refid="online__node_8cpp" kind="file"><name>online_node.cpp</name>
-    <member refid="online__node_8cpp_1a99af4aad7b375dc52ceeabb68e5be2ef" kind="variable"><name>imu_sub</name></member>
-    <member refid="online__node_8cpp_1a30d1799d3fbb418f02eb0835e2a2acf5" kind="variable"><name>lidar_sub</name></member>
-    <member refid="online__node_8cpp_1a65dc6c748af20a45bea7469712b724dd" kind="variable"><name>timer</name></member>
   </compound>
   <compound refid="threaded__node_8cpp" kind="file"><name>threaded_node.cpp</name>
   </compound>

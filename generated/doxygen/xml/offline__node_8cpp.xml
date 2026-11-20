@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="offline__node_8cpp" kind="file" language="C++">
     <compoundname>offline_node.cpp</compoundname>
     <includes refid="profiler_8hpp" local="yes">rko_lio/core/profiler.hpp</includes>
@@ -406,75 +406,6 @@
     </incdepgraph>
     <innernamespace refid="namespacerko__lio">rko_lio</innernamespace>
     <innernamespace refid="namespacerko__lio_1_1ros">rko_lio::ros</innernamespace>
-    <sectiondef kind="var">
-      <memberdef kind="variable" id="offline__node_8cpp_1a8e0b7a912b9d319d0789184b7ad08d69" prot="public" static="no" mutable="no">
-        <type>std::unique_ptr&lt; utils::BufferableBag &gt;</type>
-        <definition>std::unique_ptr&lt;utils::BufferableBag&gt; bag</definition>
-        <argsstring></argsstring>
-        <name>bag</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" line="41" column="19" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" bodystart="41" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="offline__node_8cpp_1ade940662fda9df68bc05a8f3e310179e" prot="public" static="no" mutable="no">
-        <type>BagProgressPublisher::SharedPtr</type>
-        <definition>BagProgressPublisher::SharedPtr bag_progress_publisher</definition>
-        <argsstring></argsstring>
-        <name>bag_progress_publisher</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" line="43" column="35" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" bodystart="43" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="offline__node_8cpp_1a1bd5b286cc04a6febf7022cd11ae6d0f" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float total_bag_msgs</definition>
-        <argsstring></argsstring>
-        <name>total_bag_msgs</name>
-        <initializer>= 0</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" line="45" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" bodystart="45" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="offline__node_8cpp_1aa26a87ab7284ee48085b19d97eee7e8b" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float processed_bag_msgs</definition>
-        <argsstring></argsstring>
-        <name>processed_bag_msgs</name>
-        <initializer>= 0</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" line="46" column="9" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" bodystart="46" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="offline__node_8cpp_1abccb066f3c0f5f8fdc47695d6cab4ecc" prot="public" static="no" mutable="no">
-        <type>std::chrono::steady_clock::time_point</type>
-        <definition>std::chrono::steady_clock::time_point bag_start_time</definition>
-        <argsstring></argsstring>
-        <name>bag_start_time</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" line="47" column="41" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/offline_node.cpp" bodystart="47" bodyend="-1"/>
-      </memberdef>
-    </sectiondef>
     <sectiondef kind="func">
       <memberdef kind="function" id="offline__node_8cpp_1ad1835a0a190dc5fe4f925bb69443c770" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -541,7 +472,7 @@
 <codeline lineno="36"><highlight class="normal"></highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros<sp/>{</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">OfflineNode<sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>ThreadedNode<sp/>{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">OfflineNode<sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref><sp/>{</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/>std::unique_ptr&lt;utils::BufferableBag&gt;<sp/>bag;</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>

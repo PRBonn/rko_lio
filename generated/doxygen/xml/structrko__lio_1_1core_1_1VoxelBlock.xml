@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="structrko__lio_1_1core_1_1VoxelBlock" kind="struct" language="C++" prot="public">
     <compoundname>rko_lio::core::VoxelBlock</compoundname>
     <includes refid="voxel__hash__map_8hpp" local="no">voxel_hash_map.hpp</includes>
@@ -21,8 +21,8 @@
     </sectiondef>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="structrko__lio_1_1core_1_1VoxelBlock_1a111f7f2898a0064608a70f6a32d4c36f" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type>constexpr unsigned int</type>
-        <definition>constexpr unsigned int rko_lio::core::VoxelBlock::max_points</definition>
+        <type>unsigned int</type>
+        <definition>unsigned int rko_lio::core::VoxelBlock::max_points</definition>
         <argsstring></argsstring>
         <name>max_points</name>
         <qualifiedname>rko_lio::core::VoxelBlock::max_points</qualifiedname>

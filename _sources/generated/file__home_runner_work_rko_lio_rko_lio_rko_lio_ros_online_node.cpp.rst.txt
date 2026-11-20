@@ -51,14 +51,3 @@ Namespaces
 
 - :ref:`namespace_rko_lio__ros`
 
-
-Variables
----------
-
-
-- :ref:`exhale_variable_online__node_8cpp_1a99af4aad7b375dc52ceeabb68e5be2ef`
-
-- :ref:`exhale_variable_online__node_8cpp_1a30d1799d3fbb418f02eb0835e2a2acf5`
-
-- :ref:`exhale_variable_online__node_8cpp_1a65dc6c748af20a45bea7469712b724dd`
-

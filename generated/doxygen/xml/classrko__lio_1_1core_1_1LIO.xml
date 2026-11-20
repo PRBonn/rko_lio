@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="classrko__lio_1_1core_1_1LIO" kind="class" language="C++" prot="public">
     <compoundname>rko_lio::core::LIO</compoundname>
     <includes refid="lio_8hpp" local="no">lio.hpp</includes>
@@ -168,7 +168,7 @@
 <para>Base-frame state propagated from IMU measurements. </para>
         </briefdescription>
         <detaileddescription>
-<para>Runs ahead of <computeroutput>lidar_state</computeroutput> between scans; reset to the optimized lidar pose after each successful registration. Used for gravity compensation and for publishing IMU-rate odometry from the ROS wrapper. </para>
+<para>Runs ahead of <computeroutput><ref refid="classrko__lio_1_1core_1_1LIO_1a6b081409691284a8344fa25b573f0467" kindref="member">lidar_state</ref></computeroutput> between scans; reset to the optimized lidar pose after each successful registration. Used for gravity compensation and for publishing IMU-rate odometry from the ROS wrapper. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
@@ -498,17 +498,13 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="6">
+      <node id="5">
         <label>rko_lio::core::ImuBias</label>
         <link refid="structrko__lio_1_1core_1_1ImuBias"/>
       </node>
-      <node id="7">
+      <node id="6">
         <label>rko_lio::core::IntervalStats</label>
         <link refid="structrko__lio_1_1core_1_1IntervalStats"/>
-        <childnode refid="3" relation="usage">
-          <edgelabel>imu_accel_mag_mean</edgelabel>
-          <edgelabel>welford_sum_of_squares</edgelabel>
-        </childnode>
       </node>
       <node id="1">
         <label>rko_lio::core::LIO</label>
@@ -516,47 +512,31 @@
         <childnode refid="2" relation="usage">
           <edgelabel>config</edgelabel>
         </childnode>
-        <childnode refid="4" relation="usage">
+        <childnode refid="3" relation="usage">
           <edgelabel>map</edgelabel>
         </childnode>
-        <childnode refid="5" relation="usage">
+        <childnode refid="4" relation="usage">
           <edgelabel>imu_state</edgelabel>
           <edgelabel>lidar_state</edgelabel>
         </childnode>
-        <childnode refid="6" relation="usage">
+        <childnode refid="5" relation="usage">
           <edgelabel>imu_bias</edgelabel>
         </childnode>
-        <childnode refid="7" relation="usage">
+        <childnode refid="6" relation="usage">
           <edgelabel>interval_stats</edgelabel>
         </childnode>
       </node>
       <node id="2">
         <label>rko_lio::core::LIO::Config</label>
         <link refid="structrko__lio_1_1core_1_1LIO_1_1Config"/>
-        <childnode refid="3" relation="usage">
-          <edgelabel>convergence_criterion</edgelabel>
-          <edgelabel>max_correspondence_distance</edgelabel>
-          <edgelabel>max_expected_jerk</edgelabel>
-          <edgelabel>max_range</edgelabel>
-          <edgelabel>min_beta</edgelabel>
-          <edgelabel>min_range</edgelabel>
-          <edgelabel>voxel_size</edgelabel>
-        </childnode>
       </node>
-      <node id="3">
-        <label>Scalar</label>
-      </node>
-      <node id="5">
+      <node id="4">
         <label>rko_lio::core::State</label>
         <link refid="structrko__lio_1_1core_1_1State"/>
       </node>
-      <node id="4">
+      <node id="3">
         <label>rko_lio::core::VoxelHashMap</label>
         <link refid="classrko__lio_1_1core_1_1VoxelHashMap"/>
-        <childnode refid="3" relation="usage">
-          <edgelabel>quantum</edgelabel>
-          <edgelabel>voxel_size</edgelabel>
-        </childnode>
       </node>
     </collaborationgraph>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="40" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="40" bodyend="178"/>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="classrko__lio_1_1core_1_1ScopedProfiler" kind="class" language="C++" prot="public">
     <compoundname>rko_lio::core::ScopedProfiler</compoundname>
     <includes refid="profiler_8hpp" local="no">profiler.hpp</includes>
@@ -150,7 +150,7 @@
         <name>ScopedProfiler</name>
         <qualifiedname>rko_lio::core::ScopedProfiler::ScopedProfiler</qualifiedname>
         <param>
-          <type>const <ref refid="classrko__lio_1_1core_1_1ScopedProfiler" kindref="compound">ScopedProfiler</ref> &amp;</type>
+          <type>const ScopedProfiler &amp;</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -167,7 +167,7 @@
         <name>ScopedProfiler</name>
         <qualifiedname>rko_lio::core::ScopedProfiler::ScopedProfiler</qualifiedname>
         <param>
-          <type><ref refid="classrko__lio_1_1core_1_1ScopedProfiler" kindref="compound">ScopedProfiler</ref> &amp;&amp;</type>
+          <type>ScopedProfiler &amp;&amp;</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -178,13 +178,13 @@
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="59" column="3"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1core_1_1ScopedProfiler_1ab24e86336d717442d82591e7191621b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classrko__lio_1_1core_1_1ScopedProfiler" kindref="compound">ScopedProfiler</ref> &amp;</type>
+        <type>ScopedProfiler &amp;</type>
         <definition>ScopedProfiler &amp; rko_lio::core::ScopedProfiler::operator=</definition>
         <argsstring>(const ScopedProfiler &amp;)=delete</argsstring>
         <name>operator=</name>
         <qualifiedname>rko_lio::core::ScopedProfiler::operator=</qualifiedname>
         <param>
-          <type>const <ref refid="classrko__lio_1_1core_1_1ScopedProfiler" kindref="compound">ScopedProfiler</ref> &amp;</type>
+          <type>const ScopedProfiler &amp;</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -195,13 +195,13 @@
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="60" column="18"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1core_1_1ScopedProfiler_1accb18244c4f20994d4d0b6c0baa0ba3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classrko__lio_1_1core_1_1ScopedProfiler" kindref="compound">ScopedProfiler</ref> &amp;</type>
+        <type>ScopedProfiler &amp;</type>
         <definition>ScopedProfiler &amp; rko_lio::core::ScopedProfiler::operator=</definition>
         <argsstring>(ScopedProfiler &amp;&amp;)=delete</argsstring>
         <name>operator=</name>
         <qualifiedname>rko_lio::core::ScopedProfiler::operator=</qualifiedname>
         <param>
-          <type><ref refid="classrko__lio_1_1core_1_1ScopedProfiler" kindref="compound">ScopedProfiler</ref> &amp;&amp;</type>
+          <type>ScopedProfiler &amp;&amp;</type>
         </param>
         <briefdescription>
         </briefdescription>

@@ -34,6 +34,7 @@ Program Listing for File lio.hpp
     * SOFTWARE.
     */
    
+   
    #pragma once
    #include "process_timestamps.hpp"
    #include "util.hpp"
@@ -51,6 +52,7 @@ Program Listing for File lio.hpp
    
        Scalar voxel_size = 1.0;
    
+   
        Scalar max_range = 100.0;
    
        Scalar min_range = 1.0;
@@ -59,7 +61,7 @@ Program Listing for File lio.hpp
    
        Scalar max_correspondence_distance = 0.5;
    
-       int max_num_threads = 0;
+       int max_num_threads = 1;
    
        bool initialization_phase = false;
    

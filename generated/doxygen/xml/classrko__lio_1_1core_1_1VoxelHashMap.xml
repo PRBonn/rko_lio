@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="classrko__lio_1_1core_1_1VoxelHashMap" kind="class" language="C++" prot="public">
     <compoundname>rko_lio::core::VoxelHashMap</compoundname>
     <sectiondef kind="public-attrib">
@@ -264,19 +264,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="2">
-        <label>Scalar</label>
-      </node>
-      <node id="1">
-        <label>rko_lio::core::VoxelHashMap</label>
-        <link refid="classrko__lio_1_1core_1_1VoxelHashMap"/>
-        <childnode refid="2" relation="usage">
-          <edgelabel>quantum</edgelabel>
-          <edgelabel>voxel_size</edgelabel>
-        </childnode>
-      </node>
-    </collaborationgraph>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" line="69" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/voxel_hash_map.hpp" bodystart="69" bodyend="96"/>
     <listofallmembers>
       <member refid="classrko__lio_1_1core_1_1VoxelHashMap_1a7b42eee401a4fa661e84888695ce7a90" prot="public" virt="non-virtual"><scope>rko_lio::core::VoxelHashMap</scope><name>add_points</name></member>

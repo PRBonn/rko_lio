@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="spdlog__sink_8hpp" kind="file" language="C++">
     <compoundname>spdlog_sink.hpp</compoundname>
     <includes local="no">mutex</includes>
@@ -64,9 +64,9 @@
 <codeline lineno="8"><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros::utils<sp/>{</highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight></codeline>
-<codeline lineno="11" refid="classrko__lio_1_1ros_1_1utils_1_1RclcppSink" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrko__lio_1_1ros_1_1utils_1_1RclcppSink" kindref="compound">RclcppSink</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>spdlog::sinks::base_sink&lt;std::mutex&gt;<sp/>{</highlight></codeline>
+<codeline lineno="11" refid="classrko__lio_1_1ros_1_1utils_1_1RclcppSink" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">RclcppSink<sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>spdlog::sinks::base_sink&lt;std::mutex&gt;<sp/>{</highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="13"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1ros_1_1utils_1_1RclcppSink" kindref="compound">RclcppSink</ref>(rclcpp::Logger<sp/>logger)<sp/>:<sp/>logger_(std::move(logger))<sp/>{}</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/>RclcppSink(rclcpp::Logger<sp/>logger)<sp/>:<sp/>logger_(std::move(logger))<sp/>{}</highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="16"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>sink_it_(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>spdlog::details::log_msg&amp;<sp/>msg)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>

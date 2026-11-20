@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="point__cloud__read_8hpp" kind="file" language="C++">
     <compoundname>point_cloud_read.hpp</compoundname>
     <includes refid="util_8hpp" local="no">rko_lio/core/util.hpp</includes>
@@ -185,8 +185,8 @@
 <codeline lineno="50"><highlight class="normal"></highlight></codeline>
 <codeline lineno="51"><highlight class="normal"><ref refid="structrko__lio_1_1ros_1_1utils_1_1RawScan" kindref="compound">RawScan</ref><sp/>point_cloud2_to_eigen_with_timestamps(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::PointCloud2::ConstSharedPtr&amp;<sp/>msg);</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"></highlight></codeline>
-<codeline lineno="53" refid="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer" kindref="compound">LidarDeserializer</ref><sp/>{</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer" kindref="compound">LidarDeserializer</ref>(std::string_view<sp/>type);</highlight></codeline>
+<codeline lineno="53" refid="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">LidarDeserializer<sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/>LidarDeserializer(std::string_view<sp/>type);</highlight></codeline>
 <codeline lineno="55"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>nullptr<sp/>if<sp/>the<sp/>compressed<sp/>cloud<sp/>does<sp/>not<sp/>decode</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="56"><highlight class="normal"><sp/><sp/>sensor_msgs::msg::PointCloud2::ConstSharedPtr<sp/>operator()(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;rclcpp::SerializedMessage&gt;&amp;<sp/>msg)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="57"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>std::optional&lt;point_cloud_transport::PointCloudCodec&gt;<sp/>codec;</highlight></codeline>

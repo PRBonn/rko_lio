@@ -88,13 +88,13 @@ Typedefs
 --------
 
 
-- :ref:`exhale_typedef_namespacerko__lio_1_1core_1a5a3f42fcc9e49ecd569baa31d940734f`
+- :ref:`exhale_typedef_namespacerko__lio_1_1core_1a7db9a3cc24453fe8750ab5fe17d4c5a6`
 
-- :ref:`exhale_typedef_namespacerko__lio_1_1core_1ad6796ca63cae68d67a3963e198336a1e`
+- :ref:`exhale_typedef_namespacerko__lio_1_1core_1a81a04846c8ed60cbedc1ef7f069f14f0`
 
-- :ref:`exhale_typedef_namespacerko__lio_1_1core_1ae207837473ce1623f13104a2b12fae3d`
+- :ref:`exhale_typedef_namespacerko__lio_1_1core_1a2d93dc5163036089284602b27131bf8a`
 
-- :ref:`exhale_typedef_namespacerko__lio_1_1core_1adbcc16d5b9b09c370ce6c889b6356bda`
+- :ref:`exhale_typedef_namespacerko__lio_1_1core_1a593f6c9d4c75e441f6a90e5611397dd8`
 
 
 Variables

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="classrko__lio_1_1ros_1_1ThreadedNode" kind="class" language="C++" prot="public">
     <compoundname>rko_lio::ros::ThreadedNode</compoundname>
     <basecompoundref refid="classrko__lio_1_1ros_1_1BaseNode" prot="public" virt="non-virtual">rko_lio::ros::BaseNode</basecompoundref>
@@ -228,7 +228,7 @@
         <name>ThreadedNode</name>
         <qualifiedname>rko_lio::ros::ThreadedNode::ThreadedNode</qualifiedname>
         <param>
-          <type>const <ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref> &amp;</type>
+          <type>const ThreadedNode &amp;</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -245,7 +245,7 @@
         <name>ThreadedNode</name>
         <qualifiedname>rko_lio::ros::ThreadedNode::ThreadedNode</qualifiedname>
         <param>
-          <type><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref> &amp;&amp;</type>
+          <type>ThreadedNode &amp;&amp;</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -256,13 +256,13 @@
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="59" column="3"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1ThreadedNode_1a0c604f7871cf2983e8b2a503b9ce6f19" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref> &amp;</type>
+        <type>ThreadedNode &amp;</type>
         <definition>ThreadedNode &amp; rko_lio::ros::ThreadedNode::operator=</definition>
         <argsstring>(const ThreadedNode &amp;)=delete</argsstring>
         <name>operator=</name>
         <qualifiedname>rko_lio::ros::ThreadedNode::operator=</qualifiedname>
         <param>
-          <type>const <ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref> &amp;</type>
+          <type>const ThreadedNode &amp;</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -273,13 +273,13 @@
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/threaded_node.hpp" line="60" column="16"/>
       </memberdef>
       <memberdef kind="function" id="classrko__lio_1_1ros_1_1ThreadedNode_1a0f32218c3a721e3c0b7e200ac75112ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref> &amp;</type>
+        <type>ThreadedNode &amp;</type>
         <definition>ThreadedNode &amp; rko_lio::ros::ThreadedNode::operator=</definition>
         <argsstring>(ThreadedNode &amp;&amp;)=delete</argsstring>
         <name>operator=</name>
         <qualifiedname>rko_lio::ros::ThreadedNode::operator=</qualifiedname>
         <param>
-          <type><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref> &amp;&amp;</type>
+          <type>ThreadedNode &amp;&amp;</type>
         </param>
         <briefdescription>
         </briefdescription>

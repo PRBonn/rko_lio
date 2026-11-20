@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="namespacerko__lio_1_1ros_1_1_0d124372205131203234006040227256272316205027370071" kind="namespace" language="C++">
+    <compoundname>rko_lio::ros</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="31" column="1"/>
+  </compounddef>
+</doxygen>

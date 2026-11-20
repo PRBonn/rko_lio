@@ -1,27 +1,27 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="namespacerko__lio_1_1core" kind="namespace" language="C++">
     <compoundname>rko_lio::core</compoundname>
+    <innerclass refid="classrko__lio_1_1core_1_1InputError" prot="public">rko_lio::core::InputError</innerclass>
+    <innerclass refid="classrko__lio_1_1core_1_1RegistrationError" prot="public">rko_lio::core::RegistrationError</innerclass>
+    <innerclass refid="classrko__lio_1_1core_1_1LIO" prot="public">rko_lio::core::LIO</innerclass>
+    <innerclass refid="structrko__lio_1_1core_1_1PreprocessingResult" prot="public">rko_lio::core::PreprocessingResult</innerclass>
+    <innerclass refid="structrko__lio_1_1core_1_1Timestamps" prot="public">rko_lio::core::Timestamps</innerclass>
+    <innerclass refid="structrko__lio_1_1core_1_1TimestampProcessingConfig" prot="public">rko_lio::core::TimestampProcessingConfig</innerclass>
+    <innerclass refid="classrko__lio_1_1core_1_1ScopedProfiler" prot="public">rko_lio::core::ScopedProfiler</innerclass>
+    <innerclass refid="structrko__lio_1_1core_1_1Timer" prot="public">rko_lio::core::Timer</innerclass>
+    <innerclass refid="structrko__lio_1_1core_1_1State" prot="public">rko_lio::core::State</innerclass>
+    <innerclass refid="structrko__lio_1_1core_1_1MotionPrior" prot="public">rko_lio::core::MotionPrior</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1ImuBias" prot="public">rko_lio::core::ImuBias</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1ImuControl" prot="public">rko_lio::core::ImuControl</innerclass>
-    <innerclass refid="classrko__lio_1_1core_1_1InputError" prot="public">rko_lio::core::InputError</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1IntervalStats" prot="public">rko_lio::core::IntervalStats</innerclass>
-    <innerclass refid="classrko__lio_1_1core_1_1LIO" prot="public">rko_lio::core::LIO</innerclass>
-    <innerclass refid="structrko__lio_1_1core_1_1MotionPrior" prot="public">rko_lio::core::MotionPrior</innerclass>
-    <innerclass refid="structrko__lio_1_1core_1_1PreprocessingResult" prot="public">rko_lio::core::PreprocessingResult</innerclass>
-    <innerclass refid="classrko__lio_1_1core_1_1RegistrationError" prot="public">rko_lio::core::RegistrationError</innerclass>
-    <innerclass refid="classrko__lio_1_1core_1_1ScopedProfiler" prot="public">rko_lio::core::ScopedProfiler</innerclass>
-    <innerclass refid="structrko__lio_1_1core_1_1State" prot="public">rko_lio::core::State</innerclass>
-    <innerclass refid="structrko__lio_1_1core_1_1Timer" prot="public">rko_lio::core::Timer</innerclass>
-    <innerclass refid="structrko__lio_1_1core_1_1TimestampProcessingConfig" prot="public">rko_lio::core::TimestampProcessingConfig</innerclass>
-    <innerclass refid="structrko__lio_1_1core_1_1Timestamps" prot="public">rko_lio::core::Timestamps</innerclass>
-    <innerclass refid="structrko__lio_1_1core_1_1VoxelBlock" prot="public">rko_lio::core::VoxelBlock</innerclass>
     <innerclass refid="structrko__lio_1_1core_1_1VoxelHash" prot="public">rko_lio::core::VoxelHash</innerclass>
+    <innerclass refid="structrko__lio_1_1core_1_1VoxelBlock" prot="public">rko_lio::core::VoxelBlock</innerclass>
     <innerclass refid="classrko__lio_1_1core_1_1VoxelHashMap" prot="public">rko_lio::core::VoxelHashMap</innerclass>
     <sectiondef kind="typedef">
-      <memberdef kind="typedef" id="namespacerko__lio_1_1core_1ae207837473ce1623f13104a2b12fae3d" prot="public" static="no">
+      <memberdef kind="typedef" id="namespacerko__lio_1_1core_1a2d93dc5163036089284602b27131bf8a" prot="public" static="no">
         <type>std::vector&lt; Eigen::Vector3s &gt;</type>
-        <definition>using rko_lio::core::Vector3sVector = typedef std::vector&lt;Eigen::Vector3s&gt;</definition>
+        <definition>using rko_lio::core::Vector3sVector =  std::vector&lt;Eigen::Vector3s&gt;</definition>
         <argsstring></argsstring>
         <name>Vector3sVector</name>
         <qualifiedname>rko_lio::core::Vector3sVector</qualifiedname>
@@ -33,9 +33,9 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="50" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="50" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="namespacerko__lio_1_1core_1a5a3f42fcc9e49ecd569baa31d940734f" prot="public" static="no">
+      <memberdef kind="typedef" id="namespacerko__lio_1_1core_1a7db9a3cc24453fe8750ab5fe17d4c5a6" prot="public" static="no">
         <type>std::chrono::nanoseconds</type>
-        <definition>using rko_lio::core::Nsec = typedef std::chrono::nanoseconds</definition>
+        <definition>using rko_lio::core::Nsec =  std::chrono::nanoseconds</definition>
         <argsstring></argsstring>
         <name>Nsec</name>
         <qualifiedname>rko_lio::core::Nsec</qualifiedname>
@@ -47,9 +47,9 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="52" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="52" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="namespacerko__lio_1_1core_1ad6796ca63cae68d67a3963e198336a1e" prot="public" static="no">
+      <memberdef kind="typedef" id="namespacerko__lio_1_1core_1a81a04846c8ed60cbedc1ef7f069f14f0" prot="public" static="no">
         <type>std::vector&lt; Nsec &gt;</type>
-        <definition>using rko_lio::core::TimestampVector = typedef std::vector&lt;Nsec&gt;</definition>
+        <definition>using rko_lio::core::TimestampVector =  std::vector&lt;Nsec&gt;</definition>
         <argsstring></argsstring>
         <name>TimestampVector</name>
         <qualifiedname>rko_lio::core::TimestampVector</qualifiedname>
@@ -61,9 +61,9 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="53" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="53" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="namespacerko__lio_1_1core_1adbcc16d5b9b09c370ce6c889b6356bda" prot="public" static="no">
+      <memberdef kind="typedef" id="namespacerko__lio_1_1core_1a593f6c9d4c75e441f6a90e5611397dd8" prot="public" static="no">
         <type>Eigen::Vector3i</type>
-        <definition>using rko_lio::core::Voxel = typedef Eigen::Vector3i</definition>
+        <definition>using rko_lio::core::Voxel =  Eigen::Vector3i</definition>
         <argsstring></argsstring>
         <name>Voxel</name>
         <qualifiedname>rko_lio::core::Voxel</qualifiedname>
@@ -78,8 +78,8 @@
     </sectiondef>
     <sectiondef kind="var">
       <memberdef kind="variable" id="namespacerko__lio_1_1core_1a54f88ad3bc44e0104ea7c3aae878b3ba" prot="public" static="no" constexpr="yes" mutable="no">
-        <type>constexpr Scalar</type>
-        <definition>constexpr Scalar rko_lio::core::GRAVITY_MAG</definition>
+        <type>Scalar</type>
+        <definition>Scalar rko_lio::core::GRAVITY_MAG</definition>
         <argsstring></argsstring>
         <name>GRAVITY_MAG</name>
         <qualifiedname>rko_lio::core::GRAVITY_MAG</qualifiedname>
@@ -241,8 +241,8 @@
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.cpp" line="78" column="12" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.cpp" bodystart="78" bodyend="120" declfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/process_timestamps.hpp" declline="76" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacerko__lio_1_1core_1a1606d7b4fe5b32a257501d8079c968ca" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>constexpr Scalar</type>
-        <definition>constexpr Scalar rko_lio::core::square</definition>
+        <type>Scalar</type>
+        <definition>Scalar rko_lio::core::square</definition>
         <argsstring>(Scalar x)</argsstring>
         <name>square</name>
         <qualifiedname>rko_lio::core::square</qualifiedname>
@@ -279,8 +279,8 @@
             <defval>double</defval>
           </param>
         </templateparamlist>
-        <type>constexpr T</type>
-        <definition>constexpr T rko_lio::core::to_seconds</definition>
+        <type>T</type>
+        <definition>T rko_lio::core::to_seconds</definition>
         <argsstring>(const Nsec d)</argsstring>
         <name>to_seconds</name>
         <qualifiedname>rko_lio::core::to_seconds</qualifiedname>

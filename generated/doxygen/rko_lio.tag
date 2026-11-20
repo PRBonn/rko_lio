@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
-<tagfile doxygen_version="1.9.8">
+<tagfile doxygen_version="1.15.0">
   <compound kind="file">
     <name>deskew.hpp</name>
     <path>/home/runner/work/rko_lio/rko_lio/rko_lio/core/</path>
@@ -417,21 +417,21 @@
   <compound kind="namespace">
     <name>rko_lio::core</name>
     <filename>namespacerko__lio_1_1core.html</filename>
+    <class kind="class">rko_lio::core::InputError</class>
+    <class kind="class">rko_lio::core::RegistrationError</class>
+    <class kind="class">rko_lio::core::LIO</class>
+    <class kind="struct">rko_lio::core::PreprocessingResult</class>
+    <class kind="struct">rko_lio::core::Timestamps</class>
+    <class kind="struct">rko_lio::core::TimestampProcessingConfig</class>
+    <class kind="class">rko_lio::core::ScopedProfiler</class>
+    <class kind="struct">rko_lio::core::Timer</class>
+    <class kind="struct">rko_lio::core::State</class>
+    <class kind="struct">rko_lio::core::MotionPrior</class>
     <class kind="struct">rko_lio::core::ImuBias</class>
     <class kind="struct">rko_lio::core::ImuControl</class>
-    <class kind="class">rko_lio::core::InputError</class>
     <class kind="struct">rko_lio::core::IntervalStats</class>
-    <class kind="class">rko_lio::core::LIO</class>
-    <class kind="struct">rko_lio::core::MotionPrior</class>
-    <class kind="struct">rko_lio::core::PreprocessingResult</class>
-    <class kind="class">rko_lio::core::RegistrationError</class>
-    <class kind="class">rko_lio::core::ScopedProfiler</class>
-    <class kind="struct">rko_lio::core::State</class>
-    <class kind="struct">rko_lio::core::Timer</class>
-    <class kind="struct">rko_lio::core::TimestampProcessingConfig</class>
-    <class kind="struct">rko_lio::core::Timestamps</class>
-    <class kind="struct">rko_lio::core::VoxelBlock</class>
     <class kind="struct">rko_lio::core::VoxelHash</class>
+    <class kind="struct">rko_lio::core::VoxelBlock</class>
     <class kind="class">rko_lio::core::VoxelHashMap</class>
     <member kind="function">
       <type>void</type>

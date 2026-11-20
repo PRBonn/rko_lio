@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="point__cloud__read_8cpp" kind="file" language="C++">
     <compoundname>point_cloud_read.cpp</compoundname>
     <includes refid="point__cloud__read_8hpp" local="yes">point_cloud_read.hpp</includes>
@@ -276,11 +276,11 @@
 <codeline lineno="54"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>points;</highlight></codeline>
 <codeline lineno="55"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
-<codeline lineno="57"><highlight class="normal">RawScan<sp/>point_cloud2_to_eigen_with_timestamps(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>PointCloud2::ConstSharedPtr&amp;<sp/>msg)<sp/>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><ref refid="structrko__lio_1_1ros_1_1utils_1_1RawScan" kindref="compound">RawScan</ref><sp/>point_cloud2_to_eigen_with_timestamps(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>PointCloud2::ConstSharedPtr&amp;<sp/>msg)<sp/>{</highlight></codeline>
 <codeline lineno="58"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">sensor_msgs::PointCloud2ConstIterator;</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>getting<sp/>points<sp/>and<sp/>time<sp/>in<sp/>a<sp/>single<sp/>cycle<sp/>loop</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="60"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>point_count<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">size_t</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(msg-&gt;height)<sp/>*<sp/>msg-&gt;width;</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/>RawScan<sp/>scan;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1ros_1_1utils_1_1RawScan" kindref="compound">RawScan</ref><sp/>scan;</highlight></codeline>
 <codeline lineno="62"><highlight class="normal"><sp/><sp/>scan.points.reserve(point_count);</highlight></codeline>
 <codeline lineno="63"><highlight class="normal"><sp/><sp/>scan.timestamps.reserve(point_count);</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"><sp/><sp/>PointCloud2ConstIterator&lt;float&gt;<sp/>msg_x(*msg,<sp/></highlight><highlight class="stringliteral">&quot;x&quot;</highlight><highlight class="normal">);</highlight></codeline>
@@ -376,10 +376,10 @@
 <codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>node-&gt;create_generic_subscription(</highlight></codeline>
 <codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>topic,<sp/>type,<sp/>qos,</highlight></codeline>
 <codeline lineno="156"><highlight class="normal">#</highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>RCLCPP_VERSION_MAJOR<sp/>&gt;=<sp/>28</highlight></codeline>
-<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[deserialize_lidar<sp/>=<sp/>LidarDeserializer(type),<sp/>callback](std::unique_ptr&lt;rclcpp::SerializedMessage&gt;<sp/>msg)<sp/>{</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[deserialize_lidar<sp/>=<sp/><ref refid="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer" kindref="compound">LidarDeserializer</ref>(type),<sp/>callback](std::unique_ptr&lt;rclcpp::SerializedMessage&gt;<sp/>msg)<sp/>{</highlight></codeline>
 <codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>cloud<sp/>=<sp/>deserialize_lidar(std::move(msg)))<sp/>{</highlight></codeline>
 <codeline lineno="159"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[deserialize_lidar<sp/>=<sp/>LidarDeserializer(type),<sp/>callback](std::shared_ptr&lt;rclcpp::SerializedMessage&gt;<sp/>msg)<sp/>{</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[deserialize_lidar<sp/>=<sp/><ref refid="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer" kindref="compound">LidarDeserializer</ref>(type),<sp/>callback](std::shared_ptr&lt;rclcpp::SerializedMessage&gt;<sp/>msg)<sp/>{</highlight></codeline>
 <codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>cloud<sp/>=<sp/>deserialize_lidar(msg))<sp/>{</highlight></codeline>
 <codeline lineno="162"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>callback(cloud);</highlight></codeline>

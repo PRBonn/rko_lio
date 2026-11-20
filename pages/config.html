@@ -175,7 +175,7 @@ Typically the convergence criterion is satisfied much earlier anyways.</p>
 fraction of itself between two iterations.
 Lower (stricter) values will requires more ICP iterations.</p>
 </li>
-<li><p><strong>max_num_threads</strong> (<cite>int</cite>, default <code class="docutils literal notranslate"><span class="pre">1</span></code> in ROS, <code class="docutils literal notranslate"><span class="pre">0</span></code> in Python)</p>
+<li><p><strong>max_num_threads</strong> (<cite>int</cite>, default <code class="docutils literal notranslate"><span class="pre">1</span></code>)</p>
 <p>Only used to parallelize data association for ICP.
 <code class="docutils literal notranslate"><span class="pre">0</span></code> means autodetect based on hardware.</p>
 <p>In case compute resources are a constraint, limit this to a few threads and, in order, <code class="docutils literal notranslate"><span class="pre">voxel_size</span></code>, <code class="docutils literal notranslate"><span class="pre">max_range</span></code>, <code class="docutils literal notranslate"><span class="pre">max_iterations</span></code> are the parameters you probably care about.</p>
@@ -432,7 +432,7 @@ Offline mode drains the bag itself and does not need it.</p>
       &#169;2026 Meher Malladi.
       
       |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.2.0</a>
       &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |

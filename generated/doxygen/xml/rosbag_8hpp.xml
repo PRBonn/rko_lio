@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="rosbag_8hpp" kind="file" language="C++">
     <compoundname>rosbag.hpp</compoundname>
     <includes local="no">tf2/buffer_core.hpp</includes>
@@ -142,12 +142,12 @@
 <codeline lineno="48"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>msg;</highlight></codeline>
 <codeline lineno="49"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="50"><highlight class="normal"></highlight></codeline>
-<codeline lineno="51" refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag" kindref="compound">BufferableBag</ref><sp/>{</highlight></codeline>
+<codeline lineno="51" refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">BufferableBag<sp/>{</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="53"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>`topics`<sp/>are<sp/>returned<sp/>by<sp/>PopNextMessage.<sp/>/tf_static<sp/>is<sp/>loaded<sp/>into<sp/>`tf_buffer`<sp/>up<sp/>front,<sp/>ignoring</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="54"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>`skip_from_start`,<sp/>and<sp/>/tf<sp/>is<sp/>streamed<sp/>in<sp/>as<sp/>the<sp/>bag<sp/>is<sp/>read<sp/>unless<sp/>`ingest_dynamic_tf`<sp/>is<sp/>false.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="55"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>`skip_from_start`<sp/>is<sp/>an<sp/>offset<sp/>from<sp/>the<sp/>bag<sp/>start.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><ref refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag" kindref="compound">BufferableBag</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>bag_path,</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/>BufferableBag(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>bag_path,</highlight></codeline>
 <codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::string&gt;&amp;<sp/>topics,</highlight></codeline>
 <codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::shared_ptr&lt;tf2::BufferCore&gt;<sp/>tf_buffer,</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>tf2::Duration<sp/>skip_from_start<sp/>=<sp/>tf2::durationFromSec(0.0),</highlight></codeline>

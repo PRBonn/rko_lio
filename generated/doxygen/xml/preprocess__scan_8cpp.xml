@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="preprocess__scan_8cpp" kind="file" language="C++">
     <compoundname>preprocess_scan.cpp</compoundname>
     <includes refid="preprocess__scan_8hpp" local="yes">preprocess_scan.hpp</includes>
@@ -163,7 +163,7 @@
 <codeline lineno="5"><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacerko__lio_1_1core" kindref="compound">rko_lio::core</ref><sp/>{</highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal">PreprocessingResult<sp/>preprocess_scan(Vector3sVector<sp/>scan,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>LIO::Config&amp;<sp/>config)<sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1PreprocessingResult" kindref="compound">PreprocessingResult</ref><sp/>preprocess_scan(Vector3sVector<sp/>scan,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrko__lio_1_1core_1_1LIO_1_1Config" kindref="compound">LIO::Config</ref>&amp;<sp/>config)<sp/>{</highlight></codeline>
 <codeline lineno="9"><highlight class="normal"><sp/><sp/>std::erase_if(scan,<sp/>[&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>point)<sp/>{</highlight></codeline>
 <codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>point_range<sp/>=<sp/>point.norm();</highlight></codeline>
 <codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>!std::isfinite(point_range)<sp/>||<sp/>point_range<sp/>&lt;=<sp/>config.min_range<sp/>||<sp/>point_range<sp/>&gt;=<sp/>config.max_range;</highlight></codeline>

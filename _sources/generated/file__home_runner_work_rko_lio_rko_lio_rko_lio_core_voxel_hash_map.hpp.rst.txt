@@ -89,5 +89,5 @@ Typedefs
 --------
 
 
-- :ref:`exhale_typedef_namespacerko__lio_1_1core_1adbcc16d5b9b09c370ce6c889b6356bda`
+- :ref:`exhale_typedef_namespacerko__lio_1_1core_1a593f6c9d4c75e441f6a90e5611397dd8`
 

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="structrko__lio_1_1core_1_1LIO_1_1Config" kind="struct" language="C++" prot="public">
     <compoundname>rko_lio::core::LIO::Config</compoundname>
     <includes refid="lio_8hpp" local="no">lio.hpp</includes>
@@ -123,7 +123,7 @@
         <argsstring></argsstring>
         <name>max_num_threads</name>
         <qualifiedname>rko_lio::core::LIO::Config::max_num_threads</qualifiedname>
-        <initializer>= 0</initializer>
+        <initializer>= 1</initializer>
         <briefdescription>
 <para>Thread count for data association (0 = automatic). </para>
         </briefdescription>
@@ -203,24 +203,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1">
-        <label>rko_lio::core::LIO::Config</label>
-        <link refid="structrko__lio_1_1core_1_1LIO_1_1Config"/>
-        <childnode refid="2" relation="usage">
-          <edgelabel>convergence_criterion</edgelabel>
-          <edgelabel>max_correspondence_distance</edgelabel>
-          <edgelabel>max_expected_jerk</edgelabel>
-          <edgelabel>max_range</edgelabel>
-          <edgelabel>min_beta</edgelabel>
-          <edgelabel>min_range</edgelabel>
-          <edgelabel>voxel_size</edgelabel>
-        </childnode>
-      </node>
-      <node id="2">
-        <label>Scalar</label>
-      </node>
-    </collaborationgraph>
     <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" line="43" column="3" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/lio.hpp" bodystart="43" bodyend="81"/>
     <listofallmembers>
       <member refid="structrko__lio_1_1core_1_1LIO_1_1Config_1a56d0d45436b8a84fff17bcc091db526a" prot="public" virt="non-virtual"><scope>rko_lio::core::LIO::Config</scope><name>convergence_criterion</name></member>

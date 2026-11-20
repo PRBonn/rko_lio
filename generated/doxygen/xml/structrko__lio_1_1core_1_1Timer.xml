@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="structrko__lio_1_1core_1_1Timer" kind="struct" language="C++" prot="public">
     <compoundname>rko_lio::core::Timer</compoundname>
     <includes refid="profiler_8hpp" local="no">profiler.hpp</includes>
@@ -117,7 +117,7 @@
         <name>Timer</name>
         <qualifiedname>rko_lio::core::Timer::Timer</qualifiedname>
         <param>
-          <type>const <ref refid="structrko__lio_1_1core_1_1Timer" kindref="compound">Timer</ref> &amp;</type>
+          <type>const Timer &amp;</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -134,7 +134,7 @@
         <name>Timer</name>
         <qualifiedname>rko_lio::core::Timer::Timer</qualifiedname>
         <param>
-          <type><ref refid="structrko__lio_1_1core_1_1Timer" kindref="compound">Timer</ref> &amp;&amp;</type>
+          <type>Timer &amp;&amp;</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -145,13 +145,13 @@
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="152" column="3"/>
       </memberdef>
       <memberdef kind="function" id="structrko__lio_1_1core_1_1Timer_1af73241010569a47595e18b9a97315d79" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="structrko__lio_1_1core_1_1Timer" kindref="compound">Timer</ref> &amp;</type>
+        <type>Timer &amp;</type>
         <definition>Timer &amp; rko_lio::core::Timer::operator=</definition>
         <argsstring>(const Timer &amp;)=default</argsstring>
         <name>operator=</name>
         <qualifiedname>rko_lio::core::Timer::operator=</qualifiedname>
         <param>
-          <type>const <ref refid="structrko__lio_1_1core_1_1Timer" kindref="compound">Timer</ref> &amp;</type>
+          <type>const Timer &amp;</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -162,13 +162,13 @@
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/profiler.hpp" line="153" column="9"/>
       </memberdef>
       <memberdef kind="function" id="structrko__lio_1_1core_1_1Timer_1ac2f0c7dd196f11e1ff6211e008aa0ec7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="structrko__lio_1_1core_1_1Timer" kindref="compound">Timer</ref> &amp;</type>
+        <type>Timer &amp;</type>
         <definition>Timer &amp; rko_lio::core::Timer::operator=</definition>
         <argsstring>(Timer &amp;&amp;)=default</argsstring>
         <name>operator=</name>
         <qualifiedname>rko_lio::core::Timer::operator=</qualifiedname>
         <param>
-          <type><ref refid="structrko__lio_1_1core_1_1Timer" kindref="compound">Timer</ref> &amp;&amp;</type>
+          <type>Timer &amp;&amp;</type>
         </param>
         <briefdescription>
         </briefdescription>

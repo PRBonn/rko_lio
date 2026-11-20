@@ -1,0 +1,14 @@
+.. _exhale_typedef_namespacerko__lio_1_1core_1a2d93dc5163036089284602b27131bf8a:
+
+Typedef rko_lio::core::Vector3sVector
+=====================================
+
+- Defined in :ref:`file__home_runner_work_rko_lio_rko_lio_rko_lio_core_util.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: rko_lio::core::Vector3sVector
+   :project: rko_lio Doxygen Project

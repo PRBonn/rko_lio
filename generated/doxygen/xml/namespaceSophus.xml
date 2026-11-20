@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="namespaceSophus" kind="namespace" language="C++">
     <compoundname>Sophus</compoundname>
     <sectiondef kind="typedef">
-      <memberdef kind="typedef" id="util_8hpp_1aeff68517fe50f9fd3ebbc4ea4b54c52a" prot="public" static="no">
+      <memberdef kind="typedef" id="util_8hpp_1a21dbf83685c5a29f4829a5bcc2681bfd" prot="public" static="no">
         <type>SE3&lt; rko_lio::core::Scalar &gt;</type>
-        <definition>using Sophus::SE3s = typedef SE3&lt;rko_lio::core::Scalar&gt;</definition>
+        <definition>using Sophus::SE3s =  SE3&lt;rko_lio::core::Scalar&gt;</definition>
         <argsstring></argsstring>
         <name>SE3s</name>
         <qualifiedname>Sophus::SE3s</qualifiedname>
@@ -17,9 +17,9 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="45" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="45" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="util_8hpp_1aa20d225c07e7352bad174ebddb76c4fc" prot="public" static="no">
+      <memberdef kind="typedef" id="util_8hpp_1a3e90883c1230c89bafb043be1adb7a92" prot="public" static="no">
         <type>SO3&lt; rko_lio::core::Scalar &gt;</type>
-        <definition>using Sophus::SO3s = typedef SO3&lt;rko_lio::core::Scalar&gt;</definition>
+        <definition>using Sophus::SO3s =  SO3&lt;rko_lio::core::Scalar&gt;</definition>
         <argsstring></argsstring>
         <name>SO3s</name>
         <qualifiedname>Sophus::SO3s</qualifiedname>

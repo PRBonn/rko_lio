@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="voxel__hash__map_8hpp" kind="file" language="C++">
     <compoundname>voxel_hash_map.hpp</compoundname>
     <includes refid="voxel__down__sample_8hpp" local="yes">voxel_down_sample.hpp</includes>
@@ -194,7 +194,7 @@
 <codeline lineno="44"><highlight class="normal"></highlight></codeline>
 <codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Voxel<sp/>=<sp/>Eigen::Vector3i;</highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight></codeline>
-<codeline lineno="48" refid="structrko__lio_1_1core_1_1VoxelBlock" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1VoxelBlock" kindref="compound">VoxelBlock</ref><sp/>{</highlight></codeline>
+<codeline lineno="48" refid="structrko__lio_1_1core_1_1VoxelBlock" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structrko__lio_1_1core_1_1VoxelBlock" kindref="compound">VoxelBlock</ref><sp/>{</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>max_points<sp/>=<sp/>8;</highlight></codeline>
 <codeline lineno="50"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">PointArray<sp/>=<sp/>std::array&lt;Eigen::Vector3i8,<sp/>max_points&gt;;</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"></highlight></codeline>
@@ -215,9 +215,9 @@
 <codeline lineno="66"><highlight class="normal"><sp/><sp/>PointArray::const_iterator<sp/>end()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>points.begin()<sp/>+<sp/>size;<sp/>}<sp/></highlight><highlight class="comment">//<sp/>capacity<sp/>is<sp/>8,<sp/>size<sp/>is<sp/>what&apos;s<sp/>filled</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="67"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="68"><highlight class="normal"></highlight></codeline>
-<codeline lineno="69" refid="classrko__lio_1_1core_1_1VoxelHashMap" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrko__lio_1_1core_1_1VoxelHashMap" kindref="compound">VoxelHashMap</ref><sp/>{</highlight></codeline>
+<codeline lineno="69" refid="classrko__lio_1_1core_1_1VoxelHashMap" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">VoxelHashMap<sp/>{</highlight></codeline>
 <codeline lineno="70"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1core_1_1VoxelHashMap" kindref="compound">VoxelHashMap</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>voxel_size,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>clipping_distance);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/>VoxelHashMap(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>voxel_size,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Scalar<sp/>clipping_distance);</highlight></codeline>
 <codeline lineno="72"><highlight class="normal"></highlight></codeline>
 <codeline lineno="73"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>clear()<sp/>{<sp/>voxels.clear();<sp/>}</highlight></codeline>
 <codeline lineno="74"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>empty()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>voxels.empty();<sp/>}</highlight></codeline>

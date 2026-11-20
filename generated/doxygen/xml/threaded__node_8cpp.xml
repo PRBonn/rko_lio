@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="threaded__node_8cpp" kind="file" language="C++">
     <compoundname>threaded_node.cpp</compoundname>
     <includes refid="threaded__node_8hpp" local="yes">threaded_node.hpp</includes>
@@ -490,7 +490,7 @@
 <codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros<sp/>{</highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight></codeline>
 <codeline lineno="36"><highlight class="normal">ThreadedNode::ThreadedNode(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>node_name,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>rclcpp::NodeOptions&amp;<sp/>options)</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>BaseNode(node_name,<sp/>options)<sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/><ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">BaseNode</ref>(node_name,<sp/>options)<sp/>{</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/>max_lidar_buffer_size<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">size_t</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>node-&gt;declare_parameter&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;(</highlight><highlight class="stringliteral">&quot;async.max_lidar_buffer_size&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(max_lidar_buffer_size)));</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"><sp/><sp/>registration_thread<sp/>=<sp/>std::jthread([</highlight><highlight class="keyword">this</highlight><highlight class="normal">]<sp/>{<sp/>registration_loop();<sp/>});</highlight></codeline>

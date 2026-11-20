@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="online__imu__rate__node_8cpp" kind="file" language="C++">
     <compoundname>online_imu_rate_node.cpp</compoundname>
     <includes refid="base__node_8hpp" local="yes">base_node.hpp</includes>
@@ -429,88 +429,6 @@
     </incdepgraph>
     <innernamespace refid="namespacerko__lio">rko_lio</innernamespace>
     <innernamespace refid="namespacerko__lio_1_1ros">rko_lio::ros</innernamespace>
-    <sectiondef kind="var">
-      <memberdef kind="variable" id="online__imu__rate__node_8cpp_1aacbe12345a9ca47e3872e572922e6a5f" prot="public" static="no" mutable="no">
-        <type>rclcpp::Publisher&lt; nav_msgs::msg::Odometry &gt;::SharedPtr</type>
-        <definition>rclcpp::Publisher&lt;nav_msgs::msg::Odometry&gt;::SharedPtr odom_at_imu_rate_publisher</definition>
-        <argsstring></argsstring>
-        <name>odom_at_imu_rate_publisher</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="39" column="33" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="39" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="online__imu__rate__node_8cpp_1a99af4aad7b375dc52ceeabb68e5be2ef" prot="public" static="no" mutable="no">
-        <type>rclcpp::Subscription&lt; sensor_msgs::msg::Imu &gt;::SharedPtr</type>
-        <definition>rclcpp::Subscription&lt;sensor_msgs::msg::Imu&gt;::SharedPtr imu_sub</definition>
-        <argsstring></argsstring>
-        <name>imu_sub</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="40" column="36" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="40" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="online__imu__rate__node_8cpp_1a30d1799d3fbb418f02eb0835e2a2acf5" prot="public" static="no" mutable="no">
-        <type>rclcpp::SubscriptionBase::SharedPtr</type>
-        <definition>rclcpp::SubscriptionBase::SharedPtr lidar_sub</definition>
-        <argsstring></argsstring>
-        <name>lidar_sub</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="41" column="39" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="41" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="online__imu__rate__node_8cpp_1ab78a07be796aaebb5f7bad06b5e301e7" prot="public" static="no" mutable="no">
-        <type>core::Timer</type>
-        <definition>core::Timer timer</definition>
-        <argsstring></argsstring>
-        <name>timer</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="42" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="42" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="online__imu__rate__node_8cpp_1aa48f161529ca3217def3fe5a8407e777" prot="public" static="no" mutable="no">
-        <type>std::string</type>
-        <definition>std::string odom_at_imu_rate_topic</definition>
-        <argsstring></argsstring>
-        <name>odom_at_imu_rate_topic</name>
-        <initializer>= &quot;rko_lio/odom_at_imu_rate&quot;</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="44" column="15" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="44" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="online__imu__rate__node_8cpp_1a70eec06ed2c7220f2a80ac9c9ab29b49" prot="public" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool tf_at_imu_rate</definition>
-        <argsstring></argsstring>
-        <name>tf_at_imu_rate</name>
-        <initializer>= false</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" line="45" column="8" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_imu_rate_node.cpp" bodystart="45" bodyend="-1"/>
-      </memberdef>
-    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -552,7 +470,7 @@
 <codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/>the<sp/>rclcpp<sp/>executor<sp/>thread.<sp/>The<sp/>IMU<sp/>callback<sp/>feeds<sp/>add_imu_measurement<sp/>and</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>publishes<sp/>IMU-rate<sp/>odometry;<sp/>the<sp/>LiDAR<sp/>callback<sp/>runs<sp/>register_scan<sp/>inline</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/>and<sp/>publishes<sp/>the<sp/>lidar-rate<sp/>odometry,<sp/>deskewed<sp/>scan,<sp/>and<sp/>TF<sp/>(by<sp/>default).</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">OnlineImuRateNode<sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>BaseNode<sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">OnlineImuRateNode<sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1ros_1_1BaseNode" kindref="compound">BaseNode</ref><sp/>{</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"><sp/><sp/>rclcpp::Publisher&lt;nav_msgs::msg::Odometry&gt;::SharedPtr<sp/>odom_at_imu_rate_publisher;</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"><sp/><sp/>rclcpp::Subscription&lt;sensor_msgs::msg::Imu&gt;::SharedPtr<sp/>imu_sub;</highlight></codeline>

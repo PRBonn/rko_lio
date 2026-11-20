@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="namespaceEigen" kind="namespace" language="C++">
     <compoundname>Eigen</compoundname>
     <sectiondef kind="typedef">
-      <memberdef kind="typedef" id="util_8hpp_1acbe7c0b7d2256e5520e0672cc1f453a5" prot="public" static="no">
+      <memberdef kind="typedef" id="util_8hpp_1a1316a413866cbe1f5ede1fdbc3c102e8" prot="public" static="no">
         <type>Vector3&lt; rko_lio::core::Scalar &gt;</type>
-        <definition>using Eigen::Vector3s = typedef Vector3&lt;rko_lio::core::Scalar&gt;</definition>
+        <definition>using Eigen::Vector3s =  Vector3&lt;rko_lio::core::Scalar&gt;</definition>
         <argsstring></argsstring>
         <name>Vector3s</name>
         <qualifiedname>Eigen::Vector3s</qualifiedname>
@@ -17,9 +17,9 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="33" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="33" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="util_8hpp_1a352b146ace6235f1f17b8a7c63bc8676" prot="public" static="no">
+      <memberdef kind="typedef" id="util_8hpp_1ad970c9912ca559d662e6049379d85a60" prot="public" static="no">
         <type>Vector4&lt; rko_lio::core::Scalar &gt;</type>
-        <definition>using Eigen::Vector4s = typedef Vector4&lt;rko_lio::core::Scalar&gt;</definition>
+        <definition>using Eigen::Vector4s =  Vector4&lt;rko_lio::core::Scalar&gt;</definition>
         <argsstring></argsstring>
         <name>Vector4s</name>
         <qualifiedname>Eigen::Vector4s</qualifiedname>
@@ -31,9 +31,9 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="34" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="34" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="util_8hpp_1a0420b6f93947a4b915651820beb39357" prot="public" static="no">
+      <memberdef kind="typedef" id="util_8hpp_1a8b24d41ccacbaf4c30cb8c86bee9eea2" prot="public" static="no">
         <type>Matrix3&lt; rko_lio::core::Scalar &gt;</type>
-        <definition>using Eigen::Matrix3s = typedef Matrix3&lt;rko_lio::core::Scalar&gt;</definition>
+        <definition>using Eigen::Matrix3s =  Matrix3&lt;rko_lio::core::Scalar&gt;</definition>
         <argsstring></argsstring>
         <name>Matrix3s</name>
         <qualifiedname>Eigen::Matrix3s</qualifiedname>
@@ -45,9 +45,9 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="35" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="35" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="util_8hpp_1a7e2f820d8f1353a1bf9bdf5f144b5864" prot="public" static="no">
+      <memberdef kind="typedef" id="util_8hpp_1a5380a64214559a24c1fbe915284ac79a" prot="public" static="no">
         <type>Matrix4&lt; rko_lio::core::Scalar &gt;</type>
-        <definition>using Eigen::Matrix4s = typedef Matrix4&lt;rko_lio::core::Scalar&gt;</definition>
+        <definition>using Eigen::Matrix4s =  Matrix4&lt;rko_lio::core::Scalar&gt;</definition>
         <argsstring></argsstring>
         <name>Matrix4s</name>
         <qualifiedname>Eigen::Matrix4s</qualifiedname>
@@ -59,9 +59,9 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="36" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="36" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="util_8hpp_1a8ff6bd9d4657f08d14ce6ffbaa5e459d" prot="public" static="no">
+      <memberdef kind="typedef" id="util_8hpp_1a9d1a0a34bed5ea3ce873929f826a030d" prot="public" static="no">
         <type>Matrix&lt; rko_lio::core::Scalar, 3, 6 &gt;</type>
-        <definition>using Eigen::Matrix3_6s = typedef Matrix&lt;rko_lio::core::Scalar, 3, 6&gt;</definition>
+        <definition>using Eigen::Matrix3_6s =  Matrix&lt;rko_lio::core::Scalar, 3, 6&gt;</definition>
         <argsstring></argsstring>
         <name>Matrix3_6s</name>
         <qualifiedname>Eigen::Matrix3_6s</qualifiedname>
@@ -73,9 +73,9 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="37" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="37" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="util_8hpp_1ae00c895351e2248eb4d074825b8e6d85" prot="public" static="no">
+      <memberdef kind="typedef" id="util_8hpp_1a3b0249a9a36fb333047b2c1ad062ed56" prot="public" static="no">
         <type>Matrix&lt; rko_lio::core::Scalar, 6, 1 &gt;</type>
-        <definition>using Eigen::Vector6s = typedef Matrix&lt;rko_lio::core::Scalar, 6, 1&gt;</definition>
+        <definition>using Eigen::Vector6s =  Matrix&lt;rko_lio::core::Scalar, 6, 1&gt;</definition>
         <argsstring></argsstring>
         <name>Vector6s</name>
         <qualifiedname>Eigen::Vector6s</qualifiedname>
@@ -87,9 +87,9 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="38" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="38" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="util_8hpp_1ad4ddf471463f5bd25184c71e490b4ada" prot="public" static="no">
+      <memberdef kind="typedef" id="util_8hpp_1ae0f8f9553518634b210ad747fb4e5552" prot="public" static="no">
         <type>Matrix&lt; rko_lio::core::Scalar, 6, 6 &gt;</type>
-        <definition>using Eigen::Matrix6s = typedef Matrix&lt;rko_lio::core::Scalar, 6, 6&gt;</definition>
+        <definition>using Eigen::Matrix6s =  Matrix&lt;rko_lio::core::Scalar, 6, 6&gt;</definition>
         <argsstring></argsstring>
         <name>Matrix6s</name>
         <qualifiedname>Eigen::Matrix6s</qualifiedname>
@@ -101,9 +101,9 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="39" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="39" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="util_8hpp_1a7e8c6a6baaf32a4e56f0a95ee9e288b3" prot="public" static="no">
+      <memberdef kind="typedef" id="util_8hpp_1a2dd24c167d93044f7de73d9f7837ea00" prot="public" static="no">
         <type>Quaternion&lt; rko_lio::core::Scalar &gt;</type>
-        <definition>using Eigen::Quaternions = typedef Quaternion&lt;rko_lio::core::Scalar&gt;</definition>
+        <definition>using Eigen::Quaternions =  Quaternion&lt;rko_lio::core::Scalar&gt;</definition>
         <argsstring></argsstring>
         <name>Quaternions</name>
         <qualifiedname>Eigen::Quaternions</qualifiedname>
@@ -115,9 +115,9 @@
         </inbodydescription>
         <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" line="40" column="1" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/core/util.hpp" bodystart="40" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="util_8hpp_1a59225034936e018c9753ea0d23b377b2" prot="public" static="no">
+      <memberdef kind="typedef" id="util_8hpp_1a25707a7f9f118068cf1b8cfdec2a455a" prot="public" static="no">
         <type>Vector3&lt; std::int8_t &gt;</type>
-        <definition>using Eigen::Vector3i8 = typedef Vector3&lt;std::int8_t&gt;</definition>
+        <definition>using Eigen::Vector3i8 =  Vector3&lt;std::int8_t&gt;</definition>
         <argsstring></argsstring>
         <name>Vector3i8</name>
         <qualifiedname>Eigen::Vector3i8</qualifiedname>

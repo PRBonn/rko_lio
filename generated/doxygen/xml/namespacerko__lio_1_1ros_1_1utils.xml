@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="namespacerko__lio_1_1ros_1_1utils" kind="namespace" language="C++">
     <compoundname>rko_lio::ros::utils</compoundname>
-    <innerclass refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag" prot="public">rko_lio::ros::utils::BufferableBag</innerclass>
-    <innerclass refid="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer" prot="public">rko_lio::ros::utils::LidarDeserializer</innerclass>
     <innerclass refid="structrko__lio_1_1ros_1_1utils_1_1RawScan" prot="public">rko_lio::ros::utils::RawScan</innerclass>
+    <innerclass refid="structrko__lio_1_1ros_1_1utils_1_1LidarDeserializer" prot="public">rko_lio::ros::utils::LidarDeserializer</innerclass>
+    <innerclass refid="classrko__lio_1_1ros_1_1utils_1_1BufferableBag" prot="public">rko_lio::ros::utils::BufferableBag</innerclass>
     <innerclass refid="classrko__lio_1_1ros_1_1utils_1_1RclcppSink" prot="public">rko_lio::ros::utils::RclcppSink</innerclass>
     <sectiondef kind="func">
       <memberdef kind="function" id="point__cloud__read_8cpp_1a77975e01f058823f8615a43bba6396a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">

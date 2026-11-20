@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
   <compounddef id="online__node_8cpp" kind="file" language="C++">
     <compoundname>online_node.cpp</compoundname>
     <includes refid="profiler_8hpp" local="yes">rko_lio/core/profiler.hpp</includes>
@@ -348,47 +348,6 @@
     </incdepgraph>
     <innernamespace refid="namespacerko__lio">rko_lio</innernamespace>
     <innernamespace refid="namespacerko__lio_1_1ros">rko_lio::ros</innernamespace>
-    <sectiondef kind="var">
-      <memberdef kind="variable" id="online__node_8cpp_1a99af4aad7b375dc52ceeabb68e5be2ef" prot="public" static="no" mutable="no">
-        <type>rclcpp::Subscription&lt; sensor_msgs::msg::Imu &gt;::SharedPtr</type>
-        <definition>rclcpp::Subscription&lt;sensor_msgs::msg::Imu&gt;::SharedPtr imu_sub</definition>
-        <argsstring></argsstring>
-        <name>imu_sub</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" line="33" column="36" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" bodystart="33" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="online__node_8cpp_1a30d1799d3fbb418f02eb0835e2a2acf5" prot="public" static="no" mutable="no">
-        <type>rclcpp::SubscriptionBase::SharedPtr</type>
-        <definition>rclcpp::SubscriptionBase::SharedPtr lidar_sub</definition>
-        <argsstring></argsstring>
-        <name>lidar_sub</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" line="34" column="39" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" bodystart="34" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="online__node_8cpp_1a65dc6c748af20a45bea7469712b724dd" prot="public" static="no" mutable="no">
-        <type><ref refid="structrko__lio_1_1core_1_1Timer" kindref="compound">rko_lio::core::Timer</ref></type>
-        <definition>rko_lio::core::Timer timer</definition>
-        <argsstring></argsstring>
-        <name>timer</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" line="35" column="24" bodyfile="/home/runner/work/rko_lio/rko_lio/rko_lio/ros/online_node.cpp" bodystart="35" bodyend="-1"/>
-      </memberdef>
-    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -424,11 +383,11 @@
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rko_lio::ros<sp/>{</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">OnlineNode<sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>ThreadedNode<sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">OnlineNode<sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classrko__lio_1_1ros_1_1ThreadedNode" kindref="compound">ThreadedNode</ref><sp/>{</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"><sp/><sp/>rclcpp::Subscription&lt;sensor_msgs::msg::Imu&gt;::SharedPtr<sp/>imu_sub;</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"><sp/><sp/>rclcpp::SubscriptionBase::SharedPtr<sp/>lidar_sub;</highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><ref refid="structrko__lio_1_1core_1_1Timer" kindref="compound">rko_lio::core::Timer</ref><sp/>timer;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/>rko_lio::core::Timer<sp/>timer;</highlight></codeline>
 <codeline lineno="36"><highlight class="normal"></highlight></codeline>
 <codeline lineno="37"><highlight class="normal"><sp/><sp/>OnlineNode(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>OnlineNode&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/>OnlineNode(OnlineNode&amp;&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
