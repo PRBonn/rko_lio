@@ -26,7 +26,7 @@
         "/^cmake/dependencies/sophus/sophus\\.cmake$/"
       ],
       "matchStrings": [
-        "set\\(SOPHUS_VERSION \"(?<currentValue>[\\d.]+)\"\\)"
+        "else\\(\\)\\s+set\\(SOPHUS_VERSION \"(?<currentValue>[\\d.]+)\"\\)"
       ],
       "datasourceTemplate": "github-tags",
       "packageNameTemplate": "strasdat/Sophus"
@@ -95,9 +95,18 @@
       ]
     },
     {
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchDepNames": [
+        "python"
+      ],
+      "enabled": false
+    },
+    {
       "groupName": "Python dependencies",
       "matchManagers": [
-        "poetry"
+        "pep621"
       ],
       "rangeStrategy": "widen"
     },

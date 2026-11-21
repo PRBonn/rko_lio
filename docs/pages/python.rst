@@ -65,7 +65,7 @@ Or use the convenience recipes in the `Makefile <Makefile>`_:
    make editable   # installs an editable version with all deps
 
 The Python build uses ``scikit-build-core``.
-You only need Python >= 3.10 and ``pip`` (or another frontend).
+You only need Python >= 3.11 and ``pip`` (or another frontend).
 Core C++ dependencies (Eigen, Sophus, TBB, robin-map, spdlog) are fetched automatically.
 If you want to build against system libraries instead, set ``RKO_LIO_FETCH_CONTENT_DEPS=OFF`` via the scikit-build CMake args -- the default for the Python build is ``ON``.
 

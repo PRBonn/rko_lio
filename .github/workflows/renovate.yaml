@@ -9,7 +9,9 @@ jobs:
     if: github.repository == 'PRBonn/rko_lio'
     steps:
       - uses: actions/checkout@v7
-      - uses: renovatebot/github-action@v46.2.4
+      - uses: renovatebot/github-action@v46.3.14
         with:
           configurationFile: renovate.json
           token: ${{ secrets.RENOVATE_TOKEN }}
+        env:
+          RENOVATE_REPOSITORIES: ${{ github.repository }}
