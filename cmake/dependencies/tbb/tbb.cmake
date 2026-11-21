@@ -3,7 +3,7 @@ option(TBB_EXAMPLES OFF)
 option(TBB_STRICT OFF)
 option(TBB_TEST OFF)
 
-FetchContent_Declare(TBB URL https://github.com/uxlfoundation/oneTBB/archive/refs/tags/v2023.1.0.tar.gz
+FetchContent_Declare(TBB URL https://github.com/uxlfoundation/oneTBB/archive/refs/tags/v2023.2.0.tar.gz
                              ${RKO_LIO_FETCHCONTENT_COMMON_FLAGS})
 FetchContent_MakeAvailable(TBB)
 
